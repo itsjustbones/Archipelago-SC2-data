@@ -35775,4 +35775,14 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
+    <CActorSound id="AP_MutatorCloakOff" parent="SoundOneShot">
+        <Terms value="ValidateUnit NotCloakedAndNotDead"/>
+        <On Terms="Behavior.AP_MutatorPermanentlyCloaked.Off" Send="Create"/>
+        <Sound value="Wraith_CloakOff"/>
+    </CActorSound>
+    <CActorSound id="AP_MutatorCloakOn" parent="SoundOneShot">
+        <Terms value="ValidateUnit NotCloaked"/>
+        <On Terms="Behavior.AP_MutatorPermanentlyCloaked.On" Send="Create"/>
+        <Sound value="Wraith_CloakOn"/>
+    </CActorSound>
 </Catalog>
