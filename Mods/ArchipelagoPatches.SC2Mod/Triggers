@@ -7,18 +7,74 @@
         </Root>
         <Element Type="Trigger" Id="59D28101">
             <Identifier>AP_Patches_Constructor</Identifier>
+            <Event Type="FunctionCall" Library="6EE41A55" Id="DAE42779"/>
             <Action Type="Comment" Library="6EE41A55" Id="D64B8C7C"/>
+            <Action Type="FunctionCall" Library="6EE41A55" Id="37CE721F"/>
+        </Element>
+        <Element Type="FunctionCall" Id="DAE42779">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9A2A3734"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="32964323"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="4D012623"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="65F9D076"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="9FFDC0D0"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="DC8AEE07"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="185025C8"/>
+        </Element>
+        <Element Type="Param" Id="32964323">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="310559CB"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="Param" Id="4D012623">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C8203405"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="FD98B2DB"/>
+        </Element>
+        <Element Type="Param" Id="65F9D076">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6B85B860"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="8378D0D9"/>
+        </Element>
+        <Element Type="Param" Id="9FFDC0D0">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="53B30B6F"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="CDE1DEBE"/>
+        </Element>
+        <Element Type="Param" Id="DC8AEE07">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="297964B9"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="CDE1DEBE"/>
+        </Element>
+        <Element Type="Param" Id="185025C8">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="FE608B8E"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="CDE1DEBE"/>
         </Element>
         <Element Type="Comment" Id="D64B8C7C">
             <Comment>
                 Call this trigger to get the library to load
             </Comment>
         </Element>
+        <Element Type="FunctionCall" Id="37CE721F">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000136"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="78DF3665"/>
+            <Parameter Type="Param" Library="6EE41A55" Id="1C7D524A"/>
+        </Element>
+        <Element Type="Param" Id="78DF3665">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
+            <Variable Type="Variable" Library="15EF4C78" Id="13AE6777"/>
+            <Array Type="Param" Library="6EE41A55" Id="DE3E49F5"/>
+        </Element>
+        <Element Type="Param" Id="DE3E49F5">
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="1C7D524A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
+            <Value>Assets\Textures\novaex3_ingame_heroportrait.dds</Value>
+            <ValueType Type="filepath"/>
+            <ValueTypeInfo Value="5"/>
+        </Element>
         <Element Type="CustomScript" Id="F0ECB691">
             <Identifier>main</Identifier>
             <ScriptCode>
                 void patchMain() {
-                }
+                    lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = &quot;Assets\\Textures\\novaex3_ingame_heroportrait.dds&quot;;
+                }   
             </ScriptCode>
             <InitFunc>patchMain</InitFunc>
         </Element>

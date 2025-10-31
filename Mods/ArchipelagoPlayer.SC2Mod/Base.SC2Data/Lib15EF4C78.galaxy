@@ -439,6 +439,7 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
     fixed lp_reviveTime = auto_lib15EF4C78_gf_HandleHeroDeathNova_lp_reviveTime;
 
     // Variable Declarations
+    unit lv_heroUnitLocal;
     int lv_heroType;
     unit lv_actualReviveLocation;
     string lv_reviveUnitType;
@@ -454,6 +455,16 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
     // Variable Initialization
 
     // Implementation
+    lv_heroUnitLocal = lp_heroUnit;
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_9E3FE59B"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_7A25126B"), true);
+        }
+
+    }
     if ((lp_reviveLocation != null) && (UnitIsAlive(lp_reviveLocation) == false)) {
         TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_D74BC47F"), false);
         return true;
@@ -463,7 +474,28 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
     lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)] = UnitGetOwner(lp_heroUnit);
     lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)] = lp_heroUnit;
     autoD47D4B33_val = lv_heroType;
-    if (autoD47D4B33_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
+    if (autoD47D4B33_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis) {
+        lv_reviveUnitType = "AP_ArtanisReviveCocoon";
+        lib15EF4C78_gv_nM_HeroReviveCDLink[(lv_heroType)] = "Abil/AP_ArtanisRevive";
+        lib15EF4C78_gv_nM_HeroReviveCommand[(lv_heroType)] = AbilityCommand("AP_ArtanisRevive", 0);
+        if ((lp_reviveTime == -1.0)) {
+            lv_reviveCooldown = lib15EF4C78_gv_nM_ReviveCooldownTimeArtanis;
+        }
+        else {
+            lv_reviveCooldown = lp_reviveTime;
+        }
+        if ((lib15EF4C78_gv_nM_ReviveUseAltMessage == true)) {
+            TextExpressionSetToken("Param/Expression/lib_15EF4C78_76617545", "A", IntToText(FixedToInt(lv_reviveCooldown)));
+            lv_reviveMessage = TextExpressionAssemble("Param/Expression/lib_15EF4C78_76617545");
+            lv_reviveRebuildMessage = StringExternal("Param/Value/lib_15EF4C78_505F3DA1");
+        }
+        else {
+            TextExpressionSetToken("Param/Expression/lib_15EF4C78_8968DC4B", "A", IntToText(FixedToInt(lv_reviveCooldown)));
+            lv_reviveMessage = TextExpressionAssemble("Param/Expression/lib_15EF4C78_8968DC4B");
+            lv_reviveRebuildMessage = StringExternal("Param/Value/lib_15EF4C78_E51A21D1");
+        }
+    }
+    else if (autoD47D4B33_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
         lv_reviveUnitType = "AP_NovaReviveCocoon";
         lib15EF4C78_gv_nM_HeroReviveCDLink[(lv_heroType)] = "Abil/AP_NovaRevive";
         lib15EF4C78_gv_nM_HeroReviveCommand[(lv_heroType)] = AbilityCommand("AP_NovaRevive", 0);
@@ -490,11 +522,29 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
         return true;
     }
     lib15EF4C78_gv_nM_ReviveUseAltMessage = false;
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_EDCE7067"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_DA13AC0D"), true);
+        }
+
+    }
     if ((lp_reviveLocation != null)) {
         lv_actualReviveLocation = lp_reviveLocation;
     }
     else {
         lv_actualReviveLocation = lib15EF4C78_gf_NM_FindPrimaryTownHall(lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)]);
+    }
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_F25E456C"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_549B10BD"), true);
+        }
+
     }
     if ((lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)] == 1)) {
         if (((lv_actualReviveLocation == null) || (UnitIsAlive(lv_actualReviveLocation) == false))) {
@@ -504,10 +554,46 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
         }
     }
 
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_2D9423EC"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_19EA9A23"), true);
+        }
+        else {
+            TriggerDebugOutput(2, StringExternal("Param/Value/lib_15EF4C78_9653D924"), true);
+        }
+    }
     Wait(2.0, c_timeGame);
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_D735E40C"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_1AD0F7A8"), true);
+        }
+        else {
+            if ((UnitGetType(lp_heroUnit) == "AP_ArtanisReviveCocoon")) {
+                TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_CB9F35B7"), true);
+            }
+            else {
+                TriggerDebugOutput(2, StringExternal("Param/Value/lib_15EF4C78_C11F847E"), true);
+            }
+        }
+    }
     while (((lv_actualReviveLocation == null) || (UnitIsAlive(lv_actualReviveLocation) == false))) {
         Wait(1.0, c_timeGame);
         lv_actualReviveLocation = lib15EF4C78_gf_NM_FindPrimaryTownHall(lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)]);
+    }
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_2D124934"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_456CAD9B"), true);
+        }
+
     }
     if ((UnitIsAlive(lp_heroUnit) == false)) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_reviveUnitType, 0, lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)], UnitGetPosition(lv_actualReviveLocation));
@@ -523,15 +609,55 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
         if (autoD43BA88C_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
             TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait, true);
         }
+        else if (autoD43BA88C_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis) {
+            TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait, true);
+        }
         else {
         }
     }
 
     Wait(3.0, c_timeGame);
-    if ((UnitIsAlive(lp_heroUnit) == false)) {
-        UnitSetPosition(lp_heroUnit, UnitGetPosition(lib15EF4C78_gv_nM_HeroReviverUnit[(lv_heroType)]), false);
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_8043A784"), true);
     }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_4A64A1A9"), true);
+        }
 
+    }
+    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_BAD558F8"), true);
+    }
+    else {
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_1651E8A0"), true);
+        }
+
+    }
+    if ((UnitIsAlive(lp_heroUnit) == false)) {
+        if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_CA188DED"), true);
+        }
+        else {
+            if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+                TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_9992160E"), true);
+            }
+
+        }
+    }
+    else {
+        UnitSetPosition(lp_heroUnit, UnitGetPosition(lib15EF4C78_gv_nM_HeroReviverUnit[(lv_heroType)]), false);
+        if ((UnitGetType(lv_heroUnitLocal) == "AP_NovaHero")) {
+            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_73B3A835"), true);
+        }
+        else {
+            if ((UnitGetType(lv_heroUnitLocal) == "AP_ArtanisHero")) {
+                TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_92BFA2BF"), true);
+            }
+
+        }
+    }
     return true;
 }
 
@@ -553,6 +679,9 @@ void lib15EF4C78_gf_ReviveHeroInstantly2 (unit lp_heroUnit, bool lp_displayReviv
     if (auto908068AB_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
         TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait, false);
     }
+    else if (auto908068AB_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis) {
+        TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait, false);
+    }
     else {
     }
     libNtve_gf_PlayerRemoveCooldown(lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)], lib15EF4C78_gv_nM_HeroReviveCDLink[(lv_heroType)]);
@@ -572,12 +701,18 @@ void lib15EF4C78_gf_ReviveHeroInstantly2 (unit lp_heroUnit, bool lp_displayReviv
         if (autoAB432712_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
             UnitSetPropertyFixed(lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)], c_unitPropLife, UnitGetPropertyFixed(lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)], c_unitPropLifeMax, c_unitPropCurrent));
         }
+        else if (autoAB432712_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis) {
+            UnitSetPropertyFixed(lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)], c_unitPropShields, UnitGetPropertyFixed(lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)], c_unitPropShieldsMax, c_unitPropCurrent));
+            UnitSetPropertyFixed(lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)], c_unitPropLife, UnitGetPropertyFixed(lib15EF4C78_gv_nM_HeroRevivingUnit[(lv_heroType)], c_unitPropLifeMax, c_unitPropCurrent));
+        }
         else {
         }
     }
     if ((lp_displayReviveMessage == true)) {
         auto2FD04D31_val = lv_heroType;
-        if (auto2FD04D31_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
+        if (auto2FD04D31_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis) {
+        }
+        else if (auto2FD04D31_val == lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova) {
         }
         else {
         }
@@ -591,11 +726,14 @@ void lib15EF4C78_gf_EnableDisableHeroReviveSystem (bool lp_enableDisable, int lp
     if ((lp_enableDisable == true)) {
         libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "NovaWarpOut", 1);
         TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNova, true);
+        TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanis, true);
     }
     else {
         libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "NovaWarpOut", 0);
         TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNova, false);
+        TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanis, false);
         TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait, false);
+        TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait, false);
     }
 }
 
@@ -641,6 +779,9 @@ int lib15EF4C78_gf_NM_HeroTypeFromUnitType (string lp_unitType) {
     // Implementation
     if (((lp_unitType == "AP_NovaHero"))) {
         return lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova;
+    }
+    else if (((lp_unitType == "AP_ArtanisHero"))) {
+        return lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis;
     }
     return lib15EF4C78_ge_NM_HeroType_NM_HeroType_None;
 }
@@ -2173,6 +2314,12 @@ int lib15EF4C78_gf_CU_HeroTypeFromUnitType (string lp_unitType) {
     else if (auto80A8D158_val == "AP_NovaReviveCocoon") {
         return lib15EF4C78_ge_CampaignHeroes2_NovaReviveBeacon;
     }
+    else if (auto80A8D158_val == "AP_ArtanisHero") {
+        return lib15EF4C78_ge_CampaignHeroes2_Artanis;
+    }
+    else if (auto80A8D158_val == "AP_ArtanisReviveCocoon") {
+        return lib15EF4C78_ge_CampaignHeroes2_ArtanisReviveBeacon;
+    }
     else {
     }
     return lib15EF4C78_ge_CampaignHeroes2_None;
@@ -2196,7 +2343,10 @@ string lib15EF4C78_gf_CU_HeroIcon (int lp_heroType, unit lp_heroUnit) {
         return "Assets\\Textures\\chrysalisportrait_static.dds";
     }
     else if (autoA30E0AD1_val == lib15EF4C78_ge_CampaignHeroes2_Artanis) {
-        return "Assets\\Textures\\ui-heroicon-artanis.dds";
+        return "Assets\\Textures\\btn-hero-artanis.dds";
+    }
+    else if (autoA30E0AD1_val == lib15EF4C78_ge_CampaignHeroes2_ArtanisReviveBeacon) {
+        return "Assets\\Textures\\btn-unit-protoss-artanishero.dds";
     }
     else if (autoA30E0AD1_val == lib15EF4C78_ge_CampaignHeroes2_Alarak) {
         return "Assets\\Textures\\alarakex3_ingame_heroportrait.dds";
@@ -2423,7 +2573,7 @@ string lib15EF4C78_gf_CU_PresetToHeroGameLink (int lp_championPreset) {
 bool lib15EF4C78_gf_CU_ChampionHasShields (int lp_heroType) {
     // Automatic Variable Declarations
     // Implementation
-    if (((lp_heroType == lib15EF4C78_ge_CampaignHeroes2_Kerrigan) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_Fenix) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_FenixArbiter) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_FenixDragoon))) {
+    if (((lp_heroType == lib15EF4C78_ge_CampaignHeroes2_Artanis) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_Kerrigan) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_Fenix) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_FenixArbiter) || (lp_heroType == lib15EF4C78_ge_CampaignHeroes2_FenixDragoon))) {
         return true;
     }
     else {
@@ -2464,6 +2614,10 @@ void lib15EF4C78_gf_SetHeroPanelUnit (int lp_index, unit lp_heroUnit, int lp_pla
         lib15EF4C78_gv_zS_SwarmHeroUIShowLevel[lp_index] = false;
         if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
             lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index] = "Assets\\Textures\\btn-commander-nova.dds";
+        }
+
+        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+            lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index] = "Assets\\Textures\\btn-hero-artanis.dds";
         }
 
     }
@@ -5277,6 +5431,42 @@ void lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: NM_HeroReviveArtanisCooldownWait
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((PlayerGetCooldown(lib15EF4C78_gv_nM_HeroRevivePlayer[(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis)], lib15EF4C78_gv_nM_HeroReviveCDLink[(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis)]) == 0.0))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib15EF4C78_gf_NM_HeroRevive(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis);
+    if ((lib15EF4C78_gv_nM_HeroRevivePlayer[(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis)] == 1)) {
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait_Init () {
+    lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait = TriggerCreate("lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait_Func");
+    TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait, false);
+    TriggerAddEventTimePeriodic(lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait, 1.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: NM_HeroReviveVOReminder
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_NM_HeroReviveVOReminder_Func (bool testConds, bool runActions) {
@@ -5302,7 +5492,12 @@ void lib15EF4C78_gt_NM_HeroReviveVOReminder_Init () {
 // Trigger: NM_HeroReviveNova
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_NM_HeroReviveNova_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_deadUnit;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+
     // Conditions
     if (testConds) {
         if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
@@ -5315,7 +5510,8 @@ bool lib15EF4C78_gt_NM_HeroReviveNova_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((UnitGetType(EventUnit()) == "AP_NovaHero")) {
+    lv_deadUnit = EventUnit();
+    if (((UnitGetType(lv_deadUnit) == "AP_ArtanisHero") || (UnitGetType(lv_deadUnit) == "AP_NovaHero"))) {
         lib15EF4C78_gf_HandleHeroDeathNova(EventUnit(), null, -1.0);
     }
 
@@ -5329,13 +5525,34 @@ void lib15EF4C78_gt_NM_HeroReviveNova_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: NM_HeroReviveArtanis
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_NM_HeroReviveArtanis_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_NM_HeroReviveArtanis_Init () {
+    lib15EF4C78_gt_NM_HeroReviveArtanis = TriggerCreate("lib15EF4C78_gt_NM_HeroReviveArtanis_Func");
+    TriggerAddEventUnitDied(lib15EF4C78_gt_NM_HeroReviveArtanis, null);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: NM_HeroReviveOnBehaviorExpiry
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_NM_HeroReviveOnBehaviorExpiry_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((UnitGetType(EventUnit()) == "AP_NovaReviveCocoon"))) {
+        if (!(((UnitGetType(EventUnit()) == "AP_ArtanisReviveCocoon") || (UnitGetType(EventUnit()) == "AP_NovaReviveCocoon")))) {
             return false;
         }
     }
@@ -5345,8 +5562,14 @@ bool lib15EF4C78_gt_NM_HeroReviveOnBehaviorExpiry_Func (bool testConds, bool run
         return true;
     }
 
-    TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait, false);
-    lib15EF4C78_gf_NM_HeroRevive(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova);
+    if ((UnitGetType(EventUnit()) == "AP_ArtanisReviveCocoon")) {
+        TriggerEnable(lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait, false);
+        lib15EF4C78_gf_NM_HeroRevive(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis);
+    }
+    else if ((UnitGetType(EventUnit()) == "AP_NovaReviveCocoon")) {
+        TriggerEnable(lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait, false);
+        lib15EF4C78_gf_NM_HeroRevive(lib15EF4C78_ge_NM_HeroType_NM_HeroType_Nova);
+    }
     return true;
 }
 
@@ -9542,8 +9765,10 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_FuryofOneReset_Init();
     lib15EF4C78_gt_AP_Player_setHolodecoyWeapon_Init();
     lib15EF4C78_gt_NM_HeroReviveNovaCooldownWait_Init();
+    lib15EF4C78_gt_NM_HeroReviveArtanisCooldownWait_Init();
     lib15EF4C78_gt_NM_HeroReviveVOReminder_Init();
     lib15EF4C78_gt_NM_HeroReviveNova_Init();
+    lib15EF4C78_gt_NM_HeroReviveArtanis_Init();
     lib15EF4C78_gt_NM_HeroReviveOnBehaviorExpiry_Init();
     lib15EF4C78_gt_Set5SecondsMark_Init();
     lib15EF4C78_gt_WarpRelocateFinish_Init();

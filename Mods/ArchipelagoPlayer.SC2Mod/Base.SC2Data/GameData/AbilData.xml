@@ -8443,6 +8443,20 @@
         <ErrorAlert value="ReviveError_Terr"/>
         <Alert value="AP_NovaReviveComplete"/>
     </CAbilRevive>
+    <CAbilRevive id="AP_ArtanisRevive" parent="ReviveSelf">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <CmdButtonArray index="Revive1" DefaultButtonFace="AP_KerriganRevive"/>
+        <CmdButtonArray index="ReviveAtTarget1" DefaultButtonFace="AP_KerriganRevivePlacement"/>
+        <Flags index="UnitOrderQueue" value="1"/>
+        <BaseInfo>
+            <Cooldown TimeUse="0.1"/>
+        </BaseInfo>
+        <Effect value="AP_KerriganReviveHeal"/>
+        <Offset value="0,0"/>
+        <Range value="10"/>
+        <ErrorAlert value="ReviveError_Prot"/>
+        <Alert value="AP_ArtanisReviveComplete"/>
+    </CAbilRevive>
     <CAbilRally id="AP_RallyReviveCocoon">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
         <InfoArray index="0" UseFilters="-;Worker"/>
