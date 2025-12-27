@@ -4599,6 +4599,43 @@
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
+    <CEffectSet id="AP_ArtanisWeaponSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_ArtanisWeaponBurst"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="AP_ArtanisWeaponBurst">
+        <EditorCategories value="Race:Protoss"/>
+        <PeriodCount value="2"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodicEffectArray value="AP_ArtanisBlades"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.28"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="AP_ArtanisBlades" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="8"/>
+        <Death value="Eviscerate"/>
+        <ValidatorArray value="NotHidden"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="AP_SuppressionPulseCreatePersistent">
+        <EditorCategories value="Race:Protoss"/>
+        <InitialEffect value="AP_SuppressionPulseSearchArea"/>
+        <PeriodCount value="14"/>
+        <PeriodicEffectArray value="AP_SuppressionPulseSearchArea"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="AP_SuppressionPulseSearchArea">
+        <EditorCategories value="Race:Protoss"/>
+        <ExcludeArray/>
+        <AreaArray Radius="1" RadiusBonus="0.5" Effect="AP_SuppressionPulseAB"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Stasis,Hidden,Invulnerable,Unstoppable"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_SuppressionPulseAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_SuppressionPulse"/>
+    </CEffectApplyBehavior>
     <CEffectLaunchMissile id="AP_AcidSalivaLM">
         <ValidatorArray index="0" value="RoachLMTargetFilters"/>
         <EditorCategories value="Race:Zerg"/>

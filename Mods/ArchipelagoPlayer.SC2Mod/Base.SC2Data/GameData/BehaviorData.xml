@@ -6885,6 +6885,28 @@
         <!--            <AbilLinkDisableArray value="HallucinationDisruptor"/>-->
         <BehaviorCategories index="User8" value="1"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SuppressionPulse">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corruption.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification>
+            <DamageDealtMaximum index="Spell" value="0"/>
+            <DamageDealtMaximum index="Melee" value="0"/>
+            <DamageDealtMaximum index="Ranged" value="0"/>
+            <DamageDealtMaximum index="Splash" value="0"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisWeaponBuffBase">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Alignment value="Positive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisWeaponBuffTaldarim" parent="AP_ArtanisWeaponBuffBase">
+        <Modification>
+            <DamageDealtAttributeMultiplier index="Heroic" value="0.75"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_DevourerSCBWWeapon">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="RefreshStack" value="1"/>

@@ -36724,14 +36724,14 @@
         <AnimBlendTime value="0.150000"/>
         <BuildModel value="ProtossGenericWarpInOut"/>
         <DeathArray index="Normal" ModelLink="ArtanisVoidUlnarDeath" SoundLink="Artanis_DeathFX"/>
-        <PortraitActor value="ArtanisEx2Portrait"/>
-        <PortraitModel value="ArtanisEx2Portrait"/>
+        <PortraitActor value="AP_ArtanisEx2Portrait"/>
+        <PortraitModel value="AP_ArtanisEx2Portrait"/>
         <WalkAnimMoveSpeed value="2.25"/>
         <AbilSoundArray AbilCmd="ArtanisAstralWind,Execute" Sound="Swarm_Silent"/>
         <AbilSoundArray AbilCmd="ArtanisLightningDash,Execute" Sound="Swarm_Silent"/>
         <BarOffset value="70"/>
         <BarWidth value="42"/>
-        <CustomUnitStatusFrame value="LotV_UnitStatus/HeroUnitEnergyStatusFrameTemplate"/>
+        <CustomUnitStatusFrame value="AP_LotV_UnitStatus/HeroUnitEnergyStatusFrameTemplate"/>
         <GroupIcon>
             <Image value="Assets\Textures\Wireframe-Protoss-Artanis.dds"/>
         </GroupIcon>
@@ -36741,6 +36741,12 @@
         <UnitFlags index="SuppressDefaultStatusBar" value="1"/>
         <UnitIcon value="Assets\Textures\btn-unit-protoss-artanishero.dds"/>
         <UnitKillRank Text="UnitKillRank/Artanis"/>
+        <SoundArray index="Ready" value="AP_ArtanisVoid_Ready"/>
+        <SoundArray index="What" value="AP_ArtanisVoid_What"/>
+        <SoundArray index="Yes" value="AP_ArtanisVoid_Yes"/>
+        <SoundArray index="Help" value="AP_ArtanisVoid_Help"/>
+        <SoundArray index="Attack" value="AP_ArtanisVoid_Attack"/>
+        <SoundArray index="Pissed" value="AP_ArtanisVoid_Pissed"/>
         <Wireframe>
             <Image value="Assets\Textures\Wireframe-Protoss-Artanis.dds"/>
         </Wireframe>
@@ -36786,6 +36792,23 @@
         <!--        <On Terms="ActorOrphan" Send="AnimBracketStop BSD"/> -->
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
     </CActorModel>
+    <CActorModel id="AP_ArtanisEx2PortraitAddition" parent="CompositePortraitAddition">
+    </CActorModel>
+    <CActorPortrait id="AP_ArtanisEx2Portrait" parent="CompositePortrait"/>
+    <CActorModel id="AP_ArtanisEx2Portrait3DAddition" parent="CompositePortraitAddition"/>
+    <CActorPortrait id="AP_ArtanisEx2Portrait3D" parent="CompositePortrait"/>
+    <CActorModel id="AP_SuppressionPulse">
+        <On Terms="Effect.AP_SuppressionPulseCreatePersistent.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="$Birth"/>
+        <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary"/>
+    </CActorModel>
+    <CActorSound id="AP_SuppressionPulseSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_SuppressionPulseCreatePersistent.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SoundSetVolume Logarithmic 0.000000@0.000000,0.000000@1200.000000"/>
+    </CActorSound>
     <CActorUnit id="AP_HunterlingPlaceholder" parent="GenericUnitStandard" unitName="AP_HunterlingPlaceholder">
         <Model value="AP_Hunterling"/>
         <StatusBarFlags index="Shields" value="0"/>

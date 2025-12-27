@@ -2693,11 +2693,11 @@
         <DamagePoint value="0"/>
         <Effect value="AP_ZealotPsiBladesCleaveSet"/>
     </CWeaponLegacy>
-    <CWeaponLegacy id="AP_ArtanisPsiBlades">
+    <CWeaponLegacy id="AP_ArtanisTwilightBlades">
         <EditorCategories value="Race:Protoss"/>
         <Options index="Melee" value="1"/>
         <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
-        <DisplayEffect value="AP_PsiBlades"/>
+        <DisplayEffect value="AP_ArtanisBlades"/>
         <DisplayAttackCount value="2"/>
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="0.1"/>
@@ -2707,7 +2707,17 @@
         </Cost>
         <Period value="1.2"/>
         <DamagePoint value="0"/>
-        <Effect value="AP_ZealotPsiBladesCleaveSet"/>
+        <Effect value="AP_ArtanisWeaponSet"/>
+    </CWeaponLegacy>
+    <CWeaponLegacy id="AP_ArtanisRangedAttack">
+        <EditorCategories value="Race:Protoss"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
+        <DisplayEffect value="AP_ArtanisRangedAttackDamage"/>
+        <TargetFilters value="Air,Visible;Ground,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="4"/>
+        <Period value="1"/>
+        <DamagePoint value="0.2"/>
+        <Effect value="AP_ArtanisRangedAttackSet"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="AP_Claws">
         <EditorCategories value="Race:Zerg"/>
