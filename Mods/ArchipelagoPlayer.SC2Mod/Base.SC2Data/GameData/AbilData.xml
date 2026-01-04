@@ -4579,11 +4579,85 @@
         <!--        </InfoArray>-->
         <Flags index="WarpTrainersButton" value="0"/>
     </CAbilWarpTrain>
+    <CAbilEffectTarget id="AP_ShadowSlice">
+        <AbilSetId value="AP_ShadowSlice"/>
+        <Effect index="0" value="AP_ShadowSliceInitialSet"/>
+        <Range value="7"/>
+        <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Finish" value="1"/>
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_SuppressionPulse">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_SuppressionPulseCreatePersistent"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuppressionPulse"/>
     </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_ShieldOverload">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="AP_ShieldOverloadMU"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <AutoCastRange value="1"/>
+        <AutoCastValidatorArray value="AP_CasterShieldsLE50Percent"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ShieldOverload"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="AP_PhasePrism">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="AP_PhasePrismSet"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="7"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_PhasePrismSwap">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="AP_PhasePrismDelaySet"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrismRecast" Requirements="AP_HavePhasePrismRecastBehavior"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="AP_ArtanisLightningDash">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Range value="8"/>
+        <Arc value="4.9987"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ArtanisLightningDash"/>
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="6"/>
+        </Cost>
+        <CursorEffect value="ArtanisLightningDashSearch"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ArtanisBladeDash">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <PrepTime value="0.01"/>
+        <CursorEffect value="AP_ArtanisBladeDashDummySearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeDash"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ArtanisBladeDashRecast" parent="AP_ArtanisBladeDash">
+        <Cost index="0">
+            <Vital index="Energy" value="0"/>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <Effect index="0" value="AP_ArtanisBladeDashRecast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeDashRecast" Requirements="AP_HaveArtanisBladeDashRecastBehavior"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_CorsairMPDisruptionWeb">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_CorsairMPDisruptionWebCreatePersistentSet"/>

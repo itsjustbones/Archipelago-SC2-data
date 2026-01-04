@@ -2376,4 +2376,27 @@
         </MotionPhases>
         <MotionPhases index="1" removed="1"/>
     </CMoverMissile>
+    <CMoverMissile id="AP_PhasePrismUnitKnockbackMover">
+        <Flags index="IgnoreMovementSuppression" value="1"/>
+        <MotionPhases>
+            <Driver value="Ballistic"/>
+            <Acceleration value="-1"/>
+            <Gravity value="5"/>
+            <RotationActorType value="Upright"/>
+            <YawPitchRoll value="MAX"/>
+            <FlightTime value="0.5"/>
+        </MotionPhases>
+        <RotationIgnoredByUnit value="1"/>
+        <PathMode value="Flying"/>
+    </CMoverMissile>
+    <CMoverMissile id="AP_ArtanisLightningDashMissile">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="4000"/>
+            <MaxSpeed value="25"/>
+            <Timeout value="1"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+        </MotionPhases>
+    </CMoverMissile>
 </Catalog>

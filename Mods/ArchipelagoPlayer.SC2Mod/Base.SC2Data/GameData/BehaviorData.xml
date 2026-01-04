@@ -2124,6 +2124,70 @@
             <StateFlags index="Stun" value="1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisLightningDash">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-charge.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="3.5"/>
+        <Modification MoveSpeedMultiplier="3"/>
+        <Alignment value="Positive"/>
+        <BuffFlags index="Channeling" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisLightningDashStun">
+        <Duration value="1.5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-lightningdash.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeDashRecast">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-blade-dash-recast.dds"/>
+        <RemoveValidatorArray value="AP_NoArtanisBladeDashRecastWalkSpeed"/>
+        <Duration value="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismRecast">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism-recast.dds"/>
+        <Duration value="4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismDelay">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism-recast.dds"/>
+        <ExpireEffect value="AP_PhasePrismSearch"/>
+        <Duration value="0.15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeDashDamaged">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeDashWalkSpeed">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.5625"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_ArtanisBladeDashTargetSearch"/>
+        <FinalEffect value="AP_ArtanisBladeDashWalkStopSet"/>
+        <Modification MoveSpeedMultiplier="7">
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+        </Modification>
+        <DamageResponse ModifyFraction="0" ModifyMinimumDamage="1">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeDashRecastWalkSpeed" parent="AP_ArtanisBladeDashWalkSpeed">
+        <PeriodicEffect value="AP_ArtanisBladeDashRecastTargetSearch"/>
+        <FinalEffect value="AP_ArtanisBladeDashWalkStopRecastSet"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeDashWalkStopStun">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.125"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_NovaSilentkillStunCaster">
         <InfoFlags index="Hidden" value="1"/>
         <BehaviorCategories index="Stun" value="1"/>
@@ -3105,6 +3169,10 @@
             <BehaviorLinkDisableArray value="SalvageShared"/>
             <BehaviorLinkDisableArray value="SensorTowerRadar"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ShadowSliceMarked">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="1"/>  
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidDarkTemplarShadowFuryTargeted">
         <InfoFlags index="Hidden" value="1"/>
@@ -6895,6 +6963,43 @@
             <DamageDealtMaximum index="Melee" value="0"/>
             <DamageDealtMaximum index="Ranged" value="0"/>
             <DamageDealtMaximum index="Splash" value="0"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-forcefield-color.dds"/>
+        <Duration value="5"/>
+        <InitialEffect value="AP_PhasePrismSearch"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="Stasis" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <BehaviorLinkDisableArray value="Detector6"/>
+            <BehaviorLinkDisableArray value="Detector7"/>
+            <BehaviorLinkDisableArray value="Detector8"/>
+            <BehaviorLinkDisableArray value="Detector9"/>
+            <BehaviorLinkDisableArray value="Detector10"/>
+            <BehaviorLinkDisableArray value="Detector11"/>
+            <BehaviorLinkDisableArray value="Detector12"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismPullSlow">
+        <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.5" AttackSpeedMultiplier="0.5"/>
+        <Alignment value="Negative"/>
+        <BehaviorCategories index="Slow" value="1"/>
+        <Duration value="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismPullStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisWeaponBuffBase">

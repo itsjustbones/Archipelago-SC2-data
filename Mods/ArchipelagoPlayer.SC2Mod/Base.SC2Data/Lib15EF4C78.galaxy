@@ -25,6 +25,7 @@ void lib15EF4C78_InitVariables () {
 
     lib15EF4C78_gv_stukov_HordeGroup = UnitGroupEmpty();
     lib15EF4C78_gv_stukov_BunkerGroup = UnitGroupEmpty();
+    lib15EF4C78_gv_kerriganPsiStrikeEnergyCost3 = libNtve_gf_CostOfAbility("AP_ArtanisBladeDash", "Energy");
     lib15EF4C78_gv_kerriganPsiStrikeEnergyCost2 = libNtve_gf_CostOfAbility("AP_NovaPsiStrike", "Energy");
     for (init_i = 0; init_i <= lib15EF4C78_gv_nMC_HEROCOUNT; init_i += 1) {
         lib15EF4C78_gv_nM_HeroReviveCDLink[init_i] = "";
@@ -456,15 +457,6 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
 
     // Implementation
     lv_heroUnitLocal = lp_heroUnit;
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_9E3FE59B"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_7A25126B"), true);
-        }
-
-    }
     if ((lp_reviveLocation != null) && (UnitIsAlive(lp_reviveLocation) == false)) {
         TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_D74BC47F"), false);
         return true;
@@ -522,29 +514,11 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
         return true;
     }
     lib15EF4C78_gv_nM_ReviveUseAltMessage = false;
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_EDCE7067"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_DA13AC0D"), true);
-        }
-
-    }
     if ((lp_reviveLocation != null)) {
         lv_actualReviveLocation = lp_reviveLocation;
     }
     else {
         lv_actualReviveLocation = lib15EF4C78_gf_NM_FindPrimaryTownHall(lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)]);
-    }
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_F25E456C"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_549B10BD"), true);
-        }
-
     }
     if ((lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)] == 1)) {
         if (((lv_actualReviveLocation == null) || (UnitIsAlive(lv_actualReviveLocation) == false))) {
@@ -554,46 +528,10 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
         }
     }
 
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_2D9423EC"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_19EA9A23"), true);
-        }
-        else {
-            TriggerDebugOutput(2, StringExternal("Param/Value/lib_15EF4C78_9653D924"), true);
-        }
-    }
     Wait(2.0, c_timeGame);
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_D735E40C"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_1AD0F7A8"), true);
-        }
-        else {
-            if ((UnitGetType(lp_heroUnit) == "AP_ArtanisReviveCocoon")) {
-                TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_CB9F35B7"), true);
-            }
-            else {
-                TriggerDebugOutput(2, StringExternal("Param/Value/lib_15EF4C78_C11F847E"), true);
-            }
-        }
-    }
     while (((lv_actualReviveLocation == null) || (UnitIsAlive(lv_actualReviveLocation) == false))) {
         Wait(1.0, c_timeGame);
         lv_actualReviveLocation = lib15EF4C78_gf_NM_FindPrimaryTownHall(lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)]);
-    }
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_2D124934"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_456CAD9B"), true);
-        }
-
     }
     if ((UnitIsAlive(lp_heroUnit) == false)) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_reviveUnitType, 0, lib15EF4C78_gv_nM_HeroRevivePlayer[(lv_heroType)], UnitGetPosition(lv_actualReviveLocation));
@@ -617,46 +555,10 @@ bool auto_lib15EF4C78_gf_HandleHeroDeathNova_TriggerFunc (bool testConds, bool r
     }
 
     Wait(3.0, c_timeGame);
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_8043A784"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_4A64A1A9"), true);
-        }
-
-    }
-    if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_BAD558F8"), true);
-    }
-    else {
-        if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_1651E8A0"), true);
-        }
-
-    }
     if ((UnitIsAlive(lp_heroUnit) == false)) {
-        if ((UnitGetType(lp_heroUnit) == "AP_NovaHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_CA188DED"), true);
-        }
-        else {
-            if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
-                TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_9992160E"), true);
-            }
-
-        }
     }
     else {
         UnitSetPosition(lp_heroUnit, UnitGetPosition(lib15EF4C78_gv_nM_HeroReviverUnit[(lv_heroType)]), false);
-        if ((UnitGetType(lv_heroUnitLocal) == "AP_NovaHero")) {
-            TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_73B3A835"), true);
-        }
-        else {
-            if ((UnitGetType(lv_heroUnitLocal) == "AP_ArtanisHero")) {
-                TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_92BFA2BF"), true);
-            }
-
-        }
     }
     return true;
 }
@@ -5230,6 +5132,141 @@ void lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: PhasePrismAcquireTarget
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_PhasePrismAcquireTarget_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15EF4C78_gv_phasePrismTarget = EventUnitTargetUnit();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_PhasePrismAcquireTarget_Init () {
+    lib15EF4C78_gt_PhasePrismAcquireTarget = TriggerCreate("lib15EF4C78_gt_PhasePrismAcquireTarget_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_PhasePrismAcquireTarget, null, AbilityCommand("AP_PhasePrism", 0), c_abilEffectStageCast, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: PhasePrismSwap
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_PhasePrismSwap_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_artanisPosition;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_artanisPosition = UnitGetPosition(EventUnit());
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetPosition(EventUnit(), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget), true);
+    UnitSetPosition(lib15EF4C78_gv_phasePrismTarget, lv_artanisPosition, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_PhasePrismSwap_Init () {
+    lib15EF4C78_gt_PhasePrismSwap = TriggerCreate("lib15EF4C78_gt_PhasePrismSwap_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_PhasePrismSwap, null, AbilityCommand("AP_PhasePrismSwap", 0), c_abilEffectStageCast, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Artanis Blade Dash
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_ArtanisBladeDash_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    point lv_k;
+    point lv_t;
+    point lv_finalT;
+    fixed lv_facing;
+    fixed lv_distance;
+    bool lv_goodPositionFound;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    const int auto45539129_ae = 7;
+    const int auto45539129_ai = 1;
+
+    // Variable Initialization
+    lv_k = UnitGetPosition(EventUnit());
+    lv_t = EventUnitTargetPoint();
+    lv_facing = AngleBetweenPoints(UnitGetPosition(EventUnit()), EventUnitTargetPoint());
+    lv_distance = 8.0;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_t = libNtve_gf_PointOffsetTowardsPoint(lv_k, 8.0, lv_t);
+    lv_finalT = lv_t;
+    while ((lv_distance >= 0.6) && (lv_goodPositionFound == false)) {
+        lv_t = libNtve_gf_PointOffsetTowardsPoint(lv_k, lv_distance, lv_t);
+        if ((PointPathingCost(lv_k, lv_t) <= FixedToInt((lv_distance * 1.5))) && (WorldHeight(c_heightMapGround, lv_k) < (WorldHeight(c_heightMapGround, lv_t) + 1.0)) && (WorldHeight(c_heightMapGround, lv_k) > (WorldHeight(c_heightMapGround, lv_t) - 1.0))) {
+            lv_goodPositionFound = true;
+        }
+
+        lv_distance -= 0.5;
+    }
+    Wait(0.0625, c_timeGame);
+    if ((lv_goodPositionFound == true)) {
+        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_t), c_orderQueueReplace);
+        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_finalT), c_orderQueueAddToEnd);
+    }
+    else {
+        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_finalT), c_orderQueueReplace);
+    }
+    Wait(0.1875, c_timeGame);
+    lv_i = 1;
+    for ( ; ( (auto45539129_ai >= 0 && lv_i <= auto45539129_ae) || (auto45539129_ai < 0 && lv_i >= auto45539129_ae) ) ; lv_i += auto45539129_ai ) {
+        lib15EF4C78_gv_kerriganPsiStrikeFacing3 = UnitGetFacing(EventUnit());
+        if ((lv_facing > 90.0)) {
+            if (((lib15EF4C78_gv_kerriganPsiStrikeFacing3 < (lv_facing - 90.0)) && (lib15EF4C78_gv_kerriganPsiStrikeFacing3 > (lv_facing - 270.0)))) {
+                UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashWalkSpeed", 1);
+                UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashRecastWalkSpeed", 1);
+                break;
+            }
+
+        }
+        else {
+            if ((lv_facing < -90.0)) {
+                if (((lib15EF4C78_gv_kerriganPsiStrikeFacing3 > (lv_facing + 90.0)) && (lib15EF4C78_gv_kerriganPsiStrikeFacing3 < (lv_facing + 270.0)))) {
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashWalkSpeed", 1);
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashRecastWalkSpeed", 1);
+                    break;
+                }
+
+            }
+            else {
+                if (((lib15EF4C78_gv_kerriganPsiStrikeFacing3 > (lv_facing + 90.0)) || (lib15EF4C78_gv_kerriganPsiStrikeFacing3 < (lv_facing - 90.0)))) {
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashWalkSpeed", 1);
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashRecastWalkSpeed", 1);
+                    break;
+                }
+
+            }
+        }
+        Wait(0.0625, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_ArtanisBladeDash_Init () {
+    lib15EF4C78_gt_ArtanisBladeDash = TriggerCreate("lib15EF4C78_gt_ArtanisBladeDash_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_ArtanisBladeDash, null, AbilityCommand("AP_ArtanisBladeDash", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_ArtanisBladeDash, null, AbilityCommand("AP_ArtanisBladeDashRecast", 0), c_abilEffectStageCast, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Nova Psi Strike
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_NovaPsiStrike_Func (bool testConds, bool runActions) {
@@ -9760,6 +9797,9 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_TechReactorswaptoAP_Barracks_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Factory_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init();
+    lib15EF4C78_gt_PhasePrismAcquireTarget_Init();
+    lib15EF4C78_gt_PhasePrismSwap_Init();
+    lib15EF4C78_gt_ArtanisBladeDash_Init();
     lib15EF4C78_gt_NovaPsiStrike_Init();
     lib15EF4C78_gt_FuryofOneHeight_Init();
     lib15EF4C78_gt_FuryofOneReset_Init();

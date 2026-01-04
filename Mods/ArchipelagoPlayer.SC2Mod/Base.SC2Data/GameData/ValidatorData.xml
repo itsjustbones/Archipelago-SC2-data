@@ -2290,6 +2290,37 @@
         <Value value="1"/>
         <Behavior value="AP_NovaPsiStrikeWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_ArtanisLightningDashCheck">
+        <Type value="And"/>
+        <CombineArray value="TargetIsPathable"/>
+        <CombineArray value="HasVision"/>
+        <CombineArray value="AP_ArtanisLightningDashRangeCheck"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="AP_ArtanisLightningDashRangeCheck">
+        <WhichLocation Value="SourceUnit"/>
+        <Value Value="TargetPoint"/>
+        <Compare value="LT"/>
+        <Range value="8"/>
+        <ResultFailed value="TargetIsOutOfRange"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeDashWalkSpeed">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisBladeDashWalkSpeed"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeDashRecastWalkSpeed">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisBladeDashRecastWalkSpeed"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_NoArtanisBladeDashRecastWalkSpeed">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeDashRecastWalkSpeed"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_CasterHasArtanisBladeDashWalkSpeedCombined">
+        <CombineArray value="AP_CasterHasArtanisBladeDashWalkSpeed"/>
+        <CombineArray value="AP_CasterHasArtanisBladeDashRecastWalkSpeed"/>
+    </CValidatorCombine>
     <CValidatorLocationEnumArea id="AP_NovaWeaponBlazefireBladeShadowFuryTargetsInArea">
         <AreaArray Compare="GT" Count="0" Radius="5"/>
         <SearchFilters value="Visible;Self,Player,Ally,Neutral,Structure,RawResource,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
@@ -2358,6 +2389,11 @@
     </CValidatorUnitFilters>
     <CValidatorUnitCompareBehaviorCount id="AP_NotNovaPsiStriked">
         <Behavior value="AP_NovaPsiStrikeDamaged"/>
+        <Compare value="LE"/>
+        <ResultFailed value="CantTargetThatUnit"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_NotArtanisBladeDashed">
+        <Behavior value="AP_ArtanisBladeDashDamaged"/>
         <Compare value="LE"/>
         <ResultFailed value="CantTargetThatUnit"/>
     </CValidatorUnitCompareBehaviorCount>
@@ -7163,6 +7199,11 @@
         <CombineArray value="AP_HaveHotSMutaliskViper"/>
         <CombineArray value="NotWarpingIn"/>
     </CValidatorCombine>
+   <CValidatorUnitCompareBehaviorCount id="AP_TargetHasShadowSliceMarked">
+        <Behavior value="AP_ShadowSliceMarked"/>
+        <Compare value="GT"/>
+        <Value value="0"/>
+    </CValidatorUnitCompareBehaviorCount>
     <!-- begin Pulsar validator chain from hell -->
     <CValidatorUnitCompareBehaviorCount id="AP_TargetHasLE3ChronoBeamStacks">
         <Behavior value="AP_VoidRayAiurStackingSlow"/>
@@ -7596,6 +7637,10 @@
     </CValidatorLocationCompareRange>
     <CValidatorUnitFilters id="AP_UnitKnockbackBy1NotDead">
         <WhichUnit Effect="AP_UnitKnockbackBy1"/>
+        <Filters value="-;Dead"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="AP_UnitKnockbackNotDead">
+        <WhichUnit Effect="AP_UnitKnockback"/>
         <Filters value="-;Dead"/>
     </CValidatorUnitFilters>
     <CValidatorPlayerRequirement id="AP_HaveInfBullfrogBroodlings">

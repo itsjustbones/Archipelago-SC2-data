@@ -14663,6 +14663,13 @@
         <AbilArray Link="ArtanisAstralWind"/>
         <AbilArray Link="ArtanisLightningDash"/>
         <AbilArray Link="AP_SuppressionPulse"/>
+        <AbilArray Link="AP_ArtanisLightningDash"/>
+        <AbilArray Link="AP_ShieldOverload"/>
+        <AbilArray Link="AP_ShadowSlice"/>
+        <AbilArray Link="AP_ArtanisBladeDash"/>
+        <AbilArray Link="AP_ArtanisBladeDashRecast"/>
+        <AbilArray Link="AP_PhasePrismSwap"/>
+        <AbilArray Link="AP_PhasePrism"/>
         <AbilArray Link="ArtanisChannel"/>
         <BehaviorArray Link="AP_ArtanisWeaponBuffTaldarim"/>
         <WeaponArray Link="AP_ArtanisTwilightBlades"/>
@@ -14677,14 +14684,23 @@
             <LayoutButtons Face="ArtanisLightningDash" Type="AbilCmd" AbilCmd="ArtanisLightningDash,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="ArtanisResurgence" Type="Passive" Requirements="ArtanisResurgenceReviveOffCooldown" Row="2" Column="1"/>
             <LayoutButtons Face="ArtanisResurgence" Type="Passive" Behavior="ArtanisResurgenceReviveSupressed" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_ShieldOverload" Type="AbilCmd" AbilCmd="AP_ShieldOverload,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisBladeDashRecast" Type="AbilCmd" AbilCmd="AP_ArtanisBladeDashRecast,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisBladeDash" Type="AbilCmd" AbilCmd="AP_ArtanisBladeDash,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisLightningDash" Type="AbilCmd" AbilCmd="AP_ArtanisLightningDash,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="AP_SuppressionPulse" Type="AbilCmd" AbilCmd="AP_SuppressionPulse,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_PhasePrismRecast" Type="AbilCmd" AbilCmd="AP_PhasePrismSwap,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_PhasePrism" Type="AbilCmd" AbilCmd="AP_PhasePrism,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="ArtanisForceOfWill" Type="Passive" Row="2" Column="3"/>
         </CardLayouts>
         <CardLayouts>
             <LayoutButtons Face="ArtanisChannel" Type="AbilCmd" AbilCmd="ArtanisChannel,On" Row="1" Column="2"/>
             <LayoutButtons Face="ArtanisChannelOff" Type="AbilCmd" AbilCmd="ArtanisChannel,Off" Row="1" Column="3"/>
         </CardLayouts>
-        <InnerRadius value="0.5"/>
+        <Radius value="0.425"/>
+        <SeparationRadius value="0.425"/>
+        <InnerRadius value="0.425"/>
         <CargoSize value="2"/>
         <ScoreMake value="200"/>
         <ScoreKill value="200"/>

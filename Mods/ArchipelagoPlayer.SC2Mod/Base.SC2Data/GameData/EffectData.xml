@@ -4619,6 +4619,65 @@
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
+    <CEffectModifyUnit id="AP_ShieldOverloadMU">
+        <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="ShieldsNotFull"/>
+        <VitalArray index="Shields">
+            <Change value="100"/>
+        </VitalArray>
+    </CEffectModifyUnit>
+    
+
+
+    <CEffectApplyBehavior id="AP_ShadowSliceMarkTargetAB">
+        <WhichUnit Value="Target"/>
+        <Behavior value="AP_ShadowSliceMarked"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AP_ShadowSliceImpactSet">
+        <EffectArray value="AP_DarkTemplarShadowFuryTeleportSwitch"/>
+        <EffectArray value="AP_ShadowSliceDamage"/>
+    </CEffectSet>
+    <CEffectEnumArea id="AP_ShadowSliceSearch">
+        <LaunchLocation Effect="AP_ShadowSlicePersistent" Value="TargetUnit"/>
+        <ImpactLocation Effect="AP_ShadowSlicePersistent"/>
+        <SearchFilters value="Visible;Self,Neutral,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSNearest"/>
+        </TargetSorts>
+        <AreaArray MaxCount="1" Radius="5" Effect="AP_ShadowSliceImpactSet" Validator="AP_TargetHasShadowSliceMarked"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="AP_ShadowSliceDamage">
+        <Amount value="200"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CEffectTeleport id="AP_ShadowSliceReturnTeleportFromAnchor">
+        <WhichUnit Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <TargetLocation Effect="AP_ShadowSliceReturnAnchorCP" Value="OriginPoint"/>
+        <PlacementAround Effect="AP_ShadowSliceReturnAnchorCP" Value="OriginPoint"/>
+        <PlacementRange value="3"/>
+        <Range value="500"/>
+        <TeleportFlags index="TestFog" value="0"/>
+    </CEffectTeleport>
+    <CEffectSet id="AP_ShadowSliceInitialSet">
+        <EffectArray value="AP_ShadowSliceReturnAnchorCP"/>
+        <EffectArray value="AP_ShadowSliceMarkTargetAB"/>
+        <EffectArray value="AP_ShadowSlicePersistent"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="AP_ShadowSliceReturnAnchorCP">
+        <WhichLocation Value="SourcePoint"/>
+        <ExpireDelay value="0.25"/>
+        <FinalEffect value="AP_ShadowSliceReturnTeleportFromAnchor"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="AP_ShadowSlicePersistent">
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="AP_ShadowSliceSearch"/>
+        <PeriodicPeriodArray value="0.05"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="AP_ShadowSliceReturnDelayCP">
+        <InitialDelay value="0.25"/>
+        <InitialEffect value="AP_ShadowSliceReturnTeleport"/>
+    </CEffectCreatePersistent>
     <CEffectCreatePersistent id="AP_SuppressionPulseCreatePersistent">
         <EditorCategories value="Race:Protoss"/>
         <InitialEffect value="AP_SuppressionPulseSearchArea"/>
@@ -4629,19 +4688,295 @@
     <CEffectEnumArea id="AP_SuppressionPulseSearchArea">
         <EditorCategories value="Race:Protoss"/>
         <ExcludeArray/>
-        <AreaArray Radius="1" RadiusBonus="0.5" Effect="AP_SuppressionPulseAB"/>
+        <AreaArray Radius="1" RadiusBonus="0.25" Effect="AP_SuppressionPulseAB"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Stasis,Hidden,Invulnerable,Unstoppable"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_SuppressionPulseAB">
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_SuppressionPulse"/>
     </CEffectApplyBehavior>
+    <CEffectSet id="AP_PhasePrismDelaySet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_PhasePrismDelay"/>
+        <EffectArray value="AP_PhasePrismRecastRB"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_PhasePrismDelay">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+
+    <CEffectCreatePersistent id="AP_ArtanisLightningDash">
+        <InitialEffect value="AP_ArtanisLightningDashSwitch"/>
+        <PeriodCount value="1"/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+    </CEffectCreatePersistent>
+    <CEffectSwitch id="AP_ArtanisLightningDashSwitch">
+        <CaseArray Validator="AP_ArtanisLightningDashCheck" Effect="AP_ArtanisLightningDashCU"/>
+        <CaseDefault value="AP_ArtanisLightningDashCUClosest"/>
+    </CEffectSwitch>
+    <CEffectCreateUnit id="AP_ArtanisLightningDashCU">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <SpawnEffect value="AP_ArtanisLightningDashCUPoint"/>
+        <SpawnRange value="0"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="AP_ArtanisLightningDashCUClosest">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <SpawnEffect value="AP_ArtanisLightningDashCUPoint"/>
+        <SpawnRange value="8"/>
+    </CEffectCreateUnit>
+    <CEffectCreatePersistent id="AP_ArtanisLightningDashCUPoint">
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="MakePrecursor"/>
+        <PeriodicEffectArray value="AP_ArtanisLightningDashLaunchMissile"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="AP_ArtanisLightningDashLaunchMissile">
+        <ImpactLocation Effect="AP_ArtanisLightningDashCUPoint" Value="TargetPoint"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <Movers Link="AP_ArtanisLightningDashMissile"/>
+        <FinishEffect value="AP_ArtanisLightningDashLaunchMissileImpactSet"/>
+        <DeathType value="Unknown"/>
+        <Flags index="2D" value="1"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="AP_ArtanisLightningDashLaunchMissileImpactSet">
+        <EffectArray value="AP_ArtanisLightningDashStunSearch"/>
+        <EffectArray value="AP_ArtanisLightningDashSearch"/>
+        <EffectArray value="AP_ArtanisLightningDashRemovePrecursorUnit"/>
+    </CEffectSet>
+    <CEffectEnumArea id="AP_ArtanisLightningDashStunSearch">
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="1.5" Effect="AP_ArtanisLightningDashStun"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_ArtanisLightningDashStun"/>
+    <CEffectEnumArea id="AP_ArtanisLightningDashSearch">
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="1.5" Effect="AP_ArtanisLightningDashDamage"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="AP_ArtanisLightningDashDamage" parent="DU_WEAP">
+        <Death value="Blast"/>
+        <Amount value="25"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_ArtanisLightningDashRemovePrecursorUnit">
+        <ImpactLocation Effect="AP_ArtanisLightningDashCUPoint" Value="TargetUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Death value="Remove"/>
+    </CEffectDamage>
+
+    <CEffectSet id="AP_ArtanisBladeDash">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ApplyArtanisBladeDashWalkSpeed"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ApplyArtanisBladeDashWalkSpeed">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeDashWalkSpeed"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AP_ArtanisBladeDashRecast">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ApplyArtanisBladeDashRecastWalkSpeed"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ApplyArtanisBladeDashRecastWalkSpeed">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeDashRecastWalkSpeed"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AP_ArtanisBladeDashDamage">
+        <ValidatorArray value="AP_EnemyTarget"/>
+        <ValidatorArray value="AP_NotArtanisBladeDashed"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Marker Link="ArtanisBladeDash">
+            <MatchFlags index="Link" value="1"/>
+        </Marker>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="0"/>
+        <Kind value="Spell"/>
+        <Amount value="40"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_ArtanisBladeDashRecastDamage" parent="AP_ArtanisBladeDashDamage">
+        <Amount index="0" value="60"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="AP_ArtanisBladeDashDamageAB">
+        <ValidatorArray value="AP_EnemyTarget"/>
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_ArtanisBladeDashDamaged"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisBladeDashStopRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisBladeDashDamaged"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="AP_ArtanisBladeDashStopSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="Ground,Visible;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="10" Effect="AP_ArtanisBladeDashStopRB"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisBladeDashTargetSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="Ground,Visible;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1" Effect="AP_ArtanisBladeDashTargetSet"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisBladeDashRecastTargetSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="Ground,Visible;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1" Effect="AP_ArtanisBladeDashRecastTargetSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AP_ArtanisBladeDashTargetSet">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisBladeDashDamage"/>
+        <EffectArray value="AP_ArtanisBladeDashDamageAB"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisBladeDashRecastTargetSet">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisBladeDashRecastDamage"/>
+        <EffectArray value="AP_ArtanisBladeDashDamageAB"/>
+    </CEffectSet>
+    <CEffectIssueOrder id="AP_ArtanisBladeDashWalkStopOrder">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Source"/>
+        <Abil value="stop"/>
+        <Player Value="Source"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="AP_ArtanisBladeDashWalkStopSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisBladeDashWalkStopOrder"/>
+        <EffectArray value="AP_ArtanisBladeDashWalkStopStun"/>
+        <EffectArray value="AP_ArtanisBladeDashRecastAB"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisBladeDashWalkStopRecastSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisBladeDashStopSearch"/>
+        <EffectArray value="AP_ArtanisBladeDashWalkStopOrder"/>
+        <EffectArray value="AP_ArtanisBladeDashWalkStopStun"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ArtanisBladeDashWalkStopStun">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ArtanisBladeDashRecastAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeDashRecast"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="AP_ArtanisBladeDashDummySearch">
+        <SearchFilters value="Ground;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden"/>
+        <AreaArray RectangleWidth="2.5" RectangleHeight="8" Effect="AP_ArtanisBladeDashDummyImpact"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="AP_ArtanisBladeDashDummyImpact"/>
     <CEffectLaunchMissile id="AP_AcidSalivaLM">
         <ValidatorArray index="0" value="RoachLMTargetFilters"/>
         <EditorCategories value="Race:Zerg"/>
         <ImpactEffect value="AP_AcidSalivaSet"/>
         <AmmoUnit value="AP_AcidSalivaWeapon"/>
     </CEffectLaunchMissile>
+    <CEffectSet id="AP_PhasePrismSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_PhasePrismAB"/>
+        <EffectArray value="AP_PhasePrismRecastCasterAB"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_PhasePrismAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_PhasePrismStun"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_PhasePrismRecastCasterAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_PhasePrismRecast"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="AP_PhasePrismRecastRB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AP_PhasePrismRecast"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="AP_PhasePrismSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <SearchFilters value="-;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="AP_PhasePrismUnitPullBy2"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="0"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectCreateUnit id="AP_PhasePrismUnitPullBy2">
+        <ValidatorArray value="NoPreventKnockback"/>
+        <ValidatorArray value="NotStructureTarget"/>
+        <ValidatorArray value="TargetNotDead"/>
+        <EditorCategories value="Race:Protoss"/>
+        <Origin Value="SourceUnit"/>
+        <CreateFlags index="Birth" value="0"/>
+        <CreateFlags index="DropOff" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="Precursor" value="1"/>
+        <CreateFlags index="ProvideFood" value="0"/>
+        <CreateFlags index="TechComplete" value="0"/>
+        <CreateFlags index="UseFood" value="0"/>
+        <CreateFlags index="NormalizeSpawnOffset" value="0"/>
+        <SpawnOwner Value="Neutral"/>
+        <SpawnEffect value="AP_PhasePrismUnitPullBy2PHSet"/>
+        <SpawnRange value="3"/>
+        <SpawnOffset value="0,-3"/>
+        <TypeFallbackUnit Value="Target"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="AP_PhasePrismUnitPullBy2AB">
+        <WhichUnit Effect="AP_PhasePrismUnitPullBy2"/>
+        <Behavior value="UnitKnockback"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="AP_PhasePrismUnitPullBy2CP">
+        <WhichLocation Value="CasterUnit"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="AP_PhasePrismUnitPullBy2RB"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="AP_PhasePrismUnitPullBy2LM">
+        <ValidatorArray index="0" value="AP_UnitKnockbackNotDead"/>
+        <LaunchLocation Effect="AP_PhasePrismUnitPullBy2" Value="TargetUnit"/>
+        <ImpactEffect value="AP_PhasePrismUnitPullBy2CP"/>
+        <Flags index="2D" value="1"/>
+        <Movers Link="AP_PhasePrismUnitKnockbackMover"/>
+        <DeathType value="Unknown"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="AP_PhasePrismUnitPullBy2PHSet">
+        <EffectArray value="PrecursorUnitKnockbackAB"/>
+        <EffectArray value="AP_PhasePrismStunAB"/>
+        <EffectArray value="AP_PhasePrismSlowAB"/>
+        <EffectArray value="AP_PhasePrismUnitPullBy2AB"/>
+        <EffectArray value="AP_PhasePrismUnitPullBy2LM"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="AP_PhasePrismUnitPullBy2RB">
+        <WhichUnit Effect="AP_PhasePrismUnitPullBy2"/>
+        <BehaviorLink value="UnitKnockback"/>
+        <Count value="1"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="AP_PhasePrismStunAB">
+        <Behavior value="AP_PhasePrismPullStun"/>
+        <WhichUnit Effect="AP_PhasePrismUnitPullBy2"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray index="0" value="NotHeroic"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_PhasePrismSlowAB">
+        <Behavior value="AP_PhasePrismSlow"/>
+        <WhichUnit Effect="AP_PhasePrismUnitPullBy2"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray index="0" value="IsHeroic"/>
+    </CEffectApplyBehavior>
     <CEffectSet id="AP_AcidSalivaSet">
         <EditorCategories value="Race:Zerg"/>
         <EffectArray value="AP_BileDuctsApplyBehavior"/>

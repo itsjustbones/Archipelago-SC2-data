@@ -1038,6 +1038,9 @@ Button/Name/AP_AresClassWeaponsSystemviking=Phobos-Class Weapons System
 Button/Name/AP_ArgusTalisman=Argus Talisman
 Button/Name/AP_ArmorpiercingMode=High Impact Payload
 Button/Name/AP_Armory=Build Armory
+Button/Name/AP_ArtanisBladeDash=Blade Dash
+Button/Name/AP_ArtanisBladeDashRecast=Blade Dash (Recast)
+Button/Name/AP_ArtanisLightningDash=Lightning Dash
 Button/Name/AP_AscendantAbilityEfficiency=Breath of Creation
 Button/Name/AP_AscendantSacrifice=Sacrifice
 Button/Name/AP_AssaultModeMengsk=Assault Mode
@@ -1917,6 +1920,7 @@ Button/Name/AP_SentryCloakingModule=Cloaking Module
 Button/Name/AP_SentryPurifier=Warp in Energizer
 Button/Name/AP_SentryTaldarimForceField=Force Field
 Button/Name/AP_SeveringGlave=Severing Glaive
+Button/Name/AP_ShadowSlice=Shadow Slice
 Button/Name/AP_ShapedBlast=Shaped Blast
 Button/Name/AP_ShapedHull=Shaped Hull
 Button/Name/AP_ShieldBattery=Warp in Shield Battery
@@ -2384,6 +2388,9 @@ Button/Tooltip/AP_AresClassWeaponsSystemviking=Increases missile range by 2 and 
 Button/Tooltip/AP_ArgusTalisman=Increases starting energy by 150 and maximum energy by 50.
 Button/Tooltip/AP_ArmorpiercingMode=Activates the Thor's 250mm Punisher Cannons. Punisher cannons strike a single air target for heavy damage.
 Button/Tooltip/AP_Armory=Contains weapon and armor upgrades for Factory and Starport structures. <n/><n/><c val="ffff8a">Enables:</c><n/>- Thors at the Factory
+Button/Tooltip/AP_ArtanisBladeDash=Dashes forward and deals <d ref="Effect,AP_ArtanisBladeDashDamage,Amount"/> damage to enemy ground units in a straight line.</n></n>This ability can be recast for free within <d ref="Behavior,AP_ArtanisBladeDashRecast,Duration"/> seconds, dealing <d ref="Effect,AP_ArtanisBladeDashRecastDamage,Amount"/> to enemy ground units NOT damaged by the original cast.
+Button/Tooltip/AP_ArtanisBladeDashRecast=Dashes forward and deals <d ref="Effect,AP_ArtanisBladeDashRecastDamage,Amount"/> damage to enemy ground units not damaged by the first cast.
+Button/Tooltip/AP_ArtanisLightningDash=Dash to a 
 Button/Tooltip/AP_AscendantAbilityEfficiency=Ascendant abilities cost <d ref="Upgrade,AP_AscendantAbilityEfficiency,EffectArray[0].Value"/> less energy.<n/><n/><c val="FFE303">War Council Upgrade.
 Button/Tooltip/AP_AscendantSacrifice=Reduces target friendly unit to <d ref="Effect,AP_AscendantSacrificeDamage,Amount"/> life (shields are not affected).<n/><n/>Grants the Ascendant <d ref="Effect,AP_AscendantSacrificeDamage5,LeechFraction[Energy]"/> energy for each life point reduced, up to its maximum energy.<n/><n/><c val="#ColorAttackInfo">Can only target friendly units.</c>
 Button/Tooltip/AP_AssaultModeMengsk=Transforms the Sky Fury to Assault Mode. In this mode Sky Furies move on the ground and can only attack ground targets.
@@ -3481,6 +3488,7 @@ Button/Tooltip/AP_SentryPhasing=Purifier Faction<n/>Robotic support unit. Create
 Button/Tooltip/AP_SentryPurifier=Purifier Faction<n/>Robotic support unit. Can use Chrono Beam and Phasing Mode.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_SentryTaldarimForceField=Creates a solid barrier that lasts for <d ref="Behavior,AP_ForceFieldFate,Duration"/> seconds and impedes movement of ground units.<n/><n/><c val="#ColorAttackInfo">Massive units shatter Force Fields on contact.</c>
 Button/Tooltip/AP_SeveringGlave=Attacks no longer decrease in damage with each subsequent bounce.
+Button/Tooltip/AP_ShadowSlice=Teleport near an enemy target and strike them, dealing <d ref="Effect,AP_ShadowSliceDamage,Amount"> to them before teleporting back.<n/><n/>If this damage kills an enemy, refund 50% of the cooldown.
 Button/Tooltip/AP_ShapedBlast=Shock Cannon damage to friendly units reduced by 75%.
 Button/Tooltip/AP_ShapedHull=Increases Diamondback life by 50.
 Button/Tooltip/AP_ShieldBattery=Restores shields to nearby friendly units and structures.
@@ -5581,46 +5589,23 @@ Param/Expression/lib_15EF4C78_929A180C=Level:  ~level~
 Param/Expression/lib_15EF4C78_DE0A8BC5=~CurrentLife~/~MaxLife~
 Param/Value/lib_15EF4C78_0733DA16=<k val="HeroSelect1"/>
 Param/Value/lib_15EF4C78_0F46D063=Prevented the mission from assigning a unit to the secondary hero panel -- reserved by commander prestige
-Param/Value/lib_15EF4C78_1651E8A0=artanis3
-Param/Value/lib_15EF4C78_19EA9A23=1256215251451
-Param/Value/lib_15EF4C78_1AD0F7A8=artanis35
-Param/Value/lib_15EF4C78_2D124934=nova
 Param/Value/lib_15EF4C78_2D5274FE=<k val="HeroSelect1"/>
-Param/Value/lib_15EF4C78_2D9423EC=nova
 Param/Value/lib_15EF4C78_35415A87=<c val="FF9800">Dehaka has been revived.</c>
 Param/Value/lib_15EF4C78_36D77694=<k val="HeroSelect0"/>
 Param/Value/lib_15EF4C78_3A913094=<c val="FF9800">Stukov has been revived at your Hatchery.</c>
-Param/Value/lib_15EF4C78_456CAD9B=artanis3531
-Param/Value/lib_15EF4C78_4A64A1A9=artanis35311231
 Param/Value/lib_15EF4C78_505F3DA1=<c val="FF9800">Artanis's Warp Shell has been destroyed. You must construct a Nexus to return him to the battlefield.</c>
-Param/Value/lib_15EF4C78_549B10BD=1232131
 Param/Value/lib_15EF4C78_5CCC6069=<c val="FF9800">Kerrigan has been revived at your Hatchery.</c>
 Param/Value/lib_15EF4C78_6D66C343=<c val="FF9800">Stukov has been revived at your Hatchery.</c>
-Param/Value/lib_15EF4C78_73B3A835=nova1
-Param/Value/lib_15EF4C78_7A25126B=artanis<n/>
 Param/Value/lib_15EF4C78_7A595763=<c val="FF9800">Stukov has died. You must mutate a Hatchery to revive him!</c>
-Param/Value/lib_15EF4C78_8043A784=nova
-Param/Value/lib_15EF4C78_92BFA2BF=artanis1
 Param/Value/lib_15EF4C78_931B4F03=Hero index out of bounds. Increase max hero count.
-Param/Value/lib_15EF4C78_9653D924=AAAAAAAA
-Param/Value/lib_15EF4C78_9992160E=artanis<n/>
-Param/Value/lib_15EF4C78_9E3FE59B=nova
-Param/Value/lib_15EF4C78_BAD558F8=nova
-Param/Value/lib_15EF4C78_C11F847E=awdawdawdawdaw
-Param/Value/lib_15EF4C78_CA188DED=nova
-Param/Value/lib_15EF4C78_CB9F35B7=opppop<n/>
 Param/Value/lib_15EF4C78_CCF904F5=<c val="FF9800">Kerrigan has died. You must mutate a Hatchery to revive her.</c>
 Param/Value/lib_15EF4C78_D005C2B7=<c val="9BFFBE">Nova has been warped off the battlefield to avoid lethal damage. You must construct a Command Center for her to rejoin the fight.</c>
-Param/Value/lib_15EF4C78_D735E40C=nova
 Param/Value/lib_15EF4C78_D74BC47F=Handle Hero Death:  Custom revive structure is specified, but is not alive.  Aborting.
 Param/Value/lib_15EF4C78_D80C88E5=<c val="FF9800">Nova's Stasis Shell has been destroyed. You must construct a Command Center to return her to the battlefield.</c>
-Param/Value/lib_15EF4C78_DA13AC0D=artanis17
 Param/Value/lib_15EF4C78_E11D6511=<k val="HeroSelect0"/>
 Param/Value/lib_15EF4C78_E2AE9BC3=<c val="FF9800">Kerrigan has been revived at your Hatchery.</c>
 Param/Value/lib_15EF4C78_E51A21D1=<c val="9BFFBE">Artanis has been warped off the battlefield to avoid lethal damage. You must construct a Nexus for hjm to rejoin the fight.</c>
 Param/Value/lib_15EF4C78_EAFF7887=<c val="FF9800">Dehaka has been revived at your Hatchery.</c>
-Param/Value/lib_15EF4C78_EDCE7067=nova
-Param/Value/lib_15EF4C78_F25E456C=nova
 RequirementNode/Tooltip/AP_BileLauncherBesideSpawningPool=Built beside Spawning Pool
 RequirementNode/Tooltip/AP_CompareNodeLTTyrannozorMergeSupply=Have enough supply
 RequirementNode/Tooltip/AP_CountBehaviorAP_ScoutTaldarimVulcanBlasterCompleteOnlyAtUnit3032945838=Cannot cancel during chargeup.
@@ -5838,6 +5823,7 @@ Unit/Name/AP_ArbiterMP=Arbiter
 Unit/Name/AP_ArbiterMPWeaponMissile=Arbiter MPWeapon Missile
 Unit/Name/AP_Archon=Archon
 Unit/Name/AP_Armory=Armory
+Unit/Name/AP_ArtanisHero=Artanis
 Unit/Name/AP_AscendantSacrificeWeapon1=AscendantSacrificeWeapon1
 Unit/Name/AP_AscendantSacrificeWeapon2=AscendantSacrificeWeapon2
 Unit/Name/AP_AscendantSacrificeWeapon3=AscendantSacrificeWeapon3
