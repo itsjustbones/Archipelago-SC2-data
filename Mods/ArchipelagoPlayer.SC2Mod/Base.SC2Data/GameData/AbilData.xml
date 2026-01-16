@@ -4579,6 +4579,12 @@
         <!--        </InfoArray>-->
         <Flags index="WarpTrainersButton" value="0"/>
     </CAbilWarpTrain>
+    <CAbilEffectTarget id="AP_Exterminate">
+        <AbilSetId value="AP_Exterminate"/>
+        <Effect index="0" value="AP_ExterminateSet"/>
+        <Range value="7"/>
+        <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_ShadowSlice">
         <AbilSetId value="AP_ShadowSlice"/>
         <Effect index="0" value="AP_ShadowSliceInitialSet"/>
@@ -4591,6 +4597,16 @@
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_SuppressionPulseCreatePersistent"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuppressionPulse"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_VoltaicSurge">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_VoltaicSurgeSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicSurge"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_CleansingSmite">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_CleansingSmiteSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_ShieldOverload">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>

@@ -2124,11 +2124,38 @@
             <StateFlags index="Stun" value="1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CleansingSmite">
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Period value="0.1666666"/>
+        <PeriodicEffect value="AP_CleansingSmiteDOT"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_Exterminate">
+        <Alignment value="Positive"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+        <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2">
+            <ModifyFlags index="OrdersUninterruptible" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ExterminateTarget">
+        <Alignment value="Negative"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisLightningDash">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-charge.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="3.5"/>
-        <Modification MoveSpeedMultiplier="3"/>
+        <Modification MoveSpeedMultiplier="5">
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+        </Modification>
         <Alignment value="Positive"/>
         <BuffFlags index="Channeling" value="1"/>
     </CBehaviorBuff>
@@ -6964,6 +6991,21 @@
             <DamageDealtMaximum index="Ranged" value="0"/>
             <DamageDealtMaximum index="Splash" value="0"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_VoltaicSurge">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corruption.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <HeightTime index="Start" value="2"/>
+            <HeightTime index="Stop" value="2"/>
+            <PlaneDelta index="Ground" value="1"/>
+            <PlaneDelta index="Air" value="-1"/>
+        </Modification>
+        <InitialEffect value="AP_SnareLaunchTargetToAPathableLocationPrecursor"/>
+        <FinalEffect value="AP_StukovInfestedDiamondBackReheightSourceCreatePlaceholder"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismStun">
         <Alignment value="Negative"/>
