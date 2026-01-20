@@ -4633,6 +4633,9 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_Exterminate"/>  
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ShadowSliceController">
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_ExterminateTargetAssigner">
         <WhichUnit Value="Target"/>
         <Behavior value="AP_ExterminateTarget"/>  
@@ -4647,7 +4650,7 @@
         <Behavior value="AP_ShadowSliceMarked"/>
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ShadowSliceImpactSet">
-        <EffectArray value="AP_DarkTemplarShadowFuryTeleportSwitch"/>
+        <EffectArray value="AP_NovaWeaponBlazefireBladeShadowFuryTeleportSwitch"/>
         <EffectArray value="AP_ShadowSliceDamage"/>
     </CEffectSet>
     <CEffectEnumArea id="AP_ShadowSliceSearch">
@@ -4660,7 +4663,7 @@
         <AreaArray MaxCount="1" Radius="5" Effect="AP_ShadowSliceImpactSet" Validator="AP_TargetHasShadowSliceMarked"/>
     </CEffectEnumArea>
     <CEffectDamage id="AP_ShadowSliceDamage">
-        <Amount value="200"/>
+        <Amount value="160"/>
         <Death value="Eviscerate"/>
     </CEffectDamage>
     <CEffectTeleport id="AP_ShadowSliceReturnTeleportFromAnchor">
@@ -4673,6 +4676,7 @@
         <TeleportFlags index="TestFog" value="0"/>
     </CEffectTeleport>
     <CEffectSet id="AP_ShadowSliceInitialSet">
+        <EffectArray value="AP_ShadowSliceController"/>
         <EffectArray value="AP_ShadowSliceReturnAnchorCP"/>
         <EffectArray value="AP_ShadowSliceMarkTargetAB"/>
         <EffectArray value="AP_ShadowSlicePersistent"/>
@@ -4691,20 +4695,20 @@
         <InitialDelay value="0.25"/>
         <InitialEffect value="AP_ShadowSliceReturnTeleport"/>
     </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="AP_VoltaicSurgePersistent">
+    <CEffectCreatePersistent id="AP_VoltaicShockPersistent">
         <WhichLocation Value="CasterPoint"/>
         <PeriodCount value="1"/>
-        <PeriodicEffectArray value="AP_VoltaicSurgeSearch"/>
+        <PeriodicEffectArray value="AP_VoltaicShockSearch"/>
         <PeriodicOffsetArray value="0,-2.5,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
-    <CEffectEnumArea id="AP_VoltaicSurgeSearch">
+    <CEffectEnumArea id="AP_VoltaicShockSearch">
         <LaunchLocation Value="CasterPoint"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Arc="69.9963" Radius="7.5" Effect="AP_VoltaicSurge"/>
+        <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="7.5" Effect="AP_VoltaicShock"/>
         <SearchFlags index="CenterAtLaunch" value="1"/>
     </CEffectEnumArea>
-   <CEffectCreateUnit id="AP_StukovInfestedDiamondBackReheightSourceCreatePlaceholder">
+   <CEffectCreateUnit id="AP_VoltaicShockReheightSourceCreatePlaceholder">
         <WhichLocation Value="SourceUnit"/>
         <CreateFlags index="Birth" value="0"/>
         <CreateFlags index="DropOff" value="0"/>
@@ -4714,29 +4718,29 @@
         <CreateFlags index="ProvideFood" value="0"/>
         <CreateFlags index="TechComplete" value="0"/>
         <CreateFlags index="UseFood" value="0"/>
-        <SpawnEffect value="AP_StukovInfestedDiamondBackReheightSourceStartSet"/>
+        <SpawnEffect value="AP_VoltaicShockReheightSourceStartSet"/>
         <TypeFallbackUnit Value="Source"/>
     </CEffectCreateUnit>
-    <CEffectSet id="AP_StukovInfestedDiamondBackReheightSourceStartSet">
+    <CEffectSet id="AP_VoltaicShockReheightSourceStartSet">
         <EditorCategories value="Race:Zerg"/>
-        <EffectArray value="AP_StukovInfestedDiamondBackReheightSourceLaunchMissile"/>
-        <EffectArray value="AP_StukovInfestedDiamondBackMakePrecursorReheightSource"/>
+        <EffectArray value="AP_VoltaicShockReheightSourceLaunchMissile"/>
+        <EffectArray value="AP_VoltaicShockMakePrecursorReheightSource"/>
         <EffectArray value="AP_DelayedRemove"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="AP_StukovInfestedDiamondBackMakePrecursorReheightSource">
-        <Behavior value="AP_StukovInfestedDiamondBackPrecursorReheight"/>
+    <CEffectApplyBehavior id="AP_VoltaicShockMakePrecursorReheightSource">
+        <Behavior value="AP_VoltaicShockPrecursorReheight"/>
     </CEffectApplyBehavior>
-    <CEffectLaunchMissile id="AP_StukovInfestedDiamondBackReheightSourceLaunchMissile">
+    <CEffectLaunchMissile id="AP_VoltaicShockReheightSourceLaunchMissile">
         <EditorCategories value="Race:Zerg"/>
-        <LaunchLocation Effect="AP_StukovInfestedDiamondbackSnareLM" Value="TargetUnit"/>
-        <Movers Link="AP_StukovInfestedDiamondBackEnsnareAirLaunchMover"/>
-        <ImpactEffect value="AP_StukovInfestedDiamondBackReheightSourceImpactDummy"/>
-        <FinishEffect value="AP_StukovInfestedDiamondBackReheightSourceImpactSet"/>
+        <LaunchLocation Effect="AP_VoltaicShock" Value="TargetUnit"/>
+        <Movers Link="AP_VoltaicShockEnsnareAirLaunchMover"/>
+        <ImpactEffect value="AP_VoltaicShockReheightSourceImpactDummy"/>
+        <FinishEffect value="AP_VoltaicShockReheightSourceImpactSet"/>
         <DeathType value="Unknown"/>
-        <ValidatorArray value="AP_StukovInfestedDiamondBackReheightSourceLaunchMissileCasterNotDead"/>
+        <ValidatorArray value="AP_VoltaicShockReheightSourceLaunchMissileCasterNotDead"/>
     </CEffectLaunchMissile>
-    <CEffectSet id="AP_StukovInfestedDiamondBackReheightSourceImpactSet"/>
-    <CEffectSet id="AP_StukovInfestedDiamondBackReheightSourceImpactDummy"/>
+    <CEffectSet id="AP_VoltaicShockReheightSourceImpactSet"/>
+    <CEffectSet id="AP_VoltaicShockReheightSourceImpactDummy"/>
     <CEffectCreatePersistent id="AP_SuppressionPulseCreatePersistent">
         <EditorCategories value="Race:Protoss"/>
         <InitialEffect value="AP_SuppressionPulseSearchArea"/>
@@ -4751,17 +4755,70 @@
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Stasis,Hidden,Invulnerable,Unstoppable"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_SuppressionPulse"/>
-    <CEffectApplyBehavior id="AP_VoltaicSurge"/>
+    <CEffectApplyBehavior id="AP_VoltaicShock"/>
     <CEffectSet id="AP_PhasePrismDelaySet">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_PhasePrismDelay"/>
         <EffectArray value="AP_PhasePrismRecastRB"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="AP_PhasePrismDelay">
-        <EditorCategories value="Race:Protoss"/>
+    <CEffectSet id="AP_ArtanisResurgenceSet">
+        <EffectArray value="AP_ArtanisResurgenceInvulnerableAB"/>
+        <!--EffectArray value="AP_ArtanisResurgenceRegenAB"/-->
+        <EffectArray value="AP_ArtanisResurgenceDisableAB"/>
+        <EffectArray value="AP_ArtanisResurgenceStunAB"/>
+        <EffectArray value="AP_ArtanisResurgenceSuppressedApplyBehavior"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ArtanisResurgenceStunAB">
+        <EditorCategories value=""/>
         <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisResurgenceStun"/>
     </CEffectApplyBehavior>
-
+    <CEffectApplyBehavior id="AP_ArtanisResurgenceInvulnerableAB">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisResurgenceInvulnerable"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ArtanisResurgenceDisableAB">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisResurgenceDisable"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AP_ArtanisResurgenceExplodeSet">
+        <EffectArray value="AP_ArtanisResurgenceHeal"/>
+        <EffectArray value="AP_ArtanisResurgenceSearch"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="AP_ArtanisResurgenceHeal">
+        <EditorCategories value="Race:Protoss"/>
+        <VitalArray index="Life" ChangeFraction="1"/>
+        <VitalArray index="Shields" ChangeFraction="1"/>
+        <Cost Abil="ArtanisLightningDash,Execute" CooldownOperation="Set">
+            <Player Value="Source"/>
+        </Cost>
+        <Cost Abil="ArtanisAstralWind,Execute" CooldownOperation="Set">
+            <Player Value="Source"/>
+        </Cost>
+    </CEffectModifyUnit>
+    <CEffectEnumArea id="AP_ArtanisResurgenceSearch">
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="AP_ArtanisResurgenceEnemyImpactSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AP_ArtanisResurgenceEnemyImpactSet">
+        <EffectArray value="UnitKnockbackBy4"/>
+        <EffectArray value="AP_ArtanisResurgenceEnemyImpactCP"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="AP_ArtanisResurgenceEnemyImpactCP">
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.125"/>
+        <PeriodicPeriodArray value="0.1875"/>
+        <Flags index="RandomPeriod" value="1"/>
+        <PeriodicEffectArray value="AP_ArtanisResurgenceEnemyImpactDamage"/>
+        <PeriodCount value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="AP_ArtanisResurgenceEnemyImpactDamage">
+        <Kind value="Ranged"/>
+        <Amount value="50"/>
+        <!--Death value="Blast"/-->
+    </CEffectDamage>
     <CEffectCreatePersistent id="AP_ArtanisLightningDash">
         <InitialEffect value="AP_ArtanisLightningDashSwitch"/>
         <PeriodCount value="1"/>
@@ -4825,7 +4882,29 @@
         <Flags index="Kill" value="1"/>
         <Death value="Remove"/>
     </CEffectDamage>
-
+    <CEffectApplyBehavior id="AP_StrengthInUnity"/>
+    <CEffectSet id="AP_StrengthInUnitySearchSet">
+        <EffectArray value="AP_StrengthInUnitySearchAiur"/>
+        <EffectArray value="AP_StrengthInUnitySearchNerazim"/>
+        <EffectArray value="AP_StrengthInUnitySearchPurifier"/>
+        <EffectArray value="AP_StrengthInUnitySearchTaldarim"/>
+    </CEffectSet>
+    <CEffectEnumArea id="AP_StrengthInUnitySearchAiur">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="7.5" Effect="AP_StrengthInUnityBuffAiurAB"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffAiurAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityBuffAiur"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffAiurArtanisAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_StrengthInUnityArtanisAiur"/>
+    </CEffectApplyBehavior>
     <CEffectEnumArea id="AP_CleansingSmiteSearch">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>

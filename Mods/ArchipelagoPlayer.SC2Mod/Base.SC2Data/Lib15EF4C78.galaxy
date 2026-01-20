@@ -3444,7 +3444,7 @@ int lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses (int lp_player) {
     return lv_usesLeft;
 }
 
-bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_player, int lp_mercenaryClass) {
+bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_oxfaymufjcnfsfcp, int lp_mercenaryClass) {
     // Variable Declarations
     bool lv_untitledVariable001;
 
@@ -3452,11 +3452,11 @@ bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_player, int lp_m
     // Variable Initialization
 
     // Implementation
-    if ((TechTreeUpgradeCount(lp_player, "AP_UnrestrictedMutation", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_SCTWO) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_BROODWAR) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFESTED))) {
+    if ((TechTreeUpgradeCount(lp_oxfaymufjcnfsfcp, "AP_UnrestrictedMutation", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_SCTWO) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_BROODWAR) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFESTED))) {
         lv_untitledVariable001 = true;
     }
 
-    if ((TechTreeUpgradeCount(lp_player, "AP_RogueForces", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+    if ((TechTreeUpgradeCount(lp_oxfaymufjcnfsfcp, "AP_RogueForces", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
         lv_untitledVariable001 = true;
     }
 
@@ -3608,7 +3608,7 @@ void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldowns (int lp_player) {
 
 void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldownsTerran (int lp_player) {
     // Variable Declarations
-    int lv_index;
+    int lv_egoyjpdtlfvvesmt;
 
     // Automatic Variable Declarations
     const int autoC941E96C_ae = lib15EF4C78_gv_aP_Player_MERC_COOLDOWN_LINK_SIZE;
@@ -3617,10 +3617,10 @@ void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldownsTerran (int lp_player) {
     // Variable Initialization
 
     // Implementation
-    lv_index = 0;
-    for ( ; ( (autoC941E96C_ai >= 0 && lv_index <= autoC941E96C_ae) || (autoC941E96C_ai < 0 && lv_index >= autoC941E96C_ae) ) ; lv_index += autoC941E96C_ai ) {
-        if (((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
-            libNtve_gf_PlayerRemoveCooldown(lp_player, lib15EF4C78_gv_aP_Player_MercCooldownLinks[lv_index]);
+    lv_egoyjpdtlfvvesmt = 0;
+    for ( ; ( (autoC941E96C_ai >= 0 && lv_egoyjpdtlfvvesmt <= autoC941E96C_ae) || (autoC941E96C_ai < 0 && lv_egoyjpdtlfvvesmt >= autoC941E96C_ae) ) ; lv_egoyjpdtlfvvesmt += autoC941E96C_ai ) {
+        if (((lib15EF4C78_gv_aP_Player_MercType[lv_egoyjpdtlfvvesmt] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_egoyjpdtlfvvesmt] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_egoyjpdtlfvvesmt] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+            libNtve_gf_PlayerRemoveCooldown(lp_player, lib15EF4C78_gv_aP_Player_MercCooldownLinks[lv_egoyjpdtlfvvesmt]);
         }
 
     }
@@ -4966,6 +4966,60 @@ void lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Shadow Slice Height
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_ShadowSliceHeight_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_artanis;
+    unit lv_target;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_artanis = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_target = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetHeight(lv_artanis, UnitGetHeight(lv_target), 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_ShadowSliceHeight_Init () {
+    lib15EF4C78_gt_ShadowSliceHeight = TriggerCreate("lib15EF4C78_gt_ShadowSliceHeight_Func");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_ShadowSliceHeight, c_playerAny, "AP_ShadowSliceImpactSet");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Shadow Slice Reset
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_ShadowSliceReset_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_artanis;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_artanis = EventUnit();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetHeight(lv_artanis, 0.0, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_ShadowSliceReset_Init () {
+    lib15EF4C78_gt_ShadowSliceReset = TriggerCreate("lib15EF4C78_gt_ShadowSliceReset_Func");
+    TriggerAddEventUnitBehaviorChange(lib15EF4C78_gt_ShadowSliceReset, null, "AP_ShadowSliceController", c_unitBehaviorChangeDeactivate);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: PhasePrismAcquireTarget
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_PhasePrismAcquireTarget_Func (bool testConds, bool runActions) {
@@ -5001,8 +5055,12 @@ bool lib15EF4C78_gt_PhasePrismSwap_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UnitSetPosition(EventUnit(), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget), true);
-    UnitSetPosition(lib15EF4C78_gv_phasePrismTarget, lv_artanisPosition, true);
+    if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget)) <= 10.0)) {
+        UnitSetPosition(EventUnit(), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget), true);
+        UnitSetPosition(lib15EF4C78_gv_phasePrismTarget, lv_artanisPosition, true);
+        UnitBehaviorAdd(EventUnit(), "AP_PhasePrismDelay", EventUnit(), 1);
+    }
+
     return true;
 }
 
@@ -8987,7 +9045,7 @@ void lib15EF4C78_gt_AP_Player_MercCompoundSetupCounts_Init () {
 bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
-    int lv_player;
+    int lv_qpxumkaekdtkadio;
     int lv_instantUsesLeft;
 
     // Automatic Variable Declarations
@@ -9001,28 +9059,28 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         return true;
     }
 
-    lv_player = EventPlayer();
-    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_player);
+    lv_qpxumkaekdtkadio = EventPlayer();
+    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_qpxumkaekdtkadio);
     if ((lv_instantUsesLeft > 0)) {
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
                 lv_instantUsesLeft -= 1;
-                libNtve_gf_SetUpgradeLevelForPlayer(lv_player, "AP_FastDeliveryCharges", lv_instantUsesLeft);
+                libNtve_gf_SetUpgradeLevelForPlayer(lv_qpxumkaekdtkadio, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
                 if ((lv_instantUsesLeft == 0)) {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_player);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_qpxumkaekdtkadio);
                 }
                 else {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_player, lv_index);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_qpxumkaekdtkadio, lv_index);
                 }
             }
 
         }
     }
 
-    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_player);
+    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_qpxumkaekdtkadio);
     return true;
 }
 
@@ -9277,6 +9335,8 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_TechReactorswaptoAP_Barracks_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Factory_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init();
+    lib15EF4C78_gt_ShadowSliceHeight_Init();
+    lib15EF4C78_gt_ShadowSliceReset_Init();
     lib15EF4C78_gt_PhasePrismAcquireTarget_Init();
     lib15EF4C78_gt_PhasePrismSwap_Init();
     lib15EF4C78_gt_ArtanisBladeDash_Init();

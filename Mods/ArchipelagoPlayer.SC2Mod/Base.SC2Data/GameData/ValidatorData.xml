@@ -4222,6 +4222,43 @@
         <CombineArray value="AP_IsCarrierTaldarim"/>
         <CombineArray value="AP_IsTaldarimMothership"/>
     </CValidatorCombine>
+    <CValidatorUnitType id="AP_IsZealotShakuras">
+        <Value value="AP_ZealotShakuras"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsDarkTemplarShakuras">
+        <Value value="AP_DarkTemplarShakuras"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsScoutNerazim">
+        <Value value="AP_ScoutNerazim"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsVoidRayShakuras">
+        <Value value="AP_VoidRayShakuras"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsHighTemplarShakuras">
+        <Value value="AP_HighTemplarShakuras"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsDarkArchon">
+        <Value value="AP_DarkArchon"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsStalkerShakuras">
+        <Value value="AP_StalkerShakuras"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsOracle">
+        <Value value="AP_Oracle"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="AP_IsNerazimUnit">
+        <Type value="Or"/>
+        <CombineArray value="AP_IsZealotShakuras"/>
+        <CombineArray value="AP_IsDarkTemplarShakuras"/>
+        <CombineArray value="AP_IsScoutNerazim"/>
+        <CombineArray value="AP_IsImmortalShakuras"/>
+        <CombineArray value="AP_IsVoidRayShakuras"/>
+        <CombineArray value="AP_IsHighTemplarShakuras"/>
+        <CombineArray value="AP_IsStalkerShakuras"/>
+        <CombineArray value="AP_IsDarkArchon"/>
+        <CombineArray value="AP_IsOracle"/>
+        <CombineArray value="AP_IsCorsairMP"/>
+    </CValidatorCombine>
     <CValidatorUnitType id="AP_IsZealotAiur">
         <Value value="AP_ZealotAiur"/>
     </CValidatorUnitType>
@@ -4352,6 +4389,9 @@
         <CombineArray value="RepairTargetInRange"/>
         <CombineArray value="NotHidden"/>
     </CValidatorCombine>
+    <CValidatorUnitType id="AP_IsArtanisHero">
+        <Value value="AP_ArtanisHero"/>
+    </CValidatorUnitType>
     <CValidatorUnitOrderQueue id="AP_SentryIsRepairing">
         <AbilLink value="AP_VoidSentryShieldRepairDouble"/>
     </CValidatorUnitOrderQueue>

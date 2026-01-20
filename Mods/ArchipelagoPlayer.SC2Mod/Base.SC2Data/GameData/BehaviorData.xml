@@ -2177,10 +2177,79 @@
         <RemoveValidatorArray value="AP_NoArtanisBladeDashRecastWalkSpeed"/>
         <Duration value="2"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnity">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="15"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_StrengthInUnitySearchSet"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityBuffAiur">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="0.125"/>
+        <Period value="0.0625"/>
+        <RemoveValidatorArray value="AP_IsAiurUnit"/>
+        <PeriodicEffect value="AP_StrengthInUnityBuffAiurArtanisAB"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="3"/>
+            <VitalRegenArray index="Shields" value="3"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityArtanisAiur">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="0.125"/>
+        <RemoveValidatorArray value="AP_IsArtanisHero"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="6"/>
+            <VitalRegenArray index="Shields" value="6"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgence">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Fatal value="1"/>
+            <Handled value="AP_ArtanisResurgenceSet"/>
+            <ModifyFraction value="0"/>
+        </DamageResponse>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgenceInvulnerable">
+        <Alignment value="Positive"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="3"/>
+        <!--Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification-->
+        <DamageResponse Chance="1" ModifyFraction="0" ModifyMinimumDamage="1"/>
+        <Period value="3"/>
+        <PeriodicEffect value="AP_ArtanisResurgenceExplodeSet"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgenceStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="3"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgenceDisable">
+        <Alignment value="Negative"/>
+        <Duration value="300"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="AP_ArtanisResurgence"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismRecast">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism-recast.dds"/>
-        <Duration value="4"/>
+        <Duration value="4"/> 
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismDelay">
         <InfoFlags index="Hidden" value="1"/>
@@ -3201,9 +3270,23 @@
             <BehaviorLinkDisableArray value="SensorTowerRadar"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ShadowSliceMarked">
+    <CBehaviorBuff id="AP_ShadowSliceController">
         <InfoFlags index="Hidden" value="1"/>
-        <Duration value="1"/>  
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.2"/>
+        <Period value="0.2"/>
+        <Modification>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ShadowSliceMarked">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Fatal="1" Handled="AP_ShadowSliceRefundCP">
+            <Chance value="1"/>
+        </DamageResponse>
+        <Duration value="0.0625"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidDarkTemplarShadowFuryTargeted">
         <InfoFlags index="Hidden" value="1"/>
@@ -7396,7 +7479,7 @@
             <DamageDealtMaximum index="Splash" value="0"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_VoltaicSurge">
+    <CBehaviorBuff id="AP_VoltaicShock">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-corruption.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -7409,7 +7492,7 @@
             <PlaneDelta index="Air" value="-1"/>
         </Modification>
         <InitialEffect value="AP_SnareLaunchTargetToAPathableLocationPrecursor"/>
-        <FinalEffect value="AP_StukovInfestedDiamondBackReheightSourceCreatePlaceholder"/>
+        <FinalEffect value="AP_VoltaicShockReheightSourceCreatePlaceholder"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismStun">
         <Alignment value="Negative"/>
