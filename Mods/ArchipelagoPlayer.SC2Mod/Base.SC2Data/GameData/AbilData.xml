@@ -4616,6 +4616,21 @@
         <!--        </InfoArray>-->
         <Flags index="WarpTrainersButton" value="0"/>
     </CAbilWarpTrain>
+    <CAbilSpecialize id="AP_ArtanisWeaponAspects">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoArray index="Specialize1" Time="0" Effect="AP_ArtanisAiurAspectSet">
+            <Button DefaultButtonFace="AP_OverloadWeaponSystems" Requirements="AP_CanInstallOverloadWeaponSystems"/>
+        </InfoArray>
+        <InfoArray index="Specialize2" Time="0" Effect="AP_ArtanisNerazimAspectSet">
+            <Button DefaultButtonFace="AP_PowerRedirection" Requirements="AP_CanInstallPowerRedirection"/>
+        </InfoArray>
+        <InfoArray index="Specialize3" Time="0" Effect="AP_ArtanisPurifierAspectSet">
+            <Button DefaultButtonFace="AP_PlanetCracker" Requirements="AP_CanInstallPlanetCracker"/>
+        </InfoArray>
+        <InfoArray index="Specialize4" Time="0" Effect="AP_ArtanisTaldarimAspectSet">
+            <Button DefaultButtonFace="AP_MothershipBlackHole" Requirements="AP_CanInstallBlackHole"/>
+        </InfoArray>
+    </CAbilSpecialize>
     <CAbilEffectTarget id="AP_Exterminate">
         <AbilSetId value="AP_Exterminate"/>
         <Effect index="0" value="AP_ExterminateSet"/>
@@ -4626,6 +4641,10 @@
         <AbilSetId value="AP_ShadowSlice"/>
         <Effect index="0" value="AP_ShadowSliceInitialSet"/>
         <Range value="7"/>
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="8"/>
+        </Cost>
         <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>

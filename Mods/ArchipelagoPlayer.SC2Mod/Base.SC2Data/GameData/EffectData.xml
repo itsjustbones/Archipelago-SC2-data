@@ -4607,7 +4607,53 @@
         </VitalArray>
     </CEffectModifyUnit>
     
-
+    <CEffectApplyBehavior id="AP_ArtanisAiurAspect"/>
+    <CEffectApplyBehavior id="AP_ArtanisNerazimAspect"/>
+    <CEffectApplyBehavior id="AP_ArtanisPurifierAspect"/>
+    <CEffectApplyBehavior id="AP_ArtanisTaldarimAspect"/>
+    <CEffectRemoveBehavior id="AP_ArtanisAiurAspectRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisAiurAspect"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisNerazimAspectRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisNerazimAspect"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisPurifierAspectRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisPurifierAspect"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisTaldarimAspectRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisTaldarimAspect"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="AP_ArtanisAspectClearAll">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisAiurAspectRB"/>
+        <EffectArray value="AP_ArtanisNerazimAspectRB"/>
+        <EffectArray value="AP_ArtanisPurifierAspectRB"/>
+        <EffectArray value="AP_ArtanisTaldarimAspectRB"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisAiurAspectSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisAspectClearAll"/>
+        <EffectArray value="AP_ArtanisAiurAspect"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisNerazimAspectSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisAspectClearAll"/>
+        <EffectArray value="AP_ArtanisNerazimAspect"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisPurifierAspectSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisAspectClearAll"/>
+        <EffectArray value="AP_ArtanisPurifierAspect"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisTaldarimAspectSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisAspectClearAll"/>
+        <EffectArray value="AP_ArtanisTaldarimAspect"/>
+    </CEffectSet>
     <CEffectIssueOrder id="AP_ExterminateAttackOrder">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
@@ -4645,6 +4691,10 @@
         <EffectArray value="AP_ExterminateTargetAssigner"/>
         <EffectArray value="AP_ExterminatePersistent"/>
     </CEffectSet>
+    <CEffectEnumArea id="AP_ExterminateRBSearch">
+        <ImpactLocation Value="SourceUnit"/>
+        <AreaArray Radius="500" Effect="AP_ExterminateRB"/>
+    </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_ShadowSliceMarkTargetAB">
         <WhichUnit Value="Target"/>
         <Behavior value="AP_ShadowSliceMarked"/>
@@ -4695,6 +4745,39 @@
         <InitialDelay value="0.25"/>
         <InitialEffect value="AP_ShadowSliceReturnTeleport"/>
     </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="AP_ShadowSliceRefundCP">
+        <FinalEffect value="AP_ShadowSliceRefund"/>
+        <PeriodCount value="1"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectModifyUnit id="AP_ShadowSliceRefund">
+        <ImpactUnit Value="Caster"/>
+        <Cost Abil="AP_ShadowSlice,Execute" CooldownOperation="Add" CooldownTimeUse="-4.0"/>
+        <VitalArray index="Energy">
+            <Change value="20"/>
+        </VitalArray>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="AP_RaszagalsRhythmCDRefund">
+        <ImpactUnit Value="Caster"/>
+        <!-- Technically would be easier to grant 100% CDR for 1 second instead, want CDR refund to be more instanteous and scale better w/ attack speed-->
+        <Cost Abil="AP_ShadowSlice,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_ArtanisLightningDash,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_CleansingSmite,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_PhasePrism,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_ArtanisBladeDash,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_ArtanisBladeDashRecast,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_StrengthInUnity,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_ShieldOverload,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_SuppressionPulse,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_VoltaicShock,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="AP_TemperedInTwilightRefund">
+        <ImpactUnit Value="Caster"/>
+        <VitalArray index="Energy">
+            <Change value="5"/>
+        </VitalArray>
+    </CEffectModifyUnit>
     <CEffectCreatePersistent id="AP_VoltaicShockPersistent">
         <WhichLocation Value="CasterPoint"/>
         <PeriodCount value="1"/>
@@ -4822,9 +4905,6 @@
     <CEffectCreatePersistent id="AP_ArtanisLightningDash">
         <InitialEffect value="AP_ArtanisLightningDashSwitch"/>
         <PeriodCount value="1"/>
-        <Marker>
-            <MatchFlags index="Id" value="1"/>
-        </Marker>
     </CEffectCreatePersistent>
     <CEffectSwitch id="AP_ArtanisLightningDashSwitch">
         <CaseArray Validator="AP_ArtanisLightningDashCheck" Effect="AP_ArtanisLightningDashCU"/>
@@ -4833,26 +4913,25 @@
     <CEffectCreateUnit id="AP_ArtanisLightningDashCU">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetPoint"/>
+        <Player Value="Neutral"/>
         <CreateFlags index="Placement" value="0"/>
-        <SpawnEffect value="AP_ArtanisLightningDashCUPoint"/>
+        <SpawnEffect value="AP_ArtanisLightningDashOnPrecursorSpawn"/>
         <SpawnRange value="0"/>
     </CEffectCreateUnit>
     <CEffectCreateUnit id="AP_ArtanisLightningDashCUClosest">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetPoint"/>
+        <Player Value="Neutral"/>
         <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
-        <SpawnEffect value="AP_ArtanisLightningDashCUPoint"/>
+        <SpawnEffect value="AP_ArtanisLightningDashOnPrecursorSpawn"/>
         <SpawnRange value="8"/>
     </CEffectCreateUnit>
-    <CEffectCreatePersistent id="AP_ArtanisLightningDashCUPoint">
-        <WhichLocation Value="TargetUnit"/>
-        <PeriodCount value="2"/>
-        <PeriodicEffectArray value="MakePrecursor"/>
-        <PeriodicEffectArray value="AP_ArtanisLightningDashLaunchMissile"/>
-        <PeriodicPeriodArray value="0"/>
-    </CEffectCreatePersistent>
+    <CEffectSet id="AP_ArtanisLightningDashOnPrecursorSpawn">
+        <EffectArray value="MakePrecursor"/>
+        <EffectArray value="AP_ArtanisLightningDashLaunchMissile"/>
+    </CEffectSet>
     <CEffectLaunchMissile id="AP_ArtanisLightningDashLaunchMissile">
-        <ImpactLocation Effect="AP_ArtanisLightningDashCUPoint" Value="TargetPoint"/>
+        <ImpactLocation Value="TargetUnit"/>
         <LaunchLocation Value="CasterUnit"/>
         <Movers Link="AP_ArtanisLightningDashMissile"/>
         <FinishEffect value="AP_ArtanisLightningDashLaunchMissileImpactSet"/>
@@ -4877,34 +4956,124 @@
         <Death value="Blast"/>
         <Amount value="25"/>
     </CEffectDamage>
-    <CEffectDamage id="AP_ArtanisLightningDashRemovePrecursorUnit">
-        <ImpactLocation Effect="AP_ArtanisLightningDashCUPoint" Value="TargetUnit"/>
-        <Flags index="Kill" value="1"/>
-        <Death value="Remove"/>
-    </CEffectDamage>
+    <CEffectModifyUnit id="AP_ArtanisLightningDashRemovePrecursorUnit">
+        <ImpactUnit Value="TargetUnit"/>
+        <ModifyFlags index="Remove" value="1"/>
+    </CEffectModifyUnit>
     <CEffectApplyBehavior id="AP_StrengthInUnity"/>
-    <CEffectSet id="AP_StrengthInUnitySearchSet">
-        <EffectArray value="AP_StrengthInUnitySearchAiur"/>
-        <EffectArray value="AP_StrengthInUnitySearchNerazim"/>
-        <EffectArray value="AP_StrengthInUnitySearchPurifier"/>
-        <EffectArray value="AP_StrengthInUnitySearchTaldarim"/>
+    <CEffectSet id="AP_StrengthInUnityInitialSearchSet">
+        <EffectArray value="AP_StrengthInUnityInitialSearchAiur"/>
+        <EffectArray value="AP_StrengthInUnityInitialSearchNerazim"/>
+        <EffectArray value="AP_StrengthInUnityInitialSearchPurifier"/>
+        <EffectArray value="AP_StrengthInUnityInitialSearchTaldarim"/>
     </CEffectSet>
-    <CEffectEnumArea id="AP_StrengthInUnitySearchAiur">
+    <CEffectEnumArea id="AP_StrengthInUnityInitialSearchAiur">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
-        <AreaArray Radius="7.5" Effect="AP_StrengthInUnityBuffAiurAB"/>
-        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityInitialBuffAiurAB"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_StrengthInUnitySearchAiur">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityBuffAiurAB"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffAiurAB">
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_StrengthInUnityBuffAiur"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffNerazimAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityInitialBuffNerazim"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffAiurArtanisAB">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_StrengthInUnityArtanisAiur"/>
     </CEffectApplyBehavior>
+
+    <CEffectEnumArea id="AP_StrengthInUnityInitialSearchNerazim">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityInitialBuffNerazimAB"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_StrengthInUnitySearchNerazim">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityBuffNerazimAB"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffNerazimAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityBuffNerazim"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffPurifierAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityInitialBuffPurifier"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffNerazimArtanisAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_StrengthInUnityArtanisNerazim"/>
+    </CEffectApplyBehavior>
+
+
+    <CEffectEnumArea id="AP_StrengthInUnityInitialSearchPurifier">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityInitialBuffPurifierAB"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_StrengthInUnitySearchPurifier">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityBuffPurifierAB"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffPurifierAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityBuffPurifier"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffTaldarimAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityInitialBuffTaldarim"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffPurifierArtanisAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_StrengthInUnityArtanisPurifier"/>
+    </CEffectApplyBehavior>
+
+
+    <CEffectEnumArea id="AP_StrengthInUnityInitialSearchTaldarim">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityInitialBuffTaldarimAB"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_StrengthInUnitySearchTaldarim">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Structure,Missile,Dead"/>
+        <AreaArray Radius="13" Effect="AP_StrengthInUnityBuffTaldarimAB"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffTaldarimAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityBuffTaldarim"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffAiurAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_StrengthInUnityInitialBuffAiur"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_StrengthInUnityBuffTaldarimArtanisAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_StrengthInUnityArtanisTaldarim"/>
+    </CEffectApplyBehavior>
+
+
     <CEffectEnumArea id="AP_CleansingSmiteSearch">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
