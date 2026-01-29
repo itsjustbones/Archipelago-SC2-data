@@ -2319,23 +2319,28 @@
         <Range value="8"/>
         <ResultFailed value="TargetIsOutOfRange"/>
     </CValidatorLocationCompareRange>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeDashWalkSpeed">
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzActor">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
-        <Behavior value="AP_ArtanisBladeDashWalkSpeed"/>
+        <Behavior value="AP_ArtanisBladeWaltzActor"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeDashRecastWalkSpeed">
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzWalkSpeed">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
-        <Behavior value="AP_ArtanisBladeDashRecastWalkSpeed"/>
+        <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_NoArtanisBladeDashRecastWalkSpeed">
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzRecastWalkSpeed">
         <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeDashRecastWalkSpeed"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="AP_CasterHasArtanisBladeDashWalkSpeedCombined">
-        <CombineArray value="AP_CasterHasArtanisBladeDashWalkSpeed"/>
-        <CombineArray value="AP_CasterHasArtanisBladeDashRecastWalkSpeed"/>
+    <CValidatorUnitCompareBehaviorCount id="AP_NoArtanisBladeWaltzRecastWalkSpeed">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_CasterHasArtanisBladeWaltzWalkSpeedCombined">
+        <CombineArray value="AP_CasterHasArtanisBladeWaltzWalkSpeed"/>
+        <CombineArray value="AP_CasterHasArtanisBladeWaltzRecastWalkSpeed"/>
     </CValidatorCombine>
     <CValidatorLocationEnumArea id="AP_NovaWeaponBlazefireBladeShadowFuryTargetsInArea">
         <AreaArray Compare="GT" Count="0" Radius="5"/>
@@ -2408,8 +2413,8 @@
         <Compare value="LE"/>
         <ResultFailed value="CantTargetThatUnit"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_NotArtanisBladeDashed">
-        <Behavior value="AP_ArtanisBladeDashDamaged"/>
+    <CValidatorUnitCompareBehaviorCount id="AP_NotArtanisBladeWaltzed">
+        <Behavior value="AP_ArtanisBladeWaltzDamaged"/>
         <Compare value="LE"/>
         <ResultFailed value="CantTargetThatUnit"/>
     </CValidatorUnitCompareBehaviorCount>

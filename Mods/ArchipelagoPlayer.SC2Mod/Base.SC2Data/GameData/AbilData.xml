@@ -4669,19 +4669,14 @@
         <Effect index="0" value="AP_CleansingSmiteSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite"/>
     </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_ShieldOverload">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Effect index="0" value="AP_ShieldOverloadMU"/>
-        <Flags index="AutoCast" value="1"/>
-        <Flags index="TransientPreferred" value="1"/>
-        <Flags index="AutoCastOn" value="1"/>
+    <CAbilEffectInstant id="AP_ArtanisAstralWind">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="10"/>
-            <Cooldown TimeUse="20"/>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="120"/>
         </Cost>
-        <AutoCastRange value="1"/>
-        <AutoCastValidatorArray value="AP_CasterShieldsLE50Percent"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ShieldOverload"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisAstralWind"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_PhasePrism">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -4712,7 +4707,7 @@
         </Cost>
         <CursorEffect value="ArtanisLightningDashSearch"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_ArtanisBladeDash">
+    <CAbilEffectTarget id="AP_ArtanisBladeWaltz">
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Flags index="RequireTargetVision" value="0"/>
@@ -4724,16 +4719,16 @@
         <Range value="500"/>
         <Arc value="360"/>
         <PrepTime value="0.01"/>
-        <CursorEffect value="AP_ArtanisBladeDashDummySearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeDash"/>
+        <CursorEffect value="AP_ArtanisBladeWaltzDummySearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltz"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_ArtanisBladeDashRecast" parent="AP_ArtanisBladeDash">
+    <CAbilEffectTarget id="AP_ArtanisBladeWaltzRecast" parent="AP_ArtanisBladeWaltz">
         <Cost index="0">
             <Vital index="Energy" value="0"/>
             <Cooldown TimeUse="1"/>
         </Cost>
-        <Effect index="0" value="AP_ArtanisBladeDashRecast"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeDashRecast" Requirements="AP_HaveArtanisBladeDashRecastBehavior"/>
+        <Effect index="0" value="AP_ArtanisBladeWaltzRecast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltzRecast" Requirements="AP_HaveArtanisBladeWaltzRecastBehavior"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_CorsairMPDisruptionWeb">
         <EditorCategories value="AbilityorEffectType:Units"/>

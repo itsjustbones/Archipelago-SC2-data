@@ -20311,9 +20311,11 @@
         <Height value="8.000000"/>
         <Width value="2.500000"/>
     </CActorQuad>
-    <CActorModel id="AP_ArtanisBladeDashModel" parent="ModelAnimationStyleContinuous">
-        <On Terms="Behavior.AP_ArtanisBladeDashWalkSpeed.On" Send="Create"/>
-        <On Terms="Behavior.AP_ArtanisBladeDashWalkSpeed.Off" Send="Destroy"/>
+    <CActorModel id="AP_ArtanisBladeWaltzModel" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.AP_ArtanisBladeWaltzWalkSpeed.On" Send="Create"/>
+        <On Terms="Behavior.AP_ArtanisBladeWaltzWalkSpeed.Off" Send="Destroy"/>
+        <On Terms="Behavior.AP_ArtanisBladeWaltzRecastWalkSpeed.On" Send="Create"/>
+        <On Terms="Behavior.AP_ArtanisBladeWaltzRecastWalkSpeed.Off" Send="Destroy"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <ModelFlags index="AllowHitTest" value="0"/>
@@ -37701,16 +37703,18 @@
         <On Terms="WeaponStart.ArtanisVoidUlnar.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior"/>
         <On Terms="WeaponStop.ArtanisVoidUlnar.AttackStop" Send="AnimBracketStop AttackAir"/>
         <On Terms="ActorCreation" Send="AnimPlay Cover Cover PlayForever"/>
-        <On Terms="ActorCreation" Send="Create VoidHeroGlow"/>
         <On Terms="Behavior.ArtanisChannel.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
         <On Terms="Behavior.ArtanisChannel.Off" Send="AnimBracketStop Work"/>
-        <On Terms="Behavior.ArtanisResurgenceInvulnerable.On" Send="AnimBracketStop Attack"/>
-        <On Terms="Behavior.ArtanisResurgenceInvulnerable.On" Send="AnimClear Attack"/>
-        <On Terms="Behavior.ArtanisResurgenceInvulnerable.On" Send="AnimBracketStart Work Spell,F,Start Spell,F Spell,F,End"/>
-        <On Terms="Behavior.ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
-        <On Terms="Abil.ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
-        <On Terms="Abil.ArtanisAstralWind.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
-        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
+        <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStop Attack"/>
+        <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimClear Attack"/>
+        <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStart Work Spell,F,Start Spell,F Spell,F,End"/>
+        <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
+        <On Terms="Behavior.AP_ArtanisBladeWaltzActor.Off" Send="AnimClear Spell"/>
+        <On Terms="Abil.AP_ArtanisBladeWaltz.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
+        <On Terms="Abil.AP_ArtanisBladeWaltzRecast.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
+        <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
+        <On Terms="Abil.AP_ArtanisAstralWind.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
+        <On Terms="UnitMovementUpdate.*.Walk; !ValidateUnit AP_CasterHasArtanisBladeWaltzActor" Send="AnimClear Spell"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Zealot_Land"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Templar_LandSweetener"/>
         <AnimBlendTime value="0.150000"/>
@@ -37719,8 +37723,8 @@
         <PortraitActor value="AP_ArtanisEx2Portrait"/>
         <PortraitModel value="AP_ArtanisEx2Portrait"/>
         <WalkAnimMoveSpeed value="2.25"/>
-        <AbilSoundArray AbilCmd="ArtanisAstralWind,Execute" Sound="Swarm_Silent"/>
-        <AbilSoundArray AbilCmd="ArtanisLightningDash,Execute" Sound="Swarm_Silent"/>
+        <AbilSoundArray AbilCmd="AP_ArtanisAstralWind,Execute" Sound="Swarm_Silent"/>
+        <AbilSoundArray AbilCmd="AP_ArtanisLightningDash,Execute" Sound="Swarm_Silent"/>
         <BarOffset value="70"/>
         <BarWidth value="42"/>
         <CustomUnitStatusFrame value="AP_LotV_UnitStatus/HeroUnitEnergyStatusFrameTemplate"/>

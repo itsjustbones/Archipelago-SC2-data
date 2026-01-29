@@ -2196,10 +2196,10 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-lightningdash.dds"/>
         <BehaviorCategories index="Stun" value="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeDashRecast">
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzRecast">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-blade-dash-recast.dds"/>
-        <RemoveValidatorArray value="AP_NoArtanisBladeDashRecastWalkSpeed"/>
+        <RemoveValidatorArray value="AP_NoArtanisBladeWaltzRecastWalkSpeed"/>
         <Duration value="2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnity">
@@ -2402,17 +2402,22 @@
         <ExpireEffect value="AP_PhasePrismSearch"/>
         <Duration value="0.15"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeDashDamaged">
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzDamaged">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="3"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeDashWalkSpeed">
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzActor">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.5625"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkSpeed">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="0.5625"/>
         <Period value="0.0625"/>
-        <PeriodicEffect value="AP_ArtanisBladeDashTargetSearch"/>
-        <FinalEffect value="AP_ArtanisBladeDashWalkStopSet"/>
+        <PeriodicEffect value="AP_ArtanisBladeWaltzTargetSearch"/>
+        <FinalEffect value="AP_ArtanisBladeWaltzWalkStopSet"/>
         <Modification MoveSpeedMultiplier="7">
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="Uncommandable" value="1"/>
@@ -2421,11 +2426,11 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeDashRecastWalkSpeed" parent="AP_ArtanisBladeDashWalkSpeed">
-        <PeriodicEffect value="AP_ArtanisBladeDashRecastTargetSearch"/>
-        <FinalEffect value="AP_ArtanisBladeDashWalkStopRecastSet"/>
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzRecastWalkSpeed" parent="AP_ArtanisBladeWaltzWalkSpeed">
+        <PeriodicEffect value="AP_ArtanisBladeWaltzRecastTargetSearch"/>
+        <FinalEffect value="AP_ArtanisBladeWaltzWalkStopRecastSet"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeDashWalkStopStun">
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkStopStun">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="0.125"/>
         <Modification>
