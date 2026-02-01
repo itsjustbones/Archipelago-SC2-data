@@ -4619,16 +4619,16 @@
     <CAbilSpecialize id="AP_ArtanisWeaponAspects">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <InfoArray index="Specialize1" Time="0" Effect="AP_ArtanisAiurAspectSet">
-            <Button DefaultButtonFace="AP_OverloadWeaponSystems" Requirements="AP_CanInstallOverloadWeaponSystems"/>
+            <Button DefaultButtonFace="AP_ArtanisAiurAspect" Requirements="AP_HaveArtanisAiurAspectUnlocked"/>
         </InfoArray>
         <InfoArray index="Specialize2" Time="0" Effect="AP_ArtanisNerazimAspectSet">
-            <Button DefaultButtonFace="AP_PowerRedirection" Requirements="AP_CanInstallPowerRedirection"/>
+            <Button DefaultButtonFace="AP_ArtanisNerazimAspect" Requirements="AP_HaveArtanisNerazimAspectUnlocked"/>
         </InfoArray>
         <InfoArray index="Specialize3" Time="0" Effect="AP_ArtanisPurifierAspectSet">
-            <Button DefaultButtonFace="AP_PlanetCracker" Requirements="AP_CanInstallPlanetCracker"/>
+            <Button DefaultButtonFace="AP_ArtanisPurifierAspect" Requirements="AP_HaveArtanisPurifierAspectUnlocked"/>
         </InfoArray>
         <InfoArray index="Specialize4" Time="0" Effect="AP_ArtanisTaldarimAspectSet">
-            <Button DefaultButtonFace="AP_MothershipBlackHole" Requirements="AP_CanInstallBlackHole"/>
+            <Button DefaultButtonFace="AP_ArtanisTaldarimAspect" Requirements="AP_HaveArtanisTaldarimAspectUnlocked"/>
         </InfoArray>
     </CAbilSpecialize>
     <CAbilEffectTarget id="AP_Exterminate">
@@ -4636,6 +4636,7 @@
         <Effect index="0" value="AP_ExterminateSet"/>
         <Range value="7"/>
         <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_ShadowSlice">
         <AbilSetId value="AP_ShadowSlice"/>
@@ -4648,6 +4649,7 @@
         <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ShadowSlice" Requirements="AP_HaveArtanisNerazimAspectSelectedActive"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_SuppressionPulse">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4667,7 +4669,7 @@
     <CAbilEffectInstant id="AP_CleansingSmite">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_CleansingSmiteSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite" Requirements="AP_HaveArtanisPurifierAspectSelectedActive"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_ArtanisAstralWind">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4720,7 +4722,7 @@
         <Arc value="360"/>
         <PrepTime value="0.01"/>
         <CursorEffect value="AP_ArtanisBladeWaltzDummySearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltz"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltz" Requirements="AP_HaveArtanisAiurAspectSelectedActive"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_ArtanisBladeWaltzRecast" parent="AP_ArtanisBladeWaltz">
         <Cost index="0">

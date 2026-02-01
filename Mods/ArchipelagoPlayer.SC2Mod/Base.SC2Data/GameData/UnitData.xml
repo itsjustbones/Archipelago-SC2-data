@@ -14657,7 +14657,7 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="Warpable"/>
         <AbilArray Link="ProgressRally"/>
-        <AbilArray Link="ArtanisAstralWind"/>
+        <AbilArray Link="AP_ArtanisWeaponAspects"/>
         <AbilArray Link="AP_SuppressionPulse"/>
         <AbilArray Link="AP_ArtanisLightningDash"/>
         <AbilArray Link="AP_ArtanisAstralWind"/>
@@ -14682,25 +14682,29 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
-            <LayoutButtons Face="ArtanisResurgence" Type="Passive" Requirements="ArtanisResurgenceReviveOffCooldown" Row="2" Column="1"/>
-            <LayoutButtons Face="ArtanisResurgence" Type="Passive" Behavior="ArtanisResurgenceReviveSupressed" Row="2" Column="1"/>
+            <LayoutButtons Face="ArtanisResurgence" Type="Passive" Requirements="ArtanisResurgenceReviveOffCooldown" Row="2" Column="2"/>
+            <LayoutButtons Face="ArtanisResurgence" Type="Passive" Behavior="ArtanisResurgenceReviveSupressed" Row="2" Column="2"/>
             <LayoutButtons Face="AP_ArtanisAstralWind" Type="AbilCmd" AbilCmd="AP_ArtanisAstralWind,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AP_ArtanisBladeWaltzRecast" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltzRecast,Execute" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisLightningDash" Type="AbilCmd" AbilCmd="AP_ArtanisLightningDash,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Row="2" Column="3"/>
-            <LayoutButtons Face="AP_VoltaicShock" Type="AbilCmd" AbilCmd="AP_VoltaicShock,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_VoltaicShock" Type="AbilCmd" AbilCmd="AP_VoltaicShock,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="AP_StrengthInUnity" Type="AbilCmd" AbilCmd="AP_StrengthInUnity,Execute" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_CleansingSmite" Type="AbilCmd" AbilCmd="AP_CleansingSmite,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_SuppressionPulse" Type="AbilCmd" AbilCmd="AP_SuppressionPulse,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_CleansingSmite" Type="AbilCmd" AbilCmd="AP_CleansingSmite,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_SuppressionPulse" Type="AbilCmd" AbilCmd="AP_SuppressionPulse,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="AP_PhasePrismRecast" Type="AbilCmd" AbilCmd="AP_PhasePrismSwap,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="AP_PhasePrism" Type="AbilCmd" AbilCmd="AP_PhasePrism,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="ArtanisForceOfWill" Type="Passive" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisWeaponAspectSwap" Type="Submenu" SubmenuCardId="WA" Row="2" Column="1"/>
         </CardLayouts>
-        <CardLayouts>
-            <LayoutButtons Face="ArtanisChannel" Type="AbilCmd" AbilCmd="ArtanisChannel,On" Row="1" Column="2"/>
-            <LayoutButtons Face="ArtanisChannelOff" Type="AbilCmd" AbilCmd="ArtanisChannel,Off" Row="1" Column="3"/>
+        <CardLayouts CardId="WA">
+            <LayoutButtons Face="AP_ArtanisAiurAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,0" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisNerazimAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,1" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ArtanisPurifierAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,2" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisTaldarimAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,3" Row="0" Column="3"/>
+            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.425"/>
         <SeparationRadius value="0.425"/>
