@@ -37698,6 +37698,73 @@
         <On Terms="ActorCreation; !Selected" Send="SetVisibility"/>
         <Icon value="Assets\Textures\RadarIcon2.dds"/>
     </CActorRange>
+    <CActorModel id="AP_ArtanisResurgenceChargeModel" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary SOp2DRotation"/>
+        <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="Create"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorSound id="AP_ArtanisResurgenceChargeSound" parent="SoundOneShot">
+        <On Terms="Behavior.AP_ArtanisResurgenceStun.On" Send="Create"/>
+        <Sound value="AP_Artanis_ResurgenceCharge"/>
+    </CActorSound>
+    <CActorSound id="AP_ArtanisResurgenceExplodeSound" parent="SoundContinuous">
+        <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="Create"/>
+        <Sound value="AP_Artanis_ResurgenceExplode"/>
+    </CActorSound>
+    <CActorRange id="AP_ArtanisLightningDashRange" parent="RangeAbil" abil="AP_ArtanisLightningDash"/>
+    <CActorSplat id="AP_ArtanisLightningDashCursorSplat" parent="ProtossCursorSplat" abil="AP_ArtanisLightningDash">
+        <Model value="AP_VoidProtossAOECursorSplat"/>
+    </CActorSplat>
+    <CActorSound id="AP_ArtanisLightningDashImpactSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_ArtanisLightningDashLaunchMissileImpactSet.Start" Send="Create"/>
+        <Sound value="AP_ArtanisVoid_LightningStrikeImpact"/>
+    </CActorSound>
+    <CActorSound id="AP_ArtanisLightningDashImpactSweetenerSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_ArtanisLightningDashLaunchMissileImpactSet.Start" Send="Create"/>
+        <Sound value="AP_Artanis_LightningDash2"/>
+    </CActorSound>
+    <CActorSound id="AP_ArtanisLightningDashLaunchSound" parent="SoundOneShot">
+        <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="Create"/>
+        <Sound value="AP_Artanis_LightningDash"/>
+    </CActorSound>
+    <CActorSiteOpForward id="AP_SOpForwardArtanisVoidUlnar">
+        <HostForward Subject="AP_ArtanisHero"/>
+    </CActorSiteOpForward>
+    <CActorModel id="AP_ArtanisLightningDashIn" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOrigin SOpForwardScopeLaunch"/>
+        <On Terms="Effect.AP_ArtanisLightningDashLaunchMissileImpactSet.Start" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisLightningDashImpact" parent="ModelAnimationStyleOneShotUNIT">
+        <On Terms="Effect.AP_ArtanisLightningDashDamage.Start; At Target" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorModel>
+    <CActorRange id="AP_ArtanisAstralWindRange">
+        <On Terms="Abil.AP_ArtanisAstralWind.ButtonHoverOn" Send="Create"/>
+        <On Terms="Abil.AP_ArtanisAstralWind.ButtonHoverOff" Send="Destroy"/>
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <Range value="6.000000"/>
+    </CActorRange>
+    <CActorModel id="AP_ArtanisAstralWindCastModel" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_ArtanisAstralWindSearch.Start" Send="Create"/>
+        <Host Subject="_Selectable"/>
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisAstralWindImpactModel" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_ArtanisAstralWindOther.Start; At Target" Send="Create"/>
+        <Host Subject="_Selectable"/>
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+    </CActorModel>
+    <CActorSound id="AP_ArtanisAstralWindSound" parent="SoundOneShot">
+        <Sound value="Artanis_AstralWind"/>
+        <On Terms="Effect.AP_ArtanisAstralWindSearch.Start" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
     <CActorMissile id="AP_ArtanisHero" parent="GenericUnitStandard" unitName="AP_ArtanisHero">
         <Aliases value="_MissileHybrids"/>
         <On Terms="WeaponStart.ArtanisVoidUlnar.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior"/>
@@ -37710,10 +37777,12 @@
         <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStart Work Spell,F,Start Spell,F Spell,F,End"/>
         <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzActor.Off" Send="AnimClear Spell"/>
+        <On Terms="Abil.AP_ShadowSlice.SourceCastStart" Send="$Spell,A 0 0 -1.000000 1.0000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisBladeWaltz.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisBladeWaltzRecast.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisAstralWind.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
+        <On Terms="Abil.AP_PhasePrism.SourceCastStart; !UnitWalking" Send="$Spell,D 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="UnitMovementUpdate.*.Walk; !ValidateUnit AP_CasterHasArtanisBladeWaltzActor" Send="AnimClear Spell"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Zealot_Land"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Templar_LandSweetener"/>

@@ -4712,7 +4712,7 @@
         <TargetSorts RequestCount="1">
             <SortArray value="TSNearest"/>
         </TargetSorts>
-        <AreaArray MaxCount="1" Radius="5" Effect="AP_ShadowSliceImpactSet" Validator="AP_TargetHasShadowSliceMarked"/>
+        <AreaArray MaxCount="1" Radius="5" Effect="AP_ShadowSliceImpactSet"/>
     </CEffectEnumArea>
     <CEffectDamage id="AP_ShadowSliceDamage">
         <Amount value="160"/>
@@ -4936,7 +4936,6 @@
     <CEffectCreateUnit id="AP_ArtanisLightningDashCU">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetPoint"/>
-        <Player Value="Neutral"/>
         <CreateFlags index="Placement" value="0"/>
         <SpawnEffect value="AP_ArtanisLightningDashOnPrecursorSpawn"/>
         <SpawnRange value="0"/>
@@ -4944,7 +4943,6 @@
     <CEffectCreateUnit id="AP_ArtanisLightningDashCUClosest">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetPoint"/>
-        <Player Value="Neutral"/>
         <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
         <SpawnEffect value="AP_ArtanisLightningDashOnPrecursorSpawn"/>
         <SpawnRange value="8"/>
@@ -4980,7 +4978,6 @@
         <Amount value="25"/>
     </CEffectDamage>
     <CEffectModifyUnit id="AP_ArtanisLightningDashRemovePrecursorUnit">
-        <ImpactUnit Value="TargetUnit"/>
         <ModifyFlags index="Remove" value="1"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="AP_StrengthInUnity"/>
@@ -5176,7 +5173,7 @@
         <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="AP_ArtanisBladeWaltzRecastDamage" parent="AP_ArtanisBladeWaltzDamage">
-        <Amount index="0" value="75"/>
+        <Amount value="75"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AP_ArtanisBladeWaltzDamageAB">
         <ValidatorArray value="AP_EnemyTarget"/>
