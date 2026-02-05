@@ -2130,13 +2130,13 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisAspectBuff">
         <BehaviorFlags index="Permanent" value="1"/>
-        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisAiurAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisNerazimAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisPurifierAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisTaldarimAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisNoAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_CleansingSmite">
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -7657,6 +7657,12 @@
             <DamageDealtMaximum index="Ranged" value="0"/>
             <DamageDealtMaximum index="Splash" value="0"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_VoltaicShockPersistentBehavior">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.33"/>
+        <InitialEffect value="AP_VoltaicShockSetSearch"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoltaicShock">
         <Alignment value="Negative"/>

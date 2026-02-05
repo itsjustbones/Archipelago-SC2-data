@@ -1134,6 +1134,7 @@ Button/Name/AP_ArtanisBladeWaltz=Blade Waltz
 Button/Name/AP_ArtanisBladeWaltzRecast=Blade Waltz (Recast)
 Button/Name/AP_ArtanisLightningDash=Lightning Dash
 Button/Name/AP_ArtanisNerazimAspect=Nerazim Aspect
+Button/Name/AP_ArtanisNoAspect=Alone
 Button/Name/AP_ArtanisPurifierAspect=Purifier Aspect
 Button/Name/AP_ArtanisTaldarimAspect=Tal'darim Aspect
 Button/Name/AP_ArtanisWeaponAspectSwap=Swap Weapon Aspects
@@ -1830,6 +1831,8 @@ Button/Name/AP_PermanentlyCloakedSpectre=Permanently Cloaked
 Button/Name/AP_PermanentlyCloakedStasis=Permanently Cloaked
 Button/Name/AP_PersonalDefensiveMatrix=Ionic Force Field
 Button/Name/AP_PhaseBlaster=Phase Blaster
+Button/Name/AP_PhasePrism=Phase Prism
+Button/Name/AP_PhasePrismRecast=Phase Prism (Recast)
 Button/Name/AP_PhasingMode=Phasing Mode
 Button/Name/AP_PhoenixAiur=Warp in Phoenix
 Button/Name/AP_PhoenixAiurGravitonBeam=Graviton Beam
@@ -2578,8 +2581,9 @@ Button/Tooltip/AP_ArtanisAiurAspect=Switch Artanis' active aspect to <c val="64e
 Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields and <d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life, and heals <d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields and <d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life.to other nearbyfriendly units.<n/><n/>This ability has it's cooldown reduced by 5 seconds whenever Artanis deals attack damage.
 Button/Tooltip/AP_ArtanisBladeWaltz=Dashes forward and deals <d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage to enemy ground units in a straight line.</n></n>This ability can be recast for free within <d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds, dealing <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> to enemy ground units NOT damaged by the original cast.
 Button/Tooltip/AP_ArtanisBladeWaltzRecast=Dashes forward and deals <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> damage to enemy ground units not damaged by the first cast.
-Button/Tooltip/AP_ArtanisLightningDash=Dash to a
+Button/Tooltip/AP_ArtanisLightningDash=Artanis charges forward, unleashing a blast of energy that deals <d ref="Effect,AP_ArtanisLightningDashDamage,Amount"/> damage to nearby enemies and stuns them for <d ref="Behavior,AP_ArtanisLightningDashStun,Duration" precision="1"/> seconds.
 Button/Tooltip/AP_ArtanisNerazimAspect=Switch Artanis' active aspect to <c val="32CD32">Nerazim</c>, granting him access to any unlocked bonuses and making him count as a <c val="32CD32">Nerazim</c> unit.
+Button/Tooltip/AP_ArtanisNoAspect=Artanis removes his current Weapon Aspect, returning to his base form.
 Button/Tooltip/AP_ArtanisPurifierAspect=Switch Artanis' active aspect to <c val="f2bf16">Purifier</c>, granting him access to any unlocked bonuses and making him count as a <c val="f2bf16">Purifier</c> unit.
 Button/Tooltip/AP_ArtanisTaldarimAspect=Switch Artanis' active aspect to <c val="d40d24">Taldarim</c>, granting him access to any unlocked bonuses and making him count as a <c val="d40d24">Taldarim</c> unit.
 Button/Tooltip/AP_ArtanisWeaponAspectSwap=Swap Artanis to a different weapon aspect.
@@ -3468,6 +3472,8 @@ Button/Tooltip/AP_PermanentlyCloakedSpectre=Spectre is permanently cloaked.
 Button/Tooltip/AP_PermanentlyCloakedStasis=The Stasis Ward is permanently cloaked.
 Button/Tooltip/AP_PersonalDefensiveMatrix=Provides Nova with a shield that reduces incoming damage to a maximum of <d ref="Behavior,AP_PersonalDefensiveMatrix,DamageResponse.ClampMaximum"/> until <d ref="Behavior,AP_PersonalDefensiveMatrix,Modification.VitalMaxArray[Shields]"/> total damage is absorbed. Shield lasts for <d time="10"/>.
 Button/Tooltip/AP_PhaseBlaster=Warp Prisms are equipped with a Phase Blaster weapon to attack ground and air targets.
+Button/Tooltip/AP_PhasePrism=Put the target unit in stasis for <d ref="Behavior,AP_PhasePrismStun,Duration"/>, and pulling all nearby enemy units to that unit's locations.<n/><n/>This ability can be recast to have Artanis swap places with the unit in stasis, and pulling in nearby enemy units to Artanis after the swap. Swapping does not work across massive differences.
+Button/Tooltip/AP_PhasePrismRecast=Swap Artanis with the unit in stasis, and then pull all nearby enemy units to Artanis. Does not work across massive distances.
 Button/Tooltip/AP_PhasingMode=Transforms the Warp Prism to Phasing Mode and generates a power radius similar to that of a Pylon. The Warp Prism cannot move in this mode.
 Button/Tooltip/AP_PhoenixAiur=Aiur Faction<n/>Air superiority starfighter. Can use Graviton Beam.<n/><n/><c val="ffff8a">Can attack air units.</c>
 Button/Tooltip/AP_PhoenixAiurDoubleGraviton=Aiur Faction<n/>Air superiority starfighter. Can use Graviton Beam on two enemy units simultaneously.<n/><n/><c val="ffff8a">Can attack air units.</c>

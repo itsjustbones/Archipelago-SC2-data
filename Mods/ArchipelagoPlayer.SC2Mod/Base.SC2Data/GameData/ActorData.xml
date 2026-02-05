@@ -37772,6 +37772,16 @@
         <On Terms="ActorCreation" Send="AnimPlay Cover Cover PlayForever"/>
         <On Terms="Behavior.ArtanisChannel.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
         <On Terms="Behavior.ArtanisChannel.Off" Send="AnimBracketStop Work"/>
+        <On Terms="Behavior.AP_ArtanisNoAspect.On" Send="ModelSwap AP_ArtanisHero"/>
+        <On Terms="Behavior.AP_ArtanisNoAspect.On" Send="AnimPlay Cover Cover PlayForever"/>
+        <On Terms="Behavior.AP_ArtanisAiurAspect.On" Send="ModelSwap AP_ArtanisHero"/>
+        <On Terms="Behavior.AP_ArtanisAiurAspect.On" Send="AnimClear Cover"/>
+        <On Terms="Behavior.AP_ArtanisNerazimAspect.On" Send="ModelSwap AP_ArtanisHeroNerazim"/>
+        <On Terms="Behavior.AP_ArtanisNerazimAspect.On" Send="AnimClear Cover"/>
+        <On Terms="Behavior.AP_ArtanisPurifierAspect.On" Send="ModelSwap AP_ArtanisHeroPurifier"/>
+        <On Terms="Behavior.AP_ArtanisPurifierAspect.On" Send="AnimClear Cover"/>
+        <On Terms="Behavior.AP_ArtanisTaldarimAspect.On" Send="ModelSwap AP_ArtanisHeroTaldarim"/>
+        <On Terms="Behavior.AP_ArtanisTaldarimAspect.On" Send="AnimClear Cover"/>
         <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStop Attack"/>
         <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimClear Attack"/>
         <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStart Work Spell,F,Start Spell,F Spell,F,End"/>
@@ -37784,8 +37794,8 @@
         <On Terms="Abil.AP_ArtanisAstralWind.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="Abil.AP_PhasePrism.SourceCastStart; !UnitWalking" Send="$Spell,D 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="UnitMovementUpdate.*.Walk; !ValidateUnit AP_CasterHasArtanisBladeWaltzActor" Send="AnimClear Spell"/>
-        <On Terms="UnitHeightUpdate.*.Land" Send="Create Zealot_Land"/>
-        <On Terms="UnitHeightUpdate.*.Land" Send="Create Templar_LandSweetener"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Zealot_Land"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Templar_LandSweetener"/>
         <AnimBlendTime value="0.150000"/>
         <BuildModel value="ProtossGenericWarpInOut"/>
         <DeathArray index="Normal" ModelLink="ArtanisVoidUlnarDeath" SoundLink="Artanis_DeathFX"/>
@@ -37876,6 +37886,35 @@
         <On Terms="Effect.AP_SuppressionPulseCreatePersistent.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="SoundSetVolume Logarithmic 0.000000@0.000000,0.000000@1200.000000"/>
     </CActorSound>
+    <CActorSplat id="AP_VoltaicShockCursorSplat" parent="TerranCursorSplat" abil="AP_VoltaicShock"/>
+    <CActorRange id="AP_VoltaicShockRange" parent="RangeAbil" abil="AP_VoltaicShock"/>
+    <CActorAction id="AP_VoltaicShockAttack" parent="GenericAttack" effectAttack="AP_VoltaicShockDamage">
+        <LaunchAssets Sound="AP_Archon_AttackLaunchUpgrade"/>
+        <Beam value="AP_VoltaicShockBeam"/>
+        <BeamScope value="Caster"/>
+        <LaunchSiteOps Ops="SOpAttachCenter"/>
+        <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance"/>
+        <ImpactSite value="AP_VoltaicShockImpactSite0"/>
+        <ImpactMap index="None" Model="AP_KhaydarinBeamAttackImpact" Sound="Archon_AttackImpact"/>
+        <ShieldFlashType value="Full"/>
+        <ActionFlags index="ImpactMonitorsTeleports" value="1"/>
+    </CActorAction>
+    <CActorSite id="AP_VoltaicShockImpactSite0" parent="GenericAttackImpactSite"/>
+    <CActorBeamSimple id="AP_VoltaicShockBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <Remove Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 3.000000 AsTimeScale"/>  
+        <Model value="AP_VoltaicShockBeam"/>
+        <Scale value="1.200000"/>
+    </CActorBeamSimple>
+    <CActorForceSphere id="AP_VoltaicShockAttackForce">
+        <Host Subject="_ImpactGuide"/>
+        <HostSiteOps Ops="SOpRandomPointInSphereDot15"/>
+        <Magnitude value="27.500000,8.000000"/>
+        <Radius value="1.100000,0.150000"/>
+        <Duration value="0.150000"/>
+        <On Terms="Effect.AP_VoltaicShockSet.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create AP_ChainReactionAttackUpForce"/>
+    </CActorForceSphere>
     <CActorUnit id="AP_HunterlingPlaceholder" parent="GenericUnitStandard" unitName="AP_HunterlingPlaceholder">
         <Model value="AP_Hunterling"/>
         <StatusBarFlags index="Shields" value="0"/>

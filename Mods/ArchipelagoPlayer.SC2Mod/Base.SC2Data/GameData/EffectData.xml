@@ -4613,6 +4613,7 @@
     <CEffectApplyBehavior id="AP_ArtanisNerazimAspect"/>
     <CEffectApplyBehavior id="AP_ArtanisPurifierAspect"/>
     <CEffectApplyBehavior id="AP_ArtanisTaldarimAspect"/>
+    <CEffectApplyBehavior id="AP_ArtanisNoAspect"/>
     <CEffectRemoveBehavior id="AP_ArtanisAiurAspectRB">
         <EditorCategories value="Race:Protoss"/>
         <BehaviorLink value="AP_ArtanisAiurAspect"/>
@@ -4629,12 +4630,17 @@
         <EditorCategories value="Race:Protoss"/>
         <BehaviorLink value="AP_ArtanisTaldarimAspect"/>
     </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisNoAspectRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisNoAspect"/>
+    </CEffectRemoveBehavior>
     <CEffectSet id="AP_ArtanisAspectClearAll">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisAiurAspectRB"/>
         <EffectArray value="AP_ArtanisNerazimAspectRB"/>
         <EffectArray value="AP_ArtanisPurifierAspectRB"/>
         <EffectArray value="AP_ArtanisTaldarimAspectRB"/>
+        <EffectArray value="AP_ArtanisNoAspectRB"/>
     </CEffectSet>
     <CEffectSet id="AP_ArtanisAiurAspectSet">
         <EditorCategories value="Race:Protoss"/>
@@ -4655,6 +4661,11 @@
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisAspectClearAll"/>
         <EffectArray value="AP_ArtanisTaldarimAspect"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ArtanisNoAspectSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_ArtanisAspectClearAll"/>
+        <EffectArray value="AP_ArtanisNoAspect"/>
     </CEffectSet>
     <CEffectIssueOrder id="AP_ExterminateAttackOrder">
         <EditorCategories value="Race:Protoss"/>
@@ -4807,17 +4818,42 @@
             <Change value="5"/>
         </VitalArray>
     </CEffectModifyUnit>
+    <CEffectSet id="AP_VoltaicShockSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_VoltaicShockDamage"/>
+        <EffectArray value="AP_VoltaicShockPersistentBehavior"/>
+    </CEffectSet>
+    <CEffectSet id="AP_VoltaicShockSetSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_VoltaicShockDamageSearch"/>
+        <EffectArray value="AP_VoltaicShockSearch"/>
+    </CEffectSet>
+    <CEffectDamage id="AP_VoltaicShockDamage">
+        <Amount value="75"/>
+        <Death value="Electrocute"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_VoltaicShockDamageSecondary">
+        <Amount value="25"/>
+        <Death value="Electrocute"/>
+    </CEffectDamage>
     <CEffectCreatePersistent id="AP_VoltaicShockPersistent">
-        <WhichLocation Value="CasterPoint"/>
+        <WhichLocation Value="TargetUnit"/>
         <PeriodCount value="1"/>
-        <PeriodicEffectArray value="AP_VoltaicShockSearch"/>
+        <PeriodicEffectArray value="AP_VoltaicShockSet"/>
         <PeriodicOffsetArray value="0,-2.5,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="AP_VoltaicShockSearch">
-        <LaunchLocation Value="CasterPoint"/>
+        <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="7.5" Effect="AP_VoltaicShock"/>
+        <AreaArray Radius="3" Effect="AP_VoltaicShock"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_VoltaicShockDamageSearch">
+        <ImpactLocation Value="TargetUnit"/>
+        <SearchFilters value="Enemy;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <ExcludeArray Value="Target"/>
+        <AreaArray Radius="3" Effect="AP_VoltaicShockDamageSecondary"/>
         <SearchFlags index="CenterAtLaunch" value="1"/>
     </CEffectEnumArea>
    <CEffectCreateUnit id="AP_VoltaicShockReheightSourceCreatePlaceholder">
@@ -4862,19 +4898,18 @@
     </CEffectCreatePersistent>
     <CEffectEnumArea id="AP_SuppressionPulseSearchArea">
         <EditorCategories value="Race:Protoss"/>
-        <ExcludeArray/>
         <AreaArray Radius="1" RadiusBonus="0.25" Effect="AP_SuppressionPulse"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Stasis,Hidden,Invulnerable,Unstoppable"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_SuppressionPulse"/>
     <CEffectApplyBehavior id="AP_VoltaicShock"/>
+    <CEffectApplyBehavior id="AP_VoltaicShockPersistentBehavior"/>
     <CEffectSet id="AP_PhasePrismDelaySet">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_PhasePrismRecastRB"/>
     </CEffectSet>
     <CEffectSet id="AP_ArtanisResurgenceSet">
         <EffectArray value="AP_ArtanisResurgenceInvulnerableAB"/>
-        <!--EffectArray value="AP_ArtanisResurgenceRegenAB"/-->
         <EffectArray value="AP_ArtanisResurgenceDisableAB"/>
         <EffectArray value="AP_ArtanisResurgenceStunAB"/>
         <EffectArray value="AP_ArtanisResurgenceSuppressedApplyBehavior"/>
@@ -4975,7 +5010,7 @@
     </CEffectEnumArea>
     <CEffectDamage id="AP_ArtanisLightningDashDamage" parent="DU_WEAP">
         <Death value="Blast"/>
-        <Amount value="25"/>
+        <Amount value="35"/>
     </CEffectDamage>
     <CEffectModifyUnit id="AP_ArtanisLightningDashRemovePrecursorUnit">
         <ModifyFlags index="Remove" value="1"/>

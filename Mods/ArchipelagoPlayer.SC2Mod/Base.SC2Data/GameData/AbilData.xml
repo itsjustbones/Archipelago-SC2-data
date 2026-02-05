@@ -4619,16 +4619,19 @@
     <CAbilSpecialize id="AP_ArtanisWeaponAspects">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <InfoArray index="Specialize1" Time="0" Effect="AP_ArtanisAiurAspectSet">
-            <Button DefaultButtonFace="AP_ArtanisAiurAspect" Requirements="AP_HaveArtanisAiurAspectUnlocked"/>
+            <Button DefaultButtonFace="AP_ArtanisAiurAspect" Requirements="AP_HaveArtanisAiurAspectEquipped"/>
         </InfoArray>
         <InfoArray index="Specialize2" Time="0" Effect="AP_ArtanisNerazimAspectSet">
-            <Button DefaultButtonFace="AP_ArtanisNerazimAspect" Requirements="AP_HaveArtanisNerazimAspectUnlocked"/>
+            <Button DefaultButtonFace="AP_ArtanisNerazimAspect" Requirements="AP_HaveArtanisNerazimAspectEquipped"/>
         </InfoArray>
         <InfoArray index="Specialize3" Time="0" Effect="AP_ArtanisPurifierAspectSet">
-            <Button DefaultButtonFace="AP_ArtanisPurifierAspect" Requirements="AP_HaveArtanisPurifierAspectUnlocked"/>
+            <Button DefaultButtonFace="AP_ArtanisPurifierAspect" Requirements="AP_HaveArtanisPurifierAspectEquipped"/>
         </InfoArray>
         <InfoArray index="Specialize4" Time="0" Effect="AP_ArtanisTaldarimAspectSet">
-            <Button DefaultButtonFace="AP_ArtanisTaldarimAspect" Requirements="AP_HaveArtanisTaldarimAspectUnlocked"/>
+            <Button DefaultButtonFace="AP_ArtanisTaldarimAspect" Requirements="AP_HaveArtanisTaldarimAspectEquipped"/>
+        </InfoArray>
+        <InfoArray index="Specialize5" Time="0" Effect="AP_ArtanisNoAspectSet">
+            <Button DefaultButtonFace="AP_ArtanisNoAspect" Requirements="AP_HaveArtanisAnyAspectEquipped"/>
         </InfoArray>
     </CAbilSpecialize>
     <CAbilEffectTarget id="AP_Exterminate">
@@ -4661,11 +4664,26 @@
         <Effect index="0" value="AP_StrengthInUnity"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_StrengthInUnity"/>
     </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_VoltaicShock">
+    <CAbilEffectTarget id="AP_VoltaicShock">
+        <Alignment value="Negative"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_VoltaicShockSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock"/>
-    </CAbilEffectInstant>
+        <Effect index="0" value="AP_VoltaicShockSet"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="7"/>
+        <RangeSlop value="7"/>
+        <PrepTime value="0"/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+            <MatchFlags index="Link" value="0"/>
+            <MismatchFlags index="Id" value="0"/>
+        </Marker>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"/>    
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_CleansingSmite">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_CleansingSmiteSearch"/>
@@ -4685,7 +4703,7 @@
         <Effect index="0" value="AP_PhasePrismSet"/>
         <Cost>
             <Vital index="Energy" value="50"/>
-            <Cooldown TimeUse="10"/>
+            <Cooldown TimeUse="12"/>
         </Cost>
         <Range value="7"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"/>

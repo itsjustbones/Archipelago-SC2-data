@@ -132,3 +132,9 @@ Night Terrors:
 Flashpoint:
 
 -memory: Trigger next memory sequence
+
+Artanis:
+
+-artanisall: Unlocks all weapon aspect active and passives
+-artanisactive: Unlocks all weapon aspect actives
+-artanispassive: Unlocks all weapon aspect passives
