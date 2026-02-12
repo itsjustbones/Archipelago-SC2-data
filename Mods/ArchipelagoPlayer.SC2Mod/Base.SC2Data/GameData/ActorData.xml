@@ -15532,6 +15532,7 @@
     <CActorModel id="AP_DarkTemplarShadowFuryImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.AP_DarkTemplarShadowFuryDamage.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_ShadowSliceDamage.Start; At Caster" Send="Create"/>
         <!--        <On Terms="Effect.VorazunShadowFuryDamage.Start; At Caster" Send="Create"/>-->
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenterStationary SOp2DRotation"/>
@@ -15539,6 +15540,7 @@
     <CActorSound id="AP_DarkTemplarShadowFurySound" parent="SoundOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.AP_DarkTemplarShadowFuryDamage.Start" Send="Create"/>
+        <On Terms="Effect.AP_ShadowSliceDamage.Start" Send="Create"/>
         <Host Subject="_Selectable"/>
         <Sound value="DarkTemplar_AttackLaunch"/>
     </CActorSound>
@@ -17395,12 +17397,15 @@
     </CActorModel>
     <CActorSound id="AP_DarkArchonConfusionImpactActorSound" parent="SoundOneShot">
         <On Terms="Effect.AP_DarkArchonConfusionSearch" Send="Create"/>
+        <On Terms="Behavior.AP_Exterminate.On" Send="Create"/>
     </CActorSound>
     <CActorModel id="AP_DarkArchonConfusionModel" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.AP_DarkArchonConfusion.On" Send="Create"/>
         <On Terms="Behavior.AP_DarkArchonConfusion.Off" Send="Destroy"/>
         <On Terms="Behavior.AP_TimeFieldTaldarimConfusion.On" Send="Create"/>
         <On Terms="Behavior.AP_TimeFieldTaldarimConfusion.Off" Send="Destroy"/>
+        <On Terms="Behavior.AP_Exterminate.On" Send="Create"/>
+        <On Terms="Behavior.AP_Exterminate.Off" Send="Destroy"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
@@ -22061,6 +22066,7 @@
     <CActorModel id="AP_PlanetCrackerImpact" parent="ModelAnimationStyleOneShotUNIT">
         <On Terms="Effect.AP_PlanetCrackerDamage.Start; At Target" Send="Create"/>
         <On Terms="Effect.AP_PurifierMothershipDebuffDOT.Start; At Target" Send="Create"/>
+        <On Terms="Effect.AP_CleansingSmiteDOT.Start; At Target" Send="Create"/>
         <HostSiteOps Ops="SOpAttachRandomDamage"/>
     </CActorModel>
     <CActorSound id="AP_PlanetCrackerSound" parent="SoundOneShot">
@@ -34034,6 +34040,8 @@
     </CActorModelMaterial>
     <CActorModelMaterial id="AP_SacrificialConduitsGlaze" parent="GlazeParent">
         <On Terms="Effect.AP_SOAMothershipv4BeamSwitch.Start; ValidatePlayer AP_HaveHHVikingPiercingAttackUpgrade; At Caster" Send="Create"/>
+        <On Terms="Behavior.AP_Exterminate.On" Send="Create"/>
+        <On Terms="Behavior.AP_Exterminate.Off" Send="Destroy"/>
     </CActorModelMaterial>
     <CActorModelMaterial id="AP_PurifierStunGlaze" parent="GlazeParent">
         <On Terms="Behavior.AP_OverloadWeaponSystemsStun.On" Send="Create"/>
@@ -37731,9 +37739,16 @@
     <CActorSiteOpForward id="AP_SOpForwardArtanisVoidUlnar">
         <HostForward Subject="AP_ArtanisHero"/>
     </CActorSiteOpForward>
+    <CActorModel id="AP_ExterminateTarget" parent="ModelAnimationStyleContinuous">
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <On Terms="Behavior.AP_ExterminateTarget.On" Send="Create"/>
+        <On Terms="Behavior.AP_ExterminateTarget.Off" Send="AnimBracketStop BSD"/>
+    </CActorModel>
     <CActorModel id="AP_ArtanisLightningDashIn" parent="ModelAnimationStyleOneShotNoOrphan">
         <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachOrigin SOpForwardScopeLaunch"/>
+        <HostSiteOps Ops="SOpAttachOrigin AP_SOpForwardScopeLaunch"/>
         <On Terms="Effect.AP_ArtanisLightningDashLaunchMissileImpactSet.Start" Send="Create"/>
     </CActorModel>
     <CActorModel id="AP_ArtanisLightningDashImpact" parent="ModelAnimationStyleOneShotUNIT">
@@ -37761,14 +37776,60 @@
         <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
     </CActorModel>
     <CActorSound id="AP_ArtanisAstralWindSound" parent="SoundOneShot">
-        <Sound value="Artanis_AstralWind"/>
+        <Sound value="AP_Artanis_AstralWind"/>
         <On Terms="Effect.AP_ArtanisAstralWindSearch.Start" Send="Create"/>
         <Host Subject="_Selectable"/>
     </CActorSound>
+    <CActorSound id="AP_PhasePrismSound" parent="SoundOneShot">
+        <Sound value="AP_PhasePrism"/>
+        <On Terms="Abil.AP_PhasePrism.SourceCastStart" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
+    <CActorSound id="AP_PhasePrismRecastSound" parent="SoundOneShot">
+        <Sound value="AP_PhasePrismRecast"/>
+        <On Terms="Abil.AP_PhasePrismSwap.SourceCastStart" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
+    <CActorSound id="AP_BladeWaltzSound" parent="SoundOneShot">
+        <Sound value="AP_BladeWaltz"/>
+        <On Terms="Abil.AP_ArtanisBladeWaltz.SourceCastStart" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
+    <CActorSound id="AP_BladeWaltzRecastSound" parent="SoundOneShot">
+        <Sound value="AP_BladeWaltzRecast"/>
+        <On Terms="Abil.AP_ArtanisBladeWaltzRecast.SourceCastStart" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
+    <CActorMissile id="AP_ArtanisAirAttackMissile" parent="GenericAttackMissile" unitName="AP_ArtanisAirAttackWeapon"/>
+    <CActorAction id="AP_ArtanisAirAttack" parent="GenericAttack" effectImpact="AP_ArtanisAirAttackDamage" effectLaunch="AP_ArtanisAirAttackLM">
+        <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
+        <ImpactMap index="None" Sound="AP_ArtanisVoid_PsionicAssaultImpact"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+        <LaunchAssets Sound="AP_ArtanisVoid_PsionicAssaultLaunch"/>
+        <AcquisitionYawHalfArc value="7.500000"/>
+        <AcquisitionPitchHalfArc value="15.000000"/>
+        <AccuracyHalfArc value="10.000000"/>
+    </CActorAction> 
+    <CActorModel id="AP_ArtanisHeroCleansingSmite" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_CleansingSmiteSearch.Start" Send="Create"/>
+        <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="Create AP_VoidZealotWhirlwindLaunchSound"/>
+        <On Terms="ActorCreation" Send="SetTintColor {200,80,40 2.000000}"/>
+        <On Terms="ActorCreation" Send="SetScale 1.5"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
+        <Model value="AP_ArtanisHeroCleansingSmite"/>
+    </CActorModel>
+    <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisBlades">
+        <!-- Only using 1 attach point to prevent 2 launch sounds each attack-->
+        <LaunchAttachQuery Methods="AMFilterWeaponLeft"/>
+        <LaunchAssets Sound="AP_ArtanisMeleeVoid_AttackLaunch"/>
+        <ImpactMap index="None" Sound="AP_ArtanisMeleeVoid_AttackImpact"/>
+    </CActorAction>
     <CActorMissile id="AP_ArtanisHero" parent="GenericUnitStandard" unitName="AP_ArtanisHero">
         <Aliases value="_MissileHybrids"/>
-        <On Terms="WeaponStart.ArtanisVoidUlnar.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior"/>
-        <On Terms="WeaponStop.ArtanisVoidUlnar.AttackStop" Send="AnimBracketStop AttackAir"/>
+        <On Terms="WeaponStart.AP_ArtanisAirAttack.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior"/>
+        <On Terms="WeaponStop.AP_ArtanisAirAttack.AttackStop" Send="AnimBracketStop AttackAir"/>
         <On Terms="ActorCreation" Send="AnimPlay Cover Cover PlayForever"/>
         <On Terms="Behavior.ArtanisChannel.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
         <On Terms="Behavior.ArtanisChannel.Off" Send="AnimBracketStop Work"/>
@@ -37886,11 +37947,10 @@
         <On Terms="Effect.AP_SuppressionPulseCreatePersistent.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="SoundSetVolume Logarithmic 0.000000@0.000000,0.000000@1200.000000"/>
     </CActorSound>
-    <CActorSplat id="AP_VoltaicShockCursorSplat" parent="TerranCursorSplat" abil="AP_VoltaicShock"/>
+    <CActorSplat id="AP_VoltaicShockCursorSplat" parent="ProtossCursorSplat" abil="AP_VoltaicShock"/>
     <CActorRange id="AP_VoltaicShockRange" parent="RangeAbil" abil="AP_VoltaicShock"/>
     <CActorAction id="AP_VoltaicShockAttack" parent="GenericAttack" effectAttack="AP_VoltaicShockDamage">
         <LaunchAssets Sound="AP_Archon_AttackLaunchUpgrade"/>
-        <Beam value="AP_VoltaicShockBeam"/>
         <BeamScope value="Caster"/>
         <LaunchSiteOps Ops="SOpAttachCenter"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance"/>
@@ -37899,12 +37959,17 @@
         <ShieldFlashType value="Full"/>
         <ActionFlags index="ImpactMonitorsTeleports" value="1"/>
     </CActorAction>
+    <CActorModel id="AP_VoltaicShockImpact" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_VoltaicShockSearch.Start" Send="Create"/>
+        <Scale value="0.400000"/>
+    </CActorModel>
     <CActorSite id="AP_VoltaicShockImpactSite0" parent="GenericAttackImpactSite"/>
     <CActorBeamSimple id="AP_VoltaicShockBeam" parent="BeamSimpleAnimationStyleOneShot">
-        <Remove Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce"/>
-        <On Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 3.000000 AsTimeScale"/>  
+        <On Terms="Effect.AP_VoltaicShockSearch.Start; At Caster" Send="Create"/>
         <Model value="AP_VoltaicShockBeam"/>
-        <Scale value="1.200000"/>
+        <HostLaunch Subject="_Unit" Scope="Caster"/>
+        <HostLaunchSiteOps Ops="SOpAttachCenter"/>
+        <HostImpactSiteOps Ops="SOpTargetPoint"/>
     </CActorBeamSimple>
     <CActorForceSphere id="AP_VoltaicShockAttackForce">
         <Host Subject="_ImpactGuide"/>
@@ -44659,6 +44724,8 @@
         <On Terms="Effect.AP_TaldarimMothershipDeathHealTaldarimMU.Start; At Target" Send="Create"/>
         <On Terms="ActorCreation" Send="ModelMaterialApplyTo ::Main"/>
         <On Terms="ActorCreation" Send="AnimBracketStart Birth Birth"/>
+        <On Terms="Behavior.AP_Exterminate.On" Send="Create"/>
+        <On Terms="Behavior.AP_Exterminate.Off" Send="Destroy"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
         <ModelFlags index="AutomateGlobalLoops" value="1"/>
     </CActorModelMaterial>

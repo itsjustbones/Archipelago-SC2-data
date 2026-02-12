@@ -4679,7 +4679,6 @@
         <WhichLocation Value="CasterUnit"/>
         <TimeScaleSource Value="Caster"/>
         <InitialEffect value="AP_ExterminateAttackOrder"/>
-        <FinalEffect value="AP_ExterminateRB"/>
         <PeriodCount value="70"/>
         <PeriodicPeriodArray value="0.1"/>
     </CEffectCreatePersistent>
@@ -4687,6 +4686,11 @@
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
         <BehaviorLink value="AP_Exterminate"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ExterminateTargetRB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Target"/>
+        <BehaviorLink value="AP_ExterminateTarget"/>
     </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="AP_ExterminateAB">
         <WhichUnit Value="Caster"/>
@@ -4704,9 +4708,17 @@
         <EffectArray value="AP_ExterminateTargetAssigner"/>
         <EffectArray value="AP_ExterminatePersistent"/>
     </CEffectSet>
+    <CEffectSet id="AP_ExterminateRemoveSet">
+        <EffectArray value="AP_ExterminateRBSearch"/>
+        <EffectArray value="AP_ExterminateTargetRBSearch"/>
+    </CEffectSet>
     <CEffectEnumArea id="AP_ExterminateRBSearch">
         <ImpactLocation Value="SourceUnit"/>
         <AreaArray Radius="500" Effect="AP_ExterminateRB"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ExterminateTargetRBSearch">
+        <ImpactLocation Value="SourceUnit"/>
+        <AreaArray Radius="500" Effect="AP_ExterminateTargetRB"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_ShadowSliceMarkTargetAB">
         <WhichUnit Value="Target"/>
@@ -4719,7 +4731,7 @@
     <CEffectEnumArea id="AP_ShadowSliceSearch">
         <LaunchLocation Effect="AP_ShadowSlicePersistent" Value="TargetUnit"/>
         <ImpactLocation Effect="AP_ShadowSlicePersistent"/>
-        <SearchFilters value="Visible;Self,Neutral,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Visible;Self,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <TargetSorts RequestCount="1">
             <SortArray value="TSNearest"/>
         </TargetSorts>
@@ -4825,8 +4837,9 @@
     </CEffectSet>
     <CEffectSet id="AP_VoltaicShockSetSearch">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_VoltaicShockDamageSearch"/>
+        <TargetLocationType value="Point"/>
         <EffectArray value="AP_VoltaicShockSearch"/>
+        <EffectArray value="AP_VoltaicShockDamageSearch"/>
     </CEffectSet>
     <CEffectDamage id="AP_VoltaicShockDamage">
         <Amount value="75"/>
@@ -4837,24 +4850,21 @@
         <Death value="Electrocute"/>
     </CEffectDamage>
     <CEffectCreatePersistent id="AP_VoltaicShockPersistent">
-        <WhichLocation Value="TargetUnit"/>
+        <WhichLocation Value="TargetPoint"/>
         <PeriodCount value="1"/>
-        <PeriodicEffectArray value="AP_VoltaicShockSet"/>
+        <PeriodicEffectArray value="AP_VoltaicShockSetSearch"/>
         <PeriodicOffsetArray value="0,-2.5,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="AP_VoltaicShockSearch">
-        <ImpactLocation Value="TargetUnit"/>
+        <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="3" Effect="AP_VoltaicShock"/>
-        <SearchFlags index="CenterAtLaunch" value="1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_VoltaicShockDamageSearch">
-        <ImpactLocation Value="TargetUnit"/>
+        <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="Enemy;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <ExcludeArray Value="Target"/>
         <AreaArray Radius="3" Effect="AP_VoltaicShockDamageSecondary"/>
-        <SearchFlags index="CenterAtLaunch" value="1"/>
     </CEffectEnumArea>
    <CEffectCreateUnit id="AP_VoltaicShockReheightSourceCreatePlaceholder">
         <WhichLocation Value="SourceUnit"/>
@@ -5128,12 +5138,46 @@
         <Behavior value="AP_StrengthInUnityArtanisTaldarim"/>
     </CEffectApplyBehavior>
 
+    <CEffectSet id="AP_ArtanisAirAttackSet">
+        <EffectArray value="AP_ArtanisAirAttackLM"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="AP_ArtanisAirAttackLM">
+        <ImpactEffect value="AP_ArtanisAirAttackDamage"/>
+        <Movers Link="MissileDefault"/>
+        <AmmoUnit value="AP_ArtanisAirAttackWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectCreatePersistent id="AP_ArtanisAirAttack">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="AP_ArtanisAirAttackDamage"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.28"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="AP_ArtanisAirAttackDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="20"/>
+        <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_ArtanisAirAttackDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="20"/>
+        <!--Death value="Eviscerate"/-->
+        <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <!--AreaArray Radius="1" FacingAdjustment="0" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFlags index="OffsetByUnitRadius" value="0"/>
+        <ValidatorArray value="NoArtanisLightningDash"/-->
+    </CEffectDamage>
+
 
     <CEffectEnumArea id="AP_CleansingSmiteSearch">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.5" Effect="AP_CleansingSmiteSet"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="1.6" Effect="AP_CleansingSmiteSet"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectSet id="AP_CleansingSmiteSet">
@@ -5144,7 +5188,7 @@
     <CEffectDamage id="AP_CleansingSmiteDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
-        <Amount value="50"/>
+        <Amount value="40"/>
         <Death value="Fire"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AP_CleansingSmiteAB">
@@ -5155,17 +5199,9 @@
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
         <Amount value="1"/>
-        <LeechFraction index="Shields" value="1"/>
+        <LeechFraction index="Shields" value="0.75"/>
         <Death value="Fire"/>
     </CEffectDamage>
-    <CEffectModifyUnit id="AP_CleansingSmiteHeal">
-        <ValidatorArray value="AP_HaveHotSTissueAssimilation"/>
-        <EditorCategories value="Race:Zerg"/>
-        <ImpactUnit Value="Caster"/>
-        <VitalArray index="Life">
-            <Change value="10"/>
-        </VitalArray>
-    </CEffectModifyUnit>
     <CEffectSet id="AP_ArtanisBladeWaltz">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ApplyArtanisBladeWaltzWalkSpeed"/>
@@ -5309,7 +5345,7 @@
     <CEffectEnumArea id="AP_PhasePrismSearch">
         <EditorCategories value="Race:Protoss"/>
         <SearchFilters value="-;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="4" Effect="AP_PhasePrismUnitPullBy2"/>
+        <AreaArray Radius="4.5" Effect="AP_PhasePrismUnitPullBy2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
         <SearchFlags index="SameCliff" value="1"/>

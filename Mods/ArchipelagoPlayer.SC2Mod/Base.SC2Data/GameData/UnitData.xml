@@ -14634,8 +14634,8 @@
         <LifeArmor value="3"/>
         <LifeRegenRate value="1"/>
         <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
-        <ShieldsStart value="500"/>
-        <ShieldsMax value="500"/>
+        <ShieldsStart value="1"/>
+        <ShieldsMax value="1"/>
         <ShieldRegenDelay value="3"/>
         <ShieldRegenRate value="4"/>
         <EnergyStart value="200"/>
@@ -14674,7 +14674,7 @@
         <BehaviorArray Link="AP_ArtanisNoAspect"/>
         <BehaviorArray Link="AP_ArtanisResurgence"/>
         <WeaponArray Link="AP_ArtanisTwilightBlades"/>
-        <WeaponArray Link="ArtanisVoidUlnar"/>
+        <WeaponArray Link="AP_ArtanisAirAttack"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
@@ -14685,7 +14685,7 @@
             <LayoutButtons Face="ArtanisResurgence" Type="Passive" Requirements="ArtanisResurgenceReviveOffCooldown" Row="2" Column="2"/>
             <LayoutButtons Face="ArtanisResurgence" Type="Passive" Behavior="ArtanisResurgenceReviveSupressed" Row="2" Column="2"/>
             <LayoutButtons Face="AP_ArtanisAstralWind" Type="AbilCmd" AbilCmd="AP_ArtanisAstralWind,Execute" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_ArtanisBladeWaltzRecast" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltzRecast,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisBladeWaltzRecast" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltzRecast,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisLightningDash" Type="AbilCmd" AbilCmd="AP_ArtanisLightningDash,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="2" Column="0"/>
@@ -14771,6 +14771,10 @@
         <SubgroupPriority value="1"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <AIEvalFactor value="0"/>
+    </CUnit>
+    <CUnit id="AP_ArtanisAirAttackWeapon" parent="MISSILE_INVULNERABLE">
+        <Race value="Prot"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
     </CUnit>
     <CUnit id="AP_AscendantSacrificeWeapon1" parent="MISSILE_INVULNERABLE">
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>

@@ -4665,11 +4665,8 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_StrengthInUnity"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_VoltaicShock">
-        <Alignment value="Negative"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_VoltaicShockSet"/>
-        <Flags index="AllowMovement" value="1"/>
-        <Flags index="NoDeceleration" value="1"/>
+        <Effect index="0" value="AP_VoltaicShockSetSearch"/>
         <Cost>
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="10"/>
@@ -4677,11 +4674,6 @@
         <Range value="7"/>
         <RangeSlop value="7"/>
         <PrepTime value="0"/>
-        <Marker>
-            <MatchFlags index="Id" value="1"/>
-            <MatchFlags index="Link" value="0"/>
-            <MismatchFlags index="Id" value="0"/>
-        </Marker>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"/>    
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_CleansingSmite">

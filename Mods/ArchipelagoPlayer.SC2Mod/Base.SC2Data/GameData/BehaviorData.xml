@@ -2140,8 +2140,9 @@
     <CBehaviorBuff id="AP_CleansingSmite">
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="5"/>
-        <Period value="0.1666666"/>
+        <Duration value="4"/>
+        <Period value="0.1"/>
+        <InitialEffect value="AP_CleansingSmiteDOT"/>
         <PeriodicEffect value="AP_CleansingSmiteDOT"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisHardenedShield">
@@ -2161,7 +2162,7 @@
         <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="7"/>
-        <FinalEffect value="AP_ExterminateRBSearch"/>
+        <FinalEffect value="AP_ExterminateRemoveSet"/>
         <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2">
             <ModifyFlags index="OrdersUninterruptible" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
@@ -2174,7 +2175,11 @@
         <Alignment value="Negative"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <FinalEffect value="AP_ExterminateRBSearch"/>
+        <RemoveValidatorArray value="CasterNotDead"/>
+        <RemoveValidatorArray value="AP_CasterHasExterminate"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="AP_ExterminateRemoveSet"/>
+        </Modification>
         <Duration value="7"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisLightningDash">
@@ -7698,20 +7703,12 @@
             <BehaviorLinkDisableArray value="Detector12"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_PhasePrismPullSlow">
-        <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Modification MoveSpeedMultiplier="0.5" AttackSpeedMultiplier="0.5"/>
-        <Alignment value="Negative"/>
-        <BehaviorCategories index="Slow" value="1"/>
-        <Duration value="2"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismPullStun">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
         <BehaviorCategories index="Stun" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="2"/>
+        <Duration value="1"/>
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>

@@ -2319,6 +2319,11 @@
         <Range value="8"/>
         <ResultFailed value="TargetIsOutOfRange"/>
     </CValidatorLocationCompareRange>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasExterminate">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_Exterminate"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzActor">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -7646,7 +7651,7 @@
         <WhichPlayer Value="Caster"/>
         <Value value="AP_BanelingLaunchFull"/>
     </CValidatorPlayerRequirement>
-        <CValidatorLocationEnumArea id="AP_ArchonSuicideTargetsInRange">
+    <CValidatorLocationEnumArea id="AP_ArchonSuicideTargetsInRange">
         <WhichLocation Value="CasterUnit"/>
         <AreaArray Compare="GT" Count="0" Radius="6"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Hidden,Invulnerable"/>
