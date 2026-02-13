@@ -2137,6 +2137,14 @@
     <CBehaviorBuff id="AP_ArtanisPurifierAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisTaldarimAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisNoAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="AP_HaveArtanisAirAttackUnlocked"/>
+        <Modification>
+            <WeaponArray Link="AP_ArtanisAirAttack"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_CleansingSmite">
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -3446,15 +3454,6 @@
             <DamageDealtFraction index="Ranged" value="1"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ClolarionsConfidenceShieldArmor">
-        <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-veilofshadowsvorazun.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <MaxStackCount value="3"/>
-        <Modification ShieldArmorBonus="1">
-            <LifeArmorBonus value="1"/>
-        </Modification>
-    </CBehaviorBuff>  
     <CBehaviorBuff id="AP_ShadowSliceController">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>

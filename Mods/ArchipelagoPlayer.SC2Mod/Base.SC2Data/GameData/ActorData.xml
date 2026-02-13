@@ -37739,6 +37739,13 @@
     <CActorSiteOpForward id="AP_SOpForwardArtanisVoidUlnar">
         <HostForward Subject="AP_ArtanisHero"/>
     </CActorSiteOpForward>
+    <CActorModelMaterial id="AP_StrengthInUnityGlaze" parent="GlazeParent">
+        <On Terms="Behavior.AP_StrengthInUnity.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="ModelMaterialApplyTo ::Main"/>
+        <On Terms="Behavior.AP_StrengthInUnity.Off" Send="ModelMaterialRemoveFrom ::Main"/>
+        <On Terms="Behavior.AP_StrengthInUnity.Off" Send="Destroy"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+    </CActorModelMaterial>
     <CActorModel id="AP_ExterminateTarget" parent="ModelAnimationStyleContinuous">
         <ModelFlags index="AutomateGlobalLoops" value="1"/>
         <Host Subject="_Selectable"/>
@@ -37788,6 +37795,44 @@
     <CActorSound id="AP_PhasePrismRecastSound" parent="SoundOneShot">
         <Sound value="AP_PhasePrismRecast"/>
         <On Terms="Abil.AP_PhasePrismSwap.SourceCastStart" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
+    <CActorSiteOpLocalOffset id="AP_PhasePrismModelOffset">
+        <LocalOffset value="0.000000,0.000000,0.500000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorRange id="AP_PhasePrismRange" parent="RangeAbil" abil="AP_PhasePrism">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
+    <CActorSimple id="AP_PhasePrismTinter">
+        <On Terms="Behavior.AP_PhasePrismStun.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.330000 DelayCreation"/>
+        <On Terms="TimerExpired; TimerName DelayCreation" Target="::Main" Send="AnimSetPausedAll"/>
+        <On Terms="TimerExpired; TimerName DelayCreation" Target="::Main" Send="SetTintColor 100,100,255 0.125000 OneShot AP_PhasePrism"/>
+        <On Terms="TimerExpired; TimerName DelayCreation" Target="::Main" Send="SetOpacity 0.500000 0.125000"/>
+        <On Terms="Behavior.AP_PhasePrismStun.Off" Target="::Main" Send="SetOpacity 1.000000 0.125000"/>
+        <On Terms="Behavior.AP_PhasePrismStun.Off" Target="::Main" Send="ClearTintColor 0.125000 AP_PhasePrism"/>
+        <On Terms="Behavior.AP_PhasePrismStun.Off" Target="::Main" Send="AnimSetPausedAll 0"/>
+        <On Terms="Behavior.AP_PhasePrismStun.Off" Send="Destroy"/>
+    </CActorSimple>
+    <CActorModel id="AP_PhasePrismImpact" parent="ModelAddition">
+        <On Terms="Behavior.AP_PhasePrismStun.On" Send="Create"/>
+        <On Terms="Behavior.AP_PhasePrismStun.Off" Send="AnimBracketStop BSD"/>
+        <CreepHeightClass value="Small"/>
+        <HostSiteOps Ops="SOpAttachOrigin AP_PhasePrismModelOffset"/>
+        <AutoScaleFactor value="1.000000"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Macros value="GlobalLoopMacro"/>
+    </CActorModel>
+    <CActorSound id="AP_PhasePrismLaunchSound" parent="SoundOneShot">
+        <Sound value="Obelisk_ArgusLinkLaunch"/>
+        <On Terms="Effect.AP_PhasePrism.Start; At Caster" Send="Create"/>
+        <Host Subject="_Selectable"/>
+    </CActorSound>
+    <CActorSound id="AP_PhasePrismImpactSound" parent="SoundOneShot">
+        <Sound value="Obelisk_ArgusLinkImpact"/>
+        <On Terms="Effect.AP_PhasePrism.Start; At Target" Send="Create"/>
         <Host Subject="_Selectable"/>
     </CActorSound>
     <CActorSound id="AP_BladeWaltzSound" parent="SoundOneShot">
@@ -37977,7 +38022,7 @@
         <Magnitude value="27.500000,8.000000"/>
         <Radius value="1.100000,0.150000"/>
         <Duration value="0.150000"/>
-        <On Terms="Effect.AP_VoltaicShockSet.Start" Send="Create"/>
+        <On Terms="Effect.AP_VoltaicShockSearch.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="Create AP_ChainReactionAttackUpForce"/>
     </CActorForceSphere>
     <CActorUnit id="AP_HunterlingPlaceholder" parent="GenericUnitStandard" unitName="AP_HunterlingPlaceholder">

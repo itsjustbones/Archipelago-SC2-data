@@ -12834,7 +12834,11 @@
     <CUpgrade id="AP_ArtanisTaldarimAspectUnlocked"/>
     <CUpgrade id="AP_ArtanisTaldarimAspectActive"/>
     <CUpgrade id="AP_ArtanisTaldarimAspectPassive"/>
-
+    <CUpgrade id="AP_ArtanisTemperedInTwilight"/>
+    <CUpgrade id="AP_ArtanisAirAttackUnlocked">
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="0"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Hidden]" Value="0"/>
+    </CUpgrade>
     <CUpgrade id="AP_VoidRaySpeedUpgrade">
         <ScoreAmount value="300"/>
         <ScoreResult value="BuildOrder"/>

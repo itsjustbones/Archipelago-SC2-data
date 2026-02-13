@@ -4579,10 +4579,12 @@
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
-    <CEffectSet id="AP_ArtanisWeaponSet">
-        <EditorCategories value=""/>
-        <EffectArray value="AP_ArtanisWeaponBurst"/>
-    </CEffectSet>
+    <CEffectModifyUnit id="AP_ArtanisTemperedInTwilightEnergy">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactUnit Value="Caster"/>
+        <ValidatorArray value="AP_HaveArtanisTemperedInTwilight"/>
+        <VitalArray index="Energy" Change="2"/>
+    </CEffectModifyUnit>
     <CEffectCreatePersistent id="AP_ArtanisWeaponBurst">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
@@ -4596,6 +4598,7 @@
     <CEffectSet id="AP_ArtanisBladesSet">
         <EditorCategories value=""/>
         <EffectArray value="AP_ArtanisBlades"/>
+        <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
     </CEffectSet>
     <CEffectDamage id="AP_ArtanisBlades" parent="DU_WEAP">
@@ -4823,12 +4826,6 @@
         <EditorCategories value="Race:Protoss"/>
         <VitalArray index="Life" Change="30"/>
         <VitalArray index="Shields" Change="75"/>
-    </CEffectModifyUnit>
-    <CEffectModifyUnit id="AP_TemperedInTwilightRefund">
-        <ImpactUnit Value="Caster"/>
-        <VitalArray index="Energy">
-            <Change value="5"/>
-        </VitalArray>
     </CEffectModifyUnit>
     <CEffectSet id="AP_VoltaicShockSet">
         <EditorCategories value="Race:Protoss"/>
@@ -5142,10 +5139,14 @@
         <EffectArray value="AP_ArtanisAirAttackLM"/>
     </CEffectSet>
     <CEffectLaunchMissile id="AP_ArtanisAirAttackLM">
-        <ImpactEffect value="AP_ArtanisAirAttackDamage"/>
+        <ImpactEffect value="AP_ArtanisAirAttackImpactSet"/>
         <Movers Link="MissileDefault"/>
         <AmmoUnit value="AP_ArtanisAirAttackWeapon"/>
     </CEffectLaunchMissile>
+    <CEffectSet id="AP_ArtanisAirAttackImpactSet">
+        <EffectArray value="AP_ArtanisAirAttackDamage"/>
+        <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
+    </CEffectSet>
     <CEffectCreatePersistent id="AP_ArtanisAirAttack">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>

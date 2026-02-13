@@ -7849,6 +7849,19 @@
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoidRayTaldarim" Requirements="AP_HaveSummonDeathFleetInstalled"/>
     </CAbilEffectInstant>
+    <CAbilBehavior id="AP_ArtanisAirAttackSwap">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="AP_ArtanisAirAttackEnable" Requirements="AP_HaveArtanisAirAttackUnlocked">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="AP_ArtanisAirAttackDisable" Requirements="AP_HaveArtanisAirAttackUnlocked">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="ToggledOn" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="AP_EnableArtanisAirAttackSwap"/>
+    </CAbilBehavior>
     <CAbilBehavior id="AP_MothershipTaldarimBaseAttackSwap">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="AP_MothershipTaldarimBaseAttackEnable" Requirements="AP_HaveTaldarimMothershipFastAttack">
