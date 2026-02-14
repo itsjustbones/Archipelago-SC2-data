@@ -14715,6 +14715,10 @@
             <LayoutButtons Face="AP_ArtanisPurifierAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,2" Row="0" Column="2"/>
             <LayoutButtons Face="AP_ArtanisTaldarimAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,3" Row="0" Column="3"/>
             <LayoutButtons Face="AP_ArtanisNoAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,4" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisBladeWaltzPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectActive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ShadowSlicePassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectActive" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_CleansingSmitePassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectActive" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_ExterminatePassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectActive" Row="1" Column="3"/>
             <LayoutButtons Face="AP_ArtanisAiurAspectPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectPassive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisNerazimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectPassive" Row="2" Column="1"/>
             <LayoutButtons Face="AP_ArtanisPurifierAspectPassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectPassive" Row="2" Column="2"/>
@@ -14777,7 +14781,7 @@
         <BehaviorArray Link="AP_CocoonReviveTimer"/>
         <CardLayouts>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="AP_RallyReviveCocoon,Rally1" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_NovaRespawn" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisRespawn" Type="Passive" Row="2" Column="0"/>
         </CardLayouts>
         <CardLayouts>
             <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyReviveCocoon,Rally2" Row="1" Column="4"/>

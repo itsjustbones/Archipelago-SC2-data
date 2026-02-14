@@ -35498,6 +35498,16 @@
     <CActorSound id="AP_NovaReviveCocoon_IdleLoop_ActorSound" parent="SoundContinuous">
         <Sound value="AP_NovaReviveCocoon_IdleLoop"/>
     </CActorSound>
+    <CActorSound id="AP_ArtanisReviveCocoon_Birth_ActorSound" parent="SoundOneShot">
+        <Sound value="AP_NovaReviveCocoon_Birth"/>
+    </CActorSound>
+    <CActorSound id="AP_ArtanisReviveCocoon_Death_ActorSound" parent="SoundOneShot">
+        <Sound value="AP_NovaReviveCocoon_Death"/>
+        <FogVisibility value="Visible"/>
+    </CActorSound>
+    <CActorSound id="AP_ArtanisReviveCocoon_IdleLoop_ActorSound" parent="SoundContinuous">
+        <Sound value="AP_NovaReviveCocoon_IdleLoop"/>
+    </CActorSound>
     <CActorUnit id="AP_NovaReviveCocoon" parent="GenericUnitMorph" unitName="AP_NovaReviveCocoon">
         <On Terms="ActorCreation" Send="$Birth"/>
         <On Terms="AnimDone; AnimName Birth" Send="$Stand 0 0.500000 0.500000 59.500000 AsDuration"/>
@@ -37871,6 +37881,12 @@
         <LaunchAssets Sound="AP_ArtanisMeleeVoid_AttackLaunch"/>
         <ImpactMap index="None" Sound="AP_ArtanisMeleeVoid_AttackImpact"/>
     </CActorAction>
+    <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisTaldarimAspectSplashDamageGround">
+        <!-- Only using 1 attach point to prevent 2 launch sounds each attack-->
+        <LaunchAttachQuery Methods="AMFilterWeaponLeft"/>
+        <LaunchAssets Sound="AP_ArtanisMeleeVoid_AttackLaunch"/>
+        <ImpactMap index="None" Sound="AP_ArtanisMeleeVoid_AttackImpact"/>
+    </CActorAction>
     <CActorMissile id="AP_ArtanisHero" parent="GenericUnitStandard" unitName="AP_ArtanisHero">
         <Aliases value="_MissileHybrids"/>
         <On Terms="WeaponStart.AP_ArtanisAirAttack.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior"/>
@@ -37943,24 +37959,24 @@
         <On Terms="AnimDone; AnimName Birth" Send="$Stand 0 0.500000 0.500000 59.500000 AsDuration"/>
         <On Terms="AnimDone; AnimName Stand" Send="$Death"/>
         <On Terms="ActorCreation" Send="Create AP_ArtanisReviveCocoonArtanis"/>
-        <On Terms="ActorCreation" Send="Create AP_NovaReviveCocoon_Birth_ActorSound"/>
-        <On Terms="ActorCreation" Send="Create AP_NovaReviveCocoon_IdleLoop_ActorSound"/>
-        <On Terms="UnitDeath" Target="AP_NovaReviveCocoon_IdleLoop_ActorSound" Send="Destroy"/>
-        <On Terms="UnitDeath" Send="Create AP_NovaReviveCocoon_Death_ActorSound"/>
+        <On Terms="ActorCreation" Send="Create AP_ArtanisReviveCocoon_Birth_ActorSound"/>
+        <On Terms="ActorCreation" Send="Create AP_ArtanisReviveCocoon_IdleLoop_ActorSound"/>
+        <On Terms="UnitDeath" Target="AP_ArtanisReviveCocoon_IdleLoop_ActorSound" Send="Destroy"/>
+        <On Terms="UnitDeath" Send="Create AP_ArtanisReviveCocoon_Death_ActorSound"/>
         <DeathActorModel value="UnitDeathModelReviveCocoon"/>
         <DeathActorModelLow value="UnitDeathModelReviveCocoon"/>
-        <PortraitActor value="AP_SMX3_NovaPortrait"/>
-        <PortraitModel value="SMX3_NovaPortrait"/>
+        <PortraitActor value="AP_ArtanisEx2Portrait"/>
+        <PortraitModel value="AP_ArtanisEx2Portrait"/>
         <BarOffset value="60"/>
         <BarWidth value="78"/>
         <GroupIcon>
-            <Image value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-Artanis.dds"/>
         </GroupIcon>
-        <HeroIcon value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
-        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
-        <UnitIcon value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+        <HeroIcon value="Assets\Textures\btn-unit-protoss-artanishero.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+        <UnitIcon value="Assets\Textures\btn-unit-protoss-artanishero.dds"/>
         <Wireframe>
-            <Image value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-Artanis.dds"/>
         </Wireframe>
     </CActorUnit>
     <CActorModel id="AP_ArtanisReviveCocoonArtanis">

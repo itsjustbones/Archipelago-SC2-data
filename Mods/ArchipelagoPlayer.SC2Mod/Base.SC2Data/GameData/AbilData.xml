@@ -4638,6 +4638,10 @@
         <AbilSetId value="AP_Exterminate"/>
         <Effect index="0" value="AP_ExterminateSet"/>
         <Range value="7"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
         <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive"/>
     </CAbilEffectTarget>
@@ -4679,6 +4683,10 @@
     <CAbilEffectInstant id="AP_CleansingSmite">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_CleansingSmiteSearch"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite" Requirements="AP_HaveArtanisPurifierAspectSelectedActive"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_ArtanisAstralWind">
