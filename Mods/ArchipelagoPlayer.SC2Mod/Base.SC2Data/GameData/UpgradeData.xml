@@ -12830,10 +12830,15 @@
     <CUpgrade id="AP_ArtanisNerazimAspectPassive"/>    
     <CUpgrade id="AP_ArtanisPurifierAspectUnlocked"/>
     <CUpgrade id="AP_ArtanisPurifierAspectActive"/>
-    <CUpgrade id="AP_ArtanisPurifierAspectPassive"/>    
+    <CUpgrade id="AP_ArtanisPurifierAspectPassive">    
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisTaldarimAspectUnlocked"/>
     <CUpgrade id="AP_ArtanisTaldarimAspectActive"/>
     <CUpgrade id="AP_ArtanisTaldarimAspectPassive"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,RateMultiplier" Value="0.25"/>
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisTemperedInTwilight"/>
     <CUpgrade id="AP_ArtanisAirAttackUnlocked">
         <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="0"/>
