@@ -3444,7 +3444,7 @@ int lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses (int lp_player) {
     return lv_usesLeft;
 }
 
-bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_mrrkkegksxkyxxxv, int lp_mercenaryClass) {
+bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_fekpvutqbfofgxpa, int lp_mercenaryClass) {
     // Variable Declarations
     bool lv_untitledVariable001;
 
@@ -3452,11 +3452,11 @@ bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_mrrkkegksxkyxxxv
     // Variable Initialization
 
     // Implementation
-    if ((TechTreeUpgradeCount(lp_mrrkkegksxkyxxxv, "AP_UnrestrictedMutation", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_SCTWO) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_BROODWAR) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFESTED))) {
+    if ((TechTreeUpgradeCount(lp_fekpvutqbfofgxpa, "AP_UnrestrictedMutation", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_SCTWO) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_BROODWAR) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFESTED))) {
         lv_untitledVariable001 = true;
     }
 
-    if ((TechTreeUpgradeCount(lp_mrrkkegksxkyxxxv, "AP_RogueForces", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+    if ((TechTreeUpgradeCount(lp_fekpvutqbfofgxpa, "AP_RogueForces", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
         lv_untitledVariable001 = true;
     }
 
@@ -3608,7 +3608,7 @@ void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldowns (int lp_player) {
 
 void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldownsTerran (int lp_player) {
     // Variable Declarations
-    int lv_wcmeggetyoffnljm;
+    int lv_mgwfbacnwlgbcwqa;
 
     // Automatic Variable Declarations
     const int autoC941E96C_ae = lib15EF4C78_gv_aP_Player_MERC_COOLDOWN_LINK_SIZE;
@@ -3617,10 +3617,10 @@ void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldownsTerran (int lp_player) {
     // Variable Initialization
 
     // Implementation
-    lv_wcmeggetyoffnljm = 0;
-    for ( ; ( (autoC941E96C_ai >= 0 && lv_wcmeggetyoffnljm <= autoC941E96C_ae) || (autoC941E96C_ai < 0 && lv_wcmeggetyoffnljm >= autoC941E96C_ae) ) ; lv_wcmeggetyoffnljm += autoC941E96C_ai ) {
-        if (((lib15EF4C78_gv_aP_Player_MercType[lv_wcmeggetyoffnljm] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_wcmeggetyoffnljm] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_wcmeggetyoffnljm] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
-            libNtve_gf_PlayerRemoveCooldown(lp_player, lib15EF4C78_gv_aP_Player_MercCooldownLinks[lv_wcmeggetyoffnljm]);
+    lv_mgwfbacnwlgbcwqa = 0;
+    for ( ; ( (autoC941E96C_ai >= 0 && lv_mgwfbacnwlgbcwqa <= autoC941E96C_ae) || (autoC941E96C_ai < 0 && lv_mgwfbacnwlgbcwqa >= autoC941E96C_ae) ) ; lv_mgwfbacnwlgbcwqa += autoC941E96C_ai ) {
+        if (((lib15EF4C78_gv_aP_Player_MercType[lv_mgwfbacnwlgbcwqa] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_mgwfbacnwlgbcwqa] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_mgwfbacnwlgbcwqa] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+            libNtve_gf_PlayerRemoveCooldown(lp_player, lib15EF4C78_gv_aP_Player_MercCooldownLinks[lv_mgwfbacnwlgbcwqa]);
         }
 
     }
@@ -5068,6 +5068,44 @@ bool lib15EF4C78_gt_PhasePrismSwap_Func (bool testConds, bool runActions) {
 void lib15EF4C78_gt_PhasePrismSwap_Init () {
     lib15EF4C78_gt_PhasePrismSwap = TriggerCreate("lib15EF4C78_gt_PhasePrismSwap_Func");
     TriggerAddEventUnitAbility(lib15EF4C78_gt_PhasePrismSwap, null, AbilityCommand("AP_PhasePrismSwap", 0), c_abilEffectStageCast, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raszagal's Rhythm Buff
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_RaszagalsRhythmBuff_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TechTreeUpgradeCount(lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisNerazimAspectPassive", c_techCountQueuedOrBetter) > 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(EventUnit(), "AP_RaszagalsRhythm", 1, 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_RaszagalsRhythmBuff_Init () {
+    lib15EF4C78_gt_RaszagalsRhythmBuff = TriggerCreate("lib15EF4C78_gt_RaszagalsRhythmBuff_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ArtanisBladeWaltz", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ArtanisBladeWaltzRecast", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ShadowSlice", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_CleansingSmite", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_Exterminate", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_VoltaicShock", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_PhasePrism", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_PhasePrismSwap", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ArtanisAstralWind", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_SuppressionPulse", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ArtanisLightningDash", 0), c_abilEffectStageCast, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_StrengthInUnity", 0), c_abilEffectStageCast, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9045,7 +9083,7 @@ void lib15EF4C78_gt_AP_Player_MercCompoundSetupCounts_Init () {
 bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
-    int lv_aqruhyguuviikxgd;
+    int lv_qflcyfimqeypbhub;
     int lv_instantUsesLeft;
 
     // Automatic Variable Declarations
@@ -9059,28 +9097,28 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         return true;
     }
 
-    lv_aqruhyguuviikxgd = EventPlayer();
-    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_aqruhyguuviikxgd);
+    lv_qflcyfimqeypbhub = EventPlayer();
+    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_qflcyfimqeypbhub);
     if ((lv_instantUsesLeft > 0)) {
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
                 lv_instantUsesLeft -= 1;
-                libNtve_gf_SetUpgradeLevelForPlayer(lv_aqruhyguuviikxgd, "AP_FastDeliveryCharges", lv_instantUsesLeft);
+                libNtve_gf_SetUpgradeLevelForPlayer(lv_qflcyfimqeypbhub, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
                 if ((lv_instantUsesLeft == 0)) {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_aqruhyguuviikxgd);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_qflcyfimqeypbhub);
                 }
                 else {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_aqruhyguuviikxgd, lv_index);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_qflcyfimqeypbhub, lv_index);
                 }
             }
 
         }
     }
 
-    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_aqruhyguuviikxgd);
+    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_qflcyfimqeypbhub);
     return true;
 }
 
@@ -9339,6 +9377,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_ShadowSliceReset_Init();
     lib15EF4C78_gt_PhasePrismAcquireTarget_Init();
     lib15EF4C78_gt_PhasePrismSwap_Init();
+    lib15EF4C78_gt_RaszagalsRhythmBuff_Init();
     lib15EF4C78_gt_ArtanisBladeDash_Init();
     lib15EF4C78_gt_NovaPsiStrike_Init();
     lib15EF4C78_gt_FuryofOneHeight_Init();

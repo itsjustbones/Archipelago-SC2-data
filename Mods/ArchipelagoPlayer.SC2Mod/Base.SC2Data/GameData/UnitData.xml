@@ -14659,6 +14659,7 @@
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="AP_ArtanisWeaponAspects"/>
         <AbilArray Link="AP_ArtanisAirAttackSwap"/>
+        <AbilArray Link="AP_ArtanisCharge"/>
         <AbilArray Link="AP_SuppressionPulse"/>
         <AbilArray Link="AP_ArtanisLightningDash"/>
         <AbilArray Link="AP_ArtanisAstralWind"/>
@@ -14675,6 +14676,7 @@
         <BehaviorArray Link="AP_ArtanisNoAspect"/>
         <BehaviorArray Link="AP_ArtanisAiurAspectPassiveSpellArmor"/>
         <BehaviorArray Link="AP_ArtanisAiurAspectPassiveShieldLeech"/>
+        <BehaviorArray Link="AP_ArtanisForceOfWill"/>
         <BehaviorArray Link="AP_ArtanisHardenedShield"/>
         <BehaviorArray Link="AP_ArtanisResurgence"/>
         <WeaponArray Link="AP_ArtanisTwilightBlades"/>
@@ -14699,7 +14701,6 @@
             <LayoutButtons Face="AP_SuppressionPulse" Type="AbilCmd" AbilCmd="AP_SuppressionPulse,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="AP_PhasePrismRecast" Type="AbilCmd" AbilCmd="AP_PhasePrismSwap,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="AP_PhasePrism" Type="AbilCmd" AbilCmd="AP_PhasePrism,Execute" Row="1" Column="1"/>
-            <LayoutButtons Face="ArtanisForceOfWill" Type="Passive" Row="2" Column="3"/>
             <LayoutButtons Face="AP_ArtanisWeaponAspectSwap" Type="Submenu" SubmenuCardId="WA" Row="2" Column="1"/>
             <LayoutButtons Face="AP_ArtanisPassiveMenu" Type="Submenu" SubmenuCardId="RA" Row="2" Column="4"/>
         </CardLayouts>
@@ -14707,6 +14708,8 @@
             <LayoutButtons Face="AP_ArtanisTemperedInTwilight" Type="Passive" Requirements="AP_HaveArtanisTemperedInTwilight" Row="0" Column="0"/>
             <LayoutButtons Face="AP_ArtanisAirAttackEnable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,On" Requirements="AP_HaveArtanisAirAttackUnlocked" Row="0" Column="1"/>
             <LayoutButtons Face="AP_ArtanisAirAttackDisable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,Off" Requirements="AP_HaveArtanisAirAttackUnlocked" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisCharge" Type="AbilCmd" AbilCmd="AP_ArtanisCharge,Execute" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisForceOfWillPassive" Type="Passive" Requirements="AP_HaveArtanisForceOfWill" Row="0" Column="4"/>
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="WA">
@@ -14723,6 +14726,7 @@
             <LayoutButtons Face="AP_ArtanisNerazimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectPassive" Row="2" Column="1"/>
             <LayoutButtons Face="AP_ArtanisPurifierAspectPassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectPassive" Row="2" Column="2"/>
             <LayoutButtons Face="AP_ArtanisTaldarimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectPassive" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisWeaponAspectDamagePassive" Type="Passive" Row="1" Column="4"/>
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.425"/>

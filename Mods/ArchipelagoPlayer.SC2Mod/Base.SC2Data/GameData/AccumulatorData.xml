@@ -46,4 +46,11 @@
         <VitalType value="Shields"/>
         <ModificationType value="PerUnitMaxVital"/>
     </CAccumulatorVitals>
+    <CAccumulatorConstant id="AP_ArtanisAspectWeaponDamageDouble">
+        <ApplicationRule value="Multiply"/>
+        <Amount value="2"/>
+    </CAccumulatorConstant>
+    <CAccumulatorSwitch id="AP_ArtanisAspectWeaponDamageSwitch">
+        <CaseArray Validator="AP_HasArtanisAnyAspectBehavior" Accumulator="AP_ArtanisAspectWeaponDamageDouble"/>
+    </CAccumulatorSwitch>
 </Catalog>

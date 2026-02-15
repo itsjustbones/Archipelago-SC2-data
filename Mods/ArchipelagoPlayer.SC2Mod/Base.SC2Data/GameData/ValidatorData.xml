@@ -2343,6 +2343,18 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisBladeWaltzWalkSpeed">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisBladeWaltzRecastWalkSpeed">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisLightningDash">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ArtanisLightningDash"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="AP_CasterHasArtanisBladeWaltzWalkSpeedCombined">
         <CombineArray value="AP_CasterHasArtanisBladeWaltzWalkSpeed"/>
         <CombineArray value="AP_CasterHasArtanisBladeWaltzRecastWalkSpeed"/>
@@ -4410,6 +4422,43 @@
         <Find value="1"/>
         <Value value="AP_HaveArtanisTaldarimAspectSelectedPassive"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisAiurAspectBehavior">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisAiurAspect"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisNerazimAspectBehavior">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisNerazimAspect"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisPurifierAspectBehavior">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisPurifierAspect"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisTaldarimAspectBehavior">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisTaldarimAspect"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_HasArtanisAnyAspectBehavior">
+        <Type value="Or"/>
+        <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
+        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
+        <CombineArray value="AP_HasArtanisPurifierAspectBehavior"/>
+        <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasRaszagalsRhythm">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_RaszagalsRhythm"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_HasRaszagalsRhythmAndNerazimAspect">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
+        <CombineArray value="AP_HasRaszagalsRhythm"/>
+    </CValidatorCombine>
     <CValidatorUnitOrderQueue id="AP_SentryIsRepairing">
         <AbilLink value="AP_VoidSentryShieldRepairDouble"/>
     </CValidatorUnitOrderQueue>
