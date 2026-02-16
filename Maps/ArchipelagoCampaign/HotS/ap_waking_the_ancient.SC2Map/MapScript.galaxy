@@ -185,6 +185,7 @@ unit gv_victoryKerrigan;
 sound gv_victoryZurvanSound;
 int gv_objective_Flawless;
 bool gv_aPBrakkKilled;
+bool gv_aP_HideKerrigan;
 
 void InitGlobals () {
     int init_i;
@@ -313,6 +314,7 @@ trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
 trigger gt_DEBUGBrakkAttakk;
+trigger gt_DEBUGVictory;
 trigger gt_RevealMeatAreas;
 trigger gt_PlayerIsInCombat;
 trigger gt_PlayerIsInCombatIndicatorDiminish;
@@ -2051,12 +2053,13 @@ void gf_HideKerrigan () {
     unit auto76C2A3E1_var;
 
     // Implementation
-    if (((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 4)))) {
+    if ((gv_aP_HideKerrigan == true)) {
         libNtve_gf_PauseUnit(gv_kerrigan, true);
         libNtve_gf_ShowHideUnit(gv_kerrigan, false);
         UnitBehaviorAdd(gv_kerrigan, "AP_ImmortalShakurasAntiAirMissileDisableAttack", gv_kerrigan, 1);
     }
     else {
+        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_kerrigan, gv_pLAYER_01_USER);
         auto76C2A3E1_g = UnitGroupFromId(3);
         auto76C2A3E1_u = UnitGroupCount(auto76C2A3E1_g, c_unitCountAll);
         for (;; auto76C2A3E1_u -= 1) {
@@ -2083,12 +2086,6 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_Init04Music, true, true);
     TriggerExecute(gt_Init05Environment, true, true);
     TriggerExecute(gt_Init06Difficulties, true, true);
-    gf_HideKerrigan();
-    if (((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 4))) && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0)) {
-    }
-    else {
-        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_kerrigan, gv_pLAYER_01_USER);
-    }
     lib15EF4C78_gf_StartingWorkersAutoHarvest(gv_pLAYER_01_USER, RegionFromId(24), RegionFromId(42));
     TriggerExecute(gt_IntroQ, true, true);
     return true;
@@ -2209,6 +2206,7 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     libNtve_gf_CreateUnitsAtPoint2(1, "AP_K5Kerrigan", 0, 1, PointFromId(3));
     gv_kerrigan = UnitLastCreated();
     libSwaC_gf_RegisterCampaignKerrigan(gv_kerrigan);
+    libNtve_gf_ShowHideUnit(gv_kerrigan, false);
     auto53B8A2E5_g = UnitGroup("AP_Mutalisk", c_playerAny, RegionFromId(26), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto53B8A2E5_u = UnitGroupCount(auto53B8A2E5_g, c_unitCountAll);
     for (;; auto53B8A2E5_u -= 1) {
@@ -2524,7 +2522,19 @@ bool gt_DEBUGBrakkAttakk_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameCheatsEnabled(c_gameCheatCategoryDevelopment) == true))) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
             return false;
         }
     }
@@ -2535,6 +2545,7 @@ bool gt_DEBUGBrakkAttakk_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, StringExternal("Param/Value/85E82060"), true);
     TriggerExecute(gt_ObjectiveHarvestMeatComplete, true, true);
     TriggerExecute(gt_MidQ, true, true);
     TriggerExecute(gt_StartAI, true, false);
@@ -2545,8 +2556,49 @@ bool gt_DEBUGBrakkAttakk_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_DEBUGBrakkAttakk_Init () {
     gt_DEBUGBrakkAttakk = TriggerCreate("gt_DEBUGBrakkAttakk_Func");
-    TriggerAddEventChatMessage(gt_DEBUGBrakkAttakk, c_playerAny, "S2", true);
-    TriggerAddEventChatMessage(gt_DEBUGBrakkAttakk, c_playerAny, "Stage2", true);
+    TriggerAddEventChatMessage(gt_DEBUGBrakkAttakk, c_playerAny, "-s2", true);
+    TriggerAddEventChatMessage(gt_DEBUGBrakkAttakk, c_playerAny, "-stage2", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Victory
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, StringExternal("Param/Value/1D30E034"), true);
+    TriggerExecute(gt_VictorySequence, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, c_playerAny, "-win", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7114,6 +7166,10 @@ bool gt_IntroQ_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
+    while (!((lib5BD4895D_gv_aP_Core_initFinished == true))) {
+        Wait(0.0625, c_timeGame);
+    }
+    Wait(0.0625, c_timeGame);
     TriggerQueueEnter();
     TriggerExecute(gt_IntroSetup, true, true);
     if ((libABFE498B_gv_aP_Triggers_skipCutscenes == false) && (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
@@ -7417,7 +7473,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
         if (auto112E0318_var == null) { break; }
         libNtve_gf_ShowHideUnit(auto112E0318_var, true);
     }
-    if ((gv_introCinematicCompleted == false)) {
+    if ((gv_introCinematicCompleted == false) && (gv_aP_HideKerrigan == false)) {
         libNtve_gf_ShowHideUnit(gv_kerrigan, true);
         UnitSetPosition(gv_kerrigan, PointFromId(3), false);
         UnitSetFacing(gv_kerrigan, PointGetFacing(PointFromId(3)), 0.0);
@@ -7426,6 +7482,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
 
     UnitBehaviorRemove(gv_kerrigan, "KerriganWalk", 1);
     UnitSetPropertyFixed(gv_kerrigan, c_unitPropKills, 0.0);
+    gf_HideKerrigan();
     UnitSetPropertyFixed(UnitFromId(219), c_unitPropKills, 0.0);
     UnitSetPropertyFixed(UnitFromId(441), c_unitPropKills, 0.0);
     UnitPauseAll(false);
@@ -7490,7 +7547,6 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
         gv_inCinematic = false;
         CinematicFade(true, lv_fadeDuration, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
     }
-    gf_HideKerrigan();
     TriggerExecute(gt_StartGameQ, true, false);
     return true;
 }
@@ -8186,6 +8242,10 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), gv_pLAYER_01_USER);
         lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
     }
+    if (((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 4)))) {
+        gv_aP_HideKerrigan = true;
+    }
+
     return true;
 }
 
@@ -8390,6 +8450,7 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerDebugSetTypeFile(1, "TriggerDebug.txt");
     TriggerExecute(libA472B13C_gt_AP_HotS_Constructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);
@@ -8703,6 +8764,7 @@ void InitTriggers () {
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
     gt_DEBUGBrakkAttakk_Init();
+    gt_DEBUGVictory_Init();
     gt_RevealMeatAreas_Init();
     gt_PlayerIsInCombat_Init();
     gt_PlayerIsInCombatIndicatorDiminish_Init();

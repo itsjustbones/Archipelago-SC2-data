@@ -681,6 +681,7 @@ bool auto_gf_ScourgeNestAttack_TriggerFunc (bool testConds, bool runActions) {
     int lp_nestIndex = auto_gf_ScourgeNestAttack_lp_nestIndex;
 
     // Automatic Variable Declarations
+    string autoAFB70616_val;
     fixed auto5733301F_at;
 
     // Implementation
@@ -690,7 +691,16 @@ bool auto_gf_ScourgeNestAttack_TriggerFunc (bool testConds, bool runActions) {
     gv_clear2FireCheckCount += 1;
     gv_gorgonAttacker = lp_nestIndex;
     Wait(0.5, c_timeGame);
-    libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_scourgeNestUnit[lp_nestIndex]), c_animNameDefault, "Stand", c_animFlagPlayForever | c_animFlagNonLooping, c_animTimeDefault);
+    autoAFB70616_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
+    if (autoAFB70616_val == "Neut") {
+        libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_scourgeNestUnit[lp_nestIndex]), c_animNameDefault, "Stand", c_animFlagPlayForever | c_animFlagNonLooping, c_animTimeDefault);
+    }
+    else if (autoAFB70616_val == "Terr") {
+    }
+    else if (autoAFB70616_val == "Prot") {
+    }
+    else {
+    }
     TransmissionClear(gv_transmission_ProximityWarning);
     Wait(0.5, c_timeGame);
     UnitSetState(gv_tHE_ONE_GORGON, c_unitStateTargetable, true);
@@ -1056,7 +1066,12 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     for (;; autoBBD51A65_u -= 1) {
         autoBBD51A65_var = UnitGroupUnitFromEnd(autoBBD51A65_g, autoBBD51A65_u);
         if (autoBBD51A65_var == null) { break; }
-        libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(autoBBD51A65_var), c_animNameDefault, "Stand Unpowered", c_animFlagPlayForever, c_animTimeDefault);
+        if ((UnitGetType(autoBBD51A65_var) != "AP_DrakkenMiniLaserDrill")) {
+            libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(autoBBD51A65_var), c_animNameDefault, "Stand Unpowered", c_animFlagPlayForever, c_animTimeDefault);
+        }
+        else {
+            libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(autoBBD51A65_var), c_animNameDefault, "Stand Work End", c_animFlagPlayForever, c_animTimeDefault);
+        }
         if ((UnitGetType(autoBBD51A65_var) != "AP_DrakkenMiniLaserDrill")) {
             libNtve_gf_MakeUnitInvulnerable(autoBBD51A65_var, true);
         }
@@ -1464,6 +1479,7 @@ bool gt_ScourgeNestCycle_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     int auto02AEEC73_ae;
     const int auto02AEEC73_ai = 1;
+    string auto4D6619B6_val;
     string autoF79DD2EE_val;
     int auto604005D3_val;
 
@@ -1498,6 +1514,12 @@ bool gt_ScourgeNestCycle_Func (bool testConds, bool runActions) {
     for ( ; ( (auto02AEEC73_ai >= 0 && lv_index <= auto02AEEC73_ae) || (auto02AEEC73_ai < 0 && lv_index >= auto02AEEC73_ae) ) ; lv_index += auto02AEEC73_ai ) {
         if ((gv_scourgeNestActivated[lv_index] == false) && (UnitIsAlive(gv_scourgeNestUnit[lv_index]) == true)) {
             if (((UnitGroupCount(UnitGroup("AP_CreepTumorBurrowed", gv_pLAYER_01_USER, RegionCircle(gv_scourgeNest_Point[lv_index], gv_c_ScourgeActivationRange), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) >= 1) || (UnitGroupCount(UnitGroup("AP_Pylon", gv_pLAYER_01_USER, RegionCircle(UnitGetPosition(gv_scourgeNestUnit[lv_index]), gv_c_ScourgeActivationRange), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) >= 1) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr") && (UnitGetPropertyFixed(gv_scourgeNestUnit[lv_index], c_unitPropLifePercent, c_unitPropCurrent) >= 99.0)))) {
+                auto4D6619B6_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
+                if (auto4D6619B6_val == "Terr") {
+                    libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_scourgeNestUnit[lv_index]), c_animNameDefault, "Stand Work Start One", c_animFlagPlayForever, c_animTimeDefault);
+                }
+                else {
+                }
                 gv_scourgeNestActivated[lv_index] = true;
                 gv_scourgeNestsActivatedCount += 1;
                 TriggerExecute(gt_ObjectiveActivateScourgeNestUpdate, true, false);
@@ -3868,7 +3890,7 @@ bool gt_TransmissionFirstScourgeNestQ_Func (bool testConds, bool runActions) {
         libSwaC_gf_SendTransmissionCampaign(null, "zMission_Char02|Line00010", c_transmissionDurationAdd, 0.0, true, libSwaC_ge_CampaignTransmissionPortraitOptioins_HidePortraitAfter, libSwaC_ge_CampaignTransmissionCueSoundOptions_DefaultCueSoundBehavior);
     }
     else if (auto37BCBDEF_val == "Terr") {
-        libSwaC_gf_SendTransmissionCampaign(null, "zMission_Char02|Line00456", c_transmissionDurationAdd, 0.0, true, libSwaC_ge_CampaignTransmissionPortraitOptioins_HidePortraitAfter, libSwaC_ge_CampaignTransmissionCueSoundOptions_DefaultCueSoundBehavior);
+        libSwaC_gf_SendTransmissionCampaign(null, "zMission_Char02|Line00456", c_transmissionDurationSet, 7.25, false, libSwaC_ge_CampaignTransmissionPortraitOptioins_HidePortraitAfter, libSwaC_ge_CampaignTransmissionCueSoundOptions_DefaultCueSoundBehavior);
     }
     else if (auto37BCBDEF_val == "Prot") {
         libSwaC_gf_SendTransmissionCampaign(null, "zMission_Expedition01|Line00057", c_transmissionDurationAdd, 0.0, true, libSwaC_ge_CampaignTransmissionPortraitOptioins_HidePortraitAfter, libSwaC_ge_CampaignTransmissionCueSoundOptions_DefaultCueSoundBehavior);

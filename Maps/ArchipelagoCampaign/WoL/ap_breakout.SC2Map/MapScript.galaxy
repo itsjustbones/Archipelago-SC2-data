@@ -905,7 +905,7 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((GameIsTestMap(false) == true)) {
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
         libABFE498B_gv_aP_Triggers_DebugMode = true;
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
@@ -1063,7 +1063,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         gv_nonActivatedDiamondbacks = UnitGroup("AP_Diamondback", 0, RegionFromId(26), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     }
     Wait(1.0, c_timeGame);
-    if ((GameIsTestMap(false) == true)) {
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
         TechTreeAbilityAllow(gv_p1_USER, AbilityCommand("VoodooShield", 0), false);
     }
 

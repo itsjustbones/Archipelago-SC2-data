@@ -2887,8 +2887,8 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ReleaseInterceptorsTimedLife" parent="TimedLife">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <DisplayDuration index="Enemy" value="1"/>
-        <Duration value="60"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="15"/>
         <Period value="0.5"/>
         <PeriodicEffect value="AP_ReleaseInterceptorsLeashSet"/>
         <InitialEffect value="AP_ReleaseInterceptorsBeaconAB"/>
@@ -2910,7 +2910,7 @@
         <FinalEffect value="AP_ReleaseInterceptorsRemoveBeacon"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ReleaseInterceptorsTimedLifeWarning">
-        <Duration value="50"/>
+        <Duration value="10"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ReleaseBombersWanderDelay">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4494,6 +4494,7 @@
         <Modification>
             <VitalRegenArray index="Energy" value="-2"/>
             <WeaponEnableArray value="AP_Oracle"/>
+            <WeaponEnableArray value="AP_OracleGround"/>
             <WeaponDisableArray value="AP_OracleDummyWeapon"/>
         </Modification>
     </CBehaviorBuff>
@@ -8344,26 +8345,6 @@
         </Modification>
         <DisableValidatorArray value="AP_TargetIsUnderConstruction"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_CarrierPurifierChargeBeamCounter">
-        <InfoFlags index="Hidden" value="1"/>
-        <Duration value="5"/>
-        <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="15"/>
-        <InitialEffect value="AP_CarrierPurifierChargeBeamCounterCheck"/>
-        <RefreshEffect value="AP_CarrierPurifierChargeBeamCounterCheck"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_CarrierPurifierChargeBeamPhase2">
-        <InfoFlags index="Hidden" value="1"/>
-        <Duration value="5"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_CarrierPurifierChargeBeamPhase3">
-        <InfoFlags index="Hidden" value="1"/>
-        <Duration value="5"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_CarrierPurifierChargeBeamActive">
-        <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.6"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_StukovInfestedBunkerMarines">
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCount value="6"/>
@@ -10889,38 +10870,38 @@
         <Requirements value="AP_HaveArchonSuicide"/>
         <FinalEffect value="AP_ArchonSuicideSearch"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_VoidRayAiurStackingSlow">
+    <CBehaviorBuff id="AP_VoidRayAiurSlow">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-timebomb.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="3"/>
-        <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="24"/>
-        <Modification MoveSpeedMultiplier="0.95" AttackSpeedMultiplier="0.97">
-            <RateMultiplierArray index="Charge" value="0.95"/>
-            <RateMultiplierArray index="Cooldown" value="0.95"/>
-            <RateMultiplierArray index="Morph" value="0.95"/>
-            <RateMultiplierArray index="Progress" value="0.95"/>
-            <RateMultiplierArray index="Queueable" value="0.95"/>
-            <RateMultiplierArray index="Spawn" value="0.95"/>
-            <RateMultiplierArray index="Creep" value="0.95"/>
-        </Modification>
+        <Duration value="1"/>
+        <MaxStackCount value="1"/>
+        <Modification TimeScale="0.5"/>
+        <StackAlias value="AP_VoidRayAiurSlow"/>
+        <StackAliasPriority value="3"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_VoidRayAiurStackingSlowHeroic" parent="AP_VoidRayAiurStackingSlow">
-        <MaxStackCount value="12"/>
+    <CBehaviorBuff id="AP_VoidRayAiurSlowHeroic" parent="AP_VoidRayAiurSlow">
+        <Modification TimeScale="0.7"/>
+        <StackAliasPriority value="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_VoidRayAiurChronoclysmSlow" parent="AP_VoidRayAiurSlow">
+        <Modification TimeScale="0.75"/>
+        <StackAliasPriority value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_VoidRayAiurChronoclysmSlowHeroic" parent="AP_VoidRayAiurSlow">
+        <Modification TimeScale="0.85"/>
+        <StackAliasPriority value="0"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidRayAiurChronoShear">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-oracle-stasiscalibration.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
-        <Period value="0.6"/>
-        <PeriodicEffect value="AP_VoidRayAiurChronoBeamStackingSlowSwitch"/>
-        <Modification AttackSpeedMultiplier="0.75" />
+        <Duration value="1"/>
+        <MaxStackCount value="1"/>
         <DamageResponse ModifyFraction="1.5">
             <Chance value="1"/>
         </DamageResponse>
-        <ExpireEffect value="AP_VoidRayAiurRemoveStackingSlowSet"/>
+        <RemoveValidatorArray value="IsStructure"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_TradeCharge">
         <InfoIcon value="Assets\Textures\btn-tips-credit.dds"/>
@@ -11142,11 +11123,6 @@
             <StateFlags index="SuppressEnergyRegen" value="1"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ElderProbeReconstructionCharge">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <FinalEffect value="AP_ElderProbeReconstructionCharge"/>
-    </CBehaviorBuff>
     <CBehaviorPowerSource id="AP_ElderProbePowerSource">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures"/>
         <Radius value="3.75"/>
@@ -11316,6 +11292,101 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_TownHall">
         <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SurveillanceMode">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <Height value="3"/>
+            <SightBonus value="4"/>
+            <MoveSpeedMaximum value="0"/>
+            <DetectBonus value="4"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <StateFlags index="SuppressFidgeting" value="1"/>
+            <StateFlags index="SuppressArmySelect" value="1"/>
+            <HeightTime index="Start" value="2"/>
+            <HeightTime index="Stop" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <AbilLinkDisableArray value="AP_OracleWeapon"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorPowerSource id="AP_PowerRadius1">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-building-protoss-pylon.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures"/>
+        <Radius value="1"/>
+        <PowerLink value="PowerSource"/>
+    </CBehaviorPowerSource>
+    <CBehaviorBuff id="AP_TimedLife6s" parent="TimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="0"/>
+        <DisplayDuration index="Ally" value="0"/>
+        <Duration value="6"/>
+        <DurationRandomMax value="0"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CarrierPurifierBomberActivated">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <MaxStackCount value="1"/>
+        <Duration value="0.3125"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CarrierPurifierBomberBombing">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="AP_CarrierPurifierBomberIsActivated"/>
+        <Period value="1"/>
+        <PeriodicEffect value="AP_CarrierPurifierBomberCP"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CarrierPurifierBomberCount">
+        <InfoFlags index="Hidden" value="1"/>
+        <MaxStackCount value="5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_WarhoundBrawler">
+        <InfoIcon value="Assets\Textures\btn-unit-terran-tychuswarhound.dds"/>
+        <Modification>
+            <DamageTakenFraction index="Spell" value="-0.4"/>
+            <DamageTakenFraction index="Melee" value="-0.4"/>
+            <DamageTakenFraction index="Ranged" value="-0.4"/>
+            <DamageTakenFraction index="Splash" value="-0.4"/>
+            <DamageTakenFraction index="NoProc" value="-0.4"/>
+            <WeaponArray Link="AP_WarHoundMeleeBrawler"/>
+            <WeaponDisableArray value="AP_WarHound"/>
+            <WeaponDisableArray value="AP_WarHoundMelee"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_WarhoundJumpSlow">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-timebomb.dds"/>
+        <Alignment value="Negative"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.5" AttackSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CorruptorAcidSplash">
+        <Alignment value="Positive"/>
+        <InfoIcon value="AP\Assets\Textures\btn-zerg-AcidSplash.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <DamageResponse ModifyFraction="0.5">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SCVRepairBio">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-nova-healingmastery.dds"/>
+        <Requirements value="AP_HaveSCVRepairBio"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SupplyDepotCloak">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-cloak.dds"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveSupplyDepotCloak"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SCVRepairFree">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-progression-stetmann-05-scrapdrop.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
 </Catalog>

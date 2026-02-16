@@ -1512,7 +1512,11 @@
     </CRequirement>
     <CRequirement id="AP_ArmCarrierPurifierBomber">
         <EditorCategories value="Race:Protoss,TechType:Unit"/>
-        <NodeArray index="Use" Link="AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit6"/>
+        <NodeArray index="Use" Link="AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit3"/>
+    </CRequirement>
+    <CRequirement id="AP_ArmCarrierPurifierBomberUpgraded">
+        <EditorCategories value="Race:Protoss,TechType:Unit"/>
+        <NodeArray index="Use" Link="AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit5"/>
     </CRequirement>
     <CRequirement id="AP_UseDarkProtoss">
         <EditorCategories value="Race:Zerg,TechType:Ability"/>
@@ -2580,12 +2584,6 @@
     <CRequirement id="AP_CanInstallWormholeModule">
         <NodeArray index="Show" Link="AP_AndCanInstallWormholeModuleCompleteOnly"/>
     </CRequirement>
-    <CRequirement id="AP_CanInstallMassRecall">
-        <NodeArray index="Show" Link="AP_AndCanInstallMassRecallCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="AP_CanInstallNexusRecall">
-        <NodeArray index="Show" Link="AP_AndCanInstallNexusRecallCompleteOnly"/>
-    </CRequirement>
     <CRequirement id="AP_CanInstallPurifierMothershipDebuff">
         <NodeArray index="Show" Link="AP_CountUpgradeCanInstallPurifierMothershipDebuffCompleteOnly"/>
     </CRequirement>
@@ -3284,9 +3282,10 @@
         <EditorCategories value="Race:Protoss,TechType:Ability"/>
         <NodeArray index="Use" Link="AP_CountUpgradeSkylordHyperjumpCompleteOnly"/>
     </CRequirement>
-    <CRequirement id="AP_HaveTriremeSolarBeam">
+    <CRequirement id="AP_HaveTriremeBomberMiniaturization">
         <EditorCategories value="Race:Protoss,TechType:Ability"/>
-        <NodeArray index="Use" Link="AP_CountUpgradeTriremeSolarBeamCompleteOnly"/>
+        <NodeArray index="Use" Link="AP_CountUpgradeTriremeBomberMiniaturizationCompleteOnly"/>
+        <NodeArray index="Show" Link="AP_CountUpgradeWarCouncilNerfsCompleteOnly"/>
     </CRequirement>
     <CRequirement id="AP_HaveVoidRaySpeedUpgrade">
         <EditorCategories value="Race:Protoss,TechType:Ability"/>
@@ -4888,6 +4887,10 @@
     <CRequirement id="AP_HaveSummonedElderProbes">
         <NodeArray index="Show" Link="AP_CountUpgradeElderProbesSummoned"/>
     </CRequirement>
+    <CRequirement id="AP_ElderProbesReconstruction">
+        <NodeArray index="Use" Link="AP_ElderProbe5"/>
+        <NodeArray index="Show" Link="AP_CountUpgradeElderProbesSummoned"/>
+    </CRequirement>
     <CRequirement id="AP_HaveInfBullfrogWildMutation">
         <EditorCategories value="Race:Zerg,TechType:Ability"/>
         <NodeArray index="Show" Link="AP_CountUpgradeAP_InfBullfrogWildMutationCompleteOnly"/>
@@ -4958,5 +4961,36 @@
     </CRequirement>
     <CRequirement id="AP_HaveFastDelivery">
         <NodeArray index="Show" Link="AP_CountUpgradeFastDelivery"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveWarhoundBrawlerConfiguration">
+        <NodeArray index="Show" Link="AP_WarhoundBrawlerConfiguration"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveWarhoundJumpJets">
+        <NodeArray index="Show" Link="AP_WarhoundJumpJets"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveOracleGround">
+        <NodeArray index="Show" Link="AP_OracleGround"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveCorruptorAcidSplash">
+        <NodeArray index="Show" Link="AP_CorruptorAcidSplash"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveBunkerIgnoreSupply">
+        <NodeArray index="Show" Link="AP_BunkerIgnoreSupply"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveCommandCenterHyperjump">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="AP_CommandCenterHyperjump"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveJuggernautThrusters">
+        <NodeArray index="Show" Link="AP_JuggernautThrusters"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveSCVRepairBio">
+        <NodeArray index="Show" Link="AP_SCVRepairBio"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveSCVRepairFree">
+        <NodeArray index="Show" Link="AP_SCVRepairFree"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveSupplyDepotCloak">
+        <NodeArray index="Show" Link="AP_SupplyDepotCloak"/>
     </CRequirement>
 </Catalog>

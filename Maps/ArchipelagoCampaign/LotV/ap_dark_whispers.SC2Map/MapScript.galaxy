@@ -6085,6 +6085,9 @@ bool gt_ObjectiveDestroyZergBaseComplete_Func (bool testConds, bool runActions) 
     unitgroup autoC95404DF_g;
     int autoC95404DF_u;
     unit autoC95404DF_var;
+    unitgroup auto5DC8AEB7_g;
+    int auto5DC8AEB7_u;
+    unit auto5DC8AEB7_var;
 
     // Variable Initialization
 
@@ -6115,11 +6118,35 @@ bool gt_ObjectiveDestroyZergBaseComplete_Func (bool testConds, bool runActions) 
         if (autoC95404DF_var == null) { break; }
         lv_remaining = (lv_remaining + 1);
     }
+    auto5DC8AEB7_g = UnitGroup(null, gv_pLAYER_05_KERRIGAN_S01, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto5DC8AEB7_u = UnitGroupCount(auto5DC8AEB7_g, c_unitCountAll);
+    for (;; auto5DC8AEB7_u -= 1) {
+        auto5DC8AEB7_var = UnitGroupUnitFromEnd(auto5DC8AEB7_g, auto5DC8AEB7_u);
+        if (auto5DC8AEB7_var == null) { break; }
+        lv_remaining = (lv_remaining + 1);
+    }
     if ((lv_remaining > 0)) {
         return false;
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
+    TriggerEnable(gt_UnitEntersZergBaseQ, false);
+    TriggerEnable(gt_PlayerKillsZergForceQ, false);
+    TriggerEnable(gt_KerriganController, false);
+    TriggerEnable(gt_Kerrigan05WaveController, false);
+    TriggerEnable(gt_Kerrigan06WaveController, false);
+    TriggerEnable(gt_Kerrigan07WaveController, false);
+    TriggerStop(gt_KerriganController);
+    TriggerStop(gt_KerriganWaveSent);
+    TriggerStop(gt_Kerrigan05Wave);
+    TriggerStop(gt_Kerrigan05WaveGathering);
+    TriggerStop(gt_Kerrigan05WaveController);
+    TriggerStop(gt_Kerrigan06Wave);
+    TriggerStop(gt_Kerrigan06WaveGathering);
+    TriggerStop(gt_Kerrigan06WaveController);
+    TriggerStop(gt_Kerrigan07Wave);
+    TriggerStop(gt_Kerrigan07WaveGathering);
+    TriggerStop(gt_Kerrigan07WaveController);
     TriggerExecute(gt_ObjectiveDestroyZergBaseCreate, true, false);
     lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveZergBaseDestroyed);
     lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SECOND_PYLON2);

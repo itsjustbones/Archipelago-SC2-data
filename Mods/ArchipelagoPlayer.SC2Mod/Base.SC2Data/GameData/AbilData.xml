@@ -2318,7 +2318,7 @@
         </TargetSorts>
         <Range value="7"/>
         <Arc value="360"/>
-        <AutoCastFilters value="Visible;Player,Ally,Neutral"/>
+        <AutoCastFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AutoCastRange value="7.5"/>
         <AutoCastValidatorArray value="noMarkers"/>
         <AutoCastValidatorArray value="AP_TargetNotLockOn"/>
@@ -2331,6 +2331,7 @@
         <AutoCastValidatorArray value="NotLarva"/>
         <AutoCastValidatorArray value="CasterIsNotHidden"/>
         <AutoCastValidatorArray value="NotLarvaEgg"/>
+        <AutoCastValidatorArray value="AP_TargetNotHarmless"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_LockOn" Requirements="AP_NoLockedOn"/>
         <FollowRange value="7"/>
     </CAbilEffectTarget>
@@ -4063,23 +4064,21 @@
         <MaxCount value="8"/>
     </CAbilArmMagazine>
     <CAbilArmMagazine id="AP_CarrierPurifierHangar">
-        <AbilSetId value="CarrierAiurHanger"/>
+        <AbilSetId value="CarrierPurifierHangar"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Flags index="Retarget" value="1"/>
         <Leash value="12"/>
-        <InfoArray index="Ammo1" Time="15" CountStart="3" Manage="Recall" Unit="AP_CarrierPurifierBomber">
-            <Charge Link="CarrierBomber" Location="Unit"/>
+        <InfoArray index="Ammo1" Time="5" CountStart="3" Manage="Ignore" Unit="AP_CarrierPurifierBomber">
             <Cooldown Link="Abil/AP_CarrierPurifierHangar"/>
             <Button DefaultButtonFace="AP_InterceptorPurifier" Requirements="AP_ArmCarrierPurifierBomber">
                 <Flags index="ToSelection" value="1"/>
             </Button>
             <Flags index="AutoBuild" value="1"/>
             <Flags index="AutoBuildOn" value="1"/>
-            <Flags index="LeashRetarget" value="1"/>
         </InfoArray>
-        <Alert value="TrainComplete"/>
+        <Alert value=""/>
+        <EffectArray index="Create" value="AP_CarrierPurifierBomberCountAB"/>
         <EffectArray index="Death" value="InterceptorFate"/>
-        <MaxCount value="6"/>
+        <MaxCount value="3"/>
     </CAbilArmMagazine>
     <CAbilArmMagazine id="AP_CarrierHangar">
         <AbilSetId value="CarrierHanger"/>
@@ -5407,7 +5406,8 @@
         <Flags index="ReExecutable" value="1"/>
         <Flags index="Smart" value="1"/>
         <Flags index="PassengerAcquirePassengers" value="1"/>
-        <TargetFilters value="Mechanical,Visible;Self,Enemy,Missile,UnderConstruction,Dead,Hidden"/>
+        <TargetFilters value="Visible;Self,Enemy,Missile,UnderConstruction,Dead,Hidden"/>
+        <IgnoreFilters value="Mechanical;-"/>
         <AutoCastAcquireLevel value="Defensive"/>
         <AutoCastFilters value="-;Neutral,Enemy"/>
         <AutoCastRange value="7"/>
@@ -5464,7 +5464,8 @@
         <Flags index="ReExecutable" value="1"/>
         <Flags index="Smart" value="1"/>
         <Flags index="PassengerAcquirePassengers" value="1"/>
-        <TargetFilters value="Mechanical,Visible;Self,Enemy,Missile,UnderConstruction,Dead,Hidden"/>
+        <TargetFilters value="Visible;Self,Enemy,Missile,UnderConstruction,Dead,Hidden"/>
+        <IgnoreFilters value="Mechanical;-"/>
         <AutoCastAcquireLevel value="Defensive"/>
         <AutoCastFilters value="Visible;Neutral,Enemy"/>
         <AutoCastRange value="7"/>
@@ -7781,6 +7782,8 @@
         <AutoCastRange value="8"/>
         <AutoCastValidatorArray value="AP_NotHaveTargetLock"/>
         <AutoCastValidatorArray value="AP_NotInterceptor"/>
+        <AutoCastValidatorArray value="AP_TargetNotHarmless"/>
+        <AutoCastFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <CastOutroTime value="0.5"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_TargetLock"/>
     </CAbilEffectTarget>
@@ -9945,6 +9948,7 @@
         <TargetFilters value="Biological,Visible;Ally,Neutral,Enemy,Dead,Hidden"/>
         <LoadValidatorArray value="RequiresTerran"/>
         <LoadValidatorArray value="AP_IsNotHellionTank"/>
+        <UnloadValidatorArray value="AP_BunkerUnload"/>
     </CAbilTransport>
     <CAbilRedirectTarget id="AP_AttackRedirect">
         <Abil value="attack"/>
@@ -13232,6 +13236,7 @@
         <EffectArray index="Return" value="TimedLifeFate"/>
         <MaxCount value="3"/>
         <Launch value="ReleaseAtTarget"/>
+        <Alert value=""/>
     </CAbilArmMagazine>
     <CAbilQueue id="AP_VoidRayPurifierQueue3">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
@@ -15592,12 +15597,18 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="AutoCastOn" value="1"/>
         <Cost>
-            <Charge CountMax="5" CountUse="1" Location="Player"/>
-            <Cooldown TimeStart="20" TimeUse="20"/>
+            <Charge>
+                <CountMax value="1"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <HideCount value="1"/>
+                <TimeUse value="20"/>
+            </Charge>
+            <Cooldown Location="Player" TimeUse="0.5"/>
         </Cost>
         <AutoCastRange value="1"/>
         <ProducedUnitArray value="AP_ElderProbe"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ReconstructElderProbe" Requirements="AP_HaveSummonedElderProbes"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ReconstructElderProbe" Requirements="AP_ElderProbesReconstruction"/>
     </CAbilEffectInstant>
     <CAbilWarpTrain id="AP_ProbeWarpin">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -15794,4 +15805,531 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_BullfrogAllAboard" />
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
+    <CAbilBehavior id="AP_SurveillanceMode">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="AP_SurveillanceModeObserverOn">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="AP_SurveillanceModeObserverOff">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <OffCost>
+            <Cooldown TimeUse="5"/>
+        </OffCost>
+        <BehaviorArray value="AP_SurveillanceMode"/>
+    </CAbilBehavior>
+    <CAbilWarpTrain id="AP_SuperWarpGateTrainSystem" parent="AP_WarpGateTrain">
+        <InfoArray index="0">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="1">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="2">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="3">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="4">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="5">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="6">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="7">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>        
+        <InfoArray index="8">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="9">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="10" Unit="AP_Supplicant">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="11">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="12">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="13">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="14">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="15">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="16">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="17">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="18">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="19">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="WarpTrainersButton" value="0"/>
+        <SharedFlags index="SkipPreload" value="1"/>
+    </CAbilWarpTrain>
+    <CAbilWarpTrain id="AP_SuperWarpGateTrainStargate" parent="AP_StargateWarpTrainRedirect">
+        <InfoArray index="0">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="1">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="2">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="3">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="4">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="5">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="6">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="7">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="8">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="9">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="10">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="11">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="12">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="13">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="14">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="15">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="16">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="17">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="18">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="19">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="WarpTrainersButton" value="0"/>
+        <SharedFlags index="SkipPreload" value="1"/>
+    </CAbilWarpTrain>
+    <CAbilWarpTrain id="AP_SuperWarpGateTrainRobotics" parent="AP_RoboticsFacilityWarpTrainRedirect">
+        <InfoArray index="0">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="1">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="2">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="3">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="4">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="5">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="6">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="7">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="8">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="9">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="10">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="11">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="12">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="13">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="14">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="15">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="16">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="17">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="18">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <InfoArray index="19">
+            <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
+            <Button Requirements=""/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="WarpTrainersButton" value="0"/>
+        <SharedFlags index="SkipPreload" value="1"/>
+    </CAbilWarpTrain>
+    <CAbilWarpTrain id="AP_SuperWarpGateTrainOther">
+        <InfoArray index="1" Time="5" Unit="AP_Probe">
+            <Button DefaultButtonFace="AP_ProbeWarpin"/>
+        </InfoArray>
+        <InfoArray index="2" Time="5" Unit="AP_ElderProbe">
+            <Button DefaultButtonFace="AP_ElderProbes"/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="WarpTrainersButton" value="0"/>
+        <SharedFlags index="SkipPreload" value="1"/>
+    </CAbilWarpTrain>
+    <CAbilWarpTrain id="AP_SuperWarpGateTrainVanilla">
+        <InfoArray index="0" Time="5" Unit="Zealot">
+            <Button DefaultButtonFace="Zealot"/>
+        </InfoArray>
+        <InfoArray index="1" Time="5" Unit="Stalker">
+            <Button DefaultButtonFace="Stalker"/>
+        </InfoArray>
+        <InfoArray index="2" Time="5" Unit="Immortal">
+            <Button DefaultButtonFace="Immortal"/>
+        </InfoArray>
+        <InfoArray index="3" Time="5" Unit="HighTemplar">
+            <Button DefaultButtonFace="HighTemplar"/>
+        </InfoArray>
+        <InfoArray index="4" Time="5" Unit="DarkTemplar">
+            <Button DefaultButtonFace="DarkTemplar"/>
+        </InfoArray>
+        <InfoArray index="5" Time="5" Unit="Sentry">
+            <Button DefaultButtonFace="Sentry"/>
+        </InfoArray>
+        <InfoArray index="6" Time="5" Unit="Carrier">
+            <Button DefaultButtonFace="Carrier"/>
+        </InfoArray>
+        <InfoArray index="7" Time="5" Unit="Phoenix">
+            <Button DefaultButtonFace="Phoenix"/>
+        </InfoArray>
+        <InfoArray index="8" Time="5" Unit="VoidRay">
+            <Button DefaultButtonFace="VoidRay"/>
+        </InfoArray>
+        <InfoArray index="9" Time="5" Unit="Archon">
+            <Button DefaultButtonFace="Archon"/>
+        </InfoArray>
+        <InfoArray index="10" Time="5" Unit="Zeratul">
+            <Button DefaultButtonFace="WarpInZeratul"/>
+        </InfoArray>
+        <InfoArray index="11" Time="5" Unit="Urun">
+            <Button DefaultButtonFace="WarpInUrun"/>
+        </InfoArray>
+        <InfoArray index="12" Time="5" Unit="Mohandar">
+            <Button DefaultButtonFace="WarpInMohandar"/>
+        </InfoArray>
+        <InfoArray index="13" Time="5" Unit="Selendis">
+            <Button DefaultButtonFace="WarpInSelendis"/>
+        </InfoArray>
+        <InfoArray index="14" Time="5" Unit="Scout">
+            <Button DefaultButtonFace="WarpInScout"/>
+        </InfoArray>
+        <InfoArray index="15" Time="5" Unit="Colossus">
+            <Button DefaultButtonFace="Colossus"/>
+        </InfoArray>
+        <InfoArray index="16" Time="5" Unit="WarpPrism">
+            <Button DefaultButtonFace="WarpPrism"/>
+        </InfoArray>
+        <InfoArray index="17" Time="5" Unit="Probe">
+            <Button DefaultButtonFace="Probe"/>
+        </InfoArray>
+        <InfoArray index="18" Time="5" Unit="Dragoon">
+            <Button DefaultButtonFace="Dragoon"/>
+        </InfoArray>
+        <InfoArray index="19" Time="5" Unit="Probe">
+            <Button DefaultButtonFace="Probe"/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="WarpTrainersButton" value="0"/>
+        <SharedFlags index="SkipPreload" value="1"/>
+    </CAbilWarpTrain>
+    <CAbilWarpTrain id="AP_SuperWarpGateTrainVanillaVoid">
+        <InfoArray index="0" Time="5" Unit="Tempest">
+            <Button DefaultButtonFace="Tempest"/>
+        </InfoArray>
+        <InfoArray index="1" Time="5" Unit="Oracle">
+            <Button DefaultButtonFace="Oracle"/>
+        </InfoArray>
+        <InfoArray index="2" Time="5" Unit="MothershipCore">
+            <Button DefaultButtonFace="MothershipCore"/>
+        </InfoArray>
+        <InfoArray index="3" Time="5" Unit="Dragoon">
+            <Button DefaultButtonFace="Dragoon"/>
+        </InfoArray>
+        <InfoArray index="4" Time="5" Unit="Observer">
+            <Button DefaultButtonFace="Observer"/>
+        </InfoArray>
+        <InfoArray index="5" Time="5" Unit="FenixChampion">
+            <Button DefaultButtonFace="WarpInFenixChampion"/>
+        </InfoArray>
+        <InfoArray index="6" Time="5" Unit="VorazunChampion">
+            <Button DefaultButtonFace="WarpInDarkTemplarChampion"/>
+        </InfoArray>
+        <InfoArray index="7" Time="5" Unit="AlarakChampion">
+            <Button DefaultButtonFace="WarpInDarkArchonChampion"/>
+        </InfoArray>
+        <InfoArray index="8" Time="5" Unit="KaraxChampion">
+            <Button DefaultButtonFace="WarpInVulcanChampion"/>
+        </InfoArray>
+        <InfoArray index="9" Time="5" Unit="ArtanisVoid">
+            <Button DefaultButtonFace="WarpInArtanisChampion"/>
+        </InfoArray>
+        <InfoArray index="10" Time="5" Unit="ZealotPurifier">
+            <Button DefaultButtonFace="ZealotPurifier"/>
+        </InfoArray>
+        <InfoArray index="11" Time="5" Unit="Adept">
+            <Button DefaultButtonFace="WarpInAdept"/>
+        </InfoArray>
+        <InfoArray index="12" Time="5" Unit="SentryPurifier">
+            <Button DefaultButtonFace="WarpinEnergizer"/>
+        </InfoArray>
+        <InfoArray index="13" Time="5" Unit="PhoenixPurifier">
+            <Button DefaultButtonFace="VoidPhoenixPurifier"/>
+        </InfoArray>
+        <InfoArray index="14" Time="5" Unit="ColossusPurifier">
+            <Button DefaultButtonFace="Colossus"/>
+        </InfoArray>
+        <InfoArray index="15" Time="5" Unit="Tempest">
+            <Button DefaultButtonFace="Tempest"/>
+        </InfoArray>
+        <InfoArray index="16" Time="5" Unit="StalkerPurifier">
+            <Button DefaultButtonFace="StalkerPurifier"/>
+        </InfoArray>
+        <InfoArray index="17" Time="5" Unit="SOAMothershipv4">
+            <Button DefaultButtonFace="MothershipTaldarim"/>
+        </InfoArray>
+        <InfoArray index="18" Time="5" Unit="Reaver">
+            <Button DefaultButtonFace="WarpInReaver"/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="WarpTrainersButton" value="0"/>
+        <SharedFlags index="SkipPreload" value="1"/>
+    </CAbilWarpTrain>
+    <CAbilBehavior id="AP_WarhoundBrawler">
+        <CmdButtonArray index="On" DefaultButtonFace="AP_WarhoundBrawlerOn" Requirements="AP_HaveWarhoundBrawlerConfiguration"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="AP_WarhoundBrawlerOff" Requirements="AP_HaveWarhoundBrawlerConfiguration"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <OffCost>
+            <Cooldown TimeUse="5"/>
+        </OffCost>
+        <BehaviorArray value="AP_WarhoundBrawler"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="AP_WarhoundJump">
+        <Cost>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <Range value="7"/>
+        <CastIntroTime value="0.5"/>
+        <CastOutroTime value="0.5"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_WarhoundJump" Requirements="AP_HaveWarhoundJumpJets"/>
+    </CAbilEffectTarget>
+    <CAbilMorph id="AP_OracleGround">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_OracleGround" Requirements="AP_HaveOracleGround">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <InfoArray Unit="AP_OracleGround" RandomDelayMax="0.5">
+            <SectionArray index="Abils">
+                <DurationArray index="Delay" value="0.5"/>
+            </SectionArray>
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="2.5"/>
+            </SectionArray>
+            <SectionArray index="Mover">
+                <DurationArray index="Delay" value="0.5"/>
+                <DurationArray index="Duration" value="2"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="1.5"/>
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="AP_OracleAir">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DataCollection value="AP_OracleGround"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_OracleAir">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="IgnoreFacing" value="1"/>
+        <InfoArray Unit="AP_Oracle" RandomDelayMax="0.5">
+            <SectionArray index="Abils">
+                <DurationArray index="Delay" value="0.5"/>
+            </SectionArray>
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="2.5"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="1.5"/>
+            </SectionArray>
+            <SectionArray index="Mover">
+                <DurationArray index="Delay" value="0.5"/>
+                <DurationArray index="Duration" value="2"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="1.5"/>
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilEffectTarget id="AP_CarrierPurifierReleaseBombers">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Cooldown>
+                <Location value="Unit"/>
+                <TimeUse value="10"/>
+            </Cooldown>
+        </Cost>
+        <Effect index="0" value="AP_CarrierPurifierBombingRunSet"/>
+        <Range value="9"/>
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_LiberatorAGMode" />
+    </CAbilEffectTarget>
+    <CAbilQueue id="AP_HiddenHangarQueue5">
+        <EditorCategories value="Race:Neutral,AbilityorEffectType:Structures"/>
+        <QueueSize value="5"/>
+        <Flags index="Passive" value="1"/>
+        <Flags index="Hidden" value="1"/>
+    </CAbilQueue>
+    <CAbilEffectTarget id="AP_CommandCenterHyperjump">
+        <AbilSetId value="FleetwideJump"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_HyperjumpCreatePrecursor"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="BestUnit" value="0"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <CastIntroTime value="0.3"/>
+        <CastOutroTime value="1.2624"/>
+        <ShowProgressArray index="Channel" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <ProgressButtonArray index="Channel" value="AP_HyperjumpHercules"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_CommandCenterHyperjump" Requirements="AP_HaveCommandCenterHyperjump">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <PlaceUnit value="CommandCenterFlying"/>
+    </CAbilEffectTarget>
 </Catalog>

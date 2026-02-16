@@ -47,14 +47,9 @@ const int gv_p10_REINFORCEMENTPROTOSS = 10;
 //--------------------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------------------
+int gv_victoryButton;
+int gv_victoryButtonDialog;
 bool gv_pretendPlayerIsDead;
-int gv_cancelCount;
-int gv_endGameDialog;
-int gv_endGameButton;
-int gv_confirmText;
-int gv_confirmEndGame;
-int gv_cancelEndGame;
-text gv_buttonText;
 int gv_sTAGE_01_KILL_QUOTA;
 int gv_sTAGE_02_KILL_QUOTA;
 playergroup gv_zergPlayers;
@@ -113,12 +108,8 @@ unit gv_hybrid3;
 unit gv_hybrid4;
 
 void InitGlobals () {
-    gv_endGameDialog = c_invalidDialogId;
-    gv_endGameButton = c_invalidDialogControlId;
-    gv_confirmText = c_invalidDialogControlId;
-    gv_confirmEndGame = c_invalidDialogControlId;
-    gv_cancelEndGame = c_invalidDialogControlId;
-    gv_buttonText = StringExternal("Param/Value/AEE55C8F");
+    gv_victoryButton = c_invalidDialogControlId;
+    gv_victoryButtonDialog = c_invalidDialogId;
     gv_zergPlayers = PlayerGroupEmpty();
     gv_superWarpGate_P08 = UnitFromId(843);
     gv_superWarpGate_P10 = UnitFromId(637);
@@ -150,12 +141,10 @@ void gf_SpawnNydusWormZerglings (region lp_region);
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
-trigger gt_FactionSwapInit;
-trigger gt_KillPlayerDead;
-trigger gt_RandomizeButtonText;
-trigger gt_InitEndGameButton;
-trigger gt_HandleEndGameButtons;
 trigger gt_ArchInit;
+trigger gt_FactionSwapInit;
+trigger gt_VictoryButtonCreate;
+trigger gt_VictoryButtonPressed;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -164,6 +153,11 @@ trigger gt_Init04Music;
 trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
+trigger gt_DEBUGSetKills;
+trigger gt_DEBUGVictoryDefeat;
+trigger gt_DEBUGMidCine;
+trigger gt_DEBUGSetProtectArchiveTimer;
+trigger gt_DEBUGNydus;
 trigger gt_IntroSequence;
 trigger gt_StartGameStage1;
 trigger gt_StartGameStage2;
@@ -322,16 +316,24 @@ void gf_SpawnSuicidalAttackerAir (string lp_paraUnitType, int lp_paraPlayer) {
 
 bool gf_AreaIsBeingHarvested (region lp_region) {
     // Automatic Variable Declarations
+    unitgroup auto488D3AE6_g;
+    int auto488D3AE6_u;
+    unit auto488D3AE6_var;
+
     // Implementation
     if (((UnitGroupCount(UnitGroup("RichMineralField", c_playerAny, lp_region, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0) || (UnitGroupCount(UnitGroup("NydusCanal", c_playerAny, lp_region, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) >= 1))) {
         return false;
     }
     else {
-        if ((UnitGroupCount(UnitGroup("AP_Nexus", gv_p01_PLAYER, lp_region, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) >= 1)) {
-            return true;
-        }
-        else {
-            return false;
+        auto488D3AE6_g = UnitGroup(null, gv_p01_PLAYER, lp_region, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto488D3AE6_u = UnitGroupCount(auto488D3AE6_g, c_unitCountAll);
+        for (;; auto488D3AE6_u -= 1) {
+            auto488D3AE6_var = UnitGroupUnitFromEnd(auto488D3AE6_g, auto488D3AE6_u);
+            if (auto488D3AE6_var == null) { break; }
+            if ((lib15EF4C78_gf_AP_Player_isTownHall(auto488D3AE6_var) || (UnitGetType(auto488D3AE6_var) == "AP_EchidnaWorm"))) {
+                return true;
+            }
+
         }
     }
     return false;
@@ -349,6 +351,50 @@ void gf_SpawnNydusWormZerglings (region lp_region) {
     // Implementation
     gv_nydusSpawnRegion = lp_region;
     TriggerExecute(gt_NydusSpawningTriggerZerglings, true, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_playerGroup;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_playerGroup = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        GameSetSpeedValue(c_gameSpeedFaster);
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_p01_PLAYER, 4);
+    }
+
+    libABFE498B_gf_AP_Triggers_clearProtossTech(gv_p01_PLAYER);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_PROTOSS_NOT_LOTV_MAIN);
+    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 160);
+    PlayerGroupAdd(lv_playerGroup, gv_p01_PLAYER);
+    PlayerGroupAdd(lv_playerGroup, gv_p10_REINFORCEMENTPROTOSS);
+    lib5BD4895D_gf_AP_Core_MapConfig_setAffectedPlayers(lv_playerGroup);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -422,124 +468,28 @@ void gt_FactionSwapInit_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Kill Player Dead
+// Trigger: Victory Button Create
 //--------------------------------------------------------------------------------------------------
-bool gt_KillPlayerDead_Func (bool testConds, bool runActions) {
+bool gt_VictoryButtonCreate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_image;
+    string lv_hoverimage;
+    string lv_backgroundimage;
+    int lv_background;
+    int lv_button;
+    int lv_xsize;
+    int lv_ysize;
+
     // Automatic Variable Declarations
-    unitgroup auto17C73D8C_g;
-    int auto17C73D8C_u;
-    unit auto17C73D8C_var;
+    string auto4B2099BE_val;
+
+    // Variable Initialization
+    lv_background = c_invalidDialogControlId;
+    lv_button = c_invalidDialogControlId;
 
     // Conditions
     if (testConds) {
         if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto17C73D8C_g = UnitGroup(null, gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile) | (1 << c_targetFilterUncommandable), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    auto17C73D8C_u = UnitGroupCount(auto17C73D8C_g, c_unitCountAll);
-    for (;; auto17C73D8C_u -= 1) {
-        auto17C73D8C_var = UnitGroupUnitFromEnd(auto17C73D8C_g, auto17C73D8C_u);
-        if (auto17C73D8C_var == null) { break; }
-        libNtve_gf_ChangeUnitDamage(auto17C73D8C_var, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Mega);
-        UnitBehaviorAdd(auto17C73D8C_var, "AP_AdeptPsionicTransferDamageDebuff", UnitFromId(843), 1);
-        UnitBehaviorAdd(auto17C73D8C_var, "AP_PsionicLiftRaise", UnitFromId(843), 1);
-        UnitBehaviorAdd(auto17C73D8C_var, "AP_PsionicLiftDamage", UnitFromId(843), 1);
-        UnitBehaviorAdd(auto17C73D8C_var, "WallOfFireBurn", UnitFromId(843), 1);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_KillPlayerDead_Init () {
-    gt_KillPlayerDead = TriggerCreate("gt_KillPlayerDead_Func");
-    TriggerEnable(gt_KillPlayerDead, false);
-    TriggerAddEventTimePeriodic(gt_KillPlayerDead, 0.25, c_timeGame);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Randomize Button Text
-//--------------------------------------------------------------------------------------------------
-bool gt_RandomizeButtonText_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    int auto36E8AFFC_val;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto36E8AFFC_val = RandomInt(0, 9);
-    if (auto36E8AFFC_val == 0) {
-        gv_buttonText = StringExternal("Param/Value/E35E7BFA");
-    }
-    else if (auto36E8AFFC_val == 1) {
-        gv_buttonText = StringExternal("Param/Value/B6D47FEC");
-    }
-    else if (auto36E8AFFC_val == 2) {
-        gv_buttonText = StringExternal("Param/Value/65ED55C7");
-    }
-    else if (auto36E8AFFC_val == 3) {
-        gv_buttonText = StringExternal("Param/Value/4B333117");
-    }
-    else if (auto36E8AFFC_val == 4) {
-        gv_buttonText = StringExternal("Param/Value/05FFBB16");
-    }
-    else if (auto36E8AFFC_val == 5) {
-        gv_buttonText = StringExternal("Param/Value/13F5AE36");
-    }
-    else if (auto36E8AFFC_val == 6) {
-        gv_buttonText = StringExternal("Param/Value/ECAEF3DC");
-    }
-    else if (auto36E8AFFC_val == 7) {
-        gv_buttonText = StringExternal("Param/Value/C37D7AC0");
-    }
-    else if (auto36E8AFFC_val == 8) {
-        gv_buttonText = StringExternal("Param/Value/F2B57BDD");
-    }
-    else if (auto36E8AFFC_val == 9) {
-        gv_buttonText = StringExternal("Param/Value/CD16A17D");
-    }
-    else {
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_RandomizeButtonText_Init () {
-    gt_RandomizeButtonText = TriggerCreate("gt_RandomizeButtonText_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Init End Game Button
-//--------------------------------------------------------------------------------------------------
-bool gt_InitEndGameButton_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-
-        if (!((gv_killCount >= gv_sTAGE_01_KILL_QUOTA))) {
-            return false;
-        }
-
-        if (!((gv_mothershipHeroBorn == true))) {
-            return false;
-        }
-
-        if (!((gv_gameOver == false))) {
             return false;
         }
     }
@@ -550,50 +500,74 @@ bool gt_InitEndGameButton_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    DialogCreate(480, 120, c_anchorRight, 0, 50, true);
-    gv_endGameDialog = DialogLastCreated();
-    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 300, 50, c_anchorTop, 50, 50, StringExternal("Param/Value/B3F6B4A0"), ColorWithAlpha(0,0,0,0), false, 2.0);
-    gv_confirmText = DialogControlLastCreated();
-    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
-    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 50, c_anchorLeft, 50, 50, StringToText(""), StringExternal("Param/Value/EC556E9B"), "");
-    gv_confirmEndGame = DialogControlLastCreated();
-    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
-    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 50, c_anchorRight, 50, 50, StringToText(""), StringExternal("Param/Value/A93A6A05"), "");
-    gv_cancelEndGame = DialogControlLastCreated();
-    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
-    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 450, 50, c_anchorCenter, 0, 0, StringToText(""), gv_buttonText, "");
-    gv_endGameButton = DialogControlLastCreated();
-    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
-    Wait(0.5, c_timeGame);
-    libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(100,100,100), PlayerGroupAll());
-    Wait(0.5, c_timeGame);
-    libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(22*100/255,128*100/255,0), PlayerGroupAll());
-    Wait(0.5, c_timeGame);
-    libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(100,100,100), PlayerGroupAll());
-    Wait(0.5, c_timeGame);
-    libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(22*100/255,128*100/255,0), PlayerGroupAll());
-    Wait(0.5, c_timeGame);
-    libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(100,100,100), PlayerGroupAll());
-    Wait(0.5, c_timeGame);
-    libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), ColorWithAlpha(0,0,0,0), PlayerGroupAll());
+    TriggerDebugOutput(1, StringExternal("Param/Value/9D409966"), true);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(lib5BD4895D_gv_aP_Core_locationVictory);
+    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveSurviveUntilYouDie);
+    auto4B2099BE_val = PlayerRace(gv_p01_PLAYER);
+    if (auto4B2099BE_val == "Terr") {
+        lv_image = "Assets\\Textures\\ui_battlenet_glue_navbuttons_green_normalpressed.dds";
+        lv_hoverimage = "Assets\\Textures\\ui_battlenet_glue_navbuttons_green_normaloverpressedover.dds";
+        lv_backgroundimage = "Assets\\Textures\\ui_console_timer_background_defaultterran.dds";
+        lv_xsize = 361;
+        lv_ysize = 96;
+    }
+    else if (auto4B2099BE_val == "Zerg") {
+        lv_image = "Assets\\Textures\\ui_battlenet_glue_navbuttons_orange_normalpressed.dds";
+        lv_hoverimage = "Assets\\Textures\\ui_battlenet_glue_navbuttons_orange_normaloverpressedover.dds";
+        lv_backgroundimage = "Assets\\Textures\\ui_console_timer_background_defaultzerg.dds";
+        lv_xsize = 361;
+        lv_ysize = 96;
+    }
+    else if (auto4B2099BE_val == "Prot") {
+        lv_image = "Assets\\Textures\\ui_battlenet_glue_navbuttons_blue_normalpressed.dds";
+        lv_hoverimage = "Assets\\Textures\\ui_battlenet_glue_navbuttons_blue_normaloverpressedover.dds";
+        lv_backgroundimage = "Assets\\Textures\\ui_console_timer_background_defaultprotoss.dds";
+        lv_xsize = 348;
+        lv_ysize = 81;
+    }
+    else {
+    }
+    DialogCreate(400, 100, c_anchorBottomRight, 10, 450, true);
+    gv_victoryButtonDialog = DialogLastCreated();
+    DialogSetVisible(gv_victoryButtonDialog, PlayerGroupAll(), false);
+    DialogSetImageVisible(gv_victoryButtonDialog, false);
+    libNtve_gf_CreateDialogItemImage(gv_victoryButtonDialog, lv_xsize, lv_ysize, c_anchorCenter, 0, 0, StringToText(""), lv_backgroundimage, c_triggerImageTypeEndCap, false, Color(100,100,100), c_triggerBlendModeNormal);
+    lv_background = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_victoryButtonDialog, 350, 70, c_anchorCenter, 0, 0, StringExternal("Param/Value/91329044"), StringExternal("Param/Value/D2F6AA02"), lv_hoverimage);
+    gv_victoryButton = DialogControlLastCreated();
+    DialogControlSetPositionRelative(gv_victoryButton, PlayerGroupAll(), c_anchorCenter, lv_background, c_anchorCenter, 0, 0);
+    libNtve_gf_SetDialogItemImageType(gv_victoryButton, c_triggerImageTypeEndCap, PlayerGroupAll());
+    libNtve_gf_SetDialogItemImage(gv_victoryButton, lv_image, PlayerGroupAll());
+    DialogSetVisible(gv_victoryButtonDialog, PlayerGroupAll(), true);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_InitEndGameButton_Init () {
-    gt_InitEndGameButton = TriggerCreate("gt_InitEndGameButton_Func");
-    TriggerEnable(gt_InitEndGameButton, false);
-    TriggerAddEventTimePeriodic(gt_InitEndGameButton, 1.0, c_timeGame);
+void gt_VictoryButtonCreate_Init () {
+    gt_VictoryButtonCreate = TriggerCreate("gt_VictoryButtonCreate_Func");
+    TriggerAddEventHotkeyPressed(gt_VictoryButtonCreate, c_playerAny, c_hotkeyHeroSelect0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Handle End Game Buttons
+// Trigger: Victory Button Pressed
 //--------------------------------------------------------------------------------------------------
-bool gt_HandleEndGameButtons_Func (bool testConds, bool runActions) {
+bool gt_VictoryButtonPressed_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unitgroup lv_playerunits;
+
     // Automatic Variable Declarations
+    unitgroup auto048BB013_g;
+    int auto048BB013_u;
+    unit auto048BB013_var;
+    const int autoE73F5B21_n = 5;
+    int autoE73F5B21_i;
+
+    // Variable Initialization
+    lv_playerunits = UnitGroupEmpty();
+
     // Conditions
     if (testConds) {
-        if (!((DialogControlGetDialog(EventDialogControl()) == gv_endGameDialog))) {
+        if (!((EventDialogControl() == gv_victoryButton))) {
             return false;
         }
     }
@@ -603,72 +577,30 @@ bool gt_HandleEndGameButtons_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((EventDialogControl() == gv_endGameButton)) {
-        DialogControlSetVisible(gv_confirmText, PlayerGroupAll(), true);
-        DialogControlSetVisible(gv_confirmEndGame, PlayerGroupAll(), true);
-        DialogControlSetVisible(gv_cancelEndGame, PlayerGroupAll(), true);
-        DialogControlSetVisible(gv_endGameButton, PlayerGroupAll(), false);
+    TriggerEnable(TriggerGetCurrent(), false);
+    DialogSetVisible(gv_victoryButtonDialog, PlayerGroupAll(), false);
+    lv_playerunits = UnitGroup(null, gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
+    auto048BB013_g = lv_playerunits;
+    auto048BB013_u = UnitGroupCount(auto048BB013_g, c_unitCountAll);
+    for (;; auto048BB013_u -= 1) {
+        auto048BB013_var = UnitGroupUnitFromEnd(auto048BB013_g, auto048BB013_u);
+        if (auto048BB013_var == null) { break; }
+        libNtve_gf_ChangeUnitDamage(auto048BB013_var, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Mega);
     }
-    else if ((EventDialogControl() == gv_cancelEndGame)) {
-        DialogControlSetVisible(gv_confirmText, PlayerGroupAll(), false);
-        DialogControlSetVisible(gv_confirmEndGame, PlayerGroupAll(), false);
-        DialogControlSetVisible(gv_cancelEndGame, PlayerGroupAll(), false);
-        gv_cancelCount = (gv_cancelCount+1);
-        if ((gv_cancelCount >= 2)) {
-            TriggerExecute(gt_RandomizeButtonText, true, false);
-            libNtve_gf_SetDialogItemText(gv_endGameButton, gv_buttonText, PlayerGroupAll());
-        }
-
-        DialogControlSetVisible(gv_endGameButton, PlayerGroupAll(), true);
+    PlayerCreateEffectPoint(gv_p07_FRENZIED_ZERG, "EnergyNovaPersistent", UnitGroupCenterOfGroup(lv_playerunits));
+    for (autoE73F5B21_i = 1; autoE73F5B21_i <= autoE73F5B21_n; autoE73F5B21_i += 1) {
+        Wait(1.0, c_timeGame);
+        lv_playerunits = UnitGroup(null, gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
+        PlayerCreateEffectPoint(gv_p07_FRENZIED_ZERG, "EnergyNovaPersistent", UnitGetPosition(UnitGroupRandomUnit(lv_playerunits, c_unitCountAlive)));
     }
-    else if ((EventDialogControl() == gv_confirmEndGame)) {
-        DialogSetVisible(DialogControlGetDialog(EventDialogControl()), PlayerGroupAll(), false);
-        TriggerEnable(gt_KillPlayerDead, true);
-        Wait(5.0, c_timeGame);
-        gv_pretendPlayerIsDead = true;
-    }
+    gv_pretendPlayerIsDead = true;
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_HandleEndGameButtons_Init () {
-    gt_HandleEndGameButtons = TriggerCreate("gt_HandleEndGameButtons_Func");
-    TriggerAddEventDialogControl(gt_HandleEndGameButtons, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_playerGroup;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_playerGroup = PlayerGroupEmpty();
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    libABFE498B_gf_AP_Triggers_clearProtossTech(gv_p01_PLAYER);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_PROTOSS_NOT_LOTV_MAIN);
-    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 160);
-    PlayerGroupAdd(lv_playerGroup, gv_p01_PLAYER);
-    PlayerGroupAdd(lv_playerGroup, gv_p10_REINFORCEMENTPROTOSS);
-    lib5BD4895D_gf_AP_Core_MapConfig_setAffectedPlayers(lv_playerGroup);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
+void gt_VictoryButtonPressed_Init () {
+    gt_VictoryButtonPressed = TriggerCreate("gt_VictoryButtonPressed_Func");
+    TriggerAddEventDialogControl(gt_VictoryButtonPressed, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -687,7 +619,6 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_Init05Environment, true, true);
     TriggerExecute(gt_Init06Difficulties, true, true);
     TriggerExecute(gt_FactionSwapInit, true, true);
-    TriggerEnable(gt_InitEndGameButton, true);
     TriggerExecute(gt_IntroQ, true, false);
     return true;
 }
@@ -1052,6 +983,249 @@ void gt_Init07Help_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Set Kills
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGSetKills_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_killCount = StringToInt(StringWord(EventChatMessage(false), 2));
+    TextExpressionSetToken("Param/Expression/7568E738", "A", IntToText(gv_killCount));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/7568E738"), true);
+    BoardItemSetText(gv_leaderboard, 1, 1, IntToText(gv_killCount));
+    if ((gv_killCount >= gv_sTAGE_01_KILL_QUOTA)) {
+        TriggerExecute(gt_VictoryButtonCreate, true, false);
+        TriggerExecute(gt_PrimaryKillCountComplete, true, false);
+        TriggerStop(gt_TransmissionHybridIncoming1Q);
+        TriggerStop(gt_TransmissionZergswarmingflanksQ);
+        TriggerStop(gt_MissionEventTiming);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGSetKills_Init () {
+    gt_DEBUGSetKills = TriggerCreate("gt_DEBUGSetKills_Func");
+    TriggerAddEventChatMessage(gt_DEBUGSetKills, c_playerAny, "-setkills", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Victory/Defeat
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictoryDefeat_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    gv_killCount = MaxI(gv_killCount, gv_sTAGE_01_KILL_QUOTA);
+    TriggerDebugOutput(1, StringExternal("Param/Value/8328E209"), true);
+    TriggerExecute(gt_VictoryButtonCreate, true, false);
+    TriggerExecute(gt_PrimaryKillCountComplete, true, false);
+    TriggerStop(gt_TransmissionHybridIncoming1Q);
+    TriggerStop(gt_TransmissionZergswarmingflanksQ);
+    TriggerStop(gt_MissionEventTiming);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictoryDefeat_Init () {
+    gt_DEBUGVictoryDefeat = TriggerCreate("gt_DEBUGVictoryDefeat_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictoryDefeat, c_playerAny, "-win", false);
+    TriggerAddEventChatMessage(gt_DEBUGVictoryDefeat, c_playerAny, "-defeat", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Mid Cine
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGMidCine_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, StringExternal("Param/Value/223B5B7E"), true);
+    TriggerStop(gt_MissionEventTiming);
+    TriggerStop(gt_AttackWavesStage2P04NW);
+    TriggerStop(gt_AttackWavesStage2P05NE);
+    TriggerStop(gt_AttackWavesStage2P06SE);
+    TriggerStop(gt_AttackWavesEndGameAirKillers);
+    TriggerStop(gt_AttackWavesStage1P04NW);
+    TriggerStop(gt_AttackWavesStage1P05NE);
+    TriggerStop(gt_AttackWavesStage1P06SE);
+    TriggerStop(gt_AttackWavesStage1RepeatingP04NW);
+    TriggerStop(gt_AttackWavesStage1RepeatingP05NE);
+    TriggerStop(gt_AttackWavesStage1RepeatingP06SE);
+    gv_gameOver = true;
+    TriggerQueueClear(c_triggerQueueRemove);
+    TriggerExecute(gt_MidQ, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGMidCine_Init () {
+    gt_DEBUGMidCine = TriggerCreate("gt_DEBUGMidCine_Func");
+    TriggerAddEventChatMessage(gt_DEBUGMidCine, c_playerAny, "-s2", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Set Protect Archive Timer
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGSetProtectArchiveTimer_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, StringExternal("Param/Value/5F0495D7"), true);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/4024F0DC"));
+    TimerStart(gv_protectArchiveTimer, 5.0, false, c_timeGame);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGSetProtectArchiveTimer_Init () {
+    gt_DEBUGSetProtectArchiveTimer = TriggerCreate("gt_DEBUGSetProtectArchiveTimer_Func");
+    TriggerAddEventChatMessage(gt_DEBUGSetProtectArchiveTimer, c_playerAny, "-timer", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Nydus
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGNydus_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TriggerGetExecCount(gt_NydusWormAttack1) == 0)) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/949C4CED"), true);
+        TriggerExecute(gt_NydusWormAttack1, true, false);
+        return true;
+    }
+
+    if ((TriggerGetExecCount(gt_NydusWormAttack2) == 0)) {
+        TriggerEnable(TriggerGetCurrent(), false);
+        TriggerDebugOutput(1, StringExternal("Param/Value/71247E59"), true);
+        TriggerExecute(gt_NydusWormAttack2, true, false);
+        return true;
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGNydus_Init () {
+    gt_DEBUGNydus = TriggerCreate("gt_DEBUGNydus_Func");
+    TriggerAddEventChatMessage(gt_DEBUGNydus, c_playerAny, "-nydus", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Intro Sequence
 //--------------------------------------------------------------------------------------------------
 bool gt_IntroSequence_Func (bool testConds, bool runActions) {
@@ -1238,6 +1412,7 @@ bool gt_UpdateLeaderboardZergorHybridKilled_Func (bool testConds, bool runAction
     }
 
     if ((gv_killCount >= gv_sTAGE_01_KILL_QUOTA)) {
+        TriggerExecute(gt_VictoryButtonCreate, true, false);
         TriggerExecute(gt_PrimaryKillCountComplete, true, false);
     }
 
@@ -5664,8 +5839,13 @@ void gt_StatStargateUnitBuilt_Init () {
 bool gt_VictoryDefeatforPlayer_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unitgroup lv_unitGroup;
+    string lv_unitType;
 
     // Automatic Variable Declarations
+    unitgroup autoB996910D_g;
+    int autoB996910D_u;
+    unit autoB996910D_var;
+
     // Variable Initialization
     lv_unitGroup = UnitGroupEmpty();
 
@@ -5681,41 +5861,43 @@ bool gt_VictoryDefeatforPlayer_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_unitGroup = UnitGroup(null, gv_p01_PLAYER, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_SoACaster", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_SoAAutonomousCaster", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_SOAThermalLanceTargeter", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_Core_Controller", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_Core_Controller2", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_Core_SupplyHolder", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_ZerglingRespawnControllerUnit", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_CreepTumorQueen", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_CreepTumor", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_CreepTumorBurrowed", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_unitGroup, UnitGroup("AP_CreepTumorUsed", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    if (((UnitGroupCount(lv_unitGroup, c_unitCountAlive) == 0) || (gv_pretendPlayerIsDead == true))) {
-        TriggerEnable(TriggerGetCurrent(), false);
-        lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(lib5BD4895D_gv_aP_Core_locationVictory);
-        gv_gameOver = true;
-        lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveSurviveUntilYouDie);
-        Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
-        if ((gv_killCount >= gv_sTAGE_01_KILL_QUOTA)) {
-            if ((lib5BD4895D_gf_AP_Core_isLocationSent(gv_LOCATION_ID_ARTANIS) == false)) {
-                lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_ARTANIS);
+    if ((gv_pretendPlayerIsDead == false)) {
+        lv_unitGroup = UnitGroup(null, gv_p01_PLAYER, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoB996910D_g = lv_unitGroup;
+        autoB996910D_u = UnitGroupCount(autoB996910D_g, c_unitCountAll);
+        for (;; autoB996910D_u -= 1) {
+            autoB996910D_var = UnitGroupUnitFromEnd(autoB996910D_g, autoB996910D_u);
+            if (autoB996910D_var == null) { break; }
+            lv_unitType = UnitGetType(autoB996910D_var);
+            if ((lv_unitType != "AP_SoACaster") && (lv_unitType != "AP_SoAAutonomousCaster") && (lv_unitType != "AP_SOAThermalLanceTargeter") && (lv_unitType != "AP_Core_SupplyHolder") && (lv_unitType != "AP_CreepTumorQueen") && (lv_unitType != "AP_CreepTumor") && (lv_unitType != "AP_CreepTumorBurrowed") && (lv_unitType != "AP_CreepTumorUsed")) {
+                return true;
             }
 
-            libCamp_gf_RunMissionVictorySequence(gt_VictoryQ);
-        }
-        else {
-            TriggerQueuePause(true);
-            TriggerQueueClear(c_triggerQueueRemove);
-            Wait(2.0, c_timeReal);
-            libCamp_gf_DisplayCampaignMessage(PlayerGroupAll(), libCamp_ge_CampaignMessageType_MissionFailed, StringExternal("Param/Value/D472A25B"), libCamp_ge_CampaignMessageFormatNotFormat_FormatMessage);
-            Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
-            TriggerExecute(gt_Defeat, true, false);
         }
     }
 
+    TriggerEnable(TriggerGetCurrent(), false);
+    gv_gameOver = true;
+    if ((gv_killCount >= gv_sTAGE_01_KILL_QUOTA)) {
+        lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveSurviveUntilYouDie);
+        Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
+        lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(lib5BD4895D_gv_aP_Core_locationVictory);
+        if ((lib5BD4895D_gf_AP_Core_isLocationSent(gv_LOCATION_ID_ARTANIS) == false)) {
+            lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_ARTANIS);
+        }
+
+        libCamp_gf_RunMissionVictorySequence(gt_VictoryQ);
+    }
+    else {
+        TriggerQueuePause(true);
+        TriggerQueueClear(c_triggerQueueRemove);
+        lib5BD4895D_gf_AP_Core_setObjectiveFailed(gv_objectiveSurviveUntilYouDie);
+        Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
+        Wait(2.0, c_timeReal);
+        libCamp_gf_DisplayCampaignMessage(PlayerGroupAll(), libCamp_ge_CampaignMessageType_MissionFailed, StringExternal("Param/Value/D472A25B"), libCamp_ge_CampaignMessageFormatNotFormat_FormatMessage);
+        Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
+        TriggerExecute(gt_Defeat, true, false);
+    }
     return true;
 }
 
@@ -7592,12 +7774,10 @@ void gt_VictoryHybridExplosion_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
-    gt_FactionSwapInit_Init();
-    gt_KillPlayerDead_Init();
-    gt_RandomizeButtonText_Init();
-    gt_InitEndGameButton_Init();
-    gt_HandleEndGameButtons_Init();
     gt_ArchInit_Init();
+    gt_FactionSwapInit_Init();
+    gt_VictoryButtonCreate_Init();
+    gt_VictoryButtonPressed_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -7606,6 +7786,11 @@ void InitTriggers () {
     gt_Init05Environment_Init();
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
+    gt_DEBUGSetKills_Init();
+    gt_DEBUGVictoryDefeat_Init();
+    gt_DEBUGMidCine_Init();
+    gt_DEBUGSetProtectArchiveTimer_Init();
+    gt_DEBUGNydus_Init();
     gt_IntroSequence_Init();
     gt_StartGameStage1_Init();
     gt_StartGameStage2_Init();

@@ -25,12 +25,15 @@ void libABFE498B_InitVariables () {
 
     libABFE498B_InitVariables_completed = true;
 
-    libABFE498B_gv_aP_Triggers_Option_gameSpeed = c_gameSpeedNormal;
-    libABFE498B_gv_aP_Triggers_Option_enableNova = true;
-    libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Neut";
     libABFE498B_gv_aP_Triggers_isBuild = true;
     libABFE498B_gv_aP_Triggers_MapConfig_Mission_Protoss = libABFE498B_gv_aP_Triggers_MapConfig_MISSION_NOT_PROTOSS;
     libABFE498B_gv_aP_Triggers_MapConfig_SoAControllingPlayers = PlayerGroupSingle(1);
+    libABFE498B_gv_aP_Triggers_Option_gameSpeed = c_gameSpeedNormal;
+    libABFE498B_gv_aP_Triggers_Option_enableNova = true;
+    libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Neut";
+    libABFE498B_gv_aP_Triggers_HeroUnits = UnitGroupEmpty();
+    libABFE498B_gv_aP_Triggers_warpInSuperWarpGates = UnitGroupEmpty();
+    libABFE498B_gv_aP_Triggers_lastWarpedUnits = UnitGroupEmpty();
 }
 
 // Custom Script
@@ -640,12 +643,12 @@ void libABFE498B_gf_AP_Triggers_unlockTerranArmory7 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Terran_unlockWarhoundAutoTurret, // 20
         libABFE498B_gf_AP_Triggers_Terran_unlockGhostBargainBinPrices, // 21
         libABFE498B_gf_AP_Triggers_Terran_unlockSpectreBargainBinPrices, //22
-        ap_triggers_PlayerConsumer_sig, //23
-        ap_triggers_PlayerConsumer_sig, //24
-        ap_triggers_PlayerConsumer_sig, //25
-        ap_triggers_PlayerConsumer_sig, //26
-        ap_triggers_PlayerConsumer_sig, //27
-        ap_triggers_PlayerConsumer_sig, //28
+        libABFE498B_gf_AP_Triggers_Terran_unlockWarhoundBrawlerConfiguration, //23
+        libABFE498B_gf_AP_Triggers_Terran_unlockWarhoundJumpJets, //24
+        libABFE498B_gf_AP_Triggers_Terran_unlockSCVResourceful, //25
+        libABFE498B_gf_AP_Triggers_Terran_unlockSCVCauterizer, //26
+        libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterTacticalJump, //27
+        libABFE498B_gf_AP_Triggers_Terran_unlockBunkerEmergencyProvisions, //28
         ap_triggers_PlayerConsumer_sig //29
     );
 }
@@ -682,8 +685,8 @@ void libABFE498B_gf_AP_Triggers_unlockTerranLaboratory (int lp_player, int lp_bi
         libABFE498B_gf_AP_Triggers_Terran_unlockHiveMindEmulatorProtoss, //22
         libABFE498B_gf_AP_Triggers_Terran_unlockHiveMindEmulatorTerran, //23
         libABFE498B_gf_AP_Triggers_Terran_unlockSignalBeacon, //24
-        ap_triggers_PlayerConsumer_sig, //25
-        ap_triggers_PlayerConsumer_sig, //26
+        libABFE498B_gf_AP_Triggers_Terran_unlockJuggernautThrusters, //25
+        libABFE498B_gf_AP_Triggers_Terran_unlockSupplyDepotCovertStocks, //26
         ap_triggers_PlayerConsumer_sig, //27
         ap_triggers_PlayerConsumer_sig, //28
         ap_triggers_PlayerConsumer_sig //29
@@ -1120,7 +1123,7 @@ void libABFE498B_gf_AP_Triggers_unlockZergMutation5 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Zerg_BullfrogHardImpact, // 16
         libABFE498B_gf_AP_Triggers_Zerg_BullfrogRange, // 17
         libABFE498B_gf_AP_Triggers_Zerg_SporeCrawlerBioBonus, // 18
-        ap_triggers_PlayerConsumer_sig, // 19
+        libABFE498B_gf_AP_Triggers_Zerg_CorruptorAcidSplash, // 19
         ap_triggers_PlayerConsumer_sig, // 20
         ap_triggers_PlayerConsumer_sig, // 21
         ap_triggers_PlayerConsumer_sig, // 22
@@ -1774,7 +1777,7 @@ void libABFE498B_gf_AP_Triggers_unlockProtossForge5 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Protoss_unlockTaldarimMothershipShadowOfDeath, // 3
         libABFE498B_gf_AP_Triggers_Protoss_unlockTaldarimMothershipSoulForgedConduits, // 4
         libABFE498B_gf_AP_Triggers_Protoss_unlockTaldarimMothershipBloodFusedParticles, // 5    
-        ap_triggers_PlayerConsumer_sig, // 6
+        libABFE498B_gf_AP_Triggers_Protoss_unlockOracleSurfaceStabilizer, // 6
         ap_triggers_PlayerConsumer_sig, // 7
         ap_triggers_PlayerConsumer_sig, // 8
         ap_triggers_PlayerConsumer_sig, // 9
@@ -1858,7 +1861,7 @@ void libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil2 (int lp_player, int lp_
         libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerSolariteLens, // 7
         libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierAiurRepairDrones, // 8
         libABFE498B_gf_AP_Triggers_Protoss_unlockSkylordHyperjump, // 9
-        libABFE498B_gf_AP_Triggers_Protoss_unlockTriremeSolarBeam, // 10
+        libABFE498B_gf_AP_Triggers_Protoss_unlockTriremeBomberMiniaturization, // 10
         libABFE498B_gf_AP_Triggers_Protoss_unlockTempestDisintegration, // 11
         libABFE498B_gf_AP_Triggers_Protoss_unlockScoutExpeditionaryHull, // 12
         libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterAbilityEfficiency, // 13
@@ -1879,6 +1882,551 @@ void libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil2 (int lp_player, int lp_
         ap_triggers_PlayerConsumer_sig, // 28
         ap_triggers_PlayerConsumer_sig // 29
     );
+}
+
+void libABFE498B_gf_AP_Triggers_setOptions (string lp_inputString) {
+    // Variable Declarations
+    string lv_skipCutscenes;
+    string lv_disableForcedCamera;
+    string lv_gameSpeed;
+    string lv_difficulty;
+    string lv_genericUpgradeResearch;
+    string lv_allInVariant;
+    string lv_kerriganOptions;
+    string lv_storyTech;
+    string lv_takeOverAIAllies;
+    string lv_soaOptions;
+    string lv_missionOrder;
+    string lv_novaFallback;
+    string lv_storyLevels;
+    string lv_enableMorphling;
+    string lv_overrideRace;
+    string lv_tradeOptions;
+    string lv_difficultyDamageModifier;
+    string lv_difficultyDamageModifierEvent;
+    string lv_unitOptionsValue;
+    string lv_warCouncilNerfs;
+    int lv_currentPlayer;
+
+    // Automatic Variable Declarations
+    playergroup auto1F938E30_g;
+
+    // Variable Initialization
+    lv_skipCutscenes = "";
+    lv_disableForcedCamera = "";
+    lv_gameSpeed = "";
+    lv_difficulty = "";
+    lv_genericUpgradeResearch = "";
+    lv_allInVariant = "";
+    lv_kerriganOptions = "";
+    lv_storyTech = "";
+    lv_takeOverAIAllies = "";
+    lv_soaOptions = "";
+    lv_missionOrder = "";
+    lv_novaFallback = "";
+    lv_storyLevels = "";
+    lv_enableMorphling = "";
+    lv_overrideRace = "";
+    lv_tradeOptions = "";
+    lv_difficultyDamageModifier = "";
+    lv_difficultyDamageModifierEvent = "";
+    lv_unitOptionsValue = "";
+    lv_warCouncilNerfs = "";
+
+    // Implementation
+    lv_difficulty = StringWord(lp_inputString, 1);
+    lv_genericUpgradeResearch = StringWord(lp_inputString, 2);
+    lv_allInVariant = StringWord(lp_inputString, 3);
+    lv_gameSpeed = StringWord(lp_inputString, 4);
+    lv_disableForcedCamera = StringWord(lp_inputString, 5);
+    lv_skipCutscenes = StringWord(lp_inputString, 6);
+    lv_kerriganOptions = StringWord(lp_inputString, 7);
+    lv_storyTech = StringWord(lp_inputString, 8);
+    lv_takeOverAIAllies = StringWord(lp_inputString, 9);
+    lv_soaOptions = StringWord(lp_inputString, 10);
+    lv_missionOrder = StringWord(lp_inputString, 11);
+    lv_novaFallback = StringWord(lp_inputString, 12);
+    lv_storyLevels = StringWord(lp_inputString, 13);
+    lv_enableMorphling = StringWord(lp_inputString, 14);
+    lv_overrideRace = StringWord(lp_inputString, 15);
+    lv_tradeOptions = StringWord(lp_inputString, 16);
+    lv_difficultyDamageModifier = StringWord(lp_inputString, 17);
+    lv_unitOptionsValue = StringWord(lp_inputString, 18);
+    lv_warCouncilNerfs = StringWord(lp_inputString, 19);
+    libABFE498B_gf_AP_Triggers_setDifficulty(lv_difficulty);
+    libABFE498B_gf_AP_Triggers_setGameSpeed(lv_gameSpeed);
+    libABFE498B_gf_AP_Triggers_setGenericUpgradeOptions(StringToInt(lv_genericUpgradeResearch));
+    libABFE498B_gv_aP_Triggers_Option_allInMissionVariant = StringToInt(lv_allInVariant);
+    libABFE498B_gv_aP_Triggers_disableForcedCamera = StringEqual(lv_disableForcedCamera, "1", c_stringCase);
+    libABFE498B_gv_aP_Triggers_skipCutscenes = StringEqual(lv_skipCutscenes, "1", c_stringCase);
+    libABFE498B_gv_aP_Triggers_Option_enableMorphling = StringEqual(lv_enableMorphling, "1", c_stringCase);
+    libABFE498B_gf_AP_Triggers_setKerriganOptions(StringToInt(lv_kerriganOptions));
+    libABFE498B_gv_aP_Triggers_Option_grantStoryTech = StringEqual(lv_storyTech, "1", c_stringCase);
+    libABFE498B_gv_aP_Triggers_Option_grantStoryTechAllowSubstitutes = StringEqual(lv_storyTech, "2", c_stringCase);
+    libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies = StringEqual(lv_takeOverAIAllies, "1", c_stringCase);
+    libABFE498B_gv_aP_Triggers_Option_missionOrder = StringToInt(lv_missionOrder);
+    libABFE498B_gv_aP_Triggers_Option_enableNova = StringEqual(lv_novaFallback, "1", c_stringCase);
+    libABFE498B_gv_aP_Triggers_Option_grantStoryLevels = StringToInt(lv_storyLevels);
+    libABFE498B_gf_AP_Triggers_setRaceOverride(lv_overrideRace);
+    libABFE498B_gf_AP_Triggers_setSoAOptions(StringToInt(lv_soaOptions));
+    if ((StringEqual(lv_difficultyDamageModifier, "1", c_stringCase) == true)) {
+        lv_difficultyDamageModifierEvent = libABFE498B_gv_aP_Triggers_DIFFICULTY_DAMAGE_MODIFIER_ENABLED_EVENT;
+    }
+    else {
+        lv_difficultyDamageModifierEvent = libABFE498B_gv_aP_Triggers_DIFFICULTY_DAMAGE_MODIFIER_DISABLED_EVENT;
+    }
+    TriggerSendEvent(lv_difficultyDamageModifierEvent);
+    auto1F938E30_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
+    lv_currentPlayer = -1;
+    while (true) {
+        lv_currentPlayer = PlayerGroupNextPlayer(auto1F938E30_g, lv_currentPlayer);
+        if (lv_currentPlayer < 0) { break; }
+        libABFE498B_gf_AP_Triggers_setTradeOptions(lv_currentPlayer, StringToInt(lv_tradeOptions));
+    }
+    libABFE498B_gf_AP_Triggers_setMercenaryHighlander(StringEqual(lv_unitOptionsValue, "1", c_stringCase));
+    libABFE498B_gf_AP_Triggers_setWarCouncil(StringEqual(lv_warCouncilNerfs, "1", c_stringCase));
+}
+
+void libABFE498B_gf_AP_Triggers_giveTerranTech (string lp_inputString) {
+    // Variable Declarations
+    int lv_currentPlayer;
+    string lv_unitValue;
+    string lv_unit2Value;
+    string lv_upgradeValue;
+    string lv_armory1Value;
+    string lv_armory2Value;
+    string lv_armory3Value;
+    string lv_armory4Value;
+    string lv_armory5Value;
+    string lv_armory6Value;
+    string lv_armory7Value;
+    string lv_buildingValue;
+    string lv_mercenaryValue;
+    string lv_laboratoryValue;
+    string lv_progressiveUpgradeValue;
+    string lv_progressiveUpgrade2Value;
+    string lv_novaGearValue;
+    string lv_receivedString;
+
+    // Automatic Variable Declarations
+    playergroup autoA98222D3_g;
+
+    // Variable Initialization
+    lv_unitValue = "";
+    lv_unit2Value = "";
+    lv_upgradeValue = "";
+    lv_armory1Value = "";
+    lv_armory2Value = "";
+    lv_armory3Value = "";
+    lv_armory4Value = "";
+    lv_armory5Value = "";
+    lv_armory6Value = "";
+    lv_armory7Value = "";
+    lv_buildingValue = "";
+    lv_mercenaryValue = "";
+    lv_laboratoryValue = "";
+    lv_progressiveUpgradeValue = "";
+    lv_progressiveUpgrade2Value = "";
+    lv_novaGearValue = "";
+    lv_receivedString = "";
+
+    // Implementation
+    lv_receivedString = lp_inputString;
+    lv_armory1Value = StringWord(lv_receivedString, 1);
+    lv_armory2Value = StringWord(lv_receivedString, 2);
+    lv_armory3Value = StringWord(lv_receivedString, 3);
+    lv_armory4Value = StringWord(lv_receivedString, 4);
+    lv_armory5Value = StringWord(lv_receivedString, 5);
+    lv_armory6Value = StringWord(lv_receivedString, 6);
+    lv_armory7Value = StringWord(lv_receivedString, 7);
+    lv_progressiveUpgradeValue = StringWord(lv_receivedString, 8);
+    lv_laboratoryValue = StringWord(lv_receivedString, 9);
+    lv_upgradeValue = StringWord(lv_receivedString, 10);
+    lv_unitValue = StringWord(lv_receivedString, 11);
+    lv_buildingValue = StringWord(lv_receivedString, 12);
+    lv_mercenaryValue = StringWord(lv_receivedString, 13);
+    lv_novaGearValue = StringWord(lv_receivedString, 14);
+    lv_progressiveUpgrade2Value = StringWord(lv_receivedString, 15);
+    lv_unit2Value = StringWord(lv_receivedString, 16);
+    autoA98222D3_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
+    lv_currentPlayer = -1;
+    while (true) {
+        lv_currentPlayer = PlayerGroupNextPlayer(autoA98222D3_g, lv_currentPlayer);
+        if (lv_currentPlayer < 0) { break; }
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory1(lv_currentPlayer, StringToInt(lv_armory1Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory2(lv_currentPlayer, StringToInt(lv_armory2Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory3(lv_currentPlayer, StringToInt(lv_armory3Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory4(lv_currentPlayer, StringToInt(lv_armory4Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory5(lv_currentPlayer, StringToInt(lv_armory5Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory6(lv_currentPlayer, StringToInt(lv_armory6Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranArmory7(lv_currentPlayer, StringToInt(lv_armory7Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranProgressiveUpgrades(lv_currentPlayer, StringToInt(lv_progressiveUpgradeValue));
+        libABFE498B_gf_AP_Triggers_unlockTerranProgressiveUpgrades2(lv_currentPlayer, StringToInt(lv_progressiveUpgrade2Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranNovaGear(lv_currentPlayer, StringToInt(lv_novaGearValue));
+        libABFE498B_gf_AP_Triggers_unlockTerranLaboratory(lv_currentPlayer, StringToInt(lv_laboratoryValue));
+        libABFE498B_gf_AP_Triggers_unlockTerranUnits(lv_currentPlayer, StringToInt(lv_unitValue));
+        libABFE498B_gf_AP_Triggers_unlockTerranUnits2(lv_currentPlayer, StringToInt(lv_unit2Value));
+        libABFE498B_gf_AP_Triggers_unlockTerranBuildings(lv_currentPlayer, StringToInt(lv_buildingValue));
+        libABFE498B_gf_AP_Triggers_unlockTerranMercenaries(lv_currentPlayer, StringToInt(lv_mercenaryValue));
+        libABFE498B_gf_AP_Triggers_unlockTerranUpgrades(lv_currentPlayer, StringToInt(lv_upgradeValue));
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_giveZergTech (string lp_inputString) {
+    // Variable Declarations
+    int lv_currentPlayer;
+    string lv_kerriganLevelValue;
+    string lv_kerriganPrimalValue;
+    string lv_abilityValue;
+    string lv_mutation1Value;
+    string lv_mutation2Value;
+    string lv_mutation3Value;
+    string lv_mutation4Value;
+    string lv_mutation5Value;
+    string lv_strainValue;
+    string lv_morphValue;
+    string lv_upgradeValue;
+    string lv_unitValue;
+    string lv_mercenaryValue;
+    string lv_evolutionPitValue;
+    string lv_progressiveValue;
+
+    // Automatic Variable Declarations
+    playergroup autoFB24477E_g;
+    int auto82D1CA29_val;
+
+    // Variable Initialization
+    lv_kerriganLevelValue = "";
+    lv_kerriganPrimalValue = "";
+    lv_abilityValue = "";
+    lv_mutation1Value = "";
+    lv_mutation2Value = "";
+    lv_mutation3Value = "";
+    lv_mutation4Value = "";
+    lv_mutation5Value = "";
+    lv_strainValue = "";
+    lv_morphValue = "";
+    lv_upgradeValue = "";
+    lv_unitValue = "";
+    lv_mercenaryValue = "";
+    lv_evolutionPitValue = "";
+    lv_progressiveValue = "";
+
+    // Implementation
+    lv_kerriganLevelValue = StringWord(lp_inputString, 1);
+    lv_kerriganPrimalValue = StringWord(lp_inputString, 2);
+    lv_abilityValue = StringWord(lp_inputString, 3);
+    lv_mutation1Value = StringWord(lp_inputString, 4);
+    lv_strainValue = StringWord(lp_inputString, 5);
+    lv_morphValue = StringWord(lp_inputString, 6);
+    lv_upgradeValue = StringWord(lp_inputString, 7);
+    lv_mercenaryValue = StringWord(lp_inputString, 8);
+    lv_unitValue = StringWord(lp_inputString, 9);
+    lv_evolutionPitValue = StringWord(lp_inputString, 10);
+    lv_mutation2Value = StringWord(lp_inputString, 11);
+    lv_mutation3Value = StringWord(lp_inputString, 12);
+    lv_mutation4Value = StringWord(lp_inputString, 13);
+    lv_progressiveValue = StringWord(lp_inputString, 14);
+    lv_mutation5Value = StringWord(lp_inputString, 15);
+    autoFB24477E_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
+    lv_currentPlayer = -1;
+    while (true) {
+        lv_currentPlayer = PlayerGroupNextPlayer(autoFB24477E_g, lv_currentPlayer);
+        if (lv_currentPlayer < 0) { break; }
+        if ((libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 0)) {
+            auto82D1CA29_val = libABFE498B_gv_aP_Triggers_Option_grantStoryLevels;
+            if (auto82D1CA29_val == 1) {
+                lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, (libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_StoryTechMinLevel + StringToInt(lv_kerriganLevelValue)));
+            }
+            else if (auto82D1CA29_val == 2) {
+                lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, MaxI(libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_StoryTechMinLevel, StringToInt(lv_kerriganLevelValue)));
+            }
+            else {
+                lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, StringToInt(lv_kerriganLevelValue));
+            }
+        }
+        else {
+            lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_StoryTechMinLevel);
+        }
+        if ((libABFE498B_gv_aP_Triggers_Option_KerriganPrimalStatusByMap == true)) {
+            if ((libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_PrimalInVanilla == true)) {
+                libABFE498B_gf_AP_Triggers_setKerriganPrimal(lv_currentPlayer);
+            }
+
+        }
+        else {
+            if ((StringToInt(lv_kerriganPrimalValue) == 1)) {
+                libABFE498B_gf_AP_Triggers_setKerriganPrimal(lv_currentPlayer);
+            }
+
+        }
+        libABFE498B_gf_AP_Triggers_unlockZergKerriganAbilities(lv_currentPlayer, StringToInt(lv_abilityValue));
+        libABFE498B_gf_AP_Triggers_unlockZergMutation1(lv_currentPlayer, StringToInt(lv_mutation1Value));
+        libABFE498B_gf_AP_Triggers_unlockZergStrain(lv_currentPlayer, StringToInt(lv_strainValue));
+        libABFE498B_gf_AP_Triggers_unlockZergMorph(lv_currentPlayer, StringToInt(lv_morphValue));
+        libABFE498B_gf_AP_Triggers_unlockZergUpgrades(lv_currentPlayer, StringToInt(lv_upgradeValue));
+        libABFE498B_gf_AP_Triggers_unlockZergMercenaries(lv_currentPlayer, StringToInt(lv_mercenaryValue));
+        libABFE498B_gf_AP_Triggers_unlockZergUnits(lv_currentPlayer, StringToInt(lv_unitValue));
+        libABFE498B_gf_AP_Triggers_unlockZergEvolutionPit(lv_currentPlayer, StringToInt(lv_evolutionPitValue));
+        libABFE498B_gf_AP_Triggers_unlockZergMutation2(lv_currentPlayer, StringToInt(lv_mutation2Value));
+        libABFE498B_gf_AP_Triggers_unlockZergMutation3(lv_currentPlayer, StringToInt(lv_mutation3Value));
+        libABFE498B_gf_AP_Triggers_unlockZergMutation4(lv_currentPlayer, StringToInt(lv_mutation4Value));
+        libABFE498B_gf_AP_Triggers_unlockZergProgressiveUpgrades(lv_currentPlayer, StringToInt(lv_progressiveValue));
+        libABFE498B_gf_AP_Triggers_unlockZergMutation5(lv_currentPlayer, StringToInt(lv_mutation5Value));
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_giveProtossTech (string lp_inputString) {
+    // Variable Declarations
+    int lv_currentPlayer;
+    string lv_unitValue;
+    string lv_unit2Value;
+    string lv_upgradeValue;
+    string lv_buildingValue;
+    string lv_progressiveUpgradeValue;
+    string lv_spearOfAdunValue;
+    string lv_solariteCoreValue;
+    string lv_forge1Value;
+    string lv_forge2Value;
+    string lv_forge3Value;
+    string lv_forge4Value;
+    string lv_forge5Value;
+    string lv_warCouncilValue;
+    string lv_warCouncil2Value;
+    string lv_shieldRegenValue;
+
+    // Automatic Variable Declarations
+    playergroup autoB3BB2256_g;
+
+    // Variable Initialization
+    lv_unitValue = "";
+    lv_unit2Value = "";
+    lv_upgradeValue = "";
+    lv_buildingValue = "";
+    lv_progressiveUpgradeValue = "";
+    lv_spearOfAdunValue = "";
+    lv_solariteCoreValue = "";
+    lv_forge1Value = "";
+    lv_forge2Value = "";
+    lv_forge3Value = "";
+    lv_forge4Value = "";
+    lv_forge5Value = "";
+    lv_warCouncilValue = "";
+    lv_warCouncil2Value = "";
+    lv_shieldRegenValue = "";
+
+    // Implementation
+    lv_unitValue = StringWord(lp_inputString, 1);
+    lv_unit2Value = StringWord(lp_inputString, 2);
+    lv_upgradeValue = StringWord(lp_inputString, 3);
+    lv_buildingValue = StringWord(lp_inputString, 4);
+    lv_progressiveUpgradeValue = StringWord(lp_inputString, 5);
+    lv_spearOfAdunValue = StringWord(lp_inputString, 6);
+    lv_solariteCoreValue = StringWord(lp_inputString, 7);
+    lv_forge1Value = StringWord(lp_inputString, 8);
+    lv_forge2Value = StringWord(lp_inputString, 9);
+    lv_forge3Value = StringWord(lp_inputString, 10);
+    lv_forge4Value = StringWord(lp_inputString, 11);
+    lv_forge5Value = StringWord(lp_inputString, 12);
+    lv_warCouncilValue = StringWord(lp_inputString, 13);
+    lv_warCouncil2Value = StringWord(lp_inputString, 14);
+    lv_shieldRegenValue = StringWord(lp_inputString, 15);
+    autoB3BB2256_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
+    lv_currentPlayer = -1;
+    while (true) {
+        lv_currentPlayer = PlayerGroupNextPlayer(autoB3BB2256_g, lv_currentPlayer);
+        if (lv_currentPlayer < 0) { break; }
+        libABFE498B_gf_AP_Triggers_unlockProtossUnits(lv_currentPlayer, StringToInt(lv_unitValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossUnits2(lv_currentPlayer, StringToInt(lv_unit2Value));
+        libABFE498B_gf_AP_Triggers_unlockProtossBuildings(lv_currentPlayer, StringToInt(lv_buildingValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossProgressiveUpgrades(lv_currentPlayer, StringToInt(lv_progressiveUpgradeValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossSpearOfAdun(lv_currentPlayer, StringToInt(lv_spearOfAdunValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossSolariteCore(lv_currentPlayer, StringToInt(lv_solariteCoreValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossUpgrades(lv_currentPlayer, StringToInt(lv_upgradeValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossForge1(lv_currentPlayer, StringToInt(lv_forge1Value));
+        libABFE498B_gf_AP_Triggers_unlockProtossForge2(lv_currentPlayer, StringToInt(lv_forge2Value));
+        libABFE498B_gf_AP_Triggers_unlockProtossForge3(lv_currentPlayer, StringToInt(lv_forge3Value));
+        libABFE498B_gf_AP_Triggers_unlockProtossForge4(lv_currentPlayer, StringToInt(lv_forge4Value));
+        libABFE498B_gf_AP_Triggers_unlockProtossForge5(lv_currentPlayer, StringToInt(lv_forge5Value));
+        libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil(lv_currentPlayer, StringToInt(lv_warCouncilValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil2(lv_currentPlayer, StringToInt(lv_warCouncil2Value));
+        libABFE498B_gf_AP_Triggers_giveShieldRegeneration(lv_currentPlayer, StringToInt(lv_shieldRegenValue));
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_giveMiscTech (string lp_inputString) {
+    // Variable Declarations
+    int lv_currentPlayer;
+    string lv_buildingSpeedValue;
+    string lv_researchSpeedValue;
+    string lv_researchCostValue;
+
+    // Automatic Variable Declarations
+    playergroup auto3315FF2A_g;
+
+    // Variable Initialization
+    lv_buildingSpeedValue = "";
+    lv_researchSpeedValue = "";
+    lv_researchCostValue = "";
+
+    // Implementation
+    lv_buildingSpeedValue = StringWord(lp_inputString, 1);
+    lv_researchSpeedValue = StringWord(lp_inputString, 2);
+    lv_researchCostValue = StringWord(lp_inputString, 3);
+    auto3315FF2A_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
+    lv_currentPlayer = -1;
+    while (true) {
+        lv_currentPlayer = PlayerGroupNextPlayer(auto3315FF2A_g, lv_currentPlayer);
+        if (lv_currentPlayer < 0) { break; }
+        libABFE498B_gf_AP_Triggers_giveBuildingSpeed(lv_currentPlayer, StringToInt(lv_buildingSpeedValue));
+        libABFE498B_gf_AP_Triggers_giveResearchSpeed(lv_currentPlayer, StringToInt(lv_researchSpeedValue));
+        libABFE498B_gf_AP_Triggers_giveResearchCost(lv_currentPlayer, StringToInt(lv_researchCostValue));
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_bankOptionsLoop () {
+    // Variable Declarations
+    int lv_bankbackupid;
+    int lv_user;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    lv_bankbackupid = BankBackupGetLatestId(libABFE498B_gv_aP_Triggers_bankOptions);
+    if ((lv_bankbackupid > 0)) {
+        lv_user = lib5BD4895D_gf_AP_Core_getUser();
+        BankRestore(libABFE498B_gv_aP_Triggers_bankOptions, lv_user, lv_bankbackupid);
+        BankBackupRemove(libABFE498B_gv_aP_Triggers_bankOptions, lv_bankbackupid, lv_user);
+        libABFE498B_gf_AP_Triggers_bankOptionsRead();
+    }
+
+}
+
+trigger auto_libABFE498B_gf_AP_Triggers_bankOptionsRead_Trigger = null;
+
+void libABFE498B_gf_AP_Triggers_bankOptionsRead () {
+    if (auto_libABFE498B_gf_AP_Triggers_bankOptionsRead_Trigger == null) {
+        auto_libABFE498B_gf_AP_Triggers_bankOptionsRead_Trigger = TriggerCreate("auto_libABFE498B_gf_AP_Triggers_bankOptionsRead_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libABFE498B_gf_AP_Triggers_bankOptionsRead_Trigger, false, false);
+}
+
+bool auto_libABFE498B_gf_AP_Triggers_bankOptionsRead_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_index;
+    string lv_section;
+    string lv_key;
+    string lv_value;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_section = "";
+    lv_key = "";
+    lv_value = "";
+
+    // Implementation
+    lv_section = libABFE498B_gv_aP_Triggers_BANK_OPTIONS_SECTION_OPTIONS;
+    lv_key = libABFE498B_gv_aP_Triggers_BANK_OPTIONS_KEY_OPTIONS;
+    if ((BankKeyExists(libABFE498B_gv_aP_Triggers_bankOptions, lv_section, lv_key) == true)) {
+        lv_value = BankValueGetAsString(libABFE498B_gv_aP_Triggers_bankOptions, lv_section, lv_key);
+        libABFE498B_gf_AP_Triggers_setOptions(lv_value);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_bankOptionsInitialized == false)) {
+        libABFE498B_gv_aP_Triggers_bankOptionsInitialized = true;
+        lib5BD4895D_gv_aP_Core_banksLoadedCount += 1;
+        TextExpressionSetToken("Param/Expression/lib_ABFE498B_9FD2030F", "A", FixedToText(GameGetMissionTime(), 3));
+        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_ABFE498B_9FD2030F"), false);
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) {
+            libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        }
+
+    }
+
+    return true;
+}
+
+void libABFE498B_gf_AP_Triggers_bankItemsLoop () {
+    // Variable Declarations
+    int lv_bankbackupid;
+    int lv_user;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    lv_bankbackupid = BankBackupGetLatestId(libABFE498B_gv_aP_Triggers_bankItems);
+    if ((lv_bankbackupid > 0)) {
+        lv_user = lib5BD4895D_gf_AP_Core_getUser();
+        BankRestore(libABFE498B_gv_aP_Triggers_bankItems, lv_user, lv_bankbackupid);
+        BankBackupRemove(libABFE498B_gv_aP_Triggers_bankItems, lv_bankbackupid, lv_user);
+        libABFE498B_gf_AP_Triggers_bankItemsRead();
+    }
+
+}
+
+trigger auto_libABFE498B_gf_AP_Triggers_bankItemsRead_Trigger = null;
+
+void libABFE498B_gf_AP_Triggers_bankItemsRead () {
+    if (auto_libABFE498B_gf_AP_Triggers_bankItemsRead_Trigger == null) {
+        auto_libABFE498B_gf_AP_Triggers_bankItemsRead_Trigger = TriggerCreate("auto_libABFE498B_gf_AP_Triggers_bankItemsRead_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libABFE498B_gf_AP_Triggers_bankItemsRead_Trigger, false, false);
+}
+
+bool auto_libABFE498B_gf_AP_Triggers_bankItemsRead_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_index;
+    string lv_section;
+    string lv_key;
+    string lv_value;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_section = "";
+    lv_key = "";
+    lv_value = "";
+
+    // Implementation
+    while (!((libABFE498B_gv_aP_Triggers_bankOptionsInitialized == true))) {
+        Wait(0.0625, c_timeGame);
+    }
+    lv_section = libABFE498B_gv_aP_Triggers_BANK_ITEMS_SECTION_ITEMS;
+    lv_key = libABFE498B_gv_aP_Triggers_BANK_ITEMS_KEY_TERRAN_ITEMS;
+    if ((BankKeyExists(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key) == true)) {
+        lv_value = BankValueGetAsString(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key);
+        libABFE498B_gf_AP_Triggers_giveTerranTech(lv_value);
+    }
+
+    lv_key = libABFE498B_gv_aP_Triggers_BANK_ITEMS_KEY_ZERG_ITEMS;
+    if ((BankKeyExists(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key) == true)) {
+        lv_value = BankValueGetAsString(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key);
+        libABFE498B_gf_AP_Triggers_giveZergTech(lv_value);
+    }
+
+    lv_key = libABFE498B_gv_aP_Triggers_BANK_ITEMS_KEY_PROTOSS_ITEMS;
+    if ((BankKeyExists(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key) == true)) {
+        lv_value = BankValueGetAsString(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key);
+        libABFE498B_gf_AP_Triggers_giveProtossTech(lv_value);
+    }
+
+    lv_key = libABFE498B_gv_aP_Triggers_BANK_ITEMS_KEY_MISC_ITEMS;
+    if ((BankKeyExists(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key) == true)) {
+        lv_value = BankValueGetAsString(libABFE498B_gv_aP_Triggers_bankItems, lv_section, lv_key);
+        libABFE498B_gf_AP_Triggers_giveMiscTech(lv_value);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_bankItemsInitialized == false)) {
+        libABFE498B_gv_aP_Triggers_bankItemsInitialized = true;
+        lib5BD4895D_gv_aP_Core_banksLoadedCount += 1;
+        TextExpressionSetToken("Param/Expression/lib_ABFE498B_8CEF283A", "A", FixedToText(GameGetMissionTime(), 3));
+        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_ABFE498B_8CEF283A"), false);
+    }
+
+    return true;
 }
 
 bool libABFE498B_gf_AP_Triggers_isGenericUpgradeAutoUnlock () {
@@ -2497,6 +3045,18 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockSCVConstructionJumpJets (int lp_pla
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SCVCliffJump", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockSCVResourceful (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SCVRepairFree", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockSCVCauterizer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SCVRepairBio", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Terran_unlockMarineCombatShield (int lp_player) {
@@ -3988,6 +4548,18 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockWarhoundAutoTurret (int lp_player) 
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarhoundAutoTurret", 1);
 }
 
+void libABFE498B_gf_AP_Triggers_Terran_unlockWarhoundBrawlerConfiguration (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarhoundBrawlerConfiguration", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockWarhoundJumpJets (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarhoundJumpJets", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Terran_unlockHERCResourceEfficiency (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -4130,6 +4702,12 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockBunkerFortifiedBunker (int lp_playe
 
 }
 
+void libABFE498B_gf_AP_Triggers_Terran_unlockBunkerEmergencyProvisions (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BunkerIgnoreSupply", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Terran_unlockMissileTurretTitaniumHousing (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -4180,6 +4758,12 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterMULE (int lp_player) {
     // Implementation
     libABFE498B_gf_AP_Triggers_Terran_unlockOrbitalCommand(lp_player);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_MULE", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterTacticalJump (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CommandCenterHyperjump", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Terran_unlockPlanetaryFortressProgressiveAugumentedThrusters (int lp_player, int lp_level) {
@@ -4280,6 +4864,18 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockFusionCoreFusionReactor (int lp_pla
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_TerranBuild", 11), true);
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_TerranBuild", 15), true);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_FusionCoreFusionReactor", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockJuggernautThrusters (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_JuggernautThrusters", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockSupplyDepotCovertStocks (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SupplyDepotCloak", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Terran_unlockInfantryArmor (int lp_player, int lp_level) {
@@ -6180,6 +6776,12 @@ void libABFE498B_gf_AP_Triggers_Zerg_CorruptorResourceEfficiency (int lp_player)
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorruptorResourceEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Zerg_CorruptorAcidSplash (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorruptorAcidSplash", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Zerg_ScourgeVirulentSpores (int lp_player) {
@@ -8517,6 +9119,12 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleBosonicCore (int lp_player) 
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleEnergyUpgrade", 1);
 }
 
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleSurfaceStabilizer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleGround", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterChronostaticReinforcement (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -8571,10 +9179,10 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierAiurRepairDrones (int lp_pl
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierAiurRepairDrones", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTriremeSolarBeam (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTriremeBomberMiniaturization (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TriremeSolarBeam", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierPurifierHangarUpgrade", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockSkylordHyperjump (int lp_player) {
@@ -9970,6 +10578,7 @@ void libABFE498B_gf_AP_Triggers_unlockTradeStructure (int lp_player, int lp_valu
         TechTreeUnitAllow(lp_player, "AP_TradeStructure", true);
         lib5BD4895D_gv_aP_Core_tradeSendUnitType = "AP_TradeStructureSendDummy";
         lib5BD4895D_gv_aP_Core_tradeReceiveUnitType = "AP_TradeStructureReceiveDummy";
+        lib5BD4895D_gv_aP_Core_tradeReceiveUnitType5 = "AP_TradeStructureReceive5Dummy";
         lib5BD4895D_gv_aP_Core_tradeChargeBehavior = "AP_TradeCharge";
     }
     else {
@@ -10056,13 +10665,202 @@ void libABFE498B_gf_AP_Triggers_giveResearchCost (int lp_player, int lp_level) {
     }
 }
 
+void libABFE498B_gf_AP_Triggers_techTreeInit () {
+    // Variable Declarations
+    int lv_currentPlayer;
+
+    // Automatic Variable Declarations
+    playergroup auto0EF7F570_g;
+
+    // Variable Initialization
+
+    // Implementation
+    auto0EF7F570_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
+    lv_currentPlayer = -1;
+    while (true) {
+        lv_currentPlayer = PlayerGroupNextPlayer(auto0EF7F570_g, lv_currentPlayer);
+        if (lv_currentPlayer < 0) { break; }
+        libABFE498B_gf_AP_Triggers_clearTerranTech(lv_currentPlayer);
+        libABFE498B_gf_AP_Triggers_clearZergTech(lv_currentPlayer);
+        libABFE498B_gf_AP_Triggers_clearProtossTech(lv_currentPlayer);
+        libABFE498B_gf_AP_Triggers_giveTerranDefaultTech(lv_currentPlayer);
+        libABFE498B_gf_AP_Triggers_giveZergDefaultTech(lv_currentPlayer);
+        libABFE498B_gf_AP_Triggers_giveProtossDefaultTech(lv_currentPlayer);
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_HeroInit (int lp_player, point lp_location, unitgroup lp_replacements) {
+    // Variable Declarations
+    string[4] lv_unittype;
+    int[4] lv_system;
+    int lv_bitflag;
+    int lv_count;
+    int lv_index;
+    point lv_spawnPoint;
+
+    // Automatic Variable Declarations
+    int auto6F886A1D_ae;
+    const int auto6F886A1D_ai = 1;
+    unitgroup auto71D70EA7_g;
+    int auto71D70EA7_u;
+    unit auto71D70EA7_var;
+
+    // Variable Initialization
+
+    // Implementation
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
+        return ;
+    }
+
+    lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
+    if ((lv_bitflag == 1)) {
+        lv_count += 1;
+        lv_unittype[lv_count] = "AP_K5Kerrigan";
+        lv_system[lv_count] = 1;
+    }
+
+    libABFE498B_gv_aP_Triggers_Option_HeroPresence /= 2;
+    lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
+    if ((lv_bitflag == 1)) {
+        lv_count += 1;
+        lv_unittype[lv_count] = "AP_NovaHero";
+        lv_system[lv_count] = 1;
+    }
+
+    libABFE498B_gv_aP_Triggers_Option_HeroPresence /= 2;
+    lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
+    if ((lv_bitflag == 1)) {
+    }
+
+    auto6F886A1D_ae = lv_count;
+    lv_index = 1;
+    for ( ; ( (auto6F886A1D_ai >= 0 && lv_index <= auto6F886A1D_ae) || (auto6F886A1D_ai < 0 && lv_index >= auto6F886A1D_ae) ) ; lv_index += auto6F886A1D_ai ) {
+        if ((lv_count > 1)) {
+            lv_spawnPoint = PointWithOffsetPolar(lp_location, 1.0, (120*lv_index));
+        }
+        else {
+            lv_spawnPoint = lp_location;
+        }
+        TextExpressionSetToken("Param/Expression/lib_ABFE498B_626DF616", "A", StringToText((lv_unittype[lv_index])));
+        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_ABFE498B_626DF616"), false);
+        UnitCreate(1, lv_unittype[lv_index], 0, lp_player, lv_spawnPoint, 270.0);
+        libABFE498B_gv_aP_Triggers_HeroUnit[lv_index] = UnitLastCreated();
+        UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, UnitLastCreated());
+        if ((lv_system[lv_index] == 1)) {
+            lib15EF4C78_gf_SetHeroPanelUnit(lv_index, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index], lp_player);
+        }
+        else {
+            lib15EF4C78_gf_SetHeroPanelUnit2(lv_index, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index], lp_player);
+        }
+    }
+    auto71D70EA7_g = lp_replacements;
+    auto71D70EA7_u = UnitGroupCount(auto71D70EA7_g, c_unitCountAll);
+    for (;; auto71D70EA7_u -= 1) {
+        auto71D70EA7_var = UnitGroupUnitFromEnd(auto71D70EA7_g, auto71D70EA7_u);
+        if (auto71D70EA7_var == null) { break; }
+        UnitRemove(auto71D70EA7_var);
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_HeroReplace (int lp_player, unit lp_hero, unitgroup lp_replacements) {
+    // Variable Declarations
+    point lv_location;
+    string[4] lv_unittype;
+    int[4] lv_system;
+    int lv_bitflag;
+    int lv_count;
+    int lv_index;
+    point lv_spawnPoint;
+
+    // Automatic Variable Declarations
+    int auto4FA2ACBF_ae;
+    const int auto4FA2ACBF_ai = 1;
+    unitgroup auto93F8A4D3_g;
+    int auto93F8A4D3_u;
+    unit auto93F8A4D3_var;
+
+    // Variable Initialization
+
+    // Implementation
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
+        return ;
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 1) && (UnitGetType(lp_hero) == "AP_K5Kerrigan")) {
+        libABFE498B_gv_aP_Triggers_HeroUnit[1] = lp_hero;
+        UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, lp_hero);
+        return ;
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 2) && (UnitGetType(lp_hero) == "AP_NovaHero")) {
+        libABFE498B_gv_aP_Triggers_HeroUnit[1] = lp_hero;
+        UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, lp_hero);
+        return ;
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 4) && (UnitGetType(lp_hero) == "ZealotACGluescreenDummy")) {
+        libABFE498B_gv_aP_Triggers_HeroUnit[1] = lp_hero;
+        UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, lp_hero);
+        return ;
+    }
+
+    lv_location = UnitGetPosition(lp_hero);
+    lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
+    if ((lv_bitflag == 1)) {
+        lv_count += 1;
+        lv_unittype[lv_count] = "AP_K5Kerrigan";
+        lv_system[lv_count] = 1;
+    }
+
+    libABFE498B_gv_aP_Triggers_Option_HeroPresence /= 2;
+    lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
+    if ((lv_bitflag == 1)) {
+        lv_count += 1;
+        lv_unittype[lv_count] = "AP_NovaHero";
+        lv_system[lv_count] = 1;
+    }
+
+    libABFE498B_gv_aP_Triggers_Option_HeroPresence /= 2;
+    lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
+    if ((lv_bitflag == 1)) {
+    }
+
+    lib15EF4C78_gf_SetHeroPanelUnit(1, null, lp_player);
+    lib15EF4C78_gf_SetHeroPanelUnit2(1, null, lp_player);
+    UnitRemove(lp_hero);
+    auto4FA2ACBF_ae = lv_count;
+    lv_index = 1;
+    for ( ; ( (auto4FA2ACBF_ai >= 0 && lv_index <= auto4FA2ACBF_ae) || (auto4FA2ACBF_ai < 0 && lv_index >= auto4FA2ACBF_ae) ) ; lv_index += auto4FA2ACBF_ai ) {
+        if ((lv_count > 1)) {
+            lv_spawnPoint = PointWithOffsetPolar(lv_location, 1.0, (120*lv_index));
+        }
+        else {
+            lv_spawnPoint = lv_location;
+        }
+        TextExpressionSetToken("Param/Expression/lib_ABFE498B_851E1858", "A", StringToText((lv_unittype[lv_index])));
+        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_ABFE498B_851E1858"), false);
+        UnitCreate(1, lv_unittype[lv_index], 0, lp_player, lv_spawnPoint, 270.0);
+        libABFE498B_gv_aP_Triggers_HeroUnit[lv_index] = UnitLastCreated();
+        UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, UnitLastCreated());
+        if ((lv_system[lv_index] == 1)) {
+            lib15EF4C78_gf_SetHeroPanelUnit(lv_index, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index], lp_player);
+        }
+        else {
+            lib15EF4C78_gf_SetHeroPanelUnit2(lv_index, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index], lp_player);
+        }
+    }
+    auto93F8A4D3_g = lp_replacements;
+    auto93F8A4D3_u = UnitGroupCount(auto93F8A4D3_g, c_unitCountAll);
+    for (;; auto93F8A4D3_u -= 1) {
+        auto93F8A4D3_var = UnitGroupUnitFromEnd(auto93F8A4D3_g, auto93F8A4D3_u);
+        if (auto93F8A4D3_var == null) { break; }
+        UnitRemove(auto93F8A4D3_var);
+    }
+}
+
 void libABFE498B_gf_AP_Triggers_Debug_Tech (int lp_player, int lp_level) {
     // Automatic Variable Declarations
     // Implementation
-    if ((GameIsTestMap(false) == true)) {
-        TriggerExecute(libABFE498B_gt_AP_Triggers_techTreeInit, true, true);
-    }
-
     if ((lp_level >= 0)) {
         libABFE498B_gf_AP_Triggers_Terran_unlockMarine(lp_player);
         libABFE498B_gf_AP_Triggers_Zerg_unlockZergling(lp_player);
@@ -10452,6 +11250,69 @@ void libABFE498B_gf_AP_Triggers_replaceUpgrade (int lp_player, string lp_oldUpgr
 
 }
 
+abilcmd libABFE498B_gf_AP_Triggers_getWarpAbilcmd (string lp_type) {
+    // Automatic Variable Declarations
+    // Implementation
+    return DataTableGetAbilCmd(true, ("AP_WarpInUnitType:" + (lp_type)));
+}
+
+unit libABFE498B_gf_AP_Triggers_getLastWarpedUnit () {
+    // Automatic Variable Declarations
+    // Implementation
+    return libABFE498B_gv_aP_Triggers_lastWarpedUnit;
+}
+
+unitgroup libABFE498B_gf_AP_Triggers_getLastWarpedUnits () {
+    // Automatic Variable Declarations
+    // Implementation
+    return UnitGroupCopy(libABFE498B_gv_aP_Triggers_lastWarpedUnits);
+}
+
+void libABFE498B_gf_AP_Triggers_warpInSetup (int lp_player, unit lp_warpGate) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((UnitIsValid(lp_warpGate) == true) && (UnitGetType(lp_warpGate) == "AP_SuperWarpGateSystem")) {
+        libABFE498B_gv_aP_Triggers_warpInSuperWarpGate[lp_player] = lp_warpGate;
+    }
+    else {
+        UnitCreate(1, "AP_SuperWarpGateSystem", c_unitCreateIgnorePlacement, lp_player, Point(0.0, 0.0), 270.0);
+        lp_warpGate = UnitLastCreated();
+        libABFE498B_gv_aP_Triggers_warpInSuperWarpGate[lp_player] = lp_warpGate;
+    }
+    libNtve_gf_MakeUnitUncommandable(lp_warpGate, true);
+    libNtve_gf_MakeUnitInvulnerable(lp_warpGate, true);
+    libNtve_gf_ShowHideUnit(lp_warpGate, false);
+    UnitSetState(lp_warpGate, c_unitStateHidden, true);
+    UnitSetState(lp_warpGate, c_unitStateSelectable, false);
+    UnitSetState(lp_warpGate, c_unitStateTargetable, false);
+    libNtve_gf_SendActorMessageToUnit(lp_warpGate, "ModelSwap Invisible");
+    UnitGroupAdd(libABFE498B_gv_aP_Triggers_warpInSuperWarpGates, lp_warpGate);
+    TriggerEnable(libABFE498B_gt_AP_Triggers_warpGateSafety, true);
+}
+
+void libABFE498B_gf_AP_Triggers_warpInUnit (string lp_type, int lp_player, point lp_location, bool lp_providePower) {
+    // Automatic Variable Declarations
+    // Implementation
+    libABFE498B_gf_AP_Triggers_warpInAbilcmd(libABFE498B_gf_AP_Triggers_getWarpAbilcmd(lp_type), lp_player, lp_location, lp_providePower);
+}
+
+void libABFE498B_gf_AP_Triggers_warpInAbilcmd (abilcmd lp_warp, int lp_player, point lp_location, bool lp_providePower) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((UnitIsAlive(libABFE498B_gv_aP_Triggers_warpInSuperWarpGate[lp_player]) == false)) {
+        libABFE498B_gf_AP_Triggers_warpInSetup(lp_player, null);
+    }
+
+    TechTreeAbilityAllow(lp_player, lp_warp, true);
+    libNtve_gf_PauseUnit(libABFE498B_gv_aP_Triggers_warpInSuperWarpGate[lp_player], false);
+    if ((lp_providePower == true)) {
+        UnitCreate(1, "AP_PowerRadius1", c_unitCreateIgnorePlacement, lp_player, lp_location, 270.0);
+        UnitBehaviorAdd(UnitLastCreated(), "AP_TimedLife6s", UnitLastCreated(), 1);
+    }
+
+    UnitIssueOrder(libABFE498B_gv_aP_Triggers_warpInSuperWarpGate[lp_player], OrderTargetingPoint(lp_warp, lp_location), c_orderQueueReplace);
+}
+
 // Triggers
 //--------------------------------------------------------------------------------------------------
 // Trigger: AP_Triggers_PatchesInit
@@ -10475,474 +11336,88 @@ void libABFE498B_gt_AP_Triggers_PatchesInit_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_setOptions
+// Trigger: AP_Triggers_bankInit
 //--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_setOptions_Func (bool testConds, bool runActions) {
+bool libABFE498B_gt_AP_Triggers_bankInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugSetTypeFile(1, "TriggerDebug.txt");
+    TriggerExecute(libABFE498B_gt_AP_Triggers_bankOptionsInit, true, false);
+    TriggerExecute(libABFE498B_gt_AP_Triggers_bankItemsInit, true, false);
+    while ((lib5BD4895D_gv_aP_Core_initFinished == false)) {
+        libABFE498B_gf_AP_Triggers_bankOptionsLoop();
+        libABFE498B_gf_AP_Triggers_bankItemsLoop();
+        Wait(0.0625, c_timeGame);
+    }
+    while (true) {
+        libABFE498B_gf_AP_Triggers_bankOptionsLoop();
+        Wait(0.5, c_timeGame);
+        libABFE498B_gf_AP_Triggers_bankItemsLoop();
+        Wait(0.5, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_bankInit_Init () {
+    libABFE498B_gt_AP_Triggers_bankInit = TriggerCreate("libABFE498B_gt_AP_Triggers_bankInit_Func");
+    TriggerAddEventTimeElapsed(libABFE498B_gt_AP_Triggers_bankInit, 0.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_bankOptionsInit
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_bankOptionsInit_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    string lv_skipCutscenes;
-    string lv_disableForcedCamera;
-    string lv_gameSpeed;
-    string lv_difficulty;
-    string lv_genericUpgradeResearch;
-    string lv_allInVariant;
-    string lv_kerriganOptions;
-    string lv_storyTech;
-    string lv_takeOverAIAllies;
-    string lv_soaOptions;
-    string lv_missionOrder;
-    string lv_novaEnabled;
-    string lv_storyLevels;
-    string lv_enableMorphling;
-    string lv_overrideRace;
-    string lv_tradeOptions;
-    string lv_difficultyDamageModifier;
-    string lv_difficultyDamageModifierEvent;
-    string lv_unitOptionsValue;
-    string lv_warCouncilNerfs;
-    int lv_currentPlayer;
+    int lv_user;
 
     // Automatic Variable Declarations
-    playergroup auto03CC9166_g;
-
     // Variable Initialization
-    lv_skipCutscenes = "";
-    lv_disableForcedCamera = "";
-    lv_gameSpeed = "";
-    lv_difficulty = "";
-    lv_genericUpgradeResearch = "";
-    lv_allInVariant = "";
-    lv_kerriganOptions = "";
-    lv_storyTech = "";
-    lv_takeOverAIAllies = "";
-    lv_soaOptions = "";
-    lv_missionOrder = "";
-    lv_novaEnabled = "";
-    lv_storyLevels = "";
-    lv_enableMorphling = "";
-    lv_overrideRace = "";
-    lv_tradeOptions = "";
-    lv_difficultyDamageModifier = "";
-    lv_difficultyDamageModifierEvent = "";
-    lv_unitOptionsValue = "";
-    lv_warCouncilNerfs = "";
 
     // Actions
     if (!runActions) {
         return true;
     }
 
-    TriggerExecute(libABFE498B_gt_AP_Triggers_techTreeInit, true, false);
-    lv_difficulty = StringWord(EventChatMessage(false), 2);
-    lv_genericUpgradeResearch = StringWord(EventChatMessage(false), 3);
-    lv_allInVariant = StringWord(EventChatMessage(false), 4);
-    lv_gameSpeed = StringWord(EventChatMessage(false), 5);
-    lv_disableForcedCamera = StringWord(EventChatMessage(false), 6);
-    lv_skipCutscenes = StringWord(EventChatMessage(false), 7);
-    lv_kerriganOptions = StringWord(EventChatMessage(false), 8);
-    lv_storyTech = StringWord(EventChatMessage(false), 9);
-    lv_takeOverAIAllies = StringWord(EventChatMessage(false), 10);
-    lv_soaOptions = StringWord(EventChatMessage(false), 11);
-    lv_missionOrder = StringWord(EventChatMessage(false), 12);
-    lv_novaEnabled = StringWord(EventChatMessage(false), 13);
-    lv_storyLevels = StringWord(EventChatMessage(false), 14);
-    lv_enableMorphling = StringWord(EventChatMessage(false), 15);
-    lv_overrideRace = StringWord(EventChatMessage(false), 16);
-    lv_tradeOptions = StringWord(EventChatMessage(false), 17);
-    lv_difficultyDamageModifier = StringWord(EventChatMessage(false), 18);
-    lv_unitOptionsValue = StringWord(EventChatMessage(false), 19);
-    lv_warCouncilNerfs = StringWord(EventChatMessage(false), 20);
-    libABFE498B_gf_AP_Triggers_setDifficulty(lv_difficulty);
-    libABFE498B_gf_AP_Triggers_setGameSpeed(lv_gameSpeed);
-    libABFE498B_gf_AP_Triggers_setGenericUpgradeOptions(StringToInt(lv_genericUpgradeResearch));
-    libABFE498B_gv_aP_Triggers_Option_allInMissionVariant = StringToInt(lv_allInVariant);
-    libABFE498B_gv_aP_Triggers_disableForcedCamera = StringEqual(lv_disableForcedCamera, "1", c_stringCase);
-    libABFE498B_gv_aP_Triggers_skipCutscenes = StringEqual(lv_skipCutscenes, "1", c_stringCase);
-    libABFE498B_gv_aP_Triggers_Option_enableMorphling = StringEqual(lv_enableMorphling, "1", c_stringCase);
-    libABFE498B_gf_AP_Triggers_setKerriganOptions(StringToInt(lv_kerriganOptions));
-    libABFE498B_gv_aP_Triggers_Option_grantStoryTech = StringEqual(lv_storyTech, "1", c_stringCase);
-    libABFE498B_gv_aP_Triggers_Option_grantStoryTechAllowSubstitutes = StringEqual(lv_storyTech, "2", c_stringCase);
-    libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies = StringEqual(lv_takeOverAIAllies, "1", c_stringCase);
-    libABFE498B_gv_aP_Triggers_Option_missionOrder = StringToInt(lv_missionOrder);
-    libABFE498B_gv_aP_Triggers_Option_enableNova = StringEqual(lv_novaEnabled, "1", c_stringCase);
-    libABFE498B_gv_aP_Triggers_Option_grantStoryLevels = StringToInt(lv_storyLevels);
-    libABFE498B_gf_AP_Triggers_setRaceOverride(lv_overrideRace);
-    libABFE498B_gf_AP_Triggers_setSoAOptions(StringToInt(lv_soaOptions));
-    if ((StringEqual(lv_difficultyDamageModifier, "1", c_stringCase) == true)) {
-        lv_difficultyDamageModifierEvent = libABFE498B_gv_aP_Triggers_DIFFICULTY_DAMAGE_MODIFIER_ENABLED_EVENT;
-    }
-    else {
-        lv_difficultyDamageModifierEvent = libABFE498B_gv_aP_Triggers_DIFFICULTY_DAMAGE_MODIFIER_DISABLED_EVENT;
-    }
-    TriggerSendEvent(lv_difficultyDamageModifierEvent);
-    auto03CC9166_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
-    lv_currentPlayer = -1;
-    while (true) {
-        lv_currentPlayer = PlayerGroupNextPlayer(auto03CC9166_g, lv_currentPlayer);
-        if (lv_currentPlayer < 0) { break; }
-        libABFE498B_gf_AP_Triggers_setTradeOptions(lv_currentPlayer, StringToInt(lv_tradeOptions));
-    }
-    libABFE498B_gf_AP_Triggers_setMercenaryHighlander(StringEqual(lv_unitOptionsValue, "1", c_stringCase));
-    libABFE498B_gf_AP_Triggers_setWarCouncil(StringEqual(lv_warCouncilNerfs, "1", c_stringCase));
+    lv_user = lib5BD4895D_gf_AP_Core_getUser();
+    BankLoad(libABFE498B_gv_aP_Triggers_BANK_OPTIONS_FILE_NAME, lv_user);
+    libABFE498B_gv_aP_Triggers_bankOptions = BankLastCreated();
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_setOptions_Init () {
-    libABFE498B_gt_AP_Triggers_setOptions = TriggerCreate("libABFE498B_gt_AP_Triggers_setOptions_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_setOptions, c_playerAny, "?SetOptions", false);
+void libABFE498B_gt_AP_Triggers_bankOptionsInit_Init () {
+    libABFE498B_gt_AP_Triggers_bankOptionsInit = TriggerCreate("libABFE498B_gt_AP_Triggers_bankOptionsInit_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_giveTerranTech
+// Trigger: AP_Triggers_bankItemsInit
 //--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_giveTerranTech_Func (bool testConds, bool runActions) {
+bool libABFE498B_gt_AP_Triggers_bankItemsInit_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    int lv_currentPlayer;
-    string lv_unitValue;
-    string lv_unit2Value;
-    string lv_upgradeValue;
-    string lv_armory1Value;
-    string lv_armory2Value;
-    string lv_armory3Value;
-    string lv_armory4Value;
-    string lv_armory5Value;
-    string lv_armory6Value;
-    string lv_armory7Value;
-    string lv_buildingValue;
-    string lv_mercenaryValue;
-    string lv_laboratoryValue;
-    string lv_progressiveUpgradeValue;
-    string lv_progressiveUpgrade2Value;
-    string lv_novaGearValue;
+    int lv_user;
 
     // Automatic Variable Declarations
-    playergroup auto3377504F_g;
-
     // Variable Initialization
-    lv_unitValue = "";
-    lv_unit2Value = "";
-    lv_upgradeValue = "";
-    lv_armory1Value = "";
-    lv_armory2Value = "";
-    lv_armory3Value = "";
-    lv_armory4Value = "";
-    lv_armory5Value = "";
-    lv_armory6Value = "";
-    lv_armory7Value = "";
-    lv_buildingValue = "";
-    lv_mercenaryValue = "";
-    lv_laboratoryValue = "";
-    lv_progressiveUpgradeValue = "";
-    lv_progressiveUpgrade2Value = "";
-    lv_novaGearValue = "";
 
     // Actions
     if (!runActions) {
         return true;
     }
 
-    lv_armory1Value = StringWord(EventChatMessage(false), 2);
-    lv_armory2Value = StringWord(EventChatMessage(false), 3);
-    lv_armory3Value = StringWord(EventChatMessage(false), 4);
-    lv_armory4Value = StringWord(EventChatMessage(false), 5);
-    lv_armory5Value = StringWord(EventChatMessage(false), 6);
-    lv_armory6Value = StringWord(EventChatMessage(false), 7);
-    lv_armory7Value = StringWord(EventChatMessage(false), 8);
-    lv_progressiveUpgradeValue = StringWord(EventChatMessage(false), 9);
-    lv_laboratoryValue = StringWord(EventChatMessage(false), 10);
-    lv_upgradeValue = StringWord(EventChatMessage(false), 11);
-    lv_unitValue = StringWord(EventChatMessage(false), 12);
-    lv_buildingValue = StringWord(EventChatMessage(false), 13);
-    lv_mercenaryValue = StringWord(EventChatMessage(false), 14);
-    lv_novaGearValue = StringWord(EventChatMessage(false), 15);
-    lv_progressiveUpgrade2Value = StringWord(EventChatMessage(false), 16);
-    lv_unit2Value = StringWord(EventChatMessage(false), 17);
-    auto3377504F_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
-    lv_currentPlayer = -1;
-    while (true) {
-        lv_currentPlayer = PlayerGroupNextPlayer(auto3377504F_g, lv_currentPlayer);
-        if (lv_currentPlayer < 0) { break; }
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory1(lv_currentPlayer, StringToInt(lv_armory1Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory2(lv_currentPlayer, StringToInt(lv_armory2Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory3(lv_currentPlayer, StringToInt(lv_armory3Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory4(lv_currentPlayer, StringToInt(lv_armory4Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory5(lv_currentPlayer, StringToInt(lv_armory5Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory6(lv_currentPlayer, StringToInt(lv_armory6Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranArmory7(lv_currentPlayer, StringToInt(lv_armory7Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranProgressiveUpgrades(lv_currentPlayer, StringToInt(lv_progressiveUpgradeValue));
-        libABFE498B_gf_AP_Triggers_unlockTerranProgressiveUpgrades2(lv_currentPlayer, StringToInt(lv_progressiveUpgrade2Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranNovaGear(lv_currentPlayer, StringToInt(lv_novaGearValue));
-        libABFE498B_gf_AP_Triggers_unlockTerranLaboratory(lv_currentPlayer, StringToInt(lv_laboratoryValue));
-        libABFE498B_gf_AP_Triggers_unlockTerranUnits(lv_currentPlayer, StringToInt(lv_unitValue));
-        libABFE498B_gf_AP_Triggers_unlockTerranUnits2(lv_currentPlayer, StringToInt(lv_unit2Value));
-        libABFE498B_gf_AP_Triggers_unlockTerranBuildings(lv_currentPlayer, StringToInt(lv_buildingValue));
-        libABFE498B_gf_AP_Triggers_unlockTerranMercenaries(lv_currentPlayer, StringToInt(lv_mercenaryValue));
-        libABFE498B_gf_AP_Triggers_unlockTerranUpgrades(lv_currentPlayer, StringToInt(lv_upgradeValue));
-    }
+    lv_user = lib5BD4895D_gf_AP_Core_getUser();
+    BankLoad(libABFE498B_gv_aP_Triggers_BANK_ITEMS_FILE_NAME, lv_user);
+    libABFE498B_gv_aP_Triggers_bankItems = BankLastCreated();
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_giveTerranTech_Init () {
-    libABFE498B_gt_AP_Triggers_giveTerranTech = TriggerCreate("libABFE498B_gt_AP_Triggers_giveTerranTech_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_giveTerranTech, c_playerAny, "?GiveTerranTech", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_giveZergTech
-//--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_giveZergTech_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_currentPlayer;
-    string lv_kerriganLevelValue;
-    string lv_kerriganPrimalValue;
-    string lv_abilityValue;
-    string lv_mutation1Value;
-    string lv_mutation2Value;
-    string lv_mutation3Value;
-    string lv_mutation4Value;
-    string lv_mutation5Value;
-    string lv_strainValue;
-    string lv_morphValue;
-    string lv_upgradeValue;
-    string lv_unitValue;
-    string lv_mercenaryValue;
-    string lv_evolutionPitValue;
-    string lv_progressiveValue;
-
-    // Automatic Variable Declarations
-    playergroup auto6CA7C5BB_g;
-    int autoD140C5A0_val;
-
-    // Variable Initialization
-    lv_kerriganLevelValue = "";
-    lv_kerriganPrimalValue = "";
-    lv_abilityValue = "";
-    lv_mutation1Value = "";
-    lv_mutation2Value = "";
-    lv_mutation3Value = "";
-    lv_mutation4Value = "";
-    lv_mutation5Value = "";
-    lv_strainValue = "";
-    lv_morphValue = "";
-    lv_upgradeValue = "";
-    lv_unitValue = "";
-    lv_mercenaryValue = "";
-    lv_evolutionPitValue = "";
-    lv_progressiveValue = "";
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lv_kerriganLevelValue = StringWord(EventChatMessage(false), 2);
-    lv_kerriganPrimalValue = StringWord(EventChatMessage(false), 3);
-    lv_abilityValue = StringWord(EventChatMessage(false), 4);
-    lv_mutation1Value = StringWord(EventChatMessage(false), 5);
-    lv_strainValue = StringWord(EventChatMessage(false), 6);
-    lv_morphValue = StringWord(EventChatMessage(false), 7);
-    lv_upgradeValue = StringWord(EventChatMessage(false), 8);
-    lv_mercenaryValue = StringWord(EventChatMessage(false), 9);
-    lv_unitValue = StringWord(EventChatMessage(false), 10);
-    lv_evolutionPitValue = StringWord(EventChatMessage(false), 11);
-    lv_mutation2Value = StringWord(EventChatMessage(false), 12);
-    lv_mutation3Value = StringWord(EventChatMessage(false), 13);
-    lv_mutation4Value = StringWord(EventChatMessage(false), 14);
-    lv_progressiveValue = StringWord(EventChatMessage(false), 15);
-    lv_mutation5Value = StringWord(EventChatMessage(false), 16);
-    auto6CA7C5BB_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
-    lv_currentPlayer = -1;
-    while (true) {
-        lv_currentPlayer = PlayerGroupNextPlayer(auto6CA7C5BB_g, lv_currentPlayer);
-        if (lv_currentPlayer < 0) { break; }
-        if ((libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 0)) {
-            autoD140C5A0_val = libABFE498B_gv_aP_Triggers_Option_grantStoryLevels;
-            if (autoD140C5A0_val == 1) {
-                lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, (libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_StoryTechMinLevel + StringToInt(lv_kerriganLevelValue)));
-            }
-            else if (autoD140C5A0_val == 2) {
-                lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, MaxI(libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_StoryTechMinLevel, StringToInt(lv_kerriganLevelValue)));
-            }
-            else {
-                lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, StringToInt(lv_kerriganLevelValue));
-            }
-        }
-        else {
-            lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lv_currentPlayer, libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_StoryTechMinLevel);
-        }
-        if ((libABFE498B_gv_aP_Triggers_Option_KerriganPrimalStatusByMap == true)) {
-            if ((libABFE498B_gv_aP_Triggers_MapConfig_Kerrigan_PrimalInVanilla == true)) {
-                libABFE498B_gf_AP_Triggers_setKerriganPrimal(lv_currentPlayer);
-            }
-
-        }
-        else {
-            if ((StringToInt(lv_kerriganPrimalValue) == 1)) {
-                libABFE498B_gf_AP_Triggers_setKerriganPrimal(lv_currentPlayer);
-            }
-
-        }
-        libABFE498B_gf_AP_Triggers_unlockZergKerriganAbilities(lv_currentPlayer, StringToInt(lv_abilityValue));
-        libABFE498B_gf_AP_Triggers_unlockZergMutation1(lv_currentPlayer, StringToInt(lv_mutation1Value));
-        libABFE498B_gf_AP_Triggers_unlockZergStrain(lv_currentPlayer, StringToInt(lv_strainValue));
-        libABFE498B_gf_AP_Triggers_unlockZergMorph(lv_currentPlayer, StringToInt(lv_morphValue));
-        libABFE498B_gf_AP_Triggers_unlockZergUpgrades(lv_currentPlayer, StringToInt(lv_upgradeValue));
-        libABFE498B_gf_AP_Triggers_unlockZergMercenaries(lv_currentPlayer, StringToInt(lv_mercenaryValue));
-        libABFE498B_gf_AP_Triggers_unlockZergUnits(lv_currentPlayer, StringToInt(lv_unitValue));
-        libABFE498B_gf_AP_Triggers_unlockZergEvolutionPit(lv_currentPlayer, StringToInt(lv_evolutionPitValue));
-        libABFE498B_gf_AP_Triggers_unlockZergMutation2(lv_currentPlayer, StringToInt(lv_mutation2Value));
-        libABFE498B_gf_AP_Triggers_unlockZergMutation3(lv_currentPlayer, StringToInt(lv_mutation3Value));
-        libABFE498B_gf_AP_Triggers_unlockZergMutation4(lv_currentPlayer, StringToInt(lv_mutation4Value));
-        libABFE498B_gf_AP_Triggers_unlockZergProgressiveUpgrades(lv_currentPlayer, StringToInt(lv_progressiveValue));
-        libABFE498B_gf_AP_Triggers_unlockZergMutation5(lv_currentPlayer, StringToInt(lv_mutation5Value));
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_giveZergTech_Init () {
-    libABFE498B_gt_AP_Triggers_giveZergTech = TriggerCreate("libABFE498B_gt_AP_Triggers_giveZergTech_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_giveZergTech, c_playerAny, "?GiveZergTech", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_giveProtossTech
-//--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_giveProtossTech_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_currentPlayer;
-    string lv_unitValue;
-    string lv_unit2Value;
-    string lv_upgradeValue;
-    string lv_buildingValue;
-    string lv_progressiveUpgradeValue;
-    string lv_spearOfAdunValue;
-    string lv_solariteCoreValue;
-    string lv_forge1Value;
-    string lv_forge2Value;
-    string lv_forge3Value;
-    string lv_forge4Value;
-    string lv_forge5Value;
-    string lv_warCouncilValue;
-    string lv_warCouncil2Value;
-    string lv_shieldRegenValue;
-
-    // Automatic Variable Declarations
-    playergroup auto67EC4BC5_g;
-
-    // Variable Initialization
-    lv_unitValue = "";
-    lv_unit2Value = "";
-    lv_upgradeValue = "";
-    lv_buildingValue = "";
-    lv_progressiveUpgradeValue = "";
-    lv_spearOfAdunValue = "";
-    lv_solariteCoreValue = "";
-    lv_forge1Value = "";
-    lv_forge2Value = "";
-    lv_forge3Value = "";
-    lv_forge4Value = "";
-    lv_forge5Value = "";
-    lv_warCouncilValue = "";
-    lv_warCouncil2Value = "";
-    lv_shieldRegenValue = "";
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lv_unitValue = StringWord(EventChatMessage(false), 2);
-    lv_unit2Value = StringWord(EventChatMessage(false), 3);
-    lv_upgradeValue = StringWord(EventChatMessage(false), 4);
-    lv_buildingValue = StringWord(EventChatMessage(false), 5);
-    lv_progressiveUpgradeValue = StringWord(EventChatMessage(false), 6);
-    lv_spearOfAdunValue = StringWord(EventChatMessage(false), 7);
-    lv_solariteCoreValue = StringWord(EventChatMessage(false), 8);
-    lv_forge1Value = StringWord(EventChatMessage(false), 9);
-    lv_forge2Value = StringWord(EventChatMessage(false), 10);
-    lv_forge3Value = StringWord(EventChatMessage(false), 11);
-    lv_forge4Value = StringWord(EventChatMessage(false), 12);
-    lv_forge5Value = StringWord(EventChatMessage(false), 13);
-    lv_warCouncilValue = StringWord(EventChatMessage(false), 14);
-    lv_warCouncil2Value = StringWord(EventChatMessage(false), 15);
-    lv_shieldRegenValue = StringWord(EventChatMessage(false), 16);
-    auto67EC4BC5_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
-    lv_currentPlayer = -1;
-    while (true) {
-        lv_currentPlayer = PlayerGroupNextPlayer(auto67EC4BC5_g, lv_currentPlayer);
-        if (lv_currentPlayer < 0) { break; }
-        libABFE498B_gf_AP_Triggers_unlockProtossUnits(lv_currentPlayer, StringToInt(lv_unitValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossUnits2(lv_currentPlayer, StringToInt(lv_unit2Value));
-        libABFE498B_gf_AP_Triggers_unlockProtossBuildings(lv_currentPlayer, StringToInt(lv_buildingValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossProgressiveUpgrades(lv_currentPlayer, StringToInt(lv_progressiveUpgradeValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossSpearOfAdun(lv_currentPlayer, StringToInt(lv_spearOfAdunValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossSolariteCore(lv_currentPlayer, StringToInt(lv_solariteCoreValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossUpgrades(lv_currentPlayer, StringToInt(lv_upgradeValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossForge1(lv_currentPlayer, StringToInt(lv_forge1Value));
-        libABFE498B_gf_AP_Triggers_unlockProtossForge2(lv_currentPlayer, StringToInt(lv_forge2Value));
-        libABFE498B_gf_AP_Triggers_unlockProtossForge3(lv_currentPlayer, StringToInt(lv_forge3Value));
-        libABFE498B_gf_AP_Triggers_unlockProtossForge4(lv_currentPlayer, StringToInt(lv_forge4Value));
-        libABFE498B_gf_AP_Triggers_unlockProtossForge5(lv_currentPlayer, StringToInt(lv_forge5Value));
-        libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil(lv_currentPlayer, StringToInt(lv_warCouncilValue));
-        libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil2(lv_currentPlayer, StringToInt(lv_warCouncil2Value));
-        libABFE498B_gf_AP_Triggers_giveShieldRegeneration(lv_currentPlayer, StringToInt(lv_shieldRegenValue));
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_giveProtossTech_Init () {
-    libABFE498B_gt_AP_Triggers_giveProtossTech = TriggerCreate("libABFE498B_gt_AP_Triggers_giveProtossTech_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_giveProtossTech, c_playerAny, "?GiveProtossTech", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_giveMiscTech
-//--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_giveMiscTech_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_currentPlayer;
-    int lv_buildingSpeedValue;
-    string lv_researchSpeedValue;
-    string lv_researchCostValue;
-
-    // Automatic Variable Declarations
-    playergroup autoA7A687E2_g;
-
-    // Variable Initialization
-    lv_researchSpeedValue = "";
-    lv_researchCostValue = "";
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lv_buildingSpeedValue = StringToInt(StringWord(EventChatMessage(false), 2));
-    if ((lv_buildingSpeedValue > 150)) {
-        lv_buildingSpeedValue = 150;
-    }
-
-    lv_researchSpeedValue = StringWord(EventChatMessage(false), 3);
-    lv_researchCostValue = StringWord(EventChatMessage(false), 4);
-    autoA7A687E2_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
-    lv_currentPlayer = -1;
-    while (true) {
-        lv_currentPlayer = PlayerGroupNextPlayer(autoA7A687E2_g, lv_currentPlayer);
-        if (lv_currentPlayer < 0) { break; }
-        libABFE498B_gf_AP_Triggers_giveBuildingSpeed(lv_currentPlayer, lv_buildingSpeedValue);
-        libABFE498B_gf_AP_Triggers_giveResearchSpeed(lv_currentPlayer, StringToInt(lv_researchSpeedValue));
-        libABFE498B_gf_AP_Triggers_giveResearchCost(lv_currentPlayer, StringToInt(lv_researchCostValue));
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_giveMiscTech_Init () {
-    libABFE498B_gt_AP_Triggers_giveMiscTech = TriggerCreate("libABFE498B_gt_AP_Triggers_giveMiscTech_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_giveMiscTech, c_playerAny, "?GiveMiscTech", false);
+void libABFE498B_gt_AP_Triggers_bankItemsInit_Init () {
+    libABFE498B_gt_AP_Triggers_bankItemsInit = TriggerCreate("libABFE498B_gt_AP_Triggers_bankItemsInit_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10980,6 +11455,7 @@ bool libABFE498B_gt_AP_Triggers_techTreeInit_Func (bool testConds, bool runActio
 //--------------------------------------------------------------------------------------------------
 void libABFE498B_gt_AP_Triggers_techTreeInit_Init () {
     libABFE498B_gt_AP_Triggers_techTreeInit = TriggerCreate("libABFE498B_gt_AP_Triggers_techTreeInit_Func");
+    TriggerAddEventMapInit(libABFE498B_gt_AP_Triggers_techTreeInit);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11447,6 +11923,64 @@ void libABFE498B_gt_AP_Triggers_Debug_grantChecks_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_Debug_addAffectedPlayer
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TextExpressionSetToken("Param/Expression/lib_ABFE498B_0C410619", "A", StringToText(StringWord(EventChatMessage(false), 2)));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_ABFE498B_0C410619"), true);
+    PlayerGroupAdd(lib5BD4895D_gv_aP_Core_affectedPlayers, StringToInt(StringWord(EventChatMessage(false), 2)));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer_Init () {
+    libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer_Func");
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer, c_playerAny, "-affect", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_Debug_updatePrompt
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_Debug_updatePrompt_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, (StringExternal("Param/Value/lib_ABFE498B_E362FDFE")), true);
+    lib5BD4895D_gf_AP_Core_bankUpdatePrompt();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_Debug_updatePrompt_Init () {
+    libABFE498B_gt_AP_Triggers_Debug_updatePrompt = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_updatePrompt_Func");
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_updatePrompt, c_playerAny, "-update", true);
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_updatePrompt, c_playerAny, "-u", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: AP_Triggers_Debug_reviveHeroes
 //--------------------------------------------------------------------------------------------------
 bool libABFE498B_gt_AP_Triggers_Debug_reviveHeroes_Func (bool testConds, bool runActions) {
@@ -11554,13 +12088,119 @@ void libABFE498B_gt_AP_Triggers_InitSoA_Init () {
     libABFE498B_gt_AP_Triggers_InitSoA = TriggerCreate("libABFE498B_gt_AP_Triggers_InitSoA_Func");
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_warpInInit
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_warpInInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    abilcmd lv_warp;
+    string lv_abil;
+    string lv_unitType;
+    int lv_abilIndex;
+    int lv_abilCmdIndex;
+
+    // Automatic Variable Declarations
+    const int auto0A2D3F3D_ae = libABFE498B_gv_aP_Triggers_warpInTrainAbilCount;
+    const int auto0A2D3F3D_ai = 1;
+    const int auto9905A330_ae = 19;
+    const int auto9905A330_ai = 1;
+
+    // Variable Initialization
+    lv_unitType = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_abilIndex = 1;
+    for ( ; ( (auto0A2D3F3D_ai >= 0 && lv_abilIndex <= auto0A2D3F3D_ae) || (auto0A2D3F3D_ai < 0 && lv_abilIndex >= auto0A2D3F3D_ae) ) ; lv_abilIndex += auto0A2D3F3D_ai ) {
+        lv_abil = (StringWord(libABFE498B_gv_aP_Triggers_WARPIN_TRAIN_ABIL_IDs, lv_abilIndex));
+        TriggerAddEventUnitCreated(libABFE498B_gt_AP_Triggers_setLastWarpedUnit,null,lv_abil,null);
+        lv_abilCmdIndex = 0;
+        for ( ; ( (auto9905A330_ai >= 0 && lv_abilCmdIndex <= auto9905A330_ae) || (auto9905A330_ai < 0 && lv_abilCmdIndex >= auto9905A330_ae) ) ; lv_abilCmdIndex += auto9905A330_ai ) {
+            lv_warp = AbilityCommand(lv_abil, lv_abilCmdIndex);
+            TechTreeAbilityAllow(lib5BD4895D_gf_AP_Core_getUser(), lv_warp, true);
+            lv_unitType = CatalogFieldValueGet(c_gameCatalogAbil, lv_abil, "InfoArray[" + IntToString(lv_abilCmdIndex) + "].Unit", c_playerAny);
+            if ((lv_unitType != "")) {
+                DataTableSetAbilCmd(true, ("AP_WarpInUnitType:" + lv_unitType), lv_warp);
+            }
+
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_warpInInit_Init () {
+    libABFE498B_gt_AP_Triggers_warpInInit = TriggerCreate("libABFE498B_gt_AP_Triggers_warpInInit_Func");
+    TriggerAddEventMapInit(libABFE498B_gt_AP_Triggers_warpInInit);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_setLastWarpedUnit
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_setLastWarpedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameGetMissionTime() > libABFE498B_gv_aP_Triggers_lastWarpedTime)) {
+        libABFE498B_gv_aP_Triggers_lastWarpedTime = GameGetMissionTime();
+        libABFE498B_gv_aP_Triggers_lastWarpedUnits = UnitGroupEmpty();
+    }
+
+    libABFE498B_gv_aP_Triggers_lastWarpedUnit = EventUnitCreatedUnit();
+    UnitGroupAdd(libABFE498B_gv_aP_Triggers_lastWarpedUnits, EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_setLastWarpedUnit_Init () {
+    libABFE498B_gt_AP_Triggers_setLastWarpedUnit = TriggerCreate("libABFE498B_gt_AP_Triggers_setLastWarpedUnit_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_warpGateSafety
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_warpGateSafety_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup auto66BFACB4_g;
+    int auto66BFACB4_u;
+    unit auto66BFACB4_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto66BFACB4_g = libABFE498B_gv_aP_Triggers_warpInSuperWarpGates;
+    auto66BFACB4_u = UnitGroupCount(auto66BFACB4_g, c_unitCountAll);
+    for (;; auto66BFACB4_u -= 1) {
+        auto66BFACB4_var = UnitGroupUnitFromEnd(auto66BFACB4_g, auto66BFACB4_u);
+        if (auto66BFACB4_var == null) { break; }
+        if ((libNtve_gf_UnitIsHidden(auto66BFACB4_var) == false)) {
+            libNtve_gf_ShowHideUnit(auto66BFACB4_var, false);
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_warpGateSafety_Init () {
+    libABFE498B_gt_AP_Triggers_warpGateSafety = TriggerCreate("libABFE498B_gt_AP_Triggers_warpGateSafety_Func");
+    TriggerEnable(libABFE498B_gt_AP_Triggers_warpGateSafety, false);
+    TriggerAddEventTimePeriodic(libABFE498B_gt_AP_Triggers_warpGateSafety, 1.0, c_timeGame);
+}
+
 void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_PatchesInit_Init();
-    libABFE498B_gt_AP_Triggers_setOptions_Init();
-    libABFE498B_gt_AP_Triggers_giveTerranTech_Init();
-    libABFE498B_gt_AP_Triggers_giveZergTech_Init();
-    libABFE498B_gt_AP_Triggers_giveProtossTech_Init();
-    libABFE498B_gt_AP_Triggers_giveMiscTech_Init();
+    libABFE498B_gt_AP_Triggers_bankInit_Init();
+    libABFE498B_gt_AP_Triggers_bankOptionsInit_Init();
+    libABFE498B_gt_AP_Triggers_bankItemsInit_Init();
     libABFE498B_gt_AP_Triggers_techTreeInit_Init();
     libABFE498B_gt_UpgradeProtossStructures_Init();
     libABFE498B_gt_AP_Triggers_Debug_activateDebugMode_Init();
@@ -11574,9 +12214,14 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_Debug_resetBase_Init();
     libABFE498B_gt_AP_Triggers_Debug_grantTech_Init();
     libABFE498B_gt_AP_Triggers_Debug_grantChecks_Init();
+    libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer_Init();
+    libABFE498B_gt_AP_Triggers_Debug_updatePrompt_Init();
     libABFE498B_gt_AP_Triggers_Debug_reviveHeroes_Init();
     libABFE498B_gt_AP_Triggers_tradeStructureBuilt_Init();
     libABFE498B_gt_AP_Triggers_InitSoA_Init();
+    libABFE498B_gt_AP_Triggers_warpInInit_Init();
+    libABFE498B_gt_AP_Triggers_setLastWarpedUnit_Init();
+    libABFE498B_gt_AP_Triggers_warpGateSafety_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

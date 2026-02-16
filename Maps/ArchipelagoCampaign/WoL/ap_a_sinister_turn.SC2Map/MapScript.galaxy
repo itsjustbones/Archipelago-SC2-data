@@ -224,6 +224,7 @@ void InitGlobals () {
 //--------------------------------------------------------------------------------------------------
 // Global Function Declarations
 //--------------------------------------------------------------------------------------------------
+bool gf_IsCombatUnit (unit lp_unit);
 void gf_SetMaxLife (unit lp_unit, fixed lp_maxLife);
 void gf_SetMaxShields (unit lp_unit, fixed lp_maxShields);
 void gf_AddUpgradeForEnemies (int lp_qty, string lp_upgrade);
@@ -237,6 +238,7 @@ unitgroup gf_EnemiesWithinRange (unit lp_unit, fixed lp_range, unitfilter lp_fil
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchInit;
 trigger gt_FactionSwapInit;
 trigger gt_ObjectiveDestroyNortheastCreateQ;
 trigger gt_ObjectiveDestroyNortheastComplete;
@@ -252,7 +254,6 @@ trigger gt_onDifficultyCasual;
 trigger gt_onDifficultyNormal;
 trigger gt_onDifficultyHard;
 trigger gt_onDifficultyBrutal;
-trigger gt_ArchInit;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -263,6 +264,7 @@ trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
 trigger gt_PlayerIsInCombat;
 trigger gt_PlayerIsInCombatIndicatorDiminish;
+trigger gt_DEBUGVictory;
 trigger gt_EnergyLeaderboard;
 trigger gt_EnergyTimer;
 trigger gt_StartAI;
@@ -300,8 +302,8 @@ trigger gt_PhotonCannon02Base;
 trigger gt_Checkifallfivearepowered;
 trigger gt_SecondaryObjectiveRun;
 trigger gt_OverseerTutorial;
-trigger gt_OverseerHighlightOff;
-trigger gt_CreepTumorHighlightOff;
+trigger gt_OverseerHighlightEnd;
+trigger gt_OverseerHighlight;
 trigger gt_PlayerBuildingArmyActivatesMidCin;
 trigger gt_PlayerBuildingPhotonCannonsActivatesMidCin;
 trigger gt_PlayerGatheringCashActivatesMidCin;
@@ -427,6 +429,23 @@ trigger gt_VictoryCleanup;
 //--------------------------------------------------------------------------------------------------
 // Global Functions
 //--------------------------------------------------------------------------------------------------
+bool gf_IsCombatUnit (unit lp_unit) {
+    // Variable Declarations
+    string lv_type;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_type = UnitGetType(lp_unit);
+
+    // Implementation
+    if ((UnitFilterMatch(lp_unit, gv_p1_USER, UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterWorker) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)))) == true) && (lv_type != "AP_SICocoonInfestedSCV") && (lv_type != "AP_MULE") && (lv_type != "AP_Overlord") && (lv_type != "AP_Overseer") && (lv_type != "AP_Yggdrasil") && (lv_type != "AP_Morphling")) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 void gf_SetMaxLife (unit lp_unit, fixed lp_maxLife) {
     // Automatic Variable Declarations
     // Implementation
@@ -516,6 +535,38 @@ unitgroup gf_EnemiesWithinRange (unit lp_unit, fixed lp_range, unitfilter lp_fil
     // Automatic Variable Declarations
     // Implementation
     return UnitGroupAlliance(UnitGetOwner(lp_unit), c_unitAllianceEnemy, RegionCircle(UnitGetPosition(lp_unit), lp_range), lp_filter, 0);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("4");
+    }
+
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_PROTOSS_NOT_LOTV_MAIN);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -999,31 +1050,6 @@ void gt_onDifficultyBrutal_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_PROTOSS_NOT_LOTV_MAIN);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Initialization
 //--------------------------------------------------------------------------------------------------
 bool gt_Initialization_Func (bool testConds, bool runActions) {
@@ -1379,6 +1405,47 @@ bool gt_PlayerIsInCombatIndicatorDiminish_Func (bool testConds, bool runActions)
 void gt_PlayerIsInCombatIndicatorDiminish_Init () {
     gt_PlayerIsInCombatIndicatorDiminish = TriggerCreate("gt_PlayerIsInCombatIndicatorDiminish_Func");
     TriggerAddEventTimePeriodic(gt_PlayerIsInCombatIndicatorDiminish, 1.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Victory
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, StringExternal("Param/Value/68E8F746"), true);
+    TriggerExecute(gt_VictoryPrisonObjectiveComplete, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, 1, "-win", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3003,9 +3070,9 @@ void gt_OverseerTutorial_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Overseer Highlight Off
+// Trigger: Overseer Highlight End
 //--------------------------------------------------------------------------------------------------
-bool gt_OverseerHighlightOff_Func (bool testConds, bool runActions) {
+bool gt_OverseerHighlightEnd_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
@@ -3033,15 +3100,15 @@ bool gt_OverseerHighlightOff_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_OverseerHighlightOff_Init () {
-    gt_OverseerHighlightOff = TriggerCreate("gt_OverseerHighlightOff_Func");
-    TriggerAddEventUnitSelected(gt_OverseerHighlightOff, null, gv_p1_USER, true);
+void gt_OverseerHighlightEnd_Init () {
+    gt_OverseerHighlightEnd = TriggerCreate("gt_OverseerHighlightEnd_Func");
+    TriggerAddEventUnitSelected(gt_OverseerHighlightEnd, null, gv_p1_USER, true);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Creep Tumor Highlight Off
+// Trigger: Overseer Highlight
 //--------------------------------------------------------------------------------------------------
-bool gt_CreepTumorHighlightOff_Func (bool testConds, bool runActions) {
+bool gt_OverseerHighlight_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
@@ -3064,9 +3131,9 @@ bool gt_CreepTumorHighlightOff_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_CreepTumorHighlightOff_Init () {
-    gt_CreepTumorHighlightOff = TriggerCreate("gt_CreepTumorHighlightOff_Func");
-    TriggerAddEventUnitAbility(gt_CreepTumorHighlightOff, null, AbilityCommand("AP_OverseerBuild", 0), c_unitAbilStageAll, false);
+void gt_OverseerHighlight_Init () {
+    gt_OverseerHighlight = TriggerCreate("gt_OverseerHighlight_Func");
+    TriggerAddEventUnitAbility(gt_OverseerHighlight, null, AbilityCommand("AP_OverseerBuild", 0), c_unitAbilStageAll, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3076,15 +3143,11 @@ bool gt_PlayerBuildingArmyActivatesMidCin_Func (bool testConds, bool runActions)
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((UnitFilterMatch(EventUnitProgressUnit(), gv_p1_USER, UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterWorker) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)))) == true))) {
-            return false;
-        }
-
-        if (!((libNtve_gf_TriggeringProgressUnitType() != "AP_SICocoonInfestedSCV"))) {
-            return false;
-        }
-
         if (!((UnitGetOwner(EventUnitProgressUnit()) == 1))) {
+            return false;
+        }
+
+        if (!(gf_IsCombatUnit(EventUnitProgressUnit()))) {
             return false;
         }
     }
@@ -3186,11 +3249,7 @@ bool gt_PlayerBuildingUnitActivatesActivatesStalker_Func (bool testConds, bool r
             return false;
         }
 
-        if (!((UnitFilterMatch(EventUnitProgressUnit(), gv_p1_USER, UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterWorker) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)))) == true))) {
-            return false;
-        }
-
-        if (!((libNtve_gf_TriggeringProgressUnitType() != "AP_SICocoonInfestedSCV"))) {
+        if (!(gf_IsCombatUnit(EventUnitProgressUnit()))) {
             return false;
         }
 
@@ -8292,6 +8351,7 @@ void gt_VictoryCleanup_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchInit_Init();
     gt_FactionSwapInit_Init();
     gt_ObjectiveDestroyNortheastCreateQ_Init();
     gt_ObjectiveDestroyNortheastComplete_Init();
@@ -8307,7 +8367,6 @@ void InitTriggers () {
     gt_onDifficultyNormal_Init();
     gt_onDifficultyHard_Init();
     gt_onDifficultyBrutal_Init();
-    gt_ArchInit_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -8318,6 +8377,7 @@ void InitTriggers () {
     gt_Init07Help_Init();
     gt_PlayerIsInCombat_Init();
     gt_PlayerIsInCombatIndicatorDiminish_Init();
+    gt_DEBUGVictory_Init();
     gt_EnergyLeaderboard_Init();
     gt_EnergyTimer_Init();
     gt_StartAI_Init();
@@ -8355,8 +8415,8 @@ void InitTriggers () {
     gt_Checkifallfivearepowered_Init();
     gt_SecondaryObjectiveRun_Init();
     gt_OverseerTutorial_Init();
-    gt_OverseerHighlightOff_Init();
-    gt_CreepTumorHighlightOff_Init();
+    gt_OverseerHighlightEnd_Init();
+    gt_OverseerHighlight_Init();
     gt_PlayerBuildingArmyActivatesMidCin_Init();
     gt_PlayerBuildingPhotonCannonsActivatesMidCin_Init();
     gt_PlayerGatheringCashActivatesMidCin_Init();

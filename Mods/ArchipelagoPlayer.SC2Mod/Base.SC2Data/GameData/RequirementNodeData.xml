@@ -2909,10 +2909,15 @@
         <OperandArray index="1" value="8"/>
         <Tooltip value="RequirementNode/Tooltip/AP_LTCountUnitInterceptorPurifierQueuedOrBetterAtUnit8"/>
     </CRequirementLT>
-    <CRequirementLT id="AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit6">
+    <CRequirementLT id="AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit3">
         <OperandArray index="0" value="AP_CountUnitCarrierPurifierBomberQueuedOrBetterAtUnit"/>
-        <OperandArray index="1" value="6"/>
-        <Tooltip value="RequirementNode/Tooltip/AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit6"/>
+        <OperandArray index="1" value="3"/>
+        <Tooltip value="RequirementNode/Tooltip/AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit3"/>
+    </CRequirementLT>
+    <CRequirementLT id="AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit5">
+        <OperandArray index="0" value="AP_CountUnitCarrierPurifierBomberQueuedOrBetterAtUnit"/>
+        <OperandArray index="1" value="5"/>
+        <Tooltip value="RequirementNode/Tooltip/AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit5"/>
     </CRequirementLT>
     <CRequirementCountUnit id="AP_CountUnitInterceptorQueuedOrBetterAtUnit">
         <Count Link="AP_Interceptor" State="QueuedOrBetterAtUnit"/>
@@ -5825,8 +5830,8 @@
         <Count Link="AP_SkylordHyperjump" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountUpgrade id="AP_CountUpgradeTriremeSolarBeamCompleteOnly">
-        <Count Link="AP_TriremeSolarBeam" State="CompleteOnly"/>
+    <CRequirementCountUpgrade id="AP_CountUpgradeTriremeBomberMiniaturizationCompleteOnly">
+        <Count Link="AP_CarrierPurifierHangarUpgrade" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeVoidRaySpeedUpgradeCompleteOnly">
@@ -7836,6 +7841,20 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_ElderProbesSummoned" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUnit id="AP_ElderProbe">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="AP_ElderProbe" State="QueuedOrBetter"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUpgrade id="AP_ElderProbeSummoned">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="AP_CountUpgradeElderProbesSummoned" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementLT id="AP_ElderProbe5">
+        <OperandArray index="0" value="AP_ElderProbe"/>
+        <OperandArray index="1" value="5"/>
+    </CRequirementLT>
     <CRequirementCountUpgrade id="AP_CountUpgradeAP_ProbeWarpinCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value="RequirementNode/Tooltip/##id##"/>
@@ -7984,5 +8003,45 @@
     <CRequirementCountUpgrade id="AP_CountUpgradeSporeCrawlerBioBonusCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_SporeCrawlerBioBonus" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_WarhoundBrawlerConfiguration">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_WarhoundBrawlerConfiguration" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_WarhoundJumpJets">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_WarhoundJumpJets" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_OracleGround">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_OracleGround" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CorruptorAcidSplash">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_CorruptorAcidSplash" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CommandCenterHyperjump">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_CommandCenterHyperjump" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_JuggernautThrusters">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_JuggernautThrusters" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_BunkerIgnoreSupply">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_BunkerIgnoreSupply" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_SCVRepairBio">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SCVRepairBio" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_SCVRepairFree">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SCVRepairFree" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_SupplyDepotCloak">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SupplyDepotCloak" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
 </Catalog>

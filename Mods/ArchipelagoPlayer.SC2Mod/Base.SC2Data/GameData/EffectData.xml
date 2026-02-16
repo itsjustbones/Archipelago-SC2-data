@@ -7264,7 +7264,7 @@
         <Amount value="100"/>
         <AreaArray Radius="1.5" Fraction="1"/>
         <AreaArray Radius="2.5" Fraction="0.6"/>
-        <SearchFilters value="-;Self,Player,Ally,Missile,Stasis,Dead,Invulnerable"/>
+        <SearchFilters value="-;Self,Player,Ally,Missile,Stasis,Dead,Invulnerable,Hidden"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="AP_NovaGadgetPulseGrenadesLaunchMissile">
         <ValidatorArray index="0" value="HasVision"/>
@@ -9049,9 +9049,13 @@
         <EditorCategories value="Race:Protoss"/>
         <OffsetVectorStartLocation Value="CasterUnit"/>
         <PeriodCount value="10"/>
-        <PeriodicEffectArray value="AP_ReleaseInterceptorsIterateMagazine"/>
-        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicEffectArray value="AP_CarrierPurifierReleaseInterceptorsSet"/>
+        <PeriodicPeriodArray value="0.5"/>
     </CEffectCreatePersistent>
+    <CEffectSet id="AP_CarrierPurifierReleaseInterceptorsSet">
+        <EffectArray value="AP_CarrierPurifierBomberCountRB"/>
+        <EffectArray value="AP_ReleaseInterceptorsIterateMagazine"/>
+    </CEffectSet>
     <CEffectEnumMagazine id="AP_ReleaseInterceptorsIterateMagazine">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
@@ -14144,7 +14148,7 @@
     <CEffectEnumArea id="AP_MonitorFakeWeaponTargetLockSearch">
         <ValidatorArray value="AP_CasterNotMaxTargetLocks"/>
         <ImpactLocation Value="CasterUnit"/>
-        <SearchFilters value="Ground;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray>
             <Arc value="169.9914"/>
             <MaxCount value="1"/>
@@ -20143,12 +20147,10 @@
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="CasterUnit"/>
         <TimeScaleSource Value="Caster"/>
-        <PeriodCount value="3"/>
+        <PeriodCount value="1"/>
         <PeriodicValidator value="CasterNotDead"/>
         <PeriodicEffectArray value="AP_CarrierPurifierBomberLM"/>
         <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0.5"/>
-        <PeriodicPeriodArray value="0.5"/>
         <PeriodicOffsetArray value="0,-0.1,-3"/>
     </CEffectCreatePersistent>
     <CEffectLaunchMissile id="AP_CarrierPurifierBomberLM">
@@ -20166,140 +20168,22 @@
         <EditorCategories value="Race:Terran"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="9"/>
+        <Amount value="17"/>
         <Death value="Blast"/>
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="0.25" Fraction="1"/>
-        <AreaArray Radius="0.5" Fraction="0.5"/>
-        <AreaArray Radius="1" Fraction="0.25"/>
-        <ExcludeArray Value="Target"/>
+        <AreaArray Radius="1" Fraction="1"/>
+        <AreaArray Radius="2" Fraction="0.5"/>
     </CEffectDamage>
     <CEffectDamage id="AP_CarrierPurifierBomberFriendlyDamage" parent="DU_WEAP">
-        <!-- Hit friendly target only if under a direct attack order -->
         <EditorCategories value="Race:Terran"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="9"/>
+        <Amount value="17"/>
         <Death value="Blast"/>
         <SearchFilters value="Ground;Self,Enemy,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="0.25" Fraction="1" Validator="AP_CasterIsAttackingTarget"/>
-        <ExcludeArray Value="Target"/>
+        <AreaArray Radius="1" Fraction="0.5"/>
+        <AreaArray Radius="2" Fraction="0.25"/>
     </CEffectDamage>
-    <CEffectCreatePersistent id="AP_CarrierPurifierPrismaticBeam">
-        <EditorCategories value="Race:Protoss"/>
-        <InitialEffect value="AP_CarrierPurifierChargeBeamWeaponCP"/>
-        <Flags index="Channeled" value="1"/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <WhichLocation Value="TargetUnit"/>
-        <TimeScaleSource Value="Caster"/>
-        <PeriodicPeriodArray value="0.5"/>
-        <PeriodicEffectArray value="AP_CarrierPurifierChargeBeamLaunchAndAttackCombineSet"/>
-        <PeriodicValidator value="CasterNotDead"/>
-    </CEffectCreatePersistent>
-    <CEffectSet id="AP_CarrierPurifierChargeBeamLaunchAndAttackCombineSet">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamLaunchAndAttackCombineSetB"/>
-        <EffectArray value="AP_BomberLaunchPersistentSet"/>
-    </CEffectSet>
-    <CEffectSet id="AP_BomberLaunchPersistentSet">
-        <ValidatorArray value="AP_CarrierPurifierGroundHostileSearch"/>
-        <EffectArray value="AP_BomberLaunchPersistent"/>
-    </CEffectSet>
-    <CEffectSet id="AP_CarrierPurifierChargeBeamLaunchAndAttackCombineSetB">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamWeaponCP"/>
-        <ValidatorArray value="AP_CasterNotHaveCarrierPurifierChargeBeamActive"/>
-    </CEffectSet>
-    <CEffectCreatePersistent id="AP_CarrierPurifierChargeBeamWeaponCP">
-        <EditorCategories value="Race:Protoss"/>
-        <InitialEffect value="AP_CarrierPurifierChargeBeamImpactSet"/>
-        <Flags index="Channeled" value="1"/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <WhichLocation Value="TargetUnit"/>
-        <TimeScaleSource Value="Caster"/>
-        <PeriodicEffectArray value="AP_CarrierPurifierChargeBeamImpactSet"/>
-        <PeriodicPeriodArray value="0.5"/>
-        <PeriodicValidator value="AP_TargetIsAirUnitFilter"/>
-        <ValidatorArray value="AP_TargetIsAirUnitFilter"/>
-    </CEffectCreatePersistent>
-    <CEffectSet id="AP_CarrierPurifierChargeBeamImpactSet">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamDamage"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamDamageSwitch"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamCasterAB"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamActiveAB"/>
-    </CEffectSet>
-    <CEffectApplyBehavior id="AP_CarrierPurifierChargeBeamActiveAB">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_CarrierPurifierChargeBeamActive"/>
-    </CEffectApplyBehavior>
-    <CEffectSwitch id="AP_CarrierPurifierChargeBeamDamageSwitch">
-        <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AP_CarrierPurifierChargeBeamCounterCheckPhase2Ready" Effect="AP_CarrierPurifierChargeBeamDamageCharge2"/>
-        <CaseArray Validator="AP_CarrierPurifierChargeBeamCounterCheckPhase3Ready" Effect="AP_CarrierPurifierChargeBeamDamageCharge3"/>
-        <CaseDefault value="AP_CarrierPurifierChargeBeamDamageCharge1"/>
-    </CEffectSwitch>
-    <!-- This is a dummy used to run actor events from -->
-    <CEffectDamage id="AP_CarrierPurifierChargeBeamDamage"/>
-    <CEffectDamage id="AP_CarrierPurifierChargeBeamDamageCharge1" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Visibility value="Visible"/>
-        <Kind value="Ranged"/>
-        <Amount value="6"/>
-        <AttributeBonus index="Armored" value="4"/>
-        <DamageModifierSource Value="Caster"/>
-        <ValidatorArray value="AP_TargetIsAirUnitFilter"/>
-    </CEffectDamage>
-    <CEffectDamage id="AP_CarrierPurifierChargeBeamDamageCharge2" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Visibility value="Visible"/>
-        <Kind value="Ranged"/>
-        <Amount value="6"/>
-        <AttributeBonus index="Armored" value="6"/>
-        <DamageModifierSource Value="Caster"/>
-        <ValidatorArray value="AP_TargetIsAirUnitFilter"/>
-    </CEffectDamage>
-    <CEffectDamage id="AP_CarrierPurifierChargeBeamDamageCharge3" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Visibility value="Visible"/>
-        <Kind value="Ranged"/>
-        <Amount value="6"/>
-        <AttributeBonus index="Armored" value="8"/>
-        <DamageModifierSource Value="Caster"/>
-        <ValidatorArray value="AP_TargetIsAirUnitFilter"/>
-    </CEffectDamage>
-    <CEffectApplyBehavior id="AP_CarrierPurifierChargeBeamCasterAB">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_CarrierPurifierChargeBeamCounter"/>
-        <ValidatorArray value="AP_TargetIsAirUnitFilter"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_CarrierPurifierChargeBeamPhase2AB">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_CarrierPurifierChargeBeamPhase2"/>
-    </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="AP_CarrierPurifierChargeBeamPhase2RB">
-        <EditorCategories value="Race:Protoss"/>
-        <BehaviorLink value="AP_CarrierPurifierChargeBeamPhase2"/>
-        <WhichUnit Value="Caster"/>
-    </CEffectRemoveBehavior>
-    <CEffectApplyBehavior id="AP_CarrierPurifierChargeBeamPhase3AB">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_CarrierPurifierChargeBeamPhase3"/>
-    </CEffectApplyBehavior>
-    <CEffectSwitch id="AP_CarrierPurifierChargeBeamCounterCheck">
-        <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AP_CarrierPurifierChargeBeamCounterCheckPhase2Ready" Effect="AP_CarrierPurifierChargeBeamCounterCheckPhase2"/>
-        <CaseArray Validator="AP_CarrierPurifierChargeBeamCounterCheckPhase3Ready" Effect="AP_CarrierPurifierChargeBeamCounterCheckPhase3"/>
-    </CEffectSwitch>
-    <CEffectSet id="AP_CarrierPurifierChargeBeamCounterCheckPhase2">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamPhase2AB"/>
-    </CEffectSet>
-    <CEffectSet id="AP_CarrierPurifierChargeBeamCounterCheckPhase3">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamPhase2RB"/>
-        <EffectArray value="AP_CarrierPurifierChargeBeamPhase3AB"/>
-    </CEffectSet>
     <CEffectSet id="AP_VoidRayPurifierShootSet">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_VoidRayPurifierBeamDamage"/>
@@ -24409,45 +24293,39 @@
     </CEffectDamage>
     <CEffectSet id="AP_VoidRayAiurChronoBeamSlowSet">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_VoidRayAiurChronoBeamStackingSlowSwitch"/>
-        <EffectArray value="AP_VoidRayAiurChronoBeamStackingSlowIterateTransport"/>
+        <EffectArray value="AP_VoidRayAiurChronoBeamSlowSwitch"/>
+        <EffectArray value="AP_VoidRayAiurChronoBeamSlowIterateTransport"/>
         <EffectArray value="AP_VoidRayAiurChronoShearAB"/>
         <EffectArray value="AP_VoidRayAiurChronoclysm"/>
     </CEffectSet>
-    <CEffectSwitch id="AP_VoidRayAiurChronoBeamStackingSlowSwitch">
+    <CEffectSwitch id="AP_VoidRayAiurChronoBeamSlowSwitch">
         <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AP_IsHeroic" Effect="AP_VoidRayAiurStackingSlowHeroicAB"/>
-        <CaseDefault value="AP_VoidRayAiurStackingSlowAB"/>
+        <CaseArray Validator="AP_IsHeroic" Effect="AP_VoidRayAiurSlowHeroicAB"/>
+        <CaseDefault value="AP_VoidRayAiurSlowAB"/>
     </CEffectSwitch>
-    <CEffectEnumTransport id="AP_VoidRayAiurChronoBeamStackingSlowIterateTransport">
+    <CEffectEnumTransport id="AP_VoidRayAiurChronoBeamSlowIterateTransport">
         <ValidatorArray value="AP_IsAnyBunker"/>
         <EditorCategories value="Race:Protoss"/>
-        <Effect value="AP_VoidRayAiurStackingSlowAB"/>
+        <Effect value="AP_VoidRayAiurSlowSwitch"/>
     </CEffectEnumTransport>
-    <CEffectApplyBehavior id="AP_VoidRayAiurStackingSlowAB">
+    <CEffectApplyBehavior id="AP_VoidRayAiurSlowAB">
         <EditorCategories value="Race:Protoss"/>
-        <Count value="2"/>
-        <Behavior value="AP_VoidRayAiurStackingSlow"/>
+        <Behavior value="AP_VoidRayAiurSlow"/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="AP_VoidRayAiurStackingSlowRB">
+    <CEffectApplyBehavior id="AP_VoidRayAiurSlowHeroicAB">
         <EditorCategories value="Race:Protoss"/>
-        <BehaviorLink value="AP_VoidRayAiurStackingSlow"/>
-    </CEffectRemoveBehavior>
-    <CEffectApplyBehavior id="AP_VoidRayAiurStackingSlowHeroicAB">
-        <EditorCategories value="Race:Protoss"/>
-        <Behavior value="AP_VoidRayAiurStackingSlowHeroic"/>
+        <Behavior value="AP_VoidRayAiurSlowHeroic"/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="AP_VoidRayAiurStackingSlowHeroicRB">
+    <CEffectApplyBehavior id="AP_VoidRayAiurChronoclysmSlowAB">
         <EditorCategories value="Race:Protoss"/>
-        <BehaviorLink value="AP_VoidRayAiurStackingSlowHeroic"/>
-    </CEffectRemoveBehavior>
-    <CEffectSet id="AP_VoidRayAiurRemoveStackingSlowSet">
+        <Behavior value="AP_VoidRayAiurChronoclysmSlow"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_VoidRayAiurChronoclysmSlowHeroicAB">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_VoidRayAiurStackingSlowRB"/>
-        <EffectArray value="AP_VoidRayAiurStackingSlowHeroicRB"/>
-    </CEffectSet>
+        <Behavior value="AP_VoidRayAiurChronoclysmSlowHeroic"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_VoidRayAiurChronoShearAB">
-        <ValidatorArray index="0" value="AP_HaveVoidRayAiurChronoShearAndTargetHasGE24ChronoBeamStacks"/>
+        <ValidatorArray index="0" value="AP_HaveVoidRayAiurChronoShearAndTargetIsStructure"/>
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_VoidRayAiurChronoShear"/>
     </CEffectApplyBehavior>
@@ -24461,19 +24339,19 @@
     </CEffectEnumArea>
     <CEffectSet id="AP_VoidRayAiurChronoclysmSlowSet">
         <EditorCategories value="Race:Protoss"/>
-        <ValidatorArray value="AP_NotHeroic"/>
-        <EffectArray value="AP_VoidRayAiurStackingSlowHalfRateAB"/>
-        <EffectArray value="AP_VoidRayAiurChronoBeamStackingSlowHalfRateIterateTransport"/>
+        <EffectArray value="AP_VoidRayAiurChronoclysmSlowSwitch"/>
+        <EffectArray value="AP_VoidRayAiurChronoclysmSlowIterateTransport"/>
         <EffectArray value="AP_VoidRayAiurChronoShearAB"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="AP_VoidRayAiurStackingSlowHalfRateAB">
+    <CEffectSwitch id="AP_VoidRayAiurChronoclysmSlowSwitch">
         <EditorCategories value="Race:Protoss"/>
-        <Behavior value="AP_VoidRayAiurStackingSlow"/>
-    </CEffectApplyBehavior>
-    <CEffectEnumTransport id="AP_VoidRayAiurChronoBeamStackingSlowHalfRateIterateTransport">
+        <CaseArray Validator="AP_IsHeroic" Effect="AP_VoidRayAiurChronoclysmSlowHeroicAB"/>
+        <CaseDefault value="AP_VoidRayAiurChronoclysmSlowAB"/>
+    </CEffectSwitch>
+    <CEffectEnumTransport id="AP_VoidRayAiurChronoclysmSlowIterateTransport">
         <ValidatorArray value="AP_IsAnyBunker"/>
         <EditorCategories value="Race:Protoss"/>
-        <Effect value="AP_VoidRayAiurStackingSlowHalfRateAB"/>
+        <Effect value="AP_VoidRayAiurChronoclysmSlowSwitch"/>
     </CEffectEnumTransport>
     <CEffectSwitch id="AP_TradeStructureHideExtrasSet">
         <CaseArray Validator="AP_IsBroodlord" Effect="AP_BroodlordHideExtras"/>
@@ -25140,19 +25018,6 @@
         <PeriodicEffectArray value="AP_ElderProbeWarpinSearch"/>
         <PeriodicPeriodArray value="0.0625"/>
     </CEffectCreatePersistent>
-    <CEffectModifyPlayer id="AP_ElderProbeReconstructionCharge">
-        <EditorCategories value=""/>
-        <WhichPlayer Value="Origin"/>
-        <Cost>
-            <Charge>
-                <CountMax value="5"/>
-                <CountUse value="-1"/>
-                <Link value="Abil/AP_ElderProbeReconstruction"/>
-                <Location value="Player"/>
-            </Charge>
-        </Cost>
-        <ValidatorArray value="AP_ElderProbeGiveReconstuctionCharge"/>
-    </CEffectModifyPlayer>
     <CEffectModifyPlayer id="AP_ElderProbeUsed">
         <EditorCategories value=""/>
         <WhichPlayer Value="Origin"/>
@@ -25803,4 +25668,151 @@
     <CEffectSet id="AP_MengskSiegeTankJumpJetSet">
         <EffectArray value="AP_MengskSiegeTankJumpJetRU"/>
     </CEffectSet>
+        <CEffectSet id="AP_WarhoundJump">
+        <EffectArray value="AP_WarhoundJumpPrecursor"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectSet id="AP_WarhoundJumpImpact">
+        <EffectArray value="AP_WarhoundJumpSearch"/>
+        <EffectArray value="AP_KillRemove"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="AP_WarhoundJumpLaunch">
+        <ImpactEffect value="AP_WarhoundJumpImpact"/>
+        <Movers Link="AP_WarhoundJump"/>
+        <DeathType value="Unknown"/>
+    </CEffectLaunchMissile>
+    <CEffectCreateUnit id="AP_WarhoundJumpPrecursor">
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Birth" value="0"/>
+        <CreateFlags index="Precursor" value="1"/>
+        <CreateFlags index="ProvideFood" value="0"/>
+        <CreateFlags index="TechComplete" value="0"/>
+        <CreateFlags index="UseFood" value="0"/>
+        <SpawnEffect value="AP_WarhoundJumpSet"/>
+        <SpawnRange value="5"/>
+    </CEffectCreateUnit>
+    <CEffectEnumArea id="AP_WarhoundJumpSearch">
+        <SearchFilters value="Ground;Player,Ally,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.5" Effect="AP_WarhoundJumpSlow"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AP_WarhoundJumpSet">
+        <EffectArray value="AP_WarhoundJumpLaunch"/>
+        <EffectArray value="AP_ChangelingTimedLife"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_WarhoundJumpSlow">
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AP_WarHoundMeleeBrawler" parent="DU_WEAP">
+        <Amount value="30"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_CarrierPurifierBombingRunSet">
+        <EffectArray value="AP_CarrierPurifierBombingZonePersistent"/>
+        <EffectArray value="AP_ReleaseInterceptorsBeaconCU"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="AP_CarrierPurifierBombingZonePersistent">
+        <EditorCategories value="Race:Protoss"/>
+        <PeriodCount value="68"/>
+        <PeriodicEffectArray value="AP_CarrierPurifierBombingZoneSearchArea"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="AP_CarrierPurifierBombingZoneSearchArea">
+        <EditorCategories value="Race:Protoss"/>
+        <SearchFilters value="Player;Enemy,Structure,Missile,Item,Stasis,Dead,Hidden"/>
+        <AreaArray Radius="3" Effect="AP_CarrierPurifierBomberActivateSearchAB"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_CarrierPurifierBomberActivateSearchAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_CarrierPurifierBomberActivated"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AP_CarrierPurifierDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Kind value="Ranged"/>
+        <Amount value="12"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="AP_CarrierPurifierMissilesPersistent">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <PeriodCount value="3"/>
+        <PeriodicEffectArray value="AP_CarrierPurifierLM"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.2"/>
+        <PeriodicPeriodArray value="0.2"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="AP_CarrierPurifierLM">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactEffect value="AP_CarrierPurifierDamage"/>
+        <AmmoUnit value="AP_CarrierPurifierWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="AP_CarrierPurifierBomberCountAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_CarrierPurifierBomberCount"/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="AP_CarrierPurifierBomberCountRB">
+        <Count value="1"/>
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_CarrierPurifierBomberCount"/>
+        <WhichUnit Value="Caster"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="AP_ParasiteSporeGroundAB">
+        <ValidatorArray index="0" value="FriendlyTarget"/>
+        <EditorCategories value=""/>
+        <Behavior value="AP_CorruptorAcidSplash"/>
+    </CEffectApplyBehavior>
+    <CEffectCreateUnit id="AP_ParasiteSporeGroundCreate">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="ProvideFood" value="0"/>
+        <CreateFlags index="TechComplete" value="0"/>
+        <CreateFlags index="UseFood" value="0"/>
+        <SpawnEffect value="AP_ParasiteSporeGroundSet"/>
+        <SpawnUnit value="AP_InvisibleTargetDummy"/>
+        <SpawnOffset value="0,-50"/>
+    </CEffectCreateUnit>
+    <CEffectDamage id="AP_ParasiteSporeGroundDamage">
+        <EditorCategories value=""/>
+        <Amount value="20"/>
+        <Death value="Disintegrate"/>
+        <AreaArray Radius="0.25" FacingAdjustment="257.4645" Fraction="1"/>
+        <AreaArray Radius="0.6" Fraction="0.5"/>
+        <AreaArray Radius="1.3" Fraction="0.25"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_ParasiteSporeGroundImpact">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_ParasiteSporeGroundDamage"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="AP_ParasiteSporeGroundLaunch">
+        <EditorCategories value=""/>
+        <LaunchLocation Effect="AP_ParasiteSporeGroundPersistent" Value="TargetUnit"/>
+        <ImpactEffect value="AP_ParasiteSporeGroundImpact"/>
+        <AmmoUnit value="AP_ParasiteSporeGroundMissile"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="AP_ParasiteSporeGroundSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_ParasiteSporeGroundLaunch"/>
+        <EffectArray value="AP_BroodlingTimedLife"/>
+    </CEffectSet>
+    <CEffectEnumArea id="AP_ParasiteSporeGroundSearch">
+        <EditorCategories value=""/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.3" Effect="AP_ParasiteSporeGroundDamage"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="AP_ParasiteSporeGroundPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <PeriodCount value="2"/>
+        <!--disable friendly fire behavior-->
+        <!--PeriodicEffectArray value="AP_ParasiteSporeGroundAB"/-->
+        <PeriodicEffectArray value="AP_ParasiteSpore_Damage"/>
+        <PeriodicEffectArray value="AP_ParasiteSporeGroundCreate"/>
+        <PeriodicOffsetArray value="0,0,0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
 </Catalog>
