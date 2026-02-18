@@ -2129,6 +2129,7 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisAspectBuff">
+        <InfoFlags index="Hidden" value="1"/>
         <BehaviorFlags index="Permanent" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
     </CBehaviorBuff>
@@ -2147,7 +2148,7 @@
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="AP_HaveArtanisAirAttackUnlocked"/>
+        <RemoveValidatorArray value="AP_HaveArtanisAirAttack"/>
         <Modification>
             <WeaponArray Link="AP_ArtanisAirAttack"/>
         </Modification>
@@ -2399,6 +2400,8 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisResurgenceDisable">
         <Alignment value="Negative"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
         <Duration value="300"/>
         <Modification>
             <BehaviorLinkDisableArray value="AP_ArtanisResurgence"/>
@@ -3454,8 +3457,40 @@
         <Requirements value="AP_HaveArtanisAiurAspectSelectedPassive"/>
         <Modification>
             <VitalDamageLeechArray index="Shields">
-                <KindArray index="Spell" value="0.2"/>
+                <KindArray index="Spell" value="0.25"/>
             </VitalDamageLeechArray>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisInspiringPresence">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisInspiringPresence"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.05"/>
+            <DamageDealtFraction index="Melee" value="0.05"/>
+            <DamageDealtFraction index="Ranged" value="0.05"/>
+            <DamageDealtFraction index="Splash" value="0.05"/>
+            <DamageTakenFraction index="Spell" value="-0.05"/>
+            <DamageTakenFraction index="Melee" value="-0.05"/>
+            <DamageTakenFraction index="Ranged" value="-0.05"/>
+            <DamageTakenFraction index="Splash" value="-0.05"/>
+            <DamageTakenFraction index="NoProc" value="-0.05"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisInspiringPresenceSuperior">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisInspiringPresence"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.05"/>
+            <DamageDealtFraction index="Melee" value="0.05"/>
+            <DamageDealtFraction index="Ranged" value="0.05"/>
+            <DamageDealtFraction index="Splash" value="0.05"/>
+            <DamageTakenFraction index="Spell" value="-0.05"/>
+            <DamageTakenFraction index="Melee" value="-0.05"/>
+            <DamageTakenFraction index="Ranged" value="-0.05"/>
+            <DamageTakenFraction index="Splash" value="-0.05"/>
+            <DamageTakenFraction index="NoProc" value="-0.05"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_RaszagalsRhythm">

@@ -4583,7 +4583,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactUnit Value="Caster"/>
         <ValidatorArray value="AP_HaveArtanisTemperedInTwilight"/>
-        <VitalArray index="Energy" Change="2"/>
+        <VitalArray index="Energy" Change="1.5"/>
     </CEffectModifyUnit>
     <CEffectCreatePersistent id="AP_ArtanisWeaponBurst">
         <EditorCategories value="Race:Protoss"/>
@@ -4597,12 +4597,29 @@
     </CEffectCreatePersistent>
     <CEffectSet id="AP_ArtanisBladesSet">
         <EditorCategories value=""/>
-        <EffectArray value="AP_ArtanisBladesSwitch"/>
+        <EffectArray value="AP_ArtanisBlades"/>
+        <EffectArray value="AP_ArtanisTaldarimAspectSplashDamageGround"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_RaszagalsRhythmEmpoweredConsumeSet"/>
         <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
+    <CEffectEnumArea id="AP_ArtanisTaldarimAspectSplashDamageGround">
+        <EditorCategories value="Race:Terran"/>
+        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.25" Effect="AP_ArtanisBlades" Fraction="0.4"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisTaldarimAspectSplashDamageAir">
+        <EditorCategories value="Race:Terran"/>
+        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.25" Effect="AP_ArtanisAirAttackDamage" Fraction="0.4"/>
+    </CEffectEnumArea>
     <CEffectSwitch id="AP_ArtanisBladesSwitch">
         <CaseArray Validator="AP_HasArtanisTaldarimAspectSelectedPassive" Effect="AP_ArtanisTaldarimAspectSplashDamageGround"/>
         <CaseDefault value="AP_ArtanisBlades"/>
@@ -4628,25 +4645,6 @@
         <EffectArray value="AP_RaszagalsRhythmCDRefund"/>
         <EffectArray value="AP_RaszagalsRhythmEnergyRestore"/>
     </CEffectSet>
-    <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageGround" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Amount value="8">
-            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
-        </Amount>
-        <Death value="Eviscerate"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.25" Fraction="0.33"/>
-        <ExcludeArray Value="Target"/>
-    </CEffectDamage>
-    <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageAir" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Amount value="8">
-            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
-        </Amount>
-        <SearchFilters value="Air;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.25" Fraction="0.33"/>
-        <ExcludeArray Value="Target"/>
-    </CEffectDamage>
     <CEffectModifyUnit id="AP_RaszagalsRhythmEnergyRestore">
         <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
         <ImpactUnit Value="Caster"/>

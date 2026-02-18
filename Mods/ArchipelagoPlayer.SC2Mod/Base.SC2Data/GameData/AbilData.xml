@@ -4660,12 +4660,12 @@
     <CAbilEffectInstant id="AP_SuppressionPulse">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_SuppressionPulseSearchArea"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuppressionPulse"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuppressionPulse" Requirements="AP_HaveArtanisSuppressionPulse"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_StrengthInUnity">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_StrengthInUnity"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_StrengthInUnity"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_StrengthInUnity" Requirements="AP_HaveArtanisStrengthInUnity"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_VoltaicShock">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4678,7 +4678,7 @@
         <RangeSlop value="7"/>
         <PrepTime value="0"/>
         <CursorEffect value="AP_VoltaicShockSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock"/>    
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock" Requirements="AP_HaveArtanisVoltaicShock"/>    
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_CleansingSmite">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4696,13 +4696,13 @@
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="120"/>
         </Cost>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisAstralWind"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisAstralWind" Requirements="AP_HaveArtanisAstralWind"/>
     </CAbilEffectInstant>
     <CAbilAugment id="AP_ArtanisCharge">
         <Alignment value="Negative"/>
         <AbilSetId value="AP_Charge"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisCharge">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisCharge" Requirements="AP_HaveArtanisCharge">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
         <Flags index="AutoCast" value="1"/>
@@ -4727,7 +4727,7 @@
         <Range value="7"/>
         <TargetFilters value="Visible;Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Invulnerable"/>
         <CursorEffect value="AP_PhasePrismSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"  Requirements="AP_HaveArtanisPhasePrism"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_PhasePrismSwap">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -4741,7 +4741,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Range value="8"/>
         <Arc value="4.9987"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="ArtanisLightningDash"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ArtanisLightningDash"  Requirements="AP_HaveArtanisLightningDash"/>
         <Cost>
             <Vital index="Energy" value="40"/>
             <Cooldown TimeUse="6"/>
@@ -7884,10 +7884,10 @@
     </CAbilEffectInstant>
     <CAbilBehavior id="AP_ArtanisAirAttackSwap">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <CmdButtonArray index="On" DefaultButtonFace="AP_ArtanisAirAttackEnable" Requirements="AP_HaveArtanisAirAttackUnlocked">
+        <CmdButtonArray index="On" DefaultButtonFace="AP_ArtanisAirAttackEnable" Requirements="AP_HaveArtanisAirAttack">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
-        <CmdButtonArray index="Off" DefaultButtonFace="AP_ArtanisAirAttackDisable" Requirements="AP_HaveArtanisAirAttackUnlocked">
+        <CmdButtonArray index="Off" DefaultButtonFace="AP_ArtanisAirAttackDisable" Requirements="AP_HaveArtanisAirAttack">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
         <Flags index="Toggle" value="1"/>

@@ -14634,15 +14634,7 @@
         <DeathRevealRadius value="3"/>
         <Race value="Prot"/>
         <Mob value="Campaign"/>
-        <FlagArray index="PreventDestroy" value="1"/>
         <FlagArray index="UseLineOfSight" value="1"/>
-        <FlagArray index="AlwaysThreatens" value="1"/>
-        <FlagArray index="AIThreatGround" value="1"/>
-        <FlagArray index="AIThreatAir" value="1"/>
-        <FlagArray index="AISplash" value="1"/>
-        <FlagArray index="AIHighPrioTarget" value="1"/>
-        <FlagArray index="AICaster" value="1"/>
-        <FlagArray index="AIPressForwardDisabled" value="1"/>
         <FlagArray index="ArmySelect" value="1"/>
         <PlaneArray index="Ground" value="1"/>
         <Collide index="Ground" value="1"/>
@@ -14694,7 +14686,6 @@
         <AbilArray Link="AP_CleansingSmite"/>
         <AbilArray Link="AP_Exterminate"/>
         <AbilArray Link="AP_StrengthInUnity"/>
-        <AbilArray Link="ArtanisChannel"/>
         <BehaviorArray Link="AP_ArtanisNoAspect"/>
         <BehaviorArray Link="AP_ArtanisAiurAspectPassiveSpellArmor"/>
         <BehaviorArray Link="AP_ArtanisAiurAspectPassiveShieldLeech"/>
@@ -14709,8 +14700,8 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
-            <LayoutButtons Face="ArtanisResurgence" Type="Passive" Requirements="ArtanisResurgenceReviveOffCooldown" Row="2" Column="2"/>
-            <LayoutButtons Face="ArtanisResurgence" Type="Passive" Behavior="ArtanisResurgenceReviveSupressed" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisResurgence" Type="Passive" Requirements="AP_HaveArtanisResurgence" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisResurgence" Type="Passive" Behavior="AP_ArtanisResurgenceDisable" Requirements="AP_HaveArtanisResurgence" Row="2" Column="2"/>
             <LayoutButtons Face="AP_ArtanisAstralWind" Type="AbilCmd" AbilCmd="AP_ArtanisAstralWind,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AP_ArtanisBladeWaltzRecast" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltzRecast,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="2" Column="0"/>
@@ -14728,8 +14719,8 @@
         </CardLayouts>
         <CardLayouts CardId="RA">
             <LayoutButtons Face="AP_ArtanisTemperedInTwilight" Type="Passive" Requirements="AP_HaveArtanisTemperedInTwilight" Row="0" Column="0"/>
-            <LayoutButtons Face="AP_ArtanisAirAttackEnable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,On" Requirements="AP_HaveArtanisAirAttackUnlocked" Row="0" Column="1"/>
-            <LayoutButtons Face="AP_ArtanisAirAttackDisable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,Off" Requirements="AP_HaveArtanisAirAttackUnlocked" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisAirAttackEnable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,On" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ArtanisAirAttackDisable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,Off" Row="0" Column="2"/>
             <LayoutButtons Face="AP_ArtanisCharge" Type="AbilCmd" AbilCmd="AP_ArtanisCharge,Execute" Row="0" Column="3"/>
             <LayoutButtons Face="AP_ArtanisForceOfWillPassive" Type="Passive" Requirements="AP_HaveArtanisForceOfWill" Row="0" Column="4"/>
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
@@ -14757,7 +14748,7 @@
         <CargoSize value="2"/>
         <ScoreMake value="200"/>
         <ScoreKill value="200"/>
-        <SubgroupPriority value="29"/>
+        <SubgroupPriority value="98"/>
         <MinimapRadius value="0.625"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
         <AIEvalFactor value="1.8"/>

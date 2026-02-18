@@ -37933,8 +37933,8 @@
         <On Terms="WeaponStart.AP_ArtanisAirAttack.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior"/>
         <On Terms="WeaponStop.AP_ArtanisAirAttack.AttackStop" Send="AnimBracketStop AttackAir"/>
         <On Terms="ActorCreation" Send="AnimPlay Cover Cover PlayForever"/>
-        <On Terms="Behavior.ArtanisChannel.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
-        <On Terms="Behavior.ArtanisChannel.Off" Send="AnimBracketStop Work"/>
+        <!-- <On Terms="Behavior.ArtanisChannel.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
+        <On Terms="Behavior.ArtanisChannel.Off" Send="AnimBracketStop Work"/> -->
         <On Terms="Behavior.AP_ArtanisNoAspect.On" Send="ModelSwap AP_ArtanisHero"/>
         <On Terms="Behavior.AP_ArtanisNoAspect.On" Send="AnimPlay Cover Cover PlayForever"/>
         <On Terms="Behavior.AP_ArtanisAiurAspect.On" Send="ModelSwap AP_ArtanisHero"/>
@@ -38064,12 +38064,12 @@
     <CActorSiteOpLocalOffset id="AP_SuppressionPulseOffset">
         <LocalOffset value="0.000000,0.000000,-1.250000"/>
     </CActorSiteOpLocalOffset>
-    <CActorSplat id="AP_PhasePrismCursorSplat" parent="ProtossCursorSplat" abil="AP_VoltaicShock">
+    <CActorSplat id="AP_VoltaicShockCursorSplat" parent="ProtossCursorSplat" abil="AP_VoltaicShock">
         <Model value="AP_VoidProtossAOECursorSplat"/>
     </CActorSplat>
     <CActorRange id="AP_VoltaicShockRange" parent="RangeAbil" abil="AP_VoltaicShock"/>
     <CActorAction id="AP_VoltaicShockAttack" parent="GenericAttack" effectAttack="AP_VoltaicShockDamage">
-        <LaunchAssets Sound="AP_Archon_AttackLaunchUpgrade"/>
+        <LaunchAssets Sound="AP_Kerrigan_BeamInitial_AttackLaunch"/>
         <BeamScope value="Caster"/>
         <LaunchSiteOps Ops="SOpAttachCenter"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance"/>
