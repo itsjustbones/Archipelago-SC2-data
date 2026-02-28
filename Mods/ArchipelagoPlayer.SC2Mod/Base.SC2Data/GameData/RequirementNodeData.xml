@@ -5095,6 +5095,10 @@
         <Count Link="AP_CanInstallWormholeModule" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisInspiringPresenceCompleteOnly">
+        <Count Link="AP_ArtanisInspiringPresence" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisTemperedInTwilightCompleteOnly">
         <Count Link="AP_ArtanisTemperedInTwilight" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
@@ -5241,7 +5245,10 @@
         <OperandArray value="AP_CountUpgradeArtanisTaldarimAspectUnlockedCompleteOnly"/>
         <OperandArray value="AP_NotCountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit"/>
     </CRequirementAnd>
-        
+    <CRequirementAnd id="AP_AndArtanisTaldarimAspectActiveAndAirAttackCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
+    </CRequirementAnd>
 
     <CRequirementCountUpgrade id="AP_CountUpgradeSOAFenixCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>

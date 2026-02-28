@@ -4199,6 +4199,7 @@
         <CombineArray value="AP_IsDisruptor"/>
         <CombineArray value="AP_IsPurifierMothershipCore"/>
         <CombineArray value="AP_IsPurifierMothership"/>
+        <CombineArray value="AP_IsArtanisPurifier"/>
     </CValidatorCombine>
     <CValidatorUnitType id="AP_IsSentryTaldarim">
         <Value value="AP_Monitor"/>
@@ -4243,6 +4244,7 @@
         <CombineArray value="AP_IsPhoenixTaldarim"/>
         <CombineArray value="AP_IsCarrierTaldarim"/>
         <CombineArray value="AP_IsTaldarimMothership"/>
+        <CombineArray value="AP_IsArtanisTaldarim"/>
     </CValidatorCombine>
     <CValidatorUnitType id="AP_IsZealotShakuras">
         <Value value="AP_ZealotShakuras"/>
@@ -4280,6 +4282,7 @@
         <CombineArray value="AP_IsDarkArchon"/>
         <CombineArray value="AP_IsOracle"/>
         <CombineArray value="AP_IsCorsairMP"/>
+        <CombineArray value="AP_IsArtanisNerazim"/>
     </CValidatorCombine>
     <CValidatorUnitType id="AP_IsZealotAiur">
         <Value value="AP_ZealotAiur"/>
@@ -4333,6 +4336,7 @@
         <CombineArray value="AP_IsCarrierAiur"/>
         <CombineArray value="AP_IsAiurMothership"/>
         <CombineArray value="AP_IsAiurMothershipCore"/>
+        <CombineArray value="AP_IsArtanisAiur"/>
     </CValidatorCombine>
     <CValidatorUnitCompareVital id="AP_ShieldsEqual0">
         <Compare value="Eq"/>
@@ -4354,7 +4358,7 @@
     <CValidatorCombine id="AP_NotPurifierAndHaveShields">
         <Type value="And"/>
         <CombineArray value="AP_IsNotPurifierUnit"/>
-        <CombineArray value="AP_ShieldsGT0"/>
+        <CombineArray value="hasShields"/>
     </CValidatorCombine>
     <CValidatorUnitType id="AP_TargetIsNotCarrierAiur">
         <Value value="AP_CarrierAiur"/>
@@ -4442,6 +4446,46 @@
         <Value value="1"/>
         <Behavior value="AP_ArtanisTaldarimAspect"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_ArtanisSharesFactionAiur">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
+        <CombineArray value="AP_IsAiurUnit"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_ArtanisSharesFactionNerazim">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
+        <CombineArray value="AP_IsNerazimUnit"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_ArtanisSharesFactionPurifier">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisPurifierAspectBehavior"/>
+        <CombineArray value="AP_IsPurifierUnit"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_ArtanisSharesFactionTaldarim">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
+        <CombineArray value="AP_IsTaldarimUnit"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_IsArtanisAiur">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
+        <CombineArray value="AP_IsArtanisHero"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_IsArtanisNerazim">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
+        <CombineArray value="AP_IsArtanisHero"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_IsArtanisPurifier">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisPurifierAspectBehavior"/>
+        <CombineArray value="AP_IsArtanisHero"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_IsArtanisTaldarim">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
+        <CombineArray value="AP_IsArtanisHero"/>
+    </CValidatorCombine>
     <CValidatorCombine id="AP_HasArtanisAnyAspectBehavior">
         <Type value="Or"/>
         <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>

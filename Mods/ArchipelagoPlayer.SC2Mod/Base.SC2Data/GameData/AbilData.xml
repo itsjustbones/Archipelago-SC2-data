@@ -4641,8 +4641,13 @@
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="10"/>
         </Cost>
-        <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
+        <TargetFilters value="Ground,Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ExterminateAir" parent="AP_Exterminate">
+        <!-- Cannot upgrade ability targetfilters through Upgrades, for some reason -->
+        <TargetFilters index="0" value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
+        <CmdButtonArray index="Execute" Requirements="AP_HaveExterminateAir"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_ShadowSlice">
         <AbilSetId value="AP_ShadowSlice"/>

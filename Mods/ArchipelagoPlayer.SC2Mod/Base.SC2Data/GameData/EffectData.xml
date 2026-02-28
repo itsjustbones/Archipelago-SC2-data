@@ -4579,6 +4579,30 @@
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
+
+    <CEffectEnumArea id="AP_ArtanisInspiringPresenceSearch">
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Missile,Dead"/>
+        <AreaArray Radius="9" Effect="AP_ArtanisInspiringPresenceSuperiorSwitch"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AP_ArtanisInspiringPresenceAB">
+        <Behavior value="AP_ArtanisInspiringPresence"/>
+        <ValidatorArray value="AP_HaveArtanisInspiringPresence"/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="AP_ArtanisInspiringPresenceSuperiorSwitch">
+        <CaseArray Validator="AP_ArtanisSharesFactionAiur" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
+        <CaseArray Validator="AP_ArtanisSharesFactionNerazim" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
+        <CaseArray Validator="AP_ArtanisSharesFactionPurifier" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
+        <CaseArray Validator="AP_ArtanisSharesFactionTaldarim" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
+        <CaseDefault value="AP_ArtanisInspiringPresenceAB"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="AP_ArtanisInspiringPresenceSuperiorAB">
+        <Behavior value="AP_ArtanisInspiringPresenceSuperior"/>
+        <ValidatorArray value="AP_HaveArtanisInspiringPresence"/>
+    </CEffectApplyBehavior>
+
+
+
     <CEffectModifyUnit id="AP_ArtanisTemperedInTwilightEnergy">
         <EditorCategories value="Race:Protoss"/>
         <ImpactUnit Value="Caster"/>
@@ -4597,29 +4621,31 @@
     </CEffectCreatePersistent>
     <CEffectSet id="AP_ArtanisBladesSet">
         <EditorCategories value=""/>
-        <EffectArray value="AP_ArtanisBlades"/>
-        <EffectArray value="AP_ArtanisTaldarimAspectSplashDamageGround"/>
+        <EffectArray value="AP_ArtanisBladesSwitch"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_RaszagalsRhythmEmpoweredConsumeSet"/>
         <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
-    <CEffectEnumArea id="AP_ArtanisTaldarimAspectSplashDamageGround">
-        <EditorCategories value="Race:Terran"/>
-        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
-        <ImpactLocation Value="TargetUnit"/>
+    <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageGround" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="8">
+            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
+        </Amount>
+        <Death value="Eviscerate"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.25" Fraction="0.33"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.25" Effect="AP_ArtanisBlades" Fraction="0.4"/>
-    </CEffectEnumArea>
-    <CEffectEnumArea id="AP_ArtanisTaldarimAspectSplashDamageAir">
-        <EditorCategories value="Race:Terran"/>
-        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
-        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageAir" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="8">
+            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
+        </Amount>
+        <SearchFilters value="Air;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.25" Fraction="0.33"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.25" Effect="AP_ArtanisAirAttackDamage" Fraction="0.4"/>
-    </CEffectEnumArea>
+    </CEffectDamage>
     <CEffectSwitch id="AP_ArtanisBladesSwitch">
         <CaseArray Validator="AP_HasArtanisTaldarimAspectSelectedPassive" Effect="AP_ArtanisTaldarimAspectSplashDamageGround"/>
         <CaseDefault value="AP_ArtanisBlades"/>
@@ -5164,9 +5190,16 @@
         <Behavior value="AP_StrengthInUnityArtanisTaldarim"/>
     </CEffectApplyBehavior>
 
-    <CEffectSet id="AP_ArtanisAirAttackSet">
-        <EffectArray value="AP_ArtanisAirAttackLM"/>
-    </CEffectSet>
+    <CEffectCreatePersistent id="AP_ArtanisAirAttackSet">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="AP_ArtanisAirAttackLM"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.28"/>
+    </CEffectCreatePersistent>
     <CEffectLaunchMissile id="AP_ArtanisAirAttackLM">
         <ImpactEffect value="AP_ArtanisAirAttackImpactSet"/>
         <Movers Link="MissileDefault"/>
@@ -5175,21 +5208,12 @@
     <CEffectSet id="AP_ArtanisAirAttackImpactSet">
         <EffectArray value="AP_ArtanisAirAttackSwitch"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
+        <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
     <CEffectSwitch id="AP_ArtanisAirAttackSwitch">
         <CaseArray Validator="AP_HasArtanisTaldarimAspectSelectedPassive" Effect="AP_ArtanisTaldarimAspectSplashDamageAir"/>
         <CaseDefault value="AP_ArtanisAirAttackDamage"/>
     </CEffectSwitch>
-    <CEffectCreatePersistent id="AP_ArtanisAirAttack">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichLocation Value="TargetUnit"/>
-        <TimeScaleSource Value="Caster"/>
-        <Flags index="Channeled" value="1"/>
-        <PeriodCount value="2"/>
-        <PeriodicEffectArray value="AP_ArtanisAirAttackDamage"/>
-        <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0.28"/>
-    </CEffectCreatePersistent>
     <CEffectDamage id="AP_ArtanisAirAttackDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Amount value="8">

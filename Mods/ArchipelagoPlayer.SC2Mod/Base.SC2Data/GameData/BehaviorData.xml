@@ -3457,40 +3457,51 @@
         <Requirements value="AP_HaveArtanisAiurAspectSelectedPassive"/>
         <Modification>
             <VitalDamageLeechArray index="Shields">
-                <KindArray index="Spell" value="0.25"/>
+                <KindArray index="Spell" value="0.10"/>
+                <KindArray index="Melee" value="0.20"/>
+                <KindArray index="Ranged" value="0.20"/>
             </VitalDamageLeechArray>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisInspiringPresenceAura">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisInspiringPresence"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_ArtanisInspiringPresenceSearch"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisInspiringPresence">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.125"/>
         <Requirements value="AP_HaveArtanisInspiringPresence"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="0.05"/>
-            <DamageDealtFraction index="Melee" value="0.05"/>
-            <DamageDealtFraction index="Ranged" value="0.05"/>
-            <DamageDealtFraction index="Splash" value="0.05"/>
-            <DamageTakenFraction index="Spell" value="-0.05"/>
-            <DamageTakenFraction index="Melee" value="-0.05"/>
-            <DamageTakenFraction index="Ranged" value="-0.05"/>
-            <DamageTakenFraction index="Splash" value="-0.05"/>
-            <DamageTakenFraction index="NoProc" value="-0.05"/>
+            <DamageDealtFraction index="Spell" value="0.04"/>
+            <DamageDealtFraction index="Melee" value="0.04"/>
+            <DamageDealtFraction index="Ranged" value="0.04"/>
+            <DamageDealtFraction index="Splash" value="0.04"/>
+            <DamageTakenFraction index="Spell" value="-0.04"/>
+            <DamageTakenFraction index="Melee" value="-0.04"/>
+            <DamageTakenFraction index="Ranged" value="-0.04"/>
+            <DamageTakenFraction index="Splash" value="-0.04"/>
+            <DamageTakenFraction index="NoProc" value="-0.04"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisInspiringPresenceSuperior">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.125"/>
         <Requirements value="AP_HaveArtanisInspiringPresence"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="0.05"/>
-            <DamageDealtFraction index="Melee" value="0.05"/>
-            <DamageDealtFraction index="Ranged" value="0.05"/>
-            <DamageDealtFraction index="Splash" value="0.05"/>
-            <DamageTakenFraction index="Spell" value="-0.05"/>
-            <DamageTakenFraction index="Melee" value="-0.05"/>
-            <DamageTakenFraction index="Ranged" value="-0.05"/>
-            <DamageTakenFraction index="Splash" value="-0.05"/>
-            <DamageTakenFraction index="NoProc" value="-0.05"/>
+            <DamageDealtFraction index="Spell" value="0.1"/>
+            <DamageDealtFraction index="Melee" value="0.1"/>
+            <DamageDealtFraction index="Ranged" value="0.1"/>
+            <DamageDealtFraction index="Splash" value="0.1"/>
+            <DamageTakenFraction index="Spell" value="-0.1"/>
+            <DamageTakenFraction index="Melee" value="-0.1"/>
+            <DamageTakenFraction index="Ranged" value="-0.1"/>
+            <DamageTakenFraction index="Splash" value="-0.1"/>
+            <DamageTakenFraction index="NoProc" value="-0.1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_RaszagalsRhythm">
@@ -11425,3 +11436,4 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
 </Catalog>
+

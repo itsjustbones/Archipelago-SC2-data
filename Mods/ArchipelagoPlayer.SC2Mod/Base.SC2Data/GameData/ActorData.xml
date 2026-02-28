@@ -37886,7 +37886,7 @@
         <Host Subject="_Selectable"/>
     </CActorSound>
     <CActorMissile id="AP_ArtanisAirAttackMissile" parent="GenericAttackMissile" unitName="AP_ArtanisAirAttackWeapon"/>
-    <CActorAction id="AP_ArtanisAirAttack" parent="GenericAttack" effectImpact="AP_ArtanisAirAttackDamage" effectLaunch="AP_ArtanisAirAttackLM">
+    <CActorAction id="AP_ArtanisAirAttack" parent="GenericAttack" effectImpact="AP_ArtanisAirAttackSwitch" effectLaunch="AP_ArtanisAirAttackLM">
         <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
         <ImpactMap index="None" Sound="AP_ArtanisVoid_PsionicAssaultImpact"/>
         <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
@@ -37894,7 +37894,7 @@
         <AcquisitionYawHalfArc value="7.500000"/>
         <AcquisitionPitchHalfArc value="15.000000"/>
         <AccuracyHalfArc value="10.000000"/>
-    </CActorAction> 
+    </CActorAction>
     <CActorModel id="AP_ArtanisHeroCleansingSmite" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_CleansingSmiteSearch.Start" Send="Create"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
@@ -37905,7 +37905,7 @@
         <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
         <Model value="AP_ArtanisHeroCleansingSmite"/>
     </CActorModel>
-    <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisBlades">
+    <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisBladesSwitch">
         <!-- Only using 1 attach point to prevent 2 launch sounds each attack-->
         <LaunchAttachQuery Methods="AMFilterWeaponLeft"/>
         <LaunchAssets Sound="AP_ArtanisMeleeVoid_AttackLaunch"/>

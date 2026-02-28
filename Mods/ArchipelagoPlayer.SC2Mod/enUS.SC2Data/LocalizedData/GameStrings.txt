@@ -1,4 +1,4 @@
-ï»¿AP_Raptor=Raptor Strain
+AP_Raptor=Raptor Strain
 AP_RaptorSwarmling=Raptor + Swarmling
 AP_Swarmling=Swarmling Strain
 Abil/Alert/AP_AscendantSacrificeInstant=No Supplicant nearby
@@ -2607,11 +2607,11 @@ Button/Tooltip/AP_AnnihilatorTwilightChassis=The Annihilator gains +<d ref="$Upg
 Button/Tooltip/AP_Apocalypse=Deals <d ref="Effect,AP_ApocalypseDamage,Amount"/> damage to enemy units and <d ref="(Effect,AP_ApocalypseDamage,Amount) + (Effect,AP_ApocalypseDamage,AttributeBonus[Structure])"/> damage to enemy structures in a large area.
 Button/Tooltip/AP_ApolloCloakOnNova=Cloaks Nova for <d ref="Behavior,AP_NovaApolloCloak,Duration"/> seconds, preventing enemy units from seeing or attacking her. A cloaked unit will only be revealed by detectors or effects.
 Button/Tooltip/AP_AppendAiurMothershipFeedback=<n/><n/>Astral Restoration instead casts 3 Feedbacks over it's duration.
-Button/Tooltip/AP_AppendProtossBullet=</n><c val="FFE303">â€¢ Protoss</c>
-Button/Tooltip/AP_AppendTerranBullet=</n><c val="FFE303">â€¢ Terran</c>
+Button/Tooltip/AP_AppendProtossBullet=</n><c val="FFE303">• Protoss</c>
+Button/Tooltip/AP_AppendTerranBullet=</n><c val="FFE303">• Terran</c>
 Button/Tooltip/AP_AppendWarCouncilAbility=<n/><n/><c val="FFE303">War Council Ability.</c>
 Button/Tooltip/AP_AppendWarCouncilUpgrade=<n/><n/><c val="FFE303">War Council Upgrade.</c>
-Button/Tooltip/AP_AppendZergBullet=</n><c val="FFE303">â€¢ Zerg</c>
+Button/Tooltip/AP_AppendZergBullet=</n><c val="FFE303">• Zerg</c>
 Button/Tooltip/AP_AppendZergWarning=</n><c val="FFE303">Currently does not affect Zerg units!</c>
 Button/Tooltip/AP_Arbiter=Aiur Faction<n/>Army support craft. Has Stasis Field, Recall and Cloak Field abilities.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/AP_ArbiterAbilityEfficiency=Reduces the energy cost of Recall by <d ref="$UpgradeEffectArrayValue:AP_ArbiterAbilityEfficiency:Abil,AP_ArbiterMPRecall,Cost[0].Vital[Energy]$"/> and Stasis Field by <d ref="$UpgradeEffectArrayValue:AP_ArbiterAbilityEfficiency:Abil,AP_ArbiterMPStasisField,Cost[0].Vital[Energy]$"/>.<n/><n/><c val="FFE303">War Council Upgrade.
@@ -2635,7 +2635,8 @@ Button/Tooltip/AP_ArmorpiercingMode=Activates the Thor's 250mm Punisher Cannons.
 Button/Tooltip/AP_Armory=Contains weapon and armor upgrades for Factory and Starport structures. <n/><n/><c val="ffff8a">Enables:</c><n/>- Thors at the Factory
 Button/Tooltip/AP_ArtanisAirAttackDisable=Disable Artanis' anti-air attack.
 Button/Tooltip/AP_ArtanisAirAttackEnable=Enable Artanis' anti-air attack.
-Button/Tooltip/AP_ArtanisAiurAspectPassive=Artanis takes <c val="ffff8a">50% reduced damage from spells</c>. While Aiur Aspect is active, Artanis also restores shields equal to <c val="ffff8a">20%</c> of spell damage dealt.
+Button/Tooltip/AP_ArtanisAiurAspect=Switch Artanis' active aspect to <c val="64e4fa ">Aiur</c>, granting him access to any unlocked bonuses and making him count as a <c val="64e4fa ">Aiur</c> unit.
+Button/Tooltip/AP_ArtanisAiurAspectPassive=Artanis takes <c val="ffff8a">50% reduced damage from spells</c>. While Aiur Aspect is active, Artanis also restores shields equal to <c val="ffff8a">15%</c> of spell, melee, and ranged damage dealt.
 Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life</c>, and heals <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life</c> to other nearby friendly units.<n/><n/>This ability has its cooldown reduced by <c val="ffff8a">5 seconds</c> whenever Artanis deals attack damage.
 Button/Tooltip/AP_ArtanisBladeWaltz=Dashes forward fand deals <d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage to enemy ground units in a straight line.</n></n>This ability can be recast for free within <d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds, dealing <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> to enemy ground units NOT damaged by the original cast.
 Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/><n/>Cooldown: <d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/><n/><n/>Dashes forward and deals <d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage to enemy ground units in a straight line.</n></n>This ability can be recast for free within <d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds, dealing <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> to enemy ground units NOT damaged by the original cast.
@@ -2653,7 +2654,7 @@ Button/Tooltip/AP_ArtanisRespawn=Artanis has been placed in stasis as he recover
 Button/Tooltip/AP_ArtanisResurgence=Artanis survives fatal damage, becoming invulnerable for <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceInvulnerable,Duration"/> seconds</c>. This can occur once every <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceDisable,Duration"/> seconds</c>.
 Button/Tooltip/AP_ArtanisTaldarimAspect=Switch Artanis' active aspect to <c val="d40d24">Taldarim</c>, granting him access to any unlocked bonuses and making him count as a <c val="d40d24">Taldarim</c> unit.
 Button/Tooltip/AP_ArtanisTaldarimAspectPassive=Artanis gains <c val="ffff8a">25% attack speed</c>. While Taldarim Aspect is active, his attacks also deal <c val="ffff8a">33%</c> splash damage around the target.
-Button/Tooltip/AP_ArtanisTemperedInTwilight=Artanis restores <d ref="Effect,AP_ArtanisTemperedInTwilightEnergy,VitalArray[Energy].Change" precision="1"/> whenever he attacks.
+Button/Tooltip/AP_ArtanisTemperedInTwilight=Artanis restores <d ref="Effect,AP_ArtanisTemperedInTwilightEnergy,VitalArray[Energy].Change" precision="1"/> energy whenever he attacks.
 Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="FFE303">+1 weapon damage</c> to his ground and anti-air attacks. While any Weapon Aspect is active, Artanis' weapon damage is increased by <c val="FFE303">100%</c>.
 Button/Tooltip/AP_ArtanisWeaponAspectSwap=Swap Artanis to a different weapon aspect.
 Button/Tooltip/AP_AscendantAbilityEfficiency=Ascendant abilities cost <d ref="Upgrade,AP_AscendantAbilityEfficiency,EffectArray[0].Value"/> less energy.<n/><n/><c val="FFE303">War Council Upgrade.</c>
@@ -2912,7 +2913,7 @@ Button/Tooltip/AP_DeploySpiderMinesRaven=Spider Mines pursue enemy units that co
 Button/Tooltip/AP_DestroyerChargingBeam=Increases the bounce damage of the Destroyer's attack to <d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount" player="0"/> (<d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount + Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,AttributeBonus[Armored]" player="0"/> vs Armored). The upgraded bounces gain +1 damage per protoss air upgrade.
 Button/Tooltip/AP_DevastatorTurretPunisherGrenades=Increases damage to armored targets by 10.
 Button/Tooltip/AP_DevastatorTurretSlow=Units hit by the Devastator Turret are temporarily slowed.<n/><n/><c val="#ColorAttackInfo">Massive units are immune.</c>
-Button/Tooltip/AP_DevilDog=This elite unit of ex-Confederate firebats has fought on dozens of worlds over the last four years. They donâ€™t care about causes, only cash.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
+Button/Tooltip/AP_DevilDog=This elite unit of ex-Confederate firebats has fought on dozens of worlds over the last four years. They don’t care about causes, only cash.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_DevourerAoEDamage=Devourer attacks now deal area damage.
 Button/Tooltip/AP_DevourerSCBW=Anti-air flyer. Can use <c val="ffff8a">Acid Spores</c>.<n/><n/><c val="ffff8a">Can attack air units.</c>
 Button/Tooltip/AP_Diamondback=Fast, high-damage hovertank. Rail Gun can fire while the Diamondback is moving.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -2938,7 +2939,7 @@ Button/Tooltip/AP_DrillClaws=This unit burrows faster.
 Button/Tooltip/AP_Drone=Basic worker unit. Can harvest minerals and vespene gas. Can mutate into structures.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_DualFusionRepair=Restores life to mechanical units and structures at twice the speed of traditional repair.
 Button/Tooltip/AP_DualFusionWelders=SCVs repair twice as fast.
-Button/Tooltip/AP_DukesRevenge=This battlecruiser dates back to the earliest days of the Confederacy. The notorious vessel has been commanded by dozens of captains, all of whom either died in battle, or at the hands of the shipâ€™s villainous crew.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
+Button/Tooltip/AP_DukesRevenge=This battlecruiser dates back to the earliest days of the Confederacy. The notorious vessel has been commanded by dozens of captains, all of whom either died in battle, or at the hands of the ship’s villainous crew.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_DuskWing=The Dusk Wings were one of the first banshee squadrons deployed by the Dominion. They soon went AWOL when they realized that freelancing with their new toys was a way to get rich quick.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_EMP=Creates an electromagnetic pulse that does 100 damage to shields and drains all energy from units in the targeted area. Cloaked units hit by EMP are revealed for a short time.
 Button/Tooltip/AP_EchidnaWorm=Grows Creep used to feed nearby Zerg structures and can create Creep Tumors. Allows resources to be dropped off and can create Drones. Can NOT transport troops through the Nydus Network. <n/><n/><c val="#ColorAttackInfo">Bonus: Zerg move faster on creep.</c>
@@ -3369,7 +3370,7 @@ Button/Tooltip/AP_MercThorWreckage=After their near-annihilation at the hands of
 Button/Tooltip/AP_MercUltralisk=One of the great mysteries of the Swarm, Wise Old Torrasque is an ultralisk that has evolved sapience and command abilities. Strangest of all is that he now sells the services as a mercenary force, even taking on contracts with the Terran Dominion to hunt the New Trinidad Pirates. Nobody knows what use an ultralisk could have for money.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MercUltraliskSummon=Summon Wise Old Torrasque.<n/><n/>A legendary Ultralisk from the Brood War who has evolved sapience. Revives from a chrysalis on death.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MercVehicle=Show available <c val="ffff8a">Vehicle</c> type units.
-Button/Tooltip/AP_MercWraith=Once the personal escort force for the Emperor, large swaths of the legendary Winged Nightmare squadron went AWOL after Arcturusâ€™s culpability for Tarsonis was made public. The traitors have since been scrubbed from the Royal Guardâ€™s records, and go from job to job staying one step ahead of Arcturusâ€™s assassins.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
+Button/Tooltip/AP_MercWraith=Once the personal escort force for the Emperor, large swaths of the legendary Winged Nightmare squadron went AWOL after Arcturus’s culpability for Tarsonis was made public. The traitors have since been scrubbed from the Royal Guard’s records, and go from job to job staying one step ahead of Arcturus’s assassins.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/AP_MercZergling=A deadly strain of zergling evolved by the Surtur Brood in the First Great War, the Devouring One personifies the brood's ceaseless slaughter of all in its path once unleashed. Though rarely seen after the Brood War, their legendary reputation still strikes fear into Dominion marines.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MercZerglingSummon=Summon <d ref="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]"/> Devouring Ones.<n/><n/>A powerful strain of Zerglings from the Brood War.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c><n/><c val="FF4040">Cannot be reconstituted or morph into Banelings.</c>
 Button/Tooltip/AP_MicroFiltering=This refinery is producing Vespene gas 25% faster
@@ -3917,7 +3918,7 @@ Button/Tooltip/AP_StukovInfestedBansheeInfestedLife=Infested Banshees gain +100 
 Button/Tooltip/AP_StukovInfestedDiamondBack=Fast, high-damage hovertank. Can attack while moving and can bring flying units to the ground.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_StukovInfestedDiamondbackSnare=Brings a target enemy air unit to the ground, allowing units to attack it as if it were a ground unit.
 Button/Tooltip/AP_StukovInfestedSiegeTank=Heavy tank. Can uproot itself to provide mobile tank support. Can use the Deep Tunnel ability to travel quickly to any visible location with creep.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
-Button/Tooltip/AP_StukovInfestedSiegeTankAmmo=Consumes nearby Infested Civilians and Infested Troopers to restore 20 life and create ammo for the Infested Siege Tankâ€™s Volatile Burst weapon. Can store a maximum of 8 rounds.
+Button/Tooltip/AP_StukovInfestedSiegeTankAmmo=Consumes nearby Infested Civilians and Infested Troopers to restore 20 life and create ammo for the Infested Siege Tank’s Volatile Burst weapon. Can store a maximum of 8 rounds.
 Button/Tooltip/AP_StukovInfestedSiegeTankDeepTunnel=Can travel quickly to any visible location with creep.
 Button/Tooltip/AP_StukovInfestedSiegeTankRoot=Roots the Infested Siege Tank. A rooted Infested Siege Tank gains the ability to attack at long-range with Volatile Burst, but is unable to move.
 Button/Tooltip/AP_StukovInfestedSiegeTankUproot=Uproots the Infested Siege Tank. An uprooted Infested Siege Tank has the ability to move but can only attack with Impaler Tentacle. Moves much faster on creep.
@@ -6756,6 +6757,7 @@ Upgrade/Name/AP_BaseTerranVehicleWeapons=Terran Vehicle Weapons
 Upgrade/Name/AP_BaseTerranVehicleWeaponsUltraCapacitors=Terran Vehicle Weapons Ultra-Capacitors
 Upgrade/Name/AP_BattlecruiserEnableSpecializations=Weapon Refit
 Upgrade/Name/AP_BearclawNozzles=Incinerator Gauntlets
+
 Upgrade/Name/AP_BlinkTech=Blink
 Upgrade/Name/AP_Burrow=Burrow
 Upgrade/Name/AP_BurstCapacitors=Burst Capacitors
@@ -7213,6 +7215,8 @@ Weapon/Name/AP_AllPurposeLaserBattery=ATX Laser Battery
 Weapon/Name/AP_AnnihilatorParticleDisruptors=Particle Disruptors
 Weapon/Name/AP_ArbiterMPWeapon=Warpspace Cannon
 Weapon/Name/AP_ArcliteShockCannon=Arclite Shock Cannon
+Weapon/Name/AP_ArtanisAirAttack=Psionic Assault
+Weapon/Name/AP_ArtanisTwilightBlades=Twilight Blades
 Weapon/Name/AP_AscendantWeapon=Agonizing Blast
 Weapon/Name/AP_AutoTurret=12mm Gauss Cannon
 Weapon/Name/AP_AvengerWeapon=Psionic Scythe
@@ -7496,3 +7500,4 @@ Weapon/Tip/AP_Talons=
 Weapon/Tip/AP_VoidRayChargeBeamBounce=Deals <d ref="Effect,AP_VoidRayChargeBeamBounce1Damage,Amount"/> damage to <d ref="Effect,AP_VoidRayChargeBeamBounce1Search,MaxCount"/> secondary target if not charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBounce2Damage,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounce2Damage,Amount + Effect,AP_VoidRayChargeBeamBounce2Damage,AttributeBonus[Armored]"/> vs Armored) damage to <d ref="Effect,AP_VoidRayChargeBeamBounce2Search,MaxCount"/> secondary targets if halfway charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBounce3Damage,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounce3Damage,Amount + Effect,AP_VoidRayChargeBeamBounce3Damage,AttributeBonus[Armored]"/> vs Armored) damage to <d ref="Effect,AP_VoidRayChargeBeamBounce3Search,MaxCount"/> secondary targets damage if fully charged.
 Weapon/Tip/AP_VoidRayChargeBeamBounceUpgraded=Deals <d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount + Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,AttributeBonus[Armored]"/> vs Armored) damage to to secondary targets at all charge levels. Hits 1 additional target per charge level.
 Weapon/Tip/AP_VoidRayChargeBeamRange=Deals <d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge2,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge2,Amount + Effect,AP_VoidRayChargeBeamBaseDamageCharge2,AttributeBonus[Armored]"/> vs Armored) damage if halfway charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge3,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge3,Amount + Effect,AP_VoidRayChargeBeamBaseDamageCharge3,AttributeBonus[Armored]"/> vs Armored) damage if fully charged.
+
