@@ -10902,6 +10902,9 @@ void libABFE498B_gf_AP_Triggers_HeroInit (int lp_player, point lp_location, unit
     libABFE498B_gv_aP_Triggers_Option_HeroPresence /= 2;
     lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
     if ((lv_bitflag == 1)) {
+        lv_count += 1;
+        lv_unittype[lv_count] = "AP_ArtanisHero";
+        lv_system[lv_count] = 1;
     }
 
     auto6F886A1D_ae = lv_count;
@@ -10970,7 +10973,7 @@ void libABFE498B_gf_AP_Triggers_HeroReplace (int lp_player, unit lp_hero, unitgr
         return ;
     }
 
-    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 4) && (UnitGetType(lp_hero) == "ZealotACGluescreenDummy")) {
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 4) && (UnitGetType(lp_hero) == "AP_ArtanisHero")) {
         libABFE498B_gv_aP_Triggers_HeroUnit[1] = lp_hero;
         UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, lp_hero);
         return ;
@@ -10995,6 +10998,9 @@ void libABFE498B_gf_AP_Triggers_HeroReplace (int lp_player, unit lp_hero, unitgr
     libABFE498B_gv_aP_Triggers_Option_HeroPresence /= 2;
     lv_bitflag = ModI(libABFE498B_gv_aP_Triggers_Option_HeroPresence, 2);
     if ((lv_bitflag == 1)) {
+        lv_count += 1;
+        lv_unittype[lv_count] = "AP_ArtanisHero";
+        lv_system[lv_count] = 1;
     }
 
     lib15EF4C78_gf_SetHeroPanelUnit(1, null, lp_player);
@@ -11824,13 +11830,61 @@ void libABFE498B_gt_AP_Triggers_Debug_skipTransmissions_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_Debug_ArtanisAspectsEverything
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, (StringExternal("Param/Value/lib_ABFE498B_3738A106")), true);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisVoltaicShock", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisCharge", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAstralWind", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAirAttack", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisForceOfWill", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisInspiringPresence", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisLightningDash", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisResurgence", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisStrengthInUnity", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisSuppressionPulse", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTemperedInTwilight", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTemperedInTwilight", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Init () {
+    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Func");
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything, c_playerAny, "-artaniseverything", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: AP_Triggers_Debug_ArtanisAspectsAll
 //--------------------------------------------------------------------------------------------------
 bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    const int autoE3F02AAA_n = 10;
-    int autoE3F02AAA_i;
-
     // Conditions
     if (testConds) {
         if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
@@ -11844,21 +11898,18 @@ bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func (bool testConds, bo
     }
 
     TriggerDebugOutput(1, (StringExternal("Param/Value/lib_ABFE498B_A9C8D21E")), true);
-    for (autoE3F02AAA_i = 1; autoE3F02AAA_i <= autoE3F02AAA_n; autoE3F02AAA_i += 1) {
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectUnlocked", 1);
-        Wait(0.1, c_timeReal);
-    }
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectUnlocked", 1);
     return true;
 }
 
@@ -11873,9 +11924,6 @@ void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsPassive_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    const int auto6E84DD09_n = 10;
-    int auto6E84DD09_i;
-
     // Conditions
     if (testConds) {
         if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
@@ -11889,17 +11937,14 @@ bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsPassive_Func (bool testConds
     }
 
     TriggerDebugOutput(1, (StringExternal("Param/Value/lib_ABFE498B_6752F65B")), true);
-    for (auto6E84DD09_i = 1; auto6E84DD09_i <= auto6E84DD09_n; auto6E84DD09_i += 1) {
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectPassive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectUnlocked", 1);
-        Wait(0.1, c_timeReal);
-    }
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectPassive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectUnlocked", 1);
     return true;
 }
 
@@ -11914,9 +11959,6 @@ void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsPassive_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsActive_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    const int auto6D2C32F8_n = 10;
-    int auto6D2C32F8_i;
-
     // Conditions
     if (testConds) {
         if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
@@ -11930,17 +11972,14 @@ bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsActive_Func (bool testConds,
     }
 
     TriggerDebugOutput(1, (StringExternal("Param/Value/lib_ABFE498B_DEC294B9")), true);
-    for (auto6D2C32F8_i = 1; auto6D2C32F8_i <= auto6D2C32F8_n; auto6D2C32F8_i += 1) {
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisAiurAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisNerazimAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisPurifierAspectUnlocked", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectActive", 1);
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AP_ArtanisTaldarimAspectUnlocked", 1);
-        Wait(0.1, c_timeReal);
-    }
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAiurAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisNerazimAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPurifierAspectUnlocked", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectActive", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTaldarimAspectUnlocked", 1);
     return true;
 }
 
@@ -12379,6 +12418,7 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_Debug_takeControl_Init();
     libABFE498B_gt_AP_Triggers_Debug_clearQueue_Init();
     libABFE498B_gt_AP_Triggers_Debug_skipTransmissions_Init();
+    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Init();
     libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Init();
     libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsPassive_Init();
     libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsActive_Init();

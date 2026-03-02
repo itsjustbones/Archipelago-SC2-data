@@ -1,24 +1,16 @@
-include "TriggerLibs/NativeLib"
-include "Lib15EF4C78"
+include "TriggerLibs/natives"
 
 include "Lib6EE41A55_h"
 
 //--------------------------------------------------------------------------------------------------
 // Library: ArchipelagoPatches
 //--------------------------------------------------------------------------------------------------
-// External Library Initialization
-void lib6EE41A55_InitLibraries () {
-    libNtve_InitVariables();
-    lib15EF4C78_InitVariables();
-}
-
 // Custom Script
 //--------------------------------------------------------------------------------------------------
-// Custom Script: main
+// Custom Script: Untitled Custom Script 001
 //--------------------------------------------------------------------------------------------------
 void patchMain() {
-    lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\novaex3_ingame_heroportrait.dds";
-}   
+}
 
 void lib6EE41A55_InitCustomScript () {
     patchMain();
@@ -26,23 +18,16 @@ void lib6EE41A55_InitCustomScript () {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Patches_Constructor
+// Trigger: Untitled Trigger 001
 //--------------------------------------------------------------------------------------------------
 bool lib6EE41A55_gt_AP_Patches_Constructor_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\novaex3_ingame_heroportrait.dds";
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib6EE41A55_gt_AP_Patches_Constructor_Init () {
     lib6EE41A55_gt_AP_Patches_Constructor = TriggerCreate("lib6EE41A55_gt_AP_Patches_Constructor_Func");
-    TriggerAddEventKeyPressed(lib6EE41A55_gt_AP_Patches_Constructor, c_playerAny, c_keyM, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
 }
 
 void lib6EE41A55_InitTriggers () {
@@ -61,7 +46,6 @@ void lib6EE41A55_InitLib () {
 
     lib6EE41A55_InitLib_completed = true;
 
-    lib6EE41A55_InitLibraries();
     lib6EE41A55_InitCustomScript();
     lib6EE41A55_InitTriggers();
 }

@@ -3459,7 +3459,7 @@ int lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses (int lp_player) {
     return lv_usesLeft;
 }
 
-bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_wtrutymcfjaokytx, int lp_mercenaryClass) {
+bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_player, int lp_mercenaryClass) {
     // Variable Declarations
     bool lv_untitledVariable001;
 
@@ -3467,11 +3467,11 @@ bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_wtrutymcfjaokytx
     // Variable Initialization
 
     // Implementation
-    if ((TechTreeUpgradeCount(lp_wtrutymcfjaokytx, "AP_UnrestrictedMutation", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_SCTWO) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_BROODWAR) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFESTED))) {
+    if ((TechTreeUpgradeCount(lp_player, "AP_UnrestrictedMutation", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_SCTWO) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_BROODWAR) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFESTED))) {
         lv_untitledVariable001 = true;
     }
 
-    if ((TechTreeUpgradeCount(lp_wtrutymcfjaokytx, "AP_RogueForces", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+    if ((TechTreeUpgradeCount(lp_player, "AP_RogueForces", c_techCountCompleteOnly) >= 1) && ((lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lp_mercenaryClass == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
         lv_untitledVariable001 = true;
     }
 
@@ -3623,7 +3623,7 @@ void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldowns (int lp_player) {
 
 void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldownsTerran (int lp_player) {
     // Variable Declarations
-    int lv_iqjjvxpremjbbtkb;
+    int lv_index;
 
     // Automatic Variable Declarations
     const int autoC941E96C_ae = lib15EF4C78_gv_aP_Player_MERC_COOLDOWN_LINK_SIZE;
@@ -3632,10 +3632,10 @@ void lib15EF4C78_gf_AP_Player_ClearMercenaryCooldownsTerran (int lp_player) {
     // Variable Initialization
 
     // Implementation
-    lv_iqjjvxpremjbbtkb = 0;
-    for ( ; ( (autoC941E96C_ai >= 0 && lv_iqjjvxpremjbbtkb <= autoC941E96C_ae) || (autoC941E96C_ai < 0 && lv_iqjjvxpremjbbtkb >= autoC941E96C_ae) ) ; lv_iqjjvxpremjbbtkb += autoC941E96C_ai ) {
-        if (((lib15EF4C78_gv_aP_Player_MercType[lv_iqjjvxpremjbbtkb] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_iqjjvxpremjbbtkb] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_iqjjvxpremjbbtkb] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
-            libNtve_gf_PlayerRemoveCooldown(lp_player, lib15EF4C78_gv_aP_Player_MercCooldownLinks[lv_iqjjvxpremjbbtkb]);
+    lv_index = 0;
+    for ( ; ( (autoC941E96C_ai >= 0 && lv_index <= autoC941E96C_ae) || (autoC941E96C_ai < 0 && lv_index >= autoC941E96C_ae) ) ; lv_index += autoC941E96C_ai ) {
+        if (((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+            libNtve_gf_PlayerRemoveCooldown(lp_player, lib15EF4C78_gv_aP_Player_MercCooldownLinks[lv_index]);
         }
 
     }
@@ -4978,69 +4978,6 @@ bool lib15EF4C78_gt_TechReactorswaptoAP_Starport_Func (bool testConds, bool runA
 void lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init () {
     lib15EF4C78_gt_TechReactorswaptoAP_Starport = TriggerCreate("lib15EF4C78_gt_TechReactorswaptoAP_Starport_Func");
     TriggerAddEventUnitBehaviorChange(lib15EF4C78_gt_TechReactorswaptoAP_Starport, null, "AP_StarportTechReactor", c_unitBehaviorChangeActivate);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: MakeHeroArtanis
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_MakeHeroArtanis_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_ArtanisHero", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
-    lib15EF4C78_gf_SetHeroPanelUnit(3, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_MakeHeroArtanis_Init () {
-    lib15EF4C78_gt_MakeHeroArtanis = TriggerCreate("lib15EF4C78_gt_MakeHeroArtanis_Func");
-    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroArtanis, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Artanis", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: MakeHeroKerrigan
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_MakeHeroKerrigan_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_K5Kerrigan", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
-    lib15EF4C78_gf_SetHeroPanelUnit(2, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_MakeHeroKerrigan_Init () {
-    lib15EF4C78_gt_MakeHeroKerrigan = TriggerCreate("lib15EF4C78_gt_MakeHeroKerrigan_Func");
-    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroKerrigan, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Artanis", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: MakeHeroKerrigan 2
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_MakeHeroKerrigan2_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_NovaHero", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
-    lib15EF4C78_gf_SetHeroPanelUnit(1, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_MakeHeroKerrigan2_Init () {
-    lib15EF4C78_gt_MakeHeroKerrigan2 = TriggerCreate("lib15EF4C78_gt_MakeHeroKerrigan2_Func");
-    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroKerrigan2, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Artanis", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9164,7 +9101,7 @@ void lib15EF4C78_gt_AP_Player_MercCompoundSetupCounts_Init () {
 bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
-    int lv_wlljayypcvqmapfo;
+    int lv_lembmbxqiklhgmyj;
     int lv_instantUsesLeft;
 
     // Automatic Variable Declarations
@@ -9178,28 +9115,28 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         return true;
     }
 
-    lv_wlljayypcvqmapfo = EventPlayer();
-    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_wlljayypcvqmapfo);
+    lv_lembmbxqiklhgmyj = EventPlayer();
+    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_lembmbxqiklhgmyj);
     if ((lv_instantUsesLeft > 0)) {
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
                 lv_instantUsesLeft -= 1;
-                libNtve_gf_SetUpgradeLevelForPlayer(lv_wlljayypcvqmapfo, "AP_FastDeliveryCharges", lv_instantUsesLeft);
+                libNtve_gf_SetUpgradeLevelForPlayer(lv_lembmbxqiklhgmyj, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
                 if ((lv_instantUsesLeft == 0)) {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_wlljayypcvqmapfo);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_lembmbxqiklhgmyj);
                 }
                 else {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_wlljayypcvqmapfo, lv_index);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_lembmbxqiklhgmyj, lv_index);
                 }
             }
 
         }
     }
 
-    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_wlljayypcvqmapfo);
+    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_lembmbxqiklhgmyj);
     return true;
 }
 
@@ -9424,6 +9361,69 @@ void lib15EF4C78_gt_EmitTransformerLand_Init () {
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_MercReaperLandMorph", 255), c_unitAbilStageComplete, false);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: MakeHeroArtanis
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_MakeHeroArtanis_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_ArtanisHero", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
+    lib15EF4C78_gf_SetHeroPanelUnit(3, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_MakeHeroArtanis_Init () {
+    lib15EF4C78_gt_MakeHeroArtanis = TriggerCreate("lib15EF4C78_gt_MakeHeroArtanis_Func");
+    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroArtanis, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Artanis", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MakeHeroKerrigan
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_MakeHeroKerrigan_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_K5Kerrigan", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
+    lib15EF4C78_gf_SetHeroPanelUnit(2, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_MakeHeroKerrigan_Init () {
+    lib15EF4C78_gt_MakeHeroKerrigan = TriggerCreate("lib15EF4C78_gt_MakeHeroKerrigan_Func");
+    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroKerrigan, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Kerrigan", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MakeHeroNova
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_MakeHeroNova_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_NovaHero", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
+    lib15EF4C78_gf_SetHeroPanelUnit(1, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_MakeHeroNova_Init () {
+    lib15EF4C78_gt_MakeHeroNova = TriggerCreate("lib15EF4C78_gt_MakeHeroNova_Func");
+    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroNova, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Nova", false);
+}
+
 void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_ApplyZergStructureRapidRegen_Init();
     lib15EF4C78_gt_Stukov_InfestedBunkerRegister_Init();
@@ -9454,9 +9454,6 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_TechReactorswaptoAP_Barracks_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Factory_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init();
-    lib15EF4C78_gt_MakeHeroArtanis_Init();
-    lib15EF4C78_gt_MakeHeroKerrigan_Init();
-    lib15EF4C78_gt_MakeHeroKerrigan2_Init();
     lib15EF4C78_gt_ShadowSliceHeight_Init();
     lib15EF4C78_gt_ShadowSliceReset_Init();
     lib15EF4C78_gt_PhasePrismAcquireTarget_Init();
@@ -9563,6 +9560,9 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetSC2_Init();
     lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetInfested_Init();
     lib15EF4C78_gt_EmitTransformerLand_Init();
+    lib15EF4C78_gt_MakeHeroArtanis_Init();
+    lib15EF4C78_gt_MakeHeroKerrigan_Init();
+    lib15EF4C78_gt_MakeHeroNova_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

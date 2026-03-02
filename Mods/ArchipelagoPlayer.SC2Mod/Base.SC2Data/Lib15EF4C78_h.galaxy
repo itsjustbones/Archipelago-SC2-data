@@ -410,7 +410,7 @@ void lib15EF4C78_gf_ReplaceWorker (unit lp_worker, string lp_desiredFaction);
 void lib15EF4C78_gf_ReplaceTownHall (unit lp_townHall, string lp_desiredFaction, bool lp_hiveUpgrade);
 void lib15EF4C78_gf_AP_Player_MercApplySelfSufficientFix (int lp_player);
 int lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses (int lp_player);
-bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_wtrutymcfjaokytx, int lp_mercenaryClass);
+bool lib15EF4C78_gf_AP_Player_MercCompoundNoChargeLimit (int lp_player, int lp_mercenaryClass);
 void lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount (int lp_player);
 void lib15EF4C78_gf_AP_Player_MercCompoundUpdateCountUpgrade (int lp_player, int lp_mercType, int lp_readyCount);
 void lib15EF4C78_gf_AP_Player_ResetMercenaryCooldowns (int lp_player);
@@ -468,9 +468,6 @@ trigger lib15EF4C78_gt_TechLabswaptoStarport;
 trigger lib15EF4C78_gt_TechReactorswaptoAP_Barracks;
 trigger lib15EF4C78_gt_TechReactorswaptoAP_Factory;
 trigger lib15EF4C78_gt_TechReactorswaptoAP_Starport;
-trigger lib15EF4C78_gt_MakeHeroArtanis;
-trigger lib15EF4C78_gt_MakeHeroKerrigan;
-trigger lib15EF4C78_gt_MakeHeroKerrigan2;
 trigger lib15EF4C78_gt_ShadowSliceHeight;
 trigger lib15EF4C78_gt_ShadowSliceReset;
 trigger lib15EF4C78_gt_PhasePrismAcquireTarget;
@@ -577,6 +574,9 @@ trigger lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetBroodWar;
 trigger lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetSC2;
 trigger lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetInfested;
 trigger lib15EF4C78_gt_EmitTransformerLand;
+trigger lib15EF4C78_gt_MakeHeroArtanis;
+trigger lib15EF4C78_gt_MakeHeroKerrigan;
+trigger lib15EF4C78_gt_MakeHeroNova;
 
 // Library Initialization
 void lib15EF4C78_InitVariables ();
