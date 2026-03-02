@@ -2324,6 +2324,19 @@
         <Value value="1"/>
         <Behavior value="AP_Exterminate"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitFilters id="AP_ExterminateCasterFilters">
+        <WhichUnit Value="Caster"/>
+        <Filters value="-;Stasis,Dead,Hidden,Stunned"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="AP_ExterminateTargetFilters">
+        <Filters value="Visible;Player,Ally,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorUnitFilters>
+    <CValidatorCombine id="AP_ExterminatePeriodicValidators">
+        <Type value="And"/>
+        <CombineArray value="AP_ExterminateTargetFilters"/>
+        <CombineArray value="AP_ExterminateCasterFilters"/>
+        <CombineArray value="AP_CasterHasExterminate"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzActor">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -3972,6 +3985,10 @@
     <CValidatorLocationVision id="AP_TargetHasVisionOfSource">
         <WhichLocation Value="SourceUnit"/>
         <WhichPlayer Value="Target"/>
+    </CValidatorLocationVision>
+    <CValidatorLocationVision id="AP_SourceHasVisionOfTarget">
+        <WhichLocation Value="TargetUnit"/>
+        <WhichPlayer Value="Caster"/>
     </CValidatorLocationVision>
     <CValidatorCombine id="AP_DisruptorDamageFilter">
         <CombineArray value="AP_IsNotDisruptor"/>
@@ -6540,6 +6557,14 @@
     <CValidatorUnitFilters id="AP_TargetIsArmored">
         <WhichUnit Value="Target"/>
         <Filters value="Armored;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="AP_TargetIsAir">
+        <WhichUnit Value="Target"/>
+        <Filters value="Air;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="AP_TargetIsGround">
+        <WhichUnit Value="Target"/>
+        <Filters value="Ground;-"/>
     </CValidatorUnitFilters>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasVoidRaySwarmArmoredTarget">
         <WhichUnit Value="Caster"/>

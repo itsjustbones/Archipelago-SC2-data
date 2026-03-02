@@ -20337,6 +20337,20 @@
         <Height value="8.000000"/>
         <Width value="2.500000"/>
     </CActorQuad>
+    <CActorQuad id="AP_BladeWaltzGuide" parent="ZergGuideVisualQuadDown" abil="AP_ArtanisBladeWaltz">
+        <Height value="8.000000"/>
+        <Width value="2.500000"/>
+        <LaunchActor value="AP_ProtossGuideVisualQuadSolarLanceLaunch"/>
+        <CenterActor value="AP_ProtossGuideVisualQuadSolarLanceCenter"/>
+        <ImpactActor value="AP_ProtossGuideVisualQuadSolarLanceImpact"/>
+    </CActorQuad>
+    <CActorQuad id="AP_BladeWaltzRecastGuide" parent="ZergGuideVisualQuadDown" abil="AP_ArtanisBladeWaltzRecast">
+        <Height value="8.000000"/>
+        <Width value="2.500000"/>
+        <LaunchActor value="AP_ProtossGuideVisualQuadSolarLanceLaunch"/>
+        <CenterActor value="AP_ProtossGuideVisualQuadSolarLanceCenter"/>
+        <ImpactActor value="AP_ProtossGuideVisualQuadSolarLanceImpact"/>
+    </CActorQuad>
     <CActorModel id="AP_ArtanisBladeWaltzModel" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.AP_ArtanisBladeWaltzWalkSpeed.On" Send="Create"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzWalkSpeed.Off" Send="Destroy"/>
@@ -37743,6 +37757,9 @@
         <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="Create"/>
         <Sound value="AP_Artanis_ResurgenceExplode"/>
     </CActorSound>
+    <CActorRange id="AP_ExterminateRange" parent="RangeAbil" abil="AP_Exterminate"/>
+    <CActorRange id="AP_ExterminateAirRange" parent="RangeAbil" abil="AP_ExterminateAir"/>
+    <CActorRange id="AP_ShadowSliceRange" parent="RangeAbil" abil="AP_ShadowSlice"/>
     <CActorRange id="AP_ArtanisLightningDashRange" parent="RangeAbil" abil="AP_ArtanisLightningDash"/>
     <CActorSplat id="AP_ArtanisLightningDashCursorSplat" parent="ProtossCursorSplat" abil="AP_ArtanisLightningDash">
         <Model value="AP_VoidProtossAOECursorSplat"/>
@@ -37862,18 +37879,19 @@
         <On Terms="Effect.AP_PhasePrismSearch.Start" Send="Create"/>
     </CActorModel>
     <CActorModel id="AP_ArtanisBladeWaltzDamaged" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="SetTintColor {0,0,255 3.000000}"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzDamaged.On" Send="Create"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzDamaged.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="0.700000"/>
+        <AutoScaleFactor value="0.550000"/>
     </CActorModel>
     <CActorModel id="AP_VoltaicShockStun" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.AP_VoltaicShock.On" Send="Create"/>
         <On Terms="Behavior.AP_VoltaicShock.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <AutoScaleFactor value="0.700000"/>
+        <AutoScaleFactor value="0.600000"/>
     </CActorModel>
     <CActorSound id="AP_BladeWaltzSound" parent="SoundOneShot">
         <Sound value="AP_BladeWaltz"/>
@@ -37905,6 +37923,12 @@
         <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
         <Model value="AP_ArtanisHeroCleansingSmite"/>
     </CActorModel>
+    <CActorRange id="AP_CleansingSmiteRange">
+        <On Terms="Abil.AP_CleansingSmite.ButtonHoverOn" Send="Create"/>
+        <On Terms="Abil.AP_CleansingSmite.ButtonHoverOff" Send="Destroy"/>
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <Range value="2.0000"/>
+    </CActorRange>
     <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisBladesSwitch">
         <!-- Only using 1 attach point to prevent 2 launch sounds each attack-->
         <LaunchAttachQuery Methods="AMFilterWeaponLeft"/>
@@ -37961,7 +37985,7 @@
         <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Templar_LandSweetener"/>
         <AnimBlendTime value="0.150000"/>
         <BuildModel value="ProtossGenericWarpInOut"/>
-        <DeathArray index="Normal" ModelLink="ArtanisVoidUlnarDeath" SoundLink="Artanis_DeathFX"/>
+        <DeathArray index="Normal" ModelLink="AP_ArtanisVoidUlnarDeath" SoundLink="AP_Artanis_DeathFX"/>
         <PortraitActor value="AP_ArtanisEx2Portrait"/>
         <PortraitModel value="AP_ArtanisEx2Portrait"/>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -38068,20 +38092,14 @@
         <Model value="AP_VoidProtossAOECursorSplat"/>
     </CActorSplat>
     <CActorRange id="AP_VoltaicShockRange" parent="RangeAbil" abil="AP_VoltaicShock"/>
-    <CActorAction id="AP_VoltaicShockAttack" parent="GenericAttack" effectAttack="AP_VoltaicShockDamage">
-        <LaunchAssets Sound="AP_Kerrigan_BeamInitial_AttackLaunch"/>
-        <BeamScope value="Caster"/>
-        <LaunchSiteOps Ops="SOpAttachCenter"/>
-        <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance"/>
-        <ImpactSite value="AP_VoltaicShockImpactSite0"/>
-        <ImpactMap index="None" Model="AP_KhaydarinBeamAttackImpact" Sound="Archon_AttackImpact"/>
-        <ShieldFlashType value="Full"/>
-        <ActionFlags index="ImpactMonitorsTeleports" value="1"/>
-    </CActorAction>
     <CActorModel id="AP_VoltaicShockImpact" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_VoltaicShockSearch.Start" Send="Create"/>
         <Scale value="0.400000"/>
     </CActorModel>
+    <CActorSound id="AP_VoltaicShockSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_VoltaicShockSearch.Start" Send="Create"/>
+        <Sound value="Archon_AttackLaunch"/>
+    </CActorSound>
     <CActorSite id="AP_VoltaicShockImpactSite0" parent="GenericAttackImpactSite"/>
     <CActorBeamSimple id="AP_VoltaicShockBeam" parent="BeamSimpleAnimationStyleOneShot">
         <On Terms="Effect.AP_VoltaicShockSearch.Start; At Caster" Send="Create"/>

@@ -4665,6 +4665,10 @@
     <CAbilEffectInstant id="AP_SuppressionPulse">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_SuppressionPulseSearchArea"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuppressionPulse" Requirements="AP_HaveArtanisSuppressionPulse"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_StrengthInUnity">
@@ -4682,7 +4686,7 @@
         <Range value="7"/>
         <RangeSlop value="7"/>
         <PrepTime value="0"/>
-        <CursorEffect value="AP_VoltaicShockSearch"/>
+        <CursorEffect value="AP_VoltaicShockDamageSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock" Requirements="AP_HaveArtanisVoltaicShock"/>    
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_CleansingSmite">
@@ -4748,7 +4752,7 @@
         <Arc value="4.9987"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ArtanisLightningDash"  Requirements="AP_HaveArtanisLightningDash"/>
         <Cost>
-            <Vital index="Energy" value="40"/>
+            <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="6"/>
         </Cost>
         <CursorEffect value="AP_ArtanisLightningDashSearch"/>

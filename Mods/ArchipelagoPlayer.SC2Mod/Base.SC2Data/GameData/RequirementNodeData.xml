@@ -5170,15 +5170,18 @@
         <OperandArray value="AP_CountUpgradeArtanisNerazimAspectUnlockedCompleteOnly"/>
         <OperandArray value="AP_NotCountBehaviorArtanisNerazimAspectCompleteOnlyAtUnit"/>
     </CRequirementAnd>
-
+    <CRequirementOr id="AP_OrArtanisAnyAspectUnlockedCompleteOnly">
+        <OperandArray value="AP_CountUpgradeArtanisAiurAspectUnlockedCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeArtanisNerazimAspectUnlockedCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeArtanisPurifierAspectUnlockedCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeArtanisTaldarimAspectUnlockedCompleteOnly"/>
+    </CRequirementOr>
     <CRequirementOr id="AP_OrArtanisAnyAspectEquippedCompleteOnly">
         <OperandArray value="AP_CountBehaviorArtanisAiurAspectCompleteOnlyAtUnit"/>
         <OperandArray value="AP_CountBehaviorArtanisNerazimAspectCompleteOnlyAtUnit"/>
         <OperandArray value="AP_CountBehaviorArtanisPurifierAspectCompleteOnlyAtUnit"/>
         <OperandArray value="AP_CountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit"/>
     </CRequirementOr>
-
-
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisPurifierAspectUnlockedCompleteOnly">
         <Count Link="AP_ArtanisPurifierAspectUnlocked" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
@@ -5248,8 +5251,12 @@
     <CRequirementAnd id="AP_AndArtanisTaldarimAspectActiveAndAirAttackCompleteOnly">
         <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
         <OperandArray value="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
+        <OperandArray value="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit"/>
     </CRequirementAnd>
-
+    <CRequirementCountBehavior id="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_EnableArtanisAirAttackSwap" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
     <CRequirementCountUpgrade id="AP_CountUpgradeSOAFenixCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>

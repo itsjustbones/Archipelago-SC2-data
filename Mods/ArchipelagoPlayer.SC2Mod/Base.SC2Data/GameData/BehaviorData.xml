@@ -2178,14 +2178,14 @@
         <Alignment value="Positive"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="7"/>
-        <FinalEffect value="AP_ExterminateRemoveSet"/>
+        <Duration value="4"/>
         <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2">
+            <DamageDealtFraction index="Melee" value="1"/>
+            <DamageDealtFraction index="Ranged" value="1"/>
+            <DamageDealtFraction index="Splash" value="1"/>
             <ModifyFlags index="OrdersUninterruptible" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="Uncommandable" value="1"/>
-            <DamageDealtFraction index="Melee" value="1"/>
-            <DamageDealtFraction index="Ranged" value="1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ExterminateTarget">
@@ -2194,10 +2194,8 @@
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <RemoveValidatorArray value="CasterNotDead"/>
         <RemoveValidatorArray value="AP_CasterHasExterminate"/>
-        <Modification>
-            <DeathResponse Chance="1" Effect="AP_ExterminateRemoveSet"/>
-        </Modification>
-        <Duration value="7"/>
+        <FinalEffect value="AP_ExterminateRemoveSet"/>
+        <Duration value="4"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisLightningDash">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-charge.dds"/>
@@ -2369,6 +2367,7 @@
     <CBehaviorBuff id="AP_ArtanisResurgence">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Requirements value="AP_HaveArtanisResurgence"/>
         <DamageResponse>
             <Chance value="1"/>
             <Fatal value="1"/>
@@ -3457,9 +3456,7 @@
         <Requirements value="AP_HaveArtanisAiurAspectSelectedPassive"/>
         <Modification>
             <VitalDamageLeechArray index="Shields">
-                <KindArray index="Spell" value="0.10"/>
-                <KindArray index="Melee" value="0.20"/>
-                <KindArray index="Ranged" value="0.20"/>
+                <KindArray index="Spell" value="0.15"/>
             </VitalDamageLeechArray>
         </Modification>
     </CBehaviorBuff>
@@ -3493,15 +3490,15 @@
         <Duration value="0.125"/>
         <Requirements value="AP_HaveArtanisInspiringPresence"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="0.1"/>
-            <DamageDealtFraction index="Melee" value="0.1"/>
-            <DamageDealtFraction index="Ranged" value="0.1"/>
-            <DamageDealtFraction index="Splash" value="0.1"/>
-            <DamageTakenFraction index="Spell" value="-0.1"/>
-            <DamageTakenFraction index="Melee" value="-0.1"/>
-            <DamageTakenFraction index="Ranged" value="-0.1"/>
-            <DamageTakenFraction index="Splash" value="-0.1"/>
-            <DamageTakenFraction index="NoProc" value="-0.1"/>
+            <DamageDealtFraction index="Spell" value="0.08"/>
+            <DamageDealtFraction index="Melee" value="0.08"/>
+            <DamageDealtFraction index="Ranged" value="0.08"/>
+            <DamageDealtFraction index="Splash" value="0.08"/>
+            <DamageTakenFraction index="Spell" value="-0.08"/>
+            <DamageTakenFraction index="Melee" value="-0.08"/>
+            <DamageTakenFraction index="Ranged" value="-0.08"/>
+            <DamageTakenFraction index="Splash" value="-0.08"/>
+            <DamageTakenFraction index="NoProc" value="-0.08"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_RaszagalsRhythm">
@@ -7777,7 +7774,6 @@
     <CBehaviorBuff id="AP_ArtanisWeaponBuffBase">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Alignment value="Positive"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisWeaponBuffTaldarim" parent="AP_ArtanisWeaponBuffBase">
         <Modification>

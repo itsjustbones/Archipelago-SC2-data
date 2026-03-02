@@ -505,6 +505,11 @@ Behavior/Name/AP_AlarakStalkerPhasingArmorBuff=Phase Armor
 Behavior/Name/AP_AmorphousArmorcloud=Microbial Shroud
 Behavior/Name/AP_ArbiterMPCloakFieldEffect=Cloaking Field
 Behavior/Name/AP_ArbiterMPStasisField=Stasis Field
+Behavior/Name/AP_ArtanisBladeWaltzDamaged=Waltzed Through
+Behavior/Name/AP_ArtanisInspiringPresence=Inspired
+Behavior/Name/AP_ArtanisInspiringPresenceAura=Inspiring Presence Aura
+Behavior/Name/AP_ArtanisInspiringPresenceSuperior=Enraptured
+Behavior/Name/AP_ArtanisResurgenceDisable=Resurged
 Behavior/Name/AP_AscendantSacrificeSelfBuff=Power Overwhelming
 Behavior/Name/AP_AstralRestorationCaster=Astral Restoration
 Behavior/Name/AP_BansheeCloak=Cloak
@@ -517,6 +522,7 @@ Behavior/Name/AP_BileDucts=Bile Ducts
 Behavior/Name/AP_BurstCapacitorsDamageBuff=Burst Capacitors
 Behavior/Name/AP_CarrierRepairDroneRecall=Carrier Repair Drone Recall
 Behavior/Name/AP_Charging=Charging
+Behavior/Name/AP_CleansingSmite=Burning
 Behavior/Name/AP_Contaminated=Contaminated
 Behavior/Name/AP_Corruption=Corruption
 Behavior/Name/AP_CorruptorAcidSplash=Acid Splash
@@ -663,6 +669,7 @@ Behavior/Name/AP_QueenSCBWEnsnare=Ensnare
 Behavior/Name/AP_QueenSpawnLarvaTimer=Spawn Larvae
 Behavior/Name/AP_QueenStukovSpawnBroodling=Broodling Infestation
 Behavior/Name/AP_RaptorDeath=Raptor Death
+Behavior/Name/AP_RaszagalsRhythm=Raszagal's Rhythm
 Behavior/Name/AP_RavenScramblerMissile=Interference Matrix
 Behavior/Name/AP_RavenShredderMissileArmorReduction=Anti-Armor Missile Targeting
 Behavior/Name/AP_RavenShredderMissileArmorReductionUISubtruct=Armor Reduction
@@ -730,6 +737,7 @@ Behavior/Name/AP_SuperStimNova=Stim Infusion
 Behavior/Name/AP_SupplicantSacrifice=Sacrifice
 Behavior/Name/AP_SupplyDepotCloak=Cloak
 Behavior/Name/AP_SupplyDrop=Supply drop
+Behavior/Name/AP_SuppressionPulse=Suppressed 
 Behavior/Name/AP_SwarmGrenade=Swarm Grenade
 Behavior/Name/AP_TaldarimMothershipGroundSlowDebuff=Shadow of Death
 Behavior/Name/AP_ThermalLancesFireBeam=Burning
@@ -765,6 +773,7 @@ Behavior/Name/AP_VoidStalkerBlinkShieldRestore=Shadow Regeneration
 Behavior/Name/AP_VoidZealotShadowChargeSlow=Slow
 Behavior/Name/AP_VoidZealotShadowChargeStun=Stunned
 Behavior/Name/AP_VoidZealotTerazineFuryWeakness=Terazine Fury Weakness
+Behavior/Name/AP_VoltaicShock=Grounded
 Behavior/Name/AP_WarhoundBrawler=Brawler Configuration
 Behavior/Name/AP_WarhoundJumpSlow=Slowed
 Behavior/Name/AP_WarpRelocateDestination=Warp Relocate - Destination
@@ -818,6 +827,11 @@ Behavior/Tooltip/AP_AiurMothershipEnergyRegenAuraBuffAiur=This unit has <d ref="
 Behavior/Tooltip/AP_AlarakLightningStrikes=Alarak's next Deadly Charge also deals <d ref="Effect,AlarakLightningStrikesDamage,Amount"/> damage to <d ref="Effect,AlarakLightningStrikesSearch,AreaArray[0].MaxCount"/> enemy units near the primary target.
 Behavior/Tooltip/AP_AmorphousArmorcloud=Incoming damage from air units reduced by <d ref="Behavior,AP_AmorphousArmorcloud,DamageResponse.ModifyFraction*100" precision="1"/>%.
 Behavior/Tooltip/AP_ArbiterMPCloakFieldEffect=This unit is cloaked unless revealed by <c val="FFE303">Detectors</c> or effects.
+Behavior/Tooltip/AP_ArtanisBladeWaltzDamaged=This unit cannot be damaged by Blade Waltz (Recast).
+Behavior/Tooltip/AP_ArtanisInspiringPresence=This unit is empowered by Inspiring Presence, dealing increased damage and taking reduced damage.
+Behavior/Tooltip/AP_ArtanisInspiringPresenceAura=This unit is projecting Inspiring Presence to nearby allies.
+Behavior/Tooltip/AP_ArtanisInspiringPresenceSuperior=This unit is empowered by Superior Inspiring Presence, granting stronger damage and damage reduction bonuses.
+Behavior/Tooltip/AP_ArtanisResurgenceDisable=Artanis is unable to benefit from Resurgence.
 Behavior/Tooltip/AP_AscendantSacrificeSelfBuff=This unit has increased shields and its abilities deal increased damage.
 Behavior/Tooltip/AP_AstralRestorationCaster=Healing units within range of Cloaking Field.
 Behavior/Tooltip/AP_BansheeCloak=This unit is cloaked and will only be revealed by detectors or effects.
@@ -827,6 +841,7 @@ Behavior/Tooltip/AP_BatteryOvercharge=Restoration rate increased by <d ref="(Beh
 Behavior/Tooltip/AP_BattlecruiserBonusRange=+<d ref="Behavior,AP_BattlecruiserBonusRange,Modification.RangedWeaponRange"/> weapon range.
 Behavior/Tooltip/AP_BattlecruiserMengskBehemothReactorIndicator=Battlecruiser special abilities require 25 less energy to cast. Pride of Augustgrad cooldown-based ability cooldowns are 20% shorter.
 Behavior/Tooltip/AP_Charging=This Zealot is charging, allowing it to quickly close the distance with its target.
+Behavior/Tooltip/AP_CleansingSmite=This unit is taking damage over time and restoring Artanis' shields.
 Behavior/Tooltip/AP_Contaminated=This structure is unable to train new units or research upgrades.
 Behavior/Tooltip/AP_Corruption=This unit takes 20% extra damage.
 Behavior/Tooltip/AP_CorruptorAcidSplash=This unit is coated in acid. It takes reduced damage.
@@ -947,6 +962,7 @@ Behavior/Tooltip/AP_QueenClassicParasite=This unit can detect cloaked or burrowe
 Behavior/Tooltip/AP_QueenSCBWEnsnare=Unit's movement and attack speed is slowed.
 Behavior/Tooltip/AP_QueenSpawnLarvaTimer=This structure is spawning additional Larvae.
 Behavior/Tooltip/AP_QueenStukovSpawnBroodling=When this unit dies, it will spawn Broodlings.
+Behavior/Tooltip/AP_RaszagalsRhythm=Artanis' next basic attack is empowered.
 Behavior/Tooltip/AP_RavenScramblerMissile=Weapons and abilities are disabled.
 Behavior/Tooltip/AP_RavenShredderMissileArmorReductionUISubtruct=This unit has reduced armor.
 Behavior/Tooltip/AP_RavenShredderMissileTint=This unit is being targeted by an Anti-Armor Missile.
@@ -997,6 +1013,7 @@ Behavior/Tooltip/AP_SuperStimNova=Nova's attack and movement speeds are greatly 
 Behavior/Tooltip/AP_SupplicantSacrifice=This unit will sacrifice itself to save nearby allied units.
 Behavior/Tooltip/AP_SupplyDepotCloak=This unit is cloaked and will only be revealed by detectors or effects.
 Behavior/Tooltip/AP_SupplyDrop=This Supply Depot is providing an additional 8 supply.
+Behavior/Tooltip/AP_SuppressionPulse=This unit cannot deal weapon damage.
 Behavior/Tooltip/AP_SwarmGrenade=This unit is slowed and cannot attack or use energy-based abilities.
 Behavior/Tooltip/AP_TaldarimMothershipGroundSlowDebuff=Attack and movement speed reduced by <d ref="(1 - Behavior,AP_TaldarimMothershipGroundSlowDebuff,Modification.MoveSpeedMultiplier) * 100"/>%.
 Behavior/Tooltip/AP_ThermalLancesFireBeam=This unit is taking additional damage over time.
@@ -1024,6 +1041,7 @@ Behavior/Tooltip/AP_VoidSentryBlackHole=This unit cannot move or attack.
 Behavior/Tooltip/AP_VoidSentryChronoBeam=This unit has increased movement and attack speeds.
 Behavior/Tooltip/AP_VoidStalkerBlinkShieldRestore=This unit is regenerating shields.
 Behavior/Tooltip/AP_VoidZealotShadowChargeStun=This unit cannot move or attack.
+Behavior/Tooltip/AP_VoltaicShock=This air unit is grounded and can be attacked as a ground unit.
 Behavior/Tooltip/AP_WarhoundBrawler=This unit is in Brawler configuration
 Behavior/Tooltip/AP_WarhoundJumpSlow=This unit's movespeed and attackspeed is slowed
 Behavior/Tooltip/AP_WarpRelocateDestination=A Protoss structure is relocating to this location.
@@ -2196,6 +2214,7 @@ Button/Name/AP_StimRedirect=Use Stimpack
 Button/Name/AP_StopGenerateCreep=Stop Generate Creep
 Button/Name/AP_StopPlanetaryFortress=Stop
 Button/Name/AP_StrengthInUnity=Strength in Unity
+Button/Name/AP_SuppressionPulse=Suppression Pulse
 Button/Name/AP_StukovInfestedBansheeBurrowRegeneration=Rapid Hibernation
 Button/Name/AP_StukovInfestedBansheeInfestedLife=Braced Exoskeleton
 Button/Name/AP_StukovInfestedDiamondbackSnare=Fungal Snare
@@ -2607,11 +2626,11 @@ Button/Tooltip/AP_AnnihilatorTwilightChassis=The Annihilator gains +<d ref="$Upg
 Button/Tooltip/AP_Apocalypse=Deals <d ref="Effect,AP_ApocalypseDamage,Amount"/> damage to enemy units and <d ref="(Effect,AP_ApocalypseDamage,Amount) + (Effect,AP_ApocalypseDamage,AttributeBonus[Structure])"/> damage to enemy structures in a large area.
 Button/Tooltip/AP_ApolloCloakOnNova=Cloaks Nova for <d ref="Behavior,AP_NovaApolloCloak,Duration"/> seconds, preventing enemy units from seeing or attacking her. A cloaked unit will only be revealed by detectors or effects.
 Button/Tooltip/AP_AppendAiurMothershipFeedback=<n/><n/>Astral Restoration instead casts 3 Feedbacks over it's duration.
-Button/Tooltip/AP_AppendProtossBullet=</n><c val="FFE303">• Protoss</c>
-Button/Tooltip/AP_AppendTerranBullet=</n><c val="FFE303">• Terran</c>
+Button/Tooltip/AP_AppendProtossBullet=</n><c val="FFE303">ï¿½ Protoss</c>
+Button/Tooltip/AP_AppendTerranBullet=</n><c val="FFE303">ï¿½ Terran</c>
 Button/Tooltip/AP_AppendWarCouncilAbility=<n/><n/><c val="FFE303">War Council Ability.</c>
 Button/Tooltip/AP_AppendWarCouncilUpgrade=<n/><n/><c val="FFE303">War Council Upgrade.</c>
-Button/Tooltip/AP_AppendZergBullet=</n><c val="FFE303">• Zerg</c>
+Button/Tooltip/AP_AppendZergBullet=</n><c val="FFE303">ï¿½ Zerg</c>
 Button/Tooltip/AP_AppendZergWarning=</n><c val="FFE303">Currently does not affect Zerg units!</c>
 Button/Tooltip/AP_Arbiter=Aiur Faction<n/>Army support craft. Has Stasis Field, Recall and Cloak Field abilities.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/AP_ArbiterAbilityEfficiency=Reduces the energy cost of Recall by <d ref="$UpgradeEffectArrayValue:AP_ArbiterAbilityEfficiency:Abil,AP_ArbiterMPRecall,Cost[0].Vital[Energy]$"/> and Stasis Field by <d ref="$UpgradeEffectArrayValue:AP_ArbiterAbilityEfficiency:Abil,AP_ArbiterMPStasisField,Cost[0].Vital[Energy]$"/>.<n/><n/><c val="FFE303">War Council Upgrade.
@@ -2635,27 +2654,27 @@ Button/Tooltip/AP_ArmorpiercingMode=Activates the Thor's 250mm Punisher Cannons.
 Button/Tooltip/AP_Armory=Contains weapon and armor upgrades for Factory and Starport structures. <n/><n/><c val="ffff8a">Enables:</c><n/>- Thors at the Factory
 Button/Tooltip/AP_ArtanisAirAttackDisable=Disable Artanis' anti-air attack.
 Button/Tooltip/AP_ArtanisAirAttackEnable=Enable Artanis' anti-air attack.
-Button/Tooltip/AP_ArtanisAiurAspect=Switch Artanis' active aspect to <c val="64e4fa ">Aiur</c>, granting him access to any unlocked bonuses and making him count as a <c val="64e4fa ">Aiur</c> unit.
-Button/Tooltip/AP_ArtanisAiurAspectPassive=Artanis takes <c val="ffff8a">50% reduced damage from spells</c>. While Aiur Aspect is active, Artanis also restores shields equal to <c val="ffff8a">15%</c> of spell, melee, and ranged damage dealt.
-Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life</c>, and heals <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life</c> to other nearby friendly units.<n/><n/>This ability has its cooldown reduced by <c val="ffff8a">5 seconds</c> whenever Artanis deals attack damage.
-Button/Tooltip/AP_ArtanisBladeWaltz=Dashes forward fand deals <d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage to enemy ground units in a straight line.</n></n>This ability can be recast for free within <d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds, dealing <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> to enemy ground units NOT damaged by the original cast.
-Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/><n/>Cooldown: <d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/><n/><n/>Dashes forward and deals <d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage to enemy ground units in a straight line.</n></n>This ability can be recast for free within <d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds, dealing <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> to enemy ground units NOT damaged by the original cast.
-Button/Tooltip/AP_ArtanisBladeWaltzRecast=Dashes forward and deals <d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/> damage to enemy ground units not damaged by the first cast.
+Button/Tooltip/AP_ArtanisAiurAspect=Switch Artanis' active aspect to <c val="64e4fa">Aiur</c>, granting him access to any unlocked bonuses and making him count as a <c val="64e4fa">Aiur</c> unit.
+Button/Tooltip/AP_ArtanisAiurAspectPassive=Artanis takes <c val="ffff8a">50% reduced damage from spells</c>. While <c val="64e4fa">Aiur</c> Aspect is active, Artanis also restores shields equal to <c val="ffff8a">15%</c> of spell damage dealt.
+Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life</c>, and heals <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life</c> to other nearby friendly units.<n/><n/>Cooldown reduced by <c val="ffff8a">5 seconds</c> whenever Artanis deals attack damage.
+Button/Tooltip/AP_ArtanisBladeWaltz=Dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/></c> damage to enemy ground units in a straight line.<n/><n/>This ability can be recast for free within <c val="ffff8a"><d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds</c>, dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/></c> damage to enemy ground units not damaged by the original cast.
+Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/></c> damage to enemy ground units in a straight line.<n/><n/>This ability can be recast for free within <c val="ffff8a"><d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds</c>, dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/></c> damage to enemy ground units not damaged by the original cast.
+Button/Tooltip/AP_ArtanisBladeWaltzRecast=Dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/></c> damage to enemy ground units not damaged by the first cast.
 Button/Tooltip/AP_ArtanisCharge=Intercepts enemy ground units.
-Button/Tooltip/AP_ArtanisForceOfWillPassive=Regenerates <c val="FFE303">3 shields per second</c> and grants Artanis <c val="FFE303">+1 shield armor</c>.
+Button/Tooltip/AP_ArtanisForceOfWillPassive=Regenerates <c val="ffff8a">3 shields per second</c> and grants Artanis <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisForceOfWill,EffectArray[0].Value"/> shield armor</c>.
 Button/Tooltip/AP_ArtanisLightningDash=Artanis charges forward, unleashing a blast of energy that deals <c val="ffff8a"><d ref="Effect,AP_ArtanisLightningDashDamage,Amount"/> damage</c> to nearby enemies and stuns them for <c val="ffff8a"><d ref="Behavior,AP_ArtanisLightningDashStun,Duration" precision="1"/> seconds</c>.
 Button/Tooltip/AP_ArtanisNerazimAspect=Switch Artanis' active aspect to <c val="32CD32">Nerazim</c>, granting him access to any unlocked bonuses and making him count as a <c val="32CD32">Nerazim</c> unit.
-Button/Tooltip/AP_ArtanisNerazimAspectPassive=After casting an ability, Artanis' next attack is empowered by Raszagal's Rhythm. While Nerazim Aspect is active, consuming the rhythm also refunds <c val="ffff8a">1 second</c> from ability cooldowns and restores <c val="ffff8a">10 energy</c>.
+Button/Tooltip/AP_ArtanisNerazimAspectPassive=After casting an ability, Artanis' next attack is empowered by Raszagal's Rhythm. While <c val="32CD32">Nerazim</c> Aspect is active, consuming the rhythm also refunds <c val="ffff8a">1 second</c> from ability cooldowns and restores <c val="ffff8a">10 energy</c>.
 Button/Tooltip/AP_ArtanisNoAspect=Artanis removes his current Weapon Aspect, returning to his base form.
 Button/Tooltip/AP_ArtanisPassiveMenu=Open Artanis' passive ability menu to review his unlocked passive upgrades.
 Button/Tooltip/AP_ArtanisPurifierAspect=Switch Artanis' active aspect to <c val="f2bf16">Purifier</c>, granting him access to any unlocked bonuses and making him count as a <c val="f2bf16">Purifier</c> unit.
-Button/Tooltip/AP_ArtanisPurifierAspectPassive=Artanis gains <c val="ffff8a">+200 shields</c>. While Purifier Aspect is active, Artanis also gains <c val="ffff8a">Hardened Shields</c>, reducing his damage taken while his shields are active up to a maximum of <c val="ffff8a">10</c>.
+Button/Tooltip/AP_ArtanisPurifierAspectPassive=Artanis gains <c val="ffff8a">+200 shields</c>. While <c val="f2bf16">Purifier</c> Aspect is active, Artanis also gains <c val="ffff8a">Hardened Shields</c>, reducing his damage taken while his shields are active up to a maximum of <c val="ffff8a">10</c>.
 Button/Tooltip/AP_ArtanisRespawn=Artanis has been placed in stasis as he recovers from his injuries.
-Button/Tooltip/AP_ArtanisResurgence=Artanis survives fatal damage, becoming invulnerable for <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceInvulnerable,Duration"/> seconds</c>. This can occur once every <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceDisable,Duration"/> seconds</c>.
+Button/Tooltip/AP_ArtanisResurgence=Grants Artanis invulnerability for <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceInvulnerable,Duration"/> seconds</c> upon taking lethal damage, preventing death and replenishing his Shields and Life.<n/><n/>Also releases a large blast of energy that knocks back and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisResurgenceEnemyImpactDamage,Amount"/></c> damage to all nearby enemies.<n/><n/>This effect cannot occur more than once every <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceDisable,Duration"/> seconds</c>.
 Button/Tooltip/AP_ArtanisTaldarimAspect=Switch Artanis' active aspect to <c val="d40d24">Taldarim</c>, granting him access to any unlocked bonuses and making him count as a <c val="d40d24">Taldarim</c> unit.
-Button/Tooltip/AP_ArtanisTaldarimAspectPassive=Artanis gains <c val="ffff8a">25% attack speed</c>. While Taldarim Aspect is active, his attacks also deal <c val="ffff8a">33%</c> splash damage around the target.
-Button/Tooltip/AP_ArtanisTemperedInTwilight=Artanis restores <d ref="Effect,AP_ArtanisTemperedInTwilightEnergy,VitalArray[Energy].Change" precision="1"/> energy whenever he attacks.
-Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="FFE303">+1 weapon damage</c> to his ground and anti-air attacks. While any Weapon Aspect is active, Artanis' weapon damage is increased by <c val="FFE303">100%</c>.
+Button/Tooltip/AP_ArtanisTaldarimAspectPassive=Artanis gains <c val="ffff8a">25% attack speed</c>. While <c val="d40d24">Taldarim</c> Aspect is active, his attacks also deal <c val="ffff8a">33%</c> splash damage around the target.
+Button/Tooltip/AP_ArtanisTemperedInTwilight=Artanis restores <c val="ffff8a"><d ref="Effect,AP_ArtanisTemperedInTwilightEnergy,VitalArray[Energy].Change" precision="1"/></c> energy whenever he attacks.
+Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="ffff8a">+2 weapon damage</c> to his ground and anti-air attacks. While any Weapon Aspect is active, Artanis' weapon damage is increased by <c val="ffff8a">100%</c>.
 Button/Tooltip/AP_ArtanisWeaponAspectSwap=Swap Artanis to a different weapon aspect.
 Button/Tooltip/AP_AscendantAbilityEfficiency=Ascendant abilities cost <d ref="Upgrade,AP_AscendantAbilityEfficiency,EffectArray[0].Value"/> less energy.<n/><n/><c val="FFE303">War Council Upgrade.</c>
 Button/Tooltip/AP_AscendantSacrifice=Reduces target friendly unit to <d ref="Effect,AP_AscendantSacrificeDamage,Amount"/> life (shields are not affected).<n/><n/>Grants the Ascendant <d ref="Effect,AP_AscendantSacrificeDamage5,LeechFraction[Energy]"/> energy for each life point reduced, up to its maximum energy.<n/><n/><c val="#ColorAttackInfo">Can only target friendly units.</c>
@@ -2815,8 +2834,8 @@ Button/Tooltip/AP_ChainReaction=Kerrigan's attacks deal normal damage to her tar
 Button/Tooltip/AP_Charge=Intercepts enemy ground units.
 Button/Tooltip/AP_ChargePredator=Intercepts enemy ground units. The first attack after charging applies a slow to surrounding enemy units.
 Button/Tooltip/AP_ChitinousPlating=Increases Ultralisk armor by 2.
-Button/Tooltip/AP_CleansingSmite=Smite nearby enemies for <d ref="Effect,AP_CleansingSmiteDamage,Amount"/>, dealing an additonal <d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/> damage over <d ref="Behavior,AP_CleansingSmite,Duration"/> seconds.<n/><n/>The damage over time restores shields to Artanis equal to 75% of the damage done.
-Button/Tooltip/AP_CleansingSmitePassive=Energy Cost: <d ref="Abil,AP_CleansingSmite,Cost[0].Vital[Energy]"/><n/>Cooldown: <d ref="Abil,AP_CleansingSmite,Cost[0].Cooldown.TimeUse"/><n/><n/>Smite nearby enemies for <d ref="Effect,AP_CleansingSmiteDamage,Amount"/>, dealing an additonal <d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/> damage over <d ref="Behavior,AP_CleansingSmite,Duration"/> seconds.<n/><n/>The damage over time restores shields to Artanis equal to 75% of the damage done.
+Button/Tooltip/AP_CleansingSmite=Smite nearby enemies for <c val="ffff8a"><d ref="Effect,AP_CleansingSmiteDamage,Amount"/></c>, dealing an additional <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/></c> damage over <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration"/></c> seconds.<n/><n/>The damage over time restores shields to Artanis equal to <c val="ffff8a">75%</c> of the damage done.
+Button/Tooltip/AP_CleansingSmitePassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_CleansingSmite,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_CleansingSmite,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Smite nearby enemies for <c val="ffff8a"><d ref="Effect,AP_CleansingSmiteDamage,Amount"/></c>, dealing an additional <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/></c> damage over <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration"/></c> seconds.<n/><n/>The damage over time restores shields to Artanis equal to <c val="ffff8a">75%</c> of the damage done.
 Button/Tooltip/AP_CliffJumper=This unit can jump up and down cliffs.
 Button/Tooltip/AP_CliffWalk=This unit can walk up and down cliffs.
 Button/Tooltip/AP_CloakOnBanshee=Cloaks the unit, preventing enemy units from seeing or attacking it. A cloaked unit will only be revealed by detectors or effects.<n/><n/><c val="f078ff">Drains <d ref="-1 * (Behavior,AP_BansheeCloak,Modification.VitalRegenArray[2] + Unit,AP_Banshee,EnergyRegenRate)" precision="1"/> energy per second.</c>
@@ -2913,7 +2932,7 @@ Button/Tooltip/AP_DeploySpiderMinesRaven=Spider Mines pursue enemy units that co
 Button/Tooltip/AP_DestroyerChargingBeam=Increases the bounce damage of the Destroyer's attack to <d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount" player="0"/> (<d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount + Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,AttributeBonus[Armored]" player="0"/> vs Armored). The upgraded bounces gain +1 damage per protoss air upgrade.
 Button/Tooltip/AP_DevastatorTurretPunisherGrenades=Increases damage to armored targets by 10.
 Button/Tooltip/AP_DevastatorTurretSlow=Units hit by the Devastator Turret are temporarily slowed.<n/><n/><c val="#ColorAttackInfo">Massive units are immune.</c>
-Button/Tooltip/AP_DevilDog=This elite unit of ex-Confederate firebats has fought on dozens of worlds over the last four years. They don’t care about causes, only cash.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
+Button/Tooltip/AP_DevilDog=This elite unit of ex-Confederate firebats has fought on dozens of worlds over the last four years. They donï¿½t care about causes, only cash.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_DevourerAoEDamage=Devourer attacks now deal area damage.
 Button/Tooltip/AP_DevourerSCBW=Anti-air flyer. Can use <c val="ffff8a">Acid Spores</c>.<n/><n/><c val="ffff8a">Can attack air units.</c>
 Button/Tooltip/AP_Diamondback=Fast, high-damage hovertank. Rail Gun can fire while the Diamondback is moving.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -2939,7 +2958,7 @@ Button/Tooltip/AP_DrillClaws=This unit burrows faster.
 Button/Tooltip/AP_Drone=Basic worker unit. Can harvest minerals and vespene gas. Can mutate into structures.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_DualFusionRepair=Restores life to mechanical units and structures at twice the speed of traditional repair.
 Button/Tooltip/AP_DualFusionWelders=SCVs repair twice as fast.
-Button/Tooltip/AP_DukesRevenge=This battlecruiser dates back to the earliest days of the Confederacy. The notorious vessel has been commanded by dozens of captains, all of whom either died in battle, or at the hands of the ship’s villainous crew.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
+Button/Tooltip/AP_DukesRevenge=This battlecruiser dates back to the earliest days of the Confederacy. The notorious vessel has been commanded by dozens of captains, all of whom either died in battle, or at the hands of the shipï¿½s villainous crew.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_DuskWing=The Dusk Wings were one of the first banshee squadrons deployed by the Dominion. They soon went AWOL when they realized that freelancing with their new toys was a way to get rich quick.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_EMP=Creates an electromagnetic pulse that does 100 damage to shields and drains all energy from units in the targeted area. Cloaked units hit by EMP are revealed for a short time.
 Button/Tooltip/AP_EchidnaWorm=Grows Creep used to feed nearby Zerg structures and can create Creep Tumors. Allows resources to be dropped off and can create Drones. Can NOT transport troops through the Nydus Network. <n/><n/><c val="#ColorAttackInfo">Bonus: Zerg move faster on creep.</c>
@@ -2966,8 +2985,8 @@ Button/Tooltip/AP_ExpandedCloakingCapability=The Mothership now also cloaks itse
 Button/Tooltip/AP_ExplodeVolatileInfested=The Volatile Infested detonates where it is standing, damaging nearby enemy units and structures.
 Button/Tooltip/AP_ExplosiveGlaive=Mutalisk gains +9 damage vs. armored units. Doesn't affect bounces.
 Button/Tooltip/AP_ExplosiveMode=Arms the Thor's Javelin missile launchers. Javelin missiles deal splash damage to nearby air units and additional damage vs. light units.
-Button/Tooltip/AP_Exterminate=Order Artanis to relentlessly attack an enemy, gaining <d ref="Behavior,AP_Exterminate,Modification.MoveSpeedMultiplier. * 100 - 100"/>% attack damage, movement speed, and attack speed for <d ref="Behavior,AP_Exterminate,Duration"/> seconds, but Artanis is uncommandable during this period until he or his target dies or leaves his vision.
-Button/Tooltip/AP_ExterminatePassive=Energy Cost: <d ref="Abil,AP_Exterminate,Cost[0].Vital[Energy]"/><n/>Cooldown: <d ref="Abil,AP_Exterminate,Cost[0].Cooldown.TimeUse"/><n/><n/>Order Artanis to relentlessly attack an enemy, gaining <d ref="Behavior,AP_Exterminate,Modification.MoveSpeedMultiplier. * 100 - 100"/>% attack damage, movement speed, and attack speed for <d ref="Behavior,AP_Exterminate,Duration"/> seconds, but Artanis is uncommandable during this period until he or his target dies or leaves his vision.
+Button/Tooltip/AP_Exterminate=Order Artanis to relentlessly attack an enemy, gaining <c val="ffff8a"><d ref="Behavior,AP_Exterminate,Modification.MoveSpeedMultiplier. * 100 - 100"/>% movement speed and attack speed</c> for <c val="ffff8a"><d ref="Behavior,AP_Exterminate,Duration"/> seconds</c>, but Artanis is <c val="ffff8a">uncommandable</c> during this period until he or his target dies or leaves his vision.
+Button/Tooltip/AP_ExterminatePassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_Exterminate,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_Exterminate,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Order Artanis to relentlessly attack an enemy, gaining <c val="ffff8a"><d ref="Behavior,AP_Exterminate,Modification.MoveSpeedMultiplier. * 100 - 100"/>% movement speed and attack speed</c> for <c val="ffff8a"><d ref="Behavior,AP_Exterminate,Duration"/> seconds</c>, but Artanis is <c val="ffff8a">uncommandable</c> during this period until he or his target dies or leaves his vision.
 Button/Tooltip/AP_Extractor=Mutated over a Vespene Geyser to allow harvesting of vespene gas.
 Button/Tooltip/AP_ExtractorRich=Mutated over a Vespene Geyser to allow harvesting of vespene gas.
 Button/Tooltip/AP_FaceEmbrace=Pulls target unit to the Viper. Enemy is stunned for 1 second.
@@ -3370,7 +3389,7 @@ Button/Tooltip/AP_MercThorWreckage=After their near-annihilation at the hands of
 Button/Tooltip/AP_MercUltralisk=One of the great mysteries of the Swarm, Wise Old Torrasque is an ultralisk that has evolved sapience and command abilities. Strangest of all is that he now sells the services as a mercenary force, even taking on contracts with the Terran Dominion to hunt the New Trinidad Pirates. Nobody knows what use an ultralisk could have for money.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MercUltraliskSummon=Summon Wise Old Torrasque.<n/><n/>A legendary Ultralisk from the Brood War who has evolved sapience. Revives from a chrysalis on death.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MercVehicle=Show available <c val="ffff8a">Vehicle</c> type units.
-Button/Tooltip/AP_MercWraith=Once the personal escort force for the Emperor, large swaths of the legendary Winged Nightmare squadron went AWOL after Arcturus’s culpability for Tarsonis was made public. The traitors have since been scrubbed from the Royal Guard’s records, and go from job to job staying one step ahead of Arcturus’s assassins.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
+Button/Tooltip/AP_MercWraith=Once the personal escort force for the Emperor, large swaths of the legendary Winged Nightmare squadron went AWOL after Arcturusï¿½s culpability for Tarsonis was made public. The traitors have since been scrubbed from the Royal Guardï¿½s records, and go from job to job staying one step ahead of Arcturusï¿½s assassins.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/AP_MercZergling=A deadly strain of zergling evolved by the Surtur Brood in the First Great War, the Devouring One personifies the brood's ceaseless slaughter of all in its path once unleashed. Though rarely seen after the Brood War, their legendary reputation still strikes fear into Dominion marines.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MercZerglingSummon=Summon <d ref="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]"/> Devouring Ones.<n/><n/>A powerful strain of Zerglings from the Brood War.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c><n/><c val="FF4040">Cannot be reconstituted or morph into Banelings.</c>
 Button/Tooltip/AP_MicroFiltering=This refinery is producing Vespene gas 25% faster
@@ -3821,7 +3840,8 @@ Button/Tooltip/AP_SentryPhasing=Purifier Faction<n/>Robotic support unit. Create
 Button/Tooltip/AP_SentryPurifier=Purifier Faction<n/>Robotic support unit. Can use Chrono Beam and Phasing Mode.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_SentryTaldarimForceField=Creates a solid barrier that lasts for <d ref="Behavior,AP_ForceFieldFate,Duration"/> seconds and impedes movement of ground units.<n/><n/><c val="#ColorAttackInfo">Massive units shatter Force Fields on contact.</c>
 Button/Tooltip/AP_SeveringGlave=Attacks no longer decrease in damage with each subsequent bounce.
-Button/Tooltip/AP_ShadowSlicePassive=Energy Cost: <d ref="Abil,AP_ShadowSlice,Cost[0].Vital[Energy]"/><n/>Cooldown: <d ref="Abil,AP_ShadowSlice,Cost[0].Cooldown.TimeUse"/><n/><n/>Teleport near an enemy target and strike them, dealing <d ref="Effect,AP_ShadowSliceDamage,Amount"/> damage to them before teleporting back.<n/><n/>If this damage kills an enemy, refund 50% of the cooldown and energy cost.
+Button/Tooltip/AP_ShadowSlice=Teleport near an enemy target and strike them, dealing <c val="ffff8a"><d ref="Effect,AP_ShadowSliceDamage,Amount"/></c> damage to them before teleporting back.<n/><n/>If this damage kills an enemy, refund <c val="ffff8a">50%</c> of the cooldown and energy cost.
+Button/Tooltip/AP_ShadowSlicePassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ShadowSlice,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ShadowSlice,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Teleport near an enemy target and strike them, dealing <c val="ffff8a"><d ref="Effect,AP_ShadowSliceDamage,Amount"/></c> damage to them before teleporting back.<n/><n/>If this damage kills an enemy, refund <c val="ffff8a">50%</c> of the cooldown and energy cost.
 Button/Tooltip/AP_ShapedBlast=Shock Cannon damage to friendly units reduced by 75%.
 Button/Tooltip/AP_ShapedHull=Increases Diamondback life by 50.
 Button/Tooltip/AP_ShieldBattery=Restores shields to nearby friendly units and structures.
@@ -3911,6 +3931,7 @@ Button/Tooltip/AP_StimRedirect=Orders infantry inside of the Bunker to use Stimp
 Button/Tooltip/AP_StopGenerateCreep=Stops generating creep.
 Button/Tooltip/AP_StopPlanetaryFortress=Orders selected units to cancel all orders and stop moving.
 Button/Tooltip/AP_StrengthInUnity=Rallies other Protoss units around Artanis for <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnity,Duration"/> seconds</c>, granting bonuses to himself and units around him based on each unit in his radius.<n/><n/><c val="64e4fa">Aiur</c>: Gain <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.VitalRegenArray[Energy]" precision="1"/> energy regen</c>, and cooldowns recharge <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.RateMultiplierArray[Cooldown] * 100 - 100"/>%</c> faster.<n/><c val="32CD32">Nerazim</c>: Become Cloaked and gain <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffNerazim,Modification.MoveSpeedMultiplier * 100 - 100"/>% movement speed</c>.<n/><c val="f2bf16">Purifier</c>: Restore <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffPurifier,Modification.VitalRegenArray[Life]"/> shields and life per second</c>.<n/><c val="d40d24">Taldarim</c>: Deal <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffTaldarim,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage</c>.<n/><n/>Artanis counts as the faction of his weapon aspect, and gains double each of these bonuses.
+Button/Tooltip/AP_SuppressionPulse=Reduce <c val="ffff8a">attack damage</c> done by enemies around Artanis by <c val="ffff8a">100%</c> for <c val="ffff8a"><d ref="Behavior,AP_SuppressionPulse,Duration"/></c> seconds.
 Button/Tooltip/AP_StukovInfestedBanshee=Tactical-strike aircraft. Can cloak and can be upgraded to burrow.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_StukovInfestedBansheeBurrowRegeneration=Infested Banshees regenerate 20 life and energy per second while burrowed.
 Button/Tooltip/AP_StukovInfestedBansheeBurrowed=Tactical-strike aircraft. Can cloak and can be upgraded to burrow.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -3918,7 +3939,7 @@ Button/Tooltip/AP_StukovInfestedBansheeInfestedLife=Infested Banshees gain +100 
 Button/Tooltip/AP_StukovInfestedDiamondBack=Fast, high-damage hovertank. Can attack while moving and can bring flying units to the ground.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_StukovInfestedDiamondbackSnare=Brings a target enemy air unit to the ground, allowing units to attack it as if it were a ground unit.
 Button/Tooltip/AP_StukovInfestedSiegeTank=Heavy tank. Can uproot itself to provide mobile tank support. Can use the Deep Tunnel ability to travel quickly to any visible location with creep.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
-Button/Tooltip/AP_StukovInfestedSiegeTankAmmo=Consumes nearby Infested Civilians and Infested Troopers to restore 20 life and create ammo for the Infested Siege Tank’s Volatile Burst weapon. Can store a maximum of 8 rounds.
+Button/Tooltip/AP_StukovInfestedSiegeTankAmmo=Consumes nearby Infested Civilians and Infested Troopers to restore 20 life and create ammo for the Infested Siege Tankï¿½s Volatile Burst weapon. Can store a maximum of 8 rounds.
 Button/Tooltip/AP_StukovInfestedSiegeTankDeepTunnel=Can travel quickly to any visible location with creep.
 Button/Tooltip/AP_StukovInfestedSiegeTankRoot=Roots the Infested Siege Tank. A rooted Infested Siege Tank gains the ability to attack at long-range with Volatile Burst, but is unable to move.
 Button/Tooltip/AP_StukovInfestedSiegeTankUproot=Uproots the Infested Siege Tank. An uprooted Infested Siege Tank has the ability to move but can only attack with Impaler Tentacle. Moves much faster on creep.
@@ -7500,4 +7521,5 @@ Weapon/Tip/AP_Talons=
 Weapon/Tip/AP_VoidRayChargeBeamBounce=Deals <d ref="Effect,AP_VoidRayChargeBeamBounce1Damage,Amount"/> damage to <d ref="Effect,AP_VoidRayChargeBeamBounce1Search,MaxCount"/> secondary target if not charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBounce2Damage,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounce2Damage,Amount + Effect,AP_VoidRayChargeBeamBounce2Damage,AttributeBonus[Armored]"/> vs Armored) damage to <d ref="Effect,AP_VoidRayChargeBeamBounce2Search,MaxCount"/> secondary targets if halfway charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBounce3Damage,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounce3Damage,Amount + Effect,AP_VoidRayChargeBeamBounce3Damage,AttributeBonus[Armored]"/> vs Armored) damage to <d ref="Effect,AP_VoidRayChargeBeamBounce3Search,MaxCount"/> secondary targets damage if fully charged.
 Weapon/Tip/AP_VoidRayChargeBeamBounceUpgraded=Deals <d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount + Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,AttributeBonus[Armored]"/> vs Armored) damage to to secondary targets at all charge levels. Hits 1 additional target per charge level.
 Weapon/Tip/AP_VoidRayChargeBeamRange=Deals <d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge2,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge2,Amount + Effect,AP_VoidRayChargeBeamBaseDamageCharge2,AttributeBonus[Armored]"/> vs Armored) damage if halfway charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge3,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge3,Amount + Effect,AP_VoidRayChargeBeamBaseDamageCharge3,AttributeBonus[Armored]"/> vs Armored) damage if fully charged.
+
 

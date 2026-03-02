@@ -4743,10 +4743,12 @@
     </CEffectIssueOrder>
     <CEffectCreatePersistent id="AP_ExterminatePersistent">
         <EditorCategories value="Race:Protoss"/>
-        <WhichLocation Value="CasterUnit"/>
+        <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
         <InitialEffect value="AP_ExterminateAttackOrder"/>
-        <PeriodCount value="70"/>
+        <PeriodicValidator value="AP_ExterminatePeriodicValidators"/>
+        <FinalEffect value="AP_ExterminateRemoveSet"/>
+        <PeriodCount value="40"/>
         <PeriodicPeriodArray value="0.1"/>
     </CEffectCreatePersistent>
     <CEffectRemoveBehavior id="AP_ExterminateRB">
@@ -4852,7 +4854,7 @@
     <CEffectModifyUnit id="AP_RaszagalsRhythmCDRefund">
         <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
         <ImpactUnit Value="Caster"/>
-        <!-- Technically would be easier to grant 100% CDR for 1 second instead, want CDR refund to be more instanteous and scale better w/ attack speed-->
+        <!-- Technically would be easier to grant 100% CDR for 1 second instead, but want CDR refund to be more instanteous and scale better w/ attack speed-->
         <Cost Abil="AP_ShadowSlice,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_ArtanisLightningDash,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_CleansingSmite,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
@@ -4872,8 +4874,8 @@
     </CEffectSet>
     <CEffectModifyUnit id="AP_ArtanisAstralWindSelf">
         <EditorCategories value="Race:Protoss"/>
-        <VitalArray index="Life" Change="90"/>
-        <VitalArray index="Shields" Change="225"/>
+        <VitalArray index="Life" Change="75"/>
+        <VitalArray index="Shields" Change="150"/>
     </CEffectModifyUnit>
    <CEffectEnumArea id="AP_ArtanisAstralWindSearch">
         <EditorCategories value="Race:Protoss"/>
@@ -4889,21 +4891,27 @@
     </CEffectSet>
     <CEffectModifyUnit id="AP_ArtanisAstralWindOther">
         <EditorCategories value="Race:Protoss"/>
-        <VitalArray index="Life" Change="30"/>
+        <VitalArray index="Life" Change="25"/>
         <VitalArray index="Shields" Change="75"/>
     </CEffectModifyUnit>
     <CEffectSet id="AP_VoltaicShockSetSearch">
         <EditorCategories value="Race:Protoss"/>
         <TargetLocationType value="Point"/>
         <EffectArray value="AP_VoltaicShockDamageSearch"/>
-        <EffectArray value="AP_VoltaicShockDamageSearchAir"/>
         <EffectArray value="AP_VoltaicShockSearch"/>
     </CEffectSet>
+    <CEffectSet id="AP_VoltaicShockDamageSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_VoltaicShockDamage"/>
+        <EffectArray value="AP_VoltaicShockDamageAir"/>
+    </CEffectSet>
     <CEffectDamage id="AP_VoltaicShockDamage">
+        <ValidatorArray value="AP_TargetIsGround"/>
         <Amount value="30"/>
         <Death value="Electrocute"/>
     </CEffectDamage>
     <CEffectDamage id="AP_VoltaicShockDamageAir">
+        <ValidatorArray value="AP_TargetIsAir"/>
         <Amount value="60"/>
         <Death value="Electrocute"/>
     </CEffectDamage>
@@ -4914,13 +4922,8 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_VoltaicShockDamageSearch">
         <ImpactLocation Value="TargetPoint"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3" Effect="AP_VoltaicShockDamage"/>
-    </CEffectEnumArea>
-    <CEffectEnumArea id="AP_VoltaicShockDamageSearchAir">
-        <ImpactLocation Value="TargetPoint"/>
-        <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3" Effect="AP_VoltaicShockDamageAir"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="AP_VoltaicShockDamageSet"/>
     </CEffectEnumArea>
    <CEffectCreateUnit id="AP_VoltaicShockReheightSourceCreatePlaceholder">
         <WhichLocation Value="SourceUnit"/>
@@ -5069,7 +5072,7 @@
     <CEffectDamage id="AP_ArtanisLightningDashDamage" parent="DU_WEAP">
         <Death value="Blast"/>
         <Kind value="Spell"/>
-        <Amount value="35"/>
+        <Amount value="50"/>
     </CEffectDamage>
     <CEffectModifyUnit id="AP_ArtanisLightningDashRemovePrecursorUnit">
         <ModifyFlags index="Remove" value="1"/>
@@ -5198,7 +5201,7 @@
         <PeriodCount value="2"/>
         <PeriodicEffectArray value="AP_ArtanisAirAttackLM"/>
         <PeriodicPeriodArray value="0"/>
-        <PeriodicPeriodArray value="0.28"/>
+        <PeriodicPeriodArray value="0.14"/>
     </CEffectCreatePersistent>
     <CEffectLaunchMissile id="AP_ArtanisAirAttackLM">
         <ImpactEffect value="AP_ArtanisAirAttackImpactSet"/>
@@ -5207,7 +5210,9 @@
     </CEffectLaunchMissile>
     <CEffectSet id="AP_ArtanisAirAttackImpactSet">
         <EffectArray value="AP_ArtanisAirAttackSwitch"/>
+        <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
+        <EffectArray value="AP_RaszagalsRhythmEmpoweredConsumeSet"/>
         <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
     <CEffectSwitch id="AP_ArtanisAirAttackSwitch">
@@ -5221,12 +5226,11 @@
         </Amount>
         <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
-
     <CEffectEnumArea id="AP_CleansingSmiteSearch">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Invulnerable"/>
-        <AreaArray Radius="1.6" Effect="AP_CleansingSmiteSet"/>
+        <AreaArray Radius="1.7" Effect="AP_CleansingSmiteSet"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectSet id="AP_CleansingSmiteSet">
@@ -5290,7 +5294,6 @@
         <ArmorReduction value="0"/>
         <Kind value="Spell"/>
         <Amount value="50"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectDamage id="AP_ArtanisBladeWaltzRecastDamage" parent="AP_ArtanisBladeWaltzDamage">
         <Amount value="75"/>
@@ -5372,9 +5375,15 @@
         <ImpactEffect value="AP_AcidSalivaSet"/>
         <AmmoUnit value="AP_AcidSalivaWeapon"/>
     </CEffectLaunchMissile>
+    <CEffectModifyUnit id="AP_PhasePrismCooldown">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactUnit Value="Caster"/>
+        <Cost Abil="AP_PhasePrismSwap,Execute" CooldownOperation="Max" CooldownTimeUse="0.5"/>
+    </CEffectModifyUnit>
     <CEffectSet id="AP_PhasePrismSet">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_PhasePrismAB"/>
+        <EffectArray value="AP_PhasePrismCooldown"/>
         <EffectArray value="AP_PhasePrismRecastCasterAB"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_PhasePrismAB">
