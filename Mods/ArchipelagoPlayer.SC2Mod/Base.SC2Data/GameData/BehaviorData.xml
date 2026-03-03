@@ -2179,6 +2179,7 @@
         <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="4"/>
+        <DisplayDuration index="Self" value="1"/>
         <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2">
             <DamageDealtFraction index="Melee" value="1"/>
             <DamageDealtFraction index="Ranged" value="1"/>
@@ -2217,6 +2218,7 @@
         <BehaviorCategories index="Stun" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzRecast">
+        <DisplayDuration index="Self" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-blade-dash-recast.dds"/>
         <RemoveValidatorArray value="AP_NoArtanisBladeWaltzRecastWalkSpeed"/>
@@ -2224,6 +2226,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnity">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <DisplayDuration index="Self" value="1"/>
         <Duration value="15"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnityInitialSearchSet"/>
@@ -2268,7 +2271,6 @@
         </Modification>
         <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionaiur_categoryicon.dds"/>
     </CBehaviorBuff>
-
     <CBehaviorBuff id="AP_StrengthInUnityInitialBuffNerazim">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -2299,7 +2301,6 @@
         </Modification>
         <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionnerazim_categoryicon.dds"/>
     </CBehaviorBuff>
-
     <CBehaviorBuff id="AP_StrengthInUnityInitialBuffPurifier">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -2326,7 +2327,6 @@
         <PeriodicEffect value="AP_StrengthInUnitySearchPurifierSet"/>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
     </CBehaviorBuff>
-
     <CBehaviorBuff id="AP_StrengthInUnityInitialBuffTaldarim">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -2363,7 +2363,6 @@
         </Modification>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_taldarim_categoryicon.dds"/>
     </CBehaviorBuff>
-
     <CBehaviorBuff id="AP_ArtanisResurgence">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -7771,17 +7770,7 @@
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisWeaponBuffBase">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisWeaponBuffTaldarim" parent="AP_ArtanisWeaponBuffBase">
-        <Modification>
-            <DamageDealtAttributeMultiplier index="Heroic" value="0.75"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_DevourerSCBWWeapon">
+    </CBehaviorBuff>    <CBehaviorBuff id="AP_DevourerSCBWWeapon">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="RefreshStack" value="1"/>
         <MaxStackCount value="9"/>
