@@ -20338,8 +20338,8 @@
         <Width value="2.500000"/>
     </CActorQuad>
     <CActorQuad id="AP_BladeWaltzGuide" parent="ZergGuideVisualQuadDown" abil="AP_ArtanisBladeWaltz">
-        <Height value="8.000000"/>
-        <Width value="2.500000"/>
+        <Height value="8.200000"/>
+        <Width value="2.300000"/>
         <LaunchActor value="AP_ProtossGuideVisualQuadSolarLanceLaunch"/>
         <CenterActor value="AP_ProtossGuideVisualQuadSolarLanceCenter"/>
         <ImpactActor value="AP_ProtossGuideVisualQuadSolarLanceImpact"/>
@@ -37974,12 +37974,15 @@
         <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStart Work Spell,F,Start Spell,F Spell,F,End"/>
         <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzActor.Off" Send="AnimClear Spell"/>
+        <On Terms="Abil.AP_CleansingSmite.SourceCastStart" Send="$Spell,A 0 0 -1.000000 1.0000 AsTimeScale"/>
         <On Terms="Abil.AP_ShadowSlice.SourceCastStart" Send="$Spell,A 0 0 -1.000000 1.0000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisBladeWaltz.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisBladeWaltzRecast.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisAstralWind.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
+        <On Terms="Abil.AP_SuppressionPulse.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="Abil.AP_PhasePrism.SourceCastStart; !UnitWalking" Send="$Spell,D 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
+        <On Terms="Abil.AP_VoltaicShock.SourceCastStart; !UnitWalking" Send="$Spell,D 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="UnitMovementUpdate.*.Walk; !ValidateUnit AP_CasterHasArtanisBladeWaltzActor" Send="AnimClear Spell"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Zealot_Land"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Templar_LandSweetener"/>

@@ -828,9 +828,8 @@ Behavior/Tooltip/AP_AlarakLightningStrikes=Alarak's next Deadly Charge also deal
 Behavior/Tooltip/AP_AmorphousArmorcloud=Incoming damage from air units reduced by <d ref="Behavior,AP_AmorphousArmorcloud,DamageResponse.ModifyFraction*100" precision="1"/>%.
 Behavior/Tooltip/AP_ArbiterMPCloakFieldEffect=This unit is cloaked unless revealed by <c val="FFE303">Detectors</c> or effects.
 Behavior/Tooltip/AP_ArtanisBladeWaltzDamaged=This unit cannot be damaged by Blade Waltz (Recast).
-Behavior/Tooltip/AP_ArtanisInspiringPresence=This unit is empowered by Inspiring Presence, dealing increased damage and taking reduced damage.
-Behavior/Tooltip/AP_ArtanisInspiringPresenceAura=This unit is projecting Inspiring Presence to nearby allies.
-Behavior/Tooltip/AP_ArtanisInspiringPresenceSuperior=This unit is empowered by Superior Inspiring Presence, granting stronger damage and damage reduction bonuses.
+Behavior/Tooltip/AP_ArtanisInspiringPresence=This unit is dealing <d ref="Behavior,AP_ArtanisInspiringPresence,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage and taking <d ref="Behavior,AP_ArtanisInspiringPresence,Modification.DamageDealtFraction[Spell] * 100"/>% reduced damage.
+Behavior/Tooltip/AP_ArtanisInspiringPresenceSuperior=This unit is dealing <d ref="Behavior,AP_ArtanisInspiringPresenceSuperior,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage and taking <d ref="Behavior,AP_ArtanisInspiringPresenceSuperior,Modification.DamageDealtFraction[Spell] * 100"/>% reduced damage.
 Behavior/Tooltip/AP_ArtanisResurgenceDisable=Artanis is unable to benefit from Resurgence.
 Behavior/Tooltip/AP_AscendantSacrificeSelfBuff=This unit has increased shields and its abilities deal increased damage.
 Behavior/Tooltip/AP_AstralRestorationCaster=Healing units within range of Cloaking Field.
@@ -1617,6 +1616,7 @@ Button/Name/AP_InfestedTerrans=Infested Terran
 Button/Name/AP_Infestor=Morph to Infestor
 Button/Name/AP_InfestorConsumption=Consumption
 Button/Name/AP_InfestorPassive=Infestor
+Button/Name/AP_InspiringPresence=Inspiring Presence
 Button/Name/AP_InstigatorBlinkOverdrive=Blink Overdrive
 Button/Name/AP_InstigatorModernizedServos=Modernized Servos
 Button/Name/AP_Interceptor=Build Interceptor
@@ -2660,7 +2660,7 @@ Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="ffff8a"><d ref="Effect
 Button/Tooltip/AP_ArtanisBladeWaltz=Dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/></c> damage to enemy ground units in a straight line.<n/><n/>This ability can be recast for free within <c val="ffff8a"><d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds</c>, dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/></c> damage to enemy ground units not damaged by the original cast.
 Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/></c> damage to enemy ground units in a straight line.<n/><n/>This ability can be recast for free within <c val="ffff8a"><d ref="Behavior,AP_ArtanisBladeWaltzRecast,Duration"/> seconds</c>, dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/></c> damage to enemy ground units not damaged by the original cast.
 Button/Tooltip/AP_ArtanisBladeWaltzRecast=Dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzRecastDamage,Amount"/></c> damage to enemy ground units not damaged by the first cast.
-Button/Tooltip/AP_ArtanisCharge=Intercepts enemy ground units.
+Button/Tooltip/AP_ArtanisCharge=Intercepts enemy units.
 Button/Tooltip/AP_ArtanisForceOfWillPassive=Regenerates <c val="ffff8a">3 shields per second</c> and grants Artanis <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisForceOfWill,EffectArray[0].Value"/> shield armor</c>.
 Button/Tooltip/AP_ArtanisLightningDash=Artanis charges forward, unleashing a blast of energy that deals <c val="ffff8a"><d ref="Effect,AP_ArtanisLightningDashDamage,Amount"/> damage</c> to nearby enemies and stuns them for <c val="ffff8a"><d ref="Behavior,AP_ArtanisLightningDashStun,Duration" precision="1"/> seconds</c>.
 Button/Tooltip/AP_ArtanisNerazimAspect=Switch Artanis' active aspect to <c val="32CD32">Nerazim</c>, granting him access to any unlocked bonuses and making him count as a <c val="32CD32">Nerazim</c> unit.
@@ -2674,7 +2674,7 @@ Button/Tooltip/AP_ArtanisResurgence=Grants Artanis invulnerability for <c val="f
 Button/Tooltip/AP_ArtanisTaldarimAspect=Switch Artanis' active aspect to <c val="d40d24">Taldarim</c>, granting him access to any unlocked bonuses and making him count as a <c val="d40d24">Taldarim</c> unit.
 Button/Tooltip/AP_ArtanisTaldarimAspectPassive=Artanis gains <c val="ffff8a">25% attack speed</c>. While <c val="d40d24">Taldarim</c> Aspect is active, his attacks also deal <c val="ffff8a">33%</c> splash damage around the target.
 Button/Tooltip/AP_ArtanisTemperedInTwilight=Artanis restores <c val="ffff8a"><d ref="Effect,AP_ArtanisTemperedInTwilightEnergy,VitalArray[Energy].Change" precision="1"/></c> energy whenever he attacks.
-Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="ffff8a">+2 weapon damage</c> to his ground and anti-air attacks. While any Weapon Aspect is active, Artanis' weapon damage is increased by <c val="ffff8a">100%</c>.
+Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisBaseAspectPassive,EffectArray[0].Value"/> attack damage</c> to his ground and anti-air attacks. While any Weapon Aspect is active, Artanis' weapons deal <c val="ffff8a">100%</c> increased damage.
 Button/Tooltip/AP_ArtanisWeaponAspectSwap=Swap Artanis to a different weapon aspect.
 Button/Tooltip/AP_AscendantAbilityEfficiency=Ascendant abilities cost <d ref="Upgrade,AP_AscendantAbilityEfficiency,EffectArray[0].Value"/> less energy.<n/><n/><c val="FFE303">War Council Upgrade.</c>
 Button/Tooltip/AP_AscendantSacrifice=Reduces target friendly unit to <d ref="Effect,AP_AscendantSacrificeDamage,Amount"/> life (shields are not affected).<n/><n/>Grants the Ascendant <d ref="Effect,AP_AscendantSacrificeDamage5,LeechFraction[Energy]"/> energy for each life point reduced, up to its maximum energy.<n/><n/><c val="#ColorAttackInfo">Can only target friendly units.</c>
@@ -2834,7 +2834,7 @@ Button/Tooltip/AP_ChainReaction=Kerrigan's attacks deal normal damage to her tar
 Button/Tooltip/AP_Charge=Intercepts enemy ground units.
 Button/Tooltip/AP_ChargePredator=Intercepts enemy ground units. The first attack after charging applies a slow to surrounding enemy units.
 Button/Tooltip/AP_ChitinousPlating=Increases Ultralisk armor by 2.
-Button/Tooltip/AP_CleansingSmite=Smite nearby enemies for <c val="ffff8a"><d ref="Effect,AP_CleansingSmiteDamage,Amount"/></c>, dealing an additional <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/></c> damage over <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration"/></c> seconds.<n/><n/>The damage over time restores shields to Artanis equal to <c val="ffff8a">75%</c> of the damage done.
+Button/Tooltip/AP_CleansingSmite=Deal <c val="ffff8a"><d ref="Effect,AP_CleansingSmiteDamage,Amount"/></c> damage to nearby enemy ground units, dealing an additional <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/></c> damage over <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration"/></c> seconds.<n/><n/>The damage over time restores shields to Artanis equal to <c val="ffff8a">75%</c> of the damage done.
 Button/Tooltip/AP_CleansingSmitePassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_CleansingSmite,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_CleansingSmite,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Smite nearby enemies for <c val="ffff8a"><d ref="Effect,AP_CleansingSmiteDamage,Amount"/></c>, dealing an additional <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration / Behavior,AP_CleansingSmite,Period"/></c> damage over <c val="ffff8a"><d ref="Behavior,AP_CleansingSmite,Duration"/></c> seconds.<n/><n/>The damage over time restores shields to Artanis equal to <c val="ffff8a">75%</c> of the damage done.
 Button/Tooltip/AP_CliffJumper=This unit can jump up and down cliffs.
 Button/Tooltip/AP_CliffWalk=This unit can walk up and down cliffs.
@@ -3231,6 +3231,7 @@ Button/Tooltip/AP_Infestor=Infestation specialist. Can move while burrowed. Can 
 Button/Tooltip/AP_InfestorConsumption=Drains up to 75 life from a friendly Zerg unit and gives the Infestor 2 energy for each point of life drained.
 Button/Tooltip/AP_InfestorPassive=Infestation Pit enables you to morph Infestors.
 Button/Tooltip/AP_InfestorTerran=An Infested Terran does moderate damage and lasts for <d ref="Behavior,AP_InfestedTerranTimedLife,Duration"/> seconds.<n/><n/><c val="FFFF8A">Can attack ground and air units.</c>
+Button/Tooltip/AP_InspiringPresence=Increase the <c val="ffff8a">damage done</c> and reduce the <c val="ffff8a">damage taken</c> by nearby friendly units by <c val="ffff8a"><d ref="Behavior,AP_ArtanisInspiringPresence,Modification.DamageDealtFraction[Spell] * 100"/>%</c>.<n/><n/>Increases to <c val="ffff8a"><d ref="Behavior,AP_ArtanisInspiringPresenceSuperior,Modification.DamageDealtFraction[Spell] * 100"/>%</c> when Artanis has the same Faction as the unit.
 Button/Tooltip/AP_InstigatorBlinkOverdrive=Instigators gain another +<d ref="$UpgradeEffectArrayValue:AP_InstigatorBlinkOverdrive:Abil,AP_BlinkMultiple,Cost[0].Charge.CountMax$"/> maximum Blink charges and +<d ref="$UpgradeEffectArrayValue:AP_InstigatorBlinkOverdrive:Effect,AP_VoidStalkerBlinkMultiple,Range$"/> Blink range.
 Button/Tooltip/AP_InstigatorModernizedServos=Increases movement speed by <d ref="$UpgradeEffectArrayValue:AP_InstigatorModernizedServos:Unit,AP_StalkerPurifier,Speed$ / Unit,AP_StalkerPurifier,Speed * 100" player="0"/>%.<n/><n/><c val="FFE303">War Council Upgrade.</c>
 Button/Tooltip/AP_Interceptor=Builds Interceptors that automatically attack the Carrier's target. Carriers may not attack without Interceptors.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>

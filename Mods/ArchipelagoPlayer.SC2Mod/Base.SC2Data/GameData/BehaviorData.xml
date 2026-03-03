@@ -3468,7 +3468,7 @@
         <PeriodicEffect value="AP_ArtanisInspiringPresenceSearch"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisInspiringPresence">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
+        <InfoIcon value="Assets\Textures\talent-artanis-level01-swiftretribution.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="0.125"/>
         <Requirements value="AP_HaveArtanisInspiringPresence"/>
@@ -3485,7 +3485,7 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisInspiringPresenceSuperior">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
+        <InfoIcon value="AP\Assets\Textures\btn-upgrade-protoss-symbolofunity.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="0.125"/>
         <Requirements value="AP_HaveArtanisInspiringPresence"/>
@@ -5329,6 +5329,7 @@
     <CBehaviorBuff id="AP_ArtanisCharging" parent="AP_Charging">
         <InfoIcon value="AP\Assets\Textures\btn-ability-artanis-charge.dds"/>
         <Modification MoveSpeedMultiplier="3"/>
+        <RemoveValidatorArray index="0" value="AP_ArtanisChargeTargetAttacked"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzRecastWalkSpeed"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>

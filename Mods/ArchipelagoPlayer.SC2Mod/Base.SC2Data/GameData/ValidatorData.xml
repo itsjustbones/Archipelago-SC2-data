@@ -2319,6 +2319,21 @@
         <Range value="8"/>
         <ResultFailed value="TargetIsOutOfRange"/>
     </CValidatorLocationCompareRange>
+    <CValidatorUnitWeaponFiring id="AP_ArtanisChargeTargetAttackedGround">
+        <WhichUnit Value="Caster"/>
+        <Weapon value="AP_ArtanisTwilightBlades"/>
+        <Find value="0"/>
+    </CValidatorUnitWeaponFiring>
+    <CValidatorUnitWeaponFiring id="AP_ArtanisChargeTargetAttackedAir">
+        <WhichUnit Value="Caster"/>
+        <Weapon value="AP_ArtanisAirAttack"/>
+        <Find value="0"/>
+    </CValidatorUnitWeaponFiring>
+    <CValidatorCombine id="AP_ArtanisChargeTargetAttacked">
+        <Type value="And"/>
+        <CombineArray value="AP_ArtanisChargeTargetAttackedGround"/>
+        <CombineArray value="AP_ArtanisChargeTargetAttackedAir"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasExterminate">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>

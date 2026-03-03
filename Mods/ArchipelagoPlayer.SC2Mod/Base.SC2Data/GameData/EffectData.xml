@@ -4855,6 +4855,7 @@
         <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
         <ImpactUnit Value="Caster"/>
         <!-- Technically would be easier to grant 100% CDR for 1 second instead, but want CDR refund to be more instanteous and scale better w/ attack speed-->
+        <Cost Abil="AP_ArtanisCharge,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_ShadowSlice,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_ArtanisLightningDash,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_CleansingSmite,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
@@ -4875,7 +4876,7 @@
     <CEffectModifyUnit id="AP_ArtanisAstralWindSelf">
         <EditorCategories value="Race:Protoss"/>
         <VitalArray index="Life" Change="75"/>
-        <VitalArray index="Shields" Change="150"/>
+        <VitalArray index="Shields" Change="175"/>
     </CEffectModifyUnit>
    <CEffectEnumArea id="AP_ArtanisAstralWindSearch">
         <EditorCategories value="Race:Protoss"/>
