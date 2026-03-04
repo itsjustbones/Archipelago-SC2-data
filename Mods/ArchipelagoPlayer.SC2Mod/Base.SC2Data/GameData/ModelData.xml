@@ -3578,10 +3578,8 @@
         <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_FacialAnims\SMX2_Artanis_T1_FacialAnims.m3a"/>
     </CModel>
     <CModel id="AP_ArtanisHeroCleansingSmite" parent="ImpactFX">
-        <Model value="AP\Assets\Units\Protoss\Artanis\Artanis_Cleansing_Smite.m3"/>
+        <Model value="Assets\Effects\Protoss\Immortal_Collection_Purifier_DamageExplosion\Immortal_Collection_Purifier_DamageExplosion.m3"/>
         <EditorCategories value="Race:Protoss"/>
-        <ScaleMax value="1.500000,1.500000,1.500000"/>
-        <ScaleMin value="1.500000,1.500000,1.500000"/>
     </CModel>
     <CModel id="AP_PhasePrismImpact" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\StasisTomb\StasisTomb.m3"/>
@@ -7187,14 +7185,6 @@
         <LowQualityModel value="ProtossLargeUnitDeathLow"/>
         <Occlusion value="Show"/>
     </CModel>
-    <CModel id="AP_ArtanisBladeWaltzDamaged" parent="ImpactFX">
-        <Model value="Assets\Effects\Zerg\Zagara_MassFrenzy_State\Zagara_MassFrenzy_State.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-        <ScaleMax value="3.200000,3.200000,3.200000"/>
-        <ScaleMin value="3.200000,3.200000,3.200000"/>
-        <SelectionRadius value="0.333200"/>
-        <ShadowRadius value="0.333200"/>
-    </CModel>
     <CModel id="AP_VoltaicShockStun" parent="ImpactFX">
         <Model value="Assets\Effects\Zerg\PulseImpact\PulseImpact.m3"/>
         <EditorCategories value="Race:Protoss"/>
@@ -7205,6 +7195,8 @@
     </CModel>
     <CModel id="AP_ArtanisBladeWaltzModel" parent="PersistentSpellFX">
         <Model value="AP\Assets\Effects\Terran\nova_dashattack\nova_dashattack.m3"/>
+        <ScaleMax value="1.94000,0.80000,0.80000"/>
+        <ScaleMin value="1.94000,0.80000,0.80000"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
     <CModel id="AP_NovaWeaponBlazefireBladeShadowFury" parent="OneShotSpellFX">
@@ -9601,6 +9593,14 @@
     </CModel>
     <CModel id="AP_StrengthInUnityGlaze">
         <Model value="Assets\Effects\Glaze\Glaze_PhaseArmor\Glaze_PhaseArmor.m3"/>
+    </CModel>
+    <CModel id="AP_StrengthInUnityTargetGlaze">
+        <Model value="Assets\Effects\Glaze\Glaze_RegenerativeBioSteel\Glaze_RegenerativeBioSteel.m3"/>
+    </CModel>
+    <CModel id="AP_StrengthInUnityBubble">
+        <Model value="Assets\Effects\Protoss\Alarak_Malash_Storm\Alarak_Malash_Storm.m3"/>
+        <ScaleMax value="0.360000,0.360000,0.360000"/>
+        <ScaleMin value="0.360000,0.360000,0.360000"/>
     </CModel>
     <CModel id="AP_PhoenixPurifierPlacement" parent="Placement" Race="Protoss">
         <Model value="Assets\Units\Protoss\Phoenix_Purifier_Placement\Phoenix_Purifier_Placement.m3"/>
@@ -15040,6 +15040,14 @@
         <Model value="Assets\UI\ProtossCursorEx2\ProtossCursorEx2.m3"/>
         <ScaleMax value="0.220000,0.220000,0.220000"/>
         <ScaleMin value="0.220000,0.220000,0.220000"/>
+        <SelectionRadius value="2.500000"/>
+        <ShadowRadius value="2.500000"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_BladeWaltzAOECursorSplat" parent="UI">
+        <Model value="Assets\UI\ProtossCursorEx2\ProtossCursorEx2.m3"/>
+        <ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.500000,0.500000,0.500000"/>
         <SelectionRadius value="2.500000"/>
         <ShadowRadius value="2.500000"/>
         <EditorCategories value="Race:Protoss"/>
@@ -22234,5 +22242,14 @@
     </CModel>
     <CModel id="AP_ParasiteSporeGroundMissile">
         <Model value="Assets\Effects\Zerg\SlivanAcidPuddleMissile\SlivanAcidPuddleMissile.m3"/>
+    </CModel>
+    <CModel id="AP_ShadowSliceCastEffect" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Zeratul_ShadowBlade\Zeratul_ShadowBlade.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.750000,0.750000,0.750000"/>
+        <ScaleMin value="0.750000,0.750000,0.750000"/>
+    </CModel>
+    <CModel id="AP_ShadowSliceExplosion" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Zeratul_ShadowBlade_Impact\Zeratul_ShadowBlade_Impact.m3"/>
     </CModel>
 </Catalog>

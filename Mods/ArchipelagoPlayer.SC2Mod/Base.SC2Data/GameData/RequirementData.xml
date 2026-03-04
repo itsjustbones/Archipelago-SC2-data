@@ -1352,9 +1352,6 @@
         <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
         <NodeArray index="Show" Link="AP_CountUpgradeHotSHaveSwarmHostSplitBCompleteOnly"/>
     </CRequirement>
-    <CRequirement id="AP_HaveArtanisInspiringPresence">
-        <NodeArray index="Show" Link="AP_CountUpgradeArtanisInspiringPresenceCompleteOnly"/>
-    </CRequirement>
     <CRequirement id="AP_HaveArtanisResurgence">
         <NodeArray index="Show" Link="AP_CountUpgradeArtanisResurgenceCompleteOnly"/>
     </CRequirement>
@@ -1384,9 +1381,6 @@
     </CRequirement>
     <CRequirement id="AP_HaveArtanisAirAttack">
         <NodeArray index="Show" Link="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="AP_HaveArtanisBladeWaltzRecastBehavior">
-        <NodeArray index="Show" Link="AP_CountBehaviorArtanisBladeWaltzRecastCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="AP_HavePhasePrismRecastBehavior">
         <NodeArray index="Show" Link="AP_CountBehaviorPhasePrismRecastCompleteOnlyAtUnit"/>
@@ -2825,8 +2819,20 @@
     <CRequirement id="AP_HaveExterminateAir">
         <NodeArray index="Show" Link="AP_AndArtanisTaldarimAspectActiveAndAirAttackCompleteOnly"/>
     </CRequirement>
+    <CRequirement id="AP_HaveExterminateGround">
+        <NodeArray index="Show" Link="AP_AndArtanisTaldarimAspectActiveAndNotAirAttackCompleteOnly"/>
+    </CRequirement>
     <CRequirement id="AP_HaveArtanisForceOfWill">
         <NodeArray index="Show" Link="AP_CountUpgradeArtanisForceOfWillCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisFirstbornsResolve">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisFirstbornsResolveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisShieldOverload">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisShieldOverloadCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisSpellArmorPassive">
+        <NodeArray index="Show" Link="AP_OrArtanisAiurAspectPassiveOrShieldOverloadCompleteOnly"/>
     </CRequirement>
     <CRequirement id="AP_HaveSOADragoonRevive">
         <EditorCategories value="Race:Protoss,TechType:Ability"/>

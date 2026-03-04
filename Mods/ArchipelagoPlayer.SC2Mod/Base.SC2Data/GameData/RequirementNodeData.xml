@@ -2752,10 +2752,6 @@
         <Count Link="AP_ArtanisPhasePrism" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountBehavior id="AP_CountBehaviorArtanisBladeWaltzRecastCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Count Link="AP_ArtanisBladeWaltzRecast" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountBehavior>
     <CRequirementCountBehavior id="AP_CountBehaviorPhasePrismRecastCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_PhasePrismRecast" State="CompleteOnlyAtUnit"/>
@@ -5095,10 +5091,6 @@
         <Count Link="AP_CanInstallWormholeModule" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisInspiringPresenceCompleteOnly">
-        <Count Link="AP_ArtanisInspiringPresence" State="CompleteOnly"/>
-        <Flags index="TechTreeCheat" value="0"/>
-    </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisTemperedInTwilightCompleteOnly">
         <Count Link="AP_ArtanisTemperedInTwilight" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
@@ -5215,6 +5207,18 @@
         <Count Link="AP_ArtanisForceOfWill" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisFirstbornsResolveCompleteOnly">
+        <Count Link="AP_ArtanisFirstbornsResolve" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisShieldOverloadCompleteOnly">
+        <Count Link="AP_ArtanisShieldOverload" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
+    <CRequirementOr id="AP_OrArtanisAiurAspectPassiveOrShieldOverloadCompleteOnly">
+        <OperandArray value="AP_CountUpgradeArtanisAiurAspectPassiveCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeArtanisShieldOverloadCompleteOnly"/>
+    </CRequirementOr>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisTaldarimAspectUnlockedCompleteOnly">
         <Count Link="AP_ArtanisTaldarimAspectUnlocked" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
@@ -5250,6 +5254,13 @@
         <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
         <OperandArray value="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
         <OperandArray value="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit"/>
+    </CRequirementAnd>
+    <CRequirementNot id="AP_NotArtanisTaldarimAspectActiveAndAirAttackCompleteOnly">
+        <OperandArray index="0" value="AP_AndArtanisTaldarimAspectActiveAndAirAttackCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_AndArtanisTaldarimAspectActiveAndNotAirAttackCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
+        <OperandArray value="AP_NotArtanisTaldarimAspectActiveAndAirAttackCompleteOnly"/>
     </CRequirementAnd>
     <CRequirementCountBehavior id="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>

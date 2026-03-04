@@ -4579,26 +4579,6 @@
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
-    <CEffectEnumArea id="AP_ArtanisInspiringPresenceSearch">
-        <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="-;Self,Neutral,Enemy,Missile,Dead"/>
-        <AreaArray Radius="9" Effect="AP_ArtanisInspiringPresenceSuperiorSwitch"/>
-    </CEffectEnumArea>
-    <CEffectApplyBehavior id="AP_ArtanisInspiringPresenceAB">
-        <Behavior value="AP_ArtanisInspiringPresence"/>
-        <ValidatorArray value="AP_HaveArtanisInspiringPresence"/>
-    </CEffectApplyBehavior>
-    <CEffectSwitch id="AP_ArtanisInspiringPresenceSuperiorSwitch">
-        <CaseArray Validator="AP_ArtanisSharesFactionAiur" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
-        <CaseArray Validator="AP_ArtanisSharesFactionNerazim" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
-        <CaseArray Validator="AP_ArtanisSharesFactionPurifier" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
-        <CaseArray Validator="AP_ArtanisSharesFactionTaldarim" Effect="AP_ArtanisInspiringPresenceSuperiorAB"/>
-        <CaseDefault value="AP_ArtanisInspiringPresenceAB"/>
-    </CEffectSwitch>
-    <CEffectApplyBehavior id="AP_ArtanisInspiringPresenceSuperiorAB">
-        <Behavior value="AP_ArtanisInspiringPresenceSuperior"/>
-        <ValidatorArray value="AP_HaveArtanisInspiringPresence"/>
-    </CEffectApplyBehavior>
     <CEffectModifyUnit id="AP_ArtanisTemperedInTwilightEnergy">
         <EditorCategories value="Race:Protoss"/>
         <ImpactUnit Value="Caster"/>
@@ -4625,9 +4605,7 @@
     </CEffectSet>
     <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageGround" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="8">
-            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
-        </Amount>
+        <Amount value="8"/>
         <Death value="Eviscerate"/>
         <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1.25" Fraction="0.33"/>
@@ -4635,9 +4613,7 @@
     </CEffectDamage>
     <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageAir" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="8">
-            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
-        </Amount>
+        <Amount value="8"/>
         <SearchFilters value="Air;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1.25" Fraction="0.33"/>
         <ExcludeArray Value="Target"/>
@@ -4648,9 +4624,7 @@
     </CEffectSwitch>
     <CEffectDamage id="AP_ArtanisBlades" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="8">
-            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
-        </Amount>
+        <Amount value="8"/>
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
@@ -4769,10 +4743,16 @@
         <Behavior value="AP_ExterminateTarget"/>  
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ExterminateSet">
+        <EffectArray value="AP_ExterminateSyncCooldownInitial"/>
         <EffectArray value="AP_ExterminateAB"/>
         <EffectArray value="AP_ExterminateTargetAssigner"/>
         <EffectArray value="AP_ExterminatePersistent"/>
     </CEffectSet>
+    <CEffectModifyUnit id="AP_ExterminateSyncCooldownInitial">
+        <ImpactUnit Value="Caster"/>
+        <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Set"/>
+        <Cost Abil="AP_ExterminateAir,Execute" CooldownOperation="Set"/>
+    </CEffectModifyUnit>
     <CEffectSet id="AP_ExterminateRemoveSet">
         <EffectArray value="AP_ExterminateRBSearch"/>
         <EffectArray value="AP_ExterminateTargetRBSearch"/>
@@ -4857,8 +4837,8 @@
         <Cost Abil="AP_CleansingSmite,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_PhasePrism,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_ArtanisBladeWaltz,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_ArtanisBladeWaltzRecast,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
+        <Cost Abil="AP_ExterminateAir,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_StrengthInUnity,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_ArtanisAstralWind,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
         <Cost Abil="AP_SuppressionPulse,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
@@ -5213,9 +5193,7 @@
     </CEffectSwitch>
     <CEffectDamage id="AP_ArtanisAirAttackDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="8">
-            <AccumulatorArray value="AP_ArtanisAspectWeaponDamageSwitch"/>
-        </Amount>
+        <Amount value="8"/>
         <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="AP_CleansingSmiteSearch">
@@ -5263,17 +5241,6 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ArtanisBladeWaltzActor"/>
     </CEffectApplyBehavior>
-    <CEffectSet id="AP_ArtanisBladeWaltzRecast">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_ApplyArtanisBladeWaltzRecastWalkSpeed"/>
-        <EffectArray value="AP_ApplyArtanisBladeWaltzActor"/>
-        <TargetLocationType value="Point"/>
-    </CEffectSet>
-    <CEffectApplyBehavior id="AP_ApplyArtanisBladeWaltzRecastWalkSpeed">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
-    </CEffectApplyBehavior>
     <CEffectDamage id="AP_ArtanisBladeWaltzDamage">
         <ValidatorArray value="AP_EnemyTarget"/>
         <ValidatorArray value="AP_NotArtanisBladeWaltzed"/>
@@ -5285,10 +5252,7 @@
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="0"/>
         <Kind value="Spell"/>
-        <Amount value="60"/>
-    </CEffectDamage>
-    <CEffectDamage id="AP_ArtanisBladeWaltzRecastDamage" parent="AP_ArtanisBladeWaltzDamage">
-        <Amount value="90"/>
+        <Amount value="50"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AP_ArtanisBladeWaltzDamageAB">
         <ValidatorArray value="AP_EnemyTarget"/>
@@ -5308,25 +5272,13 @@
     <CEffectEnumArea id="AP_ArtanisBladeWaltzTargetSearch">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Ground,Visible;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1" Effect="AP_ArtanisBladeWaltzTargetSet"/>
-    </CEffectEnumArea>
-    <CEffectEnumArea id="AP_ArtanisBladeWaltzRecastTargetSearch">
-        <EditorCategories value="Race:Protoss"/>
-        <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Ground,Visible;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1" Effect="AP_ArtanisBladeWaltzRecastTargetSet"/>
     </CEffectEnumArea>
     <CEffectSet id="AP_ArtanisBladeWaltzTargetSet">
         <ValidatorArray value="CasterIsNotHidden"/>
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisBladeWaltzDamage"/>
-        <EffectArray value="AP_ArtanisBladeWaltzDamageAB"/>
-    </CEffectSet>
-    <CEffectSet id="AP_ArtanisBladeWaltzRecastTargetSet">
-        <ValidatorArray value="CasterIsNotHidden"/>
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_ArtanisBladeWaltzRecastDamage"/>
         <EffectArray value="AP_ArtanisBladeWaltzDamageAB"/>
     </CEffectSet>
     <CEffectIssueOrder id="AP_ArtanisBladeWaltzWalkStopOrder">
@@ -5339,22 +5291,23 @@
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisBladeWaltzWalkStopOrder"/>
         <EffectArray value="AP_ArtanisBladeWaltzWalkStopStun"/>
-        <EffectArray value="AP_ArtanisBladeWaltzRecastAB"/>
+        <EffectArray value="AP_ArtanisBladeWaltzEndSearch"/>
     </CEffectSet>
-    <CEffectSet id="AP_ArtanisBladeWaltzWalkStopRecastSet">
+    <CEffectEnumArea id="AP_ArtanisBladeWaltzEndSearch">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_ArtanisBladeWaltzStopSearch"/>
-        <EffectArray value="AP_ArtanisBladeWaltzWalkStopOrder"/>
-        <EffectArray value="AP_ArtanisBladeWaltzWalkStopStun"/>
-    </CEffectSet>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="1.7" Effect="AP_ArtanisBladeWaltzEndDamage"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="AP_ArtanisBladeWaltzEndDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Kind value="Spell"/>
+        <Amount value="50"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="AP_ArtanisBladeWaltzWalkStopStun">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_ArtanisBladeWaltzRecastAB">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeWaltzRecast"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="AP_ArtanisBladeWaltzDummySearch">
         <SearchFilters value="Ground;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden"/>

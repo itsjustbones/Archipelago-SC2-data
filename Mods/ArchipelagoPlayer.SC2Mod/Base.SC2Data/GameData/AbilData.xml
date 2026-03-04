@@ -4723,7 +4723,6 @@
         </Cost>
         <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
         <AutoCastValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
-        <AutoCastValidatorArray value="AP_CasterNotHasArtanisBladeWaltzRecastWalkSpeed"/>
         <AutoCastValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>
     </CAbilAugment>
     <CAbilEffectTarget id="AP_PhasePrism">
@@ -4763,22 +4762,14 @@
         <Flags index="RequireTargetVision" value="0"/>
         <Flags index="Transient" value="1"/>
         <Cost>
-            <Vital index="Energy" value="75"/>
+            <Vital index="Energy" value="60"/>
             <Cooldown TimeUse="5"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>
         <PrepTime value="0.01"/>
-        <CursorEffect value="AP_ArtanisBladeWaltzDummySearch"/>
+        <CursorEffect value="AP_ArtanisBladeWaltzEndSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltz" Requirements="AP_HaveArtanisAiurAspectSelectedActive"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_ArtanisBladeWaltzRecast" parent="AP_ArtanisBladeWaltz">
-        <Cost index="0">
-            <Vital index="Energy" value="0"/>
-            <Cooldown TimeUse="1"/>
-        </Cost>
-        <Effect index="0" value="AP_ArtanisBladeWaltzRecast"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltzRecast" Requirements="AP_HaveArtanisBladeWaltzRecastBehavior"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_CorsairMPDisruptionWeb">
         <EditorCategories value="AbilityorEffectType:Units"/>

@@ -2217,13 +2217,6 @@
         <InfoIcon value="Assets\Textures\btn-ability-protoss-lightningdash.dds"/>
         <BehaviorCategories index="Stun" value="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeWaltzRecast">
-        <DisplayDuration index="Self" value="1"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <InfoIcon value="AP\Assets\Textures\btn-ability-blade-dash-recast.dds"/>
-        <RemoveValidatorArray value="AP_NoArtanisBladeWaltzRecastWalkSpeed"/>
-        <Duration value="2"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnity">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <DisplayDuration index="Self" value="1"/>
@@ -2249,7 +2242,8 @@
     <CBehaviorBuff id="AP_StrengthInUnityBuffAiur">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.125"/>
+        <Duration value="0.5"/>
+        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Modification>
             <VitalRegenArray index="Energy" value="2.5"/>
             <RateMultiplierArray index="Charge" value="1.5"/>
@@ -2283,7 +2277,8 @@
     <CBehaviorBuff id="AP_StrengthInUnityBuffNerazim">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.125"/>
+        <Duration value="0.5"/>
+        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Modification MoveSpeedMultiplier="1.25">
             <StateFlags index="Cloak" value="1"/>
         </Modification>
@@ -2313,7 +2308,8 @@
     <CBehaviorBuff id="AP_StrengthInUnityBuffPurifier">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Duration value="0.125"/>
+        <Duration value="0.5"/>
+        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnityBuffPurifierMU"/>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
@@ -2339,7 +2335,8 @@
     <CBehaviorBuff id="AP_StrengthInUnityBuffTaldarim">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Duration value="0.125"/>
+        <Duration value="0.5"/>
+        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Modification>
             <DamageDealtFraction index="Spell" value="0.2"/>
             <DamageDealtFraction index="Melee" value="0.2"/>
@@ -2420,7 +2417,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzDamaged">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="3"/>
+        <Duration value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzActor">
         <InfoFlags index="Hidden" value="1"/>
@@ -2435,16 +2432,13 @@
         <PeriodicEffect value="AP_ArtanisBladeWaltzTargetSearch"/>
         <FinalEffect value="AP_ArtanisBladeWaltzWalkStopSet"/>
         <Modification MoveSpeedMultiplier="7">
+            <StateFlags index="SuppressAttack" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="Uncommandable" value="1"/>
         </Modification>
         <DamageResponse ModifyFraction="0" ModifyMinimumDamage="1">
             <Chance value="1"/>
         </DamageResponse>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisBladeWaltzRecastWalkSpeed" parent="AP_ArtanisBladeWaltzWalkSpeed">
-        <PeriodicEffect value="AP_ArtanisBladeWaltzRecastTargetSearch"/>
-        <FinalEffect value="AP_ArtanisBladeWaltzWalkStopRecastSet"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkStopStun">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -3439,7 +3433,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-zeratul-avatarofform-psionicgale.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Requirements value="AP_HaveArtanisAiurAspectPassive"/>
+        <Requirements value="AP_HaveArtanisSpellArmorPassive"/>
         <DamageResponse ModifyFraction="0.5">
             <Kind index="Melee" value="0"/>
             <Kind index="Ranged" value="0"/>
@@ -3447,58 +3441,6 @@
             <Kind index="NoProc" value="0"/>
             <Chance value="1"/>
         </DamageResponse>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisAiurAspectPassiveShieldLeech">
-        <InfoFlags index="Hidden" value="1"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-forceofwill.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Requirements value="AP_HaveArtanisAiurAspectSelectedPassive"/>
-        <Modification>
-            <VitalDamageLeechArray index="Shields">
-                <KindArray index="Spell" value="0.15"/>
-            </VitalDamageLeechArray>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisInspiringPresenceAura">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Requirements value="AP_HaveArtanisInspiringPresence"/>
-        <Period value="0.0625"/>
-        <PeriodicEffect value="AP_ArtanisInspiringPresenceSearch"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisInspiringPresence">
-        <InfoIcon value="Assets\Textures\talent-artanis-level01-swiftretribution.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="0.125"/>
-        <Requirements value="AP_HaveArtanisInspiringPresence"/>
-        <Modification>
-            <DamageDealtFraction index="Spell" value="0.04"/>
-            <DamageDealtFraction index="Melee" value="0.04"/>
-            <DamageDealtFraction index="Ranged" value="0.04"/>
-            <DamageDealtFraction index="Splash" value="0.04"/>
-            <DamageTakenFraction index="Spell" value="-0.04"/>
-            <DamageTakenFraction index="Melee" value="-0.04"/>
-            <DamageTakenFraction index="Ranged" value="-0.04"/>
-            <DamageTakenFraction index="Splash" value="-0.04"/>
-            <DamageTakenFraction index="NoProc" value="-0.04"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisInspiringPresenceSuperior">
-        <InfoIcon value="AP\Assets\Textures\btn-upgrade-protoss-symbolofunity.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="0.125"/>
-        <Requirements value="AP_HaveArtanisInspiringPresence"/>
-        <Modification>
-            <DamageDealtFraction index="Spell" value="0.08"/>
-            <DamageDealtFraction index="Melee" value="0.08"/>
-            <DamageDealtFraction index="Ranged" value="0.08"/>
-            <DamageDealtFraction index="Splash" value="0.08"/>
-            <DamageTakenFraction index="Spell" value="-0.08"/>
-            <DamageTakenFraction index="Melee" value="-0.08"/>
-            <DamageTakenFraction index="Ranged" value="-0.08"/>
-            <DamageTakenFraction index="Splash" value="-0.08"/>
-            <DamageTakenFraction index="NoProc" value="-0.08"/>
-        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_RaszagalsRhythm">
         <Alignment value="Positive"/>
@@ -5330,7 +5272,6 @@
         <Modification MoveSpeedMultiplier="3"/>
         <RemoveValidatorArray index="0" value="AP_ArtanisChargeTargetAttacked"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
-        <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzRecastWalkSpeed"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ScopophobiaTarget">

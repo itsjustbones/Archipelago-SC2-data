@@ -14681,7 +14681,6 @@
         <AbilArray Link="AP_ShadowSlice"/>
         <AbilArray Link="AP_VoltaicShock"/>
         <AbilArray Link="AP_ArtanisBladeWaltz"/>
-        <AbilArray Link="AP_ArtanisBladeWaltzRecast"/>
         <AbilArray Link="AP_PhasePrismSwap"/>
         <AbilArray Link="AP_PhasePrism"/>
         <AbilArray Link="AP_CleansingSmite"/>
@@ -14690,11 +14689,9 @@
         <AbilArray Link="AP_StrengthInUnity"/>
         <BehaviorArray Link="AP_ArtanisNoAspect"/>
         <BehaviorArray Link="AP_ArtanisAiurAspectPassiveSpellArmor"/>
-        <BehaviorArray Link="AP_ArtanisAiurAspectPassiveShieldLeech"/>
         <BehaviorArray Link="AP_ArtanisForceOfWill"/>
         <BehaviorArray Link="AP_ArtanisHardenedShield"/>
         <BehaviorArray Link="AP_ArtanisResurgence"/>
-        <BehaviorArray Link="AP_ArtanisInspiringPresenceAura"/>
         <WeaponArray Link="AP_ArtanisTwilightBlades"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -14705,12 +14702,11 @@
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_ArtanisCharge" Type="AbilCmd" AbilCmd="AP_ArtanisCharge,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="AP_ArtanisAstralWind" Type="AbilCmd" AbilCmd="AP_ArtanisAstralWind,Execute" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_ArtanisBladeWaltzRecast" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltzRecast,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisLightningDash" Type="AbilCmd" AbilCmd="AP_ArtanisLightningDash,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_ExterminateAir,Execute" Requirements="AP_HaveExterminateAir" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Requirements="AP_HaveExterminateGround" Row="2" Column="0"/>
             <LayoutButtons Face="AP_VoltaicShock" Type="AbilCmd" AbilCmd="AP_VoltaicShock,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="AP_StrengthInUnity" Type="AbilCmd" AbilCmd="AP_StrengthInUnity,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="AP_CleansingSmite" Type="AbilCmd" AbilCmd="AP_CleansingSmite,Execute" Row="2" Column="0"/>
@@ -14727,7 +14723,8 @@
             <LayoutButtons Face="AP_ArtanisResurgence" Type="Passive" Requirements="AP_HaveArtanisResurgence" Row="0" Column="3"/>
             <LayoutButtons Face="AP_ArtanisResurgence" Type="Passive" Behavior="AP_ArtanisResurgenceDisable" Requirements="AP_HaveArtanisResurgence" Row="0" Column="3"/>
             <LayoutButtons Face="AP_ArtanisForceOfWillPassive" Type="Passive" Requirements="AP_HaveArtanisForceOfWill" Row="0" Column="4"/>
-            <LayoutButtons Face="AP_InspiringPresence" Type="Passive" Requirements="AP_HaveArtanisInspiringPresence" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisFirstbornsResolvePassive" Type="Passive" Requirements="AP_HaveArtanisFirstbornsResolve" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisShieldOverloadPassive" Type="Passive" Requirements="AP_HaveArtanisShieldOverload" Row="1" Column="1"/>
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="WA">

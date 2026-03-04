@@ -12886,16 +12886,16 @@
     <CUpgrade id="AP_ArtanisPhasePrism"/>
     <CUpgrade id="AP_ArtanisAiurAspectUnlocked"/>
     <CUpgrade id="AP_ArtanisBaseAspectActive">
-        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,Amount" Value="1"/>
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,Amount" Value="3"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisBaseAspectPassive">
-        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,Amount" Value="1"/>
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,Amount" Value="3"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisAiurAspectActive" parent="AP_ArtanisBaseAspectActive"/>
     <CUpgrade id="AP_ArtanisAiurAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>
@@ -12915,9 +12915,21 @@
         <EffectArray Reference="Weapon,AP_ArtanisAirAttack,RateMultiplier" Value="0.25"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisTemperedInTwilight"/>
-    <CUpgrade id="AP_ArtanisInspiringPresence"/>
     <CUpgrade id="AP_ArtanisForceOfWill">
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisFirstbornsResolve">
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="100"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeArmor" Value="1"/>
+        <EffectArray Reference="Effect,AP_ArtanisBlades,LeechFraction[Shields]" Value="0.25"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,LeechFraction[Shields]" Value="0.25"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,LeechFraction[Shields]" Value="0.25"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,LeechFraction[Shields]" Value="0.25"/>
+    </CUpgrade>     
+    <CUpgrade id="AP_ArtanisShieldOverload">
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisAirAttack">
         <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="0"/>

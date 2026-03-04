@@ -5110,7 +5110,6 @@ bool lib15EF4C78_gt_RaszagalsRhythmBuff_Func (bool testConds, bool runActions) {
 void lib15EF4C78_gt_RaszagalsRhythmBuff_Init () {
     lib15EF4C78_gt_RaszagalsRhythmBuff = TriggerCreate("lib15EF4C78_gt_RaszagalsRhythmBuff_Func");
     TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ArtanisBladeWaltz", 0), c_abilEffectStageCast, false);
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ArtanisBladeWaltzRecast", 0), c_abilEffectStageCast, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_ShadowSlice", 0), c_abilEffectStageCast, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_CleansingSmite", 0), c_abilEffectStageCast, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_RaszagalsRhythmBuff, null, AbilityCommand("AP_Exterminate", 0), c_abilEffectStageCast, false);
@@ -5124,12 +5123,14 @@ void lib15EF4C78_gt_RaszagalsRhythmBuff_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Artanis Blade Dash
+// Trigger: Artanis Blade Waltz
 //--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_ArtanisBladeDash_Func (bool testConds, bool runActions) {
+bool lib15EF4C78_gt_ArtanisBladeWaltz_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_k;
     point lv_t;
+    point lv_t2;
+    point lv_t3;
     point lv_finalT;
     fixed lv_facing;
     fixed lv_distance;
@@ -5137,12 +5138,14 @@ bool lib15EF4C78_gt_ArtanisBladeDash_Func (bool testConds, bool runActions) {
     int lv_i;
 
     // Automatic Variable Declarations
-    const int auto45539129_ae = 7;
-    const int auto45539129_ai = 1;
+    const int autoAD6D1C16_ae = 7;
+    const int autoAD6D1C16_ai = 1;
 
     // Variable Initialization
     lv_k = UnitGetPosition(EventUnit());
     lv_t = EventUnitTargetPoint();
+    lv_t2 = EventUnitTargetPoint();
+    lv_t3 = libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(EventUnit()), 8.0, lv_t2);
     lv_facing = AngleBetweenPoints(UnitGetPosition(EventUnit()), EventUnitTargetPoint());
     lv_distance = 8.0;
 
@@ -5157,43 +5160,50 @@ bool lib15EF4C78_gt_ArtanisBladeDash_Func (bool testConds, bool runActions) {
         lv_t = libNtve_gf_PointOffsetTowardsPoint(lv_k, lv_distance, lv_t);
         if ((PointPathingCost(lv_k, lv_t) <= FixedToInt((lv_distance * 1.5))) && (WorldHeight(c_heightMapGround, lv_k) < (WorldHeight(c_heightMapGround, lv_t) + 1.0)) && (WorldHeight(c_heightMapGround, lv_k) > (WorldHeight(c_heightMapGround, lv_t) - 1.0))) {
             lv_goodPositionFound = true;
+            lv_t3 = lv_t;
         }
 
         lv_distance -= 0.5;
     }
     Wait(0.0625, c_timeGame);
     if ((lv_goodPositionFound == true)) {
-        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_t), c_orderQueueReplace);
-        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_finalT), c_orderQueueAddToEnd);
+        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_t3), c_orderQueueReplace);
     }
     else {
-        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_finalT), c_orderQueueReplace);
+        lv_t3 = lv_finalT;
+        UnitIssueOrder(EventUnit(), OrderTargetingPoint(AbilityCommand("move", 0), lv_t3), c_orderQueueReplace);
     }
     Wait(0.1875, c_timeGame);
     lv_i = 1;
-    for ( ; ( (auto45539129_ai >= 0 && lv_i <= auto45539129_ae) || (auto45539129_ai < 0 && lv_i >= auto45539129_ae) ) ; lv_i += auto45539129_ai ) {
-        lib15EF4C78_gv_kerriganPsiStrikeFacing3 = UnitGetFacing(EventUnit());
+    for ( ; ( (autoAD6D1C16_ai >= 0 && lv_i <= autoAD6D1C16_ae) || (autoAD6D1C16_ai < 0 && lv_i >= autoAD6D1C16_ae) ) ; lv_i += autoAD6D1C16_ai ) {
+        if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), lv_t3) <= 0.5)) {
+            UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzWalkSpeed", 1);
+            UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzActor", 1);
+            break;
+        }
+
+        lib15EF4C78_gv_kerriganPsiStrikeFacing = UnitGetFacing(EventUnit());
         if ((lv_facing > 90.0)) {
-            if (((lib15EF4C78_gv_kerriganPsiStrikeFacing3 < (lv_facing - 90.0)) && (lib15EF4C78_gv_kerriganPsiStrikeFacing3 > (lv_facing - 270.0)))) {
-                UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashWalkSpeed", 1);
-                UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashRecastWalkSpeed", 1);
+            if (((lib15EF4C78_gv_kerriganPsiStrikeFacing < (lv_facing - 90.0)) && (lib15EF4C78_gv_kerriganPsiStrikeFacing > (lv_facing - 270.0)))) {
+                UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzWalkSpeed", 1);
+                UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzActor", 1);
                 break;
             }
 
         }
         else {
             if ((lv_facing < -90.0)) {
-                if (((lib15EF4C78_gv_kerriganPsiStrikeFacing3 > (lv_facing + 90.0)) && (lib15EF4C78_gv_kerriganPsiStrikeFacing3 < (lv_facing + 270.0)))) {
-                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashWalkSpeed", 1);
-                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashRecastWalkSpeed", 1);
+                if (((lib15EF4C78_gv_kerriganPsiStrikeFacing > (lv_facing + 90.0)) && (lib15EF4C78_gv_kerriganPsiStrikeFacing < (lv_facing + 270.0)))) {
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzWalkSpeed", 1);
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzActor", 1);
                     break;
                 }
 
             }
             else {
-                if (((lib15EF4C78_gv_kerriganPsiStrikeFacing3 > (lv_facing + 90.0)) || (lib15EF4C78_gv_kerriganPsiStrikeFacing3 < (lv_facing - 90.0)))) {
-                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashWalkSpeed", 1);
-                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeDashRecastWalkSpeed", 1);
+                if (((lib15EF4C78_gv_kerriganPsiStrikeFacing > (lv_facing + 90.0)) || (lib15EF4C78_gv_kerriganPsiStrikeFacing < (lv_facing - 90.0)))) {
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzWalkSpeed", 1);
+                    UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzActor", 1);
                     break;
                 }
 
@@ -5205,10 +5215,9 @@ bool lib15EF4C78_gt_ArtanisBladeDash_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_ArtanisBladeDash_Init () {
-    lib15EF4C78_gt_ArtanisBladeDash = TriggerCreate("lib15EF4C78_gt_ArtanisBladeDash_Func");
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_ArtanisBladeDash, null, AbilityCommand("AP_ArtanisBladeWaltz", 0), c_abilEffectStageCast, false);
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_ArtanisBladeDash, null, AbilityCommand("AP_ArtanisBladeWaltzRecast", 0), c_abilEffectStageCast, false);
+void lib15EF4C78_gt_ArtanisBladeWaltz_Init () {
+    lib15EF4C78_gt_ArtanisBladeWaltz = TriggerCreate("lib15EF4C78_gt_ArtanisBladeWaltz_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_ArtanisBladeWaltz, null, AbilityCommand("AP_ArtanisBladeWaltz", 0), c_abilEffectStageCast, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9101,7 +9110,7 @@ void lib15EF4C78_gt_AP_Player_MercCompoundSetupCounts_Init () {
 bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
-    int lv_lembmbxqiklhgmyj;
+    int lv_qajefxqtychrfbea;
     int lv_instantUsesLeft;
 
     // Automatic Variable Declarations
@@ -9115,28 +9124,28 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         return true;
     }
 
-    lv_lembmbxqiklhgmyj = EventPlayer();
-    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_lembmbxqiklhgmyj);
+    lv_qajefxqtychrfbea = EventPlayer();
+    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_qajefxqtychrfbea);
     if ((lv_instantUsesLeft > 0)) {
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
                 lv_instantUsesLeft -= 1;
-                libNtve_gf_SetUpgradeLevelForPlayer(lv_lembmbxqiklhgmyj, "AP_FastDeliveryCharges", lv_instantUsesLeft);
+                libNtve_gf_SetUpgradeLevelForPlayer(lv_qajefxqtychrfbea, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
                 if ((lv_instantUsesLeft == 0)) {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_lembmbxqiklhgmyj);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_qajefxqtychrfbea);
                 }
                 else {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_lembmbxqiklhgmyj, lv_index);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_qajefxqtychrfbea, lv_index);
                 }
             }
 
         }
     }
 
-    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_lembmbxqiklhgmyj);
+    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_qajefxqtychrfbea);
     return true;
 }
 
@@ -9459,7 +9468,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_PhasePrismAcquireTarget_Init();
     lib15EF4C78_gt_PhasePrismSwap_Init();
     lib15EF4C78_gt_RaszagalsRhythmBuff_Init();
-    lib15EF4C78_gt_ArtanisBladeDash_Init();
+    lib15EF4C78_gt_ArtanisBladeWaltz_Init();
     lib15EF4C78_gt_NovaPsiStrike_Init();
     lib15EF4C78_gt_FuryofOneHeight_Init();
     lib15EF4C78_gt_FuryofOneReset_Init();

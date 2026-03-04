@@ -2362,31 +2362,14 @@
         <Value value="1"/>
         <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzRecastWalkSpeed">
-        <WhichUnit Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_NoArtanisBladeWaltzRecastWalkSpeed">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisBladeWaltzWalkSpeed">
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisBladeWaltzRecastWalkSpeed">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeWaltzRecastWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisLightningDash">
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ArtanisLightningDash"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="AP_CasterHasArtanisBladeWaltzWalkSpeedCombined">
-        <CombineArray value="AP_CasterHasArtanisBladeWaltzWalkSpeed"/>
-        <CombineArray value="AP_CasterHasArtanisBladeWaltzRecastWalkSpeed"/>
-    </CValidatorCombine>
     <CValidatorLocationEnumArea id="AP_NovaWeaponBlazefireBladeShadowFuryTargetsInArea">
         <AreaArray Compare="GT" Count="0" Radius="5"/>
         <SearchFilters value="Visible;Self,Player,Ally,Neutral,Structure,RawResource,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
@@ -4517,13 +4500,6 @@
         <Type value="And"/>
         <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
         <CombineArray value="AP_IsArtanisHero"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="AP_HasArtanisAnyAspectBehavior">
-        <Type value="Or"/>
-        <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
-        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
-        <CombineArray value="AP_HasArtanisPurifierAspectBehavior"/>
-        <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
     </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_HasRaszagalsRhythm">
         <WhichUnit Value="Caster"/>
@@ -8224,4 +8200,20 @@
     <CValidatorPlayerRequirement id="AP_HaveBunkerIgnoreSupply">
         <Value value="AP_HaveBunkerIgnoreSupply"/>
     </CValidatorPlayerRequirement>
+    <CValidatorLocationCompareRange id="AP_StrengthInUnityTargetInAuraRange">
+        <WhichLocation Value="SourceUnit"/>
+        <Value Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="10"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitCompareBehaviorCount id="AP_StrengthInUnityCasterHasAura">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="AP_StrengthInUnity"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_StrengthInUnityKeepBuff">
+        <Type value="And"/>
+        <CombineArray value="AP_StrengthInUnityTargetInAuraRange"/>
+        <CombineArray value="AP_StrengthInUnityCasterHasAura"/>
+    </CValidatorCombine>
 </Catalog>
