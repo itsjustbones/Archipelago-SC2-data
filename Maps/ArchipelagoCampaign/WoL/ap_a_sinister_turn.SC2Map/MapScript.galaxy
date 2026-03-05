@@ -549,13 +549,6 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
 
     TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
-    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gf_AP_Triggers_setDifficulty("B");
-        libABFE498B_gf_AP_Triggers_setGameSpeed("4");
-    }
-
     lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
     libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_PROTOSS_NOT_LOTV_MAIN);
     libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
@@ -583,6 +576,17 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Prot", false);
     }
     else {
+        if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+            libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
+            libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+            libABFE498B_gv_aP_Triggers_DebugMode = true;
+            libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+            libABFE498B_gf_AP_Triggers_setDifficulty("B");
+            libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+            libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
+            TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+        }
+
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, false);
         if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr")) {
@@ -601,6 +605,11 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_p1_USER);
     }
     VisRevealArea(gv_p1_USER, RegionFromId(34), 0.0625, true);
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence != 0)) {
+        libABFE498B_gf_AP_Triggers_HeroInit(gv_p1_USER, PointFromId(12), UnitGroupEmpty());
+        PlayerModifyPropertyInt(gv_p1_USER, c_playerPropMinerals, c_playerPropOperSubtract, 200);
+    }
+
     return true;
 }
 

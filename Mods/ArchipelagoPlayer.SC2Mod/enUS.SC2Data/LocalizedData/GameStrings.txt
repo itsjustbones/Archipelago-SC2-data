@@ -975,7 +975,7 @@ Behavior/Tooltip/AP_SOAHeroicShieldWeakness=This unit cannot be affected by Guar
 Behavior/Tooltip/AP_SOARepairBeam=This unit or structure is being healed.
 Behavior/Tooltip/AP_SOASuperChrono=This structure's production and research speed has been greatly increased.
 Behavior/Tooltip/AP_SOATimeFreeze=This unit is frozen in time. It cannot move or attack.
-Behavior/Tooltip/AP_ScienceVesselSCBWDefensiveMatrix=While active, the Defensive Matrix blocks all incoming damage, up to a maximum of <c val="ffff8a"><d ref="Behavior,AP_ScienceVesselSCBWDefensiveMatrix@Dummy,Modification.VitalMaxArray[Shields]"/></c>.
+Behavior/Tooltip/AP_ScienceVesselSCBWDefensiveMatrix=While active, the Defensive Matrix blocks all incoming damage, up to a maximum of <c val="#ColorTooltipNumber"><d ref="Behavior,AP_ScienceVesselSCBWDefensiveMatrix@Dummy,Modification.VitalMaxArray[Shields]"/></c>.
 Behavior/Tooltip/AP_ScopophobiaTarget=This unit moves and attacks <d ref="100*(1 - Behavior,AP_ScopophobiaTarget,Modification.MoveSpeedMultiplier)"/>% slower.
 Behavior/Tooltip/AP_ScoutNerazimCloak=This unit is cloaked and will only be revealed by detectors or effects.
 Behavior/Tooltip/AP_ScoutNerazimPilot=A unit is co-piloting the Mist Wing, providing bonus stats.
@@ -1574,13 +1574,16 @@ Button/Name/AP_ImmortalShakuras=Warp in Annihilator
 Button/Name/AP_ImmortalShakurasShadowCannon=Shadow Cannon
 Button/Name/AP_ImmortalSingularityCharge=Singularity Charge
 Button/Name/AP_ImmortalTaldarim=Warp in Vanguard
-Button/Name/AP_ImmortalTaldarimScatterCannon=Scatter Cannon
 Button/Name/AP_ImmortalityProtocol=Immortality Protocol
+Button/Name/AP_ImmortalTaldarimScatterCannon=Scatter Cannon
 Button/Name/AP_Impaler=Morph to Impaler
 Button/Name/AP_ImpalerDamage=Sunken Spines
+Button/Name/AP_ImpalerDeepTunnel=Deep Tunnel
 Button/Name/AP_ImpalerDen=Mutate into Impaler Den
+Button/Name/AP_ImpalerDistributedAttack=Distributed Attack
 Button/Name/AP_ImpalerGenerateCreep=Secretion Glands
 Button/Name/AP_ImpalerPassive=Impaler
+Button/Name/AP_ImpalerTentacleExtensions=Tentacle Extensions
 Button/Name/AP_ImpalingStrike=Impaling Strike
 Button/Name/AP_ImpalingStrikeStun=Impaling Strike Stun
 Button/Name/AP_ImprovedIonCannons=Ionic Wavelength Flux
@@ -1719,7 +1722,7 @@ Button/Name/AP_MonarchBlades=Monarch Blades
 Button/Name/AP_Monitor=Warp in Havoc
 Button/Name/AP_MorphBackToRoboticsFacility=Transform to Robotics Facility
 Button/Name/AP_MorphBackToStargate=Transform to Stargate
-Button/Name/AP_MorphMorphalisk=Spawn Larvae
+Button/Name/AP_SpawnLarva=Spawn Larvae
 Button/Name/AP_MorphToCorpser=Morph to Roach
 Button/Name/AP_MorphToHellion=Hellion Mode
 Button/Name/AP_MorphToHellionTank=Hellbat Mode
@@ -2272,6 +2275,7 @@ Button/Name/AP_TaldarimMothershipGroundSlowInstall=Install Shadow of Death
 Button/Name/AP_TaldarimWarpConduit=War Configuration
 Button/Name/AP_TargetLock=Target Lock
 Button/Name/AP_TechReactor=Build Tech Reactor
+Button/Name/AP_TempestDistributedAttack=Distributed Attack
 Button/Name/AP_TempestGravitySling=Gravity Sling
 Button/Name/AP_TempestInterplanetaryRange=Interplanetary Range
 Button/Name/AP_TempestPurifier=Warp in Tempest
@@ -2632,7 +2636,7 @@ Button/Tooltip/AP_ArbiterAbilityEfficiency=Reduces the energy cost of Recall by 
 Button/Tooltip/AP_ArbiterCloakField=Cloaks friendly units near the Arbiter.
 Button/Tooltip/AP_ArbiterEnergyUpgrade=Increases Arbiter's starting energy by 150 and maximum energy by 50.
 Button/Tooltip/AP_ArbiterEnhancedCloakingField=Increases Cloak Field range.
-Button/Tooltip/AP_ArbiterEternalStasisField=Places enemy units in target area into stasis for <c val="ffff8a"><d ref="Behavior,AP_ArbiterMPEternalStasisField,Duration"/></c> seconds. Units in stasis cannot move, attack, be attacked or be affected by abilities.
+Button/Tooltip/AP_ArbiterEternalStasisField=Places enemy units in target area into stasis for <c val="ColorTooltipNumber"><d ref="Behavior,AP_ArbiterMPEternalStasisField,Duration"/></c> seconds. Units in stasis cannot move, attack, be attacked or be affected by abilities.
 Button/Tooltip/AP_ArbiterMPRecall=Teleports all friendly units in the target area to the location of the Arbiter.
 Button/Tooltip/AP_ArbiterMPStasisField=Places enemy units in target area into stasis for <d ref="Behavior,AP_ArbiterMPStasisField,Duration"/> seconds. Units in stasis cannot move, attack, be attacked or be affected by abilities.
 Button/Tooltip/AP_ArbiterReinforcedHull=Increases Arbiter life by 50 and armor by 1.
@@ -2797,7 +2801,7 @@ Button/Tooltip/AP_BuildHercules=Massive transport ship. Deploys loaded troops al
 Button/Tooltip/AP_BuildPointDefenseDrone=Uses a laser to shoot down enemy missiles.  <n/>Cannot target special attacks. <n/>Times out after <d ref="Behavior,AP_PointDefenseDroneTimedLife,Duration"/> seconds.<n/><n/><c val="f078ff">Each shot consumes 10 energy.</c>
 Button/Tooltip/AP_BuildProbe=Basic worker unit. Can gather resources and warp in Protoss structures.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/AP_BuildSITechLabFactory=Vehicle-research structure. A Tech Lab can fit onto any production structure.<n/><n/><c val="ffff8a">Enables:</c><n/>- Infested Siege Tanks
-Button/Tooltip/AP_BuildSITechLabStarport=Aircraft-research structure. A Tech Lab can fit onto any production structure.<n/><n/><c val="ffff8a">Enables:</c><n/>- Infested Banshees<n/>- Queen
+Button/Tooltip/AP_BuildSITechLabStarport=Aircraft-research structure. A Tech Lab can fit onto any production structure.<n/><n/><c val="ffff8a">Enables:</c><n/>- Infested Banshees
 Button/Tooltip/AP_BuildScienceVessel=Aerial support unit. Can use Irradiate and Nano-Repair abilities.<n/><n/><c val="FFE303">Detector</c>
 Button/Tooltip/AP_BuildWarhoundAutoTurret=Automated defensive turret. Times out after <d ref="Behavior,AP_AutoTurretTimedLife,Duration"/> seconds.<n/>Each Warhound can only deploy one turret.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_BullfrogAllAboard=Orders nearby combat units to load into this Bullfrog.
@@ -3029,7 +3033,7 @@ Button/Tooltip/AP_GhostMengskRank2Preview=<n/><c val="777777">Rank 2: Increases 
 Button/Tooltip/AP_GhostMengskRank3=<n/><c val="ffff8a">Rank 3:</c> Upon target's death, Pyrokinetic Immolation deals <d ref="Effect,AP_GhostMengskIrradiateDeathDamage,Amount"/> damage to nearby enemies. EMP Blast deals damage equal to amount of energy drained.
 Button/Tooltip/AP_GhostMengskRank3Preview=<n/><c val="777777">Rank 3: Upon target's death, Pyrokinetic Immolation deals <d ref="Effect,AP_GhostMengskIrradiateDeathDamage,Amount"/> damage to nearby enemies. EMP Blast deals damage equal to amount of energy drained.</c>
 Button/Tooltip/AP_GhostMengskSuperCloak=Cloaks Emperor's Shadow for <d ref="Behavior,AP_GhostMengskSuperCloak,Duration"/> seconds. This effect makes Emperor's Shadow undetectable to Detectors. Removes all debuffs on use.
-Button/Tooltip/AP_GhostSCBWLockdown=Fires a Lockdown round disabling a mechanical unit for <c val="ffff8a"><d ref="Behavior,AP_GhostSCBWLockdown,Duration"/></c> seconds. Affected units cannot attack, move or use abilities, disabling passive <c val="ffff8a">Detection</c> and <c val="ffff8a">Cloaking</c>.
+Button/Tooltip/AP_GhostSCBWLockdown=Fires a Lockdown round disabling a mechanical unit for <c val="#ColorTooltipNumber"><d ref="Behavior,AP_GhostSCBWLockdown,Duration"/></c> seconds. Affected units cannot attack, move or use abilities, disabling passive <c val="#ColorTooltipAttribute">Detection</c> and <c val="#ColorTooltipAttribute">Cloaking</c>.
 Button/Tooltip/AP_GlialReconstitution=Increases movement speed.
 Button/Tooltip/AP_Goliath=Heavy-fire support unit.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_GoliathMengsk=Royal Guard heavy-fire support unit.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
@@ -3187,10 +3191,13 @@ Button/Tooltip/AP_ImmortalityProtocolUpgraded=Allows a destroyed Thor to be rebu
 Button/Tooltip/AP_Impaler=Long-range anti-armor ambusher. Must burrow to attack.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/AP_ImpalerBurrowed=Long-range anti-armor ambusher. Must burrow to attack.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/AP_ImpalerDamage=Increases attack damage.
+Button/Tooltip/AP_ImpalerDeepTunnel=Can travel quickly to any location with creep.
 Button/Tooltip/AP_ImpalerDen=<c val="ffff8a">Enables:</c><n/>- Impalers from Hydralisks
+Button/Tooltip/AP_ImpalerDistributedAttack=Putting this on Autocast will cause multiple Impalers to distribute their attacks across available targets.
 Button/Tooltip/AP_ImpalerEgg=This cocoon contains a Hydralisk that is morphing into an Impaler.
 Button/Tooltip/AP_ImpalerGenerateCreep=Generates creep while standing still or burrowed.
 Button/Tooltip/AP_ImpalerPassive=Impaler Den enables you to morph Impalers from Hydralisks.
+Button/Tooltip/AP_ImpalerTentacleExtensions=Allows Piercing Tentacle to hit an additional nearby secondary target for 50% damage.
 Button/Tooltip/AP_ImpalingStrike=Tyrannozor melee attacks have a <d ref="Behavior,AP_ImpalingStrike,DamageResponse.Chance*100"/>% chance to stun for <d ref="Behavior,AP_ImpalingStrikeStun,Duration" precision="1"/> seconds.<n/><n/>Cannot occur more than once every <d ref="Behavior,AP_ImpalingStrikeResist,Duration"/> seconds.
 Button/Tooltip/AP_ImpalingStrikeStun=This unit is stunned due to Impaling Strike.
 Button/Tooltip/AP_ImprovedIonCannons=Improves Ion Cannon weapon damage by 2.
@@ -3398,7 +3405,7 @@ Button/Tooltip/AP_MonarchBlades=Splash damage of Ultralisk attacks increased to 
 Button/Tooltip/AP_Monitor=Tal'darim Faction<n/>Robotic support unit. Can use Target Lock, Squad Sight, and Force Field.
 Button/Tooltip/AP_MorphBackToRoboticsFacility=Transforms this Warp Robotics Facility back to a Robotics Facility.
 Button/Tooltip/AP_MorphBackToStargate=Transforms this Warp Stargate back to a Stargate.
-Button/Tooltip/AP_MorphMorphalisk=Target Hatchery, Lair, or Hive spawns <d ref="Effect,AP_SpawnMutantLarvaApplySpawnBehavior,Count"/> Larvae in <d ref="Behavior,AP_QueenSpawnLarvaTimer,Duration"/> seconds.
+Button/Tooltip/AP_SpawnLarva=Target Hatchery, Lair, or Hive spawns <d ref="Effect,AP_SpawnMutantLarvaApplySpawnBehavior,Count"/> Larvae in <d ref="Behavior,AP_QueenSpawnLarvaTimer,Duration"/> seconds.
 Button/Tooltip/AP_MorphToCorpser=Corpser Strain<n/><n/>Assault unit. Regenerates life quickly while burrowed. Can infest the enemy with Roachlings. <n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MorphToHellion=Fast scout. Has a flame attack that damages all enemy units in its line of fire. Can transform into a close range combat unit.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MorphToHellionTank=Close range combat unit. Deals damage in a small frontal cone. Can transform into a fast scout unit.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -3787,8 +3794,8 @@ Button/Tooltip/AP_Salvage=Salvages the structure, removing it and returning 100%
 Button/Tooltip/AP_Scan=Reveals an area of the map, detecting cloaked and burrowed units. Lasts <d time="12"/>.
 Button/Tooltip/AP_ScarabDamage=Increases Reaver's Scarab damage by 25.
 Button/Tooltip/AP_ScienceVessel=Aerial support unit. Can use Irradiate and Nano-Repair abilities.<n/><n/><c val="FFE303">Detector</c>
-Button/Tooltip/AP_ScienceVesselSCBWDefensiveMatrix=Surrounds the target unit with a shield that can absorb up to <c val="ffff8a"><d ref="Behavior,AP_ScienceVesselSCBWDefensiveMatrix@Dummy,Modification.VitalMaxArray[Shields]"/></c> maximum damage for up to <c val="ffff8a"><d ref="Behavior,AP_ScienceVesselSCBWDefensiveMatrix,Duration"/></c> seconds.
-Button/Tooltip/AP_ScienceVesselSCBWEMPShockwave=Creates an electromagnetic pulse that reduces energy and shields to <c val="ffff8a">0</c> of all units in the targeted area.
+Button/Tooltip/AP_ScienceVesselSCBWDefensiveMatrix=Surrounds the target unit with a shield that can absorb up to <c val="#ColorTooltipNumber"><d ref="Behavior,AP_ScienceVesselSCBWDefensiveMatrix@Dummy,Modification.VitalMaxArray[Shields]"/></c> maximum damage for up to <c val="#ColorTooltipNumber"><d ref="Behavior,AP_ScienceVesselSCBWDefensiveMatrix,Duration"/></c> seconds.
+Button/Tooltip/AP_ScienceVesselSCBWEMPShockwave=Creates an electromagnetic pulse that reduces energy and shields to <c val="#ColorTooltipNumber">0</c> of all units in the targeted area.
 Button/Tooltip/AP_Scourge=Flying suicide unit. Scourge hatch in pairs from a single Larva.<n/><n/><c val="#ColorAttackInfo">Can attack air units.</c>
 Button/Tooltip/AP_ScourgeAmountUpgrade=Scourge morph ten times as fast, and an additional Scourge spawns from each egg.
 Button/Tooltip/AP_ScourgeCostUpgrade=Scourge eggs cost 50 less Vespene Gas.
@@ -3992,6 +3999,7 @@ Button/Tooltip/AP_TaldarimWarpConduit=Warp Prisms transform between modes faster
 Button/Tooltip/AP_TargetLock=Increases damage dealt to target enemy unit by <d ref="Behavior,AP_ObserverTargetLock,Modification.DamageTakenFraction[Splash]*100"/>%. Effect lasts as long as the Havoc remains locked onto the target.
 Button/Tooltip/AP_TechLab=Enables additional unit construction options.
 Button/Tooltip/AP_TechReactor=Enables additional unit construction options and allows 2 units to be created simultaneously.
+Button/Tooltip/AP_TempestDistributedAttack=Putting this on Autocast will cause multiple Tempests to distribute their attacks across available targets. Does not work, while the Tempest is holding position.
 Button/Tooltip/AP_TempestGravitySling=Increases Tempest air attack range by +<d ref="$UpgradeEffectArrayValue:AP_TempestGravitySling:Weapon,AP_TempestPurifier,Range$"/> and cast range by +<d ref="$UpgradeEffectArrayValue:AP_TempestGravitySling:Abil,AP_LightningBomb,Range[0]$"/>.
 Button/Tooltip/AP_TempestInterplanetaryRange=Increases Tempest attack range by +<d ref="$UpgradeEffectArrayValue:AP_TempestInterplanetaryRange:Weapon,AP_TempestPurifier,Range$"/>.
 Button/Tooltip/AP_TempestPurifier=Purifier Faction<n/>Siege artillery craft. Attacks from long range.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
@@ -6170,6 +6178,7 @@ RequirementNode/Tooltip/AP_GTECountBehaviorMengskVeterancyWraithMengskCompleteOn
 RequirementNode/Tooltip/AP_GTECountBehaviorTradeChargeCompleteOnlyAtUnit1=Requires 1 Void Trade Token
 RequirementNode/Tooltip/AP_GTECountBehaviorTradeChargeCompleteOnlyAtUnit5=Requires 5 Void Trade Tokens
 RequirementNode/Tooltip/AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit3=Trireme must have fewer than 3 Bombers
+RequirementNode/Tooltip/AP_ImpalerBurrowed=Can only be used while burrowed
 RequirementNode/Tooltip/AP_LTCountUnitCarrierPurifierBomberQueuedOrBetterAtUnit6=Trireme must have fewer than 6 Bombers
 RequirementNode/Tooltip/AP_LTCountUnitInterceptorQueuedOrBetterAtUnit8=Carrier must have fewer than 8 Interceptors
 RequirementNode/Tooltip/AP_LTCountUnitInterceptorTaldarimQueuedOrBetterAtUnit8=Skylord must have fewer than 8 Interceptors

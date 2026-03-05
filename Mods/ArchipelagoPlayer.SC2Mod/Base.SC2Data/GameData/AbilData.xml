@@ -12770,7 +12770,7 @@
         </Cost>
         <TargetFilters value="Visible;Neutral,Enemy,UnderConstruction"/>
         <Range value="0.1"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_MorphMorphalisk" Requirements="AP_HaveQueenSpawnLarva"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SpawnLarva" Requirements="AP_HaveQueenSpawnLarva"/>
         <CastOutroTime value="2.3"/>
         <UninterruptibleArray index="Prep" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
@@ -16335,5 +16335,84 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
         <PlaceUnit value="CommandCenterFlying"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ImpalerDeepTunnel">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Flags index="BestUnit" value="0"/>
+        <Cost>
+            <Cooldown Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="1"/>
+        <FinishTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Finish" value="1"/>
+        <ProgressButtonArray index="Cast" value="AP_ImpalerDeepTunnel"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImpalerDeepTunnel" Requirements="AP_HaveImpalerDeepTunnel">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ImpalerDistributedAttack">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <PrepEffect value="AP_DistributedAttackAB"/>
+        <Effect index="0" value="AP_DistributedAttackSet"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <TargetFilters value="Ground,Visible;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <Range value="11"/>
+        <Arc value="360"/>
+        <AutoCastFilters value="Visible;Player,Ally,Neutral"/>
+        <AutoCastRange value="8"/>
+        <AutoCastValidatorArray value="noMarkers"/>
+        <AutoCastValidatorArray value="AP_DistributedAttackNotMarked"/>
+        <AutoCastValidatorArray value="AP_IsNotVanillaInterceptor"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastValidatorArray value="IsNotNeuralParasited"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastValidatorArray value="AP_IsDefensiveStructure"/>
+        <AutoCastValidatorArray value="NotLarva"/>
+        <AutoCastValidatorArray value="CasterIsNotHidden"/>
+        <AutoCastValidatorArray value="NotLarvaEgg"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImpalerDistributedAttack" Requirements="AP_HaveImpalerDistributedAttack"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_TempestDistributedAttack">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <PrepEffect value="AP_DistributedAttackAB"/>
+        <Effect index="0" value="AP_DistributedAttackSet"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <TargetFilters value="Visible;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <Range value="10"/>
+        <Arc value="360"/>
+        <AutoCastFilters value="Visible;Player,Ally,Neutral"/>
+        <AutoCastRange value="10"/>
+        <AutoCastValidatorArray value="noMarkers"/>
+        <AutoCastValidatorArray value="AP_DistributedAttackNotMarked"/>
+        <AutoCastValidatorArray value="AP_IsNotVanillaInterceptor"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastValidatorArray value="IsNotNeuralParasited"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastValidatorArray value="AP_IsDefensiveStructure"/>
+        <AutoCastValidatorArray value="NotLarva"/>
+        <AutoCastValidatorArray value="CasterIsNotHidden"/>
+        <AutoCastValidatorArray value="NotLarvaEgg"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_TempestDistributedAttack" Requirements="AP_HaveTempestDistributedAttack"/>
     </CAbilEffectTarget>
 </Catalog>

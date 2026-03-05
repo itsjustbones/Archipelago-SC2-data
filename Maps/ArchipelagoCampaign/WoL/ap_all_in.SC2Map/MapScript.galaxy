@@ -175,14 +175,14 @@ region gf_ZergDefenderSpawnArea (point lp_location);
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchInit;
+trigger gt_FactionSwapInit;
+trigger gt_MapInit;
+trigger gt_SetMapChoice;
 trigger gt_onDifficultyCasual;
 trigger gt_onDifficultyNormal;
 trigger gt_onDifficultyHard;
 trigger gt_onDifficultyBrutal;
-trigger gt_SetMapChoice;
-trigger gt_ArchInit;
-trigger gt_FactionSwapInit;
-trigger gt_MapInit;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -191,6 +191,7 @@ trigger gt_Init04Music;
 trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
+trigger gt_DEBUGVictory;
 trigger gt_StartGame;
 trigger gt_CampaignTipQ;
 trigger gt_CreateCrashingDebris;
@@ -715,6 +716,133 @@ region gf_ZergDefenderSpawnArea (point lp_location) {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 350);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_MapInit);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Faction Swap Init
+//--------------------------------------------------------------------------------------------------
+bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 5);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", true);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), "Terr", true);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(6), "Terr", true);
+    }
+    else {
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(6), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
+            PlayerSetRace(gv_pLAYER_USER, "Zerg");
+            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
+        }
+        else {
+            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
+                PlayerSetRace(gv_pLAYER_USER, "Prot");
+                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
+            }
+
+        }
+        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_USER);
+    }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_USER, PointFromId(2076), UnitGroupFromId(8));
+    lib15EF4C78_gf_SetHeroPanelUnit(1, null, gv_pLAYER_USER);
+    lib15EF4C78_gf_SetHeroPanelUnit(2, libABFE498B_gv_aP_Triggers_HeroUnit[1], gv_pLAYER_USER);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_FactionSwapInit_Init () {
+    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
+    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Map Init
+//--------------------------------------------------------------------------------------------------
+bool gt_MapInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(gt_SetMapChoice, true, false);
+    TriggerExecute(gt_Initialization, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_MapInit_Init () {
+    gt_MapInit = TriggerCreate("gt_MapInit_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Map Choice
+//--------------------------------------------------------------------------------------------------
+bool gt_SetMapChoice_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_allInMissionVariant == 1)) {
+        gv_mapChoice = true;
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/F9FB1F32"));
+    }
+    else {
+        gv_mapChoice = false;
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/9372796D"));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SetMapChoice_Init () {
+    gt_SetMapChoice = TriggerCreate("gt_SetMapChoice_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: onDifficultyCasual
 //--------------------------------------------------------------------------------------------------
 bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
@@ -844,119 +972,6 @@ bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_onDifficultyBrutal_Init () {
     gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Set Map Choice
-//--------------------------------------------------------------------------------------------------
-bool gt_SetMapChoice_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_allInMissionVariant == 1)) {
-        gv_mapChoice = true;
-        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/F9FB1F32"));
-    }
-    else {
-        gv_mapChoice = false;
-        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/9372796D"));
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_SetMapChoice_Init () {
-    gt_SetMapChoice = TriggerCreate("gt_SetMapChoice_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopLeft, 500, 350, 0, 100);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_MapInit);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Faction Swap Init
-//--------------------------------------------------------------------------------------------------
-bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", true);
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), "Terr", true);
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(6), "Terr", true);
-    }
-    else {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(6), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
-        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
-            PlayerSetRace(gv_pLAYER_USER, "Zerg");
-            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
-        }
-        else {
-            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
-                PlayerSetRace(gv_pLAYER_USER, "Prot");
-                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-            }
-
-        }
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_USER);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_FactionSwapInit_Init () {
-    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Map Init
-//--------------------------------------------------------------------------------------------------
-bool gt_MapInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(gt_SetMapChoice, true, false);
-    TriggerExecute(gt_Initialization, true, false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_MapInit_Init () {
-    gt_MapInit = TriggerCreate("gt_MapInit_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1339,6 +1354,47 @@ bool gt_Init07Help_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_Init07Help_Init () {
     gt_Init07Help = TriggerCreate("gt_Init07Help_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG: Victory
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/CDEF5077"), true);
+    TriggerExecute(gt_VictoryArtifactCharged, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, c_playerAny, "-win", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4739,7 +4795,6 @@ bool gt_VictoryArtifactCharged_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_VictoryArtifactCharged_Init () {
     gt_VictoryArtifactCharged = TriggerCreate("gt_VictoryArtifactCharged_Func");
-    TriggerAddEventChatMessage(gt_VictoryArtifactCharged, c_playerAny, "Complete", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6175,14 +6230,14 @@ void gt_VictoryCleanup_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchInit_Init();
+    gt_FactionSwapInit_Init();
+    gt_MapInit_Init();
+    gt_SetMapChoice_Init();
     gt_onDifficultyCasual_Init();
     gt_onDifficultyNormal_Init();
     gt_onDifficultyHard_Init();
     gt_onDifficultyBrutal_Init();
-    gt_SetMapChoice_Init();
-    gt_ArchInit_Init();
-    gt_FactionSwapInit_Init();
-    gt_MapInit_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -6191,6 +6246,7 @@ void InitTriggers () {
     gt_Init05Environment_Init();
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
+    gt_DEBUGVictory_Init();
     gt_StartGame_Init();
     gt_CampaignTipQ_Init();
     gt_CreateCrashingDebris_Init();

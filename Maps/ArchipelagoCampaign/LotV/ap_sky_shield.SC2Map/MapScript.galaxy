@@ -236,12 +236,12 @@ void gf_SpawnUnitsforIntro (string lp_unitType, int lp_count, point lp_location)
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchiInit;
 trigger gt_FactionSwapInit;
 trigger gt_onDifficultyCasual;
 trigger gt_onDifficultyNormal;
 trigger gt_onDifficultyHard;
 trigger gt_onDifficultyBrutal;
-trigger gt_ArchiInit;
 trigger gt_MidScrambler;
 trigger gt_SoutheastScrambler;
 trigger gt_NorthScrambler;
@@ -1615,6 +1615,37 @@ bool auto_gf_SpawnUnitsforIntro_TriggerFunc (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Archi Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchiInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib30B9E51A_gt_ArchipelagoPlayerLotvHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    TriggerExecute(gt_Init03Units, true, false);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_04_RAYNOR_AI, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_05_RAYNOR_BASE_1, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_06_RAYNOR_BASE_2, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_LOTV_PROTOSS);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 170);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchiInit_Init () {
+    gt_ArchiInit = TriggerCreate("gt_ArchiInit_Func");
+    TriggerAddEventMapInit(gt_ArchiInit);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Faction Swap Init
 //--------------------------------------------------------------------------------------------------
 bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
@@ -1622,6 +1653,17 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     // Actions
     if (!runActions) {
         return true;
+    }
+
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
     }
 
     if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
@@ -1645,13 +1687,25 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), gv_pLAYER_01_USER);
         lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
     }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(425), UnitGroupFromId(6));
+    TextExpressionSetToken("Param/Expression/C3A41B09", "A", IntToText(libABFE498B_gv_aP_Triggers_Option_HeroPresence));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/C3A41B09"), true);
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr")) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/519107A9"), true);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr") && (libABFE498B_gv_aP_Triggers_Option_HeroPresence != 0)) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/5E38A445"), true);
+        UnitCreate(1, "AP_Goliath", 0, gv_pLAYER_01_USER, PointFromId(1459564027), 45.0);
+        UnitCreate(1, "AP_Goliath", 0, gv_pLAYER_01_USER, PointFromId(1214540186), 45.0);
+    }
+
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void gt_FactionSwapInit_Init () {
     gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1788,37 +1842,6 @@ bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_onDifficultyBrutal_Init () {
     gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Archi Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchiInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib30B9E51A_gt_ArchipelagoPlayerLotvHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    TriggerExecute(gt_Init03Units, true, false);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_04_RAYNOR_AI, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_05_RAYNOR_BASE_1, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_06_RAYNOR_BASE_2, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    libABFE498B_gf_AP_Triggers_MapConfig_setMissionProtoss(libABFE498B_gv_aP_Triggers_MapConfig_MISSION_LOTV_PROTOSS);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 170);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchiInit_Init () {
-    gt_ArchiInit = TriggerCreate("gt_ArchiInit_Func");
-    TriggerAddEventMapInit(gt_ArchiInit);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2178,6 +2201,7 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_Init04MusicSound, true, false);
     TriggerExecute(gt_Init05Environment, true, false);
     TriggerExecute(gt_Init06Difficulties, true, false);
+    TriggerExecute(gt_FactionSwapInit, true, true);
     TriggerExecute(gt_IntroQ, true, true);
     if ((libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies == true)) {
         autoB23963B4_g = UnitGroupFromId(1);
@@ -6664,12 +6688,12 @@ void gt_VictoryMusic_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchiInit_Init();
     gt_FactionSwapInit_Init();
     gt_onDifficultyCasual_Init();
     gt_onDifficultyNormal_Init();
     gt_onDifficultyHard_Init();
     gt_onDifficultyBrutal_Init();
-    gt_ArchiInit_Init();
     gt_MidScrambler_Init();
     gt_SoutheastScrambler_Init();
     gt_NorthScrambler_Init();

@@ -584,13 +584,6 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
 
     TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
-    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gf_AP_Triggers_setDifficulty("B");
-        libABFE498B_gf_AP_Triggers_setGameSpeed("4");
-    }
-
     lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 120);
     lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
     lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
@@ -620,6 +613,14 @@ bool gt_FactionswapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_pLAYER01_USER, 1);
+    }
+
     if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(6), "Terr", false);
@@ -644,6 +645,7 @@ bool gt_FactionswapInit_Func (bool testConds, bool runActions) {
         }
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER01_USER);
     }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER01_USER, PointFromId(667866070), UnitGroupFromId(7));
     return true;
 }
 

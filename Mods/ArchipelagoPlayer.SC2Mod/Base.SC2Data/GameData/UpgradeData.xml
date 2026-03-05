@@ -2023,6 +2023,11 @@
         <EffectArray Reference="Effect,AP_ImpalerDamage,Amount" Value="2"/>
         <EffectArray Reference="Effect,AP_ImpalerDamageUpgraded,AttributeBonus[Armored]" Value="2"/>
         <EffectArray Reference="Effect,AP_ImpalerDamageUpgraded,Amount" Value="4"/>
+        <EffectArray Reference="Effect,AP_ImpalerTentacleChainDamage,AttributeBonus[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,AP_ImpalerTentacleChainDamage,Amount" Value="1"/>
+        <EffectArray Reference="Effect,AP_ImpalerTentacleChainDamageUpgrade,AttributeBonus[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,AP_ImpalerTentacleChainDamageUpgrade,Amount" Value="2"/>
+
         <EffectArray Reference="Weapon,AP_Impaler,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_LurkerU,AttributeBonus[Light]" Value="1"/>
         <EffectArray Reference="Effect,AP_LurkerU,Amount" Value="2"/>
@@ -12667,12 +12672,16 @@
         <EffectArray Reference="Weapon,AP_TempestPurifier,MinScanRange" Value="8"/>
         <EffectArray Reference="Abil,AP_LightningBomb,Range[0]" Value="8"/>
         <AffectedUnitArray value="AP_TempestPurifier"/>
+        <EffectArray Reference="Abil,AP_TempestDistributedAttack,AutoCastRange" Value="4"/>
+        <EffectArray Reference="Abil,AP_TempestDistributedAttack,Range[0]" Value="4"/>
     </CUpgrade>
     <CUpgrade id="AP_TempestInterplanetaryRange">
         <EffectArray Reference="Weapon,AP_TempestPurifier,Range" Value="8"/>
         <EffectArray Reference="Weapon,AP_TempestPurifier,MinScanRange" Value="8"/>
         <EffectArray Reference="Weapon,AP_TempestPurifierGround,Range" Value="8"/>
         <EffectArray Reference="Weapon,AP_TempestPurifierGround,MinScanRange" Value="8"/>
+        <EffectArray Reference="Abil,AP_TempestDistributedAttack,AutoCastRange" Value="8"/>
+        <EffectArray Reference="Abil,AP_TempestDistributedAttack,Range[0]" Value="8"/>
         <AffectedUnitArray value="AP_TempestPurifier"/>
     </CUpgrade>
     <CUpgrade id="AP_TempestDisintegration">
@@ -13548,8 +13557,9 @@
         <AffectedUnitArray value="AP_ImpalerBurrowed"/>
     </CUpgrade>
     <CUpgrade id="AP_ImpalerDamage">
-        <EffectArray Operation="Set" Reference="Effect,AP_Impaler,ImpactEffect" Value="AP_ImpalerDamageUpgraded"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_ImpalerTentacleChainSet,EffectArray[0]" Value="AP_ImpalerDamageUpgraded"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_Impaler,DisplayEffect" Value="AP_ImpalerDamageUpgraded"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_ImpalerTentacleChainLM,ImpactEffect" Value="AP_ImpalerTentacleChainDamageUpgrade"/>
     </CUpgrade>
     <CUpgrade id="AP_LurkerRange">
         <Flags index="TechTreeCheat" value="1"/>
@@ -16927,4 +16937,8 @@
         <EffectArray Operation="Set" Reference="Abil,AP_MULERepair,IgnoreFilters" Value="-;-"/>
     </CUpgrade>
     <CUpgrade id="AP_SupplyDepotCloak"/>
+    <CUpgrade id="AP_ImpalerDeepTunnel"/>
+    <CUpgrade id="AP_ImpalerTentacleExtensions"/>
+    <CUpgrade id="AP_ImpalerDistributedAttack"/>
+    <CUpgrade id="AP_TempestDistributedAttack"/>
 </Catalog>

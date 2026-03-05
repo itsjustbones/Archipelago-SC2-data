@@ -6264,7 +6264,7 @@
         <ValidatorArray index="0" value="TargetNotAcrossChasm"/>
         <ValidatorArray value="AP_ImpalerIsBurrowed"/>
         <EditorCategories value="Race:Zerg"/>
-        <ImpactEffect value="AP_ImpalerDamage"/>
+        <ImpactEffect value="AP_ImpalerTentacleChainSet"/>
     </CEffectLaunchMissile>
     <CEffectEnumArea id="AP_ImpalerDummySearch">
         <ImpactLocation Value="CasterPoint"/>
@@ -25800,4 +25800,85 @@
         <PeriodicOffsetArray value="0,0,0"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
+    <CEffectDamage id="AP_ImpalerTentacleChainDamage">
+        <EditorCategories value="Race:Zerg"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Armored" value="12"/>
+        <ArmorReduction value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
+        <Amount value="10"/>
+        <Death value="Blast"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_ImpalerTentacleChainDamageUpgrade">
+        <EditorCategories value="Race:Zerg"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Armored" value="10"/>
+        <ArmorReduction value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
+        <Amount value="20"/>
+        <Death value="Blast"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="AP_ImpalerTentacleChainLM">
+        <ValidatorArray index="0" value="TargetNotAcrossChasm"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="AP_ImpalerTentacleChainDamage"/>
+        <AmmoUnit value="AP_ImpalerWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="AP_ImpalerTentacleChainSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray Effect="AP_ImpalerTentacleChainSet" Value="Target"/>
+        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="5" Effect="AP_ImpalerTentacleChainLM"/>
+        <MaxCount value="1"/>
+        <ValidatorArray value="AP_HaveImpalerTentacleExtensions"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AP_ImpalerTentacleChainSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="AP_ImpalerDamage"/>
+        <EffectArray value="AP_ImpalerTentacleChainSearch"/>
+    </CEffectSet>
+    <CEffectCreateUnit id="AP_ImpalerDeepTunnel">
+        <ValidatorArray value="TargetPointIsCreep"/>
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnEffect value="AP_ImpalerDeepTunnelPlacementSet"/>
+        <SpawnUnit value="AP_ImpalerPlaceholder"/>
+        <SpawnRange value="15"/>
+    </CEffectCreateUnit>
+    <CEffectTeleport id="AP_ImpalerDeepTunnelPlacement">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Effect="AP_ImpalerDeepTunnel" Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <TargetLocation Value="TargetPoint"/>
+        <TeleportFlags index="TestFog" value="0"/>
+    </CEffectTeleport>
+    <CEffectSet id="AP_ImpalerDeepTunnelPlacementSet">
+        <EffectArray value="AP_KillRemove"/>
+        <EffectArray value="AP_ImpalerDeepTunnelPlacement"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectIssueOrder id="AP_DistributedAttackOrder">
+        <WhichUnit Value="Caster"/>
+        <Abil value="attack"/>
+        <Target Value="TargetUnit"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="AP_DistributedAttackSet">
+        <ValidatorArray value="CasterNotHoldingPosition"/>
+        <EffectArray value="AP_DistributedAttackOrder"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_DistributedAttackAB">
+        <Behavior value="AP_DistributedAttackMarker"/>
+    </CEffectApplyBehavior>
 </Catalog>

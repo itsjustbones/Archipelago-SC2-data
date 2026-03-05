@@ -679,11 +679,15 @@ void lib5BD4895D_gf_AP_Core_setFactionColor (string lp_faction, int lp_colorInde
     lv_color = 1;
 
     // Implementation
-    if ((lp_faction == lib5BD4895D_gv_aP_Core_Faction_PRIMAL_ZERG) && (lp_colorIndex <= 21)) {
+    if ((lp_colorIndex >= lib5BD4895D_gv_aP_Core_COLOR_DEFAULT)) {
+        return ;
+    }
+
+    if ((lp_faction == lib5BD4895D_gv_aP_Core_Faction_PRIMAL_ZERG) && (lp_colorIndex < lib5BD4895D_gv_aP_Core_COLOR_DEFAULT)) {
         lib5BD4895D_gv_aP_Core_primalZergColor = lp_colorIndex;
     }
 
-    if ((lp_colorIndex == 16)) {
+    if ((lp_colorIndex == lib5BD4895D_gv_aP_Core_COLOR_RAINBOW)) {
         auto436127A7_g = PlayerGroupAll();
         lv_currentPlayer = -1;
         while (true) {
@@ -818,7 +822,7 @@ bool auto_lib5BD4895D_gf_AP_Core_setFactionColorHandler_TriggerFunc (bool testCo
     lv_factions[5] = "nova";
     lv_i = 1;
     for ( ; ( (autoCDB09597_ai >= 0 && lv_i <= autoCDB09597_ae) || (autoCDB09597_ai < 0 && lv_i >= autoCDB09597_ae) ) ; lv_i += autoCDB09597_ai ) {
-        lib5BD4895D_gf_AP_Core_setFactionColor(lv_factions[lv_i], 22);
+        lib5BD4895D_gf_AP_Core_setFactionColor(lv_factions[lv_i], lib5BD4895D_gv_aP_Core_COLOR_DEFAULT);
     }
     while (!((lib5BD4895D_gv_aP_Core_initFinished == true))) {
         Wait(0.0625, c_timeGame);
@@ -831,7 +835,7 @@ bool auto_lib5BD4895D_gf_AP_Core_setFactionColorHandler_TriggerFunc (bool testCo
         }
 
     }
-    if ((StringWord(lp_inputString, lv_userIndex) != "22")) {
+    if ((StringToInt(StringWord(lp_inputString, lv_userIndex)) != lib5BD4895D_gv_aP_Core_COLOR_DEFAULT)) {
         lv_i = 1;
         for ( ; ( (auto45EAC468_ai >= 0 && lv_i <= auto45EAC468_ae) || (auto45EAC468_ai < 0 && lv_i >= auto45EAC468_ae) ) ; lv_i += auto45EAC468_ai ) {
             lib5BD4895D_gf_AP_Core_setFactionColor(lv_factions[lv_i], StringToInt(StringWord(lp_inputString, lv_i)));
@@ -2325,25 +2329,13 @@ bool lib5BD4895D_gt_AP_Core_bankInit_Func (bool testConds, bool runActions) {
     TriggerExecute(lib5BD4895D_gt_AP_Core_bankUpdateInit, true, false);
     TriggerExecute(lib5BD4895D_gt_AP_Core_bankVoidTradeSendInit, true, false);
     TriggerExecute(lib5BD4895D_gt_AP_Core_bankVoidTradeReceiveInit, true, false);
-    while ((lib5BD4895D_gv_aP_Core_initFinished == false)) {
-        lib5BD4895D_gf_AP_Core_bankCoreOptionsLoop();
-        Wait(0.0625, c_timeGame);
-    }
-    while (true) {
-        lib5BD4895D_gf_AP_Core_bankMessageLoop();
-        Wait(0.5, c_timeGame);
-        lib5BD4895D_gf_AP_Core_bankVoidTradeReceiveLoop();
-        Wait(0.5, c_timeGame);
-        lib5BD4895D_gf_AP_Core_bankCoreOptionsLoop();
-        Wait(0.5, c_timeGame);
-    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib5BD4895D_gt_AP_Core_bankInit_Init () {
     lib5BD4895D_gt_AP_Core_bankInit = TriggerCreate("lib5BD4895D_gt_AP_Core_bankInit_Func");
-    TriggerAddEventTimeElapsed(lib5BD4895D_gt_AP_Core_bankInit, 0.0, c_timeGame);
+    TriggerAddEventMapInit(lib5BD4895D_gt_AP_Core_bankInit);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2365,6 +2357,7 @@ bool lib5BD4895D_gt_AP_Core_bankCoreOptionsInit_Func (bool testConds, bool runAc
     lv_user = lib5BD4895D_gf_AP_Core_getUser();
     BankLoad(lib5BD4895D_gv_aP_Core_BANK_CORE_OPTIONS_FILE_NAME, lv_user);
     lib5BD4895D_gv_aP_Core_bankCoreOptions = BankLastCreated();
+    BankSave(BankLastCreated());
     return true;
 }
 
@@ -2391,6 +2384,7 @@ bool lib5BD4895D_gt_AP_Core_bankMessageInit_Func (bool testConds, bool runAction
     lv_user = lib5BD4895D_gf_AP_Core_getUser();
     BankLoad(lib5BD4895D_gv_aP_Core_BANK_MESSAGES_FILE_NAME, lv_user);
     lib5BD4895D_gv_aP_Core_bankMessage = BankLastCreated();
+    BankSave(BankLastCreated());
     return true;
 }
 
@@ -2478,7 +2472,6 @@ bool lib5BD4895D_gt_AP_Core_bankVoidTradeSendInit_Func (bool testConds, bool run
     lv_user = lib5BD4895D_gf_AP_Core_getUser();
     BankLoad(lib5BD4895D_gv_aP_Core_BANK_VOID_TRADE_SEND_NAME, lv_user);
     lib5BD4895D_gv_aP_Core_bankVoidTradeSend = BankLastCreated();
-    BankSave(lib5BD4895D_gv_aP_Core_bankVoidTradeSend);
     return true;
 }
 
@@ -2505,12 +2498,44 @@ bool lib5BD4895D_gt_AP_Core_bankVoidTradeReceiveInit_Func (bool testConds, bool 
     lv_user = lib5BD4895D_gf_AP_Core_getUser();
     BankLoad(lib5BD4895D_gv_aP_Core_BANK_VOID_TRADE_RECEIVE_FILE_NAME, lv_user);
     lib5BD4895D_gv_aP_Core_bankVoidTradeReceive = BankLastCreated();
+    BankSave(BankLastCreated());
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib5BD4895D_gt_AP_Core_bankVoidTradeReceiveInit_Init () {
     lib5BD4895D_gt_AP_Core_bankVoidTradeReceiveInit = TriggerCreate("lib5BD4895D_gt_AP_Core_bankVoidTradeReceiveInit_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Core_bankStartLoop
+//--------------------------------------------------------------------------------------------------
+bool lib5BD4895D_gt_AP_Core_bankStartLoop_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((lib5BD4895D_gv_aP_Core_initFinished == false)) {
+        lib5BD4895D_gf_AP_Core_bankCoreOptionsLoop();
+        Wait(0.0625, c_timeGame);
+    }
+    while (true) {
+        lib5BD4895D_gf_AP_Core_bankMessageLoop();
+        Wait(0.5, c_timeGame);
+        lib5BD4895D_gf_AP_Core_bankVoidTradeReceiveLoop();
+        Wait(0.5, c_timeGame);
+        lib5BD4895D_gf_AP_Core_bankCoreOptionsLoop();
+        Wait(0.5, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib5BD4895D_gt_AP_Core_bankStartLoop_Init () {
+    lib5BD4895D_gt_AP_Core_bankStartLoop = TriggerCreate("lib5BD4895D_gt_AP_Core_bankStartLoop_Func");
+    TriggerAddEventTimeElapsed(lib5BD4895D_gt_AP_Core_bankStartLoop, 0.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2754,6 +2779,7 @@ void lib5BD4895D_InitTriggers () {
     lib5BD4895D_gt_AP_Core_bankUpdateInit_Init();
     lib5BD4895D_gt_AP_Core_bankVoidTradeSendInit_Init();
     lib5BD4895D_gt_AP_Core_bankVoidTradeReceiveInit_Init();
+    lib5BD4895D_gt_AP_Core_bankStartLoop_Init();
     lib5BD4895D_gt_AP_Core_showChatboxCinematic_Init();
     lib5BD4895D_gt_AP_Core_onHideButtonChatbox_Init();
     lib5BD4895D_gt_AP_Core_onShowButtonChatbox_Init();

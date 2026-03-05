@@ -10012,6 +10012,15 @@
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Impaler; MorphFrom AP_ImpalerBurrowed" Send="AnimBracketStop Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Impaler; MorphFrom AP_ImpalerBurrowed" Send="AnimClear Burrow"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStart" Send="AnimBracketStart Spell Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever 0.400000 AsTimeScale"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStart" Send="Create AP_Spell_DeepTunnel_Burrow"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop" Send="AnimBracketClear Burrow"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop" Send="Create AP_Spell_DeepTunnel_Unburrow"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop; !ValidateUnit AP_ImpalerIsBurrowed" Send="AnimSetTimeScale Spell 1.000000"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop; !ValidateUnit AP_ImpalerIsBurrowed" Send="AnimBracketStop Spell"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop; ValidateUnit AP_ImpalerIsBurrowed" Send="AnimBracketClear Spell"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop; ValidateUnit AP_ImpalerIsBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStop; ValidateUnit AP_ImpalerIsBurrowed" Send="AnimSetCompletion Burrow 55.000000"/>
         <DeathArray index="Normal" ModelLink="AP_ImpalerDeath" SoundLink="Lurker_Explode"/>
         <DeathArray index="Disintegrate" ModelLink="AP_ImpalerDeathAcid" SoundLink="Uni_DeathFXAcid"/>
         <DeathArray index="Fire" ModelLink="AP_ImpalerDeathFire" SoundLink="Uni_DeathFXFire"/>
@@ -10055,6 +10064,8 @@
         <Flags index="SuppressSaveLoad" value="1"/>
         <On Terms="Effect.AP_ImpalerDamage.Start" Send="Create"/>
         <On Terms="Effect.AP_ImpalerDamageUpgraded.Start" Send="Create"/>
+        <On Terms="Effect.AP_ImpalerTentacleChainDamage.Start" Send="Create"/>
+        <On Terms="Effect.AP_ImpalerTentacleChainDamageUpgrade.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="$Birth 0 0.000000 0.000000 1.500000 AsDuration"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadow SOpAttachOriginStationary"/>
@@ -47318,4 +47329,35 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <ModelFlags index="AutomateGlobalLoops" value="1"/>
     </CActorModel>
+    <CActorAction id="AP_ImpalerTentacleChainAttack" parent="GenericAttack" effectImpact="AP_ImpalerTentacleChainDamage" effectLaunch="AP_ImpalerTentacleChainLM">
+        <LaunchAttachQuery Methods="Origin"/>
+        <LaunchAssets Model="AP_ImpalerAttackLaunch" Sound="Lurker_AttackLaunch"/>
+        <Beam value="AP_ImpalerAttackBeam"/>
+        <Missile value="AP_ImpalerAttackMissile"/>
+        <ImpactSiteOps Ops="SOpShadow SOpForwardLaunchGuide"/>
+        <ImpactMap index="None" Model="" Sound="AP_Impaler_TentacleImpact1" ModelReaction="AP_ImpalerAttackImpactReaction"/>
+        <ImpactMap index="Shield" Sound="AP_ImpalerAttackImpactShield" ModelReaction="AP_ImpalerAttackImpactReactionShield"/>
+        <DamageMap index="None" Model="AP_ImpalerAttackDamage" Sound="AP_ImpalerAttackDamage" ModelReaction="AP_ImpalerAttackDamageReaction"/>
+        <DamageMap index="Shield" Sound="AP_ImpalerAttackDamageShield" ModelReaction="AP_ImpalerAttackDamageReactionShield"/>
+        <ShieldFlashType value="Full"/>
+    </CActorAction>
+    <CActorUnit id="AP_ImpalerPlaceholder" parent="GenericUnitMinimal" unitName="AP_ImpalerPlaceholder">
+        <Model value="Invisible"/>
+    </CActorUnit>
+    <CActorSplat id="AP_ImpalerDeepTunnelSplatFinish" parent="BurrowedSplatBase">
+        <On Terms="Effect.AP_ImpalerDeepTunnel.Stop" Send="Create"/>
+        <On Terms="ActorCreation" Send="RefClear ::Host"/>
+        <On Terms="ActorCreation" Send="TimerSet 4.000000,2.000000 DelayDestroy"/>
+        <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary SOpShadow"/>
+        <Scale value="2.000000"/>
+    </CActorSplat>
+    <CActorSplat id="AP_ImpalerDeepTunnelSplatStart" parent="BurrowedSplatBase">
+        <On Terms="Abil.AP_ImpalerDeepTunnel.SourceCastStart" Send="Create"/>
+        <On Terms="ActorCreation" Send="RefClear ::Host"/>
+        <On Terms="ActorCreation" Send="TimerSet 4.000000,2.000000 DelayDestroy"/>
+        <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary SOpShadow"/>
+        <Scale value="2.000000"/>
+    </CActorSplat>
 </Catalog>

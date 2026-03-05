@@ -1171,15 +1171,6 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
 
     TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
-    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Prot";
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gf_AP_Triggers_setDifficulty("B");
-        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
-        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_p1_USER, 2);
-    }
-
     lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p1_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
     lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
     libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
@@ -1203,6 +1194,15 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_p1_USER, 2);
+    }
+
     if (((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut") || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr"))) {
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
     }
@@ -1223,6 +1223,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         }
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_p1_USER);
     }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_p1_USER, PointFromId(1882080750), UnitGroupFromId(6));
     return true;
 }
 

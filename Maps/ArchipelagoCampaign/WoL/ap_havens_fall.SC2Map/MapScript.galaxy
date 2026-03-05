@@ -102,7 +102,6 @@ fixed gv_aberrationLife;
 fixed gv_virophageLife;
 playergroup gv_zergPlayers;
 int gv_tEMP_ColonyIndex;
-bool gv_aP_DEBUG_MODE;
 region[11] gv_infestationRegion;
 int[11] gv_infestationPings;
 point[11] gv_infestationVirophageSpot;
@@ -216,6 +215,8 @@ void gf_OrderCarrionBirdtoFlyAway (unit lp_carrionBird);
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchInit;
+trigger gt_FactionSwapInit;
 trigger gt_onDifficultyCasual;
 trigger gt_onDifficultyNormal;
 trigger gt_onDifficultyHard;
@@ -230,8 +231,6 @@ trigger gt_ObjectiveKeepColonyBasesnotinfestedUpdate;
 trigger gt_NorthHive;
 trigger gt_EastHive;
 trigger gt_SouthHive;
-trigger gt_ArchInit;
-trigger gt_FactionSwapInit;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -240,13 +239,7 @@ trigger gt_Init04Music;
 trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
-trigger gt_DEBUGyellow;
-trigger gt_DEBUGgreen;
-trigger gt_DEBUGwhite;
-trigger gt_DEBUGred;
-trigger gt_DEBUGpurple;
-trigger gt_DEBUGpink;
-trigger gt_DEBUGBroodlord;
+trigger gt_DEBUGVictory;
 trigger gt_StartGame;
 trigger gt_InitialInfestation;
 trigger gt_InitWarningPings;
@@ -917,6 +910,104 @@ void gf_OrderCarrionBirdtoFlyAway (unit lp_carrionBird) {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Faction Swap Init
+//--------------------------------------------------------------------------------------------------
+bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup autoE89A680B_g;
+    int autoE89A680B_u;
+    unit autoE89A680B_var;
+    unitgroup autoF7078C34_g;
+    int autoF7078C34_u;
+    unit autoF7078C34_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_p01_USER, 2);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
+    }
+    else {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
+            UnitSetPropertyFixed(UnitFromId(237324189), c_unitPropEnergyPercent, 100.0);
+            autoE89A680B_g = UnitGroup("AP_Lair", gv_p01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoE89A680B_u = UnitGroupCount(autoE89A680B_g, c_unitCountAll);
+            for (;; autoE89A680B_u -= 1) {
+                autoE89A680B_var = UnitGroupUnitFromEnd(autoE89A680B_g, autoE89A680B_u);
+                if (autoE89A680B_var == null) { break; }
+                libNtve_gf_ReplaceUnit(autoE89A680B_var, "AP_Hive", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
+                autoF7078C34_g = UnitGroup("AP_Larva", c_playerAny, RegionCircle(UnitGetPosition(libNtve_gf_LastReplacedUnit()), 5.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoF7078C34_u = UnitGroupCount(autoF7078C34_g, c_unitCountAll);
+                for (;; autoF7078C34_u -= 1) {
+                    autoF7078C34_var = UnitGroupUnitFromEnd(autoF7078C34_g, autoF7078C34_u);
+                    if (autoF7078C34_var == null) { break; }
+                    UnitRemove(autoF7078C34_var);
+                }
+                lib15EF4C78_gf_AP_Player_SpawnLarvaForHatchery(libNtve_gf_LastReplacedUnit(), 3);
+            }
+            PlayerSetRace(gv_p01_USER, "Zerg");
+            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
+        }
+        else {
+            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
+                PlayerSetRace(gv_p01_USER, "Prot");
+                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
+            }
+
+        }
+        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_p01_USER);
+        libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), gv_p01_USER);
+        lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_p01_USER);
+    }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_p01_USER, PointFromId(78), UnitGroupFromId(4));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_FactionSwapInit_Init () {
+    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
+    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: onDifficultyCasual
 //--------------------------------------------------------------------------------------------------
 bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
@@ -1396,94 +1487,6 @@ void gt_SouthHive_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Faction Swap Init
-//--------------------------------------------------------------------------------------------------
-bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    unitgroup autoE89A680B_g;
-    int autoE89A680B_u;
-    unit autoE89A680B_var;
-    unitgroup autoF7078C34_g;
-    int autoF7078C34_u;
-    unit autoF7078C34_var;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
-    }
-    else {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
-        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
-            UnitSetPropertyFixed(UnitFromId(237324189), c_unitPropEnergyPercent, 100.0);
-            autoE89A680B_g = UnitGroup("AP_Lair", gv_p01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            autoE89A680B_u = UnitGroupCount(autoE89A680B_g, c_unitCountAll);
-            for (;; autoE89A680B_u -= 1) {
-                autoE89A680B_var = UnitGroupUnitFromEnd(autoE89A680B_g, autoE89A680B_u);
-                if (autoE89A680B_var == null) { break; }
-                libNtve_gf_ReplaceUnit(autoE89A680B_var, "AP_Hive", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
-                autoF7078C34_g = UnitGroup("AP_Larva", c_playerAny, RegionCircle(UnitGetPosition(libNtve_gf_LastReplacedUnit()), 5.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoF7078C34_u = UnitGroupCount(autoF7078C34_g, c_unitCountAll);
-                for (;; autoF7078C34_u -= 1) {
-                    autoF7078C34_var = UnitGroupUnitFromEnd(autoF7078C34_g, autoF7078C34_u);
-                    if (autoF7078C34_var == null) { break; }
-                    UnitRemove(autoF7078C34_var);
-                }
-                lib15EF4C78_gf_AP_Player_SpawnLarvaForHatchery(libNtve_gf_LastReplacedUnit(), 3);
-            }
-            PlayerSetRace(gv_p01_USER, "Zerg");
-            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
-        }
-        else {
-            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
-                PlayerSetRace(gv_p01_USER, "Prot");
-                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_p01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-            }
-
-        }
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_p01_USER);
-        libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), gv_p01_USER);
-        lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_p01_USER);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_FactionSwapInit_Init () {
-    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Initialization
 //--------------------------------------------------------------------------------------------------
 bool gt_Initialization_Func (bool testConds, bool runActions) {
@@ -1866,13 +1869,25 @@ void gt_Init07Help_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - yellow
+// Trigger: DEBUG - Victory
 //--------------------------------------------------------------------------------------------------
-bool gt_DEBUGyellow_Func (bool testConds, bool runActions) {
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(gv_p01_USER) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
             return false;
         }
     }
@@ -1882,195 +1897,16 @@ bool gt_DEBUGyellow_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/4FD6CDF6"));
-    gf_InfestAColonyAndWait(ge_ColonyIndex_Base6Yellow, 0.0);
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, StringExternal("Param/Value/33162089"), true);
+    TriggerExecute(gt_VictoryInfestationCleansedCompleted, true, false);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_DEBUGyellow_Init () {
-    gt_DEBUGyellow = TriggerCreate("gt_DEBUGyellow_Func");
-    TriggerAddEventChatMessage(gt_DEBUGyellow, gv_p01_USER, "yellow", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - green
-//--------------------------------------------------------------------------------------------------
-bool gt_DEBUGgreen_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/161CECAA"));
-    gf_InfestAColonyAndWait(ge_ColonyIndex_Base1Green, 0.0);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DEBUGgreen_Init () {
-    gt_DEBUGgreen = TriggerCreate("gt_DEBUGgreen_Func");
-    TriggerAddEventChatMessage(gt_DEBUGgreen, gv_p01_USER, "green", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - white
-//--------------------------------------------------------------------------------------------------
-bool gt_DEBUGwhite_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/FA82DB5A"));
-    gf_InfestAColonyAndWait(ge_ColonyIndex_Base5White, 0.0);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DEBUGwhite_Init () {
-    gt_DEBUGwhite = TriggerCreate("gt_DEBUGwhite_Func");
-    TriggerAddEventChatMessage(gt_DEBUGwhite, gv_p01_USER, "white", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - red
-//--------------------------------------------------------------------------------------------------
-bool gt_DEBUGred_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/A883C4D4"));
-    gf_InfestAColonyAndWait(ge_ColonyIndex_Base4Red, 0.0);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DEBUGred_Init () {
-    gt_DEBUGred = TriggerCreate("gt_DEBUGred_Func");
-    TriggerAddEventChatMessage(gt_DEBUGred, gv_p01_USER, "red", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - purple
-//--------------------------------------------------------------------------------------------------
-bool gt_DEBUGpurple_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/4CE48A7F"));
-    gf_InfestAColonyAndWait(ge_ColonyIndex_Base3Purple, 0.0);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DEBUGpurple_Init () {
-    gt_DEBUGpurple = TriggerCreate("gt_DEBUGpurple_Func");
-    TriggerAddEventChatMessage(gt_DEBUGpurple, gv_p01_USER, "purple", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - pink
-//--------------------------------------------------------------------------------------------------
-bool gt_DEBUGpink_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/4A099037"));
-    gf_InfestAColonyAndWait(ge_ColonyIndex_Base2Pink, 0.0);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DEBUGpink_Init () {
-    gt_DEBUGpink = TriggerCreate("gt_DEBUGpink_Func");
-    TriggerAddEventChatMessage(gt_DEBUGpink, gv_p01_USER, "pink", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG - Broodlord
-//--------------------------------------------------------------------------------------------------
-bool gt_DEBUGBroodlord_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    unitgroup autoE41389E5_g;
-    int autoE41389E5_u;
-    unit autoE41389E5_var;
-
-    // Conditions
-    if (testConds) {
-        if (!((gv_aP_DEBUG_MODE == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerDebugOutput(1, StringExternal("Param/Value/B6D456AA"), true);
-    autoE41389E5_g = UnitGroup("BroodLord", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    autoE41389E5_u = UnitGroupCount(autoE41389E5_g, c_unitCountAll);
-    for (;; autoE41389E5_u -= 1) {
-        autoE41389E5_var = UnitGroupUnitFromEnd(autoE41389E5_g, autoE41389E5_u);
-        if (autoE41389E5_var == null) { break; }
-        UnitAbilityEnable(autoE41389E5_var, "AP_BroodLordHangar", false);
-        libNtve_gf_SendActorMessageToUnit(autoE41389E5_var, "HaloStart");
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_DEBUGBroodlord_Init () {
-    gt_DEBUGBroodlord = TriggerCreate("gt_DEBUGBroodlord_Func");
-    TriggerAddEventChatMessage(gt_DEBUGBroodlord, c_playerAny, "bl", true);
-    TriggerAddEventHotkeyPressed(gt_DEBUGBroodlord, c_playerAny, c_hotkeyHeroSelect0, true);
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, gv_p01_USER, "-win", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2093,7 +1929,7 @@ bool gt_StartGame_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_InitialInfestation, true, false);
     TriggerExecute(gt_InfestColoniesForever, true, false);
     Wait(1.0, c_timeGame);
-    if ((gv_aP_DEBUG_MODE == true)) {
+    if (true) {
         TriggerDebugOutput(1, StringExternal("Param/Value/0534D9FE"), true);
     }
 
@@ -5661,6 +5497,8 @@ void gt_IntroFeederlingMover_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchInit_Init();
+    gt_FactionSwapInit_Init();
     gt_onDifficultyCasual_Init();
     gt_onDifficultyNormal_Init();
     gt_onDifficultyHard_Init();
@@ -5675,8 +5513,6 @@ void InitTriggers () {
     gt_NorthHive_Init();
     gt_EastHive_Init();
     gt_SouthHive_Init();
-    gt_ArchInit_Init();
-    gt_FactionSwapInit_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -5685,13 +5521,7 @@ void InitTriggers () {
     gt_Init05Environment_Init();
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
-    gt_DEBUGyellow_Init();
-    gt_DEBUGgreen_Init();
-    gt_DEBUGwhite_Init();
-    gt_DEBUGred_Init();
-    gt_DEBUGpurple_Init();
-    gt_DEBUGpink_Init();
-    gt_DEBUGBroodlord_Init();
+    gt_DEBUGVictory_Init();
     gt_StartGame_Init();
     gt_InitialInfestation_Init();
     gt_InitWarningPings_Init();

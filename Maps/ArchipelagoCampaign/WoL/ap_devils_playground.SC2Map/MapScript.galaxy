@@ -558,6 +558,15 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_p01_USER, 2);
+    }
+
     if (((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut") || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr"))) {
         UnitRemove(UnitFromId(1433416105));
         UnitRemove(UnitFromId(1016016046));
@@ -619,6 +628,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         }
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_p01_USER);
     }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_p01_USER, PointFromId(863), UnitGroupFromId(6));
     return true;
 }
 

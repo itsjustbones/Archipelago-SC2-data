@@ -33,18 +33,6 @@ void InitLibs () {
 //--------------------------------------------------------------------------------------------------
 // Constants
 //--------------------------------------------------------------------------------------------------
-const int gv_pLAYER_01_USER = 1;
-const int gv_pLAYER_02_TERRAN_RED = 2;
-const int gv_pLAYER_03_TERRAN_TEAL = 3;
-const int gv_pLAYER_04_GORGON = 4;
-const int gv_pLAYER_05_DEAD_NEST = 5;
-const int gv_pLAYER_06_ACTIVE_NEST = 6;
-const int gv_pLAYER_07_TERRAN_YELLOW = 7;
-const int gv_pLAYER_08_ZERG_BIOMASS = 8;
-const int gv_gorgonsDestroyedQuota = 7;
-const int gv_scourgeNestsGoal = 7;
-const int gv_objectiveZergBiomassGoal = 3;
-const int gv_zergToFind = 5;
 const int gv_LOCATION_ID_WEST_BIOMASS = 1;
 const int gv_LOCATION_ID_NORTH_BIOMASS = 2;
 const int gv_LOCATION_ID_SOUTH_BIOMASS = 3;
@@ -57,10 +45,24 @@ const int gv_LOCATION_ID_EAST_QUEEN_RESCUE = 9;
 const int gv_LOCATION_ID_SOUTH_ORBITAL_COMMAND_CENTER = 10;
 const int gv_LOCATION_ID_NORTHWEST_ORBITAL_COMMAND_CENTER = 11;
 const int gv_LOCATION_ID_SOUTHEAST_ORBITAL_COMMAND_CENTER = 12;
+const int gv_pLAYER_01_USER = 1;
+const int gv_pLAYER_02_TERRAN_RED = 2;
+const int gv_pLAYER_03_TERRAN_TEAL = 3;
+const int gv_pLAYER_04_GORGON = 4;
+const int gv_pLAYER_05_DEAD_NEST = 5;
+const int gv_pLAYER_06_ACTIVE_NEST = 6;
+const int gv_pLAYER_07_TERRAN_YELLOW = 7;
+const int gv_pLAYER_08_ZERG_BIOMASS = 8;
+const int gv_gorgonsDestroyedQuota = 7;
+const int gv_scourgeNestsGoal = 7;
+const int gv_objectiveZergBiomassGoal = 3;
+const int gv_zergToFind = 5;
 
 //--------------------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------------------
+int gv_objectiveDestroyOrbitals;
+int gv_orbitalsDestroyed;
 bool gv_gameOver;
 bool gv_inCinematic;
 unit gv_kerrigan;
@@ -132,12 +134,11 @@ bool gv_victoryCinematicCompleted;
 unitgroup gv_victoryHiddenUnitGroup2;
 unit gv_victoryKerrigan;
 sound gv_victorySound;
-int gv_objectiveDestroyOrbitals;
-int gv_orbitalsDestroyed;
 
 void InitGlobals () {
     int init_i;
 
+    gv_objectiveDestroyOrbitals = c_invalidObjectiveId;
     gv_dominionPlayers = PlayerGroupEmpty();
     gv_transmissionInterrutable = c_invalidTransmissionId;
     for (init_i = 0; init_i <= 10; init_i += 1) {
@@ -167,7 +168,6 @@ void InitGlobals () {
     gv_introTextTag = c_textTagNone;
     gv_midHiddenUnitGroup = UnitGroupEmpty();
     gv_victoryHiddenUnitGroup2 = UnitGroupEmpty();
-    gv_objectiveDestroyOrbitals = c_invalidObjectiveId;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -189,6 +189,21 @@ fixed gf_CreepPercent ();
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchInit;
+trigger gt_FactionSwapInit;
+trigger gt_onDifficultyCasual;
+trigger gt_onDifficultyNormal;
+trigger gt_onDifficultyHard;
+trigger gt_onDifficultyBrutal;
+trigger gt_ObjectiveDestroyOrbitalsCreate;
+trigger gt_ObjectiveDestroyOrbitalsUpdate;
+trigger gt_ObjectiveDestroyOrbitalsComplete;
+trigger gt_ObjectiveFindZergBiomassWest;
+trigger gt_ObjectiveFindZergBiomassNorth;
+trigger gt_ObjectiveFindZergBiomassSouth;
+trigger gt_ObjectiveDestroyOrbitalSouth;
+trigger gt_ObjectiveDestroyOrbitalNorthwest;
+trigger gt_ObjectiveDestroyOrbitalSoutheast;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -198,6 +213,7 @@ trigger gt_Init04MusicSound;
 trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
+trigger gt_DEBUGVictory;
 trigger gt_StartGameQ;
 trigger gt_BonusObjectiveRevealQ;
 trigger gt_TeachCreepTumor;
@@ -305,22 +321,6 @@ trigger gt_VictoryDroppods;
 trigger gt_VictoryTerranUpTheNight;
 trigger gt_VictoryWarpIns;
 trigger gt_VictoryCameras;
-trigger gt_FactionSwapInit;
-trigger gt_onDifficultyCasual;
-trigger gt_onDifficultyNormal;
-trigger gt_onDifficultyHard;
-trigger gt_onDifficultyBrutal;
-trigger gt_ObjectiveDestroyOrbitalsCreate;
-trigger gt_ObjectiveDestroyOrbitalsUpdate;
-trigger gt_ObjectiveDestroyOrbitalsComplete;
-trigger gt_ArchInit;
-trigger gt_SetMineralCount;
-trigger gt_ObjectiveFindZergBiomassWest;
-trigger gt_ObjectiveFindZergBiomassNorth;
-trigger gt_ObjectiveFindZergBiomassSouth;
-trigger gt_ObjectiveDestroyOrbitalSouth;
-trigger gt_ObjectiveDestroyOrbitalNorthwest;
-trigger gt_ObjectiveDestroyOrbitalSoutheast;
 
 //--------------------------------------------------------------------------------------------------
 // Custom AI Functions
@@ -806,6 +806,547 @@ fixed gf_CreepPercent () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(libA472B13C_gt_AP_HotS_Constructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    TriggerExecute(gt_Init03Units, true, false);
+    libABFE498B_gf_AP_Triggers_MapConfig_setKerriganOptions(false, true);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM_SWITCHABLE_TO_PRIMAL_ZERG);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Faction Swap Init
+//--------------------------------------------------------------------------------------------------
+bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+
+    // Automatic Variable Declarations
+    unitgroup autoF1EF6E7F_g;
+    int autoF1EF6E7F_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), "Zerg", false);
+    }
+    else {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr")) {
+            PlayerSetRace(gv_pLAYER_01_USER, "Terr");
+            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+            autoF1EF6E7F_g = UnitGroup("AP_DrakkenMiniLaserDrill", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoF1EF6E7F_u = UnitGroupCount(autoF1EF6E7F_g, c_unitCountAll);
+            for (;; autoF1EF6E7F_u -= 1) {
+                lv_unit = UnitGroupUnitFromEnd(autoF1EF6E7F_g, autoF1EF6E7F_u);
+                if (lv_unit == null) { break; }
+                UnitSetPropertyFixed(lv_unit, c_unitPropLifePercent, 50.0);
+            }
+            gv_scourgeNestUnit[1] = UnitFromId(561729949);
+            gv_scourgeNestUnit[2] = UnitFromId(224240217);
+            gv_scourgeNestUnit[3] = UnitFromId(965678340);
+            gv_scourgeNestUnit[4] = UnitFromId(851535214);
+            gv_scourgeNestUnit[5] = UnitFromId(1215311820);
+            gv_scourgeNestUnit[6] = UnitFromId(1354972341);
+            gv_scourgeNestUnit[7] = UnitFromId(1899008368);
+        }
+        else {
+            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
+                PlayerSetRace(gv_pLAYER_01_USER, "Prot");
+                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
+                gv_c_ScourgeActivationRange = 7.0;
+                gv_scourgeNestUnit[1] = UnitFromId(1095951238);
+                gv_scourgeNestUnit[2] = UnitFromId(963507188);
+                gv_scourgeNestUnit[3] = UnitFromId(977806590);
+                gv_scourgeNestUnit[4] = UnitFromId(1725963271);
+                gv_scourgeNestUnit[5] = UnitFromId(1563516715);
+                gv_scourgeNestUnit[6] = UnitFromId(2098768756);
+                gv_scourgeNestUnit[7] = UnitFromId(1212121010);
+            }
+
+        }
+        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
+        libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), gv_pLAYER_01_USER);
+        lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_FactionSwapInit_Init () {
+    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyCasual
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto0CC8E224_g;
+    int auto0CC8E224_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto0CC8E224_g = UnitGroupFromId(1);
+    auto0CC8E224_u = UnitGroupCount(auto0CC8E224_g, c_unitCountAll);
+    for (;; auto0CC8E224_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto0CC8E224_g, auto0CC8E224_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyCasual_Init () {
+    gt_onDifficultyCasual = TriggerCreate("gt_onDifficultyCasual_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyNormal
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyNormal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto01940425_g;
+    int auto01940425_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto01940425_g = UnitGroupFromId(2);
+    auto01940425_u = UnitGroupCount(auto01940425_g, c_unitCountAll);
+    for (;; auto01940425_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto01940425_g, auto01940425_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyNormal_Init () {
+    gt_onDifficultyNormal = TriggerCreate("gt_onDifficultyNormal_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyHard
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyHard_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto2E30C709_g;
+    int auto2E30C709_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto2E30C709_g = UnitGroupFromId(3);
+    auto2E30C709_u = UnitGroupCount(auto2E30C709_g, c_unitCountAll);
+    for (;; auto2E30C709_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto2E30C709_g, auto2E30C709_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyHard_Init () {
+    gt_onDifficultyHard = TriggerCreate("gt_onDifficultyHard_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyBrutal
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup autoDCDA5A92_g;
+    int autoDCDA5A92_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoDCDA5A92_g = UnitGroupFromId(4);
+    autoDCDA5A92_u = UnitGroupCount(autoDCDA5A92_g, c_unitCountAll);
+    for (;; autoDCDA5A92_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(autoDCDA5A92_g, autoDCDA5A92_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyBrutal_Init () {
+    gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Orbitals Create
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyOrbitalsCreate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_category;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_category = lib5BD4895D_ge_APObjectiveCategory_Challenge;
+
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    ObjectiveCreate(StringExternal("Param/Value/AA69C287"), StringToText(""), c_objectiveStateHidden, false);
+    gv_objectiveDestroyOrbitals = ObjectiveLastCreated();
+    lib5BD4895D_gf_AP_Core_addCategoryObjectiveWithCounter(gv_objectiveDestroyOrbitals, lv_category, "", gv_orbitalsDestroyed, 3, true);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyOrbitals, gv_LOCATION_ID_SOUTH_ORBITAL_COMMAND_CENTER);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyOrbitals, gv_LOCATION_ID_NORTHWEST_ORBITAL_COMMAND_CENTER);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyOrbitals, gv_LOCATION_ID_SOUTHEAST_ORBITAL_COMMAND_CENTER);
+    lib5BD4895D_gf_AP_Core_setObjectiveVisibility(gv_objectiveDestroyOrbitals, true);
+    Wait(libSwaC_gv_campaignObjectiveDelay, c_timeReal);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyOrbitalsCreate_Init () {
+    gt_ObjectiveDestroyOrbitalsCreate = TriggerCreate("gt_ObjectiveDestroyOrbitalsCreate_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Orbitals Update
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyOrbitalsUpdate_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    gv_orbitalsDestroyed += 1;
+    lib5BD4895D_gf_AP_Core_setObjectiveCounter(gv_objectiveDestroyOrbitals, gv_orbitalsDestroyed);
+    if ((gv_orbitalsDestroyed >= 3)) {
+        TriggerEnable(TriggerGetCurrent(), false);
+        TriggerExecute(gt_ObjectiveDestroyOrbitalsComplete, true, false);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyOrbitalsUpdate_Init () {
+    gt_ObjectiveDestroyOrbitalsUpdate = TriggerCreate("gt_ObjectiveDestroyOrbitalsUpdate_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Orbitals Complete
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyOrbitalsComplete_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerExecute(gt_ObjectiveDestroyOrbitalsCreate, true, false);
+    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveDestroyOrbitals);
+    Wait(libSwaC_gv_campaignObjectiveDelay, c_timeReal);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyOrbitalsComplete_Init () {
+    gt_ObjectiveDestroyOrbitalsComplete = TriggerCreate("gt_ObjectiveDestroyOrbitalsComplete_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Find Zerg Biomass West
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveFindZergBiomassWest_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((gv_inCinematic == false))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER))) {
+            return false;
+        }
+
+        if (!(((UnitGroupHasUnit(libABFE498B_gv_aP_Triggers_HeroUnits, EventUnit()) == true) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_WEST_BIOMASS);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveFindZergBiomassWest_Init () {
+    gt_ObjectiveFindZergBiomassWest = TriggerCreate("gt_ObjectiveFindZergBiomassWest_Func");
+    TriggerAddEventUnitRange(gt_ObjectiveFindZergBiomassWest, null, UnitFromId(1831), 1.5, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Find Zerg Biomass North
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveFindZergBiomassNorth_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((gv_inCinematic == false))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER))) {
+            return false;
+        }
+
+        if (!(((UnitGroupHasUnit(libABFE498B_gv_aP_Triggers_HeroUnits, EventUnit()) == true) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTH_BIOMASS);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveFindZergBiomassNorth_Init () {
+    gt_ObjectiveFindZergBiomassNorth = TriggerCreate("gt_ObjectiveFindZergBiomassNorth_Func");
+    TriggerAddEventUnitRange(gt_ObjectiveFindZergBiomassNorth, null, UnitFromId(1832), 1.5, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Find Zerg Biomass South
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveFindZergBiomassSouth_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((gv_inCinematic == false))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER))) {
+            return false;
+        }
+
+        if (!(((UnitGroupHasUnit(libABFE498B_gv_aP_Triggers_HeroUnits, EventUnit()) == true) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_BIOMASS);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveFindZergBiomassSouth_Init () {
+    gt_ObjectiveFindZergBiomassSouth = TriggerCreate("gt_ObjectiveFindZergBiomassSouth_Func");
+    TriggerAddEventUnitRange(gt_ObjectiveFindZergBiomassSouth, null, UnitFromId(1824), 1.5, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Orbital South
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyOrbitalSouth_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((gv_inCinematic == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_ORBITAL_COMMAND_CENTER);
+    TriggerExecute(gt_ObjectiveDestroyOrbitalsUpdate, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyOrbitalSouth_Init () {
+    gt_ObjectiveDestroyOrbitalSouth = TriggerCreate("gt_ObjectiveDestroyOrbitalSouth_Func");
+    TriggerAddEventUnitDied(gt_ObjectiveDestroyOrbitalSouth, UnitRefFromUnit(UnitFromId(306)));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Orbital Northwest
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyOrbitalNorthwest_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((gv_inCinematic == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTHWEST_ORBITAL_COMMAND_CENTER);
+    TriggerExecute(gt_ObjectiveDestroyOrbitalsUpdate, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyOrbitalNorthwest_Init () {
+    gt_ObjectiveDestroyOrbitalNorthwest = TriggerCreate("gt_ObjectiveDestroyOrbitalNorthwest_Func");
+    TriggerAddEventUnitDied(gt_ObjectiveDestroyOrbitalNorthwest, UnitRefFromUnit(UnitFromId(242)));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Orbital Southeast
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyOrbitalSoutheast_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((gv_inCinematic == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTHEAST_ORBITAL_COMMAND_CENTER);
+    TriggerExecute(gt_ObjectiveDestroyOrbitalsUpdate, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyOrbitalSoutheast_Init () {
+    gt_ObjectiveDestroyOrbitalSoutheast = TriggerCreate("gt_ObjectiveDestroyOrbitalSoutheast_Func");
+    TriggerAddEventUnitDied(gt_ObjectiveDestroyOrbitalSoutheast, UnitRefFromUnit(UnitFromId(130)));
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Initialization
 //--------------------------------------------------------------------------------------------------
 bool gt_Initialization_Func (bool testConds, bool runActions) {
@@ -819,9 +1360,6 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     unitgroup autoF701BE02_g;
     int autoF701BE02_u;
     unit autoF701BE02_var;
-    unitgroup autoA9289333_g;
-    int autoA9289333_u;
-    unit autoA9289333_var;
 
     // Actions
     if (!runActions) {
@@ -833,6 +1371,7 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_Init04MusicSound, true, true);
     TriggerExecute(gt_Init05Environment, true, true);
     TriggerExecute(gt_Init06Difficulties, true, true);
+    TriggerExecute(gt_FactionSwapInit, true, true);
     auto0A3050CC_g = UnitGroup("Bunker", gv_pLAYER_02_TERRAN_RED, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto0A3050CC_u = UnitGroupCount(auto0A3050CC_g, c_unitCountAll);
     for (;; auto0A3050CC_u -= 1) {
@@ -854,21 +1393,18 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
         if (autoF701BE02_var == null) { break; }
         UnitCargoCreate(autoF701BE02_var, "Marine", 4);
     }
-    if (((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 4)))) {
+    TextExpressionSetToken("Param/Expression/162CB74F", "A", FixedToText(GameGetMissionTime(), c_fixedPrecisionAny));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/162CB74F"), true);
+    libABFE498B_gf_AP_Triggers_HeroReplace(gv_pLAYER_01_USER, gv_kerrigan, UnitGroupFromId(5));
+    gv_kerrigan = libABFE498B_gv_aP_Triggers_HeroUnit[1];
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
+        TextExpressionSetToken("Param/Expression/33D4684A", "A", FixedToText(GameGetMissionTime(), c_fixedPrecisionAny));
+        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/33D4684A"), true);
         libNtve_gf_PauseUnit(gv_kerrigan, true);
         libNtve_gf_ShowHideUnit(gv_kerrigan, false);
         UnitBehaviorAdd(gv_kerrigan, "AP_ImmortalShakurasAntiAirMissileDisableAttack", gv_kerrigan, 1);
     }
-    else {
-        autoA9289333_g = UnitGroupFromId(5);
-        autoA9289333_u = UnitGroupCount(autoA9289333_g, c_unitCountAll);
-        for (;; autoA9289333_u -= 1) {
-            autoA9289333_var = UnitGroupUnitFromEnd(autoA9289333_g, autoA9289333_u);
-            if (autoA9289333_var == null) { break; }
-            UnitRemove(autoA9289333_var);
-        }
-        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_kerrigan, gv_pLAYER_01_USER);
-    }
+
     lib15EF4C78_gf_StartingWorkersAutoHarvest(gv_pLAYER_01_USER, RegionFromId(44), RegionFromId(45));
     TriggerExecute(gt_IntroQ, true, true);
     TriggerExecute(gt_StartFirebatAttacks, true, false);
@@ -1283,6 +1819,47 @@ bool gt_Init07Help_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_Init07Help_Init () {
     gt_Init07Help = TriggerCreate("gt_Init07Help_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG: Victory
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/29141B9C"), true);
+    TriggerExecute(gt_VictorySequence, true, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, c_playerAny, "-win", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4782,7 +5359,11 @@ bool gt_ObjectiveFindZergBiomassUpdate_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!(((((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) && (UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER)) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0) && (EventUnit() == gv_kerrigan))))) {
+        if (!((UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER))) {
+            return false;
+        }
+
+        if (!(((UnitGroupHasUnit(libABFE498B_gv_aP_Triggers_HeroUnits, EventUnit()) == true) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)))) {
             return false;
         }
     }
@@ -5296,7 +5877,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     }
     UnitPauseAll(false);
     UnitSetPosition(gv_kerrigan, PointFromId(16), false);
-    if (((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 4)))) {
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
         libNtve_gf_PauseUnit(gv_kerrigan, true);
     }
 
@@ -5829,7 +6410,7 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
         libNtve_gf_ShowHideUnit(auto12FA47D9_var, true);
     }
     UnitPauseAll(false);
-    if ((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0)) {
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
         libNtve_gf_PauseUnit(gv_kerrigan, true);
     }
 
@@ -6600,560 +7181,24 @@ void gt_VictoryCameras_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Faction Swap Init
-//--------------------------------------------------------------------------------------------------
-bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_unit;
-
-    // Automatic Variable Declarations
-    unitgroup autoF1EF6E7F_g;
-    int autoF1EF6E7F_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), "Zerg", false);
-    }
-    else {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
-        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr")) {
-            PlayerSetRace(gv_pLAYER_01_USER, "Terr");
-            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-            autoF1EF6E7F_g = UnitGroup("AP_DrakkenMiniLaserDrill", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            autoF1EF6E7F_u = UnitGroupCount(autoF1EF6E7F_g, c_unitCountAll);
-            for (;; autoF1EF6E7F_u -= 1) {
-                lv_unit = UnitGroupUnitFromEnd(autoF1EF6E7F_g, autoF1EF6E7F_u);
-                if (lv_unit == null) { break; }
-                UnitSetPropertyFixed(lv_unit, c_unitPropLifePercent, 50.0);
-            }
-            gv_scourgeNestUnit[1] = UnitFromId(561729949);
-            gv_scourgeNestUnit[2] = UnitFromId(224240217);
-            gv_scourgeNestUnit[3] = UnitFromId(965678340);
-            gv_scourgeNestUnit[4] = UnitFromId(851535214);
-            gv_scourgeNestUnit[5] = UnitFromId(1215311820);
-            gv_scourgeNestUnit[6] = UnitFromId(1354972341);
-            gv_scourgeNestUnit[7] = UnitFromId(1899008368);
-        }
-        else {
-            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
-                PlayerSetRace(gv_pLAYER_01_USER, "Prot");
-                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-                gv_c_ScourgeActivationRange = 7.0;
-                gv_scourgeNestUnit[1] = UnitFromId(1095951238);
-                gv_scourgeNestUnit[2] = UnitFromId(963507188);
-                gv_scourgeNestUnit[3] = UnitFromId(977806590);
-                gv_scourgeNestUnit[4] = UnitFromId(1725963271);
-                gv_scourgeNestUnit[5] = UnitFromId(1563516715);
-                gv_scourgeNestUnit[6] = UnitFromId(2098768756);
-                gv_scourgeNestUnit[7] = UnitFromId(1212121010);
-            }
-
-        }
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
-        libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), gv_pLAYER_01_USER);
-        lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_FactionSwapInit_Init () {
-    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyCasual
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto0CC8E224_g;
-    int auto0CC8E224_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto0CC8E224_g = UnitGroupFromId(1);
-    auto0CC8E224_u = UnitGroupCount(auto0CC8E224_g, c_unitCountAll);
-    for (;; auto0CC8E224_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto0CC8E224_g, auto0CC8E224_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyCasual_Init () {
-    gt_onDifficultyCasual = TriggerCreate("gt_onDifficultyCasual_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyNormal
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyNormal_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto01940425_g;
-    int auto01940425_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto01940425_g = UnitGroupFromId(2);
-    auto01940425_u = UnitGroupCount(auto01940425_g, c_unitCountAll);
-    for (;; auto01940425_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto01940425_g, auto01940425_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyNormal_Init () {
-    gt_onDifficultyNormal = TriggerCreate("gt_onDifficultyNormal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyHard
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyHard_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto2E30C709_g;
-    int auto2E30C709_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto2E30C709_g = UnitGroupFromId(3);
-    auto2E30C709_u = UnitGroupCount(auto2E30C709_g, c_unitCountAll);
-    for (;; auto2E30C709_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto2E30C709_g, auto2E30C709_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyHard_Init () {
-    gt_onDifficultyHard = TriggerCreate("gt_onDifficultyHard_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyBrutal
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup autoDCDA5A92_g;
-    int autoDCDA5A92_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoDCDA5A92_g = UnitGroupFromId(4);
-    autoDCDA5A92_u = UnitGroupCount(autoDCDA5A92_g, c_unitCountAll);
-    for (;; autoDCDA5A92_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(autoDCDA5A92_g, autoDCDA5A92_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyBrutal_Init () {
-    gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Orbitals Create
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyOrbitalsCreate_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_category;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_category = lib5BD4895D_ge_APObjectiveCategory_Challenge;
-
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    ObjectiveCreate(StringExternal("Param/Value/AA69C287"), StringToText(""), c_objectiveStateHidden, false);
-    gv_objectiveDestroyOrbitals = ObjectiveLastCreated();
-    lib5BD4895D_gf_AP_Core_addCategoryObjectiveWithCounter(gv_objectiveDestroyOrbitals, lv_category, "", gv_orbitalsDestroyed, 3, true);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyOrbitals, gv_LOCATION_ID_SOUTH_ORBITAL_COMMAND_CENTER);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyOrbitals, gv_LOCATION_ID_NORTHWEST_ORBITAL_COMMAND_CENTER);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyOrbitals, gv_LOCATION_ID_SOUTHEAST_ORBITAL_COMMAND_CENTER);
-    lib5BD4895D_gf_AP_Core_setObjectiveVisibility(gv_objectiveDestroyOrbitals, true);
-    Wait(libSwaC_gv_campaignObjectiveDelay, c_timeReal);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyOrbitalsCreate_Init () {
-    gt_ObjectiveDestroyOrbitalsCreate = TriggerCreate("gt_ObjectiveDestroyOrbitalsCreate_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Orbitals Update
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyOrbitalsUpdate_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    gv_orbitalsDestroyed += 1;
-    lib5BD4895D_gf_AP_Core_setObjectiveCounter(gv_objectiveDestroyOrbitals, gv_orbitalsDestroyed);
-    if ((gv_orbitalsDestroyed >= 3)) {
-        TriggerEnable(TriggerGetCurrent(), false);
-        TriggerExecute(gt_ObjectiveDestroyOrbitalsComplete, true, false);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyOrbitalsUpdate_Init () {
-    gt_ObjectiveDestroyOrbitalsUpdate = TriggerCreate("gt_ObjectiveDestroyOrbitalsUpdate_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Orbitals Complete
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyOrbitalsComplete_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerExecute(gt_ObjectiveDestroyOrbitalsCreate, true, false);
-    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveDestroyOrbitals);
-    Wait(libSwaC_gv_campaignObjectiveDelay, c_timeReal);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyOrbitalsComplete_Init () {
-    gt_ObjectiveDestroyOrbitalsComplete = TriggerCreate("gt_ObjectiveDestroyOrbitalsComplete_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(libA472B13C_gt_AP_HotS_Constructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    TriggerExecute(gt_Init03Units, true, false);
-    libABFE498B_gf_AP_Triggers_MapConfig_setKerriganOptions(false, true);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM_SWITCHABLE_TO_PRIMAL_ZERG);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Set Mineral Count
-//--------------------------------------------------------------------------------------------------
-bool gt_SetMineralCount_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libNtve_gf_DifficultyValueInt(0, 0, 1, 1) == 1)) {
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_SetMineralCount_Init () {
-    gt_SetMineralCount = TriggerCreate("gt_SetMineralCount_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Find Zerg Biomass West
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveFindZergBiomassWest_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-
-        if (!((gv_inCinematic == false))) {
-            return false;
-        }
-
-        if (!(((((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) && (UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER)) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0) && (EventUnit() == gv_kerrigan))))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_WEST_BIOMASS);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveFindZergBiomassWest_Init () {
-    gt_ObjectiveFindZergBiomassWest = TriggerCreate("gt_ObjectiveFindZergBiomassWest_Func");
-    TriggerAddEventUnitRange(gt_ObjectiveFindZergBiomassWest, null, UnitFromId(1831), 1.5, true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Find Zerg Biomass North
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveFindZergBiomassNorth_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-
-        if (!((gv_inCinematic == false))) {
-            return false;
-        }
-
-        if (!(((((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) && (UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER)) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0) && (EventUnit() == gv_kerrigan))))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTH_BIOMASS);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveFindZergBiomassNorth_Init () {
-    gt_ObjectiveFindZergBiomassNorth = TriggerCreate("gt_ObjectiveFindZergBiomassNorth_Func");
-    TriggerAddEventUnitRange(gt_ObjectiveFindZergBiomassNorth, null, UnitFromId(1832), 1.5, true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Find Zerg Biomass South
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveFindZergBiomassSouth_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-
-        if (!((gv_inCinematic == false))) {
-            return false;
-        }
-
-        if (!(((((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) && (UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER)) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0) && (EventUnit() == gv_kerrigan))))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_BIOMASS);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveFindZergBiomassSouth_Init () {
-    gt_ObjectiveFindZergBiomassSouth = TriggerCreate("gt_ObjectiveFindZergBiomassSouth_Func");
-    TriggerAddEventUnitRange(gt_ObjectiveFindZergBiomassSouth, null, UnitFromId(1824), 1.5, true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Orbital South
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyOrbitalSouth_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-
-        if (!((gv_inCinematic == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_ORBITAL_COMMAND_CENTER);
-    TriggerExecute(gt_ObjectiveDestroyOrbitalsUpdate, true, false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyOrbitalSouth_Init () {
-    gt_ObjectiveDestroyOrbitalSouth = TriggerCreate("gt_ObjectiveDestroyOrbitalSouth_Func");
-    TriggerAddEventUnitDied(gt_ObjectiveDestroyOrbitalSouth, UnitRefFromUnit(UnitFromId(306)));
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Orbital Northwest
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyOrbitalNorthwest_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-
-        if (!((gv_inCinematic == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTHWEST_ORBITAL_COMMAND_CENTER);
-    TriggerExecute(gt_ObjectiveDestroyOrbitalsUpdate, true, false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyOrbitalNorthwest_Init () {
-    gt_ObjectiveDestroyOrbitalNorthwest = TriggerCreate("gt_ObjectiveDestroyOrbitalNorthwest_Func");
-    TriggerAddEventUnitDied(gt_ObjectiveDestroyOrbitalNorthwest, UnitRefFromUnit(UnitFromId(242)));
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Orbital Southeast
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyOrbitalSoutheast_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((gv_gameOver == false))) {
-            return false;
-        }
-
-        if (!((gv_inCinematic == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTHEAST_ORBITAL_COMMAND_CENTER);
-    TriggerExecute(gt_ObjectiveDestroyOrbitalsUpdate, true, false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyOrbitalSoutheast_Init () {
-    gt_ObjectiveDestroyOrbitalSoutheast = TriggerCreate("gt_ObjectiveDestroyOrbitalSoutheast_Func");
-    TriggerAddEventUnitDied(gt_ObjectiveDestroyOrbitalSoutheast, UnitRefFromUnit(UnitFromId(130)));
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchInit_Init();
+    gt_FactionSwapInit_Init();
+    gt_onDifficultyCasual_Init();
+    gt_onDifficultyNormal_Init();
+    gt_onDifficultyHard_Init();
+    gt_onDifficultyBrutal_Init();
+    gt_ObjectiveDestroyOrbitalsCreate_Init();
+    gt_ObjectiveDestroyOrbitalsUpdate_Init();
+    gt_ObjectiveDestroyOrbitalsComplete_Init();
+    gt_ObjectiveFindZergBiomassWest_Init();
+    gt_ObjectiveFindZergBiomassNorth_Init();
+    gt_ObjectiveFindZergBiomassSouth_Init();
+    gt_ObjectiveDestroyOrbitalSouth_Init();
+    gt_ObjectiveDestroyOrbitalNorthwest_Init();
+    gt_ObjectiveDestroyOrbitalSoutheast_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -7163,6 +7208,7 @@ void InitTriggers () {
     gt_Init05Environment_Init();
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
+    gt_DEBUGVictory_Init();
     gt_StartGameQ_Init();
     gt_BonusObjectiveRevealQ_Init();
     gt_TeachCreepTumor_Init();
@@ -7270,22 +7316,6 @@ void InitTriggers () {
     gt_VictoryTerranUpTheNight_Init();
     gt_VictoryWarpIns_Init();
     gt_VictoryCameras_Init();
-    gt_FactionSwapInit_Init();
-    gt_onDifficultyCasual_Init();
-    gt_onDifficultyNormal_Init();
-    gt_onDifficultyHard_Init();
-    gt_onDifficultyBrutal_Init();
-    gt_ObjectiveDestroyOrbitalsCreate_Init();
-    gt_ObjectiveDestroyOrbitalsUpdate_Init();
-    gt_ObjectiveDestroyOrbitalsComplete_Init();
-    gt_ArchInit_Init();
-    gt_SetMineralCount_Init();
-    gt_ObjectiveFindZergBiomassWest_Init();
-    gt_ObjectiveFindZergBiomassNorth_Init();
-    gt_ObjectiveFindZergBiomassSouth_Init();
-    gt_ObjectiveDestroyOrbitalSouth_Init();
-    gt_ObjectiveDestroyOrbitalNorthwest_Init();
-    gt_ObjectiveDestroyOrbitalSoutheast_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -56,6 +56,7 @@ bool gv_inCinematic;
 unitgroup gv_raynorsRaidingForce;
 playergroup gv_dominionEnemyGroup;
 unit gv_odin;
+int gv_currentStage;
 unitgroup gv_warehouse1Bullies;
 bool gv_initialOrderGiven;
 unitgroup gv_warehouseDominion;
@@ -143,6 +144,8 @@ trigger gt_Init04Music;
 trigger gt_Init05Environment;
 trigger gt_Init06Difficulty;
 trigger gt_Init07Help;
+trigger gt_DEBUGStage2;
+trigger gt_DEBUGVictory;
 trigger gt_IntroSequence;
 trigger gt_StartGameWarehouse;
 trigger gt_WarehouseBullies1;
@@ -566,6 +569,16 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
     if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
     }
@@ -603,6 +616,10 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         }
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_p01_USER);
     }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_p01_USER, PointFromId(2114687650), UnitGroupFromId(6));
+    UnitGroupAdd(gv_raynorsRaidingForce, libABFE498B_gv_aP_Triggers_HeroUnit[1]);
+    UnitGroupAdd(gv_raynorsRaidingForce, libABFE498B_gv_aP_Triggers_HeroUnit[2]);
+    UnitGroupAdd(gv_raynorsRaidingForce, libABFE498B_gv_aP_Triggers_HeroUnit[3]);
     return true;
 }
 
@@ -1114,6 +1131,126 @@ void gt_Init07Help_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Stage 2
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGStage2_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+
+        if (!((gv_currentStage == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/E38A6257"), true);
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerEnable(gt_WarehouseBullies1, false);
+    TriggerEnable(gt_TransmissionWarehouseBullies1AllDeadQ, false);
+    TriggerEnable(gt_WarehouseBullies2, false);
+    TriggerEnable(gt_WarehouseBullies3, false);
+    TriggerEnable(gt_TychusMove1Q, false);
+    TriggerEnable(gt_TychusMove2, false);
+    TriggerEnable(gt_TychusMove3, false);
+    TriggerStop(gt_StartGameWarehouse);
+    TriggerExecute(gt_MidQ, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGStage2_Init () {
+    gt_DEBUGStage2 = TriggerCreate("gt_DEBUGStage2_Func");
+    TriggerAddEventChatMessage(gt_DEBUGStage2, c_playerAny, "-s2", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Victory
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoE5E8532F_g;
+    int autoE5E8532F_var;
+    unitgroup auto8AFE1E1B_g;
+    int auto8AFE1E1B_u;
+    unit auto8AFE1E1B_var;
+
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/37688F44"), true);
+    TriggerEnable(gt_TransmissionP04BaseDestroyedQ, false);
+    libNtve_gf_ShowHideBossBar(false, gv_odinBossBar);
+    libNtve_gf_PauseUnit(gv_odin, true);
+    UnitSetPosition(gv_odin, PointFromId(715), false);
+    UnitIssueOrder(gv_odin, Order(AbilityCommand("move", 2)), c_orderQueueAddToEnd);
+    autoE5E8532F_g = gv_dominionEnemyGroup;
+    autoE5E8532F_var = -1;
+    while (true) {
+        autoE5E8532F_var = PlayerGroupNextPlayer(autoE5E8532F_g, autoE5E8532F_var);
+        if (autoE5E8532F_var < 0) { break; }
+        auto8AFE1E1B_g = UnitGroup(null, autoE5E8532F_var, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto8AFE1E1B_u = UnitGroupCount(auto8AFE1E1B_g, c_unitCountAll);
+        for (;; auto8AFE1E1B_u -= 1) {
+            auto8AFE1E1B_var = UnitGroupUnitFromEnd(auto8AFE1E1B_g, auto8AFE1E1B_u);
+            if (auto8AFE1E1B_var == null) { break; }
+            libNtve_gf_ShowHideUnit(auto8AFE1E1B_var, false);
+        }
+    }
+    TriggerExecute(gt_ObjectiveDestroyDominionBasesComplete, true, true);
+    TriggerExecute(gt_VictoryDestroyAllBasesComplete, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, c_playerAny, "-win", false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Intro Sequence
 //--------------------------------------------------------------------------------------------------
 bool gt_IntroSequence_Func (bool testConds, bool runActions) {
@@ -1146,6 +1283,7 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     PlayerPauseAllCharges(gv_p01_USER, true);
     libABFE498B_gf_AP_Triggers_startNoBuild(gv_p01_USER);
     UIAlertPoint("Trigger", gv_p01_USER, StringExternal("Param/Value/9E4D978B"), null, PointFromId(966));
+    gv_currentStage = 1;
     TriggerExecute(gt_StartGameWarehouse, true, false);
     return true;
 }
@@ -1602,6 +1740,7 @@ bool gt_StartGameEscort_Func (bool testConds, bool runActions) {
         UnitBehaviorAdd(gv_odin, "AP_OdinInfested", gv_odin, 1);
     }
 
+    gv_currentStage = 2;
     UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeResourcePanel, true);
     UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeSupply, true);
     PlayerPauseAllCooldowns(gv_p01_USER, false);
@@ -6518,6 +6657,8 @@ void InitTriggers () {
     gt_Init05Environment_Init();
     gt_Init06Difficulty_Init();
     gt_Init07Help_Init();
+    gt_DEBUGStage2_Init();
+    gt_DEBUGVictory_Init();
     gt_IntroSequence_Init();
     gt_StartGameWarehouse_Init();
     gt_WarehouseBullies1_Init();

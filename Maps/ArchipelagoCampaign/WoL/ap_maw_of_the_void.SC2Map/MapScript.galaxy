@@ -71,6 +71,7 @@ fixed gv_daMuddaShipShields;
 fixed gv_daMuddaShipLife;
 region gv_mapAreaNormal;
 unitgroup gv_gROUPLZEnemies;
+int gv_missionStage;
 int gv_inCombatIndicator;
 timer gv_photonActortimeout;
 actor[4] gv_photonActor;
@@ -203,6 +204,12 @@ void gf_P03AttackWaveWaypointsRoute (int lp_player, bool lp_flank);
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchInit;
+trigger gt_FactionSwapInit;
+trigger gt_onDifficultyCasual;
+trigger gt_onDifficultyNormal;
+trigger gt_onDifficultyHard;
+trigger gt_onDifficultyBrutal;
 trigger gt_ObjectiveMothershipCreateQ;
 trigger gt_ObjectiveMothershipComplete;
 trigger gt_ObjectiveRipFieldGeneratorsCreateQ;
@@ -215,12 +222,6 @@ trigger gt_StargateRipFieldGenerator;
 trigger gt_NorthwestRipFieldGenerator;
 trigger gt_WestRipFieldGenerator;
 trigger gt_SouthwestRipFieldGenerator;
-trigger gt_onDifficultyCasual;
-trigger gt_onDifficultyNormal;
-trigger gt_onDifficultyHard;
-trigger gt_onDifficultyBrutal;
-trigger gt_ArchInit;
-trigger gt_FactionSwapInit;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -232,6 +233,9 @@ trigger gt_Init07Help;
 trigger gt_PlayerIsInCombatattacking;
 trigger gt_PlayerIsInCombatbeingattacked;
 trigger gt_PlayerIsInCombatIndicatorDiminish;
+trigger gt_DEBUGVictory;
+trigger gt_DEBUGStage2;
+trigger gt_DEBUGKillShields;
 trigger gt_StartGameStage1;
 trigger gt_StartGameStage2;
 trigger gt_YamatoTeachingtrigger;
@@ -384,6 +388,269 @@ void gf_P03AttackWaveWaypointsRoute (int lp_player, bool lp_flank) {
         AIAttackWaveAddWaypoint(lp_player, PointFromId(336), false);
         AIAttackWaveAddWaypoint(lp_player, PointFromId(350), false);
     }
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Faction Swap Init
+//--------------------------------------------------------------------------------------------------
+bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup autoF2B33AB9_g;
+    int autoF2B33AB9_u;
+    unit autoF2B33AB9_var;
+    unitgroup autoCE78F1F8_g;
+    int autoCE78F1F8_u;
+    unit autoCE78F1F8_var;
+    unitgroup auto8D491E61_g;
+    int auto8D491E61_u;
+    unit auto8D491E61_var;
+    unitgroup auto70F4F2E3_g;
+    int auto70F4F2E3_u;
+    unit auto70F4F2E3_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 4);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", true);
+    }
+    else {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
+            libNtve_gf_ReplaceUnit(gv_uNITCruiser01, "AP_TempestPurifier", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
+            gv_uNITCruiser01 = libNtve_gf_LastReplacedUnit();
+            libNtve_gf_ReplaceUnit(gv_uNITCruiser02, "AP_TempestPurifier", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
+            gv_uNITCruiser02 = libNtve_gf_LastReplacedUnit();
+            libNtve_gf_ReplaceUnit(gv_uNITCruiser03, "AP_TempestPurifier", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
+            gv_uNITCruiser03 = libNtve_gf_LastReplacedUnit();
+            UnitGroupAddUnitGroup(gv_gROUPPlayersStartingUNITS, UnitGroup("AP_TempestPurifier", gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        }
+
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
+            UnitGroupAddUnitGroup(gv_gROUPPlayersStartingUNITS, UnitGroup("AP_TyrannozorBurrowed", gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+            autoF2B33AB9_g = UnitGroup("AP_Hive", gv_pLAYER_01_USER, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoF2B33AB9_u = UnitGroupCount(autoF2B33AB9_g, c_unitCountAll);
+            for (;; autoF2B33AB9_u -= 1) {
+                autoF2B33AB9_var = UnitGroupUnitFromEnd(autoF2B33AB9_g, autoF2B33AB9_u);
+                if (autoF2B33AB9_var == null) { break; }
+                libNtve_gf_PauseUnit(autoF2B33AB9_var, true);
+                libNtve_gf_ShowHideUnit(autoF2B33AB9_var, false);
+                UnitGroupAdd(gv_gROUPPlayersStartingBASE, autoF2B33AB9_var);
+                autoCE78F1F8_g = UnitGroup("AP_Larva", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoCE78F1F8_u = UnitGroupCount(autoCE78F1F8_g, c_unitCountAll);
+                for (;; autoCE78F1F8_u -= 1) {
+                    autoCE78F1F8_var = UnitGroupUnitFromEnd(autoCE78F1F8_g, autoCE78F1F8_u);
+                    if (autoCE78F1F8_var == null) { break; }
+                    UnitRemove(autoCE78F1F8_var);
+                }
+                auto8D491E61_g = UnitGroup("Larva", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto8D491E61_u = UnitGroupCount(auto8D491E61_g, c_unitCountAll);
+                for (;; auto8D491E61_u -= 1) {
+                    auto8D491E61_var = UnitGroupUnitFromEnd(auto8D491E61_g, auto8D491E61_u);
+                    if (auto8D491E61_var == null) { break; }
+                    UnitRemove(auto8D491E61_var);
+                }
+                CreepModify(UnitGetPosition(autoF2B33AB9_var), 12.0, false, false);
+            }
+            PlayerSetRace(gv_pLAYER_01_USER, "Zerg");
+            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
+        }
+        else {
+            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
+                auto70F4F2E3_g = UnitGroup("AP_Nexus", gv_pLAYER_01_USER, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto70F4F2E3_u = UnitGroupCount(auto70F4F2E3_g, c_unitCountAll);
+                for (;; auto70F4F2E3_u -= 1) {
+                    auto70F4F2E3_var = UnitGroupUnitFromEnd(auto70F4F2E3_g, auto70F4F2E3_u);
+                    if (auto70F4F2E3_var == null) { break; }
+                    libNtve_gf_ShowHideUnit(auto70F4F2E3_var, false);
+                    libNtve_gf_PauseUnit(auto70F4F2E3_var, true);
+                    UnitGroupAdd(gv_gROUPPlayersStartingBASE, auto70F4F2E3_var);
+                }
+                PlayerSetRace(gv_pLAYER_01_USER, "Prot");
+                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
+            }
+
+        }
+        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
+    }
+    TriggerEnable(gt_DamagePulse, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_FactionSwapInit_Init () {
+    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
+    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyCasual
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto8D74D10F_g;
+    int auto8D74D10F_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto8D74D10F_g = UnitGroupFromId(1);
+    auto8D74D10F_u = UnitGroupCount(auto8D74D10F_g, c_unitCountAll);
+    for (;; auto8D74D10F_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto8D74D10F_g, auto8D74D10F_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyCasual_Init () {
+    gt_onDifficultyCasual = TriggerCreate("gt_onDifficultyCasual_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyNormal
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyNormal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto77EF7E91_g;
+    int auto77EF7E91_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto77EF7E91_g = UnitGroupFromId(2);
+    auto77EF7E91_u = UnitGroupCount(auto77EF7E91_g, c_unitCountAll);
+    for (;; auto77EF7E91_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto77EF7E91_g, auto77EF7E91_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyNormal_Init () {
+    gt_onDifficultyNormal = TriggerCreate("gt_onDifficultyNormal_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyHard
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyHard_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup autoA0B98EFD_g;
+    int autoA0B98EFD_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoA0B98EFD_g = UnitGroupFromId(3);
+    autoA0B98EFD_u = UnitGroupCount(autoA0B98EFD_g, c_unitCountAll);
+    for (;; autoA0B98EFD_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(autoA0B98EFD_g, autoA0B98EFD_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyHard_Init () {
+    gt_onDifficultyHard = TriggerCreate("gt_onDifficultyHard_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyBrutal
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup autoA3583621_g;
+    int autoA3583621_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoA3583621_g = UnitGroupFromId(4);
+    autoA3583621_u = UnitGroupCount(autoA3583621_g, c_unitCountAll);
+    for (;; autoA3583621_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(autoA3583621_g, autoA3583621_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyBrutal_Init () {
+    gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -710,259 +977,6 @@ bool gt_SouthwestRipFieldGenerator_Func (bool testConds, bool runActions) {
 void gt_SouthwestRipFieldGenerator_Init () {
     gt_SouthwestRipFieldGenerator = TriggerCreate("gt_SouthwestRipFieldGenerator_Func");
     TriggerAddEventUnitDied(gt_SouthwestRipFieldGenerator, UnitRefFromUnit(UnitFromId(297)));
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyCasual
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto8D74D10F_g;
-    int auto8D74D10F_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto8D74D10F_g = UnitGroupFromId(1);
-    auto8D74D10F_u = UnitGroupCount(auto8D74D10F_g, c_unitCountAll);
-    for (;; auto8D74D10F_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto8D74D10F_g, auto8D74D10F_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyCasual_Init () {
-    gt_onDifficultyCasual = TriggerCreate("gt_onDifficultyCasual_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyNormal
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyNormal_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto77EF7E91_g;
-    int auto77EF7E91_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto77EF7E91_g = UnitGroupFromId(2);
-    auto77EF7E91_u = UnitGroupCount(auto77EF7E91_g, c_unitCountAll);
-    for (;; auto77EF7E91_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto77EF7E91_g, auto77EF7E91_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyNormal_Init () {
-    gt_onDifficultyNormal = TriggerCreate("gt_onDifficultyNormal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyHard
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyHard_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup autoA0B98EFD_g;
-    int autoA0B98EFD_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoA0B98EFD_g = UnitGroupFromId(3);
-    autoA0B98EFD_u = UnitGroupCount(autoA0B98EFD_g, c_unitCountAll);
-    for (;; autoA0B98EFD_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(autoA0B98EFD_g, autoA0B98EFD_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyHard_Init () {
-    gt_onDifficultyHard = TriggerCreate("gt_onDifficultyHard_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyBrutal
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup autoA3583621_g;
-    int autoA3583621_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoA3583621_g = UnitGroupFromId(4);
-    autoA3583621_u = UnitGroupCount(autoA3583621_g, c_unitCountAll);
-    for (;; autoA3583621_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(autoA3583621_g, autoA3583621_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyBrutal_Init () {
-    gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Faction Swap Init
-//--------------------------------------------------------------------------------------------------
-bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    unitgroup autoF2B33AB9_g;
-    int autoF2B33AB9_u;
-    unit autoF2B33AB9_var;
-    unitgroup autoCE78F1F8_g;
-    int autoCE78F1F8_u;
-    unit autoCE78F1F8_var;
-    unitgroup auto8D491E61_g;
-    int auto8D491E61_u;
-    unit auto8D491E61_var;
-    unitgroup auto70F4F2E3_g;
-    int auto70F4F2E3_u;
-    unit auto70F4F2E3_var;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", true);
-    }
-    else {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
-            libNtve_gf_ReplaceUnit(gv_uNITCruiser01, "AP_TempestPurifier", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
-            gv_uNITCruiser01 = libNtve_gf_LastReplacedUnit();
-            libNtve_gf_ReplaceUnit(gv_uNITCruiser02, "AP_TempestPurifier", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
-            gv_uNITCruiser02 = libNtve_gf_LastReplacedUnit();
-            libNtve_gf_ReplaceUnit(gv_uNITCruiser03, "AP_TempestPurifier", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
-            gv_uNITCruiser03 = libNtve_gf_LastReplacedUnit();
-            UnitGroupAddUnitGroup(gv_gROUPPlayersStartingUNITS, UnitGroup("AP_TempestPurifier", gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-        }
-
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, true);
-        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
-            UnitGroupAddUnitGroup(gv_gROUPPlayersStartingUNITS, UnitGroup("AP_TyrannozorBurrowed", gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-            autoF2B33AB9_g = UnitGroup("AP_Hive", gv_pLAYER_01_USER, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            autoF2B33AB9_u = UnitGroupCount(autoF2B33AB9_g, c_unitCountAll);
-            for (;; autoF2B33AB9_u -= 1) {
-                autoF2B33AB9_var = UnitGroupUnitFromEnd(autoF2B33AB9_g, autoF2B33AB9_u);
-                if (autoF2B33AB9_var == null) { break; }
-                libNtve_gf_PauseUnit(autoF2B33AB9_var, true);
-                libNtve_gf_ShowHideUnit(autoF2B33AB9_var, false);
-                UnitGroupAdd(gv_gROUPPlayersStartingBASE, autoF2B33AB9_var);
-                autoCE78F1F8_g = UnitGroup("AP_Larva", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoCE78F1F8_u = UnitGroupCount(autoCE78F1F8_g, c_unitCountAll);
-                for (;; autoCE78F1F8_u -= 1) {
-                    autoCE78F1F8_var = UnitGroupUnitFromEnd(autoCE78F1F8_g, autoCE78F1F8_u);
-                    if (autoCE78F1F8_var == null) { break; }
-                    UnitRemove(autoCE78F1F8_var);
-                }
-                auto8D491E61_g = UnitGroup("Larva", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto8D491E61_u = UnitGroupCount(auto8D491E61_g, c_unitCountAll);
-                for (;; auto8D491E61_u -= 1) {
-                    auto8D491E61_var = UnitGroupUnitFromEnd(auto8D491E61_g, auto8D491E61_u);
-                    if (auto8D491E61_var == null) { break; }
-                    UnitRemove(auto8D491E61_var);
-                }
-                CreepModify(UnitGetPosition(autoF2B33AB9_var), 12.0, false, false);
-            }
-            PlayerSetRace(gv_pLAYER_01_USER, "Zerg");
-            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
-        }
-        else {
-            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
-                auto70F4F2E3_g = UnitGroup("AP_Nexus", gv_pLAYER_01_USER, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto70F4F2E3_u = UnitGroupCount(auto70F4F2E3_g, c_unitCountAll);
-                for (;; auto70F4F2E3_u -= 1) {
-                    auto70F4F2E3_var = UnitGroupUnitFromEnd(auto70F4F2E3_g, auto70F4F2E3_u);
-                    if (auto70F4F2E3_var == null) { break; }
-                    libNtve_gf_ShowHideUnit(auto70F4F2E3_var, false);
-                    libNtve_gf_PauseUnit(auto70F4F2E3_var, true);
-                    UnitGroupAdd(gv_gROUPPlayersStartingBASE, auto70F4F2E3_var);
-                }
-                PlayerSetRace(gv_pLAYER_01_USER, "Prot");
-                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-            }
-
-        }
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
-    }
-    TriggerEnable(gt_DamagePulse, true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_FactionSwapInit_Init () {
-    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1484,6 +1498,153 @@ void gt_PlayerIsInCombatIndicatorDiminish_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Victory
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/6FDAD531"), true);
+    UnitKill(UnitFromId(3));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGVictory_Init () {
+    gt_DEBUGVictory = TriggerCreate("gt_DEBUGVictory_Func");
+    TriggerAddEventChatMessage(gt_DEBUGVictory, c_playerAny, "-win", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Stage 2
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGStage2_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup autoAE67A1A5_g;
+    int autoAE67A1A5_u;
+    unit autoAE67A1A5_var;
+
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+
+        if (!((gv_missionStage == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/8D00B9EE"), true);
+    autoAE67A1A5_g = gv_gROUPLZEnemies;
+    autoAE67A1A5_u = UnitGroupCount(autoAE67A1A5_g, c_unitCountAll);
+    for (;; autoAE67A1A5_u -= 1) {
+        autoAE67A1A5_var = UnitGroupUnitFromEnd(autoAE67A1A5_g, autoAE67A1A5_u);
+        if (autoAE67A1A5_var == null) { break; }
+        UnitKill(autoAE67A1A5_var);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGStage2_Init () {
+    gt_DEBUGStage2 = TriggerCreate("gt_DEBUGStage2_Func");
+    TriggerAddEventChatMessage(gt_DEBUGStage2, c_playerAny, "-s2", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Kill Shields
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGKillShields_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup autoE5B4A196_g;
+    int autoE5B4A196_u;
+    unit autoE5B4A196_var;
+
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/70EAE66A"), true);
+    autoE5B4A196_g = gv_gROUPEmitters;
+    autoE5B4A196_u = UnitGroupCount(autoE5B4A196_g, c_unitCountAll);
+    for (;; autoE5B4A196_u -= 1) {
+        autoE5B4A196_var = UnitGroupUnitFromEnd(autoE5B4A196_g, autoE5B4A196_u);
+        if (autoE5B4A196_var == null) { break; }
+        UnitKill(autoE5B4A196_var);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGKillShields_Init () {
+    gt_DEBUGKillShields = TriggerCreate("gt_DEBUGKillShields_Func");
+    TriggerAddEventChatMessage(gt_DEBUGKillShields, c_playerAny, "-killshields", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Start Game - Stage 1
 //--------------------------------------------------------------------------------------------------
 bool gt_StartGameStage1_Func (bool testConds, bool runActions) {
@@ -1493,6 +1654,7 @@ bool gt_StartGameStage1_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    gv_missionStage = 1;
     PlayerPauseAllCooldowns(gv_pLAYER_01_USER, true);
     PlayerPauseAllCharges(gv_pLAYER_01_USER, true);
     libABFE498B_gf_AP_Triggers_startNoBuild(gv_pLAYER_01_USER);
@@ -1530,6 +1692,7 @@ bool gt_StartGameStage2_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    gv_missionStage = 2;
     PlayerPauseAllCooldowns(gv_pLAYER_01_USER, false);
     PlayerPauseAllCharges(gv_pLAYER_01_USER, false);
     libABFE498B_gf_AP_Triggers_resetBase(gv_pLAYER_01_USER);
@@ -6027,6 +6190,7 @@ bool gt_BaseMidCleanup_Func (bool testConds, bool runActions) {
         lib15EF4C78_gf_AP_Player_SpawnLarvaForHatchery(autoCB834E66_var, 3);
     }
     UnitPauseAll(false);
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(110), UnitGroupEmpty());
     GameTimeOfDayPause(false);
     PlayerSetState(gv_pLAYER_01_USER, c_playerStateXPGain, true);
     if ((libABFE498B_gv_aP_Triggers_skipCutscenes == false)) {
@@ -7033,6 +7197,12 @@ void gt_VictoryCleanup_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchInit_Init();
+    gt_FactionSwapInit_Init();
+    gt_onDifficultyCasual_Init();
+    gt_onDifficultyNormal_Init();
+    gt_onDifficultyHard_Init();
+    gt_onDifficultyBrutal_Init();
     gt_ObjectiveMothershipCreateQ_Init();
     gt_ObjectiveMothershipComplete_Init();
     gt_ObjectiveRipFieldGeneratorsCreateQ_Init();
@@ -7045,12 +7215,6 @@ void InitTriggers () {
     gt_NorthwestRipFieldGenerator_Init();
     gt_WestRipFieldGenerator_Init();
     gt_SouthwestRipFieldGenerator_Init();
-    gt_onDifficultyCasual_Init();
-    gt_onDifficultyNormal_Init();
-    gt_onDifficultyHard_Init();
-    gt_onDifficultyBrutal_Init();
-    gt_ArchInit_Init();
-    gt_FactionSwapInit_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -7062,6 +7226,9 @@ void InitTriggers () {
     gt_PlayerIsInCombatattacking_Init();
     gt_PlayerIsInCombatbeingattacked_Init();
     gt_PlayerIsInCombatIndicatorDiminish_Init();
+    gt_DEBUGVictory_Init();
+    gt_DEBUGStage2_Init();
+    gt_DEBUGKillShields_Init();
     gt_StartGameStage1_Init();
     gt_StartGameStage2_Init();
     gt_YamatoTeachingtrigger_Init();

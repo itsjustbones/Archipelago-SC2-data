@@ -29,13 +29,6 @@ void InitLibs () {
 //--------------------------------------------------------------------------------------------------
 // Constants
 //--------------------------------------------------------------------------------------------------
-const int gv_pLAYER_01_USER = 1;
-const int gv_pLAYER_02_REFUGEES = 2;
-const int gv_pLAYER_03_INFESTED_REFUGEES = 3;
-const int gv_pLAYER_04_INFESTEDREFUGEES = 4;
-const int gv_pLAYER_05_REFUGEES = 5;
-const int gv_pLAYER_06_INFESTORS = 6;
-const int gv_pLAYER_08_SWANN = 8;
 const int gv_LOCATION_ID_LEFT_INFESTOR = 1;
 const int gv_LOCATION_ID_RIGHT_INFESTOR = 2;
 const int gv_LOCATION_ID_NORTH_INFESTED_COMMAND_CENTER = 3;
@@ -43,6 +36,13 @@ const int gv_LOCATION_ID_SOUTH_INFESTED_COMMAND_CENTER = 4;
 const int gv_LOCATION_ID_NORTHWEST_BAR = 5;
 const int gv_LOCATION_ID_NORTH_BAR = 6;
 const int gv_LOCATION_ID_SOUTH_BAR = 7;
+const int gv_pLAYER_01_USER = 1;
+const int gv_pLAYER_02_REFUGEES = 2;
+const int gv_pLAYER_03_INFESTED_REFUGEES = 3;
+const int gv_pLAYER_04_INFESTEDREFUGEES = 4;
+const int gv_pLAYER_05_REFUGEES = 5;
+const int gv_pLAYER_06_INFESTORS = 6;
+const int gv_pLAYER_08_SWANN = 8;
 
 //--------------------------------------------------------------------------------------------------
 // Global Preset Declarations
@@ -58,6 +58,10 @@ const int ge_AttackDirection_SouthRightfallback = 4;
 //--------------------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------------------
+int gv_infestedCommandCentersDestroyed;
+int gv_objectiveDestroyInfestedCommandCenters;
+int gv_infestedBarsDestroyed;
+int gv_objectiveDestroyInfestedBars;
 bool gv_gameOver;
 bool gv_inCinematic;
 int[16] gv_infestableStructuresPings;
@@ -124,10 +128,6 @@ int gv_statStructuresRazedAtNight;
 int gv_objectiveCleanseInfestation;
 int gv_researchObjectiveKilltheInfestors;
 int gv_infestorsKilled;
-int gv_infestedCommandCentersDestroyed;
-int gv_objectiveDestroyInfestedCommandCenters;
-int gv_infestedBarsDestroyed;
-int gv_objectiveDestroyInfestedBars;
 unitgroup gv_briefingCinematicUnits;
 bool gv_victoryCinematicCompleted;
 unitgroup gv_victoryHiddenUnitGroup;
@@ -135,6 +135,8 @@ unitgroup gv_victoryHiddenUnitGroup;
 void InitGlobals () {
     int init_i;
 
+    gv_objectiveDestroyInfestedCommandCenters = c_invalidObjectiveId;
+    gv_objectiveDestroyInfestedBars = c_invalidObjectiveId;
     for (init_i = 0; init_i <= 15; init_i += 1) {
         gv_infestableStructuresPings[init_i] = c_invalidPingId;
     }
@@ -155,8 +157,6 @@ void InitGlobals () {
     gv_firstSightInfestedGroup = UnitGroupEmpty();
     gv_objectiveCleanseInfestation = c_invalidObjectiveId;
     gv_researchObjectiveKilltheInfestors = c_invalidObjectiveId;
-    gv_objectiveDestroyInfestedCommandCenters = c_invalidObjectiveId;
-    gv_objectiveDestroyInfestedBars = c_invalidObjectiveId;
     gv_briefingCinematicUnits = UnitGroupEmpty();
     gv_victoryHiddenUnitGroup = UnitGroupEmpty();
 }
@@ -176,6 +176,26 @@ void gf_BriefingSpawnInfestedColonists (int lp_number, string lp_unitType, regio
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_ArchInit;
+trigger gt_FactionSwapInit;
+trigger gt_SpawnGas;
+trigger gt_ObjectiveDestroyInfestedCommandCentersCreate;
+trigger gt_ObjectiveDestroyInfestedCommandCentersUpdate;
+trigger gt_ObjectiveDestroyInfestedCommandCentersComplete;
+trigger gt_ObjectiveDestroyInfestedBarsCreate;
+trigger gt_ObjectiveDestroyInfestedBarsUpdate;
+trigger gt_ObjectiveDestroyInfestedBarsComplete;
+trigger gt_NorthInfestedCommandCenter;
+trigger gt_SouthInfestedCommandCenter;
+trigger gt_NorthwestInfestedBar;
+trigger gt_NorthInfestedBar;
+trigger gt_SouthInfestedBar;
+trigger gt_onDifficultyCasual;
+trigger gt_onDifficultyNormal;
+trigger gt_onDifficultyHard;
+trigger gt_onDifficultyBrutal;
+trigger gt_RightInfestor;
+trigger gt_LeftInfestor;
 trigger gt_Initialization;
 trigger gt_Init01Technology;
 trigger gt_Init02Players;
@@ -184,6 +204,8 @@ trigger gt_Init04Music;
 trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
+trigger gt_DebugSKIP;
+trigger gt_DebugWIN;
 trigger gt_IntroSequence;
 trigger gt_StartGame;
 trigger gt_FirstNight;
@@ -264,26 +286,6 @@ trigger gt_ObjectiveCleansetheInfestationFailed;
 trigger gt_ResearchObjectiveKilltheInfestorsCreateQ;
 trigger gt_ResearchObjectiveKilltheInfestorsUpdate;
 trigger gt_ResearchObjectiveKilltheInfestorsComplete;
-trigger gt_ObjectiveDestroyInfestedCommandCentersCreate;
-trigger gt_ObjectiveDestroyInfestedCommandCentersUpdate;
-trigger gt_ObjectiveDestroyInfestedCommandCentersComplete;
-trigger gt_ObjectiveDestroyInfestedBarsCreate;
-trigger gt_ObjectiveDestroyInfestedBarsUpdate;
-trigger gt_ObjectiveDestroyInfestedBarsComplete;
-trigger gt_NorthInfestedCommandCenter;
-trigger gt_SouthInfestedCommandCenter;
-trigger gt_NorthwestInfestedBar;
-trigger gt_NorthInfestedBar;
-trigger gt_SouthInfestedBar;
-trigger gt_onDifficultyCasual;
-trigger gt_onDifficultyNormal;
-trigger gt_onDifficultyHard;
-trigger gt_onDifficultyBrutal;
-trigger gt_ArchInit;
-trigger gt_FactionSwapInit;
-trigger gt_RightInfestor;
-trigger gt_LeftInfestor;
-trigger gt_SpawnGas;
 trigger gt_BriefingQ;
 trigger gt_BriefingScene00;
 trigger gt_BriefingScene01;
@@ -537,6 +539,652 @@ void gf_BriefingSpawnInfestedColonists (int lp_number, string lp_unitType, regio
         if (auto1B9E687D_var == null) { break; }
         UnitIssueOrder(auto1B9E687D_var, OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(481)), c_orderQueueAddToEnd);
     }
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Arch Init
+//--------------------------------------------------------------------------------------------------
+bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
+    TriggerExecute(gt_Init02Players, true, false);
+    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
+    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
+    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
+    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 120);
+    lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ArchInit_Init () {
+    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
+    TriggerAddEventMapInit(gt_ArchInit);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Faction Swap Init
+//--------------------------------------------------------------------------------------------------
+bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 1;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
+    }
+    else {
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, false);
+        libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), 1);
+        lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(1);
+        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
+            PlayerSetRace(1, "Zerg");
+            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(1, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
+        }
+        else {
+            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
+                PlayerSetRace(1, "Prot");
+                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(1, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
+            }
+
+        }
+        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
+    }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(230), UnitGroupFromId(6));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_FactionSwapInit_Init () {
+    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
+    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Gas
+//--------------------------------------------------------------------------------------------------
+bool gt_SpawnGas_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "InfestedRefinery"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "VespeneGeyser", 0, 0, UnitGetPosition(EventUnit()));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SpawnGas_Init () {
+    gt_SpawnGas = TriggerCreate("gt_SpawnGas_Func");
+    TriggerAddEventUnitDied(gt_SpawnGas, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Infested Command Centers Create
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyInfestedCommandCentersCreate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_category;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_category = lib5BD4895D_ge_APObjectiveCategory_Extra;
+
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerQueueEnter();
+    ObjectiveCreate(StringExternal("Param/Value/4E1B9680"), StringToText(""), c_objectiveStateHidden, false);
+    gv_objectiveDestroyInfestedCommandCenters = ObjectiveLastCreated();
+    lib5BD4895D_gf_AP_Core_addCategoryObjectiveWithCounter(gv_objectiveDestroyInfestedCommandCenters, lv_category, "", gv_infestedCommandCentersDestroyed, 2, true);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedCommandCenters, gv_LOCATION_ID_NORTH_INFESTED_COMMAND_CENTER);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedCommandCenters, gv_LOCATION_ID_SOUTH_INFESTED_COMMAND_CENTER);
+    lib5BD4895D_gf_AP_Core_setObjectiveVisibility(gv_objectiveDestroyInfestedCommandCenters, true);
+    Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
+    TriggerQueueExit();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyInfestedCommandCentersCreate_Init () {
+    gt_ObjectiveDestroyInfestedCommandCentersCreate = TriggerCreate("gt_ObjectiveDestroyInfestedCommandCentersCreate_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Infested Command Centers Update
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyInfestedCommandCentersUpdate_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+
+        if (!(((UnitGetType(EventUnit()) == "InfestedCC")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(gt_ObjectiveDestroyInfestedCommandCentersCreate, true, false);
+    gv_infestedCommandCentersDestroyed += 1;
+    lib5BD4895D_gf_AP_Core_setObjectiveCounter(gv_objectiveDestroyInfestedCommandCenters, gv_infestedCommandCentersDestroyed);
+    if ((gv_infestedCommandCentersDestroyed == 2)) {
+        TriggerExecute(gt_ObjectiveDestroyInfestedCommandCentersComplete, true, false);
+        TriggerEnable(TriggerGetCurrent(), false);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyInfestedCommandCentersUpdate_Init () {
+    gt_ObjectiveDestroyInfestedCommandCentersUpdate = TriggerCreate("gt_ObjectiveDestroyInfestedCommandCentersUpdate_Func");
+    TriggerAddEventUnitDied(gt_ObjectiveDestroyInfestedCommandCentersUpdate, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Infested Command Centers Complete
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyInfestedCommandCentersComplete_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerExecute(gt_ObjectiveDestroyInfestedCommandCentersCreate, true, false);
+    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveDestroyInfestedCommandCenters);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyInfestedCommandCentersComplete_Init () {
+    gt_ObjectiveDestroyInfestedCommandCentersComplete = TriggerCreate("gt_ObjectiveDestroyInfestedCommandCentersComplete_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Infested Bars Create
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyInfestedBarsCreate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_category;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_category = lib5BD4895D_ge_APObjectiveCategory_Extra;
+
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerQueueEnter();
+    ObjectiveCreate(StringExternal("Param/Value/0C2494F2"), StringToText(""), c_objectiveStateHidden, false);
+    gv_objectiveDestroyInfestedBars = ObjectiveLastCreated();
+    lib5BD4895D_gf_AP_Core_addCategoryObjectiveWithCounter(gv_objectiveDestroyInfestedBars, lv_category, "", gv_infestedCommandCentersDestroyed, 3, true);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedBars, gv_LOCATION_ID_NORTH_BAR);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedBars, gv_LOCATION_ID_NORTHWEST_BAR);
+    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedBars, gv_LOCATION_ID_SOUTH_BAR);
+    lib5BD4895D_gf_AP_Core_setObjectiveVisibility(gv_objectiveDestroyInfestedBars, true);
+    Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
+    TriggerQueueExit();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyInfestedBarsCreate_Init () {
+    gt_ObjectiveDestroyInfestedBarsCreate = TriggerCreate("gt_ObjectiveDestroyInfestedBarsCreate_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Infested Bars Update
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyInfestedBarsUpdate_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+
+        if (!(((UnitGetType(EventUnit()) == "InfestedMercHaven")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(gt_ObjectiveDestroyInfestedBarsCreate, true, false);
+    gv_infestedBarsDestroyed += 1;
+    lib5BD4895D_gf_AP_Core_setObjectiveCounter(gv_objectiveDestroyInfestedBars, gv_infestedBarsDestroyed);
+    if ((gv_infestedBarsDestroyed == 3)) {
+        TriggerExecute(gt_ObjectiveDestroyInfestedBarsComplete, true, false);
+        TriggerEnable(TriggerGetCurrent(), false);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyInfestedBarsUpdate_Init () {
+    gt_ObjectiveDestroyInfestedBarsUpdate = TriggerCreate("gt_ObjectiveDestroyInfestedBarsUpdate_Func");
+    TriggerAddEventUnitDied(gt_ObjectiveDestroyInfestedBarsUpdate, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Destroy Infested Bars Complete
+//--------------------------------------------------------------------------------------------------
+bool gt_ObjectiveDestroyInfestedBarsComplete_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerExecute(gt_ObjectiveDestroyInfestedBarsCreate, true, false);
+    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveDestroyInfestedBars);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_ObjectiveDestroyInfestedBarsComplete_Init () {
+    gt_ObjectiveDestroyInfestedBarsComplete = TriggerCreate("gt_ObjectiveDestroyInfestedBarsComplete_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: North Infested Command Center
+//--------------------------------------------------------------------------------------------------
+bool gt_NorthInfestedCommandCenter_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(118)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTH_INFESTED_COMMAND_CENTER);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_NorthInfestedCommandCenter_Init () {
+    gt_NorthInfestedCommandCenter = TriggerCreate("gt_NorthInfestedCommandCenter_Func");
+    TriggerAddEventUnitDied(gt_NorthInfestedCommandCenter, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: South Infested Command Center
+//--------------------------------------------------------------------------------------------------
+bool gt_SouthInfestedCommandCenter_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(123)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_INFESTED_COMMAND_CENTER);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SouthInfestedCommandCenter_Init () {
+    gt_SouthInfestedCommandCenter = TriggerCreate("gt_SouthInfestedCommandCenter_Func");
+    TriggerAddEventUnitDied(gt_SouthInfestedCommandCenter, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Northwest Infested Bar
+//--------------------------------------------------------------------------------------------------
+bool gt_NorthwestInfestedBar_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(14)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTHWEST_BAR);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_NorthwestInfestedBar_Init () {
+    gt_NorthwestInfestedBar = TriggerCreate("gt_NorthwestInfestedBar_Func");
+    TriggerAddEventUnitDied(gt_NorthwestInfestedBar, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: North Infested Bar
+//--------------------------------------------------------------------------------------------------
+bool gt_NorthInfestedBar_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(12)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTH_BAR);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_NorthInfestedBar_Init () {
+    gt_NorthInfestedBar = TriggerCreate("gt_NorthInfestedBar_Func");
+    TriggerAddEventUnitDied(gt_NorthInfestedBar, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: South Infested Bar
+//--------------------------------------------------------------------------------------------------
+bool gt_SouthInfestedBar_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(642)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_BAR);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SouthInfestedBar_Init () {
+    gt_SouthInfestedBar = TriggerCreate("gt_SouthInfestedBar_Func");
+    TriggerAddEventUnitDied(gt_SouthInfestedBar, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyCasual
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto41D68837_g;
+    int auto41D68837_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto41D68837_g = UnitGroupFromId(1);
+    auto41D68837_u = UnitGroupCount(auto41D68837_g, c_unitCountAll);
+    for (;; auto41D68837_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto41D68837_g, auto41D68837_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyCasual_Init () {
+    gt_onDifficultyCasual = TriggerCreate("gt_onDifficultyCasual_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyNormal
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyNormal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup auto5154D1CA_g;
+    int auto5154D1CA_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto5154D1CA_g = UnitGroupFromId(2);
+    auto5154D1CA_u = UnitGroupCount(auto5154D1CA_g, c_unitCountAll);
+    for (;; auto5154D1CA_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(auto5154D1CA_g, auto5154D1CA_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyNormal_Init () {
+    gt_onDifficultyNormal = TriggerCreate("gt_onDifficultyNormal_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyHard
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyHard_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup autoA5B1A862_g;
+    int autoA5B1A862_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoA5B1A862_g = UnitGroupFromId(3);
+    autoA5B1A862_u = UnitGroupCount(autoA5B1A862_g, c_unitCountAll);
+    for (;; autoA5B1A862_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(autoA5B1A862_g, autoA5B1A862_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyHard_Init () {
+    gt_onDifficultyHard = TriggerCreate("gt_onDifficultyHard_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: onDifficultyBrutal
+//--------------------------------------------------------------------------------------------------
+bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_currentUnit;
+
+    // Automatic Variable Declarations
+    unitgroup autoAE3C9B4E_g;
+    int autoAE3C9B4E_u;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoAE3C9B4E_g = UnitGroupFromId(4);
+    autoAE3C9B4E_u = UnitGroupCount(autoAE3C9B4E_g, c_unitCountAll);
+    for (;; autoAE3C9B4E_u -= 1) {
+        lv_currentUnit = UnitGroupUnitFromEnd(autoAE3C9B4E_g, autoAE3C9B4E_u);
+        if (lv_currentUnit == null) { break; }
+        UnitRemove(lv_currentUnit);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_onDifficultyBrutal_Init () {
+    gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Right Infestor
+//--------------------------------------------------------------------------------------------------
+bool gt_RightInfestor_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(1110)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_RIGHT_INFESTOR);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_RightInfestor_Init () {
+    gt_RightInfestor = TriggerCreate("gt_RightInfestor_Func");
+    TriggerAddEventUnitDied(gt_RightInfestor, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Left Infestor
+//--------------------------------------------------------------------------------------------------
+bool gt_LeftInfestor_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnit() == UnitFromId(927)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_LEFT_INFESTOR);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_LeftInfestor_Init () {
+    gt_LeftInfestor = TriggerCreate("gt_LeftInfestor_Func");
+    TriggerAddEventUnitDied(gt_LeftInfestor, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -809,6 +1457,88 @@ bool gt_Init07Help_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_Init07Help_Init () {
     gt_Init07Help = TriggerCreate("gt_Init07Help_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Debug SKIP
+//--------------------------------------------------------------------------------------------------
+bool gt_DebugSKIP_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, StringExternal("Param/Value/0C35E1B0"), true);
+    if ((TriggerIsEnabled(gt_FirstNight) == true)) {
+        TriggerEnable(gt_FirstNight, false);
+        TriggerExecute(gt_InfestationSpawning, true, false);
+    }
+
+    TimerStart(gv_mainTimer, 1.0, false, c_timeGame);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DebugSKIP_Init () {
+    gt_DebugSKIP = TriggerCreate("gt_DebugSKIP_Func");
+    TriggerAddEventChatMessage(gt_DebugSKIP, c_playerAny, "-cycle", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Debug WIN
+//--------------------------------------------------------------------------------------------------
+bool gt_DebugWIN_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerDebugOutput(1, StringExternal("Param/Value/5CD72838"), true);
+    TriggerExecute(gt_VictoryInfestationPurged, false, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DebugWIN_Init () {
+    gt_DebugWIN = TriggerCreate("gt_DebugWIN_Func");
+    TriggerAddEventChatMessage(gt_DebugWIN, c_playerAny, "-win", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4791,640 +5521,6 @@ void gt_ResearchObjectiveKilltheInfestorsComplete_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Infested Command Centers Create
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyInfestedCommandCentersCreate_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_category;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_category = lib5BD4895D_ge_APObjectiveCategory_Extra;
-
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerQueueEnter();
-    ObjectiveCreate(StringExternal("Param/Value/4E1B9680"), StringToText(""), c_objectiveStateHidden, false);
-    gv_objectiveDestroyInfestedCommandCenters = ObjectiveLastCreated();
-    lib5BD4895D_gf_AP_Core_addCategoryObjectiveWithCounter(gv_objectiveDestroyInfestedCommandCenters, lv_category, "", gv_infestedCommandCentersDestroyed, 2, true);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedCommandCenters, gv_LOCATION_ID_NORTH_INFESTED_COMMAND_CENTER);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedCommandCenters, gv_LOCATION_ID_SOUTH_INFESTED_COMMAND_CENTER);
-    lib5BD4895D_gf_AP_Core_setObjectiveVisibility(gv_objectiveDestroyInfestedCommandCenters, true);
-    Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
-    TriggerQueueExit();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyInfestedCommandCentersCreate_Init () {
-    gt_ObjectiveDestroyInfestedCommandCentersCreate = TriggerCreate("gt_ObjectiveDestroyInfestedCommandCentersCreate_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Infested Command Centers Update
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyInfestedCommandCentersUpdate_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-
-        if (!(((UnitGetType(EventUnit()) == "InfestedCC")))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(gt_ObjectiveDestroyInfestedCommandCentersCreate, true, false);
-    gv_infestedCommandCentersDestroyed += 1;
-    lib5BD4895D_gf_AP_Core_setObjectiveCounter(gv_objectiveDestroyInfestedCommandCenters, gv_infestedCommandCentersDestroyed);
-    if ((gv_infestedCommandCentersDestroyed == 2)) {
-        TriggerExecute(gt_ObjectiveDestroyInfestedCommandCentersComplete, true, false);
-        TriggerEnable(TriggerGetCurrent(), false);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyInfestedCommandCentersUpdate_Init () {
-    gt_ObjectiveDestroyInfestedCommandCentersUpdate = TriggerCreate("gt_ObjectiveDestroyInfestedCommandCentersUpdate_Func");
-    TriggerAddEventUnitDied(gt_ObjectiveDestroyInfestedCommandCentersUpdate, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Infested Command Centers Complete
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyInfestedCommandCentersComplete_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerExecute(gt_ObjectiveDestroyInfestedCommandCentersCreate, true, false);
-    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveDestroyInfestedCommandCenters);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyInfestedCommandCentersComplete_Init () {
-    gt_ObjectiveDestroyInfestedCommandCentersComplete = TriggerCreate("gt_ObjectiveDestroyInfestedCommandCentersComplete_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Infested Bars Create
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyInfestedBarsCreate_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_category;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_category = lib5BD4895D_ge_APObjectiveCategory_Extra;
-
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerQueueEnter();
-    ObjectiveCreate(StringExternal("Param/Value/0C2494F2"), StringToText(""), c_objectiveStateHidden, false);
-    gv_objectiveDestroyInfestedBars = ObjectiveLastCreated();
-    lib5BD4895D_gf_AP_Core_addCategoryObjectiveWithCounter(gv_objectiveDestroyInfestedBars, lv_category, "", gv_infestedCommandCentersDestroyed, 3, true);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedBars, gv_LOCATION_ID_NORTH_BAR);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedBars, gv_LOCATION_ID_NORTHWEST_BAR);
-    lib5BD4895D_gf_AP_Core_associateObjectiveWithLocation(gv_objectiveDestroyInfestedBars, gv_LOCATION_ID_SOUTH_BAR);
-    lib5BD4895D_gf_AP_Core_setObjectiveVisibility(gv_objectiveDestroyInfestedBars, true);
-    Wait(libCamp_gv_campaignObjectiveDelay, c_timeReal);
-    TriggerQueueExit();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyInfestedBarsCreate_Init () {
-    gt_ObjectiveDestroyInfestedBarsCreate = TriggerCreate("gt_ObjectiveDestroyInfestedBarsCreate_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Infested Bars Update
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyInfestedBarsUpdate_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-
-        if (!(((UnitGetType(EventUnit()) == "InfestedMercHaven")))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(gt_ObjectiveDestroyInfestedBarsCreate, true, false);
-    gv_infestedBarsDestroyed += 1;
-    lib5BD4895D_gf_AP_Core_setObjectiveCounter(gv_objectiveDestroyInfestedBars, gv_infestedBarsDestroyed);
-    if ((gv_infestedBarsDestroyed == 3)) {
-        TriggerExecute(gt_ObjectiveDestroyInfestedBarsComplete, true, false);
-        TriggerEnable(TriggerGetCurrent(), false);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyInfestedBarsUpdate_Init () {
-    gt_ObjectiveDestroyInfestedBarsUpdate = TriggerCreate("gt_ObjectiveDestroyInfestedBarsUpdate_Func");
-    TriggerAddEventUnitDied(gt_ObjectiveDestroyInfestedBarsUpdate, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Objective Destroy Infested Bars Complete
-//--------------------------------------------------------------------------------------------------
-bool gt_ObjectiveDestroyInfestedBarsComplete_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    TriggerExecute(gt_ObjectiveDestroyInfestedBarsCreate, true, false);
-    lib5BD4895D_gf_AP_Core_setObjectiveCompleted(gv_objectiveDestroyInfestedBars);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ObjectiveDestroyInfestedBarsComplete_Init () {
-    gt_ObjectiveDestroyInfestedBarsComplete = TriggerCreate("gt_ObjectiveDestroyInfestedBarsComplete_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: North Infested Command Center
-//--------------------------------------------------------------------------------------------------
-bool gt_NorthInfestedCommandCenter_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(118)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTH_INFESTED_COMMAND_CENTER);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_NorthInfestedCommandCenter_Init () {
-    gt_NorthInfestedCommandCenter = TriggerCreate("gt_NorthInfestedCommandCenter_Func");
-    TriggerAddEventUnitDied(gt_NorthInfestedCommandCenter, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: South Infested Command Center
-//--------------------------------------------------------------------------------------------------
-bool gt_SouthInfestedCommandCenter_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(123)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_INFESTED_COMMAND_CENTER);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_SouthInfestedCommandCenter_Init () {
-    gt_SouthInfestedCommandCenter = TriggerCreate("gt_SouthInfestedCommandCenter_Func");
-    TriggerAddEventUnitDied(gt_SouthInfestedCommandCenter, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Northwest Infested Bar
-//--------------------------------------------------------------------------------------------------
-bool gt_NorthwestInfestedBar_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(14)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTHWEST_BAR);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_NorthwestInfestedBar_Init () {
-    gt_NorthwestInfestedBar = TriggerCreate("gt_NorthwestInfestedBar_Func");
-    TriggerAddEventUnitDied(gt_NorthwestInfestedBar, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: North Infested Bar
-//--------------------------------------------------------------------------------------------------
-bool gt_NorthInfestedBar_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(12)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_NORTH_BAR);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_NorthInfestedBar_Init () {
-    gt_NorthInfestedBar = TriggerCreate("gt_NorthInfestedBar_Func");
-    TriggerAddEventUnitDied(gt_NorthInfestedBar, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: South Infested Bar
-//--------------------------------------------------------------------------------------------------
-bool gt_SouthInfestedBar_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(642)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_BAR);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_SouthInfestedBar_Init () {
-    gt_SouthInfestedBar = TriggerCreate("gt_SouthInfestedBar_Func");
-    TriggerAddEventUnitDied(gt_SouthInfestedBar, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyCasual
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyCasual_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto41D68837_g;
-    int auto41D68837_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto41D68837_g = UnitGroupFromId(1);
-    auto41D68837_u = UnitGroupCount(auto41D68837_g, c_unitCountAll);
-    for (;; auto41D68837_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto41D68837_g, auto41D68837_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyCasual_Init () {
-    gt_onDifficultyCasual = TriggerCreate("gt_onDifficultyCasual_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyNormal
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyNormal_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup auto5154D1CA_g;
-    int auto5154D1CA_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto5154D1CA_g = UnitGroupFromId(2);
-    auto5154D1CA_u = UnitGroupCount(auto5154D1CA_g, c_unitCountAll);
-    for (;; auto5154D1CA_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(auto5154D1CA_g, auto5154D1CA_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyNormal_Init () {
-    gt_onDifficultyNormal = TriggerCreate("gt_onDifficultyNormal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyHard
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyHard_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup autoA5B1A862_g;
-    int autoA5B1A862_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoA5B1A862_g = UnitGroupFromId(3);
-    autoA5B1A862_u = UnitGroupCount(autoA5B1A862_g, c_unitCountAll);
-    for (;; autoA5B1A862_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(autoA5B1A862_g, autoA5B1A862_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyHard_Init () {
-    gt_onDifficultyHard = TriggerCreate("gt_onDifficultyHard_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: onDifficultyBrutal
-//--------------------------------------------------------------------------------------------------
-bool gt_onDifficultyBrutal_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_currentUnit;
-
-    // Automatic Variable Declarations
-    unitgroup autoAE3C9B4E_g;
-    int autoAE3C9B4E_u;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoAE3C9B4E_g = UnitGroupFromId(4);
-    autoAE3C9B4E_u = UnitGroupCount(autoAE3C9B4E_g, c_unitCountAll);
-    for (;; autoAE3C9B4E_u -= 1) {
-        lv_currentUnit = UnitGroupUnitFromEnd(autoAE3C9B4E_g, autoAE3C9B4E_u);
-        if (lv_currentUnit == null) { break; }
-        UnitRemove(lv_currentUnit);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_onDifficultyBrutal_Init () {
-    gt_onDifficultyBrutal = TriggerCreate("gt_onDifficultyBrutal_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Arch Init
-//--------------------------------------------------------------------------------------------------
-bool gt_ArchInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerExecute(lib88187CC2_gt_ArchipelagoPlayerWoLHandlersConstructor, true, false);
-    TriggerExecute(gt_Init02Players, true, false);
-    lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
-    lib5BD4895D_gf_AP_Core_MapConfig_setMapInit(gt_Initialization);
-    libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
-    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 120);
-    lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_ArchInit_Init () {
-    gt_ArchInit = TriggerCreate("gt_ArchInit_Func");
-    TriggerAddEventMapInit(gt_ArchInit);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Faction Swap Init
-//--------------------------------------------------------------------------------------------------
-bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Terr", false);
-    }
-    else {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, false);
-        libLbty_gf_OrderWorkerstoGatherNearbyResources(RegionEntireMap(), 1);
-        lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(1);
-        if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Zerg")) {
-            PlayerSetRace(1, "Zerg");
-            lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(1, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
-        }
-        else {
-            if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")) {
-                PlayerSetRace(1, "Prot");
-                lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(1, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-            }
-
-        }
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_FactionSwapInit_Init () {
-    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Right Infestor
-//--------------------------------------------------------------------------------------------------
-bool gt_RightInfestor_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(1110)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_RIGHT_INFESTOR);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_RightInfestor_Init () {
-    gt_RightInfestor = TriggerCreate("gt_RightInfestor_Func");
-    TriggerAddEventUnitDied(gt_RightInfestor, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Left Infestor
-//--------------------------------------------------------------------------------------------------
-bool gt_LeftInfestor_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventUnit() == UnitFromId(927)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_LEFT_INFESTOR);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_LeftInfestor_Init () {
-    gt_LeftInfestor = TriggerCreate("gt_LeftInfestor_Func");
-    TriggerAddEventUnitDied(gt_LeftInfestor, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Spawn Gas
-//--------------------------------------------------------------------------------------------------
-bool gt_SpawnGas_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((UnitGetType(EventUnit()) == "InfestedRefinery"))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "VespeneGeyser", 0, 0, UnitGetPosition(EventUnit()));
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void gt_SpawnGas_Init () {
-    gt_SpawnGas = TriggerCreate("gt_SpawnGas_Func");
-    TriggerAddEventUnitDied(gt_SpawnGas, null);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Briefing Q
 //--------------------------------------------------------------------------------------------------
 bool gt_BriefingQ_Func (bool testConds, bool runActions) {
@@ -6262,6 +6358,26 @@ void gt_VictoryDropships_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_ArchInit_Init();
+    gt_FactionSwapInit_Init();
+    gt_SpawnGas_Init();
+    gt_ObjectiveDestroyInfestedCommandCentersCreate_Init();
+    gt_ObjectiveDestroyInfestedCommandCentersUpdate_Init();
+    gt_ObjectiveDestroyInfestedCommandCentersComplete_Init();
+    gt_ObjectiveDestroyInfestedBarsCreate_Init();
+    gt_ObjectiveDestroyInfestedBarsUpdate_Init();
+    gt_ObjectiveDestroyInfestedBarsComplete_Init();
+    gt_NorthInfestedCommandCenter_Init();
+    gt_SouthInfestedCommandCenter_Init();
+    gt_NorthwestInfestedBar_Init();
+    gt_NorthInfestedBar_Init();
+    gt_SouthInfestedBar_Init();
+    gt_onDifficultyCasual_Init();
+    gt_onDifficultyNormal_Init();
+    gt_onDifficultyHard_Init();
+    gt_onDifficultyBrutal_Init();
+    gt_RightInfestor_Init();
+    gt_LeftInfestor_Init();
     gt_Initialization_Init();
     gt_Init01Technology_Init();
     gt_Init02Players_Init();
@@ -6270,6 +6386,8 @@ void InitTriggers () {
     gt_Init05Environment_Init();
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
+    gt_DebugSKIP_Init();
+    gt_DebugWIN_Init();
     gt_IntroSequence_Init();
     gt_StartGame_Init();
     gt_FirstNight_Init();
@@ -6350,26 +6468,6 @@ void InitTriggers () {
     gt_ResearchObjectiveKilltheInfestorsCreateQ_Init();
     gt_ResearchObjectiveKilltheInfestorsUpdate_Init();
     gt_ResearchObjectiveKilltheInfestorsComplete_Init();
-    gt_ObjectiveDestroyInfestedCommandCentersCreate_Init();
-    gt_ObjectiveDestroyInfestedCommandCentersUpdate_Init();
-    gt_ObjectiveDestroyInfestedCommandCentersComplete_Init();
-    gt_ObjectiveDestroyInfestedBarsCreate_Init();
-    gt_ObjectiveDestroyInfestedBarsUpdate_Init();
-    gt_ObjectiveDestroyInfestedBarsComplete_Init();
-    gt_NorthInfestedCommandCenter_Init();
-    gt_SouthInfestedCommandCenter_Init();
-    gt_NorthwestInfestedBar_Init();
-    gt_NorthInfestedBar_Init();
-    gt_SouthInfestedBar_Init();
-    gt_onDifficultyCasual_Init();
-    gt_onDifficultyNormal_Init();
-    gt_onDifficultyHard_Init();
-    gt_onDifficultyBrutal_Init();
-    gt_ArchInit_Init();
-    gt_FactionSwapInit_Init();
-    gt_RightInfestor_Init();
-    gt_LeftInfestor_Init();
-    gt_SpawnGas_Init();
     gt_BriefingQ_Init();
     gt_BriefingScene00_Init();
     gt_BriefingScene01_Init();

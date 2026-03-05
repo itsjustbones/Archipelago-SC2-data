@@ -75,7 +75,6 @@ struct gs_RECORD_ObserverBully {
 //--------------------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------------------
-unitgroup gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2;
 string gv_mapMusicTrack;
 string gv_mapMusicTrack2;
 unit gv_nova;
@@ -112,7 +111,6 @@ unit gv_victoryCinematicNova;
 void InitGlobals () {
     int init_i;
 
-    gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2 = UnitGroupEmpty();
     gv_novaEnabled = true;
     gv_gorgonDialog.lv_dialog = c_invalidDialogId;
     gv_gorgonDialog.lv_gorgon1 = c_invalidDialogControlId;
@@ -155,7 +153,6 @@ void InitGlobals () {
 //--------------------------------------------------------------------------------------------------
 // Global Function Declarations
 //--------------------------------------------------------------------------------------------------
-void gf_APtech (int lp_player, int lp_difficulty);
 void gf_GorgonHyperjump (unit lp_gorgon, point lp_target);
 void gf_CreateArrowPings (int lp_lane, fixed lp_delay, fixed lp_direction);
 void gf_CreateAttackWavePing (unitgroup lp_waveUnitGroup, text lp_tooltip);
@@ -255,6 +252,7 @@ trigger gt_BriefingSurroundedActions01;
 trigger gt_BriefingSurroundedActions02;
 trigger gt_BriefingDefenders01;
 trigger gt_BriefingDefendersActions;
+trigger gt_IntroFadeIn;
 trigger gt_IntroQ;
 trigger gt_IntroSetup;
 trigger gt_IntroCinematic;
@@ -273,84 +271,6 @@ trigger gt_FlyInGriffin;
 //--------------------------------------------------------------------------------------------------
 // Global Functions
 //--------------------------------------------------------------------------------------------------
-void gf_APtech (int lp_player, int lp_difficulty) {
-    // Automatic Variable Declarations
-    // Implementation
-    TriggerExecute(libABFE498B_gt_AP_Triggers_techTreeInit, true, true);
-    libABFE498B_gf_AP_Triggers_Terran_unlockMarine(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockMarauder(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockMedic(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockGoliath(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockThor(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockBattlecruiser(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockViking(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockAutomatedRefinery(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterReactor(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterMULE(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockOrbitalDepots(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockInfantryWeapon(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Terran_unlockInfantryArmor(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Terran_unlockShipWeapon(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Terran_unlockShipArmor(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Terran_unlockVehicleWeapon(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Terran_unlockVehicleArmor(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Terran_unlockNovaWeaponPlasmaRifle(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockNovaGadgetPulseGrenades(lp_player);
-    libABFE498B_gf_AP_Triggers_Terran_unlockNovaApolloSuit(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockZergling(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_ZerglingRaptor(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_ZerglingReconstitution(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_ZerglingMetabolicBoost(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockRoach(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_RoachVile(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_RoachAdaptivePlating(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockHydralisk(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_HydraliskGroovedSpines(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_HydraliskResourceEfficiency(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockLurker(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_LurkerSeismicSpines(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockSwarmQueen(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_SwarmQueenResourceEfficiency(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockAberration(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_AberrationProgressiveBanelingLaunch(lp_player, 1);
-    libABFE498B_gf_AP_Triggers_Zerg_AberrationBanelingIncubation(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockUltralisk(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockInfestedMedic(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_TwinDrones(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_AutomatedExtractor(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_OverlordImprovedOverlord(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_MalignantCreep(lp_player);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockMeleeAttacks(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockMissileAttacks(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockGroundCarapace(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockFlyerAttacks(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Zerg_unlockFlyerCarapace(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockSentinel(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockInstigator(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockSentryAiur(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizer(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalAiur(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockColossusPurifier(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockOrbitalAssimilators(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockProbeWarpin(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockElderProbes(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockProbeWarpin(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelResourceEfficiency(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockInstigatorModernizedServos(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockInstigatorReconstruction(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockSentryFamilyCloakingModule(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockSentryFamilyShieldBatteryRapidRecharging(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerMobileChronoBeam(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalImprovedBarrier(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilySingularityCharge(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockColossusFireLance(lp_player);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockGroundWeapons(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockGroundArmor(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockAirWeapons(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockAirArmor(lp_player, lp_difficulty);
-    libABFE498B_gf_AP_Triggers_Protoss_unlockShields(lp_player, lp_difficulty);
-}
-
 void gf_GorgonHyperjump (unit lp_gorgon, point lp_target) {
     // Variable Declarations
     actor lv_jumpEffect;
@@ -659,20 +579,6 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-        libABFE498B_gf_AP_Triggers_setDifficulty("B");
-        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Prot";
-        gv_novaEnabled = false;
-        gf_APtech(gv_pLAYER_01_USER, 4);
-    }
-
-    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-    }
-
     TriggerExecute(libD62A7F54_gt_AP_Player_NCOConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);
@@ -705,9 +611,6 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     unitgroup auto29E82DDA_g;
     int auto29E82DDA_u;
     unit auto29E82DDA_var;
-    unitgroup auto20C81495_g;
-    int auto20C81495_u;
-    unit auto20C81495_var;
     unitgroup auto1917BB37_g;
     int auto1917BB37_u;
     unit auto1917BB37_var;
@@ -720,10 +623,21 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2 = UnitGroup(null, gv_pLAYER_01_USER, RegionFromId(83), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
-    UnitGroupRemove(gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2, gv_nova);
-    UnitGroupRemove(gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2, UnitFromId(1234078970));
-    UnitGroupRemove(gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2, UnitFromId(868342737));
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
+    lv_group = UnitGroup(null, gv_pLAYER_01_USER, RegionFromId(83), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
+    UnitGroupRemove(lv_group, gv_nova);
+    UnitGroupRemove(lv_group, UnitFromId(1234078970));
+    UnitGroupRemove(lv_group, UnitFromId(868342737));
     auto4F6DBDAC_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
     if (auto4F6DBDAC_val == "Zerg") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
@@ -734,7 +648,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
             if (auto58346469_var == null) { break; }
             UnitRemove(auto58346469_var);
         }
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2, "Zerg", false);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(lv_group, "Zerg", false);
         auto29E82DDA_g = UnitGroup("AP_Larva", gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterDead - 32)), (1 << c_targetFilterMissile), 0), 0);
         auto29E82DDA_u = UnitGroupCount(auto29E82DDA_g, c_unitCountAll);
         for (;; auto29E82DDA_u -= 1) {
@@ -748,36 +662,24 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     }
     else if (auto4F6DBDAC_val == "Prot") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2, "Prot", false);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(lv_group, "Prot", false);
         PlayerSetRace(gv_pLAYER_01_USER, "Prot");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
     }
     else {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2, "Terr", false);
+        lib15EF4C78_gf_RemoveUnusedStartingUnits(lv_group, "Terr", false);
     }
     lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
-    gv_novaEnabled = libABFE498B_gv_aP_Triggers_Option_enableNova;
+    gv_novaEnabled = (libABFE498B_gv_aP_Triggers_Option_HeroPresence != 0);
     if ((gv_novaEnabled == true)) {
-        libNCMI_gf_SetNovaHeroUnit(gv_nova);
-        libNCMI_gf_EnableDisableHeroReviveSystem(true, gv_pLAYER_01_USER);
-        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_nova, gv_pLAYER_01_USER);
-        auto20C81495_g = UnitGroupFromId(1);
-        auto20C81495_u = UnitGroupCount(auto20C81495_g, c_unitCountAll);
-        for (;; auto20C81495_u -= 1) {
-            auto20C81495_var = UnitGroupUnitFromEnd(auto20C81495_g, auto20C81495_u);
-            if (auto20C81495_var == null) { break; }
-            UnitBehaviorRemoveCategory(auto20C81495_var, c_unitBehaviorFlagPermanent);
-            UnitBehaviorRemove(auto20C81495_var, "AP_BanelingExplode", c_unitBehaviorCountAll);
-            UnitRemove(auto20C81495_var);
-        }
+        libABFE498B_gf_AP_Triggers_HeroReplace(lib5BD4895D_gf_AP_Core_getUser(), gv_nova, UnitGroupFromId(1));
+        gv_nova = libABFE498B_gv_aP_Triggers_HeroUnit[1];
     }
     else {
-        lib15EF4C78_gf_SetHeroPanelUnit(1, null, gv_pLAYER_01_USER);
-        libNtve_gf_ShowHideUnit(gv_nova, false);
-        libNtve_gf_PauseUnit(gv_nova, true);
+        libABFE498B_gf_AP_Triggers_HeroHide(gv_nova);
     }
-    auto1917BB37_g = gv_LOCATION_ID_FIRST_SQUADRON_OF_DOMINION_FLEET2;
+    auto1917BB37_g = lv_group;
     auto1917BB37_u = UnitGroupCount(auto1917BB37_g, c_unitCountAll);
     for (;; auto1917BB37_u -= 1) {
         auto1917BB37_var = UnitGroupUnitFromEnd(auto1917BB37_g, auto1917BB37_u);
@@ -790,7 +692,6 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_FactionSwapInit_Init () {
     gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -807,12 +708,13 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_Init04MusicSound, true, false);
     TriggerExecute(gt_Init05Environment, true, false);
     TriggerExecute(gt_Init06Difficulties, true, false);
+    TriggerExecute(gt_FactionSwapInit, true, true);
     if ((GameIsTestMap(true) == true)) {
         TriggerExecute(gt_BriefingQ, true, true);
         ConsoleCommand("exit", true, true);
     }
 
-    TriggerExecute(gt_IntroQ, true, true);
+    TriggerExecute(gt_IntroFadeIn, true, true);
     TriggerExecute(gt_StartGameQ, true, false);
     return true;
 }
@@ -1241,6 +1143,8 @@ bool gt_StartGameQ_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerExecute(gt_StartAI, true, false);
+    Wait(0.5, c_timeGame);
     UIAlertPoint("Trigger", gv_pLAYER_01_USER, StringExternal("Param/Value/E57F7048"), null, PointFromId(154));
     auto52A88B9B_g = UnitGroup("SubwayEntranceSW", gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto52A88B9B_u = UnitGroupCount(auto52A88B9B_g, c_unitCountAll);
@@ -6913,6 +6817,38 @@ void gt_BriefingDefendersActions_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Intro Fade In
+//--------------------------------------------------------------------------------------------------
+bool gt_IntroFadeIn_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    CinematicFade(false, 0.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);
+    libNCMI_gf_CinematicModeCampaign(true, 0.0, false);
+    CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
+    libNCMI_gf_CinematicModeCampaign(false, 1.0, false);
+    libNtve_gf_SwooshCamera(gv_pLAYER_01_USER, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), PlayerStartLocation(gv_pLAYER_01_USER), 1.0);
+    CinematicFade(true, 1.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_IntroFadeIn_Init () {
+    gt_IntroFadeIn = TriggerCreate("gt_IntroFadeIn_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Intro Q
 //--------------------------------------------------------------------------------------------------
 bool gt_IntroQ_Func (bool testConds, bool runActions) {
@@ -6931,9 +6867,6 @@ bool gt_IntroQ_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerQueueEnter();
-    while (!((lib5BD4895D_gv_aP_Core_initFinished == true))) {
-        Wait(0.0625, c_timeGame);
-    }
     TriggerExecute(gt_IntroSetup, true, true);
     if ((libABFE498B_gv_aP_Triggers_skipCutscenes == false)) {
         TriggerExecute(gt_IntroCinematic, true, true);
@@ -7761,6 +7694,7 @@ void InitTriggers () {
     gt_BriefingSurroundedActions02_Init();
     gt_BriefingDefenders01_Init();
     gt_BriefingDefendersActions_Init();
+    gt_IntroFadeIn_Init();
     gt_IntroQ_Init();
     gt_IntroSetup_Init();
     gt_IntroCinematic_Init();
