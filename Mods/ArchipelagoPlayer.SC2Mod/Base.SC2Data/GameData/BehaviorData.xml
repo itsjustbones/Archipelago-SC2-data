@@ -3437,23 +3437,11 @@
             <BehaviorLinkDisableArray value="SensorTowerRadar"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisAiurAspectPassiveSpellArmor">
-        <InfoFlags index="Hidden" value="1"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zeratul-avatarofform-psionicgale.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Requirements value="AP_HaveArtanisSpellArmorPassive"/>
-        <DamageResponse ModifyFraction="0.5">
-            <Kind index="Melee" value="0"/>
-            <Kind index="Ranged" value="0"/>
-            <Kind index="Splash" value="0"/>
-            <Kind index="NoProc" value="0"/>
-            <Chance value="1"/>
-        </DamageResponse>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_RaszagalsRhythm">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-veilofshadowsvorazun.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisNerazimAspectSelectedPassive"/>
         <Duration value="5"/>
         <Modification>
             <DamageDealtFraction index="Melee" value="1"/>

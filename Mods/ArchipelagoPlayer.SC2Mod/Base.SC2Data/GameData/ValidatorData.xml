@@ -4476,6 +4476,10 @@
         <Find value="1"/>
         <Value value="AP_HaveArtanisTaldarimAspectSelectedPassive"/>
     </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HasArtanisNerazimAspectSelectedPassive">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisNerazimAspectSelectedPassive"/>
+    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisAiurAspectBehavior">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -4543,7 +4547,7 @@
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="AP_HasRaszagalsRhythmAndNerazimAspect">
         <Type value="And"/>
-        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
+        <CombineArray value="AP_HasArtanisNerazimAspectSelectedPassive"/>
         <CombineArray value="AP_HasRaszagalsRhythm"/>
     </CValidatorCombine>
     <CValidatorUnitOrderQueue id="AP_SentryIsRepairing">

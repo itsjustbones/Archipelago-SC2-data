@@ -4638,11 +4638,11 @@
         <BehaviorLink value="AP_RaszagalsRhythm"/>
     </CEffectRemoveBehavior>
     <CEffectSet id="AP_RaszagalsRhythmEmpoweredConsumeSet">
+        <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
         <EffectArray value="AP_RaszagalsRhythmCDRefund"/>
         <EffectArray value="AP_RaszagalsRhythmEnergyRestore"/>
     </CEffectSet>
     <CEffectModifyUnit id="AP_RaszagalsRhythmEnergyRestore">
-        <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
         <ImpactUnit Value="Caster"/>
         <VitalArray index="Energy" Change="10"/>
     </CEffectModifyUnit>
@@ -4828,7 +4828,6 @@
         </VitalArray>
     </CEffectModifyUnit>
     <CEffectModifyUnit id="AP_RaszagalsRhythmCDRefund">
-        <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
         <ImpactUnit Value="Caster"/>
         <!-- Technically would be easier to grant 100% CDR for 1 second instead, but want CDR refund to be more instanteous and scale better w/ attack speed-->
         <Cost Abil="AP_ArtanisCharge,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
