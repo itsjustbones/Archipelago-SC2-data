@@ -12932,8 +12932,8 @@
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisAirAttack">
-        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="0"/>
-        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Hidden]" Value="0"/>
+        <EffectArray Operation="Subtract" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Weapon,AP_ArtanisAirAttack,Options[Hidden]" Value="1"/>
     </CUpgrade>
     <CUpgrade id="AP_VoidRaySpeedUpgrade">
         <ScoreAmount value="300"/>

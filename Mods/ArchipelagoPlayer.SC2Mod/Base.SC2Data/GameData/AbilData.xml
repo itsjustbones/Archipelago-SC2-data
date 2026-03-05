@@ -4746,10 +4746,15 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrismRecast" Requirements="AP_HavePhasePrismRecastBehavior"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_ArtanisLightningDash">
+        <Alignment value="Negative"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_ArtanisLightningDashSwitch"/>
+        <Flags index="AbortOnAllianceChange" value="0"/>
         <Range value="8"/>
-        <Arc value="4.9987"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="ArtanisLightningDash"  Requirements="AP_HaveArtanisLightningDash"/>
+        <TrackingArc value="360"/>
+        <PrepTime value="0.125"/>
+        <IgnoreFilters value="Ground;Self"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisLightningDash"  Requirements="AP_HaveArtanisLightningDash"/>
         <Cost>
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="6"/>
@@ -7892,7 +7897,6 @@
         </CmdButtonArray>
         <Flags index="Toggle" value="1"/>
         <Flags index="ToggledOn" value="1"/>
-        <Flags index="Transient" value="1"/>
         <BehaviorArray value="AP_EnableArtanisAirAttackSwap"/>
     </CAbilBehavior>
     <CAbilBehavior id="AP_MothershipTaldarimBaseAttackSwap">

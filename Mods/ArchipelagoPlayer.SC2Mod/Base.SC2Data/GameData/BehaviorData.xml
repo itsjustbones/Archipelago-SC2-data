@@ -2148,9 +2148,17 @@
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="AP_HaveArtanisAirAttack"/>
+        <Requirements value="AP_HaveArtanisAirAttack"/>
+        <InitialEffect value="AP_ArtanisAirAttackDisableRB"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="AP_ArtanisAirAttackDisableRB"/>
+        <FinalEffect value="AP_ArtanisAirAttackDisableAB"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DisableArtanisAirAttack">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Modification>
-            <WeaponArray Link="AP_ArtanisAirAttack"/>
+            <WeaponDisableArray value="AP_ArtanisAirAttack"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_CleansingSmite">

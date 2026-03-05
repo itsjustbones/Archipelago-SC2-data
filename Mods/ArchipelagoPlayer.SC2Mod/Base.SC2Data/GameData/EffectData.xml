@@ -5003,46 +5003,49 @@
         <PeriodCount value="1"/>
     </CEffectCreatePersistent>
     <CEffectSwitch id="AP_ArtanisLightningDashSwitch">
-        <CaseArray Validator="AP_ArtanisLightningDashCheck" Effect="AP_ArtanisLightningDashCU"/>
-        <CaseDefault value="AP_ArtanisLightningDashCUClosest"/>
+        <CaseArray Validator="AP_ArtanisLightningDashDestinationClear" Effect="AP_ArtanisLightningDashLaunchMissile"/>
+        <CaseDefault value="AP_ArtanisLightningDashLaunchMissileClosest"/>
+        <TargetLocationType value="Point"/>
     </CEffectSwitch>
-    <CEffectCreateUnit id="AP_ArtanisLightningDashCU">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichLocation Value="TargetPoint"/>
-        <CreateFlags index="Placement" value="0"/>
-        <SpawnEffect value="AP_ArtanisLightningDashOnPrecursorSpawn"/>
-        <SpawnRange value="0"/>
-    </CEffectCreateUnit>
-    <CEffectCreateUnit id="AP_ArtanisLightningDashCUClosest">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichLocation Value="TargetPoint"/>
-        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
-        <SpawnEffect value="AP_ArtanisLightningDashOnPrecursorSpawn"/>
-        <SpawnRange value="8"/>
-    </CEffectCreateUnit>
-    <CEffectSet id="AP_ArtanisLightningDashOnPrecursorSpawn">
-        <EffectArray value="MakePrecursor"/>
-        <EffectArray value="AP_ArtanisLightningDashLaunchMissile"/>
-    </CEffectSet>
     <CEffectLaunchMissile id="AP_ArtanisLightningDashLaunchMissile">
-        <ImpactLocation Value="TargetUnit"/>
+        <ValidatorArray value="AP_ArtanisLightningDashDestinationClear"/>
+        <ImpactLocation Value="TargetPoint"/>
         <LaunchLocation Value="CasterUnit"/>
-        <Movers Link="AP_ArtanisLightningDashMissile"/>
+        <Movers Link="AP_ArtanisLightningDashDashMover"/>
         <FinishEffect value="AP_ArtanisLightningDashLaunchMissileImpactSet"/>
         <DeathType value="Unknown"/>
         <Flags index="2D" value="1"/>
+        <Flags index="PlacementOriginSideOfFootprints" value="1"/>
+        <PlacementRange value="1"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="AP_ArtanisLightningDashLaunchMissileClosest">
+        <ValidatorArray value="Pathable"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <Movers Link="AP_ArtanisLightningDashDashMover"/>
+        <FinishEffect value="AP_ArtanisLightningDashLaunchMissileImpactSet"/>
+        <DeathType value="Unknown"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="Placement" value="1"/>
+        <Flags index="PlacementIgnoreCliffTest" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <Flags index="PlacementOriginSideOfFootprints" value="1"/>
+        <PlacementRange value="3"/>
     </CEffectLaunchMissile>
     <CEffectSet id="AP_ArtanisLightningDashLaunchMissileImpactSet">
         <EffectArray value="AP_ArtanisLightningDashStunSearch"/>
         <EffectArray value="AP_ArtanisLightningDashSearch"/>
-        <EffectArray value="AP_ArtanisLightningDashRemovePrecursorUnit"/>
     </CEffectSet>
     <CEffectEnumArea id="AP_ArtanisLightningDashStunSearch">
+        <ImpactLocation Value="CasterUnit"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AreaArray Radius="1.5" Effect="AP_ArtanisLightningDashStun"/>
     </CEffectEnumArea>
-    <CEffectApplyBehavior id="AP_ArtanisLightningDashStun"/>
+    <CEffectApplyBehavior id="AP_ArtanisLightningDashStun">
+        <Behavior value="AP_ArtanisLightningDashStun"/>
+    </CEffectApplyBehavior>
     <CEffectEnumArea id="AP_ArtanisLightningDashSearch">
+        <ImpactLocation Value="CasterUnit"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Invulnerable"/>
         <AreaArray Radius="1.5" Effect="AP_ArtanisLightningDashDamage"/>
     </CEffectEnumArea>
@@ -5051,9 +5054,6 @@
         <Kind value="Spell"/>
         <Amount value="50"/>
     </CEffectDamage>
-    <CEffectModifyUnit id="AP_ArtanisLightningDashRemovePrecursorUnit">
-        <ModifyFlags index="Remove" value="1"/>
-    </CEffectModifyUnit>
     <CEffectApplyBehavior id="AP_StrengthInUnity"/>
     <CEffectSet id="AP_StrengthInUnityInitialSearchSet">
         <EffectArray value="AP_StrengthInUnityInitialSearchAiur"/>
@@ -5165,6 +5165,16 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_StrengthInUnityArtanisTaldarim"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ArtanisAirAttackDisableAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_DisableArtanisAirAttack"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisAirAttackDisableRB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AP_DisableArtanisAirAttack"/>
+    </CEffectRemoveBehavior>
     <CEffectCreatePersistent id="AP_ArtanisAirAttackSet">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>

@@ -2312,6 +2312,41 @@
         <CombineArray value="HasVision"/>
         <CombineArray value="AP_ArtanisLightningDashRangeCheck"/>
     </CValidatorCombine>
+    <CValidatorLocationEnumArea id="AP_ArtanisLightningDashStructureAtDestination">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <AreaArray Compare="GE" Count="1" Radius="0.1000"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <SearchFilters value="Ground,Structure;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorUnitType id="AP_ArtanisLightningDashIsVanillaSiegedTank">
+        <Value value="SiegeTankSieged"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="AP_ArtanisLightningDashIsSiegedTankAny">
+        <Type value="Or"/>
+        <CombineArray value="AP_IsSiegeTankSiegedOrMerc"/>
+        <CombineArray value="AP_IsSISiegeTankSieged"/>
+        <CombineArray value="AP_ArtanisLightningDashIsVanillaSiegedTank"/>
+    </CValidatorCombine>
+    <CValidatorLocationEnumArea id="AP_ArtanisLightningDashSiegedTankAtDestination">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <AreaArray Compare="GE" Count="1" Radius="0.1000" Validator="AP_ArtanisLightningDashIsSiegedTankAny"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <SearchFilters value="Ground;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorCombine id="AP_ArtanisLightningDashDestinationBlocked">
+        <Type value="Or"/>
+        <CombineArray value="AP_ArtanisLightningDashStructureAtDestination"/>
+        <CombineArray value="AP_ArtanisLightningDashSiegedTankAtDestination"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_ArtanisLightningDashDestinationNotBlocked">
+        <Negate value="1"/>
+        <CombineArray value="AP_ArtanisLightningDashDestinationBlocked"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_ArtanisLightningDashDestinationClear">
+        <Type value="And"/>
+        <CombineArray value="Pathable"/>
+        <CombineArray value="AP_ArtanisLightningDashDestinationNotBlocked"/>
+    </CValidatorCombine>
     <CValidatorLocationCompareRange id="AP_ArtanisLightningDashRangeCheck">
         <WhichLocation Value="SourceUnit"/>
         <Value Value="TargetPoint"/>
