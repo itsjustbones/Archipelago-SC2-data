@@ -2147,15 +2147,15 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
         <InfoFlags index="Hidden" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Requirements value="AP_HaveArtanisAirAttack"/>
         <InitialEffect value="AP_ArtanisAirAttackDisableRB"/>
-        <Period value="0.5"/>
-        <PeriodicEffect value="AP_ArtanisAirAttackDisableRB"/>
         <FinalEffect value="AP_ArtanisAirAttackDisableAB"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_DisableArtanisAirAttack">
         <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="AP_CasterHasEnableArtanisAirAttackSwap"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Modification>
             <WeaponDisableArray value="AP_ArtanisAirAttack"/>
@@ -2174,8 +2174,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\BTN-Ability-Protoss-HardenedShields.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <DisableValidatorArray value="CasterShieldsGE1"/>
-        <DisableValidatorArray value="CasterShieldsGE1"/>
+        <DisableValidatorArray value="CasterShieldsGE10"/>
         <Requirements value="AP_HaveArtanisPurifierAspectSelectedPassive"/>
         <DamageResponse ClampMaximum="10" Minimum="10">
             <Kind index="Spell" value="0"/>
@@ -2188,10 +2187,10 @@
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="4"/>
         <DisplayDuration index="Self" value="1"/>
-        <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2">
-            <DamageDealtFraction index="Melee" value="1"/>
-            <DamageDealtFraction index="Ranged" value="1"/>
-            <DamageDealtFraction index="Splash" value="1"/>
+        <Modification MoveSpeedMultiplier="2.2" AttackSpeedMultiplier="2.2">
+            <DamageDealtFraction index="Melee" value="1.2"/>
+            <DamageDealtFraction index="Ranged" value="1.2"/>
+            <DamageDealtFraction index="Splash" value="1.2"/>
             <ModifyFlags index="OrdersUninterruptible" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="Uncommandable" value="1"/>
@@ -2205,17 +2204,6 @@
         <RemoveValidatorArray value="AP_CasterHasExterminate"/>
         <FinalEffect value="AP_ExterminateRemoveSet"/>
         <Duration value="4"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisLightningDash">
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-charge.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="3.5"/>
-        <Modification MoveSpeedMultiplier="5">
-            <StateFlags index="SuppressCollision" value="1"/>
-            <StateFlags index="Uncommandable" value="1"/>
-        </Modification>
-        <Alignment value="Positive"/>
-        <BuffFlags index="Channeling" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisLightningDashStun">
         <Duration value="1.5"/>
@@ -2384,9 +2372,9 @@
         <Alignment value="Positive"/>
         <DisplayDuration index="Self" value="1"/>
         <Duration value="3"/>
-        <!--Modification>
+        <Modification>
             <StateFlags index="Invulnerable" value="1"/>
-        </Modification-->
+        </Modification>
         <DamageResponse Chance="1" ModifyFraction="0" ModifyMinimumDamage="1"/>
         <Period value="3"/>
         <PeriodicEffect value="AP_ArtanisResurgenceExplodeSet"/>
@@ -2403,8 +2391,11 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisResurgenceDisable">
         <Alignment value="Negative"/>
-        <BehaviorFlags index="Permanent" value="1"/>
         <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <Cost>
+            <Cooldown TimeStart="300"/>
+        </Cost>
         <Duration value="300"/>
         <Modification>
             <BehaviorLinkDisableArray value="AP_ArtanisResurgence"/>
@@ -2424,6 +2415,7 @@
         <Duration value="0.0625"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzDamaged">
+        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="1"/>
     </CBehaviorBuff>
@@ -2449,8 +2441,9 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkStopStun">
+        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="0.125"/>
+        <Duration value="0.3"/>
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
@@ -5265,10 +5258,12 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisCharging" parent="AP_Charging">
         <InfoIcon value="AP\Assets\Textures\btn-ability-artanis-charge.dds"/>
+        <FinalEffect value="AP_LesserPsiStormPersistentCharge"/>
         <Modification MoveSpeedMultiplier="3"/>
         <RemoveValidatorArray index="0" value="AP_ArtanisChargeTargetAttacked"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>
+        <Tooltip value="Behavior/Tooltip/AP_ArtanisCharging"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ScopophobiaTarget">
         <InfoIcon value="Assets\Textures\btn-upgrade-afaidofthedark.dds"/>
@@ -7655,7 +7650,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_SuppressionPulse">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-corruption.dds"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-suppression-pulse.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="4"/>
         <Modification>
@@ -7666,7 +7661,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoltaicShock">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-zerg-corruption.dds"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-voltaic-surge.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="6"/>
         <Modification>
@@ -7681,7 +7676,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismStun">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-forcefield-color.dds"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism.dds"/>
         <Duration value="5"/>
         <InitialEffect value="AP_PhasePrismSearch"/>
         <Modification>

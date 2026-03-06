@@ -2732,6 +2732,17 @@
         <Count Link="AP_ArtanisResurgence" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountBehavior id="AP_CountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ArtanisResurgenceDisable" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementNot id="AP_NotCountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit">
+        <OperandArray index="0" value="AP_CountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_AndCountUpgradeArtanisResurgenceCompleteOnlyNotCountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit">
+        <OperandArray value="AP_CountUpgradeArtanisResurgenceCompleteOnly"/>
+        <OperandArray value="AP_NotCountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit"/>
+    </CRequirementAnd>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisVoltaicShockCompleteOnly">
         <Count Link="AP_ArtanisVoltaicShock" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
@@ -5115,6 +5126,13 @@
         <OperandArray value="AP_CountUpgradeArtanisAiurAspectPassiveCompleteOnly"/>
         <OperandArray value="AP_CountBehaviorArtanisAiurAspectCompleteOnlyAtUnit"/>
     </CRequirementAnd>
+    <CRequirementNot id="AP_NotCountUpgradeArtanisAiurAspectActiveCompleteOnly">
+        <OperandArray index="0" value="AP_CountUpgradeArtanisAiurAspectActiveCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_AndCanUseArtanisAiurAspectPassiveNotActiveCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisAiurAspectPassiveCompleteOnly"/>
+        <OperandArray value="AP_NotCountUpgradeArtanisAiurAspectActiveCompleteOnly"/>
+    </CRequirementAnd>
     <CRequirementCountBehavior id="AP_CountBehaviorArtanisAiurAspectCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_ArtanisAiurAspect" State="CompleteOnlyAtUnit"/>
@@ -5144,6 +5162,13 @@
     <CRequirementAnd id="AP_AndCanUseArtanisNerazimAspectPassiveCompleteOnly">
         <OperandArray value="AP_CountUpgradeArtanisNerazimAspectPassiveCompleteOnly"/>
         <OperandArray value="AP_CountBehaviorArtanisNerazimAspectCompleteOnlyAtUnit"/>
+    </CRequirementAnd>
+    <CRequirementNot id="AP_NotCountUpgradeArtanisNerazimAspectActiveCompleteOnly">
+        <OperandArray index="0" value="AP_CountUpgradeArtanisNerazimAspectActiveCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_AndCanUseArtanisNerazimAspectPassiveNotActiveCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisNerazimAspectPassiveCompleteOnly"/>
+        <OperandArray value="AP_NotCountUpgradeArtanisNerazimAspectActiveCompleteOnly"/>
     </CRequirementAnd>
     <CRequirementCountBehavior id="AP_CountBehaviorArtanisNerazimAspectCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
@@ -5188,6 +5213,13 @@
         <OperandArray value="AP_CountUpgradeArtanisPurifierAspectPassiveCompleteOnly"/>
         <OperandArray value="AP_CountBehaviorArtanisPurifierAspectCompleteOnlyAtUnit"/>
     </CRequirementAnd>
+    <CRequirementNot id="AP_NotCountUpgradeArtanisPurifierAspectActiveCompleteOnly">
+        <OperandArray index="0" value="AP_CountUpgradeArtanisPurifierAspectActiveCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_AndCanUseArtanisPurifierAspectPassiveNotActiveCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisPurifierAspectPassiveCompleteOnly"/>
+        <OperandArray value="AP_NotCountUpgradeArtanisPurifierAspectActiveCompleteOnly"/>
+    </CRequirementAnd>
     <CRequirementCountBehavior id="AP_CountBehaviorArtanisPurifierAspectCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_ArtanisPurifierAspect" State="CompleteOnlyAtUnit"/>
@@ -5203,8 +5235,8 @@
         <Count Link="AP_ArtanisForceOfWill" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisFirstbornsResolveCompleteOnly">
-        <Count Link="AP_ArtanisFirstbornsResolve" State="CompleteOnly"/>
+    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisWillOfTheFirstbornCompleteOnly">
+        <Count Link="AP_ArtanisWillOfTheFirstborn" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisShieldOverloadCompleteOnly">
@@ -5230,6 +5262,13 @@
     <CRequirementAnd id="AP_AndCanUseArtanisTaldarimAspectPassiveCompleteOnly">
         <OperandArray value="AP_CountUpgradeArtanisTaldarimAspectPassiveCompleteOnly"/>
         <OperandArray value="AP_CountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit"/>
+    </CRequirementAnd>
+    <CRequirementNot id="AP_NotCountUpgradeArtanisTaldarimAspectActiveCompleteOnly">
+        <OperandArray index="0" value="AP_CountUpgradeArtanisTaldarimAspectActiveCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_AndCanUseArtanisTaldarimAspectPassiveNotActiveCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectPassiveCompleteOnly"/>
+        <OperandArray value="AP_NotCountUpgradeArtanisTaldarimAspectActiveCompleteOnly"/>
     </CRequirementAnd>
     <CRequirementCountBehavior id="AP_CountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>

@@ -4638,11 +4638,12 @@
         <Effect index="0" value="AP_ExterminateSet"/>
         <Range value="7"/>
         <Cost>
-            <Vital index="Energy" value="50"/>
-            <Cooldown TimeUse="10"/>
+            <Vital index="Energy" value="30"/>
+            <Cooldown Link="Abil/AP_Exterminate" TimeUse="8"/>
+            <Cooldown Link="Abil/AP_ExterminateAir" TimeUse="8"/>
         </Cost>
         <TargetFilters value="Ground,Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveExterminateGround"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_ExterminateAir" parent="AP_Exterminate">
         <!-- Cannot upgrade ability targetfilters through Upgrades, for some reason -->
@@ -4685,7 +4686,7 @@
         </Cost>
         <Range value="7"/>
         <RangeSlop value="7"/>
-        <PrepTime value="0"/>
+        <CastIntroTime value="0.1"/>
         <CursorEffect value="AP_VoltaicShockDamageSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock" Requirements="AP_HaveArtanisVoltaicShock"/>    
     </CAbilEffectTarget>
@@ -4696,6 +4697,7 @@
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="10"/>
         </Cost>
+        <CastIntroTime value="0.25"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite" Requirements="AP_HaveArtanisPurifierAspectSelectedActive"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_ArtanisAstralWind">
@@ -4719,7 +4721,7 @@
         <AbilCmd value="attack,Execute"/>
         <Effect value="AP_ArtanisCharge"/>
         <Cost>
-            <Cooldown Link="Charge" Location="Unit" TimeUse="5"/>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="10"/>
         </Cost>
         <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
         <AutoCastValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
@@ -4733,7 +4735,7 @@
             <Cooldown TimeUse="12"/>
         </Cost>
         <Range value="7"/>
-        <TargetFilters value="Visible;Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Invulnerable"/>
+        <TargetFilters value="Visible;Self,Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Invulnerable"/>
         <CursorEffect value="AP_PhasePrismSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"  Requirements="AP_HaveArtanisPhasePrism"/>
     </CAbilEffectTarget>
@@ -7897,6 +7899,7 @@
         </CmdButtonArray>
         <Flags index="Toggle" value="1"/>
         <Flags index="ToggledOn" value="1"/>
+        <Flags index="Transient" value="1"/>
         <BehaviorArray value="AP_EnableArtanisAirAttackSwap"/>
     </CAbilBehavior>
     <CAbilBehavior id="AP_MothershipTaldarimBaseAttackSwap">

@@ -1893,10 +1893,10 @@ void libABFE498B_gf_AP_Triggers_unlockProtossArtanisAbilities (int lp_player, in
         lp_bitArrayValue,
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisLightningDash, // 0
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisPhasePrism, // 1
-            libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisInspiringPresence, // 2
+            libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisWillOfTheFirstborn, // 2
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisVoltaicShock, // 3
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisAstralWind, // 4
-            libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisCharge, // 5
+            libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisShieldOverload, // 5
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisResurgence, // 6
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisAirAttack, // 7
             libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisForceOfWill, // 8
@@ -10493,10 +10493,10 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisPhasePrism (int lp_player) 
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArtanisPhasePrism", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisInspiringPresence (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisWillOfTheFirstborn (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArtanisInspiringPresence", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArtanisWillOfTheFirstborn", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisVoltaicShock (int lp_player) {
@@ -10511,10 +10511,10 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisAstralWind (int lp_player) 
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArtanisAstralWind", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisCharge (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisShieldOverload (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArtanisCharge", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArtanisShieldOverload", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockArtanisResurgence (int lp_player) {
@@ -10943,7 +10943,6 @@ void libABFE498B_gf_AP_Triggers_HeroInitFacingAngle (int lp_player, point lp_loc
     if ((lv_bitflag == 1)) {
         lv_count += 1;
         lv_unittype[lv_count] = "AP_ArtanisHero";
-        lv_system[lv_count] = 1;
     }
 
     autoE0B86775_ae = lv_count;
@@ -11065,7 +11064,6 @@ void libABFE498B_gf_AP_Triggers_HeroReplace (int lp_player, unit lp_hero, unitgr
     if ((lv_bitflag == 1)) {
         lv_count += 1;
         lv_unittype[lv_count] = "AP_ArtanisHero";
-        lv_system[lv_count] = 1;
     }
 
     lib15EF4C78_gf_SetHeroPanelUnit(1, null, lp_player);

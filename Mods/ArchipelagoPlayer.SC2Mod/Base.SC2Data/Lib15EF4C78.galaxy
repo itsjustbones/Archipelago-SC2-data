@@ -4981,6 +4981,53 @@ void lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Tassadar's Teachings
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_TassadarsTeachings_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitHasBehavior2(EventPlayerEffectUsedUnit(c_effectUnitCaster), "AP_ArtanisAiurAspect") == true))) {
+            return false;
+        }
+
+        if (!((TechTreeUpgradeCount(lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisAiurAspectPassive", c_techCountQueuedOrBetter) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (((EventPlayerEffectUsedAbil() == "AP_ArtanisBladeWaltz") || (EventPlayerEffectUsedAbil() == "AP_SuppressionPulse") || (EventPlayerEffectUsedAbil() == "AP_ArtanisAstralWind") || (EventPlayerEffectUsedAbil() == "AP_StrengthInUnity") || (EventPlayerEffectUsedAbil() == "AP_ArtanisLightningDash"))) {
+        UnitCreateEffectPoint(EventPlayerEffectUsedUnit(c_effectUnitCaster), "AP_LesserPsiStormPersistent", UnitGetPosition(EventPlayerEffectUsedUnit(c_effectUnitCaster)));
+    }
+    else {
+        if (((EventPlayerEffectUsedAbil() == "AP_PhasePrism"))) {
+            UnitCreateEffectPoint(EventPlayerEffectUsedUnit(c_effectUnitCaster), "AP_LesserPsiStormPersistent", UnitGetPosition(EventPlayerEffectUsedUnit(c_effectUnitTarget)));
+        }
+        else {
+            UnitCreateEffectPoint(EventPlayerEffectUsedUnit(c_effectUnitCaster), "AP_LesserPsiStormPersistent", EventPlayerEffectUsedPoint(c_effectLocationTargetPoint));
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_TassadarsTeachings_Init () {
+    lib15EF4C78_gt_TassadarsTeachings = TriggerCreate("lib15EF4C78_gt_TassadarsTeachings_Func");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisLightningDashStunSearch");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_PhasePrismSearch");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_SuppressionPulseSearchArea");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisAstralWindSearch");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_VoltaicShockSearch");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_StrengthInUnity");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_TassadarsTeachings, lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisBladeWaltzEndSearch");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Shadow Slice Height
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_ShadowSliceHeight_Func (bool testConds, bool runActions) {
@@ -5070,7 +5117,7 @@ bool lib15EF4C78_gt_PhasePrismSwap_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget)) <= 30.0)) {
+    if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget)) <= 40.0)) {
         UnitSetPosition(EventUnit(), UnitGetPosition(lib15EF4C78_gv_phasePrismTarget), true);
         UnitSetPosition(lib15EF4C78_gv_phasePrismTarget, lv_artanisPosition, true);
         UnitBehaviorAdd(EventUnit(), "AP_PhasePrismDelay", EventUnit(), 1);
@@ -5086,7 +5133,7 @@ void lib15EF4C78_gt_PhasePrismSwap_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Tassadar's Tenacity Energy Restore
+// Trigger: Shield Overload
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_TassadarsTenacityEnergyRestore_Func (bool testConds, bool runActions) {
     // Variable Declarations
@@ -5099,11 +5146,11 @@ bool lib15EF4C78_gt_TassadarsTenacityEnergyRestore_Func (bool testConds, bool ru
 
     // Conditions
     if (testConds) {
-        if (!((UnitHasBehavior2(EventUnit(), "AP_ArtanisAiurAspect") == true))) {
+        if (!((UnitGetType(EventUnit()) == "AP_ArtanisHero"))) {
             return false;
         }
 
-        if (!((TechTreeUpgradeCount(lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisAiurAspectPassive", c_techCountQueuedOrBetter) == 1))) {
+        if (!((TechTreeUpgradeCount(lib15EF4C78_gf_AP_GetPlayerId(), "AP_ArtanisShieldOverload", c_techCountQueuedOrBetter) == 1))) {
             return false;
         }
     }
@@ -9158,7 +9205,7 @@ void lib15EF4C78_gt_AP_Player_MercCompoundSetupCounts_Init () {
 bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
-    int lv_qxxtdfevcxegexgl;
+    int lv_mndcskxdrldmljek;
     int lv_instantUsesLeft;
 
     // Automatic Variable Declarations
@@ -9172,28 +9219,28 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         return true;
     }
 
-    lv_qxxtdfevcxegexgl = EventPlayer();
-    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_qxxtdfevcxegexgl);
+    lv_mndcskxdrldmljek = EventPlayer();
+    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_mndcskxdrldmljek);
     if ((lv_instantUsesLeft > 0)) {
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
                 lv_instantUsesLeft -= 1;
-                libNtve_gf_SetUpgradeLevelForPlayer(lv_qxxtdfevcxegexgl, "AP_FastDeliveryCharges", lv_instantUsesLeft);
+                libNtve_gf_SetUpgradeLevelForPlayer(lv_mndcskxdrldmljek, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
                 if ((lv_instantUsesLeft == 0)) {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_qxxtdfevcxegexgl);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_mndcskxdrldmljek);
                 }
                 else {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_qxxtdfevcxegexgl, lv_index);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_mndcskxdrldmljek, lv_index);
                 }
             }
 
         }
     }
 
-    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_qxxtdfevcxegexgl);
+    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_mndcskxdrldmljek);
     return true;
 }
 
@@ -9511,6 +9558,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_TechReactorswaptoAP_Barracks_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Factory_Init();
     lib15EF4C78_gt_TechReactorswaptoAP_Starport_Init();
+    lib15EF4C78_gt_TassadarsTeachings_Init();
     lib15EF4C78_gt_ShadowSliceHeight_Init();
     lib15EF4C78_gt_ShadowSliceReset_Init();
     lib15EF4C78_gt_PhasePrismAcquireTarget_Init();

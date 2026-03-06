@@ -4597,31 +4597,52 @@
     </CEffectCreatePersistent>
     <CEffectSet id="AP_ArtanisBladesSet">
         <EditorCategories value=""/>
-        <EffectArray value="AP_ArtanisBladesSwitch"/>
+        <EffectArray value="AP_ArtanisBlades"/>
+        <EffectArray value="AP_ArtanisTaldarimAspectNearbySearchGround"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_RaszagalsRhythmEmpoweredConsumeSet"/>
         <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
-    <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageGround" parent="DU_WEAP">
+    <CEffectEnumArea id="AP_ArtanisTaldarimAspectNearbySearchGround">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="8"/>
+        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Buried,Cloaked,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="2.25" Effect="AP_ArtanisTaldarimAspectNearbyDamageGround"/>
+        <MaxCount value="3"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisTaldarimAspectNearbySearchAir">
+        <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Air;Player,Ally,Neutral,Buried,Cloaked,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
+        <AreaArray Radius="2.25" Effect="AP_ArtanisTaldarimAspectNearbyDamageAir"/>
+        <MaxCount value="3"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageGround" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="3"/>
         <Death value="Eviscerate"/>
-        <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.25" Fraction="0.33"/>
-        <ExcludeArray Value="Target"/>
+        <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
-    <CEffectDamage id="AP_ArtanisTaldarimAspectSplashDamageAir" parent="DU_WEAP">
+    <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageAir" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="8"/>
-        <SearchFilters value="Air;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.25" Fraction="0.33"/>
-        <ExcludeArray Value="Target"/>
+        <Amount value="3"/>
+        <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
-    <CEffectSwitch id="AP_ArtanisBladesSwitch">
-        <CaseArray Validator="AP_HasArtanisTaldarimAspectSelectedPassive" Effect="AP_ArtanisTaldarimAspectSplashDamageGround"/>
-        <CaseDefault value="AP_ArtanisBlades"/>
-    </CEffectSwitch>
     <CEffectDamage id="AP_ArtanisBlades" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Amount value="8"/>
@@ -4639,12 +4660,11 @@
     </CEffectRemoveBehavior>
     <CEffectSet id="AP_RaszagalsRhythmEmpoweredConsumeSet">
         <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
-        <EffectArray value="AP_RaszagalsRhythmCDRefund"/>
         <EffectArray value="AP_RaszagalsRhythmEnergyRestore"/>
     </CEffectSet>
     <CEffectModifyUnit id="AP_RaszagalsRhythmEnergyRestore">
         <ImpactUnit Value="Caster"/>
-        <VitalArray index="Energy" Change="10"/>
+        <VitalArray index="Energy" Change="8"/>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="AP_ArtanisAiurAspect"/>
     <CEffectApplyBehavior id="AP_ArtanisNerazimAspect"/>
@@ -4751,7 +4771,6 @@
     <CEffectModifyUnit id="AP_ExterminateSyncCooldownInitial">
         <ImpactUnit Value="Caster"/>
         <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Set"/>
-        <Cost Abil="AP_ExterminateAir,Execute" CooldownOperation="Set"/>
     </CEffectModifyUnit>
     <CEffectSet id="AP_ExterminateRemoveSet">
         <EffectArray value="AP_ExterminateRBSearch"/>
@@ -4826,22 +4845,6 @@
         <VitalArray index="Energy">
             <Change value="20"/>
         </VitalArray>
-    </CEffectModifyUnit>
-    <CEffectModifyUnit id="AP_RaszagalsRhythmCDRefund">
-        <ImpactUnit Value="Caster"/>
-        <!-- Technically would be easier to grant 100% CDR for 1 second instead, but want CDR refund to be more instanteous and scale better w/ attack speed-->
-        <Cost Abil="AP_ArtanisCharge,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_ShadowSlice,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_ArtanisLightningDash,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_CleansingSmite,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_PhasePrism,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_ArtanisBladeWaltz,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_ExterminateAir,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_StrengthInUnity,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_ArtanisAstralWind,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_SuppressionPulse,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
-        <Cost Abil="AP_VoltaicShock,Execute" CooldownOperation="Add" CooldownTimeUse="-1.0"/>
     </CEffectModifyUnit>
     <CEffectSet id="AP_ArtanisAstralWind">
         <EditorCategories value="Race:Protoss"/>
@@ -4953,17 +4956,17 @@
     </CEffectSet>
     <CEffectApplyBehavior id="AP_ArtanisResurgenceStunAB">
         <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
+        <WhichUnit Value="Source"/>
         <Behavior value="AP_ArtanisResurgenceStun"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_ArtanisResurgenceInvulnerableAB">
         <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
+        <WhichUnit Value="Source"/>
         <Behavior value="AP_ArtanisResurgenceInvulnerable"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_ArtanisResurgenceDisableAB">
         <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
+        <WhichUnit Value="Source"/>
         <Behavior value="AP_ArtanisResurgenceDisable"/>
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ArtanisResurgenceExplodeSet">
@@ -5190,16 +5193,13 @@
         <AmmoUnit value="AP_ArtanisAirAttackWeapon"/>
     </CEffectLaunchMissile>
     <CEffectSet id="AP_ArtanisAirAttackImpactSet">
-        <EffectArray value="AP_ArtanisAirAttackSwitch"/>
+        <EffectArray value="AP_ArtanisAirAttackDamage"/>
+        <EffectArray value="AP_ArtanisTaldarimAspectNearbySearchAir"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_RaszagalsRhythmEmpoweredConsumeSet"/>
         <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
-    <CEffectSwitch id="AP_ArtanisAirAttackSwitch">
-        <CaseArray Validator="AP_HasArtanisTaldarimAspectSelectedPassive" Effect="AP_ArtanisTaldarimAspectSplashDamageAir"/>
-        <CaseDefault value="AP_ArtanisAirAttackDamage"/>
-    </CEffectSwitch>
     <CEffectDamage id="AP_ArtanisAirAttackDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Amount value="8"/>
@@ -5209,7 +5209,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Invulnerable"/>
-        <AreaArray Radius="1.7" Effect="AP_CleansingSmiteSet"/>
+        <AreaArray Radius="1.8" Effect="AP_CleansingSmiteSet"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectSet id="AP_CleansingSmiteSet">
@@ -5306,7 +5306,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Invulnerable"/>
-        <AreaArray Radius="1.7" Effect="AP_ArtanisBladeWaltzEndDamage"/>
+        <AreaArray Radius="1.8" Effect="AP_ArtanisBladeWaltzEndDamage"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
     <CEffectDamage id="AP_ArtanisBladeWaltzEndDamage" parent="DU_WEAP">
@@ -11173,6 +11173,32 @@
         <AreaArray Radius="1.5" Effect="AP_PsiStormApplyBehavior"/>
         <SearchFlags index="CallForHelp" value="1"/>
     </CEffectEnumArea>
+    <CEffectDamage id="AP_LesserPsiStormDamage">
+        <ValidatorArray value="PsiStormUTargetFilters"/>
+        <EditorCategories value="Race:Protoss"/>
+        <Visibility value="Hidden"/>
+        <Amount value="2.5"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="AP_LesserPsiStormPersistent">
+        <EditorCategories value="Race:Protoss"/>
+        <InitialEffect value="AP_LesserPsiStormSearch"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="AP_LesserPsiStormSearch"/>
+        <PeriodicPeriodArray value="0.25"/>
+        <AINotifyEffect value="AP_LesserPsiStormSearch"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="AP_LesserPsiStormSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.8" Effect="AP_LesserPsiStormDamage"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="AP_LesserPsiStormPersistentCharge" parent="AP_LesserPsiStormPersistent">
+        <PeriodCount value="7"/>
+        <ValidatorArray value="AP_HasArtanisAiurAspectBehaviorAndPassive"/>
+    </CEffectCreatePersistent>
     <CEffectSet id="AP_PsiStormShakurasImpactSet">
         <EffectArray value="AP_PsiStormApplyBehavior"/>
         <EffectArray value="AP_PsiStormCrippleAB"/>

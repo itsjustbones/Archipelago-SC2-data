@@ -2318,29 +2318,9 @@
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFilters value="Ground,Structure;Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CValidatorLocationEnumArea>
-    <CValidatorUnitType id="AP_ArtanisLightningDashIsVanillaSiegedTank">
-        <Value value="SiegeTankSieged"/>
-    </CValidatorUnitType>
-    <CValidatorCombine id="AP_ArtanisLightningDashIsSiegedTankAny">
-        <Type value="Or"/>
-        <CombineArray value="AP_IsSiegeTankSiegedOrMerc"/>
-        <CombineArray value="AP_IsSISiegeTankSieged"/>
-        <CombineArray value="AP_ArtanisLightningDashIsVanillaSiegedTank"/>
-    </CValidatorCombine>
-    <CValidatorLocationEnumArea id="AP_ArtanisLightningDashSiegedTankAtDestination">
-        <WhichLocation Value="TargetUnitOrPoint"/>
-        <AreaArray Compare="GE" Count="1" Radius="0.1000" Validator="AP_ArtanisLightningDashIsSiegedTankAny"/>
-        <SearchFlags index="ExtendByUnitRadius" value="1"/>
-        <SearchFilters value="Ground;Missile,Stasis,Dead,Hidden,Invulnerable"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorCombine id="AP_ArtanisLightningDashDestinationBlocked">
-        <Type value="Or"/>
-        <CombineArray value="AP_ArtanisLightningDashStructureAtDestination"/>
-        <CombineArray value="AP_ArtanisLightningDashSiegedTankAtDestination"/>
-    </CValidatorCombine>
     <CValidatorCombine id="AP_ArtanisLightningDashDestinationNotBlocked">
         <Negate value="1"/>
-        <CombineArray value="AP_ArtanisLightningDashDestinationBlocked"/>
+        <CombineArray value="AP_ArtanisLightningDashStructureAtDestination"/>
     </CValidatorCombine>
     <CValidatorCombine id="AP_ArtanisLightningDashDestinationClear">
         <Type value="And"/>
@@ -2369,6 +2349,11 @@
         <CombineArray value="AP_ArtanisChargeTargetAttackedGround"/>
         <CombineArray value="AP_ArtanisChargeTargetAttackedAir"/>
     </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHaveEnableArtanisAirAttackSwap">
+        <WhichUnit Value="Caster"/>
+        <Value value="0"/>
+        <Behavior value="AP_EnableArtanisAirAttackSwap"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasExterminate">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -4480,11 +4465,20 @@
         <Find value="1"/>
         <Value value="AP_HaveArtanisNerazimAspectSelectedPassive"/>
     </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HasArtanisAiurAspectPassive">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisAiurAspectPassive"/>
+    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisAiurAspectBehavior">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
         <Behavior value="AP_ArtanisAiurAspect"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_HasArtanisAiurAspectBehaviorAndPassive">
+        <Type value="And"/>
+        <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
+        <CombineArray value="AP_HasArtanisAiurAspectPassive"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_HasArtanisNerazimAspectBehavior">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -8255,9 +8249,6 @@
         <CombineArray value="AP_StrengthInUnityTargetInAuraRange"/>
         <CombineArray value="AP_StrengthInUnityCasterHasAura"/>
     </CValidatorCombine>
-    <CValidatorPlayerRequirement id="AP_HaveBunkerIgnoreSupply">
-        <Value value="AP_HaveBunkerIgnoreSupply"/>
-    </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="AP_HaveImpalerTentacleExtensions">
         <Find value="1"/>
         <Value value="AP_HaveImpalerTentacleExtensions"/>

@@ -505,8 +505,10 @@ Behavior/Name/AP_AlarakStalkerPhasingArmorBuff=Phase Armor
 Behavior/Name/AP_AmorphousArmorcloud=Microbial Shroud
 Behavior/Name/AP_ArbiterMPCloakFieldEffect=Cloaking Field
 Behavior/Name/AP_ArbiterMPStasisField=Stasis Field
-Behavior/Name/AP_ArtanisBladeWaltzDamaged=Waltzed Through
+Behavior/Name/AP_ArtanisCharging=Charging
+Behavior/Name/AP_ArtanisLightningDashStun=Stunned
 Behavior/Name/AP_ArtanisResurgenceDisable=Resurged
+Behavior/Name/AP_ArtanisResurgenceInvulnerable=Resurging
 Behavior/Name/AP_AscendantSacrificeSelfBuff=Power Overwhelming
 Behavior/Name/AP_AstralRestorationCaster=Astral Restoration
 Behavior/Name/AP_BansheeCloak=Cloak
@@ -635,6 +637,7 @@ Behavior/Name/AP_ParalyticSpines=Paralytic Spines
 Behavior/Name/AP_PersonalCloakingFree=Cloak
 Behavior/Name/AP_PersonalDefensiveMatrix=Ionic Force Field
 Behavior/Name/AP_PhaseBlinkDamage=Phase Blink
+Behavior/Name/AP_PhasePrismStun=In Stasis
 Behavior/Name/AP_PhotonOverchage=Photon Overcharge
 Behavior/Name/AP_PlanetCracker=Planet Cracker
 Behavior/Name/AP_PlanetCrackerChargeUp=Planet Cracker Charging
@@ -825,7 +828,10 @@ Behavior/Tooltip/AP_AlarakLightningStrikes=Alarak's next Deadly Charge also deal
 Behavior/Tooltip/AP_AmorphousArmorcloud=Incoming damage from air units reduced by <d ref="Behavior,AP_AmorphousArmorcloud,DamageResponse.ModifyFraction*100" precision="1"/>%.
 Behavior/Tooltip/AP_ArbiterMPCloakFieldEffect=This unit is cloaked unless revealed by <c val="FFE303">Detectors</c> or effects.
 Behavior/Tooltip/AP_ArtanisBladeWaltzDamaged=This unit cannot be damaged again by Blade Waltz during the dash.
+Behavior/Tooltip/AP_ArtanisCharging=Artanis is charging, allowing him to quickly close the distance with his target.
+Behavior/Tooltip/AP_ArtanisLightningDashStun=This unit is stunned.
 Behavior/Tooltip/AP_ArtanisResurgenceDisable=Artanis is unable to benefit from Resurgence.
+Behavior/Tooltip/AP_ArtanisResurgenceInvulnerable="But none of us are ever truly alone."
 Behavior/Tooltip/AP_AscendantSacrificeSelfBuff=This unit has increased shields and its abilities deal increased damage.
 Behavior/Tooltip/AP_AstralRestorationCaster=Healing units within range of Cloaking Field.
 Behavior/Tooltip/AP_BansheeCloak=This unit is cloaked and will only be revealed by detectors or effects.
@@ -930,6 +936,7 @@ Behavior/Tooltip/AP_ParalyticSpines=This unit's attack speed is slowed.
 Behavior/Tooltip/AP_PersonalCloakingFree=This unit is cloaked and will only be revealed by detectors or effects.
 Behavior/Tooltip/AP_PersonalDefensiveMatrix=Nova is absorbing a portion of the damage dealt to her.
 Behavior/Tooltip/AP_PhaseBlinkDamage=This unit's next attack will deal double the damage.
+Behavior/Tooltip/AP_PhasePrismStun=This unit is in stasis and can be swapped with Artanis.
 Behavior/Tooltip/AP_PlanetCracker=Firing the Planet Cracker and is unable to perform any other actions.
 Behavior/Tooltip/AP_PlanetCrackerChargeUp=Preparing for planetary annihilation...
 Behavior/Tooltip/AP_PowerRedirectionCaster=Redirecting power, cannot perform any other actions.
@@ -1162,7 +1169,6 @@ Button/Name/AP_ArtanisAstralWind=Astral Wind
 Button/Name/AP_ArtanisBladeWaltz=Blade Waltz
 Button/Name/AP_ArtanisBladeWaltzPassive=Blade Waltz
 Button/Name/AP_ArtanisCharge=Charge
-Button/Name/AP_ArtanisFirstbornsResolvePassive=Firstborn's Resolve
 Button/Name/AP_ArtanisForceOfWillPassive=Force of Will
 Button/Name/AP_ArtanisLightningDash=Lightning Dash
 Button/Name/AP_ArtanisNerazimAspect=Nerazim Aspect
@@ -1179,6 +1185,7 @@ Button/Name/AP_ArtanisTaldarimAspectPassive=Malash's Malevolence
 Button/Name/AP_ArtanisTemperedInTwilight=Tempered in Twilight
 Button/Name/AP_ArtanisWeaponAspectDamagePassive=Templar Training
 Button/Name/AP_ArtanisWeaponAspectSwap=Swap Weapon Aspects
+Button/Name/AP_ArtanisWillOfTheFirstbornPassive=Will Of The Firstborn
 Button/Name/AP_AscendantAbilityEfficiency=Breath of Creation
 Button/Name/AP_AscendantSacrifice=Sacrifice
 Button/Name/AP_AssaultModeMengsk=Assault Mode
@@ -2654,28 +2661,29 @@ Button/Tooltip/AP_Armory=Contains weapon and armor upgrades for Factory and Star
 Button/Tooltip/AP_ArtanisAirAttackDisable=Disable Artanis' anti-air attack.
 Button/Tooltip/AP_ArtanisAirAttackEnable=Enable Artanis' anti-air attack.
 Button/Tooltip/AP_ArtanisAiurAspect=Switch Artanis' active aspect to <c val="64e4fa">Aiur</c>, granting him access to any unlocked bonuses and making him count as a <c val="64e4fa">Aiur</c> unit.
-Button/Tooltip/AP_ArtanisAiurAspectPassive=Artanis takes <c val="ffff8a">50% reduced damage from spells</c>. While <c val="64e4fa">Aiur</c> Aspect is active, Artanis also restores shields equal to the <c val="ffff8a">energy cost spent</c> when casting abilities.
-Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life</c>, and heals <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life</c> to other nearby friendly units.<n/><n/>Cooldown reduced by <c val="ffff8a">5 seconds</c> whenever Artanis deals attack damage.
-Button/Tooltip/AP_ArtanisBladeWaltz=Dash to the target point dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage</c> to enemy ground units along the way. Deal an additional <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzEndDamage,Amount"/> damage</c> to nearby enemy ground units at the end of the dash.
-Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Dash to the target point and then return to the starting point, dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage</c> to enemy ground units along each dash path.
+Button/Tooltip/AP_ArtanisAiurAspectPassive=While <c val="64e4fa">Aiur</c> Aspect is active, Artanis also <c val="ffff8a">restores shields</c> equal to the <c val="ffff8a">energy cost spent</c> when casting abilities.
+Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life</c>, and heals other nearby friendly units for <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields</c> and <c val="ffff8a"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life</c>.<n/><n/>Cooldown reduced by <c val="ffff8a">5 seconds</c> whenever Artanis attacks.
+Button/Tooltip/AP_ArtanisBladeWaltz=Artanis dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage</c> to enemy ground units along the way and an additional <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzEndDamage,Amount"/> damage</c> to enemies near the end of the dash.
+Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Artanis dashes forward and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage</c> to enemy ground units along the way and an additional <c val="ffff8a"><d ref="Effect,AP_ArtanisBladeWaltzEndDamage,Amount"/> damage</c> to enemies near the end of the dash.
 Button/Tooltip/AP_ArtanisCharge=Intercepts enemy units.
-Button/Tooltip/AP_ArtanisFirstbornsResolvePassive=Increases Artanis' Life by <c val="ffff8a"><d ref="Upgrade,AP_ArtanisFirstbornsResolve,EffectArray[0].Value"/></c> and Life Armor by <c val="ffff8a"><d ref="Upgrade,AP_ArtanisFirstbornsResolve,EffectArray[2].Value"/></c>.<n/><n/>Artanis restores shields equal to <c val="ffff8a">25%</c> of the damage dealt by his attacks.
-Button/Tooltip/AP_ArtanisForceOfWillPassive=Regenerates <c val="ffff8a">3 shields per second</c> and grants Artanis <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisForceOfWill,EffectArray[0].Value"/> shield armor</c>.
-Button/Tooltip/AP_ArtanisLightningDash=Artanis charges forward, unleashing a blast of energy that deals <c val="ffff8a"><d ref="Effect,AP_ArtanisLightningDashDamage,Amount"/> damage</c> to nearby enemies and stuns them for <c val="ffff8a"><d ref="Behavior,AP_ArtanisLightningDashStun,Duration" precision="1"/> seconds</c>.
+Button/Tooltip/AP_ArtanisForceOfWillPassive=Artanis gains <c val="ffff8a">+3 shields per second</c> and <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisForceOfWill,EffectArray[0].Value"/> shield armor</c>.
+Button/Tooltip/AP_ArtanisHero=Hierarch of the Daelaam. Can choose various factions to gain bonus abilities and passives.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
+Button/Tooltip/AP_ArtanisLightningDash=Artanis charges forward dealing <c val="ffff8a"><d ref="Effect,AP_ArtanisLightningDashDamage,Amount"/> damage</c> to nearby enemies on impact and <c val="ffff8a">stunning</c> them for <c val="ffff8a"><d ref="Behavior,AP_ArtanisLightningDashStun,Duration" precision="1"/> seconds</c>.
 Button/Tooltip/AP_ArtanisNerazimAspect=Switch Artanis' active aspect to <c val="32CD32">Nerazim</c>, granting him access to any unlocked bonuses and making him count as a <c val="32CD32">Nerazim</c> unit.
-Button/Tooltip/AP_ArtanisNerazimAspectPassive=After casting an ability, Artanis' next attack deals <c val="ffff8a">100% increased damage</c>. While <c val="32CD32">Nerazim</c> Aspect is active, consuming the empowered attack also refunds <c val="ffff8a">1 second</c> from ability cooldowns and restores <c val="ffff8a">10 energy</c>.
+Button/Tooltip/AP_ArtanisNerazimAspectPassive=While <c val="32CD32">Nerazim</c> Aspect is active, non-autocast abilities empower Artanis' next attack, causing it to deal <c val="ffff8a"><d ref="Behavior,AP_RaszagalsRhythm,Modification.DamageDealtFraction[Melee] * 100"/>% increased damage</c> and restore <c val="ffff8a"><d ref="Effect,AP_RaszagalsRhythmEnergyRestore,VitalArray[Energy].Change"/> energy</c>.
 Button/Tooltip/AP_ArtanisNoAspect=Artanis removes his current Weapon Aspect, returning to his base form.
 Button/Tooltip/AP_ArtanisPassiveMenu=Open Artanis' passive ability menu to review his unlocked passive upgrades.
 Button/Tooltip/AP_ArtanisPurifierAspect=Switch Artanis' active aspect to <c val="f2bf16">Purifier</c>, granting him access to any unlocked bonuses and making him count as a <c val="f2bf16">Purifier</c> unit.
 Button/Tooltip/AP_ArtanisPurifierAspectPassive=While <c val="f2bf16">Purifier</c> Aspect is active, Artanis gains <c val="ffff8a">Hardened Shields</c>, reducing his damage taken while his shields are active up to a maximum of <c val="ffff8a">10</c>.
 Button/Tooltip/AP_ArtanisRespawn=Artanis has been placed in stasis as he recovers from his injuries.
-Button/Tooltip/AP_ArtanisResurgence=Grants Artanis invulnerability for <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceInvulnerable,Duration"/> seconds</c> upon taking lethal damage, preventing death and replenishing his Shields and Life.<n/><n/>Also releases a large blast of energy that knocks back and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisResurgenceEnemyImpactDamage,Amount"/></c> damage to all nearby enemies.<n/><n/>This effect cannot occur more than once every <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceDisable,Duration"/> seconds</c>.
-Button/Tooltip/AP_ArtanisShieldOverloadPassive=Increases Artanis' Shields by <c val="ffff8a"><d ref="Upgrade,AP_ArtanisShieldOverload,EffectArray[1].Value"/></c> and grants him <c val="ffff8a">50% reduced damage from spells</c>.
+Button/Tooltip/AP_ArtanisResurgence=Grants Artanis invulnerability for <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceInvulnerable,Duration"/> seconds</c> upon taking lethal damage, <c val="ffff8a">preventing death</c> and replenishing his Shields and Life.<n/><n/>Also releases a large blast of energy that knocks back and deals <c val="ffff8a"><d ref="Effect,AP_ArtanisResurgenceEnemyImpactDamage,Amount"/> damage</c> to all nearby enemies.<n/><n/>This effect cannot occur more than once every <c val="ffff8a"><d ref="Behavior,AP_ArtanisResurgenceDisable,Duration"/> seconds</c>.
+Button/Tooltip/AP_ArtanisShieldOverloadPassive=Increases Artanis' shields by +<c val="ffff8a"><d ref="Upgrade,AP_ArtanisShieldOverload,EffectArray[1].Value"/></c>.<n/><n/> Artanis <c val="ffff8a">restores shields</c> equal to the <c val="ffff8a">energy cost spent</c> when casting abilities. 
 Button/Tooltip/AP_ArtanisTaldarimAspect=Switch Artanis' active aspect to <c val="d40d24">Taldarim</c>, granting him access to any unlocked bonuses and making him count as a <c val="d40d24">Taldarim</c> unit.
-Button/Tooltip/AP_ArtanisTaldarimAspectPassive=Artanis gains <c val="ffff8a">25% attack speed</c>. While <c val="d40d24">Taldarim</c> Aspect is active, his attacks also deal <c val="ffff8a">33%</c> splash damage around the target.
+Button/Tooltip/AP_ArtanisTaldarimAspectPassive=While <c val="d40d24">Taldarim</c> Aspect is active, Artanis' attacks also deal <c val="ffff8a">40% splash damage</c> around his target.
 Button/Tooltip/AP_ArtanisTemperedInTwilight=Artanis restores <c val="ffff8a"><d ref="Effect,AP_ArtanisTemperedInTwilightEnergy,VitalArray[Energy].Change" precision="1"/> energy</c> whenever he attacks.
-Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisBaseAspectPassive,EffectArray[0].Value"/> attack damage</c> to his ground, anti-air, and aspect splash attacks.
+Button/Tooltip/AP_ArtanisWeaponAspectDamagePassive=Each unlocked Weapon Aspect active and passive grants Artanis <c val="ffff8a">+<d ref="Upgrade,AP_ArtanisBaseAspectPassive,EffectArray[0].Value"/> attack damage</c>.
 Button/Tooltip/AP_ArtanisWeaponAspectSwap=Swap Artanis to a different weapon aspect.
+Button/Tooltip/AP_ArtanisWillOfTheFirstbornPassive=Increases Artanis' life by +<c val="ffff8a">+<d ref="Upgrade,AP_ArtanisWillOfTheFirstborn,EffectArray[0].Value"/></c>.<n/><n/>Artanis <c val="ffff8a">restores shields</c> equal to <c val="ffff8a">25%</c> of the damage dealt by his attacks.
 Button/Tooltip/AP_AscendantAbilityEfficiency=Ascendant abilities cost <d ref="Upgrade,AP_AscendantAbilityEfficiency,EffectArray[0].Value"/> less energy.<n/><n/><c val="FFE303">War Council Upgrade.</c>
 Button/Tooltip/AP_AscendantSacrifice=Reduces target friendly unit to <d ref="Effect,AP_AscendantSacrificeDamage,Amount"/> life (shields are not affected).<n/><n/>Grants the Ascendant <d ref="Effect,AP_AscendantSacrificeDamage5,LeechFraction[Energy]"/> energy for each life point reduced, up to its maximum energy.<n/><n/><c val="#ColorAttackInfo">Can only target friendly units.</c>
 Button/Tooltip/AP_AssaultModeMengsk=Transforms the Sky Fury to Assault Mode. In this mode Sky Furies move on the ground and can only attack ground targets.
@@ -3574,7 +3582,7 @@ Button/Tooltip/AP_PermanentlyCloakedSpectre=Spectre is permanently cloaked.
 Button/Tooltip/AP_PermanentlyCloakedStasis=The Stasis Ward is permanently cloaked.
 Button/Tooltip/AP_PersonalDefensiveMatrix=Provides Nova with a shield that reduces incoming damage to a maximum of <d ref="Behavior,AP_PersonalDefensiveMatrix,DamageResponse.ClampMaximum"/> until <d ref="Behavior,AP_PersonalDefensiveMatrix,Modification.VitalMaxArray[Shields]"/> total damage is absorbed. Shield lasts for <d time="10"/>.
 Button/Tooltip/AP_PhaseBlaster=Warp Prisms are equipped with a Phase Blaster weapon to attack ground and air targets.
-Button/Tooltip/AP_PhasePrism=Put the target unit in stasis for <c val="ffff8a"><d ref="Behavior,AP_PhasePrismStun,Duration"/> seconds, pulling</c> all nearby enemy units to that unit's location.<n/><n/>This ability can be <c val="ffff8a">recast</c> to have Artanis <c val="ffff8a">swap places</c> with the unit in stasis, <c val="ffff8a">pulling in</c> nearby enemy units to Artanis after the swap. Swapping does not work across massive distances.
+Button/Tooltip/AP_PhasePrism=Put the target unit in stasis for <c val="ffff8a"><d ref="Behavior,AP_PhasePrismStun,Duration"/> seconds, pulling</c> all nearby enemy units to that unit's location.<n/><n/>This ability can be <c val="ffff8a">recast</c> to have Artanis <c val="ffff8a">swap places</c> with the unit in stasis, <c val="ffff8a">pulling in</c> nearby enemy units to Artanis after the swap.<n/><n/><c val="ffff8a">Cannot target Heroic units.</c>
 Button/Tooltip/AP_PhasePrismRecast=Swap Artanis with the unit in stasis, and then pull all nearby enemy units to Artanis. Does not work across massive distances.
 Button/Tooltip/AP_PhasingMode=Transforms the Warp Prism to Phasing Mode and generates a power radius similar to that of a Pylon. The Warp Prism cannot move in this mode.
 Button/Tooltip/AP_PhoenixAiur=Aiur Faction<n/>Air superiority starfighter. Can use Graviton Beam.<n/><n/><c val="ffff8a">Can attack air units.</c>
@@ -3638,6 +3646,7 @@ Button/Tooltip/AP_PsiDisruptionAll=Slows the attack and movement speeds of all n
 Button/Tooltip/AP_PsiDisruptionProtoss=Slows the attack and movement speeds of all nearby enemy Protoss units.<n/><n/><c val="#ColorAttackInfo">Heroic units are immune.</c>
 Button/Tooltip/AP_PsiDisruptionTerran=Slows the attack and movement speeds of all nearby enemy Terran units.<n/><n/><c val="#ColorAttackInfo">Heroic units are immune.</c>
 Button/Tooltip/AP_PsiDisruptor=Defensive structure. Slows the attack and movement speeds of all nearby units for each race you have unlocked for it.<n/><n/><c val="#ColorAttackInfo">Heroic units are immune.</c></n></n><c val="FFE303">Affected Races:</c>
+Button/Tooltip/AP_LesserPsiStorm=Creates a smaller storm of psionic energy that lasts 4 seconds, dealing 40 total damage to enemy units in the target area.
 Button/Tooltip/AP_PsiStorm=Creates a storm of psionic energy that lasts <d ref="(Effect,AP_HighArchonPsiStormPersistent,PeriodCount*Effect,AP_HighArchonPsiStormPersistent,PeriodicPeriodArray[0]) + Behavior,AP_HighArchonPsiStorm,Duration"/> seconds, causing up to <d ref="Effect,AP_HighArchonPsiStormDamageInitial,Amount + (Effect,AP_HighArchonPsiStormPersistent,PeriodCount * Behavior,AP_HighArchonPsiStorm,Duration * Effect,AP_HighArchonPsiStormDamage,Amount / Behavior,AP_HighArchonPsiStorm,Period)"/> damage to all enemy units in the target area. Does not damage friendly units.
 Button/Tooltip/AP_PsiStrike=Kerrigan dashes through enemies, dealing <d ref="Effect,AP_PsiStrikeDamage,Amount"/> damage to all enemies in her path.<n/><n/><c val="ffff8a">Passive: Movement speed increased by 30%.</c>
 Button/Tooltip/AP_PsionicLift=Enemies in target area are stunned for <d ref="Behavior,AP_PsionicLift,Duration"/> seconds and take <d ref="Behavior,AP_PsionicLift,Duration * Effect,AP_PsionicLiftDamage,Amount"/> damage over time.<n/><n/><c val="ffff8a">Does not stun heroic units.</c>
@@ -3842,8 +3851,8 @@ Button/Tooltip/AP_SentryPhasing=Purifier Faction<n/>Robotic support unit. Create
 Button/Tooltip/AP_SentryPurifier=Purifier Faction<n/>Robotic support unit. Can use Chrono Beam and Phasing Mode.<n/><n/><c val="#ColorAttackInfo">Can attack ground and air units.</c>
 Button/Tooltip/AP_SentryTaldarimForceField=Creates a solid barrier that lasts for <d ref="Behavior,AP_ForceFieldFate,Duration"/> seconds and impedes movement of ground units.<n/><n/><c val="#ColorAttackInfo">Massive units shatter Force Fields on contact.</c>
 Button/Tooltip/AP_SeveringGlave=Attacks no longer decrease in damage with each subsequent bounce.
-Button/Tooltip/AP_ShadowSlice=Teleport near an enemy target and strike them, dealing <c val="ffff8a"><d ref="Effect,AP_ShadowSliceDamage,Amount"/> damage</c> to them before teleporting back.<n/><n/>If this damage kills an enemy, <c val="ffff8a">refund 50%</c> of the cooldown and energy cost.
-Button/Tooltip/AP_ShadowSlicePassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ShadowSlice,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ShadowSlice,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Teleport near an enemy target and strike them, dealing <c val="ffff8a"><d ref="Effect,AP_ShadowSliceDamage,Amount"/> damage</c> to them before teleporting back.<n/><n/>If this damage kills an enemy, <c val="ffff8a">refund 50%</c> of the cooldown and energy cost.
+Button/Tooltip/AP_ShadowSlice=Artanis teleports to an enemy, dealing <c val="ffff8a"><d ref="Effect,AP_ShadowSliceDamage,Amount"/> damage</c> before teleporting back.<n/><n/>If this damage kills an enemy, <c val="ffff8a">refund 50%</c> of the cooldown and energy cost.
+Button/Tooltip/AP_ShadowSlicePassive=Energy Cost: <c val="ffff8a"><d ref="Abil,AP_ShadowSlice,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="ffff8a"><d ref="Abil,AP_ShadowSlice,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Artanis teleports to an enemy, dealing <c val="ffff8a"><d ref="Effect,AP_ShadowSliceDamage,Amount"/> damage</c> before teleporting back.<n/><n/>If this damage kills an enemy, <c val="ffff8a">refund 50%</c> of the cooldown and energy cost.
 Button/Tooltip/AP_ShapedBlast=Shock Cannon damage to friendly units reduced by 75%.
 Button/Tooltip/AP_ShapedHull=Increases Diamondback life by 50.
 Button/Tooltip/AP_ShieldBattery=Restores shields to nearby friendly units and structures.
@@ -3932,7 +3941,7 @@ Button/Tooltip/AP_StimLarge=Injects the unit with powerful stimulants that great
 Button/Tooltip/AP_StimRedirect=Orders infantry inside of the Bunker to use Stimpacks. They will take damage and have increased attack speed as normal.
 Button/Tooltip/AP_StopGenerateCreep=Stops generating creep.
 Button/Tooltip/AP_StopPlanetaryFortress=Orders selected units to cancel all orders and stop moving.
-Button/Tooltip/AP_StrengthInUnity=Rallies other Protoss units around Artanis for <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnity,Duration"/> seconds</c>, granting bonuses to himself and units around him based on each unit in his radius.<n/><n/><c val="64e4fa">Aiur</c>: Gain <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.VitalRegenArray[Energy]" precision="1"/> energy regen</c>, and cooldowns recharge <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.RateMultiplierArray[Cooldown] * 100 - 100"/>%</c> faster.<n/><c val="32CD32">Nerazim</c>: Become Cloaked and gain <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffNerazim,Modification.MoveSpeedMultiplier * 100 - 100"/>% movement speed</c>.<n/><c val="f2bf16">Purifier</c>: Restore <c val="ffff8a">4 shields and life per second</c>.<n/><c val="d40d24">Taldarim</c>: Deal <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffTaldarim,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage</c>.<n/><n/>Artanis counts as the faction of his weapon aspect, and gains double each of these bonuses.
+Button/Tooltip/AP_StrengthInUnity=Rallies other Protoss units around Artanis for <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnity,Duration"/> seconds</c>, granting bonuses to himself and units around him based on each <c val="ffff8a">Protoss Faction</c> in his radius.<n/><n/><c val="64e4fa">Aiur</c>: Gain <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.VitalRegenArray[Energy]" precision="1"/> energy regen</c>, and cooldowns recharge <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.RateMultiplierArray[Cooldown] * 100 - 100"/>%</c> faster.<n/><c val="32CD32">Nerazim</c>: Become <c val="ffff8a">Cloaked</c> and gain <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffNerazim,Modification.MoveSpeedMultiplier * 100 - 100"/>% movement speed</c>.<n/><c val="f2bf16">Purifier</c>: Restore <c val="ffff8a">4 shields and life per second</c>.<n/><c val="d40d24">Taldarim</c>: Deal <c val="ffff8a"><d ref="Behavior,AP_StrengthInUnityBuffTaldarim,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage</c>.<n/><n/>Artanis counts as the faction of his weapon aspect, and gains <c val="ffff8a">double</c> the bonuses.
 Button/Tooltip/AP_SuppressionPulse=Reduce <c val="ffff8a">attack damage</c> done by enemies around Artanis by <c val="ffff8a">100%</c> for <c val="ffff8a"><d ref="Behavior,AP_SuppressionPulse,Duration"/> seconds</c>.
 Button/Tooltip/AP_StukovInfestedBanshee=Tactical-strike aircraft. Can cloak and can be upgraded to burrow.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_StukovInfestedBansheeBurrowRegeneration=Infested Banshees regenerate 20 life and energy per second while burrowed.
@@ -5303,6 +5312,9 @@ Effect/Name/AP_ProjectileAccelerators=Projectile Accelerators
 Effect/Name/AP_ProjectileAcceleratorsRemove=Projectile Accelerators Remove
 Effect/Name/AP_PsiDisruptionApplyBehavior=Psi Disruption (Apply Behavior)
 Effect/Name/AP_PsiDisruptionSearchArea=Psi Disruption (Search Area)
+Effect/Name/AP_LesserPsiStormDamage=Lesser Psi Storm (Damage)
+Effect/Name/AP_LesserPsiStormPersistent=Lesser Psi Storm (Persistent)
+Effect/Name/AP_LesserPsiStormSearch=Lesser Psi Storm (Search)
 Effect/Name/AP_PsiStormApplyBehavior=Psi Storm (Apply Buff)
 Effect/Name/AP_PsiStormDamage=Psi Storm (Damage)
 Effect/Name/AP_PsiStormDamageInitial=Psi Storm (Damage2)
@@ -6230,7 +6242,7 @@ Unit/Name/AP_ArbiterMPWeaponMissile=Arbiter MPWeapon Missile
 Unit/Name/AP_Archon=Archon
 Unit/Name/AP_Armory=Armory
 Unit/Name/AP_ArtanisHero=Artanis
-Unit/Name/AP_ArtanisReviveCocoon=Artanis Stasis Shell
+Unit/Name/AP_ArtanisReviveCocoon=Artanis' Stasis Shell
 Unit/Name/AP_AscendantSacrificeWeapon1=AscendantSacrificeWeapon1
 Unit/Name/AP_AscendantSacrificeWeapon2=AscendantSacrificeWeapon2
 Unit/Name/AP_AscendantSacrificeWeapon3=AscendantSacrificeWeapon3
@@ -6727,6 +6739,7 @@ Unit/ShieldArmorName/AP_DefensiveMatrixShields=Defensive Matrix
 Unit/ShieldArmorName/AP_NovaShieldArmor=Terran Energy Shields
 Unit/ShieldArmorName/AP_TerranShieldArmor=Terran Energy Shields
 UnitKillRank/AP_Nova=Dominion Assassin
+UnitKillRank/AP_Artanis=Hierarch
 UnitSubtitle/AP_HotSHunter=Hunter Strain
 UnitSubtitle/AP_HotSHunterSplitter=Hunter + Splitter
 UnitSubtitle/AP_HotSSplitter=Splitter Strain
