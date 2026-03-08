@@ -2377,11 +2377,6 @@
         <Value value="1"/>
         <Behavior value="AP_ArtanisBladeWaltzActor"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzWalkSpeed">
-        <WhichUnit Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHasArtanisBladeWaltzWalkSpeed">
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
@@ -7749,9 +7744,9 @@
         <AreaArray Compare="GT" Count="0" Radius="6"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Hidden,Invulnerable"/>
     </CValidatorLocationEnumArea>
-    <CValidatorUnitCompareVital id="AP_CasterShieldsLE50Percent">
+    <CValidatorUnitCompareVital id="AP_CasterShieldsGE50Percent">
         <WhichUnit Value="Caster"/>
-        <Compare value="LE"/>
+        <Compare value="GE"/>
         <Type value="Fraction"/>
         <Value value="0.5"/>
         <Vital value="Shields"/>
@@ -7790,11 +7785,6 @@
         <CombineArray value="AP_HaveHotSMutaliskViper"/>
         <CombineArray value="NotWarpingIn"/>
     </CValidatorCombine>
-   <CValidatorUnitCompareBehaviorCount id="AP_TargetHasShadowSliceMarked">
-        <Behavior value="AP_ShadowSliceMarked"/>
-        <Compare value="GT"/>
-        <Value value="0"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitBehaviorStackAlias id="AP_TargetHasVoidRayAiurSlow">
         <StackAlias value="AP_VoidRayAiurSlow"/>
     </CValidatorUnitBehaviorStackAlias>
@@ -8252,22 +8242,6 @@
     <CValidatorPlayerRequirement id="AP_HaveBunkerIgnoreSupply">
         <Value value="AP_HaveBunkerIgnoreSupply"/>
     </CValidatorPlayerRequirement>
-    <CValidatorLocationCompareRange id="AP_StrengthInUnityTargetInAuraRange">
-        <WhichLocation Value="SourceUnit"/>
-        <Value Value="TargetUnit"/>
-        <Compare value="LT"/>
-        <Range value="10"/>
-    </CValidatorLocationCompareRange>
-    <CValidatorUnitCompareBehaviorCount id="AP_StrengthInUnityCasterHasAura">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GT"/>
-        <Behavior value="AP_StrengthInUnity"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="AP_StrengthInUnityKeepBuff">
-        <Type value="And"/>
-        <CombineArray value="AP_StrengthInUnityTargetInAuraRange"/>
-        <CombineArray value="AP_StrengthInUnityCasterHasAura"/>
-    </CValidatorCombine>
     <CValidatorPlayerRequirement id="AP_HaveImpalerTentacleExtensions">
         <Find value="1"/>
         <Value value="AP_HaveImpalerTentacleExtensions"/>

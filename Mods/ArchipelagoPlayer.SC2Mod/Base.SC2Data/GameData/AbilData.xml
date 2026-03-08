@@ -4639,8 +4639,11 @@
         <Range value="7"/>
         <Cost>
             <Vital index="Energy" value="25"/>
-            <Cooldown Link="Abil/AP_Exterminate" TimeUse="8"/>
-            <Cooldown Link="Abil/AP_ExterminateAir" TimeUse="8"/>
+            <Cooldown>
+                <Link value="AP_Exterminate"/>
+                <Location value="Unit"/>
+                <TimeUse value="8"/>
+            </Cooldown>
         </Cost>
         <TargetFilters value="Ground,Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveExterminateGround"/>
@@ -4675,6 +4678,14 @@
     <CAbilEffectInstant id="AP_StrengthInUnity">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_StrengthInUnity"/>
+        <Cost>
+            <Cooldown>
+                <Link value="AP_StrengthInUnity"/>
+                <Location value="Player"/>
+                <TimeStart value="300"/>
+                <TimeUse value="300"/>
+            </Cooldown>        
+        </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_StrengthInUnity" Requirements="AP_HaveArtanisStrengthInUnity"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_VoltaicShock">
@@ -4685,7 +4696,6 @@
             <Cooldown TimeUse="10"/>
         </Cost>
         <Range value="7"/>
-        <RangeSlop value="7"/>
         <CastIntroTime value="0.1"/>
         <CursorEffect value="AP_VoltaicShockDamageSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock" Requirements="AP_HaveArtanisVoltaicShock"/>    
@@ -4710,7 +4720,6 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisAstralWind" Requirements="AP_HaveArtanisAstralWind"/>
     </CAbilEffectInstant>
     <CAbilAugment id="AP_ArtanisCharge">
-        <Alignment value="Negative"/>
         <AbilSetId value="AP_Charge"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisCharge">
@@ -4737,7 +4746,7 @@
         <Range value="7"/>
         <TargetFilters value="Visible;Self,Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Invulnerable"/>
         <CursorEffect value="AP_PhasePrismSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism"  Requirements="AP_HaveArtanisPhasePrism"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism" Requirements="AP_HaveArtanisPhasePrism"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_PhasePrismSwap">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -4748,10 +4757,8 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrismRecast" Requirements="AP_HavePhasePrismRecastBehavior"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_ArtanisLightningDash">
-        <Alignment value="Negative"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_ArtanisLightningDashSwitch"/>
-        <Flags index="AbortOnAllianceChange" value="0"/>
         <Range value="8"/>
         <TrackingArc value="360"/>
         <PrepTime value="0.125"/>
@@ -4759,7 +4766,7 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisLightningDash"  Requirements="AP_HaveArtanisLightningDash"/>
         <Cost>
             <Vital index="Energy" value="50"/>
-            <Cooldown TimeUse="6"/>
+            <Cooldown TimeUse="5"/>
         </Cost>
         <CursorEffect value="AP_ArtanisLightningDashSearch"/>
     </CAbilEffectTarget>
@@ -4767,7 +4774,6 @@
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Flags index="RequireTargetVision" value="0"/>
-        <Flags index="Transient" value="1"/>
         <Cost>
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="5"/>

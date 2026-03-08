@@ -4792,6 +4792,7 @@
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ShadowSliceImpactSet">
         <EffectArray value="AP_NovaWeaponBlazefireBladeShadowFuryTeleportSwitch"/>
+        <EffectArray value="AP_ShadowSliceMarkTargetAB"/>
         <EffectArray value="AP_ShadowSliceDamage"/>
     </CEffectSet>
     <CEffectEnumArea id="AP_ShadowSliceSearch">
@@ -4819,7 +4820,6 @@
     <CEffectSet id="AP_ShadowSliceInitialSet">
         <EffectArray value="AP_ShadowSliceController"/>
         <EffectArray value="AP_ShadowSliceReturnAnchorCP"/>
-        <EffectArray value="AP_ShadowSliceMarkTargetAB"/>
         <EffectArray value="AP_ShadowSlicePersistent"/>
     </CEffectSet>
     <CEffectCreatePersistent id="AP_ShadowSliceReturnAnchorCP">
@@ -4831,10 +4831,6 @@
         <PeriodCount value="1"/>
         <PeriodicEffectArray value="AP_ShadowSliceSearch"/>
         <PeriodicPeriodArray value="0.05"/>
-    </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="AP_ShadowSliceReturnDelayCP">
-        <InitialDelay value="0.25"/>
-        <InitialEffect value="AP_ShadowSliceReturnTeleport"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="AP_ShadowSliceRefundCP">
         <FinalEffect value="AP_ShadowSliceRefund"/>
@@ -5079,7 +5075,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
-        <AreaArray Radius="10" Effect="AP_StrengthInUnityInitialBuffAiurAB"/>
+        <AreaArray Radius="10" Effect="AP_StrengthInUnityBuffAiurArtanisAB"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_StrengthInUnitySearchAiur">
         <EditorCategories value="Race:Protoss"/>
@@ -5091,12 +5087,9 @@
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_StrengthInUnityBuffAiur"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffAiurAB">
-        <EditorCategories value="Race:Protoss"/>
-        <Behavior value="AP_StrengthInUnityInitialBuffAiur"/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffAiurArtanisAB">
         <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_IsAiurUnit"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_StrengthInUnityArtanisAiur"/>
     </CEffectApplyBehavior>
@@ -5104,7 +5097,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
-        <AreaArray Radius="10" Effect="AP_StrengthInUnityInitialBuffNerazimAB"/>
+        <AreaArray Radius="10" Effect="AP_StrengthInUnityBuffNerazimArtanisAB"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_StrengthInUnitySearchNerazim">
         <EditorCategories value="Race:Protoss"/>
@@ -5116,12 +5109,9 @@
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_StrengthInUnityBuffNerazim"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffNerazimAB">
-        <EditorCategories value="Race:Protoss"/>
-        <Behavior value="AP_StrengthInUnityInitialBuffNerazim"/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffNerazimArtanisAB">
         <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_IsNerazimUnit"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_StrengthInUnityArtanisNerazim"/>
     </CEffectApplyBehavior>
@@ -5129,7 +5119,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
-        <AreaArray Radius="10" Effect="AP_StrengthInUnityInitialBuffPurifierAB"/>
+        <AreaArray Radius="10" Effect="AP_StrengthInUnityBuffPurifierArtanisAB"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_StrengthInUnitySearchPurifier">
         <EditorCategories value="Race:Protoss"/>
@@ -5141,12 +5131,9 @@
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_StrengthInUnityBuffPurifier"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffPurifierAB">
-        <EditorCategories value="Race:Protoss"/>
-        <Behavior value="AP_StrengthInUnityInitialBuffPurifier"/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffPurifierArtanisAB">
         <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_IsPurifierUnit"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_StrengthInUnityArtanisPurifier"/>
     </CEffectApplyBehavior>
@@ -5158,7 +5145,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Dead"/>
-        <AreaArray Radius="10" Effect="AP_StrengthInUnityInitialBuffTaldarimAB"/>
+        <AreaArray Radius="10" Effect="AP_StrengthInUnityBuffTaldarimArtanisAB"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_StrengthInUnitySearchTaldarim">
         <EditorCategories value="Race:Protoss"/>
@@ -5166,16 +5153,13 @@
         <SearchFilters value="-;Self,Neutral,Enemy,Structure,Missile,Dead"/>
         <AreaArray Radius="10" Effect="AP_StrengthInUnityBuffTaldarimAB"/>
     </CEffectEnumArea>
-    <CEffectApplyBehavior id="AP_StrengthInUnityInitialBuffTaldarimAB">
-        <EditorCategories value="Race:Protoss"/>
-        <Behavior value="AP_StrengthInUnityInitialBuffTaldarim"/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffTaldarimAB">
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_StrengthInUnityBuffTaldarim"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_StrengthInUnityBuffTaldarimArtanisAB">
         <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_IsTaldarimUnit"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_StrengthInUnityArtanisTaldarim"/>
     </CEffectApplyBehavior>
@@ -5312,6 +5296,7 @@
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisBladeWaltzWalkStopOrder"/>
         <EffectArray value="AP_ArtanisBladeWaltzWalkStopStun"/>
+        <EffectArray value="AP_ArtanisBladeWaltzStopSearch"/>
         <EffectArray value="AP_ArtanisBladeWaltzEndSearch"/>
     </CEffectSet>
     <CEffectEnumArea id="AP_ArtanisBladeWaltzEndSearch">
@@ -5330,17 +5315,6 @@
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
     </CEffectApplyBehavior>
-    <CEffectEnumArea id="AP_ArtanisBladeWaltzDummySearch">
-        <SearchFilters value="Ground;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden"/>
-        <AreaArray RectangleWidth="2.5" RectangleHeight="8" Effect="AP_ArtanisBladeWaltzDummyImpact"/>
-    </CEffectEnumArea>
-    <CEffectDamage id="AP_ArtanisBladeWaltzDummyImpact"/>
-    <CEffectLaunchMissile id="AP_AcidSalivaLM">
-        <ValidatorArray index="0" value="RoachLMTargetFilters"/>
-        <EditorCategories value="Race:Zerg"/>
-        <ImpactEffect value="AP_AcidSalivaSet"/>
-        <AmmoUnit value="AP_AcidSalivaWeapon"/>
-    </CEffectLaunchMissile>
     <CEffectModifyUnit id="AP_PhasePrismCooldown">
         <EditorCategories value="Race:Terran"/>
         <ImpactUnit Value="Caster"/>

@@ -15704,18 +15704,6 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="ShieldAbsorbImmortalViz"/>
     </CActorModel>
-    <CActorSound id="AP_ArtanisHardenedShieldSound" parent="SoundOneShot">
-        <On Terms="Behavior.AP_ArtanisHardenedShield.DamageHandled" Send="Create"/>
-        <Sound value="Immortal_HardenedShieldImpact"/>
-    </CActorSound>
-    <CActorModel id="AP_ArtanisHardenedShieldViz" parent="ModelAnimationStyleOneShot">
-        <Terms value="Cap 1"/>
-        <On Terms="Behavior.AP_ArtanisHardenedShield.DamageHandled" Send="Create"/>
-        <On Terms="AnimDone" Send="Destroy"/>
-        <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachCenter"/>
-        <Model value="AP_ArtanisHardenedShieldVizModel"/>
-    </CActorModel>
     <CActorModel id="AP_FeedbackImpact" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_Feedback.Start; At Target" Send="Create"/>
         <Host Subject="_Selectable"/>
@@ -38009,7 +37997,7 @@
     <CActorModel id="AP_ArtanisBladeWaltzEndShockwaveModel" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="Create"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="SetScale 1.9000z"/>
+        <On Terms="ActorCreation" Send="SetScale 1.9000"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
         <Model value="AP_ArtanisBladeWaltzEndShockwave"/>
@@ -38045,7 +38033,7 @@
         <On Terms="Behavior.AP_StrengthInUnity.On" Send="Create"/>
         <On Terms="Behavior.AP_StrengthInUnity.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Send="$Birth PlayForever,ForceLooping 1.000000 1.000000 1.250000 AsDuration"/>
-        <On Terms="ActorCreation" Send="SetOpacity 0.750000"/>    
+        <On Terms="ActorCreation" Send="SetOpacity 1.00000"/>    
         <On Terms="ActorCreation" Send="SetScale 1.5000"/>    
         <On Terms="ActorOrphan" Send="Destroy"/>
         <Model value="AP_ArbiterMPCastModel"/>
@@ -38054,6 +38042,7 @@
         <HostSiteOps Ops="AP_SuppressionPulseOffset"/>
     </CActorModel>
     <CActorModel id="AP_RaszagalsRhythmWeaponGlow" parent="ModelAddition">
+        <!-- can only affect one arm due to model limitations -->
         <On Terms="Behavior.AP_RaszagalsRhythm.On; ValidateUnit AP_IsArtanisHero" Send="Create"/>
         <On Terms="Behavior.AP_RaszagalsRhythm.Off; ValidateUnit AP_IsArtanisHero" Send="Destroy"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
@@ -38075,8 +38064,6 @@
         <On Terms="WeaponStart.AP_ArtanisAirAttack.AttackStart" Send="AnimBracketStart AttackAir Attack,Superior {} {} 0 0.850000 AsTimeScale"/>
         <On Terms="WeaponStop.AP_ArtanisAirAttack.AttackStop" Send="AnimBracketStop AttackAir"/>
         <On Terms="ActorCreation" Send="AnimPlay Cover Cover PlayForever"/>
-        <!-- <On Terms="Behavior.ArtanisChannel.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
-        <On Terms="Behavior.ArtanisChannel.Off" Send="AnimBracketStop Work"/> -->
         <On Terms="Behavior.AP_ArtanisNoAspect.On" Send="ModelSwap AP_ArtanisHero"/>
         <On Terms="Behavior.AP_ArtanisNoAspect.On" Send="AnimPlay Cover Cover PlayForever"/>
         <On Terms="Behavior.AP_ArtanisAiurAspect.On" Send="ModelSwap AP_ArtanisHero"/>
@@ -38093,7 +38080,7 @@
         <On Terms="Behavior.AP_Exterminate.On" Send="Create AP_DarkArchonConfusionCastImpactModel"/>
         <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzActor.Off" Send="AnimClear Spell"/>
-        <On Terms="Abil.AP_CleansingSmite.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.400000 AsTimeScale"/>
+        <On Terms="Abil.AP_CleansingSmite.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.450000 AsTimeScale"/>
         <On Terms="Abil.AP_ShadowSlice.SourceCastStart" Send="$Spell,A 0 0 -1.000000 1.0000 AsTimeScale"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzActor.On" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
@@ -38110,8 +38097,6 @@
         <PortraitActor value="AP_ArtanisEx2Portrait"/>
         <PortraitModel value="AP_ArtanisEx2Portrait"/>
         <WalkAnimMoveSpeed value="2.25"/>
-        <AbilSoundArray AbilCmd="AP_ArtanisAstralWind,Execute" Sound="Swarm_Silent"/>
-        <AbilSoundArray AbilCmd="AP_ArtanisLightningDash,Execute" Sound="Swarm_Silent"/>
         <BarOffset value="70"/>
         <BarWidth value="42"/>
         <CustomUnitStatusFrame value="AP_LotV_UnitStatus/HeroUnitEnergyStatusFrameTemplate"/>
@@ -38175,7 +38160,6 @@
         <On Terms="ActorCreation" Send="SetTintColor {0,0,255 1.000000}"/>
         <On Terms="ActorCreation" Send="SetTintColor {255,255,255 1.000000} 60.4"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
-        <!--        <On Terms="ActorOrphan" Send="AnimBracketStop BSD"/> -->
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
     </CActorModel>
     <CActorModel id="AP_ArtanisEx2PortraitAddition" parent="CompositePortraitAddition">

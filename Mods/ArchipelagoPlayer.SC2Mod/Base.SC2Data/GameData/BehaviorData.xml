@@ -2149,9 +2149,9 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Requirements value="AP_HaveArtanisWillOfTheFirstborn"/>
-        <DisableValidatorArray value="AP_CasterShieldsLE50Percent"/>
+        <DisableValidatorArray value="AP_CasterShieldsGE50Percent"/>
         <Modification>
-            <AdditiveAttackSpeedFactor value="0.5"/>
+            <AdditiveAttackSpeedFactor value="0.4"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
@@ -2178,18 +2178,6 @@
         <InitialEffect value="AP_CleansingSmiteDOT"/>
         <PeriodicEffect value="AP_CleansingSmiteDOT"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisHardenedShield">
-        <Alignment value="Positive"/>
-        <InfoFlags index="Hidden" value="1"/>
-        <InfoIcon value="Assets\Textures\BTN-Ability-Protoss-HardenedShields.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <DisableValidatorArray value="CasterShieldsGE10"/>
-        <Requirements value="AP_HaveArtanisPurifierAspectSelectedPassive"/>
-        <DamageResponse ClampMaximum="10" Minimum="10">
-            <Kind index="Spell" value="0"/>
-            <Chance value="1"/>
-        </DamageResponse>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisPurifierSolarBombardmentPassive">
         <Alignment value="Positive"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -2209,7 +2197,7 @@
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="4"/>
         <DisplayDuration index="Self" value="1"/>
-        <Modification MoveSpeedMultiplier="2.2" AttackSpeedMultiplier="2.2">
+        <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2">
             <DamageDealtUnscaled index="Melee" value="25"/>
             <DamageDealtUnscaled index="Ranged" value="25"/>
             <ModifyFlags index="OrdersUninterruptible" value="1"/>
@@ -2242,27 +2230,12 @@
         <PeriodicEffect value="AP_StrengthInUnityInitialSearchSet"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-protoss-strength-in-unity.dds"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_StrengthInUnityInitialBuffAiur">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.125"/>
-        <Period value="0.0625"/>
-        <RemoveValidatorArray value="AP_IsAiurUnit"/>
-        <PeriodicEffect value="AP_StrengthInUnityBuffAiurArtanisAB"/>
-        <Modification>
-            <VitalRegenArray index="Energy" value="2.5"/>
-            <RateMultiplierArray index="Charge" value="1.5"/>
-            <RateMultiplierArray index="Cooldown" value="1.5"/>
-        </Modification>
-        <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionaiur_categoryicon.dds"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnityBuffAiur">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
         <Duration value="0.5"/>
-        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Modification>
-            <VitalRegenArray index="Energy" value="2.5"/>
+            <VitalRegenArray index="Energy" value="4"/>
             <RateMultiplierArray index="Charge" value="1.5"/>
             <RateMultiplierArray index="Cooldown" value="1.5"/>
         </Modification>
@@ -2271,31 +2244,21 @@
     <CBehaviorBuff id="AP_StrengthInUnityArtanisAiur">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.125"/>
+        <Duration value="0.25"/>
         <RemoveValidatorArray value="AP_IsArtanisHero"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnitySearchAiur"/>
         <Modification>
-            <VitalRegenArray index="Energy" value="5"/>
+            <VitalRegenArray index="Energy" value="8"/>
             <RateMultiplierArray index="Charge" value="2"/>
             <RateMultiplierArray index="Cooldown" value="2"/>
         </Modification>
         <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionaiur_categoryicon.dds"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_StrengthInUnityInitialBuffNerazim">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.125"/>
-        <Period value="0.0625"/>
-        <RemoveValidatorArray value="AP_IsNerazimUnit"/>
-        <PeriodicEffect value="AP_StrengthInUnityBuffNerazimArtanisAB"/>
-        <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionnerazim_categoryicon.dds"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnityBuffNerazim">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.5"/>
-        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
+        <Duration value="0.25"/>
         <Modification MoveSpeedMultiplier="1.25">
             <StateFlags index="Cloak" value="1"/>
         </Modification>
@@ -2304,7 +2267,7 @@
     <CBehaviorBuff id="AP_StrengthInUnityArtanisNerazim">
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <InfoFlags index="Hidden" value="1"/>
-        <Duration value="0.125"/>
+        <Duration value="0.25"/>
         <RemoveValidatorArray value="AP_IsArtanisHero"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnitySearchNerazim"/>
@@ -2313,20 +2276,10 @@
         </Modification>
         <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionnerazim_categoryicon.dds"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_StrengthInUnityInitialBuffPurifier">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Duration value="0.125"/>
-        <Period value="0.0625"/>
-        <RemoveValidatorArray value="AP_IsPurifierUnit"/>
-        <PeriodicEffect value="AP_StrengthInUnityBuffPurifierArtanisAB"/>
-        <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnityBuffPurifier">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <Duration value="0.5"/>
-        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnityBuffPurifierMU"/>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
@@ -2334,26 +2287,16 @@
     <CBehaviorBuff id="AP_StrengthInUnityArtanisPurifier">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Duration value="0.125"/>
+        <Duration value="0.25"/>
         <RemoveValidatorArray value="AP_IsArtanisHero"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnitySearchPurifierSet"/>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_StrengthInUnityInitialBuffTaldarim">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Duration value="0.125"/>
-        <Period value="0.0625"/>
-        <RemoveValidatorArray value="AP_IsTaldarimUnit"/>
-        <PeriodicEffect value="AP_StrengthInUnityBuffTaldarimArtanisAB"/>
-        <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_taldarim_categoryicon.dds"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnityBuffTaldarim">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <Duration value="0.5"/>
-        <RemoveValidatorArray value="AP_StrengthInUnityKeepBuff"/>
         <Modification>
             <DamageDealtFraction index="Spell" value="0.2"/>
             <DamageDealtFraction index="Melee" value="0.2"/>
@@ -2365,7 +2308,7 @@
     <CBehaviorBuff id="AP_StrengthInUnityArtanisTaldarim">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Duration value="0.125"/>
+        <Duration value="0.25"/>
         <RemoveValidatorArray value="AP_IsArtanisHero"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnitySearchTaldarim"/>
@@ -2426,6 +2369,7 @@
     <CBehaviorBuff id="AP_PhasePrismRecast">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism-recast.dds"/>
+        <DisplayDuration index="Self" value="1"/>
         <Duration value="4"/> 
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismDelay">
@@ -2438,7 +2382,7 @@
     <CBehaviorBuff id="AP_ArtanisBladeWaltzDamaged">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="1"/>
+        <Duration value="0.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisBladeWaltzActor">
         <InfoFlags index="Hidden" value="1"/>
@@ -2464,7 +2408,7 @@
     <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkStopStun">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="0.3"/>
+        <Duration value="0.25"/>
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
@@ -3478,7 +3422,7 @@
         <DamageResponse Fatal="1" Handled="AP_ShadowSliceRefundCP">
             <Chance value="1"/>
         </DamageResponse>
-        <Duration value="0.065"/>
+        <Duration value="0.0625"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidDarkTemplarShadowFuryTargeted">
         <InfoFlags index="Hidden" value="1"/>
@@ -5279,7 +5223,6 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisCharging" parent="AP_Charging">
         <InfoIcon value="AP\Assets\Textures\btn-ability-artanis-charge.dds"/>
-        <FinalEffect value="AP_LesserPsiStormPersistentCharge"/>
         <Modification MoveSpeedMultiplier="3"/>
         <RemoveValidatorArray index="0" value="AP_ArtanisChargeTargetAttacked"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
@@ -7723,7 +7666,8 @@
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
-    </CBehaviorBuff>    <CBehaviorBuff id="AP_DevourerSCBWWeapon">
+    </CBehaviorBuff>    
+    <CBehaviorBuff id="AP_DevourerSCBWWeapon">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BuffFlags index="RefreshStack" value="1"/>
         <MaxStackCount value="9"/>
