@@ -7756,6 +7756,25 @@
         <Value value="0.5"/>
         <Vital value="Shields"/>
     </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="AP_ArtanisForceOfWillFullLife">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Type value="Fraction"/>
+        <Value value="1"/>
+        <Vital value="Life"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="AP_ArtanisForceOfWillShieldsNotFull">
+        <WhichUnit Value="Caster"/>
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="1"/>
+        <Vital value="Shields"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorCombine id="AP_ArtanisForceOfWillShieldConvertActive">
+        <Type value="And"/>
+        <CombineArray value="AP_ArtanisForceOfWillFullLife"/>
+        <CombineArray value="AP_ArtanisForceOfWillShieldsNotFull"/>
+    </CValidatorCombine>
     <CValidatorCombine id="AP_HaveHoverSiegeTankAndNotWarpingIn">
         <Type value="And"/>
         <CombineArray value="AP_HaveHoverSiegeTank"/>

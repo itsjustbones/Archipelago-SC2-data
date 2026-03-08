@@ -2145,6 +2145,15 @@
         <Period value="0.33333"/>
         <PeriodicEffect value="AP_ArtanisForceOfWillMU"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisValorOfTheFirstbornAttackSpeed">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisWillOfTheFirstborn"/>
+        <DisableValidatorArray value="AP_CasterShieldsLE50Percent"/>
+        <Modification>
+            <AdditiveAttackSpeedFactor value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
         <InfoFlags index="Hidden" value="1"/>
         <BehaviorFlags index="Permanent" value="1"/>
@@ -2164,7 +2173,7 @@
     <CBehaviorBuff id="AP_CleansingSmite">
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="4"/>
+        <Duration value="5"/>
         <Period value="0.1"/>
         <InitialEffect value="AP_CleansingSmiteDOT"/>
         <PeriodicEffect value="AP_CleansingSmiteDOT"/>
@@ -2181,6 +2190,19 @@
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisPurifierSolarBombardmentPassive">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-protoss-solarbombardment.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisPurifierAspectSelectedPassive"/>
+        <DamageResponse Handled="AP_ArtanisPurifierSolarBombardmentSearch">
+            <Chance value="1"/>
+            <Cost>
+                <Cooldown TimeUse="1"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_Exterminate">
         <Alignment value="Positive"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
@@ -2188,9 +2210,8 @@
         <Duration value="4"/>
         <DisplayDuration index="Self" value="1"/>
         <Modification MoveSpeedMultiplier="2.2" AttackSpeedMultiplier="2.2">
-            <DamageDealtFraction index="Melee" value="1.2"/>
-            <DamageDealtFraction index="Ranged" value="1.2"/>
-            <DamageDealtFraction index="Splash" value="1.2"/>
+            <DamageDealtUnscaled index="Melee" value="25"/>
+            <DamageDealtUnscaled index="Ranged" value="25"/>
             <ModifyFlags index="OrdersUninterruptible" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="Uncommandable" value="1"/>
@@ -3437,8 +3458,8 @@
         <Requirements value="AP_HaveArtanisNerazimAspectSelectedPassive"/>
         <Duration value="5"/>
         <Modification>
-            <DamageDealtFraction index="Melee" value="1"/>
-            <DamageDealtFraction index="Ranged" value="1"/>
+            <DamageDealtUnscaled index="Melee" value="20"/>
+            <DamageDealtUnscaled index="Ranged" value="20"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ShadowSliceController">
@@ -7663,7 +7684,7 @@
         <Alignment value="Negative"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-voltaic-surge.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="6"/>
+        <Duration value="5"/>
         <Modification>
             <ModifyFlags index="SuppressMoving" value="1"/>
             <HeightTime index="Start" value="2"/>

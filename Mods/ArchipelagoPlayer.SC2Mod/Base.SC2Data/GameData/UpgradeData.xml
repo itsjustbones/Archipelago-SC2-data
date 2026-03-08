@@ -7613,6 +7613,7 @@
         <EffectArray Reference="Unit,AP_Zealot,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_ZealotAiur,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_ZealotPurifier,ShieldRegenRate" Value=".05"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_ZealotShakuras,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_Stalker,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_Dragoon,ShieldRegenRate" Value=".05"/>
@@ -12897,14 +12898,14 @@
     <CUpgrade id="AP_ArtanisBaseAspectActive">
         <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="3"/>
         <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="3"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,Amount" Value="3"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageGround,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageAir,Amount" Value="3"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisBaseAspectPassive">
         <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="3"/>
         <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="3"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,Amount" Value="3"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageGround,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageAir,Amount" Value="3"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisAiurAspectActive" parent="AP_ArtanisBaseAspectActive"/>
     <CUpgrade id="AP_ArtanisAiurAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>
@@ -12917,17 +12918,21 @@
     <CUpgrade id="AP_ArtanisTaldarimAspectUnlocked"/>
     <CUpgrade id="AP_ArtanisTaldarimAspectActive" parent="AP_ArtanisBaseAspectActive"/>
     <CUpgrade id="AP_ArtanisTaldarimAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>
-    <CUpgrade id="AP_ArtanisTemperedInTwilight"/>
+    <CUpgrade id="AP_ArtanisTemperedInTwilight">
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="4"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="4"/>
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisForceOfWill">
-        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldArmor" Value="2"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="100"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeRegenRate" Value="1.5"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value="5"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisWillOfTheFirstborn">
-        <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="200"/>
-        <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="200"/>
-        <EffectArray Reference="Effect,AP_ArtanisBlades,LeechFraction[Shields]" Value="0.25"/>
-        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,LeechFraction[Shields]" Value="0.25"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageGround,LeechFraction[Shields]" Value="0.25"/>
-        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectSplashDamageAir,LeechFraction[Shields]" Value="0.25"/>
+        <EffectArray Reference="Effect,AP_ArtanisBlades,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageGround,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageAir,LeechFraction[Shields]" Value="0.33"/>
     </CUpgrade>     
     <CUpgrade id="AP_ArtanisShieldOverload">
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
