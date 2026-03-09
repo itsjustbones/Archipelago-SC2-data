@@ -2306,12 +2306,6 @@
         <Value value="1"/>
         <Behavior value="AP_NovaPsiStrikeWalkSpeed"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="AP_ArtanisLightningDashCheck">
-        <Type value="And"/>
-        <CombineArray value="TargetIsPathable"/>
-        <CombineArray value="HasVision"/>
-        <CombineArray value="AP_ArtanisLightningDashRangeCheck"/>
-    </CValidatorCombine>
     <CValidatorLocationEnumArea id="AP_ArtanisLightningDashStructureAtDestination">
         <WhichLocation Value="TargetUnitOrPoint"/>
         <AreaArray Compare="GE" Count="1" Radius="0.1000"/>
@@ -2327,13 +2321,6 @@
         <CombineArray value="Pathable"/>
         <CombineArray value="AP_ArtanisLightningDashDestinationNotBlocked"/>
     </CValidatorCombine>
-    <CValidatorLocationCompareRange id="AP_ArtanisLightningDashRangeCheck">
-        <WhichLocation Value="SourceUnit"/>
-        <Value Value="TargetPoint"/>
-        <Compare value="LT"/>
-        <Range value="8"/>
-        <ResultFailed value="TargetIsOutOfRange"/>
-    </CValidatorLocationCompareRange>
     <CValidatorUnitWeaponFiring id="AP_ArtanisChargeTargetAttackedGround">
         <WhichUnit Value="Caster"/>
         <Weapon value="AP_ArtanisTwilightBlades"/>
@@ -2349,11 +2336,6 @@
         <CombineArray value="AP_ArtanisChargeTargetAttackedGround"/>
         <CombineArray value="AP_ArtanisChargeTargetAttackedAir"/>
     </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterNotHaveEnableArtanisAirAttackSwap">
-        <WhichUnit Value="Caster"/>
-        <Value value="0"/>
-        <Behavior value="AP_EnableArtanisAirAttackSwap"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasExterminate">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -3999,10 +3981,6 @@
         <WhichLocation Value="SourceUnit"/>
         <WhichPlayer Value="Target"/>
     </CValidatorLocationVision>
-    <CValidatorLocationVision id="AP_SourceHasVisionOfTarget">
-        <WhichLocation Value="TargetUnit"/>
-        <WhichPlayer Value="Caster"/>
-    </CValidatorLocationVision>
     <CValidatorCombine id="AP_DisruptorDamageFilter">
         <CombineArray value="AP_IsNotDisruptor"/>
         <CombineArray value="AP_DisruptorPhasedDamageFilter"/>
@@ -4388,7 +4366,7 @@
     <CValidatorCombine id="AP_NotPurifierAndHaveShields">
         <Type value="And"/>
         <CombineArray value="AP_IsNotPurifierUnit"/>
-        <CombineArray value="hasShields"/>
+        <CombineArray value="AP_ShieldsGT0"/>
     </CValidatorCombine>
     <CValidatorUnitType id="AP_TargetIsNotCarrierAiur">
         <Value value="AP_CarrierAiur"/>
@@ -4489,26 +4467,6 @@
         <Value value="1"/>
         <Behavior value="AP_ArtanisTaldarimAspect"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="AP_ArtanisSharesFactionAiur">
-        <Type value="And"/>
-        <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
-        <CombineArray value="AP_IsAiurUnit"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="AP_ArtanisSharesFactionNerazim">
-        <Type value="And"/>
-        <CombineArray value="AP_HasArtanisNerazimAspectBehavior"/>
-        <CombineArray value="AP_IsNerazimUnit"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="AP_ArtanisSharesFactionPurifier">
-        <Type value="And"/>
-        <CombineArray value="AP_HasArtanisPurifierAspectBehavior"/>
-        <CombineArray value="AP_IsPurifierUnit"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="AP_ArtanisSharesFactionTaldarim">
-        <Type value="And"/>
-        <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
-        <CombineArray value="AP_IsTaldarimUnit"/>
-    </CValidatorCombine>
     <CValidatorCombine id="AP_IsArtanisAiur">
         <Type value="And"/>
         <CombineArray value="AP_HasArtanisAiurAspectBehavior"/>
@@ -4529,11 +4487,6 @@
         <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
         <CombineArray value="AP_IsArtanisHero"/>
     </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="AP_HasRaszagalsRhythm">
-        <WhichUnit Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="AP_RaszagalsRhythm"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="AP_HasRaszagalsRhythmAndNerazimAspect">
         <Type value="And"/>
         <CombineArray value="AP_HasArtanisNerazimAspectSelectedPassive"/>
@@ -6577,14 +6530,6 @@
         <WhichUnit Value="Target"/>
         <Filters value="Armored;-"/>
     </CValidatorUnitFilters>
-    <CValidatorUnitFilters id="AP_TargetIsAir">
-        <WhichUnit Value="Target"/>
-        <Filters value="Air;-"/>
-    </CValidatorUnitFilters>
-    <CValidatorUnitFilters id="AP_TargetIsGround">
-        <WhichUnit Value="Target"/>
-        <Filters value="Ground;-"/>
-    </CValidatorUnitFilters>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasVoidRaySwarmArmoredTarget">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -7137,6 +7082,14 @@
     <CValidatorUnitFilters id="AP_StukovInfestedDiamondBackReheightSourceLaunchMissileCasterNotDead">
         <Filters value="-;Dead"/>
         <WhichUnit Effect="AP_StukovInfestedDiamondbackSnareLM"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="AP_VoltaicShockReheightTargetNotDead">
+        <Filters value="-;Dead"/>
+        <WhichUnit Effect="AP_VoltaicShock" Value="Target"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="AP_VoltaicShockReheightSourceLaunchMissileCasterNotDead">
+        <Filters value="-;Dead"/>
+        <WhichUnit Effect="AP_VoltaicShock" Value="Target"/>
     </CValidatorUnitFilters>
     <CValidatorUnitCompareBehaviorCount id="AP_NoDiamondBackSnareTargeted">
         <Behavior value="AP_DiamondBackSnareTargeted"/>
@@ -7744,6 +7697,13 @@
         <AreaArray Compare="GT" Count="0" Radius="6"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Hidden,Invulnerable"/>
     </CValidatorLocationEnumArea>
+    <CValidatorUnitCompareVital id="AP_CasterShieldsLE50Percent">
+        <WhichUnit Value="Caster"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.5"/>
+        <Vital value="Shields"/>
+    </CValidatorUnitCompareVital>
     <CValidatorUnitCompareVital id="AP_CasterShieldsGE50Percent">
         <WhichUnit Value="Caster"/>
         <Compare value="GE"/>
@@ -7751,14 +7711,14 @@
         <Value value="0.5"/>
         <Vital value="Shields"/>
     </CValidatorUnitCompareVital>
-    <CValidatorUnitCompareVital id="AP_ArtanisForceOfWillFullLife">
+    <CValidatorUnitCompareVital id="AP_CasterLifeFull">
         <WhichUnit Value="Caster"/>
         <Compare value="GE"/>
         <Type value="Fraction"/>
         <Value value="1"/>
         <Vital value="Life"/>
     </CValidatorUnitCompareVital>
-    <CValidatorUnitCompareVital id="AP_ArtanisForceOfWillShieldsNotFull">
+    <CValidatorUnitCompareVital id="AP_CasterShieldsNotFull">
         <WhichUnit Value="Caster"/>
         <Compare value="LT"/>
         <Type value="Fraction"/>
@@ -7767,8 +7727,8 @@
     </CValidatorUnitCompareVital>
     <CValidatorCombine id="AP_ArtanisForceOfWillShieldConvertActive">
         <Type value="And"/>
-        <CombineArray value="AP_ArtanisForceOfWillFullLife"/>
-        <CombineArray value="AP_ArtanisForceOfWillShieldsNotFull"/>
+        <CombineArray value="AP_CasterLifeFull"/>
+        <CombineArray value="AP_CasterShieldsNotFull"/>
     </CValidatorCombine>
     <CValidatorCombine id="AP_HaveHoverSiegeTankAndNotWarpingIn">
         <Type value="And"/>

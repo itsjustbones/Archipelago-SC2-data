@@ -3578,7 +3578,7 @@
         <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_FacialAnims\SMX2_Artanis_T1_FacialAnims.m3a"/>
     </CModel>
     <CModel id="AP_ArtanisHeroCleansingSmite" parent="ImpactFX">
-        <Model value="Assets\Effects\Protoss\Immortal_Collection_Purifier_DamageExplosion\Immortal_Collection_Purifier_DamageExplosion.m3"/>
+        <Model value="Assets\Effects\Protoss\Dragoon_Purifier_Coop_AirBomb_Charged\Dragoon_Purifier_Coop_AirBomb_Charged.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
     <CModel id="AP_ArtanisHeroCleansingSmiteCharge" parent="ImpactFX">
@@ -3658,15 +3658,8 @@
     <CModel id="AP_ArtanisReviveCocoon" parent="Unit">
         <Model value="Assets\Doodads\ProtossWarpInPadFlat\ProtossWarpInPadFlat.m3"/>
         <EditorCategories value="Race:Terran"/>
-        <ScaleMax value="0.900000,0.900000,0.900000"/>
-        <ScaleMin value="0.900000,0.900000,0.900000"/>
-        <!-- <Events>
-            <Anim value="Birth,00"/>
-            <Name value="Kerrigan_Cocoon_Birth"/>
-            <Type value="Sound"/>
-            <Time value="0.073000"/>
-            <Payload value="Kerrigan_Cocoon_Birth"/>
-        </Events> -->
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
         <Occlusion value="Show"/>
         <SelectionRadius value="0.941000"/>
         <ShadowRadius value="0.941000"/>
@@ -3704,7 +3697,7 @@
         <EditorCategories value="Race:Protoss"/>
     </CModel>
     <CModel id="AP_VoltaicShockBeam" parent="ImpactFX">
-        <Model value="Assets\Effects\Protoss\ArchonBeamSuper\ArchonBeamSuper.m3"/>
+        <Model value="Assets\Effects\Protoss\ArchonBeam\ArchonBeam.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
     <CModel id="AP_SuperStimpackEndImpact" parent="OneShotSpellFX">
@@ -22262,14 +22255,19 @@
     </CModel>
     <CModel id="AP_ShadowSliceExplosion" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\Zeratul_ShadowBlade_Impact\Zeratul_ShadowBlade_Impact.m3"/>
-        <ScaleMax value="0.750000,0.750000,0.750000"/>
-        <ScaleMin value="0.750000,0.750000,0.750000"/>
-    </CModel>
-    <CModel id="AP_ArtanisHardenedShieldVizModel" parent="OneShotSpellFX">
-        <Model value="Assets\COOP\Stetmann\Effects\Zergling_Stetmann_COOP_HardenedShield\Zergling_Stetmann_COOP_HardenedShield.m3"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
     </CModel>
     <CModel id="AP_RaszagalsRhythmWeaponGlowModel">
         <Model value="Assets\COOP\Zeratul\Effects\Immortal_Zeratul_COOP_CannonMissile\Immortal_Zeratul_COOP_CannonMissile.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisRaszagalsRhythmStandModel" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Protoss_Generic_WarpOut_MP_Stand\Protoss_Generic_WarpOut_MP_Stand.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisShieldOverloadModel" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Karax_UnityBarrier_Tall\Karax_UnityBarrier_Tall.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
 </Catalog>
