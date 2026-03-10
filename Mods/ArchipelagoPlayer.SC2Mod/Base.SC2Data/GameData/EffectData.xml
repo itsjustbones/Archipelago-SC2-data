@@ -4591,9 +4591,14 @@
         <ValidatorArray value="AP_HaveArtanisTemperedInTwilight"/>
         <VitalArray index="Energy" Change="1"/>
     </CEffectModifyUnit>
+    <CEffectModifyUnit id="AP_ArtanisChargeTriggerEffect">
+        <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_CasterHasArtanisCharging"/>
+    </CEffectModifyUnit>
     <CEffectCreatePersistent id="AP_ArtanisWeaponBurst">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="AP_ArtanisChargeTriggerEffect"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
         <PeriodCount value="2"/>
@@ -4757,6 +4762,11 @@
         <WhichUnit Value="Caster"/>
         <BehaviorLink value="AP_Exterminate"/>
     </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ExterminateCancelRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_Exterminate"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="AP_ExterminateTargetRB">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Target"/>
@@ -4772,6 +4782,7 @@
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ExterminateSet">
         <EffectArray value="AP_ExterminateSyncCooldownInitial"/>
+        <EffectArray value="AP_ExterminateCancelCooldown"/>
         <EffectArray value="AP_ExterminateAB"/>
         <EffectArray value="AP_ExterminateTargetAssigner"/>
         <EffectArray value="AP_ExterminatePersistent"/>
@@ -4779,6 +4790,10 @@
     <CEffectModifyUnit id="AP_ExterminateSyncCooldownInitial">
         <ImpactUnit Value="Caster"/>
         <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Set"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="AP_ExterminateCancelCooldown">
+        <ImpactUnit Value="Caster"/>
+        <Cost Abil="AP_ExterminateCancel,Execute" CooldownOperation="Max" CooldownTimeUse="0.5"/>
     </CEffectModifyUnit>
     <CEffectSet id="AP_ExterminateRemoveSet">
         <EffectArray value="AP_ExterminateRB"/>
@@ -5178,6 +5193,7 @@
     <CEffectCreatePersistent id="AP_ArtanisAirAttackSet">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="AP_ArtanisChargeTriggerEffect"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
         <PeriodCount value="2"/>

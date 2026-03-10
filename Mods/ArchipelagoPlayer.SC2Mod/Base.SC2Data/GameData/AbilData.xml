@@ -4653,6 +4653,12 @@
         <TargetFilters index="0" value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
         <CmdButtonArray index="Execute" Requirements="AP_HaveExterminateAir"/>
     </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_ExterminateCancel">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="AP_ExterminateCancelRB"/>
+        <Flags index="Transient" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ExterminateCancel" Requirements="AP_HaveExterminateBehavior"/>
+    </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_ShadowSlice">
         <AbilSetId value="AP_ShadowSlice"/>
         <Effect index="0" value="AP_ShadowSliceInitialSet"/>
