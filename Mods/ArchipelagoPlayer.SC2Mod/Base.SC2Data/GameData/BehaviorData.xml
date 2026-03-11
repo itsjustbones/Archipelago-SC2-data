@@ -2294,8 +2294,10 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <Duration value="0.5"/>
-        <Period value="0.0625"/>
-        <PeriodicEffect value="AP_StrengthInUnityBuffPurifierMU"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <ModifyFraction value="0.8"/>
+        </DamageResponse>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnityArtanisPurifier">
@@ -2305,6 +2307,10 @@
         <RemoveValidatorArray value="AP_IsArtanisHero"/>
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnitySearchPurifierSet"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <ModifyFraction value="0.6"/>
+        </DamageResponse>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_StrengthInUnityBuffTaldarim">
@@ -2312,10 +2318,10 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <Duration value="0.5"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="0.2"/>
-            <DamageDealtFraction index="Melee" value="0.2"/>
-            <DamageDealtFraction index="Ranged" value="0.2"/>
-            <DamageDealtFraction index="Splash" value="0.2"/>
+            <DamageDealtFraction index="Spell" value="0.25"/>
+            <DamageDealtFraction index="Melee" value="0.25"/>
+            <DamageDealtFraction index="Ranged" value="0.25"/>
+            <DamageDealtFraction index="Splash" value="0.25"/>
         </Modification>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_taldarim_categoryicon.dds"/>
     </CBehaviorBuff>
@@ -2327,10 +2333,10 @@
         <Period value="0.0625"/>
         <PeriodicEffect value="AP_StrengthInUnitySearchTaldarim"/>
         <Modification>
-            <DamageDealtFraction index="Spell" value="0.4"/>
-            <DamageDealtFraction index="Melee" value="0.4"/>
-            <DamageDealtFraction index="Ranged" value="0.4"/>
-            <DamageDealtFraction index="Splash" value="0.4"/>
+            <DamageDealtFraction index="Spell" value="0.5"/>
+            <DamageDealtFraction index="Melee" value="0.5"/>
+            <DamageDealtFraction index="Ranged" value="0.5"/>
+            <DamageDealtFraction index="Splash" value="0.5"/>
         </Modification>
         <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_taldarim_categoryicon.dds"/>
     </CBehaviorBuff>
