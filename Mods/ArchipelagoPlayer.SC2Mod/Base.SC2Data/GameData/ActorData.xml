@@ -15948,12 +15948,6 @@
     <CActorModel id="AP_HighTemplarPsiStormModel" parent="ModelAnimationStyleContinuous">
         <On Terms="Effect.AP_PsiStormPersistent.Start" Send="Create"/>
         <On Terms="Effect.AP_PsiStormPersistent.Stop" Send="AnimBracketStop BSD"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistent.Start" Send="Create"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistent.Start" Send="SetScale 0.7600"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistent.Stop" Send="AnimBracketStop BSD"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistentCharge.Start" Send="Create"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistentCharge.Start" Send="SetScale 0.7600"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistentCharge.Stop" Send="AnimBracketStop BSD"/>
         <On Terms="ActorCreation; ValidatePlayer AP_HaveVoidHighTemplarPsiStormFilter" Send="SetTintColor 0,255,0"/>
         <On Terms="Effect.AP_PsiStormShakurasPersistent.Start" Send="Create"/>
         <On Terms="Effect.AP_PsiStormShakurasPersistent.Stop" Send="AnimBracketStop BSD"/>
@@ -15964,10 +15958,6 @@
     <CActorSound id="AP_HighTemplarPsiStormSound" parent="SoundContinuous">
         <On Terms="Effect.AP_PsiStormPersistent.Start" Send="Create"/>
         <On Terms="Effect.AP_PsiStormPersistent.Stop" Send="Destroy"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistent.Start" Send="Create"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistent.Stop" Send="Destroy"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistentCharge.Start" Send="Create"/>
-        <On Terms="Effect.AP_LesserPsiStormPersistentCharge.Stop" Send="Destroy"/>
         <On Terms="Effect.AP_PsiStormShakurasPersistent.Start" Send="Create"/>
         <On Terms="Effect.AP_PsiStormShakurasPersistent.Stop" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadow"/>
@@ -38029,6 +38019,19 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="AP_ArtanisHeroCleansingSmiteCharge"/>
     </CActorModel>
+    <CActorModel id="AP_ArtanisAiurAspectPassiveLightningBolt" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_ArtanisAiurAspectPassiveDamage.Start; At Target" Send="Create"/>
+        <On Terms="AnimDone" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="AnimPlay Lifetime Stand,02"/>
+        <On Terms="ActorCreation" Send="AnimSetTime Lifetime 0.220000"/>
+        <On Terms="ActorCreation" Send="SetScale 0.50000,0.50000,0.50000"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.20000"/>
+        <HostSiteOps Ops="SOpTargetPointStationary SOpShadow AP_ArtanisAiurAspectPassiveLightningBoltOffset"/>
+        <Model value="AP_ArtanisAiurAspectPassiveLightningBolt"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="AP_ArtanisAiurAspectPassiveLightningBoltOffset">
+        <LocalOffset value="0.0000000,0.000000,0.950000"/>
+    </CActorSiteOpLocalOffset>
     <CActorRange id="AP_CleansingSmiteRange">
         <On Terms="Abil.AP_CleansingSmite.ButtonHoverOn" Send="Create"/>
         <On Terms="Abil.AP_CleansingSmite.ButtonHoverOff" Send="Destroy"/>
@@ -38210,7 +38213,7 @@
     <CActorModel id="AP_ArtanisEx2Portrait3DAddition" parent="CompositePortraitAddition"/>
     <CActorPortrait id="AP_ArtanisEx2Portrait3D" parent="CompositePortrait"/>
     <CActorModel id="AP_SuppressionPulse">
-        <On Terms="Effect.AP_SuppressionPulseSearchArea.Start" Send="Create"/>
+        <On Terms="Effect.AP_SuppressionPulseCreatePersistent.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="$Birth"/>
         <On Terms="ActorCreation" Send="TimerSet 0.70000 Fade"/>
         <On Terms="ActorCreation" Send="SetOpacity 0.25"/>
@@ -38223,7 +38226,7 @@
         <HostSiteOps Ops="AP_SuppressionPulseOffset"/>
     </CActorModel>
     <CActorSound id="AP_SuppressionPulseSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_SuppressionPulseSearchArea.Start" Send="Create"/>
+        <On Terms="Effect.AP_SuppressionPulseCreatePersistent.Start" Send="Create"/>
     </CActorSound>
     <CActorModelMaterial id="AP_SuppressionPulseGlaze" parent="GlazeParent">
         <On Terms="ActorCreation" Send="ModelMaterialApplyTo ::Main"/>
@@ -38236,7 +38239,7 @@
         <On Terms="Abil.AP_SuppressionPulse.ButtonHoverOn" Send="Create"/>
         <On Terms="Abil.AP_SuppressionPulse.ButtonHoverOff" Send="Destroy"/>
         <Flags index="SuppressSaveLoad" value="1"/>
-        <Range value="5.8000"/>
+        <Range value="5.7700"/>
     </CActorRange>
     <CActorSiteOpLocalOffset id="AP_SuppressionPulseOffset">
         <LocalOffset value="0.000000,0.000000,-1.40000"/>

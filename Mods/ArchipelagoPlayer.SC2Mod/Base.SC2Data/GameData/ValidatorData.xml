@@ -2385,6 +2385,11 @@
         <Compare value="GT"/>
         <WhichUnit Value="Caster"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisAiurAspectPassiveCharged">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_ArtanisAiurAspectPassiveCharged"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="AP_TempShieldsNotEmptyOrNoTempShields">
         <CombineArray value="hasShields"/>
         <CombineArray value="AP_CasterMaxShieldEQ0"/>
@@ -4492,11 +4497,11 @@
         <CombineArray value="AP_HasArtanisTaldarimAspectBehavior"/>
         <CombineArray value="AP_IsArtanisHero"/>
     </CValidatorCombine>
-    <CValidatorCombine id="AP_HasRaszagalsRhythmAndNerazimAspect">
-        <Type value="And"/>
-        <CombineArray value="AP_HasArtanisNerazimAspectSelectedPassive"/>
-        <CombineArray value="AP_HasRaszagalsRhythm"/>
-    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasRaszagalsRhythm">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_RaszagalsRhythm"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitOrderQueue id="AP_SentryIsRepairing">
         <AbilLink value="AP_VoidSentryShieldRepairDouble"/>
     </CValidatorUnitOrderQueue>
@@ -5272,6 +5277,9 @@
     </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="AP_NotHaveChainReactionMarker">
         <Behavior value="AP_ChainReactionMarker"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_NotHaveSuppressionPulseWaveMarker">
+        <Behavior value="AP_SuppressionPulseWaveMarker"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="AP_HaveK5InfestBroodlings">
         <Value value="AP_HaveK5InfestBroodlings"/>

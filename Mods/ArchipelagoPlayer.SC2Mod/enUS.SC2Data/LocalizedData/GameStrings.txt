@@ -2661,7 +2661,7 @@ Button/Tooltip/AP_Armory=Contains weapon and armor upgrades for Factory and Star
 Button/Tooltip/AP_ArtanisAirAttackDisable=Disable Artanis' anti-air attack.
 Button/Tooltip/AP_ArtanisAirAttackEnable=Enable Artanis' anti-air attack.
 Button/Tooltip/AP_ArtanisAiurAspect=Switch Artanis' active aspect to <c val="#AP_ColorAiur">Aiur</c>, granting him access to any unlocked bonuses and making him count as a <c val="#AP_ColorAiur">Aiur</c> unit.
-Button/Tooltip/AP_ArtanisAiurAspectPassive=While <c val="#AP_ColorAiur">Aiur</c> Aspect is active, Artanis also <c val="#ColorTooltipNumber">restores shields</c> equal to the <c val="#ColorTooltipNumber">energy cost spent</c> when casting abilities.
+Button/Tooltip/AP_ArtanisAiurAspectPassive=While <c val="#AP_ColorAiur">Aiur</c> Aspect is active, Artanis' spells deal <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAiurAspectPassiveDamage,Amount"/></c> damage to enemies in their area. In addition, when Charge successfully initiates an attack, nearby enemies within <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAiurAspectPassiveSearchCharge,AreaArray[0].Radius"/></c> range are struck by lightning for <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAiurAspectPassiveDamage,Amount"/></c> damage.
 Button/Tooltip/AP_ArtanisAstralWind=Heals Artanis <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Shields].Change"/> shields</c> and <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAstralWindSelf,VitalArray[Life].Change"/> life</c>, and heals other nearby friendly units for <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Shields].Change"/> shields</c> and <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisAstralWindOther,VitalArray[Life].Change"/> life</c>.<n/><n/>Cooldown reduced by <c val="#ColorTooltipNumber">6 seconds</c> whenever Artanis attacks.
 Button/Tooltip/AP_ArtanisBladeWaltz=Artanis dashes forward and deals <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage</c> to enemy ground units along the way and an additional <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisBladeWaltzEndDamage,Amount"/> damage</c> to enemies near the end of the dash.
 Button/Tooltip/AP_ArtanisBladeWaltzPassive=Energy Cost: <c val="#ColorTooltipNumber"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Vital[Energy]"/></c><n/>Cooldown: <c val="#ColorTooltipNumber"><d ref="Abil,AP_ArtanisBladeWaltz,Cost[0].Cooldown.TimeUse"/></c><n/><n/>Artanis dashes forward and deals <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisBladeWaltzDamage,Amount"/> damage</c> to enemy ground units along the way and an additional <c val="#ColorTooltipNumber"><d ref="Effect,AP_ArtanisBladeWaltzEndDamage,Amount"/> damage</c> to enemies near the end of the dash.
@@ -3647,7 +3647,6 @@ Button/Tooltip/AP_PsiDisruptionAll=Slows the attack and movement speeds of all n
 Button/Tooltip/AP_PsiDisruptionProtoss=Slows the attack and movement speeds of all nearby enemy Protoss units.<n/><n/><c val="#ColorAttackInfo">Heroic units are immune.</c>
 Button/Tooltip/AP_PsiDisruptionTerran=Slows the attack and movement speeds of all nearby enemy Terran units.<n/><n/><c val="#ColorAttackInfo">Heroic units are immune.</c>
 Button/Tooltip/AP_PsiDisruptor=Defensive structure. Slows the attack and movement speeds of all nearby units for each race you have unlocked for it.<n/><n/><c val="#ColorAttackInfo">Heroic units are immune.</c></n></n><c val="FFE303">Affected Races:</c>
-Button/Tooltip/AP_LesserPsiStorm=Creates a smaller storm of psionic energy that lasts 4 seconds, dealing 40 total damage to enemy units in the target area.
 Button/Tooltip/AP_PsiStorm=Creates a storm of psionic energy that lasts <d ref="(Effect,AP_HighArchonPsiStormPersistent,PeriodCount*Effect,AP_HighArchonPsiStormPersistent,PeriodicPeriodArray[0]) + Behavior,AP_HighArchonPsiStorm,Duration"/> seconds, causing up to <d ref="Effect,AP_HighArchonPsiStormDamageInitial,Amount + (Effect,AP_HighArchonPsiStormPersistent,PeriodCount * Behavior,AP_HighArchonPsiStorm,Duration * Effect,AP_HighArchonPsiStormDamage,Amount / Behavior,AP_HighArchonPsiStorm,Period)"/> damage to all enemy units in the target area. Does not damage friendly units.
 Button/Tooltip/AP_PsiStrike=Kerrigan dashes through enemies, dealing <d ref="Effect,AP_PsiStrikeDamage,Amount"/> damage to all enemies in her path.<n/><n/><c val="ffff8a">Passive: Movement speed increased by 30%.</c>
 Button/Tooltip/AP_PsionicLift=Enemies in target area are stunned for <d ref="Behavior,AP_PsionicLift,Duration"/> seconds and take <d ref="Behavior,AP_PsionicLift,Duration * Effect,AP_PsionicLiftDamage,Amount"/> damage over time.<n/><n/><c val="ffff8a">Does not stun heroic units.</c>
@@ -5313,9 +5312,10 @@ Effect/Name/AP_ProjectileAccelerators=Projectile Accelerators
 Effect/Name/AP_ProjectileAcceleratorsRemove=Projectile Accelerators Remove
 Effect/Name/AP_PsiDisruptionApplyBehavior=Psi Disruption (Apply Behavior)
 Effect/Name/AP_PsiDisruptionSearchArea=Psi Disruption (Search Area)
-Effect/Name/AP_LesserPsiStormDamage=Lesser Psi Storm (Damage)
-Effect/Name/AP_LesserPsiStormPersistent=Lesser Psi Storm (Persistent)
-Effect/Name/AP_LesserPsiStormSearch=Lesser Psi Storm (Search)
+Effect/Name/AP_ArtanisAiurAspectPassiveSearchCharge=Artanis Aiur Aspect Passive Charge (Search)
+Effect/Name/AP_ArtanisAiurAspectPassiveSearchPhasePrism=Artanis Aiur Aspect Passive Phase Prism (Search)
+Effect/Name/AP_ArtanisAiurAspectPassiveSearchAstralWind=Artanis Aiur Aspect Passive Astral Wind (Search)
+Effect/Name/AP_ArtanisAiurAspectPassiveSearchStrengthInUnity=Artanis Aiur Aspect Passive Strength in Unity (Search)
 Effect/Name/AP_PsiStormApplyBehavior=Psi Storm (Apply Buff)
 Effect/Name/AP_PsiStormDamage=Psi Storm (Damage)
 Effect/Name/AP_PsiStormDamageInitial=Psi Storm (Damage2)

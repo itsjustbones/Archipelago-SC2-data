@@ -4591,14 +4591,9 @@
         <ValidatorArray value="AP_HaveArtanisTemperedInTwilight"/>
         <VitalArray index="Energy" Change="1"/>
     </CEffectModifyUnit>
-    <CEffectModifyUnit id="AP_ArtanisChargeTriggerEffect">
-        <EditorCategories value="Race:Protoss"/>
-        <ValidatorArray value="AP_CasterHasArtanisCharging"/>
-    </CEffectModifyUnit>
     <CEffectCreatePersistent id="AP_ArtanisWeaponBurst">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
-        <InitialEffect value="AP_ArtanisChargeTriggerEffect"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
         <PeriodCount value="2"/>
@@ -4612,6 +4607,7 @@
         <EffectArray value="AP_ArtanisTaldarimAspectNearbySearchGround"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
+        <EffectArray value="AP_ArtanisAiurAspectPassiveChargedProc"/>
         <EffectArray value="AP_RaszagalsRhythmConsumeSet"/>
     </CEffectSet>
     <CEffectEnumArea id="AP_ArtanisTaldarimAspectNearbySearchGround">
@@ -4677,7 +4673,7 @@
         <BehaviorLink value="AP_RaszagalsRhythm"/>
     </CEffectRemoveBehavior>
     <CEffectModifyUnit id="AP_RaszagalsRhythmEnergyRestore">
-        <ValidatorArray value="AP_HasRaszagalsRhythmAndNerazimAspect"/>
+        <ValidatorArray value="AP_HasRaszagalsRhythm"/>
         <ImpactUnit Value="Caster"/>
         <VitalArray index="Energy" Change="10"/>
     </CEffectModifyUnit>
@@ -4952,16 +4948,33 @@
     </CEffectLaunchMissile>
     <CEffectSet id="AP_VoltaicShockReheightSourceImpactSet"/>
     <CEffectSet id="AP_VoltaicShockReheightSourceImpactDummy"/>
+    <CEffectCreatePersistent id="AP_SuppressionPulseCreatePersistent">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="SourceUnit"/>
+        <PeriodCount value="5"/>
+        <PeriodicEffectArray value="AP_SuppressionPulseSearchArea"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
     <CEffectEnumArea id="AP_SuppressionPulseSearchArea">
         <EditorCategories value="Race:Protoss"/>
-        <AreaArray Radius="6" Effect="AP_SuppressionPulseSet"/>
+        <AreaArray Radius="3" RadiusBonus="0.6" Effect="AP_SuppressionPulseWaveHitSet"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Stasis,Hidden,Invulnerable,Unstoppable"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_VoltaicShock"/>
-    <CEffectSet id="AP_SuppressionPulse">
+    <CEffectSet id="AP_SuppressionPulseWaveHitSet">
+        <ValidatorArray value="AP_NotHaveSuppressionPulseWaveMarker"/>
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_SuppressionPulseWaveMarkerAB"/>
+        <EffectArray value="AP_SuppressionPulseSet"/>
+    </CEffectSet>
+    <CEffectSet id="AP_SuppressionPulseSet">
         <EffectArray value="AP_SuppressionPulseAB"/>
         <EffectArray value="AP_SuppressionPulseDamage"/>
     </CEffectSet>
+    <CEffectApplyBehavior id="AP_SuppressionPulseWaveMarkerAB">
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_SuppressionPulseWaveMarker"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_SuppressionPulseAB">
         <Behavior value="AP_SuppressionPulse"/>
     </CEffectApplyBehavior>
@@ -5192,7 +5205,6 @@
     <CEffectCreatePersistent id="AP_ArtanisAirAttackSet">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
-        <InitialEffect value="AP_ArtanisChargeTriggerEffect"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
         <PeriodCount value="2"/>
@@ -5207,6 +5219,7 @@
     </CEffectLaunchMissile>
     <CEffectSet id="AP_ArtanisAirAttackImpactSet">
         <EffectArray value="AP_ArtanisAirAttackDamage"/>
+        <EffectArray value="AP_ArtanisAiurAspectPassiveChargedProc"/>
         <EffectArray value="AP_ArtanisTaldarimAspectNearbySearchAir"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
@@ -11204,32 +11217,35 @@
         <AreaArray Radius="1.5" Effect="AP_PsiStormApplyBehavior"/>
         <SearchFlags index="CallForHelp" value="1"/>
     </CEffectEnumArea>
-    <CEffectDamage id="AP_LesserPsiStormDamage">
-        <ValidatorArray value="PsiStormUTargetFilters"/>
+    <CEffectDamage id="AP_ArtanisAiurAspectPassiveDamage">
         <EditorCategories value="Race:Protoss"/>
         <Visibility value="Hidden"/>
-        <Amount value="2.5"/>
+        <Amount value="15"/>
     </CEffectDamage>
-    <CEffectCreatePersistent id="AP_LesserPsiStormPersistent">
+    <CEffectEnumArea id="AP_ArtanisAiurAspectPassiveSearch">
         <EditorCategories value="Race:Protoss"/>
-        <InitialEffect value="AP_LesserPsiStormSearch"/>
-        <PeriodCount value="15"/>
-        <PeriodicEffectArray value="AP_LesserPsiStormSearch"/>
-        <PeriodicPeriodArray value="0.25"/>
-        <AINotifyEffect value="AP_LesserPsiStormSearch"/>
-    </CEffectCreatePersistent>
-    <CEffectEnumArea id="AP_LesserPsiStormSearch">
-        <EditorCategories value="Race:Protoss"/>
-        <AINotifyFlags index="HurtFriend" value="1"/>
-        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="TargetPoint"/>
         <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.8" Effect="AP_LesserPsiStormDamage"/>
+        <AreaArray Radius="2.5" Effect="AP_ArtanisAiurAspectPassiveDamage"/>
         <SearchFlags index="CallForHelp" value="1"/>
     </CEffectEnumArea>
-    <CEffectCreatePersistent id="AP_LesserPsiStormPersistentCharge" parent="AP_LesserPsiStormPersistent">
-        <PeriodCount value="7"/>
-        <ValidatorArray value="AP_HasArtanisAiurAspectBehaviorAndPassive"/>
-    </CEffectCreatePersistent>
+    <CEffectEnumArea id="AP_ArtanisAiurAspectPassiveSearchCharge" parent="AP_ArtanisAiurAspectPassiveSearch">
+        <ImpactLocation Value="TargetPoint"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisAiurAspectPassiveSearchPhasePrism" parent="AP_ArtanisAiurAspectPassiveSearch">
+        <ImpactLocation Value="TargetUnit"/>
+        <AreaArray Radius="5" Effect="AP_ArtanisAiurAspectPassiveDamage"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisAiurAspectPassiveSearchAstralWind" parent="AP_ArtanisAiurAspectPassiveSearch">
+        <ImpactLocation Value="TargetUnit"/>
+        <AreaArray Radius="6" Effect="AP_ArtanisAiurAspectPassiveDamage"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ArtanisAiurAspectPassiveSearchStrengthInUnity" parent="AP_ArtanisAiurAspectPassiveSearch">
+        <ImpactLocation Value="TargetUnit"/>
+        <AreaArray Radius="10" Effect="AP_ArtanisAiurAspectPassiveDamage"/>
+    </CEffectEnumArea>
     <CEffectSet id="AP_PsiStormShakurasImpactSet">
         <EffectArray value="AP_PsiStormApplyBehavior"/>
         <EffectArray value="AP_PsiStormCrippleAB"/>
@@ -14910,6 +14926,22 @@
     <CEffectApplyBehavior id="AP_ArtanisCharge" parent="AP_Charge">
         <Behavior value="AP_ArtanisCharging"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ArtanisAiurAspectPassiveChargedAB" parent="AP_ArtanisCharge">
+        <ValidatorArray value="AP_HasArtanisAiurAspectBehaviorAndPassive"/>
+        <Behavior value="AP_ArtanisAiurAspectPassiveCharged"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AP_ArtanisAiurAspectPassiveChargedProc">
+        <EditorCategories value="Race:Protoss"/>
+        <ValidatorArray value="AP_CasterHasArtanisAiurAspectPassiveCharged"/>
+        <ValidatorArray value="AP_HasArtanisAiurAspectBehaviorAndPassive"/>
+        <EffectArray value="AP_ArtanisAiurAspectPassiveSearchCharge"/>
+        <EffectArray value="AP_ArtanisAiurAspectPassiveChargedRB"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="AP_ArtanisAiurAspectPassiveChargedRB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AP_ArtanisAiurAspectPassiveCharged"/>
+    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="AP_ScopophobiaTargetAB">
         <EditorCategories value="Race:Protoss"/>
         <Behavior value="AP_ScopophobiaTarget"/>

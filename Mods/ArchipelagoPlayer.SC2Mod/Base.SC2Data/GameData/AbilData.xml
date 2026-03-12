@@ -4674,7 +4674,7 @@
     </CAbilEffectTarget>
     <CAbilEffectInstant id="AP_SuppressionPulse">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_SuppressionPulseSearchArea"/>
+        <Effect index="0" value="AP_SuppressionPulseCreatePersistent"/>
         <Cost>
             <Vital index="Energy" value="50"/>
             <Cooldown TimeUse="20"/>
@@ -4736,7 +4736,7 @@
         <AbilCmd value="attack,Execute"/>
         <Effect value="AP_ArtanisCharge"/>
         <Cost>
-            <Cooldown Link="Charge" Location="Unit" TimeUse="10"/>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="2"/>
         </Cost>
         <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
         <AutoCastValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>

@@ -2462,6 +2462,11 @@
             <DamageDealtMaximum index="Splash" value="0"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SuppressionPulseWaveMarker">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoltaicShock">
         <Alignment value="Negative"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-voltaic-surge.dds"/>
@@ -2498,7 +2503,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhasePrismPullStun">
         <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism.dds"/>
         <BehaviorCategories index="Stun" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="1"/>
@@ -3495,8 +3500,8 @@
         <Requirements value="AP_HaveArtanisNerazimAspectSelectedPassive"/>
         <Duration value="5"/>
         <Modification>
-            <DamageDealtUnscaled index="Melee" value="20"/>
-            <DamageDealtUnscaled index="Ranged" value="20"/>
+            <DamageDealtUnscaled index="Melee" value="30"/>
+            <DamageDealtUnscaled index="Ranged" value="30"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidDarkTemplarShadowFuryTargeted">
@@ -5303,6 +5308,11 @@
         <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
         <RemoveValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>
         <Tooltip value="Behavior/Tooltip/AP_ArtanisCharging"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisAiurAspectPassiveCharged">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="4.0000"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ScopophobiaTarget">
         <InfoIcon value="Assets\Textures\btn-upgrade-afaidofthedark.dds"/>
