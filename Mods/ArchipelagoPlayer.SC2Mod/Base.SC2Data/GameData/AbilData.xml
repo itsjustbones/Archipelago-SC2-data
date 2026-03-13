@@ -4657,6 +4657,9 @@
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <Effect index="0" value="AP_ExterminateCancelRB"/>
         <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_ExterminateCancel" Requirements="AP_HaveExterminateBehavior"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_ShadowSlice">
@@ -4764,7 +4767,7 @@
     </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_ArtanisLightningDash">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_ArtanisLightningDashSwitch"/>
+        <Effect index="0" value="AP_ArtanisLightningDash"/>
         <Range value="8"/>
         <TrackingArc value="360"/>
         <PrepTime value="0.125"/>

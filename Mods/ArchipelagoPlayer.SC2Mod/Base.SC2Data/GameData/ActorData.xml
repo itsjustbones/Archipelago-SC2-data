@@ -37956,9 +37956,12 @@
     <CActorModel id="AP_BladeWaltzGuideImpactCircle" parent="GuideVisualQuadModel">
         <Model value="AP_BladeWaltzAOECursorSplat"/>
         <Host Subject="::Creator"/>
-        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <HostSiteOps Ops="SOpAttachOrigin AP_BladeWaltzGuideImpactCircleOffset"/>
         <Supporter Subject="::Creator"/>
     </CActorModel>
+    <CActorSiteOpLocalOffset id="AP_BladeWaltzGuideImpactCircleOffset">
+        <LocalOffset value="0.0,-0.7,0.0"/>
+    </CActorSiteOpLocalOffset>
     <CActorModel id="AP_ArtanisBladeWaltzModel" parent="ModelAnimationStyleContinuous">
         <On Terms="Behavior.AP_ArtanisBladeWaltzWalkSpeed.On" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {180,230,255 2.000000}"/>
@@ -37975,12 +37978,15 @@
     <CActorModel id="AP_ArtanisBladeWaltzEndSearchModel" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="Create"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="Create AP_NovaPsiBlade_Launch_C_BladeTwirl"/>
+        <On Terms="ActorCreation" Send="Create UI_MP_ZealotPsiBladeOn"/>
         <On Terms="ActorCreation" Send="SetScale 1.5"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
         <Model value="AP_VoidZealotWhirlwindSearchModel"/>
     </CActorModel>
+    <CActorSound id="UI_MP_ZealotPsiBladeOn" parent="SoundOneShot">
+        <Host Subject="_Selectable"/>
+    </CActorSound>
     <CActorModel id="AP_ArtanisBladeWaltzEndShockwaveModel" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="Create"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
@@ -37990,8 +37996,12 @@
         <Model value="AP_ArtanisBladeWaltzEndShockwave"/>
     </CActorModel>
     <CActorMissile id="AP_ArtanisAirAttackMissile" parent="GenericAttackMissile" unitName="AP_ArtanisAirAttackWeapon"/>
+    <CActorSite id="AP_ArtanisAirAttackImpactSite" parent="GenericAttackImpactSite"/>
     <CActorAction id="AP_ArtanisAirAttack" parent="GenericAttack" effectImpact="AP_ArtanisAirAttackImpactSet" effectLaunch="AP_ArtanisAirAttackLM">
         <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
+        <ImpactSite value="AP_ArtanisAirAttackImpactSite"/>
+        <ImpactSiteOps Ops="SOpAttachCenter"/>
+        <ShieldFlashType value="None"/>
         <ImpactMap index="None" Sound="AP_ArtanisVoid_PsionicAssaultImpact"/>
         <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
         <LaunchAssets Sound="AP_ArtanisVoid_PsionicAssaultLaunch"/>
@@ -38041,9 +38051,12 @@
     <CActorSound id="AP_CleansingSmiteSound" parent="SoundOneShot">
         <Host Subject="_Selectable"/>
     </CActorSound>
-    <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisBladesSet">
+    <CActorSite id="AP_ArtanisMeleeVoidAttackImpactSite" parent="GenericAttackImpactSite"/>
+    <CActorAction id="AP_ArtanisMeleeVoid_AttackImpact" parent="GenericAttack" effectAttack="AP_ArtanisBlades">
         <!-- Only using 1 attach point to prevent 2 launch sounds each attack-->
-        <LaunchAttachQuery Methods="AMFilterWeaponLeft"/>
+        <ImpactSite value="AP_ArtanisMeleeVoidAttackImpactSite"/>
+        <ImpactSiteOps Ops="SOpAttachCenter"/>
+        <ShieldFlashType value="None"/>
         <LaunchAssets Sound="AP_ArtanisMeleeVoid_AttackLaunch"/>
         <ImpactMap index="None" Sound="AP_ArtanisMeleeVoid_AttackImpact"/>
     </CActorAction>
@@ -38054,9 +38067,17 @@
         <Model value="AP_VoidHighTemplarPsiOrbBeam"/>
     </CActorBeamSimple>
     <CActorAction id="AP_ArtanisTaldarimAspectPsiOrbBeamAttackGround" parent="GenericAttack" effectAttack="AP_ArtanisTaldarimAspectNearbyDamageGround">
+        <LaunchRequest Subject="AP_ArtanisMeleeVoidAttackImpactSite" Actor="Find"/>
+        <BeamScope value="Caster"/>
+        <ImpactSiteOps Ops="SOpAttachCenter"/>
+        <ShieldFlashType value="None"/>
         <Beam value="AP_ArtanisTaldarimAspectPsiOrbBeam"/>
     </CActorAction>
     <CActorAction id="AP_ArtanisTaldarimAspectPsiOrbBeamAttackAir" parent="GenericAttack" effectAttack="AP_ArtanisTaldarimAspectNearbyDamageAir">
+        <LaunchRequest Subject="AP_ArtanisAirAttackImpactSite" Actor="Find"/>
+        <BeamScope value="Caster"/>
+        <ImpactSiteOps Ops="SOpAttachCenter"/>
+        <ShieldFlashType value="None"/>
         <Beam value="AP_ArtanisTaldarimAspectPsiOrbBeam"/>
     </CActorAction>
     <CActorModel id="AP_StrengthInUnity">
@@ -38126,7 +38147,7 @@
         <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
         <On Terms="Abil.AP_CleansingSmite.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.450000 AsTimeScale"/>
         <On Terms="Abil.AP_ShadowSlice.SourceCastStart" Send="$Spell,A 0 0 -1.000000 1.0000 AsTimeScale"/>
-        <On Terms="Behavior.AP_ArtanisBladeWaltzActor.On" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
+        <On Terms="Behavior.AP_ArtanisBladeWaltzWalkSpeed.On" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="AnimClear Spell"/>
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="$Spell,A 0 0 -1.000000 1.1000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
@@ -46588,6 +46609,14 @@
         <HighlightTooltip value="Unit/Name/AP_SICocoon"/>
     </CActorUnit>
     <CActorUnit id="AP_BullfrogPlaceholder" parent="GenericUnitStandard" unitName="AP_BullfrogPlaceholder">
+        <Model value="Invisible"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+    </CActorUnit>
+    <CActorUnit id="AP_ArtanisLightningDashPrecursor" parent="GenericUnitStandard" unitName="AP_ArtanisLightningDashPrecursor">
         <Model value="Invisible"/>
         <StatusBarFlags index="Shields" value="0"/>
         <StatusBarFlags index="Life" value="0"/>

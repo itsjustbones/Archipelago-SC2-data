@@ -4615,12 +4615,13 @@
         <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
         <ImpactLocation Value="TargetUnit"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground;Player,Ally,Neutral,Buried,Cloaked,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Stasis,Dead,Hidden,Invulnerable"/>
         <TargetSorts>
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
         <AreaArray Radius="2.5" Effect="AP_ArtanisTaldarimAspectNearbyDamageGround"/>
-        <MaxCount value="3"/>
+        <MaxCount value="4"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="CallForHelp" value="1"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
@@ -4629,28 +4630,29 @@
         <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
         <ImpactLocation Value="TargetUnit"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Air;Player,Ally,Neutral,Buried,Cloaked,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Air;Player,Ally,Neutral,Stasis,Dead,Hidden,Invulnerable"/>
         <TargetSorts>
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
         <AreaArray Radius="2.5" Effect="AP_ArtanisTaldarimAspectNearbyDamageAir"/>
-        <MaxCount value="3"/>
+        <MaxCount value="4"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="CallForHelp" value="1"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
     <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageGround" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
-        <Amount value="3"/>
+        <Amount value="6"/>
         <Death value="Electrocute"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
     <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageAir" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
-        <Amount value="3"/>
+        <Amount value="6"/>
         <Death value="Electrocute"/>
-        <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
     <CEffectDamage id="AP_ArtanisBlades" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
@@ -4980,7 +4982,7 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="AP_SuppressionPulseDamage">
         <Kind value="Spell"/>
-        <Amount value="20"/>
+        <Amount value="15"/>
     </CEffectDamage>
     <CEffectSet id="AP_PhasePrismDelaySet">
         <EditorCategories value="Race:Protoss"/>
@@ -5043,38 +5045,54 @@
         <PeriodCount value="1"/>
     </CEffectCreatePersistent>
     <CEffectSwitch id="AP_ArtanisLightningDashSwitch">
-        <CaseArray Validator="AP_ArtanisLightningDashDestinationClear" Effect="AP_ArtanisLightningDashLaunchMissile"/>
-        <CaseDefault value="AP_ArtanisLightningDashLaunchMissileClosest"/>
+        <CaseArray Validator="AP_ArtanisLightningDashDestinationClear" Effect="AP_ArtanisLightningDashCU"/>
+        <CaseDefault value="AP_ArtanisLightningDashCUClosest"/>
         <TargetLocationType value="Point"/>
     </CEffectSwitch>
+    <CEffectCreateUnit id="AP_ArtanisLightningDashCU">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnEffect value="AP_ArtanisLightningDashCUPoint"/>
+        <SpawnUnit value="AP_ArtanisLightningDashPrecursor"/>
+        <SpawnOwner Value="Neutral"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="Birth" value="0"/>
+        <CreateFlags index="Precursor" value="1"/>
+        <CreateFlags index="ProvideFood" value="0"/>
+        <CreateFlags index="UseFood" value="0"/>
+        <SpawnRange value="0"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="AP_ArtanisLightningDashCUClosest">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnEffect value="AP_ArtanisLightningDashCUPoint"/>
+        <SpawnUnit value="AP_ArtanisLightningDashPrecursor"/>
+        <SpawnOwner Value="Neutral"/>
+        <CreateFlags index="Birth" value="0"/>
+        <CreateFlags index="Precursor" value="1"/>
+        <CreateFlags index="ProvideFood" value="0"/>
+        <CreateFlags index="UseFood" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <SpawnRange value="8"/>
+    </CEffectCreateUnit>
+    <CEffectCreatePersistent id="AP_ArtanisLightningDashCUPoint">
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="AP_ArtanisLightningDashLaunchMissile"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
     <CEffectLaunchMissile id="AP_ArtanisLightningDashLaunchMissile">
-        <ValidatorArray value="AP_ArtanisLightningDashDestinationClear"/>
-        <ImpactLocation Value="TargetPoint"/>
+        <ImpactLocation Effect="AP_ArtanisLightningDashCUPoint" Value="TargetPoint"/>
         <LaunchLocation Value="CasterUnit"/>
-        <Movers Link="AP_ArtanisLightningDashDashMover"/>
+        <Movers Link="AP_ArtanisLightningDashMissile"/>
         <FinishEffect value="AP_ArtanisLightningDashLaunchMissileImpactSet"/>
         <DeathType value="Unknown"/>
         <Flags index="2D" value="1"/>
-        <Flags index="PlacementOriginSideOfFootprints" value="1"/>
-        <PlacementRange value="1"/>
-    </CEffectLaunchMissile>
-    <CEffectLaunchMissile id="AP_ArtanisLightningDashLaunchMissileClosest">
-        <ValidatorArray value="Pathable"/>
-        <ImpactLocation Value="TargetPoint"/>
-        <LaunchLocation Value="CasterUnit"/>
-        <Movers Link="AP_ArtanisLightningDashDashMover"/>
-        <FinishEffect value="AP_ArtanisLightningDashLaunchMissileImpactSet"/>
-        <DeathType value="Unknown"/>
-        <Flags index="2D" value="1"/>
-        <Flags index="Placement" value="1"/>
-        <Flags index="PlacementIgnoreCliffTest" value="1"/>
-        <Flags index="PointFallback" value="0"/>
-        <Flags index="PlacementOriginSideOfFootprints" value="1"/>
-        <PlacementRange value="3"/>
     </CEffectLaunchMissile>
     <CEffectSet id="AP_ArtanisLightningDashLaunchMissileImpactSet">
         <EffectArray value="AP_ArtanisLightningDashStunSearch"/>
         <EffectArray value="AP_ArtanisLightningDashSearch"/>
+        <EffectArray value="AP_ArtanisLightningDashRemovePrecursorUnit"/>
     </CEffectSet>
     <CEffectEnumArea id="AP_ArtanisLightningDashStunSearch">
         <ImpactLocation Value="CasterUnit"/>
@@ -5093,6 +5111,13 @@
         <Death value="Blast"/>
         <Kind value="Spell"/>
         <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_ArtanisLightningDashRemovePrecursorUnit">
+        <ImpactLocation Effect="AP_ArtanisLightningDashCUPoint" Value="TargetUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+        <Death value="Remove"/>
+        <Visibility value="Hidden"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AP_StrengthInUnity"/>
     <CEffectSet id="AP_StrengthInUnityInitialSearchSet">
@@ -5262,18 +5287,12 @@
     <CEffectSet id="AP_ArtanisBladeWaltz">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ApplyArtanisBladeWaltzWalkSpeed"/>
-        <EffectArray value="AP_ApplyArtanisBladeWaltzActor"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_ApplyArtanisBladeWaltzWalkSpeed">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_ApplyArtanisBladeWaltzActor">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeWaltzActor"/>
     </CEffectApplyBehavior>
     <CEffectDamage id="AP_ArtanisBladeWaltzDamage">
         <ValidatorArray value="AP_EnemyTarget"/>
@@ -11220,7 +11239,7 @@
     <CEffectDamage id="AP_ArtanisAiurAspectPassiveDamage">
         <EditorCategories value="Race:Protoss"/>
         <Visibility value="Hidden"/>
-        <Amount value="15"/>
+        <Amount value="10"/>
     </CEffectDamage>
     <CEffectEnumArea id="AP_ArtanisAiurAspectPassiveSearch">
         <EditorCategories value="Race:Protoss"/>

@@ -5280,25 +5280,25 @@ bool lib15EF4C78_gt_ArtanisBladeWaltz_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_k;
     point lv_t;
+    fixed lv_facing;
+    fixed lv_distance;
     point lv_t2;
     point lv_t3;
     point lv_finalT;
-    fixed lv_facing;
-    fixed lv_distance;
     bool lv_goodPositionFound;
     int lv_i;
 
     // Automatic Variable Declarations
-    const int autoAD6D1C16_ae = 7;
-    const int autoAD6D1C16_ai = 1;
+    const int auto6ADD9560_ae = 7;
+    const int auto6ADD9560_ai = 1;
 
     // Variable Initialization
     lv_k = UnitGetPosition(EventUnit());
     lv_t = EventUnitTargetPoint();
+    lv_facing = AngleBetweenPoints(lv_k, lv_t);
+    lv_distance = 8.0;
     lv_t2 = EventUnitTargetPoint();
     lv_t3 = libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(EventUnit()), 8.0, lv_t2);
-    lv_facing = AngleBetweenPoints(UnitGetPosition(EventUnit()), EventUnitTargetPoint());
-    lv_distance = 8.0;
 
     // Actions
     if (!runActions) {
@@ -5326,8 +5326,9 @@ bool lib15EF4C78_gt_ArtanisBladeWaltz_Func (bool testConds, bool runActions) {
     }
     Wait(0.1875, c_timeGame);
     lv_i = 1;
-    for ( ; ( (autoAD6D1C16_ai >= 0 && lv_i <= autoAD6D1C16_ae) || (autoAD6D1C16_ai < 0 && lv_i >= autoAD6D1C16_ae) ) ; lv_i += autoAD6D1C16_ai ) {
-        if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), lv_t3) <= 0.5)) {
+    for ( ; ( (auto6ADD9560_ai >= 0 && lv_i <= auto6ADD9560_ae) || (auto6ADD9560_ai < 0 && lv_i >= auto6ADD9560_ae) ) ; lv_i += auto6ADD9560_ai ) {
+        if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), lv_finalT) <= 0.4)) {
+            UnitSetPosition(EventUnit(), lv_t3, true);
             UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzWalkSpeed", 1);
             UnitBehaviorRemove(EventUnit(), "AP_ArtanisBladeWaltzActor", 1);
             break;
@@ -9261,7 +9262,7 @@ void lib15EF4C78_gt_AP_Player_MercCompoundSetupCounts_Init () {
 bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
-    int lv_pbybvqfxgdpdujqy;
+    int lv_efpkkgbrmwdxscrh;
     int lv_instantUsesLeft;
 
     // Automatic Variable Declarations
@@ -9275,28 +9276,28 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         return true;
     }
 
-    lv_pbybvqfxgdpdujqy = EventPlayer();
-    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_pbybvqfxgdpdujqy);
+    lv_efpkkgbrmwdxscrh = EventPlayer();
+    lv_instantUsesLeft = lib15EF4C78_gf_AP_Player_MercCompoundGetInstantUses(lv_efpkkgbrmwdxscrh);
     if ((lv_instantUsesLeft > 0)) {
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
                 lv_instantUsesLeft -= 1;
-                libNtve_gf_SetUpgradeLevelForPlayer(lv_pbybvqfxgdpdujqy, "AP_FastDeliveryCharges", lv_instantUsesLeft);
+                libNtve_gf_SetUpgradeLevelForPlayer(lv_efpkkgbrmwdxscrh, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
                 if ((lv_instantUsesLeft == 0)) {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_pbybvqfxgdpdujqy);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_efpkkgbrmwdxscrh);
                 }
                 else {
-                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_pbybvqfxgdpdujqy, lv_index);
+                    lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsSingle(lv_efpkkgbrmwdxscrh, lv_index);
                 }
             }
 
         }
     }
 
-    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_pbybvqfxgdpdujqy);
+    lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_efpkkgbrmwdxscrh);
     return true;
 }
 
