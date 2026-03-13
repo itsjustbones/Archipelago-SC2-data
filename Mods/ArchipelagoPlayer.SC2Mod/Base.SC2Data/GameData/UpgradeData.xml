@@ -12925,14 +12925,16 @@
     <CUpgrade id="AP_ArtanisForceOfWill">
         <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="100"/>
         <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="100"/>
-        <EffectArray Reference="Unit,AP_ArtanisHero,LifeRegenRate" Value="1.5"/>
-        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value="5"/>
+        <EffectArray Operation="Multiply" Reference="Unit,AP_ArtanisHero,LifeRegenRate" Value="2.5"/>
+        <EffectArray Operation="Multiply" Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value="2.5"/>
     </CUpgrade>
-    <CUpgrade id="AP_ArtanisWillOfTheFirstborn">
+    <CUpgrade id="AP_ArtanisValorOfTheFirstborn">
         <EffectArray Reference="Effect,AP_ArtanisBlades,LeechFraction[Shields]" Value="0.33"/>
         <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,LeechFraction[Shields]" Value="0.33"/>
         <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageGround,LeechFraction[Shields]" Value="0.33"/>
         <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageAir,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Weapon,AP_ArtanisTwilightBlades,RateMultiplier" Value="0.20"/>
+        <EffectArray Reference="Weapon,AP_ArtanisAirAttack,RateMultiplier" Value="0.20"/>
     </CUpgrade>     
     <CUpgrade id="AP_ArtanisShieldOverload">
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>

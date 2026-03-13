@@ -37975,7 +37975,7 @@
     <CActorModel id="AP_ArtanisBladeWaltzEndSearchModel" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="Create"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="Create AP_VoidZealotWhirlwindLaunchSound"/>
+        <On Terms="ActorCreation" Send="Create AP_NovaPsiBlade_Launch_C_BladeTwirl"/>
         <On Terms="ActorCreation" Send="SetScale 1.5"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
@@ -38073,8 +38073,8 @@
     </CActorModel>
     <CActorModel id="AP_RaszagalsRhythmWeaponGlow" parent="ModelAddition">
         <!-- can only affect one arm due to model limitations -->
-        <On Terms="Behavior.AP_RaszagalsRhythm.On; ValidateUnit AP_IsArtanisHero" Send="Create"/>
-        <On Terms="Behavior.AP_RaszagalsRhythm.Off; ValidateUnit AP_IsArtanisHero" Send="Destroy"/>
+        <On Terms="Behavior.AP_RaszagalsRhythm.On" Send="Create"/>
+        <On Terms="Behavior.AP_RaszagalsRhythm.Off" Send="Destroy"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetOpacity 0.650000"/>
         <On Terms="ActorCreation" Send="SetScale 0.600000"/>
@@ -38124,10 +38124,11 @@
         <On Terms="Behavior.AP_ArtanisResurgenceInvulnerable.On" Send="AnimBracketStart Work Spell,F,Start Spell,F Spell,F,End"/>
         <On Terms="Behavior.AP_Exterminate.On" Send="Create AP_DarkArchonConfusionCastImpactModel"/>
         <On Terms="Behavior.AP_ArtanisResurgenceStun.Off" Send="AnimBracketStop Work"/>
-        <On Terms="Behavior.AP_ArtanisBladeWaltzActor.Off" Send="AnimClear Spell"/>
         <On Terms="Abil.AP_CleansingSmite.SourceCastStart" Send="$Spell,A 0 0 -1.000000 0.450000 AsTimeScale"/>
         <On Terms="Abil.AP_ShadowSlice.SourceCastStart" Send="$Spell,A 0 0 -1.000000 1.0000 AsTimeScale"/>
         <On Terms="Behavior.AP_ArtanisBladeWaltzActor.On" Send="$Spell,A 0 0 -1.000000 0.600000 AsTimeScale"/>
+        <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="AnimClear Spell"/>
+        <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="$Spell,A 0 0 -1.000000 1.1000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisLightningDash.SourceCastStart" Send="$Spell,E 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="Abil.AP_ArtanisAstralWind.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
         <On Terms="Abil.AP_SuppressionPulse.SourceCastStart; !UnitWalking" Send="$Spell,B 0 -1.000000 -1.000000 1.000000 AsTimeScale"/>
