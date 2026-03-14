@@ -5285,22 +5285,6 @@
         <OperandArray value="AP_CountUpgradeArtanisTaldarimAspectUnlockedCompleteOnly"/>
         <OperandArray value="AP_NotCountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit"/>
     </CRequirementAnd>
-    <CRequirementAnd id="AP_AndArtanisTaldarimAspectActiveAndAirAttackCompleteOnly">
-        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
-        <OperandArray value="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
-        <OperandArray value="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit"/>
-    </CRequirementAnd>
-    <CRequirementNot id="AP_NotArtanisTaldarimAspectActiveAndAirAttackCompleteOnly">
-        <OperandArray index="0" value="AP_AndArtanisTaldarimAspectActiveAndAirAttackCompleteOnly"/>
-    </CRequirementNot>
-    <CRequirementAnd id="AP_AndArtanisTaldarimAspectActiveAndNotAirAttackCompleteOnly">
-        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
-        <OperandArray value="AP_NotArtanisTaldarimAspectActiveAndAirAttackCompleteOnly"/>
-    </CRequirementAnd>
-    <CRequirementCountBehavior id="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Count Link="AP_EnableArtanisAirAttackSwap" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountBehavior>
     <CRequirementCountUpgrade id="AP_CountUpgradeSOAFenixCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>

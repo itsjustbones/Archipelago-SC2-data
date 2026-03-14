@@ -12937,43 +12937,84 @@
     <CUpgrade id="AP_CanInstallTaldarimMothershipDeathHeal"/>
     <CUpgrade id="AP_MothershipPurifierPowerSource"/>
     <CUpgrade id="AP_MothershipAiurShieldArmorAura"/>
-    <CUpgrade id="AP_ArtanisResurgence"/>
-    <CUpgrade id="AP_ArtanisLightningDash"/>
-    <CUpgrade id="AP_ArtanisVoltaicShock"/>
-    <CUpgrade id="AP_ArtanisSuppressionPulse"/>
-    <CUpgrade id="AP_ArtanisAstralWind"/>
-    <CUpgrade id="AP_ArtanisCharge"/>
-    <CUpgrade id="AP_ArtanisStrengthInUnity"/>
-    <CUpgrade id="AP_ArtanisPhasePrism"/>
-    <CUpgrade id="AP_ArtanisAiurAspectUnlocked"/>
+    <CUpgrade id="AP_ArtanisResurgence">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisLightningDash">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisVoltaicShock">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisSuppressionPulse">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAstralWind">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisStrengthInUnity">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPhasePrism">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAiurAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisBaseAspectActive">
         <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="3"/>
         <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="3"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisBaseAspectPassive">
         <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="3"/>
         <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="3"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>
-    <CUpgrade id="AP_ArtanisAiurAspectActive" parent="AP_ArtanisBaseAspectActive"/>
-    <CUpgrade id="AP_ArtanisAiurAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>
-    <CUpgrade id="AP_ArtanisNerazimAspectUnlocked"/>
-    <CUpgrade id="AP_ArtanisNerazimAspectActive" parent="AP_ArtanisBaseAspectActive"/>
-    <CUpgrade id="AP_ArtanisNerazimAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>    
-    <CUpgrade id="AP_ArtanisPurifierAspectUnlocked"/>
-    <CUpgrade id="AP_ArtanisPurifierAspectActive" parent="AP_ArtanisBaseAspectActive"/>
-    <CUpgrade id="AP_ArtanisPurifierAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>
-    <CUpgrade id="AP_ArtanisTaldarimAspectUnlocked"/>
-    <CUpgrade id="AP_ArtanisTaldarimAspectActive" parent="AP_ArtanisBaseAspectActive"/>
-    <CUpgrade id="AP_ArtanisTaldarimAspectPassive" parent="AP_ArtanisBaseAspectPassive"/>
+    <CUpgrade id="AP_ArtanisAiurAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAiurAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisNerazimAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisNerazimAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisNerazimAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPurifierAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPurifierAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPurifierAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTaldarimAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTaldarimAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTaldarimAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisTemperedInTwilight">
         <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="4"/>
         <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="4"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisForceOfWill">
-        <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="100"/>
-        <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="150"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="150"/>
         <EffectArray Operation="Multiply" Reference="Unit,AP_ArtanisHero,LifeRegenRate" Value="2.5"/>
         <EffectArray Operation="Multiply" Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value="2.5"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisValorOfTheFirstborn">
         <EffectArray Reference="Effect,AP_ArtanisBlades,LeechFraction[Shields]" Value="0.33"/>
@@ -12982,14 +13023,17 @@
         <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageAir,LeechFraction[Shields]" Value="0.33"/>
         <EffectArray Reference="Weapon,AP_ArtanisTwilightBlades,RateMultiplier" Value="0.20"/>
         <EffectArray Reference="Weapon,AP_ArtanisAirAttack,RateMultiplier" Value="0.20"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>     
     <CUpgrade id="AP_ArtanisShieldOverload">
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>
     <CUpgrade id="AP_ArtanisAirAttack">
         <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="0"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Hidden]" Value="0"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
     </CUpgrade>
     <CUpgrade id="AP_VoidRaySpeedUpgrade">
         <ScoreAmount value="300"/>

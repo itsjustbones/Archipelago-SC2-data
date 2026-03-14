@@ -2128,8 +2128,8 @@
             <StateFlags index="Stun" value="1"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ArtanisAspectBuff">
-        <InfoFlags index="Hidden" value="1"/>
+    <CBehaviorBuff id="AP_ArtanisAspectBuff">   
+        <InfoFlags index="Hidden" value="1"/>   
         <BehaviorFlags index="Permanent" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
     </CBehaviorBuff>
@@ -2142,7 +2142,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Requirements value="AP_HaveArtanisForceOfWill"/>
-        <Period value="0.33333"/>
+        <Period value="0.266666"/>
         <PeriodicEffect value="AP_ArtanisForceOfWillMU"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
@@ -2155,7 +2155,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_DisableArtanisAirAttack">
         <InfoFlags index="Hidden" value="1"/>
-        <RemoveValidatorArray value="AP_CasterHasEnableArtanisAirAttackSwap"/>
+        <BehaviorFlags index="Permanent" value="1"/>    
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Modification>
             <WeaponDisableArray value="AP_ArtanisAirAttack"/>
@@ -2186,7 +2186,7 @@
         <Alignment value="Positive"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="4"/>
+        <Duration value="6"/>
         <DisplayDuration index="Self" value="1"/>
         <Modification MoveSpeedMultiplier="2.5" AttackSpeedMultiplier="2.5">
             <DamageDealtUnscaled index="Melee" value="30"/>
@@ -2206,18 +2206,8 @@
             <AbilLinkDisableArray value="AP_PhasePrism"/>
             <AbilLinkDisableArray value="AP_CleansingSmite"/>
             <AbilLinkDisableArray value="AP_Exterminate"/>
-            <AbilLinkDisableArray value="AP_ExterminateAir"/>
             <AbilLinkDisableArray value="AP_StrengthInUnity"/>
         </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AP_ExterminateTarget">
-        <Alignment value="Negative"/>
-        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="CasterNotDead"/>
-        <RemoveValidatorArray value="AP_CasterHasExterminate"/>
-        <FinalEffect value="AP_ExterminateRemoveSet"/>
-        <Duration value="4"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisLightningDashStun">
         <Duration value="1.25"/>

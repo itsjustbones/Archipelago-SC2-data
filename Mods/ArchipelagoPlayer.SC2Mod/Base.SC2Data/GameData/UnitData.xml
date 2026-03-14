@@ -14818,8 +14818,8 @@
         <Attributes index="Biological" value="1"/>
         <Attributes index="Psionic" value="1"/>
         <Attributes index="Heroic" value="1"/>
-        <LifeStart value="100"/>
-        <LifeMax value="100"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="1.5"/>
         <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
@@ -14861,9 +14861,7 @@
         <AbilArray Link="AP_CleansingSmite"/>
         <AbilArray Link="AP_ExterminateCancel"/>
         <AbilArray Link="AP_Exterminate"/>
-        <AbilArray Link="AP_ExterminateAir"/>
         <AbilArray Link="AP_StrengthInUnity"/>
-        <BehaviorArray Link="AP_DisableArtanisAirAttack"/>
         <BehaviorArray Link="AP_ArtanisNoAspect"/>
         <BehaviorArray Link="AP_ArtanisForceOfWill"/>
         <BehaviorArray Link="AP_ArtanisPurifierSolarBombardmentPassive"/>
@@ -14885,8 +14883,7 @@
             <LayoutButtons Face="AP_ExterminateCancel" Type="AbilCmd" AbilCmd="AP_ExterminateCancel,Execute" Requirements="AP_HaveExterminateBehavior" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_ExterminateAir,Execute" Requirements="AP_HaveExterminateAir" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Requirements="AP_HaveExterminateGround" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_CleansingSmite" Type="AbilCmd" AbilCmd="AP_CleansingSmite,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisAiurAspectPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectSelectedPassiveNotActive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisNerazimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectSelectedPassiveNotActive" Row="2" Column="0"/>
@@ -14918,7 +14915,7 @@
             <LayoutButtons Face="AP_ArtanisBladeWaltzPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectActive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ShadowSlicePassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectActive" Row="1" Column="1"/>
             <LayoutButtons Face="AP_CleansingSmitePassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectActive" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_ExterminatePassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectActive" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_ExterminatePassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive" Row="1" Column="3"/>
             <LayoutButtons Face="AP_ArtanisWeaponAspectDamagePassive" Type="Passive" Requirements="AP_HaveArtanisAnyAspectUnlocked" Row="1" Column="4"/>
             <LayoutButtons Face="AP_ArtanisAiurAspectPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectPassive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ArtanisNerazimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectPassive" Row="2" Column="1"/>

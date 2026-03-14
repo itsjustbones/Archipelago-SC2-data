@@ -4613,42 +4613,32 @@
     <CEffectSet id="AP_ArtanisBladesSet">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisBlades"/>
-        <EffectArray value="AP_ArtanisTaldarimAspectNearbySearchGround"/>
+        <EffectArray value="AP_ArtanisTaldarimAspectNearbySearch"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_ArtanisAiurAspectPassiveChargedProc"/>
         <EffectArray value="AP_RaszagalsRhythmConsumeSet"/>
     </CEffectSet>
-    <CEffectEnumArea id="AP_ArtanisTaldarimAspectNearbySearchGround">
+    <CEffectEnumArea id="AP_ArtanisTaldarimAspectNearbySearch">
         <EditorCategories value="Race:Protoss"/>
         <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
         <ImpactLocation Value="TargetUnit"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground;Player,Ally,Neutral,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Stasis,Dead,Hidden,Invulnerable"/>
         <TargetSorts>
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
-        <AreaArray Radius="2.5" Effect="AP_ArtanisTaldarimAspectNearbyDamageGround"/>
+        <AreaArray Radius="2.5" Effect="AP_ArtanisTaldarimAspectNearbyDamageSwitch"/>
         <MaxCount value="4"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="CallForHelp" value="1"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
-    <CEffectEnumArea id="AP_ArtanisTaldarimAspectNearbySearchAir">
+    <CEffectSwitch id="AP_ArtanisTaldarimAspectNearbyDamageSwitch">
         <EditorCategories value="Race:Protoss"/>
-        <ValidatorArray value="AP_HasArtanisTaldarimAspectSelectedPassive"/>
-        <ImpactLocation Value="TargetUnit"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="Air;Player,Ally,Neutral,Stasis,Dead,Hidden,Invulnerable"/>
-        <TargetSorts>
-            <SortArray value="TSDistanceToTarget"/>
-        </TargetSorts>
-        <AreaArray Radius="2.5" Effect="AP_ArtanisTaldarimAspectNearbyDamageAir"/>
-        <MaxCount value="4"/>
-        <SearchFlags index="ExtendByUnitRadius" value="1"/>
-        <SearchFlags index="CallForHelp" value="1"/>
-        <SearchFlags index="SameCliff" value="1"/>
-    </CEffectEnumArea>
+        <CaseArray Validator="TargetIsAir" Effect="AP_ArtanisTaldarimAspectNearbyDamageAir"/>
+        <CaseDefault value="AP_ArtanisTaldarimAspectNearbyDamageGround"/>
+    </CEffectSwitch>
     <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageGround" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
@@ -4656,16 +4646,10 @@
         <Death value="Electrocute"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
-    <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageAir" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Kind value="Spell"/>
-        <Amount value="7"/>
-        <Death value="Electrocute"/>
-        <ValidatorArray value="NotHidden"/>
-    </CEffectDamage>
+    <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageAir" parent="AP_ArtanisTaldarimAspectNearbyDamageGround"/>
     <CEffectDamage id="AP_ArtanisBlades" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="10"/>
+        <Amount value="12"/>
         <Death value="Eviscerate"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
@@ -4753,18 +4737,34 @@
         <WhichUnit Value="Caster"/>
         <Abil value="attack"/>
         <CmdFlags index="Preempt" value="1"/>
-        <Target Effect="AP_ExterminatePersistent" Value="TargetUnit"/>
+        <Target Value="TargetUnit"/>
     </CEffectIssueOrder>
-    <CEffectCreatePersistent id="AP_ExterminatePersistent">
+    <CEffectSet id="AP_ExterminateNoSearch"/>
+    <CEffectEnumArea id="AP_ExterminateSearch">
         <EditorCategories value="Race:Protoss"/>
-        <WhichLocation Value="TargetUnit"/>
-        <TimeScaleSource Value="Caster"/>
-        <InitialEffect value="AP_ExterminateAttackOrder"/>
-        <PeriodicValidator value="AP_ExterminatePeriodicValidators"/>
-        <FinalEffect value="AP_ExterminateRemoveSet"/>
-        <PeriodCount value="40"/>
-        <PeriodicPeriodArray value="0.1"/>
-    </CEffectCreatePersistent>
+        <SearchFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray MaxCount="1" Radius="10" Effect="AP_ExterminateAttackOrder"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_ExterminateAirSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <SearchFilters value="Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray MaxCount="1" Radius="10" Effect="AP_ExterminateAttackOrder"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="AP_ExterminateGroundSearchSwitch">
+        <EditorCategories value="Race:Protoss"/>
+        <CaseArray Validator="AP_ExterminateNearbyGroundTarget" Effect="AP_ExterminateNoSearch"/>
+        <CaseDefault value="AP_ExterminateSearch"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="AP_ExterminateAirSearchModeSwitch">
+        <EditorCategories value="Race:Protoss"/>
+        <CaseArray Validator="AP_ExterminateNearbyTarget" Effect="AP_ExterminateNoSearch"/>
+        <CaseDefault value="AP_ExterminateAirSearch"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="AP_ExterminateSearchSwitch">
+        <EditorCategories value="Race:Protoss"/>
+        <CaseArray Validator="AP_CasterHasArtanisAirAttackEnabled" Effect="AP_ExterminateAirSearchModeSwitch"/>
+        <CaseDefault value="AP_ExterminateGroundSearchSwitch"/>
+    </CEffectSwitch>
     <CEffectRemoveBehavior id="AP_ExterminateRB">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
@@ -4775,25 +4775,15 @@
         <BehaviorLink value="AP_Exterminate"/>
         <Count value="1"/>
     </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="AP_ExterminateTargetRB">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichUnit Value="Target"/>
-        <BehaviorLink value="AP_ExterminateTarget"/>
-    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="AP_ExterminateAB">
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_Exterminate"/>  
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="AP_ExterminateTargetAssigner">
-        <WhichUnit Value="Target"/>
-        <Behavior value="AP_ExterminateTarget"/>  
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ExterminateSet">
         <EffectArray value="AP_ExterminateSyncCooldownInitial"/>
         <EffectArray value="AP_ExterminateCancelCooldown"/>
         <EffectArray value="AP_ExterminateAB"/>
-        <EffectArray value="AP_ExterminateTargetAssigner"/>
-        <EffectArray value="AP_ExterminatePersistent"/>
+        <EffectArray value="AP_ExterminateSearchSwitch"/>
     </CEffectSet>
     <CEffectModifyUnit id="AP_ExterminateSyncCooldownInitial">
         <ImpactUnit Value="Caster"/>
@@ -4805,7 +4795,6 @@
     </CEffectModifyUnit>
     <CEffectSet id="AP_ExterminateRemoveSet">
         <EffectArray value="AP_ExterminateRB"/>
-        <EffectArray value="AP_ExterminateTargetRB"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_ShadowSliceController">
         <WhichUnit Value="Caster"/>
@@ -5255,14 +5244,14 @@
     <CEffectSet id="AP_ArtanisAirAttackImpactSet">
         <EffectArray value="AP_ArtanisAirAttackDamage"/>
         <EffectArray value="AP_ArtanisAiurAspectPassiveChargedProc"/>
-        <EffectArray value="AP_ArtanisTaldarimAspectNearbySearchAir"/>
+        <EffectArray value="AP_ArtanisTaldarimAspectNearbySearch"/>
         <EffectArray value="AP_ArtanisAstralWindCDRefund"/>
         <EffectArray value="AP_ArtanisTemperedInTwilightEnergy"/>
         <EffectArray value="AP_RaszagalsRhythmConsumeSet"/>
     </CEffectSet>
     <CEffectDamage id="AP_ArtanisAirAttackDamage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="10"/>
+        <Amount value="12"/>
         <SearchFilters value="-;Self,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
     <CEffectEnumArea id="AP_CleansingSmiteSearch">

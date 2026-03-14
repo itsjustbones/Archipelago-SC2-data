@@ -2336,24 +2336,35 @@
         <CombineArray value="AP_ArtanisChargeTargetAttackedGround"/>
         <CombineArray value="AP_ArtanisChargeTargetAttackedAir"/>
     </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasEnableArtanisAirAttackSwap">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="AP_EnableArtanisAirAttackSwap"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="AP_CasterHasArtanisAirAttackUpgrade">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisAirAttack"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="AP_CasterHasArtanisAirAttackEnabled">
+        <Type value="And"/>
+        <CombineArray value="AP_CasterHasArtanisAirAttackUpgrade"/>
+        <CombineArray value="AP_CasterHasEnableArtanisAirAttackSwap"/>
+    </CValidatorCombine>
+    <CValidatorLocationEnumArea id="AP_ExterminateNearbyGroundTarget">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Compare="GE" Count="1" Radius="5"/>
+        <SearchFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="AP_ExterminateNearbyTarget">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Compare="GE" Count="1" Radius="5"/>
+        <SearchFilters value="Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorLocationEnumArea>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasExterminate">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
         <Behavior value="AP_Exterminate"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitFilters id="AP_ExterminateCasterFilters">
-        <WhichUnit Value="Caster"/>
-        <Filters value="-;Stasis,Dead,Hidden,Stunned"/>
-    </CValidatorUnitFilters>
-    <CValidatorUnitFilters id="AP_ExterminateTargetFilters">
-        <Filters value="Visible;Player,Ally,Stasis,Dead,Hidden,Invulnerable"/>
-    </CValidatorUnitFilters>
-    <CValidatorCombine id="AP_ExterminatePeriodicValidators">
-        <Type value="And"/>
-        <CombineArray value="AP_ExterminateTargetFilters"/>
-        <CombineArray value="AP_ExterminateCasterFilters"/>
-        <CombineArray value="AP_CasterHasExterminate"/>
-    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzActor">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
