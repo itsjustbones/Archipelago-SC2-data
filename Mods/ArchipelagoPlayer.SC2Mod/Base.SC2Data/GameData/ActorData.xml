@@ -38039,6 +38039,10 @@
         <HostSiteOps Ops="SOpTargetPointStationary SOpShadow AP_ArtanisAiurAspectPassiveLightningBoltOffset"/>
         <Model value="AP_ArtanisAiurAspectPassiveLightningBolt"/>
     </CActorModel>
+    <CActorSound id="AP_ArtanisAiurAspectPassiveDamageSoundActor" parent="SoundOneShot">
+        <On Terms="Effect.AP_ArtanisAiurAspectPassiveDamage.Start; At Target" Send="Create"/>
+        <Sound value="AP_ArtanisAiurAspectPassiveDamageSound"/>
+    </CActorSound>
     <CActorSiteOpLocalOffset id="AP_ArtanisAiurAspectPassiveLightningBoltOffset">
         <LocalOffset value="0.0000000,0.000000,0.950000"/>
     </CActorSiteOpLocalOffset>
@@ -38080,6 +38084,11 @@
         <ShieldFlashType value="None"/>
         <Beam value="AP_ArtanisTaldarimAspectPsiOrbBeam"/>
     </CActorAction>
+    <CActorSound id="AP_ArtanisTaldarimAspectPassiveSplashSoundActor" parent="SoundOneShot">
+        <On Terms="Effect.AP_ArtanisTaldarimAspectNearbyDamageGround.Start; At Target" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisTaldarimAspectNearbyDamageAir.Start; At Target" Send="Create"/>
+        <Sound value="AP_ArtanisTaldarimAspectPassiveSplashSound"/>
+    </CActorSound>
     <CActorModel id="AP_StrengthInUnity">
         <On Terms="Behavior.AP_StrengthInUnity.On" Send="Create"/>
         <On Terms="Behavior.AP_StrengthInUnity.Off" Send="Destroy"/>

@@ -4643,14 +4643,14 @@
     <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageGround" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
-        <Amount value="6"/>
+        <Amount value="7"/>
         <Death value="Electrocute"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
     <CEffectDamage id="AP_ArtanisTaldarimAspectNearbyDamageAir" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Spell"/>
-        <Amount value="6"/>
+        <Amount value="7"/>
         <Death value="Electrocute"/>
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
@@ -4661,6 +4661,7 @@
         <ValidatorArray value="NotHidden"/>
     </CEffectDamage>
     <CEffectModifyUnit id="AP_ArtanisAstralWindCDRefund">
+        <ValidatorArray value="AP_EnemyTarget"/>
         <ImpactUnit Value="Caster"/>
         <Cost Abil="AP_ArtanisAstralWind,Execute" CooldownOperation="Add" CooldownTimeUse="-6.0"/>
     </CEffectModifyUnit>
@@ -5286,14 +5287,9 @@
     </CEffectDamage>
     <CEffectSet id="AP_ArtanisBladeWaltz">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_ApplyArtanisBladeWaltzWalkSpeed"/>
+        <!-- This ability is mainly handled in triggers -->
         <TargetLocationType value="Point"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="AP_ApplyArtanisBladeWaltzWalkSpeed">
-        <EditorCategories value="Race:Protoss"/>
-        <WhichUnit Value="Caster"/>
-        <Behavior value="AP_ArtanisBladeWaltzWalkSpeed"/>
-    </CEffectApplyBehavior>
     <CEffectDamage id="AP_ArtanisBladeWaltzDamage">
         <ValidatorArray value="AP_EnemyTarget"/>
         <ValidatorArray value="AP_NotArtanisBladeWaltzed"/>
@@ -5489,7 +5485,7 @@
     </CEffectEnumArea>
     <CEffectDamage id="AP_ArtanisPurifierSolarBombardmentDamage">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="25"/>
+        <Amount value="30"/>
         <ResponseFlags index="Flee" value="1"/>
     </CEffectDamage>
     <CEffectSet id="AP_AcidSalivaSet">
