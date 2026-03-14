@@ -1667,6 +1667,11 @@
         <EffectArray Reference="Unit,AP_Queen,LifeArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_QueenBurrowed,LifeArmor" Value="1"/>
         <EffectArray Reference="Unit,AP_QueenBurrowed,LifeArmorLevel" Value="1"/>
+        <!--  Hive Queen -->
+        <EffectArray Reference="Unit,AP_HiveQueen,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,AP_HiveQueen,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,AP_HiveQueenBurrowed,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,AP_HiveQueenBurrowed,LifeArmorLevel" Value="1"/>
         <!--  Infestor -->
         <EffectArray Reference="Unit,AP_Infestor,LifeArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_Infestor,LifeArmor" Value="1"/>
@@ -1817,6 +1822,11 @@
         <!-- Infested SCV -->
         <EffectArray Reference="Unit,AP_SISCV,LifeArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_SISCV,LifeArmor" Value="1"/>
+        <!-- Infested Civilian -->
+        <EffectArray Reference="Unit,AP_InfestedCivilian,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,AP_InfestedCivilian,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,AP_InfestedCivilianBurrowed,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,AP_InfestedCivilianBurrowed,LifeArmor" Value="1"/>
         <!-- Infested Marine -->
         <EffectArray Reference="Unit,AP_SIInfestedMarine,LifeArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_SIInfestedMarine,LifeArmor" Value="1"/>
@@ -1920,6 +1930,9 @@
         <EffectArray Reference="Weapon,AP_InfestedBunkerFakeUprootedMelee,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_SIInfestedBunkerUprootedMeleeDamage,Amount" Value="2"/>
         <EffectArray Reference="Weapon,AP_StukovInfestedSiegeTank,Level" Value="1"/>
+        <!-- Infested Civilian -->
+        <EffectArray Reference="Effect,AP_InfestedCivilianDamage,Amount" Value="1.000000"/>
+        <EffectArray Reference="Weapon,AP_InfestedCivilian,Level" Value="1"/>
         <!-- SIVolatileInfested-->
         <EffectArray Reference="Weapon,AP_SIVolatileInfested,Level" Value="1"/>
         <EffectArray Reference="Weapon,AP_SIVolatileInfestedBuilding,Level" Value="1"/>
@@ -1938,15 +1951,22 @@
         <EffectArray Reference="Weapon,AP_NeedleSpines,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_NeedleSpinesDamage,Amount" Value="1"/>
         <EffectArray Reference="Effect,AP_HydraliskMelee,Amount" Value="1"/>
-        <!--  Queen -->
+        <!--  Swarm Queen -->
         <EffectArray Reference="Weapon,AP_Talons,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_Talons,Amount" Value="1.000000"/>
         <EffectArray Reference="Weapon,AP_TalonsMissile,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_TalonsMissileDamage,Amount" Value="1.000000"/>
+        <EffectArray Reference="Weapon,AP_AcidSpines,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_AcidSpines,Amount" Value="1.000000"/>
+        <!-- Hive Queen -->
+        <EffectArray Reference="Weapon,AP_HiveQueenTalons,Level" Value="1"/>
+        <EffectArray Reference="Effect,AP_HiveQueenTalonsDamage,Amount" Value="1.000000"/>
+        <EffectArray Reference="Weapon,AP_HiveQueenTalonsMissile,Level" Value="1"/>
+        <EffectArray Reference="Weapon,AP_HiveQueenAcidSpines,Level" Value="1"/>
+        <EffectArray Reference="Effect,AP_HiveQueenAcidSpinesDamage,Amount" Value="1.000000"/>
+        <!-- Roach -->
         <EffectArray Reference="Weapon,AP_AcidSaliva,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_AcidSalivaU,Amount" Value="2"/>
-        <EffectArray Reference="Weapon,AP_AcidSpines,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_RoachUMelee,Amount" Value="2"/>
         <EffectArray Reference="Weapon,AP_RavagerWeapon,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_RavagerWeaponDamage,Amount" Value="2"/>
@@ -2069,6 +2089,7 @@
         <EffectArray Reference="Effect,AP_ChainReaction3Damage,Amount" Value="1"/>
         <EffectArray Reference="Effect,AP_ChainReaction4Damage,Amount" Value="1"/>
         <EffectArray Reference="Effect,AP_ChainReaction5Damage,Amount" Value="1"/>
+        <!-- Infested Marine -->
         <EffectArray Reference="Effect,AP_SIInfestedMarine,Amount" Value="1"/>
         <EffectArray Reference="Weapon,AP_SIInfestedMarine,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_SIInfestedTrooper,Amount" Value="1"/>
@@ -2950,7 +2971,7 @@
         <AffectedUnitArray value="AP_Ghost"/>
         <LeaderAlias value=""/>
     </CUpgrade>
-    <CUpgrade id="AP_ImpalerRounds">
+    <CUpgrade id="AP_SpectreImpalerRounds">
         <Flags index="UpgradeCheat" value="0"/>
         <EffectArray Reference="Effect,AP_SpecterU,AttributeBonus[1]" Value="5.000000"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
@@ -10510,6 +10531,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_Tyrannozor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Pygalisk,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Queen,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_HiveQueen,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Infestor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Broodling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_KerriganInfestBroodling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
@@ -10554,6 +10576,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_DefilerSCBW,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_K5Kerrigan,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SISCV,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_InfestedCivilian,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedTrooper,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedMarine,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Hunterling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level1.dds"/>
@@ -10579,6 +10602,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_Tyrannozor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Pygalisk,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Queen,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_HiveQueen,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Infestor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Broodling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_KerriganInfestBroodling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
@@ -10623,6 +10647,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_DefilerSCBW,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_K5Kerrigan,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SISCV,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_InfestedCivilian,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedTrooper,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedMarine,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Hunterling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level2.dds"/>
@@ -10648,6 +10673,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_Tyrannozor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Pygalisk,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Queen,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_HiveQueen,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Infestor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Broodling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_KerriganInfestBroodling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
@@ -10692,6 +10718,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_DefilerSCBW,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_K5Kerrigan,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SISCV,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_InfestedCivilian,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedTrooper,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedMarine,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Hunterling,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
@@ -10717,6 +10744,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_Tyrannozor,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Pygalisk,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Queen,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_HiveQueen,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Infestor,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Broodling,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_KerriganInfestBroodling,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
@@ -10761,6 +10789,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_DefilerSCBW,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_K5Kerrigan,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SISCV,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_InfestedCivilian,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedTrooper,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedMarine,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Hunterling,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level4.dds"/>
@@ -10786,6 +10815,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_Tyrannozor,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Pygalisk,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Queen,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_HiveQueen,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Infestor,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Broodling,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_KerriganInfestBroodling,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
@@ -10830,6 +10860,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_DefilerSCBW,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_K5Kerrigan,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SISCV,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_InfestedCivilian,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedTrooper,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_SIInfestedMarine,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Hunterling,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-groundcarapace-level5.dds"/>
@@ -10860,6 +10891,7 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_RoachlingNeedleClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedBunkerFakeUprootedMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_HunterlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_InfestedCivilian,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_StukovInfestedSiegeTank,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ZergMeleeWeaponsLevel2" parent="AP_BaseZergMeleeWeapons">
@@ -10884,6 +10916,7 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_RoachlingNeedleClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedBunkerFakeUprootedMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_HunterlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_InfestedCivilian,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_StukovInfestedSiegeTank,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ZergMeleeWeaponsLevel3" parent="AP_BaseZergMeleeWeapons">
@@ -10908,6 +10941,7 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_RoachlingNeedleClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedBunkerFakeUprootedMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_HunterlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_InfestedCivilian,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_StukovInfestedSiegeTank,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ZergMeleeWeaponsLevel4" parent="AP_BaseZergMeleeWeapons">
@@ -10932,6 +10966,7 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_RoachlingNeedleClaws,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedBunkerFakeUprootedMelee,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_HunterlingClaws,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_InfestedCivilian,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_StukovInfestedSiegeTank,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level4.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ZergMeleeWeaponsLevel5" parent="AP_BaseZergMeleeWeapons">
@@ -10956,22 +10991,26 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_RoachlingNeedleClaws,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedBunkerFakeUprootedMelee,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_HunterlingClaws,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_InfestedCivilian,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_StukovInfestedSiegeTank,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-meleeattacks-level5.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ZergMissileWeaponsLevel1" parent="AP_BaseZergMissileWeapons">
         <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <ScoreAmount value="200"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_NeedleSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenAcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_AcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSalivaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_RavagerWeapon,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_PrimalIgniterCone,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_TyrannozorMissileLaunchers,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMP,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
-        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMPMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>-->
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedStukov,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,DehakaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
@@ -11014,16 +11053,19 @@
         <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <ScoreAmount value="200"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_NeedleSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenAcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_AcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSalivaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_RavagerWeapon,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_PrimalIgniterCone,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_TyrannozorMissileLaunchers,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMP,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
-        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMPMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>-->
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedStukov,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,DehakaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
@@ -11066,16 +11108,19 @@
         <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <ScoreAmount value="200"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_NeedleSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenAcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_AcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSalivaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_RavagerWeapon,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_PrimalIgniterCone,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_TyrannozorMissileLaunchers,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMP,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
-        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMPMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>-->
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedStukov,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,DehakaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
@@ -11118,16 +11163,19 @@
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <ScoreAmount value="200"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_NeedleSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_Talons,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenAcidSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalons,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalonsMissile,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_AcidSaliva,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSaliva,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSalivaAir,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_RavagerWeapon,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_PrimalIgniterCone,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_TyrannozorMissileLaunchers,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMP,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
-        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMPMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>-->
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedStukov,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level4.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,DehakaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
@@ -11170,16 +11218,19 @@
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <ScoreAmount value="200"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_NeedleSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_Talons,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenAcidSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalons,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_HiveQueenTalonsMissile,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_AcidSaliva,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSaliva,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_MercRoachAcidSalivaAir,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_RavagerWeapon,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,AP_AcidSpines,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_PrimalIgniterCone,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_TyrannozorMissileLaunchers,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMP,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
-        <EffectArray Operation="Set" Reference="Weapon,AP_TalonsMissile,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,LocustMPMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds"/>-->
         <EffectArray Operation="Set" Reference="Weapon,AP_InfestedStukov,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-zerg-missileattacks-level5.dds"/>
         <!--        <EffectArray Operation="Set" Reference="Weapon,DehakaAir,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds"/>-->
@@ -13678,11 +13729,25 @@
         <AffectedUnitArray value="AP_MercTorrasqueCorpse"/>
         <AffectedUnitArray value="AP_MercTorrasqueChrysalis"/>
     </CUpgrade>
-    <CUpgrade id="AP_QueenSpawnLarva"/>
+    <CUpgrade id="AP_HaveHiveQueen"/>
+    <CUpgrade id="AP_HiveQueenSwelledTransfusion">
+        <EffectArray Reference="Effect,AP_HiveQueenTransfusion,VitalArray[Life].Change" Value="25"/>
+        <AffectedUnitArray value="AP_HiveQueen"/>
+        <AffectedUnitArray value="AP_HiveQueenBurrowed"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HiveQueenPsionicMitochondria">
+        <EffectArray Reference="Unit,AP_HiveQueen,EnergyStart" Value="25"/>
+        <EffectArray Reference="Unit,AP_HiveQueen,EnergyMax" Value="50"/>
+        <EffectArray Reference="Behavior,AP_QueenOnCreep,Modification.VitalRegenArray[Energy]" Value="0.5625"/>
+        <AffectedUnitArray value="AP_HiveQueen"/>
+        <AffectedUnitArray value="AP_HiveQueenBurrowed"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HiveQueenStrainInjection"/>
+    <CUpgrade id="AP_SwarmQueenWildMutation"/>
     <CUpgrade id="AP_QueenDeepTunnel"/>
     <CUpgrade id="AP_ResourceEfficiencyQueen">
-        <EffectArray Operation="Subtract" Reference="Unit,AP_Queen,CostResource[Vespene]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_QueenBurrowed,CostResource[Vespene]" Value="50"/>
+        <EffectArray Operation="Subtract" Reference="Unit,AP_Queen,CostResource[Vespene]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,AP_QueenBurrowed,CostResource[Vespene]" Value="25"/>
         <AffectedUnitArray value="AP_Queen"/>
         <AffectedUnitArray value="AP_QueenBurrowed"/>
     </CUpgrade>

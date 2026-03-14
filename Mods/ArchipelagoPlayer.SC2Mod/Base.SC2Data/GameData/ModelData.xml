@@ -2025,6 +2025,94 @@
             <Payload value="OrbitalCommand_DropPodDeathB"/>
         </Events>
     </CModel>
+    <CModel id="AP_SentryBot" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\ARES\ARES.m3"/>
+        <Tipability value="0.750000"/>
+        <TipabilityWidth value="0.375000"/>
+        <TipabilityLength value="0.375000"/>
+        <ScaleMax value="0.470000,0.470000,0.470000"/>
+        <ScaleMin value="0.470000,0.470000,0.470000"/>
+        <SelectionRadius value="1.999500"/>
+        <Flags index="AutoUnload" value="1"/>
+        <ShadowRadius value="1.000000"/>
+        <TechPurchaseCamera value="Star2CameraHigher18"/>
+        <UnitGlossaryCamera value="Star2CameraHigher18"/>
+        <PlanetPanelCamera value="Star2CameraHigher18"/>
+    </CModel>
+    <CModel id="AP_SentryBotDeath" parent="UnitDeath" Race="Terran">
+        <Model value="Assets\Units\Terran\ARESDeathC\ARESDeathC.m3"/>
+        <LowQualityModel value="TerranLargeUnitDeathLow"/>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.154000"/>
+            <Payload value="UmojanLab_SentryBot_DeathExplosion_Sec"/>
+        </Events>
+        <Events>
+            <Anim value="Death,01"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.580000"/>
+            <Payload value="UmojanLab_SentryBot_DeathExplosion_Sec"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="0.640000"/>
+            <Payload value="UmojanLab_SentryBot_DeathExplosion_DebrisFlyUp"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.150000"/>
+            <Payload value="UmojanLab_SentryBot_DeathExplosion_DebrisFly"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.440000"/>
+            <Payload value="UmojanLab_CrashingMetal_Junk"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.840000"/>
+            <Payload value="UmojanLab_CrashingMetal_Junk"/>
+        </Events>
+        <Events>
+            <Anim value="Death,01"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="0.640000"/>
+            <Payload value="UmojanLab_SentryBot_DeathExplosion_DebrisFlyUp"/>
+        </Events>
+        <Events>
+            <Anim value="Death,01"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.150000"/>
+            <Payload value="UmojanLab_SentryBot_DeathExplosion_DebrisFly"/>
+        </Events>
+        <Events>
+            <Anim value="Death,01"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.440000"/>
+            <Payload value="UmojanLab_CrashingMetal_Junk"/>
+        </Events>
+        <Events>
+            <Anim value="Death,01"/>
+            <Name value="Explosion"/>
+            <Type value="Sound"/>
+            <Time value="1.840000"/>
+            <Payload value="UmojanLab_CrashingMetal_Junk"/>
+        </Events>
+    </CModel>
     <CModel id="AP_SOAHeroicShieldLongModel">
         <Model value="Assets\Effects\Protoss\SOA_GuardianShell_Long\SOA_GuardianShell_Long.m3"/>
     </CModel>
@@ -13708,6 +13796,25 @@
         <LowQualityModel value="ZergMediumUnitDeathLow"/>
         <Occlusion value="Show"/>
     </CModel>
+    <CModel id="AP_HiveQueen" parent="QueenBase">
+        <Model value="Assets\Units\Zerg\Queen_Ex3\Queen_Ex3.m3"/>
+    </CModel>
+    <CModel id="AP_HiveQueenDeath" parent="QueenDeathBase">
+        <Model value="Assets\Units\Zerg\QueenDeathEx1\QueenDeathEx1.m3"/>
+    </CModel>
+    <CModel id="AP_HiveQueenDeathFire" parent="QueenDeathFireBase">
+        <Model value="Assets\Units\Zerg\QueenDeathFire\QueenDeathFire.m3"/>
+    </CModel>
+    <CModel id="AP_HiveQueenDeathAcid" parent="QueenDeathAcidBase">
+        <Model value="Assets\Units\Zerg\QueenDeathAcid\QueenDeathAcid.m3"/>
+    </CModel>
+    <CModel id="AP_HiveQueenDeathRagdoll" parent="QueenDeathRagdollBase">
+        <Model value="Assets\Units\Zerg\QueenDeathRagdoll\QueenDeathRagdoll.m3"/>
+    </CModel>
+    <CModel id="AP_HiveQueenPortrait" parent="QueenPortraitBase">
+        <Image value="Assets\Textures\QueenPortrait_Static.dds"/>
+        <Model value="Assets\Portraits\Zerg\QueenPortrait\QueenPortrait.m3"/>
+    </CModel>
     <CModel id="AP_PrimalZerg01Portrait" parent="Portrait" Race="Zerg">
         <Model value="Assets\Portraits\Zerg\PrimalZerg01Portrait\PrimalZerg01Portrait.m3"/>
         <RequiredAnims value="Assets\Portraits\Zerg\PrimalZergPortrait_RequiredAnims\PrimalZergPortrait_RequiredAnims.m3a"/>
@@ -19309,6 +19416,42 @@
         <SquibTypeDefault value="Flesh"/>
         <TechPurchaseCamera value="Star2CameraHigh09"/>
         <UnitGlossaryCamera value="Star2CameraHigh09"/>
+    </CModel>
+    <CModel id="AP_Infested_ColonistEX3" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Infested_ColonistEX3\Infested_ColonistEX3.m3"/>
+        <Occlusion value="Show"/>
+        <AttachProps Id="Ref_Weapon 01">
+            <Keys index="Hardpoint" value="0"/>
+        </AttachProps>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <VariationCount value="3"/>
+        <RequiredAnims value="Assets\Units\Zerg\InfestedColonist_RequiredAnims\InfestedColonist_RequiredAnims.m3a"/>
+        <SquibTypeDefault value="Flesh"/>
+    </CModel>
+    <CModel id="AP_InfestedCivilianRock" parent="ImpactFX">
+        <Model value="Assets\Doodads\Aiur_ChiseledRock_Brown\Aiur_ChiseledRock_Brown_01.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="0.200000,0.200000,0.200000"/>
+        <ScaleMin value="0.200000,0.200000,0.200000"/>
+    </CModel>
+    <CModel id="AP_InfestedCivilianStick" parent="ImpactFX">
+        <Model value="Assets\Doodads\AiurUnderbrush\AiurUnderbrush_01.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="0.600000,0.200000,0.200000"/>
+        <ScaleMin value="0.600000,0.200000,0.200000"/>
+    </CModel>
+    <CModel id="Infested_ColonistEX3_DeathFire" parent="UnitDeath" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Infested_ColonistEX3_DeathFire\Infested_ColonistEX3_DeathFire.m3"/>
+        <LowQualityModel value="ZergSmallUnitDeathLow"/>
+    </CModel>
+    <CModel id="Infested_ColonistEX3_Death" parent="UnitDeath" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Infested_ColonistEX3_DeathFire\Infested_ColonistEX3_DeathFire.m3"/>
+        <LowQualityModel value="ZergSmallUnitDeathLow"/>
+        <VariationCount value="3"/>
     </CModel>
     <CModel id="AP_SIVolatileInfestedDeath" parent="UnitDeath">
         <Model value="Assets\Units\Zerg\Infested_VolatileColonist_Death\Infested_VolatileColonist_Death.m3"/>

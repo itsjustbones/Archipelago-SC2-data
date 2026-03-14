@@ -2644,6 +2644,7 @@ bool gt_AllUnitsDestroyedProgresstoStage2_Func (bool testConds, bool runActions)
     TriggerEnable(TriggerGetCurrent(), false);
     TimerPause(gv_timedAttackTimer, true);
     TimerWindowDestroy(gv_timedAttackTimerWindow);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_GET_NUKED);
     PingDestroy(gv_timedAttackPing[1]);
     PingDestroy(gv_timedAttackPing[2]);
     PingDestroy(gv_timedAttackPing[3]);

@@ -650,6 +650,14 @@
         <Period value="1"/>
         <Effect value="AP_WidowMineAttack"/>
     </CWeaponLegacy>
+    <CWeaponLegacy id="AP_SentryBot">
+        <EditorCategories value="Race:Terran"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel0.dds"/>
+        <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Period value="0.8608"/>
+        <DamagePoint value="0.05"/>
+        <Backswing value="0.75"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="AP_CycloneFakeWeapon">
         <EditorCategories value="Race:Terran"/>
         <Options index="Hidden" value="1"/>
@@ -2838,6 +2846,41 @@
         <Period value="1"/>
         <Effect value="AP_TalonsMissileBurst"/>
     </CWeaponLegacy>
+    <CWeaponLegacy id="AP_HiveQueenAcidSpines">
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level0.dds"/>
+        <TargetFilters value="Air,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="7"/>
+        <Period value="1"/>
+        <Effect value="AP_HiveQueenAcidSpinesLM"/>
+        <DisplayEffect value="AP_HiveQueenAcidSpinesDamage"/>
+    </CWeaponLegacy>
+    <CWeaponLegacy id="AP_HiveQueenTalons">
+        <Options index="Hidden" value="1"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level0.dds"/>
+        <DisplayAttackCount value="2"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="3"/>
+        <MinScanRange value="5.5"/>
+        <Period value="1"/>
+        <Effect value="AP_HiveQueenTalonsBurst"/>
+        <DisplayEffect value="AP_HiveQueenTalonsDamage"/>
+        <DisplayAttackCount value="2"/>
+    </CWeaponLegacy>
+    <CWeaponLegacy id="AP_HiveQueenTalonsMissile">
+        <!--Options index="Hidden" value="1"/-->
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level0.dds"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="5"/>
+        <MinimumRange value="3"/>
+        <Period value="1"/>
+        <DisplayEffect value="AP_HiveQueenTalonsMissileDamage"/>
+        <Effect value="AP_HiveQueenTalonsMissileBurst"/>
+        <DisplayEffect value="AP_HiveQueenTalonsDamage"/>
+        <DisplayAttackCount value="2"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="AP_PrimalZergling">
         <EditorCategories value="Race:Zerg"/>
         <Options index="Melee" value="1"/>
@@ -3318,6 +3361,17 @@
         <DisplayEffect value="AP_CarrierPurifierBomberDamage"/>
         <Effect value="AP_CarrierPurifierBomberCP"/>
     </CWeaponStrafe>
+    <CWeaponLegacy id="AP_InfestedCivilian">
+        <EditorCategories value="Race:Zerg"/>
+        <Options index="Melee" value="1"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level0.dds"/>
+        <DisplayEffect value="AP_InfestedCivilianDamage"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="0.1"/>
+        <Period value="1.2"/>
+        <DamagePoint value="0.2666"/>
+        <Effect value="AP_InfestedCivilianDamage"/>
+    </CWeaponLegacy>
     <CWeaponLegacy id="AP_InfestedBunkerFakeUprootedMelee">
         <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Options index="OnlyFireAtAttackOrderTarget" value="0"/>

@@ -186,6 +186,7 @@ void gf_ScriptedAttackGroup (region lp_fORCE_REGION, region lp_tRIGGERING_REGION
 int gf_IzshaReinforcementLine ();
 void gf_TurnDehakaOnOff (bool lp_onoffoption);
 void gf_PowerLinkSwitching (bool lp_activate);
+void gf_StartKerriganReviveCooldown3 (point lp_revivePoint);
 unit gf_nextPowerLink ();
 fixed gf_FieldExpandRatetoPoint (fixed lp_p_radius, fixed lp_p_timeToArrive, point lp_p_arrivalPoint);
 fixed gf_FieldExpandRatetoRegion (fixed lp_p_radius1, fixed lp_p_radius2, fixed lp_p_timeToArrive);
@@ -234,6 +235,7 @@ trigger gt_StartHarvesting;
 trigger gt_TransmissionStrangeCreatureQ;
 trigger gt_TransmissionPresstheAttackQ;
 trigger gt_HandleDehakaDeath;
+trigger gt_DehakaReviveChecker;
 trigger gt_RevealAttacker;
 trigger gt_RevealYellowUnits;
 trigger gt_RevealTealUnits;
@@ -735,6 +737,23 @@ bool auto_gf_PowerLinkSwitching_TriggerFunc (bool testConds, bool runActions) {
     else {
     }
     return true;
+}
+
+void gf_StartKerriganReviveCooldown3 (point lp_revivePoint) {
+    // Automatic Variable Declarations
+    // Implementation
+    TextExpressionSetToken("Param/Expression/F04FAD67", "Time", IntToText(FixedToInt(libSwaC_gv_zS_ReviveCooldownTimeDehaka)));
+    libSwaC_gf_DisplayCampaignMessage(PlayerGroupAll(), libSwaC_ge_CampaignMessageType_Warning, TextExpressionAssemble("Param/Expression/F04FAD67"), libSwaC_ge_CampaignMessageFormatNotFormat_FormatMessage);
+    libNtve_gf_PlayerRemoveCooldown(1, libSwaC_gv_zSC_HeroReviveLinkDehaka);
+    Wait(1.7, c_timeGame);
+    if ((UnitIsAlive(libSwaC_gv_zS_Dehaka) == false)) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaReviveCocoon", 0, 1, lp_revivePoint);
+        libSwaC_gv_zS_HeroReviverDehaka = UnitLastCreated();
+        UnitSetPosition(libSwaC_gv_zS_Dehaka, UnitGetPosition(libSwaC_gv_zS_HeroReviverDehaka), false);
+        libNtve_gf_PlayerRemoveCooldown(1, libSwaC_gv_zSC_HeroReviveLinkDehaka);
+        PlayerAddCooldown(1, libSwaC_gv_zSC_HeroReviveLinkDehaka, libSwaC_gv_zS_ReviveCooldownTimeDehaka);
+    }
+
 }
 
 unit gf_nextPowerLink () {
@@ -2427,7 +2446,7 @@ bool gt_HandleDehakaDeath_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libSwaC_gf_StartKerriganReviveCooldown3(gf_DehakaRespawnLocation());
+    gf_StartKerriganReviveCooldown3(gf_DehakaRespawnLocation());
     if ((gv_achievementDehakaDied == false)) {
         gv_achievementDehakaDied = true;
     }
@@ -2439,6 +2458,60 @@ bool gt_HandleDehakaDeath_Func (bool testConds, bool runActions) {
 void gt_HandleDehakaDeath_Init () {
     gt_HandleDehakaDeath = TriggerCreate("gt_HandleDehakaDeath_Func");
     TriggerAddEventUnitDied(gt_HandleDehakaDeath, UnitRefFromVariable("gv_dEHAKA"));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Dehaka Revive Checker
+//--------------------------------------------------------------------------------------------------
+bool gt_DehakaReviveChecker_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_closestHatchery;
+    unit lv_indexUnit;
+    fixed lv_closestDistance;
+    fixed lv_distance;
+
+    // Automatic Variable Declarations
+    unitgroup autoFCC47346_g;
+    int autoFCC47346_u;
+    unit autoFCC47346_var;
+
+    // Variable Initialization
+    lv_closestDistance = 500.0;
+
+    // Conditions
+    if (testConds) {
+        if (!((libSwaC_gv_zS_GameOver == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(libSwaC_gv_zS_HeroReviverDehaka, libNtve_gf_ReviveOrderWithNoTarget(AbilityCommand("DehakaRevive", 0), libSwaC_gv_zS_Dehaka), c_orderQueueReplace);
+    Wait(0.125, c_timeGame);
+    autoFCC47346_g = UnitGroupSelected(1);
+    autoFCC47346_u = UnitGroupCount(autoFCC47346_g, c_unitCountAll);
+    for (;; autoFCC47346_u -= 1) {
+        autoFCC47346_var = UnitGroupUnitFromEnd(autoFCC47346_g, autoFCC47346_u);
+        if (autoFCC47346_var == null) { break; }
+        if ((autoFCC47346_var == libSwaC_gv_zS_HeroReviverDehaka)) {
+            UnitSelect(libSwaC_gv_zS_Dehaka, 1, true);
+        }
+
+    }
+    UnitIssueOrder(libSwaC_gv_zS_Dehaka, Order(AbilityCommand("BurrowDehakaUp", 0)), c_orderQueueReplace);
+    UnitKill(libSwaC_gv_zS_HeroReviverDehaka);
+    libSwaC_gf_DisplayCampaignMessage(PlayerGroupAll(), libSwaC_ge_CampaignMessageType_SimpleHint, StringExternal("Param/Value/E8B6AE64"), libSwaC_ge_CampaignMessageFormatNotFormat_FormatMessage);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DehakaReviveChecker_Init () {
+    gt_DehakaReviveChecker = TriggerCreate("gt_DehakaReviveChecker_Func");
+    TriggerAddEventUnitBehaviorChange(gt_DehakaReviveChecker, null, "CocoonReviveTimerDehaka", c_unitBehaviorChangeDeactivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8208,6 +8281,7 @@ void InitTriggers () {
     gt_TransmissionStrangeCreatureQ_Init();
     gt_TransmissionPresstheAttackQ_Init();
     gt_HandleDehakaDeath_Init();
+    gt_DehakaReviveChecker_Init();
     gt_RevealAttacker_Init();
     gt_RevealYellowUnits_Init();
     gt_RevealTealUnits_Init();

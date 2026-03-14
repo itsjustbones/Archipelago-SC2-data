@@ -1906,8 +1906,8 @@
     <CRequirement id="AP_HaveSpiderMineDamage">
         <NodeArray index="Show" Link="AP_CountUpgradeSpiderMineDamageCompleteOnly"/>
     </CRequirement>
-    <CRequirement id="AP_HaveImpalerRounds">
-        <NodeArray index="Show" Link="AP_CountUpgradeImpalerRoundsCompleteOnly"/>
+    <CRequirement id="AP_HaveSpectreImpalerRounds">
+        <NodeArray index="Show" Link="AP_CountUpgradeSpectreImpalerRoundsCompleteOnly"/>
     </CRequirement>
     <CRequirement id="AP_ScienceVesselSCBWEMPShockwave" parent="AP_SCBW_AbilReq"/>
     <CRequirement id="AP_ScienceVesselSCBWDefensiveMatrix" parent="AP_SCBW_AbilReq"/>
@@ -3810,6 +3810,24 @@
     <CRequirement id="AP_HavePygaliskCombatCarapace">
         <NodeArray index="Show" Link="AP_CountUpgradePygaliskCombatCarapaceCompleteOnly"/>
     </CRequirement>
+    <CRequirement id="AP_HaveHiveQueen">
+        <NodeArray index="Show" Link="AP_CountUpgradeHaveHiveQueenCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveHiveQueenSwelledTransfusion">
+        <NodeArray index="Show" Link="AP_CountUpgradeHiveQueenSwelledTransfusionCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_CanUseHiveQueenTransfusion">
+        <EditorCategories value="Race:Zerg"/>
+        <NodeArray index="Use" Link="AP_QueenOnCreepOrHaveHiveQueenSwelledTransfusion"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveHiveQueenPsionicMitochondria">
+        <EditorCategories value="Race:Zerg"/>
+        <NodeArray index="Show" Link="AP_CountUpgradeHiveQueenPsionicMitochondriaCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveHiveQueenStrainInjection">
+        <EditorCategories value="Race:Zerg"/>
+        <NodeArray index="Show" Link="AP_CountUpgradeHiveQueenStrainInjectionCompleteOnly"/>
+    </CRequirement>
     <CRequirement id="AP_HatcherySpawnLarva">
         <EditorCategories value="Race:Zerg,TechType:Unit"/>
         <NodeArray index="Show" Link="AP_LTCountUnitLarvaCompleteOnlyAtUnit3"/>
@@ -3818,8 +3836,8 @@
         <EditorCategories value="Race:Zerg,TechType:Unit"/>
         <NodeArray index="Show" Link="AP_GTCountBehaviorQueenSpawnLarvaCompleteOnlyAtUnit0"/>
     </CRequirement>
-    <CRequirement id="AP_HaveQueenSpawnLarva">
-        <NodeArray index="Show" Link="AP_CountUpgradeQueenSpawnLarvaCompleteOnly"/>
+    <CRequirement id="AP_HaveSwarmQueenWildMutation">
+        <NodeArray index="Show" Link="AP_CountUpgradeSwarmQueenWildMutationCompleteOnly"/>
     </CRequirement>
     <CRequirement id="AP_HaveQueenDeepTunnel">
         <NodeArray index="Show" Link="AP_CountUpgradeQueenDeepTunnelCompleteOnly"/>

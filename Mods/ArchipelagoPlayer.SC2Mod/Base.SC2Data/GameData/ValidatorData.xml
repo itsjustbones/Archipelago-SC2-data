@@ -4741,9 +4741,9 @@
         <Find value="1"/>
         <Value value="AP_UseSpectreNyxSuit"/>
     </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="AP_HaveImpalerRounds">
+    <CValidatorPlayerRequirement id="AP_HaveSpectreImpalerRounds">
         <Find value="1"/>
-        <Value value="AP_HaveImpalerRounds"/>
+        <Value value="AP_HaveSpectreImpalerRounds"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitFilters id="AP_HighTemplarSCBWHallucination@KillHallucinationTargetFilters">
         <Filters value="Hallucination;-"/>
@@ -6042,6 +6042,17 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="AP_ParasiticBombTimer"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_NotDisintegratingAP">
+        <Value value="1"/>
+        <Behavior value="AP_LightningBomb"/>
+        <ResultFailed value="CantTargetThatUnit"/>
+        <Compare value="NE"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_NotDisintegrating">
+        <Type value="And"/>
+        <CombineArray value="AP_NotDisintegratingAP"/>
+        <ResultFailed value="CantTargetThatUnit"/>
+    </CValidatorCombine>
     <CValidatorUnitFilters id="AP_TargetIsNotGround">
         <Filters value="-;Ground"/>
     </CValidatorUnitFilters>
@@ -6284,6 +6295,63 @@
         <CombineArray value="AP_IsAPBileLauncher"/>
         <ResultFailed value="CantTargetThatUnit"/>
     </CValidatorCombine>
+    <CValidatorCombine id="AP_IsStrainInjectionTarget">
+        <CombineArray value="AP_IsAPSpawningPool"/>
+        <CombineArray value="AP_IsAPEvolutionChamber"/>
+        <CombineArray value="AP_IsAPBanelingNest"/>
+        <CombineArray value="AP_IsAPRoachWarren"/>
+        <CombineArray value="AP_IsAPHydraliskDen"/>
+        <CombineArray value="AP_IsAPGreaterHydraliskDen"/>
+        <CombineArray value="AP_IsAPSpire"/>
+        <CombineArray value="AP_IsAPGreaterSpire"/>
+        <CombineArray value="AP_IsAPNydusNetwork"/>
+        <CombineArray value="AP_IsAPInfestationPit"/>
+        <CombineArray value="AP_IsAPUltraliskCavern"/>
+        <CombineArray value="AP_IsAPPredatorNest"/>
+        <CombineArray value="AP_IsAPExtractor"/>
+        <CombineArray value="AP_IsAPAutomatedExtractor"/>
+        <CombineArray value="AP_IsAPAutomatedExtractorRich"/>
+        <CombineArray value="AP_IsAPExtractorRich"/>
+        <CombineArray value="AP_IsInfestedBarracks"/>
+        <CombineArray value="AP_IsInfestedFactory"/>
+        <CombineArray value="AP_IsInfestedStarport"/>
+        <CombineArray value="AP_IsAPTradeStructure"/>
+        <ResultFailed value="CantTargetThatUnit"/>
+    </CValidatorCombine>
+    <CValidatorUnitType id="AP_IsRootedInfestedBarracks">
+        <Value value="AP_SIBarracks"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsUprootedInfestedBarracks">
+        <Value value="AP_SIBarracksFlying"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="AP_IsInfestedBarracks">
+        <CombineArray value="AP_IsRootedInfestedBarracks"/>
+        <CombineArray value="AP_IsUprootedInfestedBarracks"/>
+    </CValidatorCombine>
+    <CValidatorUnitType id="AP_IsRootedInfestedFactory">
+        <Value value="AP_SIFactory"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsUprootedInfestedFactory">
+        <Value value="AP_SIFactoryFlying"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="AP_IsInfestedFactory">
+        <CombineArray value="AP_IsRootedInfestedFactory"/>
+        <CombineArray value="AP_IsUprootedInfestedFactory"/>
+    </CValidatorCombine>
+    <CValidatorUnitType id="AP_IsRootedInfestedStarport">
+        <Value value="AP_SIStarport"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_IsUprootedInfestedStarport">
+        <Value value="AP_SIStarportFlying"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="AP_IsInfestedStarport">
+        <CombineArray value="AP_IsRootedInfestedStarport"/>
+        <CombineArray value="AP_IsUprootedInfestedStarport"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_NotStrainInjectionTimeout">
+        <Behavior value="AP_StrainInjectionTimeout"/>
+        <ResultFailed value="CantAddMoreCharges"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitType id="AP_IsAPUltraliskCavern">
         <Value value="AP_UltraliskCavern"/>
     </CValidatorUnitType>
@@ -7045,7 +7113,7 @@
         <Behavior value="AP_StukovInfestedSiegeTankAmmo"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="AP_IsSIInfestedTrooperCombineOrIsSIInfestedCivilianOrIsAP_InfestorTerranOrIsSIInfestedMarineCombineCombine">
-        <CombineArray value="AP_IsSIInfestedCivilianCombine"/>
+        <CombineArray value="AP_IsInfestedCivilianCombine"/>
         <CombineArray value="AP_IsSIInfestedTrooperCombine"/>
         <CombineArray value="AP_IsAP_InfestorTerranCombine"/>
         <CombineArray value="AP_IsSIInfestedMarineCombine"/>
@@ -7054,19 +7122,19 @@
         <CombineArray value="AP_IsSIInfestedMarine"/>
         <CombineArray value="AP_IsSIInfestedMarineBurrowed"/>
     </CValidatorCombine>
-    <CValidatorCombine id="AP_IsSIInfestedCivilianCombine">
-        <CombineArray value="AP_IsSIInfestedCivilian"/>
-        <CombineArray value="AP_IsSIInfestedCivilianBurrowed"/>
+    <CValidatorCombine id="AP_IsInfestedCivilianCombine">
+        <CombineArray value="AP_IsInfestedCivilian"/>
+        <CombineArray value="AP_IsInfestedCivilianBurrowed"/>
     </CValidatorCombine>
     <CValidatorCombine id="AP_IsSIInfestedTrooperCombine">
         <CombineArray value="AP_IsSIInfestedTrooper"/>
         <CombineArray value="AP_IsSIInfestedTrooperBurrowed"/>
     </CValidatorCombine>
-    <CValidatorUnitType id="AP_IsSIInfestedCivilian">
-        <Value value="AP_SIInfestedCivilian"/>
+    <CValidatorUnitType id="AP_IsInfestedCivilian">
+        <Value value="AP_InfestedCivilian"/>
     </CValidatorUnitType>
-    <CValidatorUnitType id="AP_IsSIInfestedCivilianBurrowed">
-        <Value value="AP_SIInfestedCivilianBurrowed"/>
+    <CValidatorUnitType id="AP_IsInfestedCivilianBurrowed">
+        <Value value="AP_InfestedCivilianBurrowed"/>
     </CValidatorUnitType>
     <CValidatorUnitType id="AP_IsSIInfestedTrooperBurrowed">
         <Value value="AP_SIInfestedTrooperBurrowed"/>
@@ -7576,27 +7644,6 @@
         <Find value="1"/>
         <Value value="AP_HaveWidowMineDemolitionArmaments"/>
     </CValidatorPlayerRequirement>
-    <CValidatorUnitCompareBehaviorCount id="AP_HasBansheeMengskCloak">
-        <Value value="1"/>
-        <Behavior value="AP_BansheeMengskCloak"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_HasBansheeMengskCrossSpectrumDampeners">
-        <Value value="1"/>
-        <Behavior value="AP_BansheeMengskCrossSpectrumDampeners"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="AP_HasBansheeMengskCloakEnergyBasedCloak">
-        <CombineArray value="AP_HasBansheeMengskCloak"/>
-        <CombineArray value="AP_HasBansheeMengskCrossSpectrumDampeners"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="AP_HasBansheeMengskCloakEnergyDrain">
-        <Type value="And"/>
-        <CombineArray value="AP_HasBansheeMengskCloakEnergyBasedCloak"/>
-        <CombineArray value="AP_NotArbiterMPCloakFieldEffect"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="AP_HasBansheeMengskEnergyDrain">
-        <CombineArray value="AP_HasBansheeMengskCloakEnergyDrain"/>
-        <CombineArray value="AP_HasBansheeMengskCloakField"/>
-    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_HasBansheeMengskCloakField">
         <Value value="1"/>
         <Behavior value="AP_BansheeMengskCloakField"/>
@@ -7604,10 +7651,6 @@
     <CValidatorUnitCompareBehaviorCount id="AP_NotArbiterMPCloakFieldEffect">
         <Value value="0"/>
         <Behavior value="AP_ArbiterMPCloakFieldEffect"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AP_NotBansheeMengskCloakField">
-        <Value value="0"/>
-        <Behavior value="AP_BansheeMengskCloakField"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="AP_DistortionBlastersResearched">
         <Find value="1"/>
@@ -8185,6 +8228,10 @@
         <CombineArray value="AP_NotSpawningAPMutantLarva"/>
         <ResultFailed value="AlreadySpawningLarva"/>
     </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_IsSpawningMutantLarva">
+        <Behavior value="AP_QueenSpawnLarvaTimer"/>
+        <Compare value="GT"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitState id="AP_NotInTransport">
         <State value="InsideTransport"/>
     </CValidatorUnitState>
@@ -8222,4 +8269,8 @@
     <CValidatorUnitCompareBehaviorCount id="AP_DistributedAttackNotMarked">
         <Behavior value="AP_DistributedAttackMarker"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitWeaponFiring id="AP_SourceUnitNotFiringWeapon">
+        <WhichUnit Value="Source"/>
+        <Find value="0"/>
+    </CValidatorUnitWeaponFiring>
 </Catalog>

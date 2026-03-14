@@ -1376,7 +1376,8 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 
     if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gf_AP_Triggers_Terran_unlockNovaJumpSuit(1);
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
@@ -1540,8 +1541,8 @@ bool gt_FactionSwapStartingUnits_Func (bool testConds, bool runActions) {
     else {
         libABFE498B_gf_AP_Triggers_HeroHide(gv_nova);
         TriggerEnable(gt_ObjectiveNovaMustSurviveCreate, false);
-        TriggerEnable(gt_ObjectiveNovaMustSurviveComplete, false);
         TriggerEnable(gt_ObjectiveNovaMustSurviveFailed, false);
+        TriggerEnable(gt_ObjectiveNovaMustSurviveComplete, false);
     }
     return true;
 }
@@ -1990,42 +1991,15 @@ bool gt_SouthBaseNorthWestHatchery_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_group = UnitGroup(null, gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
-    UnitGroupRemove(lv_group, gv_nova);
-    UnitGroupAddUnitGroup(lv_group, UnitGroup(null, gv_pLAYER_02_REIGEL, RegionFromId(1), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0));
-    UnitGroupRemove(lv_group, UnitFromId(64));
-    UnitGroupRemove(lv_group, UnitFromId(2822));
-    autoFD909974_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
-    if (autoFD909974_val == "Zerg") {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(lv_group, "Zerg", false);
-        PlayerSetRace(gv_pLAYER_01_USER, "Zerg");
-        PlayerSetRace(gv_pLAYER_02_REIGEL, "Zerg");
-        lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
-    }
-    else if (autoFD909974_val == "Prot") {
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(lv_group, "Prot", false);
-        PlayerSetRace(gv_pLAYER_01_USER, "Prot");
-        PlayerSetRace(gv_pLAYER_02_REIGEL, "Prot");
-        lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
-        lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
-    }
-    else {
-        lib15EF4C78_gf_RemoveUnusedStartingUnits(lv_group, "Terr", false);
-    }
-    lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
-    gv_novaEnabled = libABFE498B_gv_aP_Triggers_Option_enableNova;
-    TriggerExecute(gt_FactionSwapStartingUnits, true, true);
-    TriggerExecute(gt_IntroQ, true, true);
-    TriggerExecute(gt_Stage1Start, true, false);
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_BASE_NORTHWEST_HATCHERY);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_FactionSwapInit_Init () {
-    gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
+void gt_SouthBaseNorthWestHatchery_Init () {
+    gt_SouthBaseNorthWestHatchery = TriggerCreate("gt_SouthBaseNorthWestHatchery_Func");
+    TriggerAddEventUnitDied(gt_SouthBaseNorthWestHatchery, UnitRefFromUnit(UnitFromId(96)));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2038,96 +2012,8 @@ bool gt_SouthBaseSouthWestHatchery_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    auto54C815B4_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
-    if (auto54C815B4_val == "Zerg") {
-        CreepModify(PointFromId(270), 6.0, true, false);
-        lv_index = 1;
-        for ( ; ( (auto777B6625_ai >= 0 && lv_index <= auto777B6625_ae) || (auto777B6625_ai < 0 && lv_index >= auto777B6625_ae) ) ; lv_index += auto777B6625_ai ) {
-            lv_string = ("Intro Banshee Target " + IntToString(lv_index));
-            lv_point = PointFromName(lv_string);
-            UnitCreate(1, "AP_StukovInfestedBansheeBurrowed", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-            UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-        }
-        if ((gv_novaEnabled == false)) {
-            lv_index = 1;
-            for ( ; ( (auto50CBCED8_ai >= 0 && lv_index <= auto50CBCED8_ae) || (auto50CBCED8_ai < 0 && lv_index >= auto50CBCED8_ae) ) ; lv_index += auto50CBCED8_ai ) {
-                lv_string = ("Intro Nova Replacement Target " + IntToString(lv_index));
-                lv_point = PointFromName(lv_string);
-                UnitCreate(1, "AP_DefilerSCBW@Burrowed", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-                UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-            }
-        }
-
-    }
-    else if (auto54C815B4_val == "Prot") {
-        lv_index = 1;
-        for ( ; ( (auto7DCC5547_ai >= 0 && lv_index <= auto7DCC5547_ae) || (auto7DCC5547_ai < 0 && lv_index >= auto7DCC5547_ae) ) ; lv_index += auto7DCC5547_ai ) {
-            lv_string = ("Intro Banshee Target " + IntToString(lv_index));
-            lv_point = PointFromName(lv_string);
-            UnitCreate(1, "AP_VoidRayShakuras", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-            UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-        }
-        lv_index = 6;
-        for ( ; ( (auto01121B8B_ai >= 0 && lv_index <= auto01121B8B_ae) || (auto01121B8B_ai < 0 && lv_index >= auto01121B8B_ae) ) ; lv_index += auto01121B8B_ai ) {
-            lv_string = ("Intro Banshee Target " + IntToString(lv_index));
-            lv_point = PointFromName(lv_string);
-            UnitCreate(1, "AP_ArbiterMP", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-            UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-        }
-        if ((gv_novaEnabled == false)) {
-            lv_index = 1;
-            for ( ; ( (auto3A2B821D_ai >= 0 && lv_index <= auto3A2B821D_ae) || (auto3A2B821D_ai < 0 && lv_index >= auto3A2B821D_ae) ) ; lv_index += auto3A2B821D_ai ) {
-                lv_string = ("Intro Nova Replacement Target " + IntToString(lv_index));
-                lv_point = PointFromName(lv_string);
-                UnitCreate(1, "AP_DarkTemplarShakuras", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-                UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-            }
-        }
-
-    }
-    else {
-        if ((gv_cinematicCompleted == false)) {
-            lv_index = 1;
-            for ( ; ( (autoD60B85D9_ai >= 0 && lv_index <= autoD60B85D9_ae) || (autoD60B85D9_ai < 0 && lv_index >= autoD60B85D9_ae) ) ; lv_index += autoD60B85D9_ai ) {
-                lv_string = ("Intro Banshee Target " + IntToString(lv_index));
-                lv_point = PointFromName(lv_string);
-                UnitCreate(1, "AP_Banshee", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-                UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-            }
-            if ((gv_novaEnabled == false)) {
-                lv_index = 1;
-                for ( ; ( (autoF1BF4818_ai >= 0 && lv_index <= autoF1BF4818_ae) || (autoF1BF4818_ai < 0 && lv_index >= autoF1BF4818_ae) ) ; lv_index += autoF1BF4818_ai ) {
-                    lv_string = ("Intro Nova Replacement Target " + IntToString(lv_index));
-                    lv_point = PointFromName(lv_string);
-                    UnitCreate(1, "AP_Ghost", 0, gv_pLAYER_01_USER, lv_point, 135.0);
-                    UnitGroupAdd(gv_introBanshees, UnitLastCreated());
-                }
-            }
-
-        }
-
-    }
-    autoC51E47B7_g = gv_introBanshees;
-    autoC51E47B7_u = UnitGroupCount(autoC51E47B7_g, c_unitCountAll);
-    for (;; autoC51E47B7_u -= 1) {
-        autoC51E47B7_var = UnitGroupUnitFromEnd(autoC51E47B7_g, autoC51E47B7_u);
-        if (autoC51E47B7_var == null) { break; }
-        UnitSetPropertyFixed(autoC51E47B7_var, c_unitPropEnergyPercent, 100.0);
-    }
-    CatalogFieldValueSet(c_gameCatalogUnit, "Banshee", "TurningRate", gv_pLAYER_01_USER, "1499.941");
-    UnitCreate(1, "AP_NovaHero", 0, gv_pLAYER_01_USER, PointFromId(270), 135.0);
-    gv_nova = UnitLastCreated();
-    if ((gv_novaEnabled == true)) {
-        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_nova, gv_pLAYER_01_USER);
-    }
-    else {
-        lib15EF4C78_gf_SetHeroPanelUnit(1, null, gv_pLAYER_01_USER);
-        libNtve_gf_PauseUnit(gv_nova, true);
-        libNtve_gf_ShowHideUnit(gv_nova, false);
-        TriggerEnable(gt_ObjectiveNovaMustSurviveCreate, false);
-        TriggerEnable(gt_ObjectiveNovaMustSurviveComplete, false);
-        TriggerEnable(gt_ObjectiveNovaMustSurviveFailed, false);
-    }
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(gv_LOCATION_ID_SOUTH_BASE_SOUTHWEST_HATCHERY);
     return true;
 }
 
@@ -2283,6 +2169,9 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     }
 
     TriggerExecute(gt_FactionSwapInit, true, true);
+    TriggerExecute(gt_FactionSwapStartingUnits, true, true);
+    TriggerExecute(gt_IntroQ, true, true);
+    TriggerExecute(gt_IntroSequence, true, true);
     return true;
 }
 
@@ -7981,6 +7870,9 @@ bool gt_IntroSetup_Func (bool testConds, bool runActions) {
     int autoB1C122B9_u;
     unit autoB1C122B9_var;
     int auto0EB58026_val;
+    unitgroup auto35D8B2F7_g;
+    int auto35D8B2F7_u;
+    unit auto35D8B2F7_var;
 
     // Variable Initialization
 
@@ -8018,7 +7910,7 @@ bool gt_IntroSetup_Func (bool testConds, bool runActions) {
 
     }
     gv_introBansheesOld = UnitGroupCopy(gv_introBanshees);
-    if ((TechTreeUpgradeCount(gv_pLAYER_01_USER, "AP_NovaArmorJumpSuit", c_techCountCompleteOnly) >= 1)) {
+    if ((TechTreeUpgradeCount(gv_pLAYER_01_USER, "AP_NovaArmorJumpSuit", c_techCountCompleteOnly) >= 1) && (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 2)) {
         UnitCreate(1, "AP_NovaHero", 0, gv_pLAYER_01_USER, PointFromId(102), 90.0);
     }
     else {
@@ -8081,6 +7973,13 @@ bool gt_IntroSetup_Func (bool testConds, bool runActions) {
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 4), PointFromId(293)), c_orderQueueAddToEnd);
     }
 
+    auto35D8B2F7_g = gv_introBanshees;
+    auto35D8B2F7_u = UnitGroupCount(auto35D8B2F7_g, c_unitCountAll);
+    for (;; auto35D8B2F7_u -= 1) {
+        auto35D8B2F7_var = UnitGroupUnitFromEnd(auto35D8B2F7_g, auto35D8B2F7_u);
+        if (auto35D8B2F7_var == null) { break; }
+        UnitSetPropertyFixed(auto35D8B2F7_var, c_unitPropEnergyPercent, 100.0);
+    }
     return true;
 }
 

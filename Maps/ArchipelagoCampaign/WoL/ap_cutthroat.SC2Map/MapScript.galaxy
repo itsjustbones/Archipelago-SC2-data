@@ -2153,6 +2153,10 @@ bool gt_MiraHanDestroyed_Func (bool testConds, bool runActions) {
             return false;
         }
 
+        if (!((gv_miraHanContractBought == false))) {
+            return false;
+        }
+
         if (!((UnitGroupCount(UnitGroup(null, gv_p03_MIRA_HAN, null, UnitFilter((1 << c_targetFilterPreventDefeat), 0, 0, 0), 0), c_unitCountAlive) == 0))) {
             return false;
         }
@@ -4407,6 +4411,7 @@ bool gt_TransmissionRaynorIntroQ_Func (bool testConds, bool runActions) {
     TriggerQueueEnter();
     libCamp_gf_SetAllSoundChannelVolumesCampaign(libNtve_ge_VolumeChannelMode_Speech);
     libLbty_gf_PlayTransmissionCueSound(PlayerGroupAll());
+    BoardDestroy(gv_merc_Contract_Price_Board);
     // Transmission - SoundLink("THorner02Raynor00001", 0)
     libCamp_gf_SendTransmissionCampaign(null, SoundLink("THorner02Raynor00001", -1), c_transmissionDurationAdd, 0.0, true);
     libCamp_gf_SetAllSoundChannelVolumesCampaign(libNtve_ge_VolumeChannelMode_Game);
@@ -5387,6 +5392,10 @@ bool gt_DefeatMiraHanDead_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!((gv_miraHanContractBought == false))) {
+            return false;
+        }
+
         if (!((gv_gameOver == false))) {
             return false;
         }
@@ -5420,6 +5429,10 @@ bool gt_DefeatOrlanBuysContract_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!((gv_miraHanContractBought == false))) {
+            return false;
+        }
+
         if (!((gv_gameOver == false))) {
             return false;
         }

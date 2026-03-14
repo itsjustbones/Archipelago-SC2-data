@@ -187,6 +187,15 @@
             <ChanceArray index="Turn" value="5"/>
         </Fidget>
     </CUnit>
+    <CUnit id="AP_GasPickupNatural5" parent="ITEM">
+        <AbilArray Link="AP_PickupGas5"/>
+        <EditorCategories value="ObjectType:Item,ObjectFamily:Campaign"/>
+        <FlagArray index="Turnable" value="1"/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <FogVisibility value="Snapshot"/>
+        <MinimapRadius value="0.375"/>
+        <Collide index="Structure" value="1"/>
+    </CUnit>
     <CUnit id="AP_Marine">
         <DeathRevealRadius value="3"/>
         <Race value="Terr"/>
@@ -2467,7 +2476,6 @@
         <AbilArray Link="AP_SpectreWeaponsFree"/>
         <AbilArray Link="AP_TacNukeStrike"/>
         <AbilArray Link="AP_SpectreResourceEfficiencyMorph"/>
-        <BehaviorArray Link="AP_ImpalerRoundsIndicator"/>
         <BehaviorArray Link="AP_SpectrePermanentCloak"/>
         <BehaviorArray Link="AP_SpectreResourceEfficiencyMorph"/>
         <WeaponArray Link="AP_Specter"/>
@@ -2478,6 +2486,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AttackGhost" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_SpectreNukeCalldown" Type="AbilCmd" AbilCmd="AP_TacNukeStrike,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_SpectreImpalerRounds" Type="Passive" Requirements="AP_HaveSpectreImpalerRounds" Row="1" Column="1"/>
             <LayoutButtons Face="AP_SpectreHoldFire" Type="AbilCmd" AbilCmd="AP_SpectreHoldFire,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="AP_SpectreWeaponsFree" Type="AbilCmd" AbilCmd="AP_SpectreWeaponsFree,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AP_UltrasonicPulse" Type="AbilCmd" AbilCmd="AP_UltrasonicPulse,Execute" Row="2" Column="0"/>
@@ -3877,6 +3886,54 @@
         <Race value="Terr"/>
         <EditorCategories value="ObjectFamily:FactionMarauder,ObjectType:Projectile"/>
         <Mover value="AP_WidowMineWeapon"/>
+    </CUnit>
+    <CUnit id="AP_SentryBot">
+        <Radius value="0.75"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Terr"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+        <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
+        <Speed value="2.25"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <Sight value="11"/>
+        <CostResource index="Minerals" value="50"/>
+        <RepairTime value="41.667"/>
+        <CargoSize value="1"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="30"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <WeaponArray Link="AP_SentryBot" Turret="AP_Warbot"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+        </CardLayouts>
+        <InnerRadius value="0.5"/>
+        <ScoreMake value="150"/>
+        <ScoreKill value="300"/>
+        <SubgroupPriority value="14"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <GlossaryCategory value="Unit/Category/AP_TerranUnitsGround"/>
+        <GlossaryPriority value="470"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="33"/>
+            <ChanceArray index="Idle" value="33"/>
+            <ChanceArray index="Turn" value="33"/>
+        </Fidget>
     </CUnit>
     <CUnit id="AP_Cyclone">
         <Description value="Button/Tooltip/AP_BuildCyclone"/>
@@ -8208,9 +8265,10 @@
         <BehaviorArray Link="AP_AutoHarvestVespeneZerg"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionExtractor" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
             <LayoutButtons Face="AP_K5AutoExtractor" Type="Passive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_K5GasBonuses" Type="Passive" Requirements="AP_HaveK5GasBonuses" Row="2" Column="1"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -8273,9 +8331,10 @@
         <BehaviorArray Link="AP_AutoHarvestVespeneZergRich"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionExtractor" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
             <LayoutButtons Face="AP_K5AutoExtractor" Type="Passive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_K5GasBonuses" Type="Passive" Requirements="AP_HaveK5GasBonuses" Row="2" Column="1"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -8333,9 +8392,10 @@
         <BehaviorArray Link="AP_AutomatedExtractorMorph"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionExtractor" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_K5GasBonuses" Type="Passive" Requirements="AP_HaveK5GasBonuses" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -8401,9 +8461,10 @@
         <BehaviorArray Link="AP_ExtractorPipesMorph"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionExtractor" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_K5GasBonuses" Type="Passive" Requirements="AP_HaveK5GasBonuses" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -8461,9 +8522,10 @@
         <BehaviorArray Link="AP_AutomatedExtractorMorphRich"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionExtractor" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
             <LayoutButtons Face="AP_K5GasBonuses" Type="Passive" Requirements="AP_HaveK5GasBonuses" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -9880,6 +9942,7 @@
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="NydusCanalLoad" Type="AbilCmd" AbilCmd="AP_NydusWormTransport,Load" Row="2" Column="1"/>
             <LayoutButtons Face="NydusCanalUnloadAll" Type="AbilCmd" AbilCmd="AP_NydusWormTransport,UnloadAll" Row="2" Column="2"/>
@@ -9887,7 +9950,7 @@
             <LayoutButtons Face="AP_SummonNydusWorm" Type="AbilCmd" AbilCmd="AP_BuildNydusWorm,Build1" Row="2" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="AP_SummonEchidnaWorm" Type="AbilCmd" AbilCmd="AP_BuildEchidnaWorm,Build1" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_StrainInjectionNydusNetwork" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="3"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -13587,19 +13650,86 @@
         </Fidget>
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
-    <CUnit id="AP_ImmortalPurifier" parent="AP_Immortal">
-        <Name value="Unit/Name/AP_ImmortalPurifier"/>
-        <Description value="Button/Tooltip/AP_ImmortalPurifier"/>
-        <WeaponArray index="0" Link="AP_StalwartLightningWeapon" Turret="AP_Immortal"/>
-        <CardLayouts index="0">
-            <LayoutButtons index="5" Face="AP_HardenedShieldStalwart" Type="Passive" Row="2" Column="0"/>
+    <CUnit id="AP_ImmortalPurifier">
+        <DeathRevealRadius value="3"/>
+        <Race value="Prot"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeArmor value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+        <ShieldsStart value="100"/>
+        <ShieldsMax value="100"/>
+        <ShieldRegenDelay value="10"/>
+        <ShieldRegenRate value="2"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="2.25"/>
+        <Acceleration value="1000"/>
+        <Sight value="9"/>
+        <Food value="-3"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="225"/>
+        <CostResource index="Vespene" value="50"/>
+        <RepairTime value="55"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="35"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="Warpable"/>
+        <BehaviorArray Link="AP_HardenedShield"/>
+        <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
+        <WeaponArray Link="AP_StalwartLightningWeapon" Turret="AP_Immortal"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_HardenedShieldStalwart" Type="Passive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_StalwartLatticedShields" Type="Passive" Requirements="AP_HaveStalwartLatticedShields" Row="1" Column="0"/>
             <LayoutButtons Face="AP_StalwartStrutEnhancements" Type="Passive" Requirements="AP_HaveStalwartStrutEnhancements" Row="1" Column="1"/>
             <LayoutButtons Face="AP_StalwartArcInducers" Type="Passive" Requirements="AP_HaveStalwartArcInducers" Row="1" Column="4"/>
             <LayoutButtons Face="AP_StalwartStabilizedElectrodes" Type="Passive" Requirements="AP_HaveStalwartStabilizedElectrodes" Row="1" Column="3"/>
             <LayoutButtons Face="AP_StalwartHighVoltageCapacitors" Type="Passive" Requirements="AP_HaveStalwartHighVoltageCapacitors" Row="1" Column="2"/>
         </CardLayouts>
+        <Radius value="0.65"/>
+        <SeparationRadius value="0.55"/>
+        <InnerRadius value="0.5"/>
+        <CargoSize value="4"/>
+        <ScoreMake value="350"/>
+        <ScoreKill value="350"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="6"/>
+        <MinimapRadius value="0.625"/>
         <SelectAlias value="AP_ImmortalPurifier"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <GlossaryCategory value="Unit/Category/AP_ProtossUnitsGround"/>
+        <GlossaryPriority value="50"/>
+        <GlossaryStrongArray value="SiegeTankSieged"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryStrongArray value="Roach"/>
+        <GlossaryWeakArray value="Marine"/>
+        <GlossaryWeakArray value="Zealot"/>
+        <GlossaryWeakArray value="Zergling"/>
+        <HotkeyCategory value="Unit/Category/AP_ProtossUnitsGround"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="5"/>
+            <ChanceArray index="Idle" value="90"/>
+        </Fidget>
+        <TauntDuration index="Dance" value="5"/>
     </CUnit>
     <CUnit id="AP_ImmortalBarrier" parent="AP_Immortal">
         <AbilArray Link="AP_ImmortalBarrierBase"/>
@@ -17273,6 +17403,7 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_SpireResearch"/>
         <AbilArray Link="que5CancelToSelection"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
@@ -17290,6 +17421,7 @@
             <LayoutButtons Face="AP_zergflyerarmor3" Type="AbilCmd" AbilCmd="AP_SpireResearch,Research6" Row="0" Column="1"/>
             <LayoutButtons Face="AP_zergflyerarmor4" Type="AbilCmd" AbilCmd="AP_SpireResearch,Research9" Row="0" Column="1"/>
             <LayoutButtons Face="AP_zergflyerarmor5" Type="AbilCmd" AbilCmd="AP_SpireResearch,Research10" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_MutaliskBroodlordPassiveGreater" Type="Passive" Requirements="AP_HaveHotSMutaliskBroodLord" Row="1" Column="0"/>
             <LayoutButtons Face="AP_MutaliskViperPassiveGreater" Type="Passive" Requirements="AP_HaveHotSMutaliskViper" Row="1" Column="0"/>
             <LayoutButtons Face="AP_MutaliskPassiveGreater" Type="Passive" Row="1" Column="0"/>
@@ -17297,7 +17429,7 @@
             <LayoutButtons Face="AP_ScourgePassive" Type="Passive" Row="1" Column="2"/>
             <LayoutButtons Face="AP_BroodLordPassive" Type="Passive" Requirements="AP_HaveHotSMutaliskBroodLord" Row="1" Column="1"/>
             <LayoutButtons Face="AP_ViperPassive" Type="Passive" Requirements="AP_HaveHotSMutaliskViper" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionSpire" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -17348,15 +17480,18 @@
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_HydraliskLurkerPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_LurkerPassive" Type="Passive" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_StrainInjectionHydraliskDen" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -17473,18 +17608,20 @@
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_InfestorPassive" Type="Passive" Requirements="AP_HotSHaveInfestorSpawningPool" Row="1" Column="0"/>
             <LayoutButtons Face="AP_SwarmHostCarrionPassive" Type="Passive" Requirements="AP_HotSHaveSwarmHostSplitA" Row="1" Column="1"/>
             <LayoutButtons Face="AP_SwarmHostCreeperPassive" Type="Passive" Requirements="AP_HotSHaveSwarmHostSplitB" Row="1" Column="1"/>
             <LayoutButtons Face="AP_SwarmHostPassive" Type="Passive" Requirements="AP_HotSHaveSwarmHost" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestationPit" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -17540,23 +17677,24 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
         <AbilArray Link="AP_UpgradeToLurkerDen"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <!--        <AbilArray Link="AP_UpgradeToImpalerDen"/>-->
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_LurkerDen" Type="AbilCmd" AbilCmd="AP_UpgradeToLurkerDen,0" Row="2" Column="0"/>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToLurkerDen,1" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <!--            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToImpalerDen,1" Row="2" Column="4"/>-->
             <LayoutButtons Face="AP_HydraliskDenImpalerPassive" Type="Passive" Requirements="AP_HaveHotSImpaler" Row="1" Column="0"/>
             <LayoutButtons Face="AP_HydraliskDenLurkerPassive" Type="Passive" Requirements="AP_HaveHotSLurker" Row="1" Column="0"/>
             <LayoutButtons Face="AP_HydraliskPassive" Type="Passive" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionHydraliskDen" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_LurkerDen" Type="AbilCmd" AbilCmd="AP_UpgradeToLurkerDen,0" Row="2" Column="0"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToLurkerDen,1" Row="2" Column="4"/>
         </CardLayouts>
-        <!--            <LayoutButtons Face="AP_ImpalerDen" Type="AbilCmd" AbilCmd="AP_UpgradeToImpalerDen,0" Row="2" Column="1"/>-->
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
         <Footprint value="Footprint3x3CreepContour"/>
@@ -17609,17 +17747,19 @@
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_BanelingHunterPassive" Type="Passive" Requirements="AP_HaveHotSHunter" Row="1" Column="0"/>
             <LayoutButtons Face="AP_BanelingSplitterlingPassive" Type="Passive" Requirements="AP_HotSHaveSplitterling" Row="1" Column="0"/>
             <LayoutButtons Face="AP_BanelingPassive" Type="Passive" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionBanelingNest" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -17672,6 +17812,7 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
         <AbilArray Link="AP_evolutionchamberresearch"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
@@ -17694,9 +17835,10 @@
             <LayoutButtons Face="AP_zergmissileweapons3" Type="AbilCmd" AbilCmd="AP_evolutionchamberresearch,8" Row="0" Column="1"/>
             <LayoutButtons Face="AP_zergmissileweapons4" Type="AbilCmd" AbilCmd="AP_evolutionchamberresearch,11" Row="0" Column="1"/>
             <LayoutButtons Face="AP_zergmissileweapons5" Type="AbilCmd" AbilCmd="AP_evolutionchamberresearch,12" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_SporeCrawlerPassive" Type="Passive" Requirements="AP_HotSHaveSporeCrawler" Row="1" Column="0"/>
             <LayoutButtons Face="AP_AberrationPassive" Type="Passive" Requirements="AP_HotSHaveAberration" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionEvolutionChamber" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -18590,14 +18732,15 @@
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="Larva" Type="SelectLarva" Row="0" Column="0"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5CancelToSelection,0" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_Queen" Type="AbilCmd" AbilCmd="AP_TrainQueen,0" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_HiveQueen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train2" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_SISCV" Type="AbilCmd" AbilCmd="AP_SICommandCenterTrain,Train1" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_RespawnZergling" Type="AbilCmd" AbilCmd="AP_ZerglingRespawn,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="0"/>
             <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyHatchery,1" Row="1" Column="3"/>
             <LayoutButtons Face="SetRallyPoint2" Type="AbilCmd" AbilCmd="AP_RallyHatchery,0" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_Queen" Type="AbilCmd" AbilCmd="AP_TrainQueen,0" Row="0" Column="1"/>
-            <LayoutButtons Face="AP_RespawnZergling" Type="AbilCmd" AbilCmd="AP_ZerglingRespawn,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="AP_SISCV" Type="AbilCmd" AbilCmd="AP_SICommandCenterTrain,Train1" Row="0" Column="2"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5CancelToSelection,0" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts>
             <LayoutButtons Face="RallyBlock" Type="AbilCmd" AbilCmd="RallyBlock,Execute" Row="2" Column="3"/>
@@ -18716,16 +18859,17 @@
         <EffectArray index="Birth" value="HatcheryBirthSet"/>
         <CardLayouts>
             <LayoutButtons Face="Larva" Type="SelectLarva" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_Queen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train1" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_HiveQueen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train2" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_SISCV" Type="AbilCmd" AbilCmd="AP_SICommandCenterTrain,Train1" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_RespawnZergling" Type="AbilCmd" AbilCmd="AP_ZerglingRespawn,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="0"/>
+            <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally2" Row="1" Column="3"/>
+            <LayoutButtons Face="SetRallyPoint2" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_HatchToLairUpgradeable" Type="AbilCmd" AbilCmd="AP_UpgradeToLair,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5CancelToSelection,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="AP_UpgradeToLair,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_HatchToLairUpgradeable" Type="AbilCmd" AbilCmd="AP_UpgradeToLair,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally2" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_Queen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train1" Row="0" Column="1"/>
-            <LayoutButtons Face="AP_SISCV" Type="AbilCmd" AbilCmd="AP_SICommandCenterTrain,Train1" Row="0" Column="2"/>
-            <LayoutButtons Face="SetRallyPoint2" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally1" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_RespawnZergling" Type="AbilCmd" AbilCmd="AP_ZerglingRespawn,Execute" Row="0" Column="4"/>
         </CardLayouts>
         <CardLayouts>
             <LayoutButtons Face="RallyBlock" Type="AbilCmd" AbilCmd="RallyBlock,Execute" Row="2" Column="3"/>
@@ -18813,16 +18957,17 @@
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="Larva" Type="SelectLarva" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_Queen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train1" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_HiveQueen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train2" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_SISCV" Type="AbilCmd" AbilCmd="AP_SICommandCenterTrain,Train1" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_RespawnZergling" Type="AbilCmd" AbilCmd="AP_ZerglingRespawn,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="0"/>
+            <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally2" Row="1" Column="3"/>
+            <LayoutButtons Face="SetRallyPoint2" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_Hive" Type="AbilCmd" AbilCmd="AP_UpgradeToHive,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5CancelToSelection,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="AP_UpgradeToHive,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_Hive" Type="AbilCmd" AbilCmd="AP_UpgradeToHive,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally2" Row="1" Column="3"/>
-            <LayoutButtons Face="SetRallyPoint2" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally1" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_Queen" Type="AbilCmd" AbilCmd="AP_TrainQueen,Train1" Row="0" Column="1"/>
-            <LayoutButtons Face="AP_RespawnZergling" Type="AbilCmd" AbilCmd="AP_ZerglingRespawn,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="AP_SISCV" Type="AbilCmd" AbilCmd="AP_SICommandCenterTrain,Train1" Row="0" Column="2"/>
         </CardLayouts>
         <CardLayouts>
             <LayoutButtons Face="RallyBlock" Type="AbilCmd" AbilCmd="RallyBlock,Execute" Row="2" Column="3"/>
@@ -18894,7 +19039,7 @@
         <AbilArray Link="AP_KerriganEnhance"/>
         <AbilArray Link="AP_QueenBurstHeal"/>
         <AbilArray Link="AP_QueenBioMechBurstHeal"/>
-        <AbilArray Link="AP_SpawnLarva"/>
+        <AbilArray Link="AP_SwarmQueenWildMutation"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <WeaponArray Link="AP_AcidSpines"/>
         <WeaponArray Link="AP_Talons"/>
@@ -18905,15 +19050,15 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_QueenOrganicCarapace" Type="Passive" Requirements="AP_HaveQueenOrganicCarapace" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_BioMechanicalTransfusionPassive" Type="Passive" Requirements="AP_HaveAbathurBioMechanicalTransfusion" Row="1" Column="1"/>
             <LayoutButtons Face="AP_BuildCreepTumor" Type="AbilCmd" AbilCmd="AP_QueenBuild,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowQueenDown,0" Row="2" Column="4"/>
             <LayoutButtons Face="AP_QueenBurstHeal" Type="AbilCmd" AbilCmd="AP_QueenBurstHeal,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_QueenBurstHeal" Type="AbilCmd" AbilCmd="AP_QueenBioMechBurstHeal,0" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_SpawnLarva" Type="AbilCmd" AbilCmd="AP_SpawnLarva,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_SwarmQueenWildMutation" Type="AbilCmd" AbilCmd="AP_SwarmQueenWildMutation,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,0" Row="2" Column="3"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_KerriganEnhance,1" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_QueenOrganicCarapace" Type="Passive" Requirements="AP_HaveQueenOrganicCarapace" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_BioMechanicalTransfusionPassive" Type="Passive" Requirements="AP_HaveAbathurBioMechanicalTransfusion" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="0.875"/>
         <SeparationRadius value="0.875"/>
@@ -18970,6 +19115,7 @@
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <EnergyStart value="50"/>
         <EnergyMax value="200"/>
         <EnergyRegenRate value="0.5625"/>
@@ -19010,6 +19156,163 @@
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
         <AIEvaluateAlias value="Queen"/>
+    </CUnit>
+    <CUnit id="AP_HiveQueen">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AIDefense" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <LifeStart value="175"/>
+        <LifeMax value="175"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <EnergyStart value="25"/>
+        <EnergyMax value="200"/>
+        <EnergyRegenRate value="0.5625"/>
+        <Speed value="0.9375"/>
+        <SpeedMultiplierCreep value="2.6665"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46"/>
+        <StationaryTurningRate value="999.8437"/>
+        <TurningRate value="999.8437"/>
+        <Sight value="9"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="150"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="30"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AP_HiveQueenBuild"/>
+        <AbilArray Link="AP_BurrowHiveQueenDown"/>
+        <AbilArray Link="AP_SpawnLarva"/>
+        <AbilArray Link="AP_HiveQueenTransfusion"/>
+        <AbilArray Link="AP_HiveQueenStrainInjection"/>
+        <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_QueenOnCreep"/>
+        <WeaponArray Link="AP_HiveQueenAcidSpines"/>
+        <WeaponArray Link="AP_HiveQueenTalons"/>
+        <WeaponArray Link="AP_HiveQueenTalonsMissile"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_HiveQueenSwelledTransfusion" Type="Passive" Requirements="AP_HaveHiveQueenSwelledTransfusion" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_HiveQueenPsionicMitochondria" Type="Passive" Requirements="AP_HaveHiveQueenPsionicMitochondria" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_BuildCreepTumor" Type="AbilCmd" AbilCmd="AP_HiveQueenBuild,Build1" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_SpawnLarva" Type="AbilCmd" AbilCmd="AP_SpawnLarva,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_HiveQueenTransfusion" Type="AbilCmd" AbilCmd="AP_HiveQueenTransfusion,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_HiveQueenStrainInjection" Type="AbilCmd" AbilCmd="AP_HiveQueenStrainInjection,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowHiveQueenDown,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.875"/>
+        <SeparationRadius value="0.875"/>
+        <InnerRadius value="0.5"/>
+        <CargoSize value="2"/>
+        <ScoreMake value="150"/>
+        <ScoreKill value="150"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="39"/>
+        <MinimapRadius value="0.875"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAIThink value="AIThinkQueen"/>
+        <AIEvalFactor value="0.55"/>
+        <TechAliasArray value="Alias_Queen"/>
+        <GlossaryCategory value="Unit/Category/AP_ZergUnitsGround"/>
+        <GlossaryPriority value="216"/>
+        <HotkeyCategory value="Unit/Category/AP_ZergUnitsGround"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="50"/>
+            <ChanceArray index="Idle" value="50"/>
+        </Fidget>
+        <TauntDuration index="Dance" value="5"/>
+    </CUnit>
+    <CUnit id="AP_HiveQueenBurrowed">
+        <Name value="Unit/Name/AP_HiveQueen"/>
+        <Description value="Button/Tooltip/AP_HiveQueen"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="AIDefense" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <LifeStart value="175"/>
+        <LifeMax value="175"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <EnergyStart value="60"/>
+        <EnergyMax value="200"/>
+        <EnergyRegenRate value="0.5625"/>
+        <Mover value="Burrowed"/>
+        <StationaryTurningRate value="719.4726"/>
+        <TurningRate value="719.4726"/>
+        <Sight value="5"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="150"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="30"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="AP_BurrowHiveQueenUp"/>
+        <AbilArray Link="AP_HiveQueenBuild"/>
+        <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <CardLayouts>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowHiveQueenUp,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.875"/>
+        <SeparationRadius value="0"/>
+        <InnerRadius value="0.5"/>
+        <MinimapRadius value="0.875"/>
+        <ScoreKill value="150"/>
+        <SubgroupPriority value="39"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="QueenBurrowed"/>
+        <TacticalAIThink value="AIThinkQueen"/>
+        <LeaderAlias value="Queen"/>
+        <HotkeyAlias value="Queen"/>
+        <TechAliasArray value="Alias_Queen"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <AIEvaluateAlias value="Queen"/>
+    </CUnit>
+    <CUnit id="AP_StrainInjectionEggMissile" parent="MISSILE_INVULNERABLE">
+        <Race value="Zerg"/>
+        <Radius value="0.25"/>
+        <SeparationRadius value="0.25"/>
+        <InnerRadius value="0.25"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
     <CUnit id="AP_PrimalZergling">
         <Subtitle value="UnitSubtitle/AP_PrimalZergling"/>
@@ -19984,6 +20287,7 @@
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <Speed value="2.25"/>
         <SpeedMultiplierCreep value="1.3"/>
         <Acceleration value="1000"/>
@@ -20084,6 +20388,7 @@
         <LifeArmor value="1"/>
         <LifeRegenRate value="5"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <Mover value="Burrowed"/>
         <SpeedMultiplierCreep value="1.3"/>
         <Acceleration value="1000"/>
@@ -22782,6 +23087,7 @@
         <AbilArray Link="AP_UpgradeToGreaterSpireBroodlord"/>
         <AbilArray Link="AP_SpireResearch"/>
         <AbilArray Link="AP_UpgradeToGreaterSpireViper"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
@@ -22801,16 +23107,17 @@
             <LayoutButtons Face="AP_zergflyerarmor3" Type="AbilCmd" AbilCmd="AP_SpireResearch,Research6" Row="0" Column="1"/>
             <LayoutButtons Face="AP_zergflyerarmor4" Type="AbilCmd" AbilCmd="AP_SpireResearch,Research9" Row="0" Column="1"/>
             <LayoutButtons Face="AP_zergflyerarmor5" Type="AbilCmd" AbilCmd="AP_SpireResearch,Research10" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_MutaliskBroodlordPassive" Type="Passive" Requirements="AP_HaveHotSMutaliskBroodLord" Row="1" Column="0"/>
             <LayoutButtons Face="AP_MutaliskViperPassive" Type="Passive" Requirements="AP_HaveHotSMutaliskViper" Row="1" Column="0"/>
             <LayoutButtons Face="AP_MutaliskPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_CorruptorPassive" Type="Passive" Row="1" Column="1"/>
             <LayoutButtons Face="AP_ScourgePassive" Type="Passive" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_StrainInjectionSpire" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
             <LayoutButtons Face="AP_GreaterSpireBroodlord" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireBroodlord,0" Row="2" Column="0"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireBroodlord,1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_GreaterSpireViper" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireViper,0" Row="2" Column="0"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireViper,1" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -22864,19 +23171,21 @@
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_RoachCorpserPassive" Type="Passive" Requirements="AP_HaveRoachCorpser" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RoachVilePassive" Type="Passive" Requirements="AP_HaveRoachVile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RoachPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerPassive" Type="Passive" Row="1" Column="1"/>
             <LayoutButtons Face="AP_PrimalIgniterPassive" Type="Passive" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionRoachWarren" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -23312,21 +23621,23 @@
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_SpawningPoolBileLauncherAura"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_ZerglingRaptorPassive" Type="Passive" Requirements="AP_HotSHaveRaptorSpawningPool" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ZerglingSwarmlingPassive" Type="Passive" Requirements="AP_HotSHaveSwarmlingSpawningPool" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ZerglingPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_SpineCrawlerPassive" Type="Passive" Requirements="AP_HotSHaveSpineCrawlerSpawningPool" Row="1" Column="1"/>
             <LayoutButtons Face="AP_QueenPassive" Type="Passive" Requirements="AP_HotSHaveQueen" Row="1" Column="2"/>
             <LayoutButtons Face="AP_PassiveBileLauncher" Type="Passive" Requirements="AP_HaveBileLauncher" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionSpawningPool" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -23992,15 +24303,16 @@
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="AP_SIUproot" Type="AbilCmd" AbilCmd="AP_SIBarracksLiftOff,0" Row="2" Column="3"/>
-            <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="BuildInProgress,Halt" Row="2" Column="3"/>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <!--            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="SIBarracksAddOns2,30" Row="2" Column="4"/>-->
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_SIInfestedMarine" Type="AbilCmd" AbilCmd="AP_SIBarracksTrain,0" Row="0" Column="0"/>
             <LayoutButtons Face="AP_SIStukovPlaceHordeRally" Type="AbilCmd" AbilCmd="AP_SIStukovPlaceHordeRally,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="SelectBuilder" Type="SelectBuilder" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_SIInfestedMarine" Type="AbilCmd" AbilCmd="AP_SIBarracksTrain,0" Row="0" Column="0"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestedBuilding" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_SIUproot" Type="AbilCmd" AbilCmd="AP_SIBarracksLiftOff,0" Row="2" Column="3"/>
+            <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="BuildInProgress,Halt" Row="2" Column="3"/>
+            <!--            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="SIBarracksAddOns2,30" Row="2" Column="4"/>-->
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <!--            <LayoutButtons Face="AP_SITechLabBarracks" Type="AbilCmd" AbilCmd="AP_SIBarracksAddOns,0" Row="2" Column="0"/>-->
         <Radius value="1.75"/>
@@ -24055,11 +24367,12 @@
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <!--        <AbilArray Link="SIBarracksAddOns3"/>-->
         <CardLayouts>
-            <LayoutButtons Face="AP_SIRoot" Type="AbilCmd" AbilCmd="AP_SIBarracksLand,0" Row="2" Column="3"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestedBuilding" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_SIRoot" Type="AbilCmd" AbilCmd="AP_SIBarracksLand,0" Row="2" Column="3"/>
         </CardLayouts>
         <!--            <LayoutButtons Face="SITechLabBarracks" Type="AbilCmd" AbilCmd="SIBarracksAddOns3,0" Row="2" Column="0"/>-->
         <Radius value="1.25"/>
@@ -24653,6 +24966,7 @@
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
     </CUnit>
     <CUnit id="AP_VoidRayPurifier" parent="AP_VoidRayCampaignBase">
+        <LifeArmor value="1"/>
         <StationaryTurningRate value="90"/>
         <TurningRate value="90"/>
         <WeaponArray Link="AP_VoidRayPurifierPrimaryBeam" Turret="AP_VoidRayPurifier"/>
@@ -25198,17 +25512,19 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
         <AbilArray Link="UltraliskCavernResearch"/>
+        <AbilArray Link="AP_StrainInjectionRally"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
+            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="0" Column="4"/>
             <LayoutButtons Face="AP_UltraliskTorrasquePassive" Type="Passive" Requirements="AP_HaveHotSTorrasque" Row="1" Column="0"/>
             <LayoutButtons Face="AP_UltraliskNoxiousPassive" Type="Passive" Requirements="AP_HaveHotSNoxious" Row="1" Column="0"/>
             <LayoutButtons Face="AP_UltraliskPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_TyrannozorPassive" Type="Passive" Row="1" Column="1"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_ZergStructureRapidRegen" Type="Passive" Requirements="AP_HaveZergStructureRapidRegen" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_StrainInjectionUltraliskCavern" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -26782,6 +27098,103 @@
         <RankDisplay value="Always"/>
         <AIEvaluateAlias value="AP_PrimalIgniter"/>
     </CUnit>
+    <CUnit id="AP_InfestedCivilian">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="IgnoreAttackAlert" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Locust" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="35"/>
+        <LifeMax value="35"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Food value="-0.5"/>
+        <CargoSize value="1"/>
+        <Speed value="1.25"/>
+        <SpeedMultiplierCreep value="2"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <TurningRate value="999.8437"/>
+        <StationaryTurningRate value="999.8437"/>
+        <Sight value="8"/>
+        <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AP_BurrowInfestedCivilianDown"/>
+        <EffectArray index="Create" value="InfestedCivilianVolatileSpawn"/>
+        <WeaponArray Link="AP_InfestedCivilian"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowInfestedCivilianDown,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <SeparationRadius value="0.375"/>
+        <MinimapRadius value="0.375"/>
+        <InnerRadius value="0.375"/>
+        <SubgroupPriority value="10"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionInfested"/>
+        <GlossaryWeakArray value="Bunker"/>
+        <GlossaryWeakArray value="Firebat"/>
+        <GlossaryWeakArray value="Hellion"/>
+        <ScoreResult value="BuildOrder"/>
+        <GlossaryCategory value="Unit/Category/AP_ZergUnitsGround"/>
+        <HotkeyCategory value="Unit/Category/AP_ZergUnitsGround"/>
+    </CUnit>
+    <CUnit id="AP_InfestedCivilianBurrowed">
+        <Name value="Unit/Name/AP_InfestedCivilian"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="IgnoreAttackAlert" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="35"/>
+        <LifeMax value="35"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Food value="-0.5"/>
+        <CargoSize value="1"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <TurningRate value="999.8437"/>
+        <StationaryTurningRate value="999.8437"/>
+        <Sight value="8"/>
+        <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="AP_BurrowInfestedCivilianUp"/>
+        <CardLayouts>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowInfestedCivilianUp,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <SeparationRadius value="0.375"/>
+        <InnerRadius value="0.375"/>
+        <SubgroupPriority value="10"/>
+        <MinimapRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionInfested"/>
+        <LeaderAlias value="AP_InfestedCivilian"/>
+        <HotkeyAlias value="AP_InfestedCivilian"/>
+        <AIEvaluateAlias value="AP_InfestedCivilian"/>
+        <ScoreResult value="BuildOrder"/>
+        <HotkeyCategory value="Unit/Category/AP_ZergUnitsGround"/>
+    </CUnit>
     <CUnit id="AP_SIInfestedMarine">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
@@ -26790,6 +27203,7 @@
         <LifeMax value="50"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <Speed value="1.25"/>
         <SpeedMultiplierCreep value="2"/>
         <Acceleration value="1000"/>
@@ -26864,6 +27278,7 @@
         <LifeMax value="50"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <Mover value="Burrowed"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
@@ -26916,6 +27331,7 @@
         <LifeMax value="50"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <Speed value="1.25"/>
         <SpeedMultiplierCreep value="2"/>
         <Acceleration value="1000"/>
@@ -26979,6 +27395,7 @@
         <LifeMax value="50"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
         <Mover value="Burrowed"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
@@ -27248,6 +27665,8 @@
             <LayoutButtons Face="AP_InfestedMedic" Type="AbilCmd" AbilCmd="AP_SummonZergMercs,Train1" Row="0" Column="0"/>
             <LayoutButtons Face="AP_InfestedSiegeBreaker" Type="AbilCmd" AbilCmd="AP_SummonZergMercs,Train2" Row="0" Column="1"/>
             <LayoutButtons Face="AP_InfestedDuskWing" Type="AbilCmd" AbilCmd="AP_SummonZergMercs,Train3" Row="0" Column="2"/>
+            <!-- Passives -->
+            <LayoutButtons Face="AP_StrainInjectionPredatorNest" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="3"/>
             <!-- Tabs -->
             <LayoutButtons Face="AP_ZergMercBroodWar" Type="AbilCmd" AbilCmd="AP_ZergMercCompoundBroodWar,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_ZergMercSC2" Type="AbilCmd" AbilCmd="AP_ZergMercCompoundSC2,Execute" Row="2" Column="1"/>
@@ -27782,17 +28201,18 @@
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="AP_SIDiamondBack" Type="AbilCmd" AbilCmd="AP_SIFactoryTrain,Train3" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_SISiegeTank" Type="AbilCmd" AbilCmd="AP_SIFactoryTrain,Train2" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_InfestedBullfrog" Type="AbilCmd" AbilCmd="AP_SIFactoryTrain,Train4" Row="0" Column="2"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="SelectBuilder" Type="SelectBuilder" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_BioMechanicalStockpiling" Type="Passive" Requirements="AP_HaveBioMechanicalStockpiling" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_SITechLabFactory" Type="AbilCmd" AbilCmd="AP_SIFactoryAddOns,Build1" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestedBuilding" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="2" Column="1"/>
             <LayoutButtons Face="AP_SIUproot" Type="AbilCmd" AbilCmd="AP_SIFactoryLiftOff,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="BuildInProgress,Halt" Row="2" Column="3"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_SIFactoryAddOns,Halt" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="SelectBuilder" Type="SelectBuilder" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_BioMechanicalStockpiling" Type="Passive" Requirements="AP_HaveBioMechanicalStockpiling" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_SISiegeTank" Type="AbilCmd" AbilCmd="AP_SIFactoryTrain,Train2" Row="0" Column="1"/>
-            <LayoutButtons Face="AP_SITechLabFactory" Type="AbilCmd" AbilCmd="AP_SIFactoryAddOns,Build1" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_InfestedBullfrog" Type="AbilCmd" AbilCmd="AP_SIFactoryTrain,Train4" Row="0" Column="2"/>
         </CardLayouts>
         <Radius value="1.625"/>
         <SeparationRadius value="1.625"/>
@@ -27846,13 +28266,14 @@
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="AP_SIRoot" Type="AbilCmd" AbilCmd="AP_SIFactoryLand,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_BioMechanicalStockpiling" Type="Passive" Requirements="AP_HaveBioMechanicalStockpiling" Row="1" Column="3"/>
             <LayoutButtons Face="AP_SITechLabFactory" Type="AbilCmd" AbilCmd="AP_SIFactoryAddOns,Build1" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestedBuilding" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_SIRoot" Type="AbilCmd" AbilCmd="AP_SIFactoryLand,Execute" Row="2" Column="3"/>
         </CardLayouts>
         <Radius value="1.25"/>
         <SeparationRadius value="1.25"/>
@@ -27919,16 +28340,17 @@
         <CardLayouts>
             <LayoutButtons Face="AP_SILiberator" Type="AbilCmd" AbilCmd="AP_SIStarportTrain,Train2" Row="0" Column="0"/>
             <LayoutButtons Face="AP_SIBanshee" Type="AbilCmd" AbilCmd="AP_SIStarportTrain,Train1" Row="0" Column="1"/>
+            <LayoutButtons Face="SelectBuilder" Type="SelectBuilder" AbilCmd="StarportTrain,Train5" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_BioMechanicalStockpiling" Type="Passive" Requirements="AP_HaveBioMechanicalStockpiling" Row="1" Column="3"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_SITechLabStarport" Type="AbilCmd" AbilCmd="AP_SIStarportAddOns,Build1" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestedBuilding" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="2" Column="1"/>
             <LayoutButtons Face="AP_SIUproot" Type="AbilCmd" AbilCmd="AP_SIStarportLiftOff,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="BuildInProgress,Halt" Row="2" Column="3"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="StarportAddOns,Halt" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_SIStarportAddOns,Halt" Row="2" Column="4"/>
-            <LayoutButtons Face="SelectBuilder" Type="SelectBuilder" AbilCmd="StarportTrain,Train5" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_BioMechanicalStockpiling" Type="Passive" Requirements="AP_HaveBioMechanicalStockpiling" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_SITechLabStarport" Type="AbilCmd" AbilCmd="AP_SIStarportAddOns,Build1" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="1.625"/>
         <SeparationRadius value="1.625"/>
@@ -27982,13 +28404,14 @@
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
-            <LayoutButtons Face="AP_SIRoot" Type="AbilCmd" AbilCmd="AP_SIStarportLand,Execute" Row="2" Column="3"/>
-            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_BioMechanicalStockpiling" Type="Passive" Requirements="AP_HaveBioMechanicalStockpiling" Row="1" Column="3"/>
             <LayoutButtons Face="AP_SITechLabStarport" Type="AbilCmd" AbilCmd="AP_SIStarportAddOns,Build1" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StrainInjectionInfestedBuilding" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_SIRoot" Type="AbilCmd" AbilCmd="AP_SIStarportLand,Execute" Row="2" Column="3"/>
         </CardLayouts>
         <Radius value="1.25"/>
         <SeparationRadius value="1.25"/>
@@ -30577,10 +31000,6 @@
         <BehaviorArray Link="AP_MengskVeteranL3Tracker"/>
         <BehaviorArray Link="AP_MengskVeteranL4Tracker"/>
         <BehaviorArray Link="AP_MengskVeteranTrigger"/>
-        <BehaviorArray Link="AP_BansheeMengskCloakEnergyDrainL1"/>
-        <BehaviorArray Link="AP_BansheeMengskCloakEnergyDrainL2"/>
-        <BehaviorArray Link="AP_BansheeMengskCloakEnergyDrainL3"/>
-        <BehaviorArray Link="AP_BansheeMengskCloakEnergyDrainL4"/>
         <BehaviorArray Link="AP_ShockwaveMissilePatternIndicator"/>
         <BehaviorArray Link="AP_DistortionBlastersIndicator"/>
         <BehaviorArray Link="AP_BansheeShapedHullIndicator"/>
@@ -31638,7 +32057,7 @@
     <CUnit id="AP_BullfrogPlaceholder" parent="PLACEHOLDER">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
-        <Collide index="Structure" value="1"/>
+        <Collide index="Ground" value="1"/>
         <Attributes index="Biological" value="1"/>
         <StationaryTurningRate value="719.4726"/>
         <TurningRate value="719.4726"/>
@@ -31646,8 +32065,12 @@
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
         <KillXP value="10"/>
-        <SeparationRadius value="0.375"/>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="1"/>
         <MinimapRadius value="0.375"/>
+        <PushPriority value="11"/>
+        <AlliedPushPriority value="1"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <LeaderAlias value=""/>
         <HotkeyAlias value=""/>

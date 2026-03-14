@@ -3367,8 +3367,8 @@
     <CRequirementCountUpgrade id="AP_CountUpgradeSpiderMineDamageCompleteOnly">
         <Count Link="AP_SpiderMineDamage" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountUpgrade id="AP_CountUpgradeImpalerRoundsCompleteOnly">
-        <Count Link="AP_ImpalerRounds" State="CompleteOnly"/>
+    <CRequirementCountUpgrade id="AP_CountUpgradeSpectreImpalerRoundsCompleteOnly">
+        <Count Link="AP_SpectreImpalerRounds" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementAnd id="AP_ScienceVesselSCBWEMPShockwave@Show">
         <OperandArray value="AP_ScienceVesselSCBWEMPShockwaveResearch@Count"/>
@@ -6425,12 +6425,37 @@
         <Count Link="AP_QueenSpawnLarva" State="CompleteOnlyAtUnit"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountBehavior>
+    <CRequirementCountUpgrade id="AP_CountUpgradeHaveHiveQueenCompleteOnly">
+        <Count Link="AP_HaveHiveQueen" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeHiveQueenSwelledTransfusionCompleteOnly">
+        <Count Link="AP_HiveQueenSwelledTransfusion" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountBehavior id="AP_CountBehaviorQueenOnCreepOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_QueenOnCreep" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementOr id="AP_QueenOnCreepOrHaveHiveQueenSwelledTransfusion">
+        <Tooltip value="RequirementNode/Tooltip/AP_CountBehaviorQueenOnCreepOnlyAtUnit"/>
+        <OperandArray value="AP_CountUpgradeHiveQueenSwelledTransfusionCompleteOnly"/>
+        <OperandArray value="AP_CountBehaviorQueenOnCreepOnlyAtUnit"/>
+    </CRequirementOr>
+    <CRequirementCountUpgrade id="AP_CountUpgradeHiveQueenPsionicMitochondriaCompleteOnly">
+        <Count Link="AP_HiveQueenPsionicMitochondria" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeHiveQueenStrainInjectionCompleteOnly">
+        <Count Link="AP_HiveQueenStrainInjection" State="CompleteOnly"/>
+        <Flags index="TechTreeCheat" value="0"/>
+    </CRequirementCountUpgrade>
     <CRequirementGT id="AP_GTCountBehaviorQueenSpawnLarvaCompleteOnlyAtUnit0">
         <OperandArray index="0" value="AP_CountBehaviorQueenSpawnLarvaCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="0"/>
     </CRequirementGT>
-    <CRequirementCountUpgrade id="AP_CountUpgradeQueenSpawnLarvaCompleteOnly">
-        <Count Link="AP_QueenSpawnLarva" State="CompleteOnly"/>
+    <CRequirementCountUpgrade id="AP_CountUpgradeSwarmQueenWildMutationCompleteOnly">
+        <Count Link="AP_SwarmQueenWildMutation" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeQueenDeepTunnelCompleteOnly">
