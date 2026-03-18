@@ -38561,10 +38561,9 @@
         <ShieldFlashType value="None"/>
         <Beam value="AP_ArtanisTaldarimAspectPsiOrbBeam"/>
     </CActorAction>
-    <CActorSound id="AP_ArtanisTaldarimAspectPassiveSplashSoundActor" parent="SoundOneShot">
+    <CActorSound id="AP_ArtanisTaldarimAspectPassiveSplashSound" parent="SoundOneShot">
         <On Terms="Effect.AP_ArtanisTaldarimAspectNearbyDamageGround.Start; At Target" Send="Create"/>
         <On Terms="Effect.AP_ArtanisTaldarimAspectNearbyDamageAir.Start; At Target" Send="Create"/>
-        <Sound value="AP_ArtanisTaldarimAspectPassiveSplashSound"/>
     </CActorSound>
     <CActorModel id="AP_StrengthInUnity">
         <On Terms="Behavior.AP_StrengthInUnity.On" Send="Create"/>
