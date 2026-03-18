@@ -148,7 +148,7 @@ Flashpoint:
 
 Artanis:
 
--artanisall: Unlocks all weapon aspect active and passives
+-artanisboth: Unlocks all weapon aspect active and passives
 -artanisactive: Unlocks all weapon aspect actives
 -artanispassive: Unlocks all weapon aspect passives
--artaniseverything: Unlocks all artanis upgrades/items
+-artanisall: Unlocks all artanis upgrades/items
