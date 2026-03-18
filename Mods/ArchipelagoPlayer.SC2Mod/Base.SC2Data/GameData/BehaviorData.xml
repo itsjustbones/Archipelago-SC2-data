@@ -2142,7 +2142,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Requirements value="AP_HaveArtanisForceOfWill"/>
-        <Period value="0.266666"/>
+        <Period value="0.333333"/>
         <PeriodicEffect value="AP_ArtanisForceOfWillMU"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
@@ -2162,6 +2162,7 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_CleansingSmite">
+        <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="5"/>
@@ -2188,25 +2189,29 @@
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Duration value="6"/>
         <DisplayDuration index="Self" value="1"/>
-        <Modification MoveSpeedMultiplier="2.5" AttackSpeedMultiplier="2.5">
-            <DamageDealtUnscaled index="Melee" value="30"/>
-            <DamageDealtUnscaled index="Ranged" value="30"/>
-            <ModifyFlags index="OrdersUninterruptible" value="1"/>
-            <StateFlags index="SuppressCollision" value="1"/>
-            <AbilLinkDisableArray value="AP_ArtanisWeaponAspects"/>
-            <AbilLinkDisableArray value="AP_ArtanisAirAttackSwap"/>
+        <RemoveValidatorArray value="AP_HasArtanisTaldarimAspectBehavior"/>
+        <Modification AttackSpeedMultiplier="2">
+            <DamageDealtUnscaled index="Melee" value="15"/>
+            <DamageDealtUnscaled index="Ranged" value="15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ExterminateTarget">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="2.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ExterminateCharging">
+        <Alignment value="Positive"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="AP_ArtanisChargeTargetAttacked"/>
+        <Duration value="2.5"/>
+        <FinalEffect value="AP_ExterminateAB"/>
+        <Modification MoveSpeedMultiplier="6.8">
             <AbilLinkDisableArray value="AP_ArtanisCharge"/>
-            <AbilLinkDisableArray value="AP_SuppressionPulse"/>
-            <AbilLinkDisableArray value="AP_ArtanisLightningDash"/>
-            <AbilLinkDisableArray value="AP_ArtanisAstralWind"/>
-            <AbilLinkDisableArray value="AP_ShadowSlice"/>
-            <AbilLinkDisableArray value="AP_VoltaicShock"/>
-            <AbilLinkDisableArray value="AP_ArtanisBladeWaltz"/>
-            <AbilLinkDisableArray value="AP_PhasePrismSwap"/>
-            <AbilLinkDisableArray value="AP_PhasePrism"/>
-            <AbilLinkDisableArray value="AP_CleansingSmite"/>
-            <AbilLinkDisableArray value="AP_Exterminate"/>
-            <AbilLinkDisableArray value="AP_StrengthInUnity"/>
+            <StateFlags index="SuppressCollision" value="1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisLightningDashStun">
@@ -2359,9 +2364,9 @@
         <BehaviorFlags index="EnabledWhileDead" value="1"/>
         <BehaviorFlags index="Permanent" value="1"/>
         <Cost>
-            <Cooldown TimeStart="300"/>
+            <Cooldown TimeStart="240"/>
         </Cost>
-        <Duration value="300"/>
+        <Duration value="240"/>
         <Modification>
             <BehaviorLinkDisableArray value="AP_ArtanisResurgence"/>
         </Modification>
@@ -2421,6 +2426,7 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ShadowSliceMarked">
+        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DamageResponse Fatal="1" Handled="AP_ShadowSliceRefundCP">
             <Chance value="1"/>

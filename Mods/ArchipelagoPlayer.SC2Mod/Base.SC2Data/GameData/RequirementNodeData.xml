@@ -2763,10 +2763,20 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_PhasePrismRecast" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
-    <CRequirementCountBehavior id="AP_CountBehaviorExterminateCompleteOnlyAtUnit">
+    <CRequirementCountBehavior id="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
-        <Count Link="AP_Exterminate" State="CompleteOnlyAtUnit"/>
+        <Count Link="AP_EnableArtanisAirAttackSwap" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
+    <CRequirementNot id="AP_NotCountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit">
+        <OperandArray index="0" value="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit"/>
+    </CRequirementNot>
+    <CRequirementNot id="AP_NotCountUpgradeArtanisAirAttackCompleteOnly">
+        <OperandArray index="0" value="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementOr id="AP_OrArtanisAirAttackDisabledOrUnavailableCompleteOnly">
+        <OperandArray value="AP_NotCountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit"/>
+        <OperandArray value="AP_NotCountUpgradeArtanisAirAttackCompleteOnly"/>
+    </CRequirementOr>
     <CRequirementCountUpgrade id="AP_CountUpgradeNovaGadgetFlashBangGrenadesCompleteOnly">
         <Count Link="AP_NovaGadgetFlashBangGrenades" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
@@ -5258,6 +5268,15 @@
     <CRequirementAnd id="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly">
         <OperandArray value="AP_CountUpgradeArtanisTaldarimAspectActiveCompleteOnly"/>
         <OperandArray value="AP_CountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_AndCanUseArtanisTaldarimAspectActiveAirAttackEnabledCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
+        <OperandArray value="AP_CountBehaviorEnableArtanisAirAttackSwapCompleteOnlyAtUnit"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_AndCanUseArtanisTaldarimAspectActiveAirAttackDisabledCompleteOnly">
+        <OperandArray value="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
+        <OperandArray value="AP_OrArtanisAirAttackDisabledOrUnavailableCompleteOnly"/>
     </CRequirementAnd>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisTaldarimAspectPassiveCompleteOnly">
         <Count Link="AP_ArtanisTaldarimAspectPassive" State="CompleteOnly"/>

@@ -12161,9 +12161,9 @@ void libABFE498B_gt_AP_Triggers_Debug_reviveHeroes_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_Debug_ArtanisAspectsEverything
+// Trigger: AP_Triggers_Debug_ArtanisAspectsAll
 //--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Func (bool testConds, bool runActions) {
+bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
@@ -12195,26 +12195,27 @@ bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Func (bool testCo
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAstralWind", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisAirAttack", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisForceOfWill", 1);
-    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisInspiringPresence", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisPhasePrism", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisValorOfTheFirstborn", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisLightningDash", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisResurgence", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisStrengthInUnity", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisSuppressionPulse", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTemperedInTwilight", 1);
-    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisTemperedInTwilight", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(EventPlayer(), "AP_ArtanisShieldOverload", 1);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Init () {
-    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything, c_playerAny, "-artaniseverything", true);
+void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Init () {
+    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func");
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll, c_playerAny, "-artanisall", true);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Triggers_Debug_ArtanisAspectsAll
+// Trigger: AP_Triggers_Debug_ArtanisAspectsBoth
 //--------------------------------------------------------------------------------------------------
-bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func (bool testConds, bool runActions) {
+bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsBoth_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
@@ -12245,9 +12246,9 @@ bool libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func (bool testConds, bo
 }
 
 //--------------------------------------------------------------------------------------------------
-void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Init () {
-    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Func");
-    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll, c_playerAny, "-artanisall", true);
+void libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsBoth_Init () {
+    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsBoth = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsBoth_Func");
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsBoth, c_playerAny, "-artanisboth", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12574,8 +12575,8 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer_Init();
     libABFE498B_gt_AP_Triggers_Debug_updatePrompt_Init();
     libABFE498B_gt_AP_Triggers_Debug_reviveHeroes_Init();
-    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsEverything_Init();
     libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsAll_Init();
+    libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsBoth_Init();
     libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsPassive_Init();
     libABFE498B_gt_AP_Triggers_Debug_ArtanisAspectsActive_Init();
     libABFE498B_gt_AP_Triggers_tradeStructureBuilt_Init();

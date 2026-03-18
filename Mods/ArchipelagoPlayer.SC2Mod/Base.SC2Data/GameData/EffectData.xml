@@ -4736,65 +4736,38 @@
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
         <Abil value="attack"/>
-        <CmdFlags index="Preempt" value="1"/>
         <Target Value="TargetUnit"/>
     </CEffectIssueOrder>
-    <CEffectSet id="AP_ExterminateNoSearch"/>
-    <CEffectEnumArea id="AP_ExterminateSearch">
+    <CEffectApplyBehavior id="AP_ExterminateTargetAB">
         <EditorCategories value="Race:Protoss"/>
-        <SearchFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray MaxCount="1" Radius="10" Effect="AP_ExterminateAttackOrder"/>
-    </CEffectEnumArea>
-    <CEffectEnumArea id="AP_ExterminateAirSearch">
+        <Behavior value="AP_ExterminateTarget"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ExterminateChargeAB">
         <EditorCategories value="Race:Protoss"/>
-        <SearchFilters value="Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray MaxCount="1" Radius="10" Effect="AP_ExterminateAttackOrder"/>
-    </CEffectEnumArea>
-    <CEffectSwitch id="AP_ExterminateGroundSearchSwitch">
-        <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AP_ExterminateNearbyGroundTarget" Effect="AP_ExterminateNoSearch"/>
-        <CaseDefault value="AP_ExterminateSearch"/>
-    </CEffectSwitch>
-    <CEffectSwitch id="AP_ExterminateAirSearchModeSwitch">
-        <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AP_ExterminateNearbyTarget" Effect="AP_ExterminateNoSearch"/>
-        <CaseDefault value="AP_ExterminateAirSearch"/>
-    </CEffectSwitch>
-    <CEffectSwitch id="AP_ExterminateSearchSwitch">
-        <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AP_CasterHasArtanisAirAttackEnabled" Effect="AP_ExterminateAirSearchModeSwitch"/>
-        <CaseDefault value="AP_ExterminateGroundSearchSwitch"/>
-    </CEffectSwitch>
-    <CEffectRemoveBehavior id="AP_ExterminateRB">
-        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AP_ExterminateCharging"/>
         <WhichUnit Value="Caster"/>
-        <BehaviorLink value="AP_Exterminate"/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="AP_ExterminateCancelRB">
-        <EditorCategories value="Race:Protoss"/>
-        <BehaviorLink value="AP_Exterminate"/>
-        <Count value="1"/>
-    </CEffectRemoveBehavior>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_ExterminateAB">
         <WhichUnit Value="Caster"/>
-        <Behavior value="AP_Exterminate"/>  
+        <Behavior value="AP_Exterminate"/>
     </CEffectApplyBehavior>
     <CEffectSet id="AP_ExterminateSet">
-        <EffectArray value="AP_ExterminateSyncCooldownInitial"/>
-        <EffectArray value="AP_ExterminateCancelCooldown"/>
-        <EffectArray value="AP_ExterminateAB"/>
-        <EffectArray value="AP_ExterminateSearchSwitch"/>
+        <EffectArray value="AP_ExterminateSyncCooldownSet"/>
+        <EffectArray value="AP_ExterminateTargetAB"/>
+        <EffectArray value="AP_ExterminateChargeAB"/>
+        <EffectArray value="AP_ExterminateAttackOrder"/>
     </CEffectSet>
     <CEffectModifyUnit id="AP_ExterminateSyncCooldownInitial">
         <ImpactUnit Value="Caster"/>
         <Cost Abil="AP_Exterminate,Execute" CooldownOperation="Set"/>
     </CEffectModifyUnit>
-    <CEffectModifyUnit id="AP_ExterminateCancelCooldown">
+    <CEffectModifyUnit id="AP_ExterminateAirSyncCooldownInitial">
         <ImpactUnit Value="Caster"/>
-        <Cost Abil="AP_ExterminateCancel,Execute" CooldownOperation="Max" CooldownTimeUse="0.5"/>
+        <Cost Abil="AP_ExterminateAir,Execute" CooldownOperation="Set"/>
     </CEffectModifyUnit>
-    <CEffectSet id="AP_ExterminateRemoveSet">
-        <EffectArray value="AP_ExterminateRB"/>
+    <CEffectSet id="AP_ExterminateSyncCooldownSet">
+        <EffectArray value="AP_ExterminateSyncCooldownInitial"/>
+        <EffectArray value="AP_ExterminateAirSyncCooldownInitial"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_ShadowSliceController">
         <WhichUnit Value="Caster"/>
@@ -4981,7 +4954,7 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="AP_SuppressionPulseDamage">
         <Kind value="Spell"/>
-        <Amount value="15"/>
+        <Amount value="20"/>
     </CEffectDamage>
     <CEffectSet id="AP_PhasePrismDelaySet">
         <EditorCategories value="Race:Protoss"/>
@@ -5483,7 +5456,7 @@
     </CEffectEnumArea>
     <CEffectDamage id="AP_ArtanisPurifierSolarBombardmentDamage">
         <EditorCategories value="Race:Protoss"/>
-        <Amount value="30"/>
+        <Amount value="25"/>
         <ResponseFlags index="Flee" value="1"/>
     </CEffectDamage>
     <CEffectSet id="AP_AcidSalivaSet">

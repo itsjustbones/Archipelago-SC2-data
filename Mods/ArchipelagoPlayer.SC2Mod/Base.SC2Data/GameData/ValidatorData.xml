@@ -2350,21 +2350,6 @@
         <CombineArray value="AP_CasterHasArtanisAirAttackUpgrade"/>
         <CombineArray value="AP_CasterHasEnableArtanisAirAttackSwap"/>
     </CValidatorCombine>
-    <CValidatorLocationEnumArea id="AP_ExterminateNearbyGroundTarget">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Compare="GE" Count="1" Radius="5"/>
-        <SearchFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorLocationEnumArea id="AP_ExterminateNearbyTarget">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Compare="GE" Count="1" Radius="5"/>
-        <SearchFilters value="Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorUnitCompareBehaviorCount id="AP_CasterHasExterminate">
-        <WhichUnit Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="AP_Exterminate"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="AP_CasterHasArtanisBladeWaltzActor">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>

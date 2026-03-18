@@ -4650,9 +4650,10 @@
             <Button DefaultButtonFace="AP_ArtanisNoAspect" Requirements="AP_HaveArtanisAnyAspectEquipped"/>
         </InfoArray>
     </CAbilSpecialize>
-    <CAbilEffectInstant id="AP_Exterminate">
-        <AbilSetId value="AP_Exterminate"/>
+    <CAbilEffectTarget id="AP_Exterminate">
         <Effect index="0" value="AP_ExterminateSet"/>
+        <Range value="8"/>
+        <TargetFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <Cost>
             <Vital index="Energy" value="50"/>
             <Cooldown>
@@ -4661,17 +4662,22 @@
                 <TimeUse value="12"/>
             </Cooldown>
         </Cost>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActive"/>
-    </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_ExterminateCancel">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
-        <Effect index="0" value="AP_ExterminateCancelRB"/>
-        <Flags index="Transient" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActiveAirAttackDisabled"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ExterminateAir">
+        <Effect index="0" value="AP_ExterminateSet"/>
+        <Range value="8"/>
         <Cost>
-            <Cooldown TimeUse="1"/>
+            <Vital index="Energy" value="50"/>
+            <Cooldown>
+                <Link value="AP_Exterminate"/>
+                <Location value="Unit"/>
+                <TimeUse value="12"/>
+            </Cooldown>
         </Cost>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ExterminateCancel" Requirements="AP_HaveExterminateBehavior"/>
-    </CAbilEffectInstant>
+        <TargetFilters value="Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActiveAirAttackEnabled"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_ShadowSlice">
         <AbilSetId value="AP_ShadowSlice"/>
         <Effect index="0" value="AP_ShadowSliceInitialSet"/>
@@ -4749,7 +4755,7 @@
         <AbilCmd value="attack,Execute"/>
         <Effect value="AP_ArtanisCharge"/>
         <Cost>
-            <Cooldown Link="Charge" Location="Unit" TimeUse="2"/>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="10"/>
         </Cost>
         <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
         <AutoCastValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
