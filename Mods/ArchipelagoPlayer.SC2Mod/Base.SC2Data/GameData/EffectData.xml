@@ -4858,16 +4858,27 @@
     </CEffectEnumArea>
     <CEffectSet id="AP_RavagerCorrosiveBileSet">
         <EditorCategories value="Race:Zerg"/>
-        <EffectArray value="AP_RavagerCorrosiveBileDamage"/>
+        <EffectArray value="AP_RavagerCorrosiveBileEnemyDamage"/>
+        <EffectArray value="AP_RavagerCorrosiveBileFriendlyDamage"/>
         <EffectArray value="AP_RavagerCorrosiveBileForceFieldKill"/>
     </CEffectSet>
-    <CEffectDamage id="AP_RavagerCorrosiveBileDamage">
+    <CEffectDamage id="AP_RavagerCorrosiveBileEnemyDamage">
         <ValidatorArray value="NotInvulnerable"/>
         <EditorCategories value="Race:Zerg"/>
+        <ImpactUnitValidator value="AP_EnemyTarget"/>
         <ResponseFlags index="Acquire" value="1"/>
         <ResponseFlags index="Flee" value="1"/>
         <Flags index="Notification" value="1"/>
         <Amount value="60"/>
+    </CEffectDamage>
+    <CEffectDamage id="AP_RavagerCorrosiveBileFriendlyDamage">
+        <ValidatorArray value="NotInvulnerable"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactUnitValidator value="AP_FriendlyOrNeutralTarget"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Amount value="35"/>
     </CEffectDamage>
     <CEffectDamage id="AP_RavagerCorrosiveBileForceFieldKill">
         <ValidatorArray value="TargetIsForceField"/>
@@ -12842,7 +12853,7 @@
         <EditorCategories value=""/>
         <ResponseFlags index="Acquire" value="1"/>
         <ResponseFlags index="Flee" value="1"/>
-        <Amount value="130"/>
+        <Amount value="100"/>
         <Death value="Electrocute"/>
         <SearchFilters value="-;Enemy"/>
     </CEffectDamage>
@@ -20996,27 +21007,21 @@
         <ImpactEffect value="AP_StukovInfestedDiamondBackBileStreamDamage"/>
         <Flags index="Channeled" value="1"/>
         <AmmoUnit value="AP_StukovInfestedDiamondBackBileStreamSprayMissile"/>
-        <Movers Link="MissileDefault" IfRangeLTE="3"/>
-        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissileClose" IfRangeLTE="5"/>
-        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissile" IfRangeLTE="-1"/>
+        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissile"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="AP_StukovInfestedDiamondBackBileStreamSprayLaunchMissileAFake">
         <EditorCategories value="Race:Zerg"/>
         <ImpactEffect value="AP_StukovInfestedDiamondBackBileStreamDamageFake"/>
         <Flags index="Channeled" value="1"/>
         <AmmoUnit value="AP_StukovInfestedDiamondBackBileStreamSprayMissile"/>
-        <Movers Link="MissileDefault" IfRangeLTE="3"/>
-        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissileClose" IfRangeLTE="5"/>
-        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissile" IfRangeLTE="-1"/>
+        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissile"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="AP_StukovInfestedDiamondBackBileStreamSprayLaunchMissileBFake">
         <EditorCategories value="Race:Zerg"/>
         <ImpactEffect value="AP_StukovInfestedDiamondBackBileStreamDamageFake"/>
         <Flags index="Channeled" value="1"/>
         <AmmoUnit value="AP_StukovInfestedDiamondBackBileStreamSprayMissile"/>
-        <Movers Link="MissileDefault" IfRangeLTE="3"/>
-        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissileClose" IfRangeLTE="5"/>
-        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissile" IfRangeLTE="-1"/>
+        <Movers Link="AP_StukovInfestedDiamondBackBileStreamSprayMissile"/>
     </CEffectLaunchMissile>
     <CEffectDamage id="AP_StukovInfestedDiamondBackBileStreamDamage">
         <Amount value="10"/>
@@ -21164,7 +21169,7 @@
         <CreateFlags index="OffsetByRadius" value="0"/>
         <CreateFlags index="Precursor" value="1"/>
         <SpawnEffect value="AP_StukovInfestedDiamondbackSnareLaunchTargetToAPathableLocationLM"/>
-        <SpawnUnit value="AP_StukovInfestedDiamondbackSNARE_PLACEHOLDER"/>
+        <SpawnUnit value="AP_SNARE_PLACEHOLDER"/>
     </CEffectCreateUnit>
     <CEffectDamage id="AP_StukovInfestedDiamondbackSnareLaunchTargetToAPathableLocationRU">
         <ImpactLocation Value="TargetUnit"/>
@@ -25228,7 +25233,7 @@
         <!-- Train 3: Infested Dusk Wings       -->
         <PeriodicPeriodArray value="2"/>
         <!-- Train 4: Devouring Ones            -->
-        <PeriodicPeriodArray value="4"/>
+        <PeriodicPeriodArray value="6"/>
         <!-- Train 5: Hunter Killer             -->
         <PeriodicPeriodArray value="2"/>
         <!-- Train 6: Torrasque                 -->
@@ -25237,7 +25242,7 @@
         <PeriodicPeriodArray value="2"/>
         <!-- Train 8: Devouring Ones (Swarmling)-->
         <!-- (removed, replace if re-using index)-->
-        <PeriodicPeriodArray value="6"/>
+        <PeriodicPeriodArray value="9"/>
         <!-- Train 9: Yggdrasil                 -->
         <PeriodicPeriodArray value="1"/>
         <!-- Train 10: Thornshell               -->

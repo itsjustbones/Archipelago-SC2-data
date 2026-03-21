@@ -11244,6 +11244,27 @@ void libABFE498B_gf_AP_Triggers_Debug_Tech (int lp_player, int lp_level) {
     lib15EF4C78_gf_ZS_ApplyKerriganLevelBonus(lp_player, (lp_level * 10));
 }
 
+void libABFE498B_gf_AP_Triggers_Debug_AllBuildables (int lp_player) {
+    const int lv_allBits = 1073741823;
+
+    libABFE498B_gf_AP_Triggers_unlockTerranUnits(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockTerranUnits2(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockTerranBuildings(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockTerranMercenaries(lp_player, lv_allBits);
+
+    libABFE498B_gf_AP_Triggers_unlockZergUnits(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockZergStrain(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockZergMorph(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockZergMercenaries(lp_player, lv_allBits);
+
+    libABFE498B_gf_AP_Triggers_unlockProtossUnits(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockProtossUnits2(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_unlockProtossBuildings(lp_player, lv_allBits);
+    libABFE498B_gf_AP_Triggers_Protoss_unlockGateway(lp_player);
+    libABFE498B_gf_AP_Triggers_Protoss_unlockRoboticsFacility(lp_player);
+    libABFE498B_gf_AP_Triggers_Protoss_unlockStargate(lp_player);
+}
+
 void libABFE498B_gf_AP_Triggers_Debug_reviveKerrigan (int lp_player) {
     // Variable Declarations
     unit lv_unit;
@@ -11996,6 +12017,34 @@ void libABFE498B_gt_AP_Triggers_Debug_grantTech_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_Debug_grantAllBuildables
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, StringToText("Granting all buildable AP units and structures."), true);
+    libABFE498B_gf_AP_Triggers_Debug_AllBuildables(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables_Init () {
+    libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables = TriggerCreate("libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables_Func");
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables, c_playerAny, "-allbuildables", true);
+    TriggerAddEventChatMessage(libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables, c_playerAny, "-allbuilds", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: AP_Triggers_Debug_grantChecks
 //--------------------------------------------------------------------------------------------------
 bool libABFE498B_gt_AP_Triggers_Debug_grantChecks_Func (bool testConds, bool runActions) {
@@ -12372,6 +12421,7 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_Debug_reapplyDefaultBehaviors_Init();
     libABFE498B_gt_AP_Triggers_Debug_resetBase_Init();
     libABFE498B_gt_AP_Triggers_Debug_grantTech_Init();
+    libABFE498B_gt_AP_Triggers_Debug_grantAllBuildables_Init();
     libABFE498B_gt_AP_Triggers_Debug_grantChecks_Init();
     libABFE498B_gt_AP_Triggers_Debug_addAffectedPlayer_Init();
     libABFE498B_gt_AP_Triggers_Debug_updatePrompt_Init();

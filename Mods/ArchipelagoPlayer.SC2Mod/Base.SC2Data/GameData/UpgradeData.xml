@@ -5990,7 +5990,7 @@
         <Icon value="Assets\Textures\btn-ability-zerg-deeptunnel.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_HotSRavagerPotentBile">
-        <EffectArray Reference="Effect,AP_RavagerCorrosiveBileDamage,Amount" Value="40"/>
+        <EffectArray Reference="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount" Value="40"/>
         <AffectedUnitArray value="AP_Ravager"/>
         <AffectedUnitArray value="AP_RavagerBurrowed"/>
         <EditorCategories value="Race:Zerg"/>
@@ -8491,11 +8491,12 @@
         <EffectArray Operation="Set" Reference="Unit,AP_ZerglingBurrowed,Subtitle" Value="AP_Swarmling"/>
         <EffectArray Reference="Effect,AP_K5DropPodZerglings,SpawnCount" Value="4"/>
         <EffectArray Reference="Effect,AP_ZerglingRespawnTooltipDummy,SpawnCount" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Resource[Minerals]" Value="100"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[9]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Resource[Minerals]" Value="150"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[12]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[13]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[14]" Value="AP_MercZergling"/>
         <!--        Set dummy effect for merc tooltip -->
-        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <!--        <EffectArray Reference="Unit,AP_SwarmQueen,Food" Value="2"/>-->
         <!--        <EffectArray Reference="Unit,AP_SwarmQueenBurrowed,Food" Value="2"/>-->
         <!--        <EffectArray Reference="Unit,AP_SwarmQueenMorphing,Food" Value="2"/>-->
@@ -9966,7 +9967,7 @@
     </CUpgrade>
     <CUpgrade id="AP_DisruptorRestrainedDestruction">
         <Icon value="Assets\Textures\btn-upgrade-stetmann-banelingmanashieldefficiency.dds"/>
-        <EffectArray Operation="Set" Reference="Effect,AP_PurificationNovaFriendlyDamage,Amount" Value="65"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_PurificationNovaFriendlyDamage,Amount" Value="25"/>
         <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_Disruptor"/>
     </CUpgrade>
@@ -16644,8 +16645,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[3]" Value="AP_InfestedMedic"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[2]" Value="AP_InfestedSiegeBreaker"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[2]" Value="AP_InfestedDuskWing"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[4]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[5]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]" Value="AP_MercZergling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[2]" Value="AP_HunterKiller"/>
         <!--EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train6].Unit[2]" Value="AP_MercUltralisk"/-->
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[2]" Value="AP_Hunterling"/>
@@ -16658,7 +16660,7 @@
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[0]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[1]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[2]" Value="1.000000"/>
-        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[4]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[5]" Value="0.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[6]" Value="1.000000"/>
@@ -16690,8 +16692,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[4]" Value="AP_InfestedMedic"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[3]" Value="AP_InfestedSiegeBreaker"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[3]" Value="AP_InfestedDuskWing"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[9]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[10]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[11]" Value="AP_MercZergling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[3]" Value="AP_HunterKiller"/>
         <!--EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train6].Unit[3]" Value="AP_MercUltralisk"/-->
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[3]" Value="AP_Hunterling"/>
@@ -16701,7 +16704,7 @@
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[0]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[1]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[2]" Value="1.000000"/>
-        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[4]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[5]" Value="0.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[6]" Value="1.000000"/>
@@ -16827,8 +16830,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[3]" Value="AP_InfestedMedic"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[2]" Value="AP_InfestedSiegeBreaker"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[2]" Value="AP_InfestedDuskWing"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[4]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[5]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]" Value="AP_MercZergling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[2]" Value="AP_HunterKiller"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[2]" Value="AP_Hunterling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train8].Unit[7]" Value="AP_MercZergling"/>
@@ -16840,8 +16844,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[3]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[2]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[2]"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[4]"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[5]"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[2]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[2]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train8].Unit[7]"/>
@@ -16851,7 +16856,7 @@
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[0]" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[1]" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[2]" Value="1.000000"/>
-        <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[4]" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[5]" Value="0.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[6]" Value="1.000000"/>

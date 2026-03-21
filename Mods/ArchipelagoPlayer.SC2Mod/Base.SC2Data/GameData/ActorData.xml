@@ -39483,6 +39483,14 @@
     <CActorTurret id="AP_StukovInfestedDiamondBackTurret">
         <On Terms="TurretEnable.AP_StukovInfestedDiamondBack" Send="Create"/>
     </CActorTurret>
+    <CActorUnit id="AP_SNARE_PLACEHOLDER" parent="GenericUnitStandard" unitName="AP_SNARE_PLACEHOLDER">
+        <Model value="Invisible"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+    </CActorUnit>
     <CActorAction id="AP_StukovInfestedDiamondBackAttack" parent="GenericAttack" effectAttack="AP_StukovInfestedDiamondBackBeam">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
     </CActorAction>

@@ -3627,11 +3627,11 @@ Button/Tooltip/AP_RapidRegeneration=The Roach regenerates life very quickly whil
 Button/Tooltip/AP_RaptorCliffJumper=This unit can jump up and down cliffs.
 Button/Tooltip/AP_RaptorPassive=Zergling gains +2 damage.
 Button/Tooltip/AP_Ravager=Ranged artillery. Can use Corrosive Bile.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
-Button/Tooltip/AP_RavagerBileDamage=<c val="ffff8a">Ravager</c> Corrosive Bile damage is increased by <d ref="Upgrade,AP_HotSRavagerPotentBile,EffectArray[0].Value"/>.
+Button/Tooltip/AP_RavagerBileDamage=<c val="ffff8a">Ravager</c> Corrosive Bile enemy damage is increased by <d ref="Upgrade,AP_HotSRavagerPotentBile,EffectArray[0].Value"/>.
 Button/Tooltip/AP_RavagerBileRadius=<c val="ffff8a">Ravager</c> Corrosive Bile impact size is increased by <d ref="($UpgradeEffectArrayValue:AP_HotSRavagerBloatedBileDucts:Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius$/Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius-1)*100" player="0"/>%.
 Button/Tooltip/AP_RavagerBurrowed=Ranged artillery. Can use Corrosive Bile.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_RavagerCocoon=This cocoon contains a Roach that is morphing into a Ravager.
-Button/Tooltip/AP_RavagerCorrosiveBile=Launch a missile at the target location, dealing <d ref="Effect,AP_RavagerCorrosiveBileDamage,Amount"/> damage to all units in the area upon impact.<n/><n/><c val="#ColorAttackInfo">Can destroy Protoss Force Fields.</c>
+Button/Tooltip/AP_RavagerCorrosiveBile=Launch a missile at the target location, dealing <d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/> damage to enemy units and <d ref="Effect,AP_RavagerCorrosiveBileFriendlyDamage,Amount"/> damage to friendly units in the area upon impact.<n/><n/><c val="#ColorAttackInfo">Can destroy Protoss Force Fields.</c>
 Button/Tooltip/AP_RavagerPassive=Roach Warren enables you to morph Ravagers from Roaches.
 Button/Tooltip/AP_Raven=Aerial support unit. Can use Auto-Turret, Point Defense Drone and Seeker Missile.<n/><n/><c val="FFE303">Detector</c>
 Button/Tooltip/AP_RavenScramblerMissile=Disables a target unit rendering it unable to attack or use abilities for <d ref="Behavior,AP_RavenScramblerMissile,Duration"/> seconds. Reveals Cloaked units.<n/><n/><c val="#ColorAttackInfo">Can target mechanical and psionic units.</c>
@@ -3652,7 +3652,7 @@ Button/Tooltip/AP_ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive=Incre
 Button/Tooltip/AP_ResearchCycloneRapidFireLaunchers=Increases the attack speed of the first 12 shots of the <c val="ffff8a">Cyclone's</c> Lock On.
 Button/Tooltip/AP_ResearchMagFieldLaunchers=Increases <c val="ffff8a">Cyclone's</c> attack range by +<d ref="$UpgradeEffectArrayValue:AP_MagFieldLaunchers:Weapon,AP_TyphoonMissilePod,Range$"/>.
 Button/Tooltip/AP_RespawnZergling=Respawns up to <d ref="Effect,AP_ZerglingRespawnTooltipDummy,SpawnCount"/> Zerglings at no cost until all Zerglings have returned to life.
-Button/Tooltip/AP_RestrainedDestruction=Purification Nova does 50% reduced damage to friendly units and structures.
+Button/Tooltip/AP_RestrainedDestruction=Purification Nova does 75% reduced damage to friendly units and structures.
 Button/Tooltip/AP_RetributionField=The Predator unleashes a deadly field of electricity each time it attacks. Deals <d ref="Effect,AP_RetributionFieldDamage,Amount"/> damage.
 Button/Tooltip/AP_RevitalizeShields=Regenerate the shields of friendly units and structures in the target area, restoring <d ref="Effect,AP_RevitalizeShieldsModifyUnit,VitalArray[Shields].Change"/> shields to each.
 Button/Tooltip/AP_RevitalizeShieldsInstall=<d ref="Abil,AP_RevitalizeShields,Cost[0].Vital"/> Energy<n/>No Cooldown<n/>Regenerate the shields of friendly units and structures in the target area, restoring <d ref="Effect,AP_RevitalizeShieldsModifyUnit,VitalArray[Shields].Change"/> shields to each.
@@ -5342,7 +5342,8 @@ Effect/Name/AP_RaptorDeath=Raptor Death
 Effect/Name/AP_RaptorDeathApplyBehavior=Raptor Death Apply Behavior
 Effect/Name/AP_RavagerCorrosiveBileCP=Ravager Corrosive Bile CP
 Effect/Name/AP_RavagerCorrosiveBileCursorDummy=Ravager Corrosive Bile Cursor Dummy
-Effect/Name/AP_RavagerCorrosiveBileDamage=Ravager Corrosive Bile Damage
+Effect/Name/AP_RavagerCorrosiveBileEnemyDamage=Ravager Corrosive Bile Enemy Damage
+Effect/Name/AP_RavagerCorrosiveBileFriendlyDamage=Ravager Corrosive Bile Friendly Damage
 Effect/Name/AP_RavagerCorrosiveBileForceFieldKill=Ravager Corrosive Bile Force Field Kill
 Effect/Name/AP_RavagerCorrosiveBileLaunchDown=Ravager Corrosive Bile Launch Down
 Effect/Name/AP_RavagerCorrosiveBileLaunchSet=Ravager Corrosive Bile Launch Set
