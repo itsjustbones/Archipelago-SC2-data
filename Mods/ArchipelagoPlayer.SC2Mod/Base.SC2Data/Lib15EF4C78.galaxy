@@ -185,6 +185,9 @@ void lib15EF4C78_InitVariables () {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
@@ -209,16 +212,34 @@ void lib15EF4C78_InitVariables () {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarBackground[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarBackground[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[init_i] = c_invalidDialogControlId;
     }
     for (init_i = 0; init_i <= 3; init_i += 1) {
         lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyLabel[init_i] = c_invalidDialogControlId;
@@ -2598,6 +2619,9 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "BorderImage");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index] = DialogControlLastCreated();
     libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), true, PlayerGroupAll());
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "BorderImageAll");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index] = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), true, PlayerGroupAll());
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "BorderNoEnergyImage");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[lp_index] = DialogControlLastCreated();
     libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), true, PlayerGroupAll());
@@ -2610,12 +2634,20 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
     lib15EF4C78_gv_zS_SwarmHeroUIDialogDamageTakenImage[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "EnergyBarImage");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index] = DialogControlLastCreated();
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "ShieldedHeroEnergyBarImage");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "EnergyBarBackground");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarBackground[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "HealthBarImage");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index] = DialogControlLastCreated();
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "ShieldedHeroHealthBarImage");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "BarBackground");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarBackground[lp_index] = DialogControlLastCreated();
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "ShieldBarImage");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index] = DialogControlLastCreated();
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "ShieldBarBackground");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "IconImage");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogIconImage[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeLabel, "DamageTakenLabel");
@@ -2625,6 +2657,10 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
     lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyLabel[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeLabel, "HealthLabel");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lp_index] = DialogControlLastCreated();
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeLabel, "ShieldedHeroHealthLabel");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lp_index] = DialogControlLastCreated();
+    DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeLabel, "ShieldLabel");
+    lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeLabel, "LevelLabel");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogLevelLabel[lp_index] = DialogControlLastCreated();
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeLabel, "NameLabel");
@@ -2654,14 +2690,24 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
     lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[lp_index] = DialogControlLastCreated();
     DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogDamageTakenImage[lp_index], PlayerGroupAll(), false);
     DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], PlayerGroupAll(), false);
+    DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index], PlayerGroupAll(), false);
+    DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), false);
+    DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lp_index], PlayerGroupAll(), false);
+    DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
+    DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), false);
+    DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], PlayerGroupAll(), false);
     libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarBackground[lp_index], 510, PlayerGroupAll());
     libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarBackground[lp_index], 510, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], 511, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], 510, PlayerGroupAll());
 }
 
 void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     // Variable Declarations
+    bool lv_useShieldedHeroUI;
     text lv_hotkey;
     int lv_life;
+    int lv_shields;
     int lv_energy;
 
     // Automatic Variable Declarations
@@ -2699,16 +2745,60 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_7DF39159", "B", lv_hotkey);
     libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogNameLabel[lp_index], TextExpressionAssemble("Param/Expression/lib_15EF4C78_7DF39159"), PlayerGroupAll());
     libNtve_gf_SetDialogItemImage(lib15EF4C78_gv_zS_SwarmHeroUIDialogIconImage[lp_index], lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index], PlayerGroupAll());
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0);
+    if ((lv_useShieldedHeroUI == true)) {
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 46);
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 50);
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], PlayerGroupAll(), c_anchorTopLeft, 102, 35);
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 36);
+    }
+    else {
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 42);
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 42);
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], PlayerGroupAll(), c_anchorTopLeft, 102, 31);
+        DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 32);
+    }
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_DE0A8BC5", "CurrentLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropLife, c_unitPropCurrent), 0));
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_DE0A8BC5", "MaxLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropLifeMax, c_unitPropCurrent), 0));
     libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lp_index], TextExpressionAssemble("Param/Expression/lib_15EF4C78_DE0A8BC5"), PlayerGroupAll());
+    TextExpressionSetToken("Param/Expression/lib_15EF4C78_094D21C9", "CurrentLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropLife, c_unitPropCurrent), 0));
+    TextExpressionSetToken("Param/Expression/lib_15EF4C78_094D21C9", "MaxLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropLifeMax, c_unitPropCurrent), 0));
+    libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lp_index], TextExpressionAssemble("Param/Expression/lib_15EF4C78_094D21C9"), PlayerGroupAll());
     lv_life = FixedToInt((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropLifePercent, c_unitPropCurrent) * 2.24));
     if ((lv_life > 0)) {
-        DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), lv_life, 22);
-        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), true);
+        if ((lv_useShieldedHeroUI == true)) {
+            DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), lv_life, 18);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), false);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), true);
+        }
+        else {
+            DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), lv_life, 22);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), false);
+        }
     }
     else {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), false);
+    }
+    if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0)) {
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], PlayerGroupAll(), true);
+        TextExpressionSetToken("Param/Expression/lib_15EF4C78_1119D651", "CurrentLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShields, c_unitPropCurrent), 0));
+        TextExpressionSetToken("Param/Expression/lib_15EF4C78_1119D651", "MaxLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent), 0));
+        libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lp_index], TextExpressionAssemble("Param/Expression/lib_15EF4C78_1119D651"), PlayerGroupAll());
+        lv_shields = FixedToInt((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsPercent, c_unitPropCurrent) * 2.22));
+        if ((lv_shields > 0)) {
+            DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), lv_shields, lib15EF4C78_gv_cUC_HEROUISHIELDBARHEIGHT);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), true);
+        }
+        else {
+            DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), 1, lib15EF4C78_gv_cUC_HEROUISHIELDBARHEIGHT);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), false);
+        }
+    }
+    else {
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], PlayerGroupAll(), false);
     }
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_1421E6C3", "CurrentEnergy", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropEnergy, c_unitPropCurrent), 0));
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_1421E6C3", "MaxEnergy", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropEnergyMax, c_unitPropCurrent), 0));
@@ -2717,19 +2807,39 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
         lv_energy = 0;
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[lp_index], PlayerGroupAll(), true);
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index], PlayerGroupAll(), false);
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarBackground[lp_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
     }
     else {
         lv_energy = FixedToInt((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropEnergyPercent, c_unitPropCurrent) * 2.24));
-        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index], PlayerGroupAll(), true);
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0)) {
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index], PlayerGroupAll(), false);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index], PlayerGroupAll(), true);
+        }
+        else {
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index], PlayerGroupAll(), false);
+        }
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[lp_index], PlayerGroupAll(), false);
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarBackground[lp_index], PlayerGroupAll(), true);
     }
     if ((lv_energy > 0)) {
-        DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), lv_energy, 9);
-        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), true);
+        if ((lv_useShieldedHeroUI == true)) {
+            DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), lv_energy, 9);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), false);
+        }
+        else {
+            DialogControlSetSize(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), lv_energy, 9);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
+        }
     }
     else {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
     }
     if ((lib15EF4C78_gv_zS_SwarmHeroUIShowLevel[lp_index] == true)) {
         if ((lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index] == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player))) {
@@ -2760,6 +2870,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
         }
         if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropEnergyMax, c_unitPropCurrent) > 0)) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lp_index], PlayerGroupAll(), false);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
         }
 
     }
@@ -7902,6 +8013,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     int lv_damageBar;
     int lv_damageBarWidth;
     int lv_damageBarHeight;
+    int lv_damageBarPriority;
 
     // Automatic Variable Declarations
     unit auto6B7C2E37_val;
@@ -7909,6 +8021,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
 
     // Variable Initialization
     lv_damageBar = c_invalidDialogControlId;
+    lv_damageBarPriority = 511;
 
     // Conditions
     if (testConds) {
@@ -7934,23 +8047,54 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     }
     auto78DF5643_val = EventUnitProperty();
     if (auto78DF5643_val == c_unitPropEnergy) {
-        DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "AP_HotS_GameUnitFrame/HeroEnergyBarDamageTemplate/DamageBar");
-        DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lv_index], c_anchorLeft, 0, 0);
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+            DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "ap_hots_gameunitframe/HeroEnergyBarDamageTemplateShieldedHero");
+            DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lv_index], c_anchorLeft, 0, 0);
+            lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lv_index], 1);
+        }
+        else {
+            DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "AP_HotS_GameUnitFrame/HeroEnergyBarDamageTemplate/DamageBar");
+            DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lv_index], c_anchorLeft, 0, 0);
+            lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lv_index], 1);
+        }
         lv_damageBarWidth = FixedToInt((((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropEnergy, c_unitPropCurrent) - EventUnitPropertyChangeFixed()) / UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropEnergyMax, c_unitPropCurrent)) * 224.0));
         lv_damageBarWidth = MaxI(1, lv_damageBarWidth);
         lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyBarImage[lv_index], 1);
     }
     else if (auto78DF5643_val == c_unitPropLife) {
         DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "AP_HotS_GameUnitFrame/HeroHealthBarDamageTemplate/DamageBar");
-        DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lv_index], c_anchorLeft, 0, 0);
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+            DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lv_index], c_anchorLeft, 0, 0);
+            lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lv_index], 1);
+        }
+        else {
+            DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lv_index], c_anchorLeft, 0, 0);
+            lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lv_index], 1);
+        }
         lv_damageBarWidth = FixedToInt((((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropLife, c_unitPropCurrent) - EventUnitPropertyChangeFixed()) / UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropLifeMax, c_unitPropCurrent)) * 224.0));
         lv_damageBarWidth = MaxI(1, lv_damageBarWidth);
-        lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lv_index], 1);
+    }
+    else if (auto78DF5643_val == c_unitPropShields) {
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+            return true;
+        }
+
+        DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "ap_hots_gameunitframe/HeroShieldBarDamageTemplate/DamageBar");
+        DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lv_index], c_anchorLeft, 0, 0);
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0)) {
+            lv_damageBarWidth = FixedToInt((((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShields, c_unitPropCurrent) - EventUnitPropertyChangeFixed()) / UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent)) * 222.0));
+            lv_damageBarWidth = MaxI(1, lv_damageBarWidth);
+        }
+        else {
+            lv_damageBarWidth = 1;
+        }
+        lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lv_index], 1);
+        lv_damageBarPriority = 510;
     }
     else {
     }
     lv_damageBar = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemRenderPriority(lv_damageBar, 511, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lv_damageBar, lv_damageBarPriority, PlayerGroupAll());
     DialogControlSetVisible(lv_damageBar, PlayerGroupAll(), true);
     DialogControlSetSize(lv_damageBar, PlayerGroupAll(), lv_damageBarWidth, lv_damageBarHeight);
     Wait(1.0, c_timeReal);
@@ -7970,6 +8114,9 @@ void lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Init () {
     TriggerAddEventUnitProperty(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, UnitRefFromVariable("lib15EF4C78_gv_zS_SwarmHeroUIUnit[1]"), c_unitPropEnergy);
     TriggerAddEventUnitProperty(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, UnitRefFromVariable("lib15EF4C78_gv_zS_SwarmHeroUIUnit[2]"), c_unitPropEnergy);
     TriggerAddEventUnitProperty(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, UnitRefFromVariable("lib15EF4C78_gv_zS_SwarmHeroUIUnit[3]"), c_unitPropEnergy);
+    TriggerAddEventUnitProperty(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, UnitRefFromVariable("lib15EF4C78_gv_zS_SwarmHeroUIUnit[1]"), c_unitPropShields);
+    TriggerAddEventUnitProperty(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, UnitRefFromVariable("lib15EF4C78_gv_zS_SwarmHeroUIUnit[2]"), c_unitPropShields);
+    TriggerAddEventUnitProperty(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, UnitRefFromVariable("lib15EF4C78_gv_zS_SwarmHeroUIUnit[3]"), c_unitPropShields);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7986,7 +8133,7 @@ bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(((EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[2]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[2]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[2])))) {
+        if (!(((EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[2]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[2]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[2]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[3]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[3]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[3]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[1]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[2]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[3])))) {
             return false;
         }
     }
@@ -8004,12 +8151,26 @@ bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
             lv_index = 2;
         }
         else {
-            return true;
+            if (((EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[3]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[3]) || (EventDialogControl() == lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[3]))) {
+                lv_index = 3;
+            }
+            else {
+                return true;
+            }
         }
     }
     auto31F78A4F_val = EventDialogControlEventType();
     if (auto31F78A4F_val == c_triggerControlEventTypeMouseEnter) {
-        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lv_index], PlayerGroupAll(), true);
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lv_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lv_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lv_index], PlayerGroupAll(), false);
+        }
+        else {
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lv_index], PlayerGroupAll(), true);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lv_index], PlayerGroupAll(), false);
+            DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lv_index], PlayerGroupAll(), false);
+        }
         if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropEnergyMax, c_unitPropCurrent) > 0)) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyLabel[lv_index], PlayerGroupAll(), true);
         }
@@ -8017,6 +8178,8 @@ bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
     }
     else if (auto31F78A4F_val == c_triggerControlEventTypeMouseExit) {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lv_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lv_index], PlayerGroupAll(), false);
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lv_index], PlayerGroupAll(), false);
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyLabel[lv_index], PlayerGroupAll(), false);
     }
     else {
