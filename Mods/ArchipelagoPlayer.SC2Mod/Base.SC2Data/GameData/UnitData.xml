@@ -20379,8 +20379,8 @@
         <Collide index="ForceField" value="1"/>
         <Collide index="Small" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <LifeStart value="120"/>
-        <LifeMax value="120"/>
+        <LifeStart value="145"/>
+        <LifeMax value="145"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
@@ -20403,6 +20403,7 @@
         <AbilArray Link="que1"/>
         <AbilArray Link="AP_BurrowRavagerDown"/>
         <AbilArray Link="AP_RavagerCorrosiveBile"/>
+        <AbilArray Link="AP_RavagerAerialCorrosiveBile"/>
         <AbilArray Link="AP_DeepTunnel"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <WeaponArray Link="AP_RavagerWeapon"/>
@@ -20414,10 +20415,11 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_HotSRoachDamage" Type="Passive" Requirements="AP_HaveHotSRoachDamage" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_GlialReconstitution" Type="Passive" Requirements="AP_HaveHotSRoachSpeed" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_OrganicCarapace" Type="Passive" Requirements="AP_HaveHotSRoachHealth" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBile,Execute" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile" Row="1" Column="3"/>
             <LayoutButtons Face="AP_RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerCorrosiveBile,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_RavagerBrutaliskBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBrutaliskBonePlating" Row="2" Column="3"/>
             <LayoutButtons>
                 <Face value="AP_DeepTunnel"/>
                 <Type value="AbilCmd"/>
@@ -20477,14 +20479,16 @@
         <AbilArray Link="AP_BurrowRavagerUp"/>
         <AbilArray Link="AP_DeepTunnel"/>
         <AbilArray Link="AP_RavagerCorrosiveBile"/>
+        <AbilArray Link="AP_RavagerAerialCorrosiveBile"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_HotSRoachDamage" Type="Passive" Requirements="AP_HaveHotSRoachDamage" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_GlialReconstitution" Type="Passive" Requirements="AP_HaveHotSRoachSpeed" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_OrganicCarapace" Type="Passive" Requirements="AP_HaveHotSRoachHealth" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBile,Execute" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_RavagerBrutaliskBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBrutaliskBonePlating" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowRavagerUp,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>

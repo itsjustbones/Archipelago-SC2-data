@@ -5518,11 +5518,22 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_RavagerCorrosiveBileLaunchSet"/>
         <Cost>
-            <Cooldown TimeUse="10"/>
+            <Cooldown Link="AP_RavagerCorrosiveBileShared" Location="Unit" TimeUse="10"/>
         </Cost>
         <Range value="9"/>
         <CursorEffect value="AP_RavagerCorrosiveBileCursorDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBile">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_RavagerCorrosiveBileDirectAirLaunchSet"/>
+        <Cost>
+            <Cooldown Link="AP_RavagerCorrosiveBileShared" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Range value="9"/>
+        <CursorEffect value="AP_RavagerCorrosiveBileAirCursorDummy"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile"/>
     </CAbilEffectTarget>
     <CAbilMorph id="AP_MorphToRavager">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>

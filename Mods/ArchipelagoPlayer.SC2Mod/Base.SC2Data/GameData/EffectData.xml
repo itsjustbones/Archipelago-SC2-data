@@ -4775,13 +4775,33 @@
     <!-- Ravager Weapon -->
     <CEffectLaunchMissile id="AP_RavagerWeaponLM">
         <EditorCategories value="Race:Zerg"/>
-        <ImpactEffect value="AP_RavagerWeaponDamage"/>
+        <ImpactEffect value="AP_RavagerWeaponSet"/>
         <AmmoUnit value="AP_RavagerWeaponMissile"/>
     </CEffectLaunchMissile>
+    <CEffectSet id="AP_RavagerWeaponSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="AP_RavagerWeaponDamage"/>
+        <EffectArray value="AP_RavagerDisintegratingAcidApplyBehavior"/>
+    </CEffectSet>
     <CEffectDamage id="AP_RavagerWeaponDamage" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Zerg"/>
         <Amount value="16"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="AP_RavagerDisintegratingAcidApplyBehavior">
+        <ValidatorArray value="AP_HaveHotSRavagerDisintegratingAcid"/>
+        <ValidatorArray value="AP_EnemyTarget"/>
+        <ValidatorArray value="NotInvulnerable"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="AP_RavagerDisintegratingAcid"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_RavagerDisintegratingAcidApplyMaxBehavior">
+        <ValidatorArray value="AP_HaveHotSRavagerDisintegratingAcid"/>
+        <ValidatorArray value="AP_EnemyTarget"/>
+        <ValidatorArray value="NotInvulnerable"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="AP_RavagerDisintegratingAcid"/>
+        <Count value="6"/>
+    </CEffectApplyBehavior>
     <!-- Ravager Deep Tunnel -->
     <CEffectCreateUnit id="AP_DeepTunnelCU">
         <EditorCategories value="Race:Zerg"/>
@@ -4816,6 +4836,11 @@
         <EffectArray value="AP_RavagerCorrosiveBileWarningDummySearch"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
+    <CEffectSet id="AP_RavagerCorrosiveBileDirectAirLaunchSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="AP_RavagerCorrosiveBileDirectAirLaunch"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
     <CEffectCreatePersistent id="AP_RavagerCorrosiveBileCP">
         <EditorCategories value="Race:Zerg"/>
         <InitialEffect value="AP_RavagerCorrosiveBileLaunchUp"/>
@@ -4823,6 +4848,13 @@
         <ExpireEffect value="AP_RavagerCorrosiveBileLaunchDown"/>
         <AINotifyEffect value="AP_RavagerCorrosiveBileSearch"/>
     </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="AP_RavagerCorrosiveBileDirectAirLaunch">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactOffset value="0,0,4.400000"/>
+        <ImpactEffect value="AP_RavagerCorrosiveBileAirSearch"/>
+        <AmmoUnit value="AP_RavagerCorrosiveBileMissile"/>
+    </CEffectLaunchMissile>
     <CEffectLaunchMissile id="AP_RavagerCorrosiveBileLaunchUp">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="SourcePoint"/>
@@ -4837,9 +4869,24 @@
         <ImpactEffect value="AP_RavagerCorrosiveBileSearch"/>
         <AmmoUnit value="AP_RavagerCorrosiveBileMissile"/>
     </CEffectLaunchMissile>
+    <CEffectSet id="AP_RavagerCorrosiveBileSearchRoachlings">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="AP_RavagerCorrosiveBileSearch"/>
+        <EffectArray value="AP_RavagerCorrosiveBileSpawnRoachlings"/>
+    </CEffectSet>
+    <CEffectSet id="AP_RavagerCorrosiveBileAirSearchRoachlings">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="AP_RavagerCorrosiveBileAirSearch"/>
+        <EffectArray value="AP_RavagerCorrosiveBileSpawnRoachlings"/>
+    </CEffectSet>
     <CEffectEnumArea id="AP_RavagerCorrosiveBileSearch">
         <EditorCategories value="Race:Zerg"/>
         <SearchFilters value="-;Missile,Stasis,Dead,Hidden"/>
+        <AreaArray Radius="0.5" Effect="AP_RavagerCorrosiveBileSet"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_RavagerCorrosiveBileAirSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="Air;Missile,Stasis,Dead,Hidden"/>
         <AreaArray Radius="0.5" Effect="AP_RavagerCorrosiveBileSet"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_RavagerCorrosiveBileWarningDummySearch">
@@ -4856,11 +4903,17 @@
         <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="0.5"/>
     </CEffectEnumArea>
+    <CEffectEnumArea id="AP_RavagerCorrosiveBileAirCursorDummy">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="Air;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="0.5"/>
+    </CEffectEnumArea>
     <CEffectSet id="AP_RavagerCorrosiveBileSet">
         <EditorCategories value="Race:Zerg"/>
         <EffectArray value="AP_RavagerCorrosiveBileEnemyDamage"/>
         <EffectArray value="AP_RavagerCorrosiveBileFriendlyDamage"/>
         <EffectArray value="AP_RavagerCorrosiveBileForceFieldKill"/>
+        <EffectArray value="AP_RavagerDisintegratingAcidApplyMaxBehavior"/>
     </CEffectSet>
     <CEffectDamage id="AP_RavagerCorrosiveBileEnemyDamage">
         <ValidatorArray value="NotInvulnerable"/>
@@ -4873,6 +4926,7 @@
     </CEffectDamage>
     <CEffectDamage id="AP_RavagerCorrosiveBileFriendlyDamage">
         <ValidatorArray value="NotInvulnerable"/>
+        <ValidatorArray value="AP_NotRoachlingWhenRavagerRoachlingBile"/>
         <EditorCategories value="Race:Zerg"/>
         <ImpactUnitValidator value="AP_FriendlyOrNeutralTarget"/>
         <ResponseFlags index="Acquire" value="1"/>
@@ -4880,6 +4934,18 @@
         <Flags index="Notification" value="1"/>
         <Amount value="35"/>
     </CEffectDamage>
+    <CEffectCreateUnit id="AP_RavagerCorrosiveBileSpawnRoachlings">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <SpawnEffect value="AP_RavagerRoachlingFate"/>
+        <SpawnUnit value="AP_Roachling"/>
+        <SpawnCount value="3"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="AP_RavagerRoachlingFate">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="AP_RavagerRoachlingFate"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="AP_RavagerCorrosiveBileForceFieldKill">
         <ValidatorArray value="TargetIsForceField"/>
         <EditorCategories value="Race:Zerg"/>

@@ -7,6 +7,7 @@
         <DeathCustomPriorityList value="Nerazim"/>
         <DeathCustomPriorityList value="Aiur"/>
         <DeathCustomPriorityList value="Unity"/>
+        <DeathCustomPriorityList value="BrutaliskBone"/>
     </CActorGlobalConfig>
     <const id="$AP_LurkerSpineSiteOps" value="{AP_LurkerSOpAoEVariancer SOpShadow SOpForwardCasterPoint SOp2DRotation AP_LurkerSOpShadowSpine SOpRotVariancerUp15}"/>
     <CActorUnit default="1" id="GenericUnitStandard">
@@ -11635,7 +11636,13 @@
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerBurrowed" Send="AnimBracketStop Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerCocoon" Send="Create"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerCocoon" Send="$Birth 0 0.000000"/>
+        <On Terms="Upgrade.AP_HotSRavagerBrutaliskBonePlating.Add" Send="ModelSwap AP_RavagerBrutaliskBone"/>
+        <On Terms="Upgrade.AP_HotSRavagerBrutaliskBonePlating.Add" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBrutaliskBonePortrait"/>
+        <On Terms="ActorCreation; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Send="ModelSwap AP_RavagerBrutaliskBone"/>
+        <On Terms="UnitPortrait.*.Configure; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBrutaliskBonePortrait"/>
+        <On Terms="UnitDeathCustomize; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Send="DeathCustomize BrutaliskBone"/>
         <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart" Send="$Spell"/>
+        <On Terms="Abil.AP_RavagerAerialCorrosiveBile.SourceCastStart" Send="AnimPlay Attack Attack"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Birth"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
@@ -11654,6 +11661,7 @@
         <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
             <BodySquibs Name="Fire"/>
         </DeathCustoms>
+        <DeathCustoms ModelLink="AP_RavagerBrutaliskBoneDeath" SoundLink="Roach_Explode" Name="BrutaliskBone"/>
         <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
             <BodySquibs Name="Acid"/>
         </DeathCustoms>
@@ -11769,9 +11777,21 @@
         <Missile value="AP_RavagerCorrosiveBileMissile"/>
         <ImpactPointSiteOps Ops="SOpSourcePointSationary AP_SOpRavagerCorrosiveBileOffsetUp"/>
     </CActorAction>
+    <CActorAction id="AP_RavagerAerialCorrosiveBileAttack" parent="GenericAttack" effectImpact="AP_RavagerCorrosiveBileAirSearch" effectLaunch="AP_RavagerCorrosiveBileDirectAirLaunch">
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Ravager_CorrosiveBile_AttackLaunch"/>
+        <Missile value="AP_RavagerCorrosiveBileMissile"/>
+        <ImpactPointSiteOps Ops="SOpTargetPointStationary SOpShadow AP_SOpRavagerCorrosiveBileAirImpactOffset"/>
+        <ImpactMap index="None" Model="RavagerCorrosiveBileImpact" Sound="Ravager_CorrosiveBile_Explosion"/>
+        <ImpactModel value="GenericAttackImpactModelPoint"/>
+        <ImpactSound value="GenericAttackImpactSoundPoint"/>
+        <ShieldFlashType value="Full"/>
+    </CActorAction>
     <CActorSplat id="AP_RavagerCorrosiveBileCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerCorrosiveBile"/>
+    <CActorSplat id="AP_RavagerCorrosiveBileAirCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerAerialCorrosiveBile"/>
     <CActorForceSphere id="AP_RavagerCorrosiveBileImpactForce">
         <On Terms="Effect.AP_RavagerCorrosiveBileSearch.Start" Send="Create"/>
+        <On Terms="Effect.AP_RavagerCorrosiveBileAirSearch.Start" Send="Create"/>
         <HostSiteOps Ops="SOpTargetPoint SOpForwardLaunchGuide SOp2DRotation SOpRandomPointInCircleDot35"/>
         <Duration value="0.250000"/>
         <Magnitude value="30.000000,12.000000"/>
@@ -11793,11 +11813,18 @@
         <Icon value="Assets\Textures\RadarIcon2.dds"/>
         <IconArcLength value="3.250000"/>
     </CActorRange>
+    <CActorRange id="AP_RavagerAerialCorrosiveBileRange" parent="RangeAbil" abil="AP_RavagerAerialCorrosiveBile">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
     <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileOffsetDown">
         <LocalOffset value="0.000000,1.000000,30.000000"/>
     </CActorSiteOpLocalOffset>
     <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileOffsetUp">
         <LocalOffset value="0.000000,-1.000000,30.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileAirImpactOffset">
+        <LocalOffset value="0.000000,0.000000,4.400000"/>
     </CActorSiteOpLocalOffset>
     <!-- Swarm Host Deep Tunnel -->
     <CActorSplat id="AP_SwarmHostSplitBDeepBurrowSplatFinish" parent="BurrowedSplatBase">
@@ -25476,6 +25503,21 @@
         <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On" Send="Create"/>
         <On Terms="Behavior.AP_PurificationNovaTargettedTarget.Off" Send="Destroy"/>
         <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On" Send="SetScale 1.166667"/>\
+        <On Terms="ActorCreation" Send="SetTintColor {255,160,160 3.000000}"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.800000"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <Model value="PurificationNovaRangeIndicator"/>
+    </CActorModel>
+    <CActorModel id="AP_PurificationNovaFriendlyRangeIndicator" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.AP_PurificationNova.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="Create"/>
+        <On Terms="Behavior.AP_PurificationNova.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="SetScale 0.40000"/>
+        <On Terms="Behavior.AP_PurificationNova.Off" Send="Destroy"/>
+        <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="Create"/>
+        <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="SetScale 0.466667"/>
+        <On Terms="Behavior.AP_PurificationNovaTargettedTarget.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor {255,160,160 3.000000}"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.800000"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Model value="PurificationNovaRangeIndicator"/>

@@ -558,6 +558,21 @@
         <Find value="1"/>
         <Value value="AP_HaveHotSBanelingCorrosiveBile"/>
     </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HaveHotSRavagerRoachlingBile">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="AP_HotSHaveRavagerRoachlingBile"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HaveHotSRavagerBrutaliskBonePlating">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="AP_HotSHaveRavagerBrutaliskBonePlating"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HaveHotSRavagerDisintegratingAcid">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="AP_HotSHaveRavagerDisintegratingAcid"/>
+    </CValidatorPlayerRequirement>
     <CValidatorCombine id="AP_HaveHotSCorrosiveBileAndNotStructure">
         <Type value="And"/>
         <CombineArray value="AP_HaveHotSCorrosiveBile"/>
@@ -845,6 +860,15 @@
     <CValidatorUnitType id="AP_IsRoachling">
         <Value value="AP_Roachling"/>
     </CValidatorUnitType>
+    <CValidatorCombine id="AP_RoachlingWhenRavagerRoachlingBile">
+        <Type value="And"/>
+        <CombineArray value="AP_HaveHotSRavagerRoachlingBile"/>
+        <CombineArray value="AP_IsRoachling"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_NotRoachlingWhenRavagerRoachlingBile">
+        <CombineArray value="AP_RoachlingWhenRavagerRoachlingBile"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="AP_NotBurrowCharging">
         <Behavior value="AP_BurrowCharging"/>
     </CValidatorUnitCompareBehaviorCount>
