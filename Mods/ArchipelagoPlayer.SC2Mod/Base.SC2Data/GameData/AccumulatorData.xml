@@ -46,4 +46,30 @@
         <VitalType value="Shields"/>
         <ModificationType value="PerUnitMaxVital"/>
     </CAccumulatorVitals>
+    <CAccumulatorArithmetic id="AP_RangeBuffsFormula">
+        <Parameters value="0">
+            <AccumulatorArray value="AP_HavocRangeFormula"/>
+        </Parameters>
+        <Parameters value="0">
+            <AccumulatorArray value="AP_BattlecruiserRangeBuff"/>
+        </Parameters>
+    </CAccumulatorArithmetic>
+    <CAccumulatorArithmetic id="AP_HavocRangeFormula">
+        <Parameters value="0">
+            <AccumulatorArray value="AP_HavocRangeBuff"/>
+        </Parameters>
+        <Parameters value="0">
+            <AccumulatorArray value="AP_Constant2"/>
+        </Parameters>
+        <Operation value="Multiply"/>
+    </CAccumulatorArithmetic>
+    <CAccumulatorBehavior id="AP_HavocRangeBuff">
+        <Behavior value="AP_ObserverSquadSight"/>
+    </CAccumulatorBehavior>
+    <CAccumulatorConstant id="AP_Constant2">
+        <Amount value="2"/>
+    </CAccumulatorConstant>
+    <CAccumulatorBehavior id="AP_BattlecruiserRangeBuff">
+        <Behavior value="AP_BattlecruiserBonusRange"/>
+    </CAccumulatorBehavior>
 </Catalog>

@@ -3192,12 +3192,14 @@
         <ChargeText value="Button/Tooltip/AP_CommanderPrestigeAlarakMechBuffCharges"/>
     </CButton>
     <CButton id="AP_SlayerBlink">
-        <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
-        <AlertIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
-        <TooltipAppender Validator="AP_HaveWarCouncilNerfs" Text="Button/Tooltip/AP_AppendWarCouncilAbility"/>
+        <Icon value="AP\Assets\Textures\btn-ability-protoss-blink-red.dds"/>
+        <AlertIcon value="AP\Assets\Textures\btn-ability-protoss-blink-red.dds"/>
         <EditorCategories value="Race:Protoss"/>
         <HotkeySet value="AP_Blink"/>
         <HotkeyAlias value="AP_Blink"/>
+        <TooltipAppender Validator="AP_NoStalkerTaldarimAttackUpgrade" Text="Button/Tooltip/AP_SlayerBlinkAppend1"/>
+        <TooltipAppender Validator="AP_HaveStalkerTaldarimAttackUpgrade" Text="Button/Tooltip/AP_SlayerBlinkAppend2"/>
+        <TooltipAppender Validator="AP_HaveWarCouncilNerfs" Text="Button/Tooltip/AP_AppendWarCouncilAbility"/>
     </CButton>
     <CButton id="AP_HotSMetabolicBoost">
         <Icon value="Assets\Textures\btn-upgrade-zerg-hotsmetabolicboost.dds"/>
@@ -8277,5 +8279,69 @@
     <CButton id="AP_CreepTumorSuperCloak">
         <Icon value="Assets\Textures\btn-ability-zerg-generatecreepstop-color.dds"/>
         <AlertIcon value="Assets\Textures\btn-ability-zerg-generatecreepstop-color.dds"/>
+    </CButton>
+    <CButton id="AP_CenturionCloak">
+        <Icon value="Assets\Textures\talent-vorazun-level03-shadowguarddetectionsuppression.dds"/>
+        <AlertIcon value="Assets\Textures\talent-vorazun-level03-shadowguarddetectionsuppression.dds"/>
+    </CButton>
+    <CButton id="AP_CenturionDodge">
+        <Icon value="Assets\Textures\evasivemaneuvers_coop.dds"/>
+        <AlertIcon value="Assets\Textures\evasivemaneuvers_coop.dds"/>
+    </CButton>
+    <CButton id="AP_ChronoBoostEfficiency">
+        <Icon value="Assets\Textures\btn-upgrade-karax-chronofield.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-karax-chronofield.dds"/>
+    </CButton>
+    <CButton id="AP_SentinelArmor">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-arbitersuit-platearmor.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-fenix-arbitersuit-platearmor.dds"/>
+    </CButton>
+    <CButton id="AP_SentinelRecharge">
+        <Icon value="Assets\Textures\btn-progression-protoss-fenix-11-championtransferbuff.dds"/>
+        <AlertIcon value="Assets\Textures\btn-progression-protoss-fenix-11-championtransferbuff.dds"/>
+    </CButton>
+    <CButton id="AP_StalkerPurifierBlinkAttack">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-arbitersuit-weapon.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-fenix-arbitersuit-weapon.dds"/>
+    </CButton>
+    <CButton id="AP_StalkerTaldarimAttackUpgrade">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-combatmastery.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-alarak-combatmastery.dds"/>
+    </CButton>
+    <CButton id="AP_StalkerTaldarimPhaseAlignment">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-supplicantsacrifice-cooldown.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-alarak-supplicantsacrifice-cooldown.dds"/>
+    </CButton>
+    <CButton id="AP_NexusPowerField">
+        <Icon value="Assets\Textures\btn-tips-crystal.dds"/>
+        <AlertIcon value="Assets\Textures\btn-tips-crystal.dds"/>
+    </CButton>
+    <CButton id="AP_ProbePermanentCloak">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-permanentcloak.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-alarak-permanentcloak.dds"/>
+    </CButton>
+    <CButton id="AP_PylonImproved">
+        <Icon value="Assets\Textures\btn-upgrade-vorazun-darkpylonrecall.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-vorazun-darkpylonrecall.dds"/>
+    </CButton>
+    <CButton id="AP_WarpRelocatePylon">
+        <Icon value="Assets\Textures\btn-ability-protoss-massrecall.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-protoss-massrecall.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="AP_WarpRelocate"/>
+    </CButton>
+    <CButton id="AP_StalwartImprovedBarrier">
+        <Icon value="Assets\Textures\btn-ability-protoss-barrier-upgraded.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-protoss-barrier-upgraded.dds"/>
+    </CButton>
+    <CButton id="AP_ProtossBuildingShields">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-adeptshieldupgrade.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-adeptshieldupgrade.dds"/>
+    </CButton>
+    <CButton id="AP_WarpHarmonizationStargate">
+        <Icon value="Assets\Textures\btn-ability-spearofadun-warpharmonization.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-spearofadun-warpharmonization.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="AP_SOAWarpTech"/>
     </CButton>
 </Catalog>

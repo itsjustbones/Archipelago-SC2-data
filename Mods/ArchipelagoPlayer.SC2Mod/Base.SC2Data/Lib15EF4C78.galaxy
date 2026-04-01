@@ -5415,6 +5415,67 @@ void lib15EF4C78_gt_KerriganEconDrop_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_SentinelRecharge
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_SentinelRecharge_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+    int lv_casterPlayer;
+    int lv_targetPlayer;
+    fixed lv_remaining;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_casterPlayer = UnitGetOwner(lv_caster);
+    lv_targetPlayer = UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitTarget));
+
+    // Conditions
+    if (testConds) {
+        if (!((TechTreeUpgradeCount(lv_casterPlayer, "AP_SentinelRecharge", c_techCountCompleteOnly) >= 1))) {
+            return false;
+        }
+
+        if (!((UnitGetType(lv_caster) == "AP_ZealotPurifier"))) {
+            return false;
+        }
+
+        if (!((UnitHasBehavior(lv_caster, "AP_SentinelRechargeCooldown") == false))) {
+            return false;
+        }
+
+        if (!(((lv_casterPlayer >= 1) && (lv_casterPlayer <= 15)))) {
+            return false;
+        }
+
+        if (!(((lv_targetPlayer >= 1) && (lv_targetPlayer <= 15)))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerIsEnemy(lv_casterPlayer, lv_targetPlayer, libNtve_ge_PlayerRelation_Enemy) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddCooldown(lv_caster, "AP_ZealotPurifierReviveSupressed", "Behavior/AP_ZealotPurifierReviveSupressed", -1.0);
+    lv_remaining = UnitBehaviorDuration(lv_caster, "AP_ZealotPurifierReviveSupressed");
+    UnitBehaviorSetDurationRemaining(lv_caster, "AP_ZealotPurifierReviveSupressed", (lv_remaining-1));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_SentinelRecharge_Init () {
+    lib15EF4C78_gt_AP_Player_SentinelRecharge = TriggerCreate("lib15EF4C78_gt_AP_Player_SentinelRecharge_Func");
+    TriggerEnable(lib15EF4C78_gt_AP_Player_SentinelRecharge, false);
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_AP_Player_SentinelRecharge, c_playerAny, "AP_PsiBladesBurst");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: AP_Player_AvengerRecallUnselect
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_AP_Player_AvengerRecallUnselect_Func (bool testConds, bool runActions) {
@@ -9151,9 +9212,9 @@ void lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Player_GreaterSpireFixFacing
+// Trigger: 
 //--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func (bool testConds, bool runActions) {
+bool lib15EF4C78_gt_skjqufoomtccjegl_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -9165,9 +9226,9 @@ bool lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func (bool testConds, bool r
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Init () {
-    lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing = TriggerCreate("lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func");
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
+void lib15EF4C78_gt_skjqufoomtccjegl_Init () {
+    lib15EF4C78_gt_skjqufoomtccjegl = TriggerCreate("lib15EF4C78_gt_skjqufoomtccjegl_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_skjqufoomtccjegl, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9239,6 +9300,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_WarpRelocateAssimilatorFinish_Init();
     lib15EF4C78_gt_KerriganPsiStrike_Init();
     lib15EF4C78_gt_KerriganEconDrop_Init();
+    lib15EF4C78_gt_AP_Player_SentinelRecharge_Init();
     lib15EF4C78_gt_AP_Player_AvengerRecallUnselect_Init();
     lib15EF4C78_gt_AP_Player_ElderProbeWarpInHandler_Init();
     lib15EF4C78_gt_PM_SoAStatusWatch_Init();
@@ -9328,7 +9390,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init();
-    lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Init();
+    lib15EF4C78_gt_skjqufoomtccjegl_Init();
     lib15EF4C78_gt_EmitTransformerLand_Init();
 }
 

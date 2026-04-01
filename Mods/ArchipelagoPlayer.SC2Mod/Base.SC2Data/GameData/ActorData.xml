@@ -8900,6 +8900,7 @@
         <On Terms="Effect.AP_VoidStalkerBlinkShieldRestore.Stop; At Source" Send="Create"/>
         <On Terms="Effect.AP_VoidStalkerBlinkMultiple.Stop; At Source" Send="Create"/>
         <On Terms="Effect.AP_DisruptorBlink; At Source" Send="Create"/>
+        <On Terms="Effect.AP_PhaseBlink; At Source" Send="Create"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Sound value="Stalker_Blink"/>
@@ -19686,7 +19687,7 @@
         <On Terms="ActorCreation" Send="Create AP_HiveQueenDeathRagdollDetonationForce"/>
         <Model value="AP_HiveQueenDeathRagdoll"/>
     </CActorModel>
-    <CActorForceSphere id="AP_HiveQueenDeathRagdollDetonationForce" parent="DeathRagdollDetonationForce">
+    <CActorForceSphere id="AP_HiveQueenDeathRagdollDetonationForce" parent="AP_DeathRagdollDetonationForce">
         <Magnitude value="8.000000,4.000000"/>
         <Radius value="1.500000,0.250000"/>
     </CActorForceSphere>
@@ -23307,6 +23308,8 @@
         <On Terms="UnitBirth; ValidateUnit AP_NoDarkProtoss" Target="AP_PylonSplatTaldarim" Send="SetVisibility 1"/>
         <On Terms="UnitDeathCustomize; ValidateUnit AP_NoDarkProtoss" Send="DeathCustomize DarkProtoss"/>
         <On Terms="UnitConstruction.AP_Pylon; ValidatePlayer AP_HaveKaraxInstantStructureWarp" Send="AnimPlay BSD Stand,Build,End 0 -1.000000 -1.000000 1.500000 AsDuration 0.000000 60"/>
+        <On Terms="UnitBirth.AP_Pylon; ValidateUnit AP_HavePylonImproved" Send="SetScale 1.200000 2.000000"/>
+        <On Terms="Upgrade.AP_PylonImproved.Add" Send="SetScale 1.200000 2.000000"/>
         <Model value="Pylon"/>
         <AnimBlendTime value="0.750000"/>
         <BuildModel value="PylonBirth"/>
@@ -27236,28 +27239,8 @@
         <On Terms="StatusOff.*.PowerGlaze" Send="ModelMaterialRemove GlazePower"/>
         <On Terms="StatusOn.*.UnpoweredGlaze" Send="ModelMaterialApply GlazeUnpowered"/>
         <On Terms="StatusOff.*.UnpoweredGlaze" Send="ModelMaterialRemove GlazeUnpowered"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="TextureSelectById GatewayDarkDiffuse"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="TextureSelectById GatewayDarkSpecular"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="TextureSelectById GatewayDarkEmissive"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="TextureSelectById PylonDarkDiffuse"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="TextureSelectById PylonDarkSpecular"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="TextureSelectById PylonDarkEmissive"/>
-        <On Terms="ActorCreation; ValidateUnit AP_NoDarkProtoss" Send="TextureSelectById GatewayDarkDiffuse"/>
-        <On Terms="ActorCreation; ValidateUnit AP_NoDarkProtoss" Send="TextureSelectById GatewayDarkSpecular"/>
-        <On Terms="ActorCreation; ValidateUnit AP_NoDarkProtoss" Send="TextureSelectById GatewayDarkEmissive"/>
-        <On Terms="ActorCreation; ValidateUnit AP_NoDarkProtoss" Send="TextureSelectById PylonDarkDiffuse"/>
-        <On Terms="ActorCreation; ValidateUnit AP_NoDarkProtoss" Send="TextureSelectById PylonDarkSpecular"/>
-        <On Terms="ActorCreation; ValidateUnit AP_NoDarkProtoss" Send="TextureSelectById PylonDarkEmissive"/>
-        <On Terms="ActorCreation; !ValidatePlayer AP_HaveSOAWarpTech" Send="AnimGroupApply Superior"/>
-        <On Terms="ActorCreation; ValidatePlayer AP_HaveSOAWarpTech" Send="AnimPlay Morph Morph 0 0.000000 -1.000000 2.000000 AsDuration"/>
+        <On Terms="ActorCreation" Send="AnimPlay Morph Morph 0 0.000000 -1.000000 2.000000 AsDuration"/>
         <On Terms="AnimDone; AnimName Morph" Send="AnimGroupApply Superior"/>
-        <On Terms="UnitBirth; !ValidatePlayer AP_HaveSOAWarpTech" Send="AnimGroupApply Superior"/>
-        <On Terms="UnitBirth; ValidateUnit AP_HasPurifierProtoss" Send="TextureSelectById PurifierHackDiffuse"/>
-        <On Terms="Upgrade.AP_PurifierProtoss.Add" Send="TextureSelectById PurifierHackDiffuse"/>
-        <On Terms="Signal.*.PurifierHack" Send="TextureSelectById PurifierHackDiffuse"/>
-        <On Terms="Upgrade.AP_DarkProtoss.Add" Send="ModelSwap Gateway_Taldarim 255 PreventAllDynamicTextureTransfers"/>
-        <On Terms="UnitBirth; ValidateUnit AP_NoDarkProtoss" Send="ModelSwap Gateway_Taldarim 255 PreventAllDynamicTextureTransfers"/>
-        <On Terms="UnitDeathCustomize; ValidateUnit AP_NoDarkProtoss" Send="DeathCustomize DarkProtoss"/>
         <On Terms="Behavior.AP_ProdigalEngineerProductionTarget.On" Send="AnimSetTimeScale ::Baseline 0.200000"/>
         <On Terms="Behavior.AP_ProdigalEngineerProductionTarget.Off" Send="AnimSetTimeScale ::Baseline 1.000000"/>
         <On Terms="Behavior.AP_ProdigalEngineerProductionTarget.On" Send="AnimSetTimeScale GL_BSD 0.200000"/>
@@ -47474,4 +47457,168 @@
         <Icon value="Assets\Textures\RadarIcon2.dds"/>
         <IconArcLength value="3.000000"/>
     </CActorRange>
+    <CActorForceCylinder id="AP_StalkerTaldarimAttackUpgradeForce">
+        <HostSiteOps HoldPosition="1" HoldRotation="1"/>
+        <Receiver Subject="::Main"/>
+        <Duration value="0.150000"/>
+        <Magnitude value="63.000000,27.000000"/>
+        <HostEnd Subject="_ImpactGuide"/>
+        <HostEndSiteOps Ops="SOpForwardLaunchGuide SOp180 SOpMoveByDot5"/>
+        <Radius value="1.000000"/>
+    </CActorForceCylinder>
+    <CActorAction id="AP_StalkerPurifierAttack" parent="GenericAttack" effectImpact="AP_StalkerPurifierAttackU" effectLaunch="AP_StalkerPurifierAttackLM">
+        <On Terms="Signal.*.DarkProtossTest" Send="RefSetFromMsg ::actor.sender ::Sender"/>
+        <On Terms="Signal.*.DarkProtossTest; ValidateUnit AP_NoDarkProtoss" Target="::actor.sender" Send="Signal DarkProtossSwap"/>
+        <On Terms="Effect.AP_HighImpactParticleDisruptorsU.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.AP_HighImpactParticleDisruptorsU.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.AP_StalkerPurifierAttackCasterLM.Start; At Caster" Send="Create"/>
+        <LaunchSiteOps HoldPosition="1"/>
+        <LaunchAssets Sound="Stalker_AttackLaunch"/>
+        <ImpactMap index="None" Sound="Stalker_AttackImpact"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+        <ImpactPhysics Name="ParticleDisruptorImpact" MatchKeys="Basic" Physics="StalkerAttackDeathForce"/>
+        <AcquisitionYawHalfArc value="7.500000"/>
+        <AcquisitionPitchHalfArc value="15.000000"/>
+        <AccuracyHalfArc value="10.000000"/>
+    </CActorAction>
+    <CActorAction id="AP_StalkerTaldarimAttack" parent="GenericAttack" effectImpact="AP_StalkerTaldarimAttackU" effectLaunch="AP_StalkerTaldarimAttackLM">
+        <On Terms="Signal.*.DarkProtossTest" Send="RefSetFromMsg ::actor.sender ::Sender"/>
+        <On Terms="Signal.*.DarkProtossTest; ValidateUnit AP_NoDarkProtoss" Target="::actor.sender" Send="Signal DarkProtossSwap"/>
+        <On Terms="Effect.AP_HighImpactParticleDisruptorsU.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.AP_HighImpactParticleDisruptorsU.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchSiteOps HoldPosition="1"/>
+        <LaunchAssets Sound="Stalker_AttackLaunch"/>
+        <ImpactMap index="None" Sound="Stalker_AttackImpact"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+        <ImpactPhysics Name="ParticleDisruptorImpact" MatchKeys="Basic" Physics="StalkerAttackDeathForce"/>
+        <AcquisitionYawHalfArc value="7.500000"/>
+        <AcquisitionPitchHalfArc value="15.000000"/>
+        <AccuracyHalfArc value="10.000000"/>
+    </CActorAction>
+    <CActorMissile id="AP_StalkerPurifierAttackMissile" parent="GenericAttackMissile" unitName="AP_StalkerPurifierAttackMissile">
+        <On Terms="ActorCreation" Send="SetTintColor {75,255,0 1.300000}"/>
+        <Model value="AP_StalkerPurifierAttack"/>
+    </CActorMissile>
+    <CActorAction id="AP_StalkerTaldarimAttackUpgrade" parent="GenericAttack" effectImpact="AP_StalkerTaldarimAttackUpgradeU" effectLaunch="AP_StalkerTaldarimAttackUpgradeLM">
+        <On Terms="Effect.AP_HighImpactParticleDisruptorsU.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.AP_HighImpactParticleDisruptorsU.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchSiteOps HoldPosition="1"/>
+        <ImpactSiteOps Ops="SOpAttachCenter SOp2DRotation" HoldPosition="1"/>
+        <ImpactMap index="None" Sound="Protoss_Forged_Impact_Metal"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+        <ImpactPhysics Name="ParticleDisruptorImpact" MatchKeys="Basic" Physics="AP_StalkerTaldarimAttackUpgradeForce"/>
+        <AcquisitionYawHalfArc value="7.500000"/>
+        <AcquisitionPitchHalfArc value="15.000000"/>
+        <AccuracyHalfArc value="10.000000"/>
+        <ShieldFlashType value="Full"/>
+        <ImpactModel value="AP_StalkerTaldarimAttackUpgradeImpact"/>
+    </CActorAction>
+    <CActorMissile id="AP_StalkerTaldarimAttackMissile" parent="GenericAttackMissile" unitName="AP_StalkerTaldarimAttackMissile">
+        <Model value="AP_StalkerTaldarimAttack"/>
+    </CActorMissile>
+    <CActorModel id="AP_StalkerTaldarimAttackUpgradeBuff" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation; ScopeContains _NoGlaze" Send="Destroy"/>
+        <On Terms="Behavior.AP_PhaseBlinkDamage.On" Send="Create"/>
+        <On Terms="Behavior.AP_PhaseBlinkDamage.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="UnitBirth.AP_Slayer.EditorPlaced" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,200,200"/>
+        <HostSiteOps Ops="SOpAttachWeapon AP_StalkerTaldarimAttackUpgradeBuffRotation AP_StalkerTaldarimAttackUpgradeBuffOffset"/>
+        <Scale value="0.700000,0.700000,1.000000"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="AP_StalkerTaldarimAttackUpgradeBuffOffset">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,0.000000,0.100000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorMissile id="AP_StalkerTaldarimAttackUpgradeMissile" parent="GenericAttackMissile" unitName="AP_StalkerTaldarimAttackUpgradeMissile">
+        <Model value="AP_StalkerTaldarimAttackUpgrade"/>
+        <On Terms="ActorCreation" Send="SetTintColor {255,200,200 1.200000}"/>
+    </CActorMissile>
+    <CActorSiteOpRotationExplicit id="AP_StalkerTaldarimAttackUpgradeBuffRotation">
+        <EditorCategories value=""/>
+        <Forward value="0.000000,-1.000000,-1.000000"/>
+        <Up value="0.000000,0.000000,1.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorSplat id="AP_NexusPowerVisual">
+        <FogVisibility value="Visible"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpShadow"/>
+        <FadeIn value="0.000000"/>
+        <FadeOut value="0.000000"/>
+        <HoldTime value="-1.000000"/>
+        <Layer value="PowerLayer"/>
+        <Model value="PowerVisual"/>
+        <Scale value="1.250000"/>
+    </CActorSplat>
+    <CActorSplat id="AP_NexusUnpoweredVisual" parent="GenericUnitSplat">
+        <Aliases index="0" removed="1"/>
+        <Inherits index="CloakEffect" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <FogVisibility value="Visible"/>
+        <Supporter Subject=""/>
+        <On index="0" removed="1"/>
+        <On index="1" removed="1"/>
+        <On index="2" removed="1"/>
+        <HostSiteOps Ops="SOpShadow"/>
+        <FadeIn value="0.000000"/>
+        <FadeOut value="0.000000"/>
+        <Layer value="PowerLayer"/>
+        <Model value="UnpoweredVisual"/>
+        <Scale value="1.250000"/>
+        <Color value="0,0,0,0"/>
+    </CActorSplat>
+    <CActorPower id="AP_NexusPower">
+        <On Terms="Behavior.AP_NexusPowerSource.Create; ValidatePlayer AP_HaveNexusPowerField" Send="Create"/>
+        <On Terms="Behavior.AP_NexusPowerSource.Destroy" Send="Destroy"/>
+        <VisualArray value="AP_NexusUnpoweredVisual"/>
+        <VisualArray value="AP_NexusPowerVisual"/>
+    </CActorPower>
+    <CActorSiteOpEffect id="AP_SOpCasterUnitStationary">
+        <HoldPosition value="1"/>
+        <Location value="CasterUnit"/>
+    </CActorSiteOpEffect>
+    <CActorModel id="AP_StalkerTaldarimAttackUpgradeImpact" parent="GenericAttackImpactModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTintColor {255,200,200 1.200000}"/>
+    </CActorModel>
+    <CActorModel id="AP_CenturionDodge" parent="ModelAnimationStyleOneShot">
+        <Terms value="Cap 1"/>
+        <On Terms="Behavior.AP_CenturionDodge.DamageHandled" Send="Create"/>
+        <On Terms="UnitBirth.AP_ZealotShakuras.EditorPlaced" Send="Create"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.250000"/>
+        <On Terms="ActorCreation" Send="SetScale 1.400000 0.300000"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.200000 0.300000"/>
+        <On Terms="ActorCreation" Send="SetTintColor {100,255,100 1.200000}"/>
+        <On Terms="TimerExpired" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="Create AP_CenturionDodgeSound"/>
+        <Host Subject="_Selectable"/>
+        <Model value="AP_ZealotShakurasPlacement"/>
+    </CActorModel>
+    <CActorSound id="AP_CenturionDodgeSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <Sound value="AP_Ascendant_Launch"/>
+    </CActorSound>
+    <CActorModel id="AP_BlinkSlayerOriginModel" parent="ModelAnimationStyleOneShot">
+        <InheritType value="OneShot"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.AP_PhaseBlink.Start; At Source" Send="Create"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary"/>
+        <Model value="AP_BlinkOriginSlayer"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="AP_BlinkSlayerStopModel" parent="ModelAnimationStyleOneShot">
+        <InheritType value="OneShot"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.AP_PhaseBlink.Stop; At Source" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor {255,20,20 2.500000}"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <Model value="BlinkStopModel"/>
+    </CActorModel>
 </Catalog>

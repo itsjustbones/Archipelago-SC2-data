@@ -4546,8 +4546,8 @@
     </CEffectApplyBehavior>
     <CEffectSet id="AP_VoidZealotShadowChargeSet">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_VoidZealotShadowChargeStunTarget"/>
-        <EffectArray value="AP_VoidZealotShadowChargeSlowTarget"/>
+        <EffectArray value="AP_VoidZealotShadowChargeSearch"/>
+        <EffectArray value="AP_CenturionCloakAB"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_VoidZealotShadowChargeSlowTarget">
         <EditorCategories value=""/>
@@ -8158,7 +8158,7 @@
         <Kind value="Ranged"/>
         <Amount value="6"/>
         <Visibility value="Visible"/>
-    </CEffectDamage> 
+    </CEffectDamage>
     <CEffectCreatePersistent id="AP_InterceptorAiurLaunchPersistent">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
@@ -10587,8 +10587,16 @@
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
     </CEffectDamage>
-    <CEffectTeleport id="AP_VoidStalkerBlinkShieldRestore" parent="AP_Blink">
-        <!--TeleportEffect value="VoidStalkerShakurasBlinkSet"/-->
+    <CEffectTeleport id="AP_VoidStalkerBlinkShieldRestore">
+        <ValidatorArray value="AP_CasterNotFungalGrowthed"/>
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <PlacementAround Value="CasterUnit"/>
+        <PlacementRange value="8"/>
+        <Range value="8"/>
+        <TargetLocation Value="TargetPoint"/>
+        <TeleportFlags index="TestCliff" value="1"/>
         <TeleportEffect value="AP_VoidStalkerBlinkApplyRestore"/>
     </CEffectTeleport>
     <CEffectApplyBehavior id="AP_VoidStalkerBlinkApplyRestore">
@@ -10604,9 +10612,6 @@
             <Change value="1"/>
         </VitalArray>
     </CEffectModifyUnit>
-    <CEffectTeleport id="AP_VoidStalkerBlinkMultiple" parent="AP_Blink">
-        <!--TeleportEffect value="VoidStalkerPurifierBlinkSet"/-->
-    </CEffectTeleport>
     <CEffectIssueOrder id="AP_CopyBuildingAttackOrder">
         <ValidatorArray value="AP_HaveVolatileBurstBuilding"/>
         <EditorCategories value="Race:Zerg"/>
@@ -10892,7 +10897,7 @@
     </CEffectModifyUnit>
     <CEffectEnumArea id="AP_MatrixOverloadSearch">
         <SearchFilters value="-;Self,Ally,Neutral,Enemy,Structure,Worker,Missile,Item,Uncommandable,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="6" Effect="AP_MatrixOverloadSet"/>
+        <AreaArray Radius="9" Effect="AP_MatrixOverloadSet"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="AP_MatrixOverloadSearchSmall">
         <SearchFilters value="-;Self,Ally,Neutral,Enemy,Structure,Worker,Missile,Item,Uncommandable,Dead,Hidden,Invulnerable"/>
@@ -10901,6 +10906,7 @@
     <CEffectSet id="AP_MatrixOverloadSet">
         <EffectArray value="AP_MatrixOverloadDummyCheck"/>
         <EffectArray value="AP_MatrixOverloadAB"/>
+        <ValidatorArray value="AP_TargetLocationHasPower"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_SOAPylonWeaponAB">
         <ValidatorArray index="0" value="IsPylon"/>
@@ -11578,6 +11584,18 @@
         <RechargeVital value="Shields"/>
         <RechargeVitalRate value="500000"/>
     </CEffectCreateHealer>
+    <CEffectTeleport id="AP_PhaseBlink">
+        <ValidatorArray value="AP_CasterNotFungalGrowthed"/>
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <PlacementAround Value="CasterUnit"/>
+        <PlacementRange value="8"/>
+        <Range value="8"/>
+        <TargetLocation Value="TargetPoint"/>
+        <TeleportFlags index="TestCliff" value="1"/>
+        <TeleportEffect value="AP_PhaseBlinkSet"/>
+    </CEffectTeleport>
     <CEffectApplyBehavior id="AP_PhaseBlinkDamageAB">
         <EditorCategories value=""/>
         <WhichUnit Value="Caster"/>
@@ -11590,8 +11608,8 @@
     </CEffectRemoveBehavior>
     <CEffectSet id="AP_PhaseBlinkSet">
         <EditorCategories value=""/>
-        <EffectArray value="AP_Blink"/>
         <EffectArray value="AP_PhaseBlinkDamageAB"/>
+        <EffectArray value="AP_StalkerTaldarimAttackUpgradeRB"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectDamage id="AP_AlarakParticleDisruptorsU" parent="DU_WEAP_MISSILE">
@@ -12781,7 +12799,7 @@
         <PeriodicOffsetArray value="1,0,0"/>
         <PeriodicOffsetArray value="1.25,0,0"/>
         <PeriodicPeriodArray value="0.025"/>
-    </CEffectCreatePersistent>  
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="AP_SOAMothershipv4WarpAwayAB">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Source"/>
@@ -12894,10 +12912,8 @@
         <Behavior value="AP_PurificationNovaCooldownVisual"/>
     </CEffectApplyBehavior>
     <CEffectTeleport id="AP_DisruptorBlink">
-        <Name value="Effect/Name/AP_Blink"/>
         <ValidatorArray value="AP_CasterNotFungalGrowthed"/>
         <EditorCategories value="Race:Protoss"/>
-        <Marker Link="Effect/AP_Blink"/>
         <WhichUnit Value="Caster"/>
         <ClearQueuedOrders value="0"/>
         <PlacementAround Value="CasterUnit"/>
@@ -15089,7 +15105,6 @@
     </CEffectCreatePersistent>
     <CEffectCreateUnit id="AP_StrainInjectionSplitterlingCU">
         <CreateFlags index="UseFood" value="0"/>
-        <RallyUnit Value="Source"/>
         <SpawnEffect value="AP_StrainInjectionSplitterlingSpawn"/>
         <SpawnUnit value="AP_HotSSplitterlingMedium"/>
         <SpawnRange value="4"/>
@@ -15115,7 +15130,7 @@
     </CEffectSet>
     <CEffectCreateUnit id="AP_StrainInjectionSplitterlingSecondCU">
         <CreateFlags index="UseFood" value="0"/>
-        <RallyUnit Effect="AP_StrainInjectionSplitterlingCU" Value="SourceUnit"/>
+        <RallyUnit Effect="AP_StrainInjectionSplitterlingCU" Value="Source"/>
         <SpawnEffect value="AP_TimedLife20AB"/>
         <SpawnUnit value="AP_HotSSplitterlingMedium"/>
         <SpawnRange value="4"/>
@@ -19055,10 +19070,10 @@
         <SearchFilters value="Ground;Self,Player,Ally,Neutral,Structure,Missile,Dead,Hidden"/>
         <AreaArray Radius="7.5" Effect="AP_TaldarimMothershipGroundSlowAB"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
-    </CEffectEnumArea>  
+    </CEffectEnumArea>
     <CEffectApplyBehavior id="AP_TaldarimMothershipGroundSlowAB">
         <Behavior value="AP_TaldarimMothershipGroundSlowDebuff"/>
-    </CEffectApplyBehavior>  
+    </CEffectApplyBehavior>
     <CEffectCreatePersistent id="AP_TornadoMissileCP">
         <ValidatorArray value="AP_TornadoMaxDistance"/>
         <ValidatorArray value="AP_TornadoMissileFilters"/>
@@ -20455,7 +20470,7 @@
         <EditorCategories value="Race:Protoss"/>
         <ValidatorArray value="AP_IsAiurUnit"/>
         <Behavior value="AP_AiurMothershipEnergyRegenAuraBuffAiur"/>
-    </CEffectApplyBehavior> 
+    </CEffectApplyBehavior>
     <CEffectSet id="AP_AiurMothershipEnergyRegenAuraSet">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_AiurMothershipEnergyRegenAuraBuffAB"/>
@@ -24925,17 +24940,6 @@
             <ChangeFraction value="1"/>
         </VitalArray>
     </CEffectModifyUnit>
-    <CEffectModifyUnit id="AP_VoidStalkerBlinkMultipleCooldown">
-        <EditorCategories value="Race:Protoss"/>
-        <ImpactUnit Value="Caster"/>
-        <Cost Behavior="AP_StalkerPurifierRecentlyReconstructed" CooldownTimeUse="-2"/>
-    </CEffectModifyUnit>
-    <CEffectSet id="AP_VoidStalkerBlinkMultipleSet">
-        <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="AP_VoidStalkerBlinkMultiple"/>
-        <EffectArray value="AP_VoidStalkerBlinkMultipleCooldown"/>
-        <TargetLocationType value="Point"/>
-    </CEffectSet>
     <CEffectEnumArea id="AP_OracleStasisWardActivateSearchAir">
         <EditorCategories value="Race:Protoss"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
@@ -25801,7 +25805,7 @@
         <EditorCategories value=""/>
         <WhichUnit Value="Source"/>
         <BehaviorLink value="AP_LurkerCarapace"/>
-    </CEffectRemoveBehavior>   
+    </CEffectRemoveBehavior>
     <CEffectCreateUnit id="AP_ZergBuildingSpawnSplitterling2">
         <ValidatorArray value="AP_ZergBuildingSpawnSplitterlings"/>
         <EditorCategories value="Race:Zerg"/>
@@ -25832,4 +25836,191 @@
         <SpawnUnit value="AP_HotSSplitterlingMedium"/>
         <SpawnCount value="6"/>
     </CEffectCreateUnit>
+    <CEffectSet id="AP_StalkerTaldarimAttackUpgrade">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_StalkerTaldarimAttackUpgradeU"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_StalkerTaldarimAttackUpgradeAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_StalkerTaldarimAttackUpgradeRestock"/>
+    </CEffectApplyBehavior>
+    <CEffectLaunchMissile id="AP_StalkerTaldarimAttackUpgradeLM">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactEffect value="AP_StalkerTaldarimAttackUpgrade"/>
+        <AmmoUnit value="AP_StalkerTaldarimAttackUpgradeMissile"/>
+        <Movers Link="AP_StalkerPurifierWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="AP_StalkerTaldarimAttackLM">
+        <ValidatorArray index="0" value="AP_NoStalkerTaldarimAttackBuff"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactEffect value="AP_StalkerTaldarimAttack"/>
+        <AmmoUnit value="AP_StalkerTaldarimAttackMissile"/>
+        <Movers Link="AP_StalkerPurifierWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectRemoveBehavior id="AP_StalkerTaldarimAttackUpgradeRB">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AP_StalkerTaldarimAttackUpgradeRestock"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="AP_StalkerTaldarimAttackUpgradeSet">
+        <ValidatorArray value="AP_HasStalkerTaldarimAttackBuff"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AP_StalkerTaldarimAttackUpgradeLM"/>
+        <EffectArray value="AP_PhaseBlinkDamageRB"/>
+        <EffectArray value="AP_StalkerTaldarimAttackUpgradeAB"/>
+    </CEffectSet>
+    <CEffectDamage id="AP_StalkerTaldarimAttackUpgradeU" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Protoss"/>
+        <AttributeBonus index="Armored" value="8"/>
+        <Amount value="20"/>
+        <AreaArray Fraction="1"/>
+        <AreaArray Fraction="0.5"/>
+        <AreaArray Fraction="0.25"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_StalkerTaldarimAttack">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_StalkerTaldarimAttackU"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="AP_StalkerPurifierAttackLM">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactEffect value="AP_StalkerPurifierAttack"/>
+        <AmmoUnit value="AP_StalkerPurifierAttackMissile"/>
+        <Movers Link="AP_StalkerPurifierWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="AP_StalkerPurifierAttackSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_StalkerPurifierAttackMarkerAB"/>
+        <EffectArray value="AP_StalkerPurifierAttackLM"/>
+    </CEffectSet>
+    <CEffectSet id="AP_StalkerTaldarimAttackSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_StalkerTaldarimAttackLM"/>
+        <EffectArray value="AP_StalkerTaldarimAttackUpgradeSet"/>
+    </CEffectSet>
+    <CEffectDamage id="AP_StalkerPurifierAttackU" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Protoss"/>
+        <AttributeBonus index="Armored" value="4"/>
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_StalkerPurifierAttack">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_StalkerPurifierAttackU"/>
+    </CEffectSet>
+    <CEffectDamage id="AP_StalkerTaldarimAttackU" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Protoss"/>
+        <AttributeBonus index="Armored" value="4"/>
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="AP_StalkerPurifierAttackMarkerAB">
+        <EditorCategories value=""/>
+        <Behavior value="AP_StalkerPurifierAttackMarker"/>
+    </CEffectApplyBehavior>
+    <CEffectTeleport id="AP_VoidStalkerBlinkMultiple">
+        <ValidatorArray value="AP_CasterNotFungalGrowthed"/>
+        <EditorCategories value="Race:Protoss"/>
+        <!--TeleportEffect value="AP_VoidStalkerBlinkMultipleSet"/-->
+        <WhichUnit Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <PlacementAround Value="CasterUnit"/>
+        <PlacementRange value="8"/>
+        <Range value="8"/>
+        <TargetLocation Value="TargetPoint"/>
+        <TeleportFlags index="TestCliff" value="1"/>
+    </CEffectTeleport>
+    <CEffectSet id="AP_VoidStalkerBlinkMultipleSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_VoidStalkerBlinkMultipleSearchSourcePoint"/>
+        <EffectArray value="AP_VoidStalkerBlinkMultipleSearchTargetPoint"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_VoidStalkerBlinkMultipleCasterAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_VoidStalkerBlinkMultipleCaster"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="AP_VoidStalkerBlinkMultipleSearchTargetPoint">
+        <ExtraRadiusBonus value="0">
+            <AccumulatorArray value="AP_RangeBuffsFormula"/>
+        </ExtraRadiusBonus>
+        <ValidatorArray value="AP_VoidStalkerBlinkMultiple"/>
+        <EditorCategories value="Race:Protoss"/>
+        <LaunchLocation Effect="AP_VoidStalkerBlinkMultiple" Value="CasterUnit"/>
+        <ImpactLocation Effect="AP_VoidStalkerBlinkMultiple" Value="CasterUnit"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="AP_StalkerPurifierAttackTarget"/>
+            <SortArray value="TSRandom"/>
+        </TargetSorts>
+        <AreaArray Arc="30" Radius="7" Effect="AP_StalkerPurifierAttackCasterLM"/>
+        <MaxCount value="1"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="AP_VoidStalkerBlinkMultipleSearchSourcePoint">
+        <ExtraRadiusBonus value="0">
+            <AccumulatorArray value="AP_RangeBuffsFormula"/>
+        </ExtraRadiusBonus>
+        <EditorCategories value="Race:Protoss"/>
+        <LaunchLocation Effect="AP_VoidStalkerBlinkMultiple" Value="CasterUnit"/>
+        <ImpactLocation Effect="AP_VoidStalkerBlinkMultiple" Value="CasterPoint"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetSorts>
+            <SortArray value="AP_StalkerPurifierAttackTarget"/>
+            <SortArray value="TSRandom"/>
+        </TargetSorts>
+        <AreaArray Arc="30" Radius="7" Effect="AP_VoidStalkerBlinkMultipleTargetSet"/>
+        <MaxCount value="1"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="AP_StalkerPurifierAttackCasterLM">
+        <EditorCategories value="Race:Protoss"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactEffect value="AP_StalkerPurifierAttack"/>
+        <AmmoUnit value="AP_StalkerPurifierAttackMissile"/>
+        <Movers Link="AP_StalkerPurifierWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="AP_VoidStalkerBlinkMultipleTargetSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AP_VoidStalkerBlinkMultipleCasterAB"/>
+        <EffectArray value="AP_StalkerPurifierAttackLM"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_CenturionCloakAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_CenturionCloak"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_CenturionDodgeAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_CenturionDodge"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AP_CenturionDodgeHandled">
+        <EffectArray value="AP_CenturionDodgeReset"/>
+        <EffectArray value="AP_CenturionDodgeAB"/>
+    </CEffectSet>
+    <CEffectSet id="AP_CenturionDodgeInitial">
+        <EffectArray value="AP_CenturionDodgeReset"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="AP_CenturionDodgeRB">
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AP_CenturionDodge"/>
+    </CEffectRemoveBehavior>
+    <CEffectUserData id="AP_CenturionDodgeReset">
+        <Key value="AP_CenturionDodge"/>
+        <Amount value="0"/>
+        <SourceKey value="AP_CenturionDodge"/>
+        <Operation value="Set"/>
+        <ValidateMin value="3"/>
+        <ValidateMax value="10"/>
+        <EffectSuccess value="AP_CenturionDodgeHandled"/>
+        <BehaviorScope Behavior="AP_CenturionDodgeTracker"/>
+    </CEffectUserData>
+    <CEffectUserData id="AP_CenturionDodgeTracker">
+        <Key value="AP_CenturionDodge"/>
+        <SourceKey value="AP_CenturionDodge"/>
+        <ValidateMax value="3"/>
+        <BehaviorScope Behavior="AP_CenturionDodgeTracker"/>
+        <ValidateMin value="3"/>
+        <EffectSuccess value="AP_CenturionDodgeHandled"/>
+    </CEffectUserData>
 </Catalog>

@@ -1609,16 +1609,16 @@ void libABFE498B_gf_AP_Triggers_unlockProtossSolariteCore (int lp_player, int lp
         libABFE498B_gf_AP_Triggers_Protoss_unlockAmplifiedAssimilators, // 12
         libABFE498B_gf_AP_Triggers_Protoss_unlockProbeWarpin, // 13
         libABFE498B_gf_AP_Triggers_Protoss_unlockElderProbes, // 14
-        ap_triggers_PlayerConsumer_sig, // 15
-        ap_triggers_PlayerConsumer_sig, // 16
-        ap_triggers_PlayerConsumer_sig, // 17
-        ap_triggers_PlayerConsumer_sig, // 18
-        ap_triggers_PlayerConsumer_sig, // 19
-        ap_triggers_PlayerConsumer_sig, // 20
-        ap_triggers_PlayerConsumer_sig, // 21
-        ap_triggers_PlayerConsumer_sig, //22
-        ap_triggers_PlayerConsumer_sig, //23
-        ap_triggers_PlayerConsumer_sig, //24
+        libABFE498B_gf_AP_Triggers_Protoss_unlockPylonPsiEnhancement, // 15
+        libABFE498B_gf_AP_Triggers_Protoss_unlockNexusKhaydarinCore, // 16
+        libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyFleetBeacon, // 17
+        libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyRoboticsBay, // 18
+        libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyTemplarArchive, // 19
+        libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyDarkShrine, // 20
+        libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyProtossProduction, // 21
+        libABFE498B_gf_AP_Triggers_Protoss_unlockWarpHarmonizationStargate, // 22
+        libABFE498B_gf_AP_Triggers_Protoss_unlockChronoBoostEfficiency, // 23
+        libABFE498B_gf_AP_Triggers_Protoss_unlockBuildingShields, // 24
         ap_triggers_PlayerConsumer_sig, //25
         ap_triggers_PlayerConsumer_sig, //26
         ap_triggers_PlayerConsumer_sig, //27
@@ -1819,28 +1819,28 @@ void libABFE498B_gf_AP_Triggers_unlockProtossForge5 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Protoss_unlockTaldarimMothershipBloodFusedParticles, // 5
         libABFE498B_gf_AP_Triggers_Protoss_unlockOracleSurfaceStabilizer, // 6
         libABFE498B_gf_AP_Triggers_Protoss_unlockTempestDistributedAttack, // 7
-        ap_triggers_PlayerConsumer_sig, // 8
-        ap_triggers_PlayerConsumer_sig, // 9
-        ap_triggers_PlayerConsumer_sig, // 10
-        ap_triggers_PlayerConsumer_sig, // 11
-        ap_triggers_PlayerConsumer_sig, // 12
-        ap_triggers_PlayerConsumer_sig, // 13
-        ap_triggers_PlayerConsumer_sig, // 14
-        ap_triggers_PlayerConsumer_sig, // 15
-        ap_triggers_PlayerConsumer_sig, // 16
+        libABFE498B_gf_AP_Triggers_Protoss_unlockCenturionCloak, // 8
+        libABFE498B_gf_AP_Triggers_Protoss_unlockCenturionDodge, // 9
+        libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelRecharge, // 10
+        libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelArmor, // 11
+        libABFE498B_gf_AP_Triggers_Protoss_unlockSlayerAttackUpgrade, // 12
+        libABFE498B_gf_AP_Triggers_Protoss_unlockSlayerPhaseAlignment, // 13
+        libABFE498B_gf_AP_Triggers_Protoss_unlockInstigatorBlinkAttack, // 14
+        libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartImprovedBarrier, // 15
+        libABFE498B_gf_AP_Triggers_Protoss_unlockProbeNerazimCoating, // 16
         ap_triggers_PlayerConsumer_sig, // 17
         ap_triggers_PlayerConsumer_sig, // 18
         ap_triggers_PlayerConsumer_sig, // 19
         ap_triggers_PlayerConsumer_sig, // 20
-        ap_triggers_PlayerConsumer_sig, //21,
-        ap_triggers_PlayerConsumer_sig, //22
-        ap_triggers_PlayerConsumer_sig, //23
-        ap_triggers_PlayerConsumer_sig, //24
-        ap_triggers_PlayerConsumer_sig, //25
-        ap_triggers_PlayerConsumer_sig, //26
-        ap_triggers_PlayerConsumer_sig, //27
-        ap_triggers_PlayerConsumer_sig, //28
-        ap_triggers_PlayerConsumer_sig //29
+        ap_triggers_PlayerConsumer_sig, // 21
+        ap_triggers_PlayerConsumer_sig, // 22
+        ap_triggers_PlayerConsumer_sig, // 23
+        ap_triggers_PlayerConsumer_sig, // 24
+        ap_triggers_PlayerConsumer_sig, // 25
+        ap_triggers_PlayerConsumer_sig, // 26
+        ap_triggers_PlayerConsumer_sig, // 27
+        ap_triggers_PlayerConsumer_sig, // 28
+        ap_triggers_PlayerConsumer_sig // 29
     );
 }
 
@@ -8956,6 +8956,67 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockShieldBattery (int lp_player) {
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_ProtossBuild", 21), true);
 }
 
+void libABFE498B_gf_AP_Triggers_Protoss_unlockProbeNerazimCoating (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ProbePermanentCloak", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockZealotFamilyLegEnhancements (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ZealotSCBWSpeedUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockZealotFamilyShieldCapacity (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ZealotShieldCapacity", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockZealotWhirlwind (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidZealotWhirlwind", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCenturionCloak (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CenturionCloak", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCenturionDodge (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CenturionDodge", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCenturionResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyCenturion", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelRecharge (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentinelRecharge", 1);
+    TriggerEnable(lib15EF4C78_gt_AP_Player_SentinelRecharge, true);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelArmor (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentinelArmor", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencySentinel", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Protoss_unlockSupplicantBloodShields (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -8989,28 +9050,10 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockSupplicantSacrifice (int lp_player
     PlayerAddResponse(lp_player, "AP_SupplicantSacrifice");
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptShockwave (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalkerPhaseReactor (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptKillBounce", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptResonatingGlaives (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptPiercingAttack", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptPhaseBulwark (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptShieldUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptDisruptiveTransfer (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptDisruptiveTransfer", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalkerPhaseReactor", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockStalkerFamilyDisintegratingParticles (int lp_player) {
@@ -9023,6 +9066,30 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockStalkerFamilyParticleReflection (i
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidStalkerMultishot", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSlayerAttackUpgrade (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalkerTaldarimAttackUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSlayerPhaseAlignment (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalkerTaldarimPhaseAlignment", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSlayerPhaseBlink (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SlayerBlink", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockInstigatorBlinkAttack (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalkerPurifierBlinkAttack", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockInstigatorModernizedServos (int lp_player) {
@@ -9075,624 +9142,94 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockDragoonPhalanxSuit (int lp_player)
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DragoonPhalanxSuit", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutCombatSensorArray (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptShockwave (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutWeaponRange", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptKillBounce", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutApialSensors (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptResonatingGlaives (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutSCBWSightUpgrade", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptPiercingAttack", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutGraviticThrusters (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptPhaseBulwark (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutSCBWSpeedUpgrade", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptShieldUpgrade", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutAdvancedPhotonBlasters (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptDisruptiveTransfer (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutAdvancedPhotonBlasters", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AdeptDisruptiveTransfer", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutResourceEfficiency (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryFamilyCloakingModule (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutResourceEfficiency", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryCloak", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutSupplyEfficiency (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryFamilyShieldBatteryRapidRecharging (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutSupplyEfficiency", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_KaraxEnergyRegenUpgrade", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOppressorVulcanBlaster (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryForceField (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutTaldarimVulcanBlaster", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryForceField", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOppressorArmorMeltingBlasters (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryHallucination (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutTaldarimArmorMeltingBlasters", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryHallucination", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOppressorOptimizedLogistics (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryDoubleShieldRecharge (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutTaldarimOptimizedLogistics", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryDoubleShieldRecharge", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusCoronaBeam (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerReclamation (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierCoronaBeam", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_EnergizerReclamation", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusSideMissiles (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerForgedChassis (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierSideMissiles", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_EnergizerForgedChassis", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusStructureTargeting (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerMobileChronoBeam (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierStructureTargeting", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_EnergizerMobileChronoBeam", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusSolariteReactor (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockHavocDetectWeakness (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierSolariteReactor", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHavocTargetLockBuff", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockMistWingPhantomDash (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockHavocBloodshardResonance (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutNerazimPhantomDash", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHavocAbilityRange", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockMistWingSuperCloak (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockHavocEnduringSight (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutNerazimSuperCloak", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockMistWingPilot (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutNerazimPilot", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutExpeditionaryHull (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutExpeditionaryHull", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestTectonicDestabilizers (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestTectonicDestabilizers", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestQuanticReactor (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestQuanticReactor", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestGravitySling (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestGravitySling", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestInterplanetaryRange (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestInterplanetaryRange", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestDisintegration (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestDisintegration", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestDistributedAttack (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestDistributedAttack", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockPhoenixMirageIonicWavelengthFlux (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImprovedIonCannons", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockPhoenixMirageAnionPulseCrystals (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnionPulseCrystals", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockPhoenixDoubleGravitonBeam (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidPhoenixDoubleGraviton", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockMirageGravitonBeam (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_MirageGravitonBeam", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSkirmisherPeerContempt (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SkirmisherPeerContempt", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairStealthDrive (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairPermanentCloak", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairArgusJewel (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairArgusJewel", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairSustainingDisruption (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairSustainingDisruption", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairNeutronShields (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairShieldUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairNetworkDisruption (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairNetworkDisruption", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleStasisCalibration (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleStasisWardUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleStealthDrive (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OraclePermanentCloak", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleStasisExpansion (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleStasisWardAir", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleTemporalAccelerationBeam (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleSustainablePulsarBeam", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleBosonicCore (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleEnergyUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleSurfaceStabilizer (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleGround", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterChronostaticReinforcement (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterReinforcedHull", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterKhaydarinCore (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterEnergyUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterSpacetimeAnchor (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterSustainingStasisField", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterResourceEfficiency (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyArbiter", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterEnhancedCloakField (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterCloakFieldRange", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterAbilityEfficiency (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterAbilityEfficiency", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierGravitonCatapult (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierAiurLaunchSpeedUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierHullOfPastGlories (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierStructuralIntegrityReinforcements", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierAiurRepairDrones (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierAiurRepairDrones", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockTriremeBomberMiniaturization (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierPurifierHangarUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSkylordHyperjump (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SkylordHyperjump", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockVoidRayFamilyFluxVanes (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRaySpeedUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockVoidRayPrismaticRange (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPrismaticRange", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockPulsarChronoShear (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayAiurChronoShear", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockPulsarEntropicReversal (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayAiurAutoRepair", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockPulsarChronoclysm (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayAiurChronoclysm", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerSolariteLens (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPurifierRange", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerAntiSurfaceCountermeasures (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPurifierAntiGroundArmor", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerEnhancedShieldGenerator (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPurifierShieldCapacity", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDestroyerReforgedBloodshardCore (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DestroyerChargingBeam", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDestroyerResourceEfficiency (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DestroyerResourceEfficiency", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismGraviticDrive (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_GraviticDrive", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismPhaseBlaster (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpPrismPhaseBlaster", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismWarConfiguration (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpPrismWarConfiguration", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismWarpRefraction (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpPrismWarpRefraction", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockObserverGraviticBoosters (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ObserverGraviticBooster", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockObserverSensorArray (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ObserverSightUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockObserverScopophobia (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ObserverScopophobia", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverScarabDamage (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScarabDamageUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverSolaritePayload (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverIncreasedScarabSplashRadius", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverReaverCapacity (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverHangarIncreaseUpgrade", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverResourceEfficiency (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyReaver", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverBargainBinPrices (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverBargainBinPrices", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverKhalaiReplicators (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverKhalaiReplicators", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardAgonyLaunchers (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakVanguardLongshot", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardMatterDispersion (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakVanguardIncreaseSplashArea", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardRapidfireCannon (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardRapidfireCannon", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardFusionMortars (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardFusionMortars", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilySingularityCharge (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalIncreasedRange", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyAdvancedTargetingMechanics (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalAirAttack", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyDisruptorDispersion (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidImmortalWeaponSplash", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalImprovedBarrier (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalImprovedBarrier", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorTwilightChassis (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnnihilatorTwilightChassis", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartStrutEnhancements (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartStrutEnhancements", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartArcInducers (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartArcInducers", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartStabilizedElectrodes (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartStabilizedElectrodes", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartHighVoltageCapacitors (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartHighVoltageCapacitors", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartLatticedShields (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartLatticedShields", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockColossusPacificationProtocols (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ColossusRapidIgnition", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockColossusFireLance (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ColossusFireLance", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWrathwalkerRapidPowerCycling (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakColossusChargedBlastChargeTime", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWrathwalkerEyeOfWrath (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WrathwalkerLongRangeChargedBlast", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockWrathwalkerAerialTracking (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WrathwalkerAerialTracking", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerKryhasCloak (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AvengerCloak", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarLesserShadowFury (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryLesser", 1);
-    if ((TechTreeUpgradeCount(lp_player, "AP_DarkTemplarShadowFuryGreater", c_techCountCompleteOnly) >= 1)) {
-        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryAll", 1);
-    }
-
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarGreaterShadowFury (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryGreater", 1);
-    if ((TechTreeUpgradeCount(lp_player, "AP_DarkTemplarShadowFuryLesser", c_techCountCompleteOnly) >= 1)) {
-        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryAll", 1);
-    }
-
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterBrutalEfficiency (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterBrutalEfficiency", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShroudOfAdun (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ShroudOfAdun", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShadowGuardTraining (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowGuardTraining", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyBlink (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarResearchShadowDash", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyResourceEfficiency (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyDarkTemplar", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarDarkArchonMeld (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkArchonMeld", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarArchonMerge (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShakurasArchon", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HavocEnduringSight", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockHighTemplarSignifierUnshackledPisonicStorm (int lp_player) {
@@ -9721,6 +9258,42 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockHighTemplarPlasmaSurge (int lp_pla
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HighTemplarPlasmaSurge", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSignifierFeedback (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SignifierFeedback", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantPowerOverwhelming (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHighTemplarImprovedSacrifice", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantPowerChaoticAttunement (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHighTemplarPsionicOrbTravelDistance", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantBloodAmulet (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodAmulet", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantAbilityEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AscendantAbilityEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantArchonMerge (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HighTemplarTaldarimArchon", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockArchonHighArchon (int lp_player) {
@@ -9790,12 +9363,6 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockArchonWeaponUpgrade (int lp_player
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArchonWeaponUpgrade", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSignifierFeedback (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SignifierFeedback", 1);
-}
-
 void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkArchonFeedback (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -9820,142 +9387,228 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkArchonIndomitableWill (int lp_
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkArchonIndomitableWill", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantPowerOverwhelming (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarLesserShadowFury (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHighTemplarImprovedSacrifice", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryLesser", 1);
+    if ((TechTreeUpgradeCount(lp_player, "AP_DarkTemplarShadowFuryGreater", c_techCountCompleteOnly) >= 1)) {
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryAll", 1);
+    }
+
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantPowerChaoticAttunement (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarGreaterShadowFury (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHighTemplarPsionicOrbTravelDistance", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryGreater", 1);
+    if ((TechTreeUpgradeCount(lp_player, "AP_DarkTemplarShadowFuryLesser", c_techCountCompleteOnly) >= 1)) {
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowFuryAll", 1);
+    }
+
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantBloodAmulet (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShroudOfAdun (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodAmulet", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ShroudOfAdun", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantAbilityEfficiency (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShadowGuardTraining (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AscendantAbilityEfficiency", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowGuardTraining", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockAscendantArchonMerge (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyBlink (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HighTemplarTaldarimArchon", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarResearchShadowDash", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryFamilyCloakingModule (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyResourceEfficiency (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryCloak", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyDarkTemplar", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryFamilyShieldBatteryRapidRecharging (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarDarkArchonMeld (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_KaraxEnergyRegenUpgrade", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkArchonMeld", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryForceField (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarArchonMerge (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryForceField", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShakurasArchon", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryHallucination (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerKryhasCloak (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryHallucination", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AvengerCloak", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSentryDoubleShieldRecharge (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterBrutalEfficiency (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SentryDoubleShieldRecharge", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterBrutalEfficiency", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerReclamation (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilySingularityCharge (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_EnergizerReclamation", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalIncreasedRange", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerForgedChassis (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyAdvancedTargetingMechanics (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_EnergizerForgedChassis", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalAirAttack", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockEnergizerMobileChronoBeam (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyDisruptorDispersion (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_EnergizerMobileChronoBeam", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidImmortalWeaponSplash", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockHavocDetectWeakness (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalImprovedBarrier (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHavocTargetLockBuff", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalImprovedBarrier", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockHavocBloodshardResonance (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorTwilightChassis (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakHavocAbilityRange", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnnihilatorTwilightChassis", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockHavocEnduringSight (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardAgonyLaunchers (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HavocEnduringSight", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakVanguardLongshot", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockZealotFamilyLegEnhancements (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardMatterDispersion (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ZealotSCBWSpeedUpgrade", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakVanguardIncreaseSplashArea", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockZealotFamilyShieldCapacity (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardRapidfireCannon (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ZealotShieldCapacity", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardRapidfireCannon", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockZealotWhirlwind (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardFusionMortars (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidZealotWhirlwind", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardFusionMortars", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockCenturionResourceEfficiency (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartImprovedBarrier (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyCenturion", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartImprovedBarrier", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSentinelResourceEfficiency (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartStrutEnhancements (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencySentinel", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartStrutEnhancements", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockStalkerPhaseReactor (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartArcInducers (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalkerPhaseReactor", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartArcInducers", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockSlayerPhaseBlink (int lp_player) {
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartStabilizedElectrodes (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SlayerBlink", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartStabilizedElectrodes", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartHighVoltageCapacitors (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartHighVoltageCapacitors", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartLatticedShields (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_StalwartLatticedShields", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockColossusPacificationProtocols (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ColossusRapidIgnition", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockColossusFireLance (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ColossusFireLance", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWrathwalkerRapidPowerCycling (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AlarakColossusChargedBlastChargeTime", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWrathwalkerEyeOfWrath (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WrathwalkerLongRangeChargedBlast", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWrathwalkerAerialTracking (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WrathwalkerAerialTracking", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverScarabDamage (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScarabDamageUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverSolaritePayload (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverIncreasedScarabSplashRadius", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverReaverCapacity (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverHangarIncreaseUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyReaver", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverBargainBinPrices (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverBargainBinPrices", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockReaverKhalaiReplicators (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ReaverKhalaiReplicators", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockDisruptorPermanentCloak (int lp_player) {
@@ -9980,6 +9633,408 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockDisruptorRestructuredThrusters (in
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DisruptorRestructuredThrusters", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockObserverGraviticBoosters (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ObserverGraviticBooster", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockObserverSensorArray (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ObserverSightUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockObserverScopophobia (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ObserverScopophobia", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismGraviticDrive (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_GraviticDrive", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismPhaseBlaster (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpPrismPhaseBlaster", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismWarConfiguration (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpPrismWarConfiguration", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpPrismWarpRefraction (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpPrismWarpRefraction", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutExpeditionaryHull (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutExpeditionaryHull", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutCombatSensorArray (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutWeaponRange", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutApialSensors (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutSCBWSightUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutGraviticThrusters (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutSCBWSpeedUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutAdvancedPhotonBlasters (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutAdvancedPhotonBlasters", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutResourceEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockScoutSupplyEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutSupplyEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOppressorVulcanBlaster (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutTaldarimVulcanBlaster", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOppressorArmorMeltingBlasters (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutTaldarimArmorMeltingBlasters", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOppressorOptimizedLogistics (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutTaldarimOptimizedLogistics", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockMistWingPhantomDash (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutNerazimPhantomDash", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockMistWingSuperCloak (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutNerazimSuperCloak", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockMistWingPilot (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutNerazimPilot", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusCoronaBeam (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierCoronaBeam", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusSideMissiles (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierSideMissiles", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusStructureTargeting (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierStructureTargeting", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCaladriusSolariteReactor (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScoutPurifierSolariteReactor", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPhoenixMirageIonicWavelengthFlux (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImprovedIonCannons", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPhoenixMirageAnionPulseCrystals (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnionPulseCrystals", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPhoenixDoubleGravitonBeam (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidPhoenixDoubleGraviton", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockMirageGravitonBeam (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_MirageGravitonBeam", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSkirmisherPeerContempt (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SkirmisherPeerContempt", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairStealthDrive (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairPermanentCloak", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairArgusJewel (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairArgusJewel", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairSustainingDisruption (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairSustainingDisruption", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairNeutronShields (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairShieldUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCorsairNetworkDisruption (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CorsairNetworkDisruption", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVoidRayFamilyFluxVanes (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRaySpeedUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVoidRayPrismaticRange (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPrismaticRange", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDestroyerReforgedBloodshardCore (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DestroyerChargingBeam", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDestroyerResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DestroyerResourceEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerSolariteLens (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPurifierRange", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerAntiSurfaceCountermeasures (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPurifierAntiGroundArmor", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDawnbringerEnhancedShieldGenerator (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayPurifierShieldCapacity", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPulsarChronoShear (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayAiurChronoShear", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPulsarEntropicReversal (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayAiurAutoRepair", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPulsarChronoclysm (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidRayAiurChronoclysm", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleStasisCalibration (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleStasisWardUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleStealthDrive (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OraclePermanentCloak", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleStasisExpansion (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleStasisWardAir", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleTemporalAccelerationBeam (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleSustainablePulsarBeam", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleBosonicCore (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleEnergyUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOracleSurfaceStabilizer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OracleGround", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierGravitonCatapult (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierAiurLaunchSpeedUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierHullOfPastGlories (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierStructuralIntegrityReinforcements", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockCarrierAiurRepairDrones (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierAiurRepairDrones", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockSkylordHyperjump (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_SkylordHyperjump", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTriremeBomberMiniaturization (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_CarrierPurifierHangarUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestTectonicDestabilizers (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestTectonicDestabilizers", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestQuanticReactor (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestQuanticReactor", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestGravitySling (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestGravitySling", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestInterplanetaryRange (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestInterplanetaryRange", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestDisintegration (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestDisintegration", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockTempestDistributedAttack (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_TempestDistributedAttack", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterChronostaticReinforcement (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterReinforcedHull", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterKhaydarinCore (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterEnergyUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterSpacetimeAnchor (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterSustainingStasisField", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ResourceEfficiencyArbiter", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterEnhancedCloakField (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterCloakFieldRange", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockArbiterAbilityEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ArbiterAbilityEfficiency", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockMothershipTimeFieldModules (int lp_player) {
@@ -10293,6 +10348,77 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockElderProbes (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ElderProbes", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockPylonPsiEnhancement (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_PylonImproved", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockNexusKhaydarinCore (int lp_player) {
+    // Automatic Variable Declarations
+    unitgroup autoEC563A1C_g;
+    int autoEC563A1C_u;
+    unit autoEC563A1C_var;
+
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_NexusPowerField", 1);
+    autoEC563A1C_g = UnitGroup("AP_Nexus", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
+    autoEC563A1C_u = UnitGroupCount(autoEC563A1C_g, c_unitCountAll);
+    for (;; autoEC563A1C_u -= 1) {
+        autoEC563A1C_var = UnitGroupUnitFromEnd(autoEC563A1C_g, autoEC563A1C_u);
+        if (autoEC563A1C_var == null) { break; }
+        lib15EF4C78_gf_AP_Player_ReapplyDefaultBehaviorsToUnit(autoEC563A1C_var);
+    }
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyFleetBeacon (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OperationalEfficiencyFleetBeacon", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyRoboticsBay (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OperationalEfficiencyRoboticsBay", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyTemplarArchive (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OperationalEfficiencyTemplarArchive", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyDarkShrine (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OperationalEfficiencyDarkShrine", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockOperationalEfficiencyProtossProduction (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_OperationalEfficiencyProtossProduction", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockWarpHarmonizationStargate (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_WarpHarmonizationStargate", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockChronoBoostEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ChronoBoostEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockBuildingShields (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ProtossBuildingShields", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockGroundWeapons (int lp_player, int lp_level) {
