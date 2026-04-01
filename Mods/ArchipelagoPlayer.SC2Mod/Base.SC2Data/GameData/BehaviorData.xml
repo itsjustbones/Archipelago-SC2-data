@@ -1528,7 +1528,24 @@
     <CBehaviorBuff id="AP_RavagerRoachlingFate" parent="TimedLife">
         <InfoIcon value="Assets\Textures\btn-ability-zerg-explode.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
-        <Duration value="10"/>
+        <Duration value="15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerSpawnRoachlingsOnDeath">
+        <InfoFlags index="Hidden" value="1"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-unit-zerg-roachlings.dds"/>
+        <Requirements value="AP_HotSHaveRavagerRoachlingBile"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="AP_RavagerDeathSpawnRoachlings"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerBurrowedBombardmentBehavior">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HotSHaveRavagerBurrowedBombardment"/>
+        <Modification>
+            <WeaponEnableArray value="AP_RavagerBurrowedBombardmentWeapon"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_RavagerDisintegratingAcid">
         <Alignment value="Negative"/>

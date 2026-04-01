@@ -4778,6 +4778,11 @@
         <ImpactEffect value="AP_RavagerWeaponSet"/>
         <AmmoUnit value="AP_RavagerWeaponMissile"/>
     </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="AP_RavagerBurrowedBombardmentWeaponLM">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="AP_RavagerWeaponSet"/>
+        <AmmoUnit value="AP_RavagerWeaponMissile"/>
+    </CEffectLaunchMissile>
     <CEffectSet id="AP_RavagerWeaponSet">
         <EditorCategories value="Race:Zerg"/>
         <EffectArray value="AP_RavagerWeaponDamage"/>
@@ -4940,7 +4945,15 @@
         <CreateFlags index="Placement" value="0"/>
         <SpawnEffect value="AP_RavagerRoachlingFate"/>
         <SpawnUnit value="AP_Roachling"/>
-        <SpawnCount value="3"/>
+        <SpawnCount value="2"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="AP_RavagerDeathSpawnRoachlings">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="SourcePoint"/>
+        <CreateFlags index="Placement" value="0"/>
+        <SpawnEffect value="AP_RavagerRoachlingFate"/>
+        <SpawnUnit value="AP_Roachling"/>
+        <SpawnCount value="4"/>
     </CEffectCreateUnit>
     <CEffectApplyBehavior id="AP_RavagerRoachlingFate">
         <EditorCategories value="Race:Zerg"/>

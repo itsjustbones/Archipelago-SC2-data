@@ -11628,6 +11628,12 @@
         <Macros value="PhysicsDeathsVoidGround"/>
         <Macros value="TerrainSquibAnimations"/>
         <Macros value="AP_DeepTunnelMacro"/>
+        <Remove Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+        <Remove Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart; WeaponTargetElevation LE -20.000000" Send="AnimBracketStart Attack Attack,Inferior"/>
+        <Remove Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <Remove Terms="WeaponStop.AP_RavagerBurrowedBombardmentWeapon.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart" Send="AnimClear Attack"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Ravager_Land"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget"/>
@@ -11715,6 +11721,10 @@
     </CActorUnit>
     <CActorModel id="AP_RavagerDeathRagdoll" parent="UnitDeathRagdoll"/>
     <CActorSound id="AP_Ravager_Land" parent="SoundOneShot"/>
+    <CActorSound id="AP_RavagerBurrowedBombardmentLaunchSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_RavagerBurrowedBombardmentWeaponLM.Start" Send="Create"/>
+        <Sound value="Ravager_AttackLaunch"/>
+    </CActorSound>
     <CActorAction id="AP_RavagerAttack" parent="GenericAttack" effectImpact="AP_RavagerWeaponDamage" effectLaunch="AP_RavagerWeaponLM">
         <LaunchAssets Model="" Sound="Ravager_AttackLaunch"/>
         <Missile value="AP_RavagerWeaponMissile"/>

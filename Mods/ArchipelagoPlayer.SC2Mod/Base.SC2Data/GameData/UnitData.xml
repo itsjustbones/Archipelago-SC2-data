@@ -20406,6 +20406,7 @@
         <AbilArray Link="AP_RavagerAerialCorrosiveBile"/>
         <AbilArray Link="AP_DeepTunnel"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_RavagerSpawnRoachlingsOnDeath"/>
         <WeaponArray Link="AP_RavagerWeapon"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -20417,6 +20418,7 @@
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
             <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
             <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBile,Execute" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBurrowedBombardment" Type="Passive" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="1" Column="4"/>
             <LayoutButtons Face="AP_RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerCorrosiveBile,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="2" Column="2"/>
             <LayoutButtons Face="AP_RavagerBrutaliskBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBrutaliskBonePlating" Row="2" Column="3"/>
@@ -20476,17 +20478,24 @@
         <CostResource index="Vespene" value="100"/>
         <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
         <AbilArray Link="AP_BurrowRavagerUp"/>
         <AbilArray Link="AP_DeepTunnel"/>
         <AbilArray Link="AP_RavagerCorrosiveBile"/>
         <AbilArray Link="AP_RavagerAerialCorrosiveBile"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_RavagerSpawnRoachlingsOnDeath"/>
+        <BehaviorArray Link="AP_RavagerBurrowedBombardmentBehavior"/>
+        <WeaponArray Link="AP_RavagerBurrowedBombardmentWeapon" Turret="FreeRotate"/>
         <CardLayouts>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
             <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
             <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBile,Execute" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBurrowedBombardment" Type="Passive" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="1" Column="4"/>
             <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="2" Column="2"/>
             <LayoutButtons Face="AP_RavagerBrutaliskBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBrutaliskBonePlating" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowRavagerUp,Execute" Row="2" Column="4"/>
