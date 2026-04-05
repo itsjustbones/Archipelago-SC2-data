@@ -563,6 +563,15 @@
         <Find value="1"/>
         <Value value="AP_HotSHaveRavagerRoachlingBile"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareCooldown id="AP_RavagerCorrosiveBileNotOnCooldown">
+        <WhichUnit Value="Caster"/>
+        <CooldownLink value="Abil/AP_RavagerCorrosiveBileShared"/>
+        <Ability value="AP_RavagerCorrosiveBile"/>
+    </CValidatorUnitCompareCooldown>
+    <CValidatorUnitType id="AP_NotAPRavagerBurrowed">
+        <Value value="AP_RavagerBurrowed"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
     <CValidatorPlayerRequirement id="AP_HaveHotSRavagerBrutaliskBonePlating">
         <WhichPlayer Value="Caster"/>
         <Find value="1"/>

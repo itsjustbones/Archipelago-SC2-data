@@ -11647,7 +11647,23 @@
         <On Terms="Upgrade.AP_HotSRavagerBrutaliskBonePlating.Add" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBrutaliskBonePortrait"/>
         <On Terms="ActorCreation; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Send="ModelSwap AP_RavagerBrutaliskBone"/>
         <On Terms="UnitPortrait.*.Configure; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBrutaliskBonePortrait"/>
+        <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="TimerSet 0.062500 RoachlingBileReadyRefresh"/>
+        <On Terms="TimerExpired; TimerName RoachlingBileReadyRefresh" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName RoachlingBileReadyRefresh" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="ActorCreation" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerBurrowed" Send="Create AP_RavagerRoachlingBileReady"/>
         <On Terms="UnitDeathCustomize; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Send="DeathCustomize BrutaliskBone"/>
+        <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="Abil.AP_RavagerAerialCorrosiveBile.SourceCastStart" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Spend" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerAerialCorrosiveBile.Spend" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Regen" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Regen" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="AbilCooldown.AP_RavagerAerialCorrosiveBile.Regen" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerAerialCorrosiveBile.Regen" Send="Create AP_RavagerRoachlingBileReady"/>
         <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart" Send="$Spell"/>
         <On Terms="Abil.AP_RavagerAerialCorrosiveBile.SourceCastStart" Send="AnimPlay Attack Attack"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
@@ -11808,7 +11824,26 @@
         <Magnitude value="30.000000,12.000000"/>
         <Radius value="2.150000,0.200000"/>
     </CActorForceSphere>
-    <CActorMissile id="AP_RavagerCorrosiveBileMissile" parent="GenericAttackMissile" unitName="AP_RavagerCorrosiveBileMissile"/>
+    <CActorMissile id="AP_RavagerCorrosiveBileMissile" parent="GenericAttackMissile" unitName="AP_RavagerCorrosiveBileMissile">
+        <On Terms="ActorCreation; ValidateEffect AP_HaveHotSRavagerRoachlingBile" Send="Create AP_RavagerRoachlingBileMissile"/>
+    </CActorMissile>
+    <CActorModel id="AP_RavagerRoachlingBileMissile" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="AnimPlay Flail Flail PlayForever"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <Host Subject="_Missile"/>
+        <HostSiteOps Ops="AP_SOpRavagerRoachlingBileMissileOffset"/>
+        <Model value="AP_Roachling"/>
+        <Scale value="0.800000"/>
+    </CActorModel>
+    <CActorModel id="AP_RavagerRoachlingBileReady" parent="ModelAddition">
+        <On Terms="ActorCreation; !ValidatePlayer AP_HaveHotSRavagerRoachlingBile" Send="Destroy"/>
+        <On Terms="ActorCreation; !ValidateUnit AP_RavagerCorrosiveBileNotOnCooldown" Send="Destroy"/>
+        <On Terms="ActorCreation; !ValidateUnit AP_NotAPRavagerBurrowed" Send="Destroy"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachWeapon AP_SOpRavagerRoachlingBileReadyOffset AP_SOpRavagerRoachlingBileReadyRotation"/>
+        <Model value="AP_Roachling"/>
+        <Scale value="0.55000"/>
+    </CActorModel>
     <CActorModel id="AP_RavagerCorrosiveBilePrecursor">
         <Flags index="SuppressSaveLoad" value="1"/>
         <On Terms="Effect.AP_RavagerCorrosiveBileCP.Start" Send="Create"/>
@@ -11834,6 +11869,17 @@
     <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileOffsetUp">
         <LocalOffset value="0.000000,-1.000000,30.000000"/>
     </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="AP_SOpRavagerRoachlingBileReadyOffset">
+        <LocalOffset value="0.000000,0.120000,0.010000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="AP_SOpRavagerRoachlingBileMissileOffset">
+        <LocalOffset value="0.000000,0.000000,-0.30000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpRotationExplicit id="AP_SOpRavagerRoachlingBileReadyRotation">
+        <Forward value="0.000000,-0.900000,-0.600000"/>
+        <Up value="0.000000,0.000000,2.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
     <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileAirImpactOffset">
         <LocalOffset value="0.000000,0.000000,4.400000"/>
     </CActorSiteOpLocalOffset>
