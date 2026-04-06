@@ -2216,7 +2216,7 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
         TriggerEnable(TriggerGetCurrent(), false);
         libNtve_gf_CreateUnitsAtPoint2(1, "AP_Overlord", 0, gv_p03_MIRA_HAN, PointFromId(1242));
         lv_medivac = UnitLastCreated();
-        UnitCargoCreate(lv_medivac, "AP_MercZergling", 4);
+        UnitCargoCreate(lv_medivac, "AP_MercZergling", 6);
         libLbty_gf_OrderTransporttoUnloadAllthenDespawn(lv_medivac, PointFromId(1243), PointFromId(1242));
         Wait(6.0, c_timeGame);
         TriggerExecute(gt_TransmissionMiraHanGivesVulturesQ, true, true);
@@ -4411,7 +4411,10 @@ bool gt_TransmissionRaynorIntroQ_Func (bool testConds, bool runActions) {
     TriggerQueueEnter();
     libCamp_gf_SetAllSoundChannelVolumesCampaign(libNtve_ge_VolumeChannelMode_Speech);
     libLbty_gf_PlayTransmissionCueSound(PlayerGroupAll());
-    BoardDestroy(gv_merc_Contract_Price_Board);
+    if ((gv_miraHanContractBought == true)) {
+        BoardDestroy(gv_merc_Contract_Price_Board);
+    }
+
     // Transmission - SoundLink("THorner02Raynor00001", 0)
     libCamp_gf_SendTransmissionCampaign(null, SoundLink("THorner02Raynor00001", -1), c_transmissionDurationAdd, 0.0, true);
     libCamp_gf_SetAllSoundChannelVolumesCampaign(libNtve_ge_VolumeChannelMode_Game);

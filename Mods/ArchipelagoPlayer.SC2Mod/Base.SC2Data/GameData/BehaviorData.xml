@@ -3767,6 +3767,7 @@
         <Radius value="6.5"/>
         <CliffLevelFlags index="Higher" value="0"/>
         <PowerLink value="PowerSource"/>
+        <Requirements value="AP_NotPylonImproved"/>
     </CBehaviorPowerSource>
     <CBehaviorBuff id="AP_SOAPylonWeapon">
         <InfoIcon value="Assets\Textures\btn-ability-protoss-purify.dds"/>
@@ -4260,12 +4261,9 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_PhaseBlinkDamage">
         <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-combatmastery.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="8"/>
-        <Modification>
-            <DamageDealtFraction index="Ranged" value="1"/>
-        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ZerglingFrenzy">
         <InfoFlags index="Hidden" value="1"/>
@@ -5538,7 +5536,7 @@
             <StateFlags index="SuppressAttack" value="1"/>
             <AbilLinkDisableArray value="move"/>
             <AbilLinkDisableArray value="attack"/>
-            <AbilLinkDisableArray value="AP_PurifierMothershipInstalls"/> 
+            <AbilLinkDisableArray value="AP_PurifierMothershipInstalls"/>
             <AbilLinkDisableArray value="AP_MothershipCoreMassRecall"/>
             <AbilLinkDisableArray value="AP_PurifierMothershipBlackHole"/>
             <AbilLinkDisableArray value="AP_TimeFieldPurifier"/>
@@ -5561,7 +5559,7 @@
             <StateFlags index="SuppressAttack" value="1"/>
             <AbilLinkDisableArray value="move"/>
             <AbilLinkDisableArray value="attack"/>
-            <AbilLinkDisableArray value="AP_PurifierMothershipInstalls"/> 
+            <AbilLinkDisableArray value="AP_PurifierMothershipInstalls"/>
             <AbilLinkDisableArray value="AP_MothershipCoreMassRecall"/>
             <AbilLinkDisableArray value="AP_MothershipPurifierBlackHole"/>
             <AbilLinkDisableArray value="AP_TimeFieldPurifier"/>
@@ -9056,7 +9054,7 @@
         <Tooltip value="Button/Tooltip/AP_BattlecruiserRangeAura"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_MothershipAiurShieldArmor">
-        <Alignment value="Positive"/>       
+        <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
         <Duration value="0.25"/>
         <InfoIcon value="AP\Assets\Textures\btn-ability-protoss-emergencywarp-aiur.dds"/>
@@ -11469,11 +11467,170 @@
         <MaxStackCountPerCaster value="1"/>
         <Duration value="5"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_BanelingSpawnTimedLife" parent="TimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="50"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_InfestedSCVRepairBio">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-nova-healingmastery.dds"/>
+        <Requirements value="AP_InfestedSCVRepairBio"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_InfestedSCVRepairFree">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-progression-stetmann-05-scrapdrop.dds"/>
+        <Requirements value="AP_InfestedSCVRepairFree"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_LurkerDetection">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_LurkerDetection"/>
+        <Modification SightBonus="4" Detect="11"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ScourgeSpawnTimedLife" parent="TimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="50"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_LurkerCarapace">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-mutalisk-shiftingcarapace.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_LurkerCarapace"/>
+        <DisplayDuration index="Self" value="1"/>
+        <RemoveValidatorArray value="hasShields"/>
+        <Duration value="10"/>
+        <InitialEffect value="AP_LurkerCarapaceRBDummy"/>
+        <RefreshEffect value="AP_LurkerCarapaceRBDummy"/>
+        <Modification>
+            <VitalMaxArray index="Shields" value="100"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_LurkerCarapaceDummy">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="AP_LurkerCarapaceAB"/>
+        <Modification>
+            <VitalMaxArray index="Shields" value="100"/>
+        </Modification>
+        <Requirements value="AP_LurkerCarapace"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_LurkerRangeCreep">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_LurkerRangeCreep"/>
+        <DisableValidatorArray value="OnCreep"/>
+        <Modification WeaponRange="2"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidRayPurifierBeamTimedLife">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="0.5"/> <!-- short enough to disappear promptly, long enough to allow players to "drag" the beams -->
         <DisableValidatorArray value="AP_SourceUnitNotFiringWeapon"/>
         <ExpireEffect value="AP_SuicideRemove"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CreepTumorSuperCloak">
+        <BehaviorCategories index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="AP_CreepTumorSuperCloak"/>
+        <Modification>
+            <StateFlags index="Undetectable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CenturionDodgeTracker">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_CenturionDodge"/>
+        <DisableValidatorArray value="AP_NoCenturionDodge"/>
+        <InitialEffect value="AP_CenturionDodgeInitial"/>
+        <DamageResponse Handled="AP_CenturionDodgeTracker">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CenturionDodge">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\evasivemaneuvers_coop.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_CenturionDodge"/>
+        <DamageResponse Handled="AP_CenturionDodgeRB" ModifyFraction="0" ModifyMinimumDamage="1">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CenturionCloak">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="AP_CenturionCloak"/>
+        <Duration value="5"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SentinelRechargeCooldown">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StalkerTaldarimAttackUpgrade">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="8"/>
+        <PeriodicEffect value="AP_PhaseBlinkDamageAB"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StalkerTaldarimAttackUpgradeRestock">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_StalkerTaldarimAttackUpgrade"/>
+        <DisplayDuration index="Self" value="1"/>
+        <BuffFlags index="Countdown" value="0"/>
+        <Duration value="14"/>
+        <FinalEffect value="AP_PhaseBlinkDamageAB"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_VoidStalkerBlinkMultipleCaster">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.125"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StalkerPurifierAttackMarker">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DisablePowerUser">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorPowerSource id="AP_PylonImprovedPowerSource">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures"/>
+        <Requirements value="AP_HavePylonImproved"/>
+        <Radius value="8.7"/>
+        <PowerLink value="PowerSource"/>
+    </CBehaviorPowerSource>
+    <CBehaviorBuff id="AP_ProbePermanentCloak">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-permanentcloak.dds"/>
+        <BehaviorCategories index="Cloak" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Requirements value="AP_HaveProbePermanentCloak"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorPowerSource id="AP_NexusPowerSource">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures"/>
+        <Radius value="8.1"/>
+        <PowerLink value="PowerSource"/>
+        <Requirements value="AP_HaveNexusPowerField"/>
+    </CBehaviorPowerSource>
+    <CBehaviorBuff id="AP_ProtossBuildingShields">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-adeptshieldupgrade.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_ProtossBuildingShields"/>
     </CBehaviorBuff>
 </Catalog>
 

@@ -6055,6 +6055,67 @@ void lib15EF4C78_gt_KerriganEconDrop_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_SentinelRecharge
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_SentinelRecharge_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+    int lv_casterPlayer;
+    int lv_targetPlayer;
+    fixed lv_remaining;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_casterPlayer = UnitGetOwner(lv_caster);
+    lv_targetPlayer = UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitTarget));
+
+    // Conditions
+    if (testConds) {
+        if (!((TechTreeUpgradeCount(lv_casterPlayer, "AP_SentinelRecharge", c_techCountCompleteOnly) >= 1))) {
+            return false;
+        }
+
+        if (!((UnitGetType(lv_caster) == "AP_ZealotPurifier"))) {
+            return false;
+        }
+
+        if (!((UnitHasBehavior(lv_caster, "AP_SentinelRechargeCooldown") == false))) {
+            return false;
+        }
+
+        if (!(((lv_casterPlayer >= 1) && (lv_casterPlayer <= 15)))) {
+            return false;
+        }
+
+        if (!(((lv_targetPlayer >= 1) && (lv_targetPlayer <= 15)))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerIsEnemy(lv_casterPlayer, lv_targetPlayer, libNtve_ge_PlayerRelation_Enemy) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddCooldown(lv_caster, "AP_ZealotPurifierReviveSupressed", "Behavior/AP_ZealotPurifierReviveSupressed", -1.0);
+    lv_remaining = UnitBehaviorDuration(lv_caster, "AP_ZealotPurifierReviveSupressed");
+    UnitBehaviorSetDurationRemaining(lv_caster, "AP_ZealotPurifierReviveSupressed", (lv_remaining-1));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_SentinelRecharge_Init () {
+    lib15EF4C78_gt_AP_Player_SentinelRecharge = TriggerCreate("lib15EF4C78_gt_AP_Player_SentinelRecharge_Func");
+    TriggerEnable(lib15EF4C78_gt_AP_Player_SentinelRecharge, false);
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_AP_Player_SentinelRecharge, c_playerAny, "AP_PsiBladesBurst");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: AP_Player_AvengerRecallUnselect
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_AP_Player_AvengerRecallUnselect_Func (bool testConds, bool runActions) {
@@ -9656,6 +9717,215 @@ void lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetInfested_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_YggdrasilConsumeUse
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_YggdrasilConsumeUse_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_target;
+    unit lv_caster;
+    int lv_tag;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_target = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+    lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_tag = UnitGetTag(lv_caster);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_ShowHideUnit(lv_target, false);
+    libNtve_gf_PauseUnit(lv_target, true);
+    DataTableSetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_tag)), lv_target);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_YggdrasilConsumeUse_Init () {
+    lib15EF4C78_gt_AP_Player_YggdrasilConsumeUse = TriggerCreate("lib15EF4C78_gt_AP_Player_YggdrasilConsumeUse_Func");
+    TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_AP_Player_YggdrasilConsumeUse, c_playerAny, "AP_YggdrasilAssimilateSet");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_YggdrasilConsumeBuild
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_YggdrasilConsumeBuild_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_tag;
+    unit lv_originalbuilding;
+    unit lv_newunit;
+    int lv_newtag;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_tag = UnitGetTag(EventUnit());
+    lv_newunit = EventUnitCreatedUnit();
+    lv_newtag = UnitGetTag(lv_newunit);
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "AP_Yggdrasil"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_originalbuilding = DataTableGetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_tag)));
+    DataTableSetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_newtag)), lv_originalbuilding);
+    UnitSetPosition(lv_originalbuilding, UnitGetPosition(lv_newunit), false);
+    UnitSetPropertyFixed(lv_originalbuilding, c_unitPropLifePercent, 100.0);
+    UnitBehaviorRemoveCategory(lv_newunit, c_unitBehaviorFlagPermanent);
+    TriggerAddEventUnitDied(lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety, UnitRefFromUnit(lv_newunit));
+    DataTableSetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_tag)), null);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_YggdrasilConsumeBuild_Init () {
+    lib15EF4C78_gt_AP_Player_YggdrasilConsumeBuild = TriggerCreate("lib15EF4C78_gt_AP_Player_YggdrasilConsumeBuild_Func");
+    TriggerAddEventUnitCreated(lib15EF4C78_gt_AP_Player_YggdrasilConsumeBuild, null, "AP_YggdrasilBuild", null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_YggdrasilConsumeComplete
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_tag;
+    unit lv_originalunit;
+    int lv_player;
+
+    // Automatic Variable Declarations
+    unitgroup auto1C265A74_g;
+    int auto1C265A74_u;
+    unit auto1C265A74_var;
+
+    // Variable Initialization
+    lv_tag = UnitGetTag(EventUnitProgressUnit());
+    lv_originalunit = DataTableGetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_tag)));
+    lv_player = UnitGetOwner(EventUnitProgressUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitIsValid(lv_originalunit) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorRemoveCategory(EventUnitProgressUnit(), c_unitBehaviorFlagPermanent);
+    auto1C265A74_g = UnitGroup("AP_Larva", c_playerAny, RegionCircle(UnitGetPosition(EventUnitProgressUnit()), 5.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto1C265A74_u = UnitGroupCount(auto1C265A74_g, c_unitCountAll);
+    for (;; auto1C265A74_u -= 1) {
+        auto1C265A74_var = UnitGroupUnitFromEnd(auto1C265A74_g, auto1C265A74_u);
+        if (auto1C265A74_var == null) { break; }
+        UnitRemove(auto1C265A74_var);
+    }
+    UnitRemove(EventUnitProgressUnit());
+    libNtve_gf_ShowHideUnit(lv_originalunit, true);
+    libNtve_gf_PauseUnit(lv_originalunit, false);
+    if ((UnitGroupHasUnit(UnitGroupSelected(lv_player), EventUnitProgressUnit()) == true)) {
+        UnitSelect(lv_originalunit, lv_player, true);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Init () {
+    lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete = TriggerCreate("lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Func");
+    TriggerAddEventUnitConstructProgress(lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_YggdrasilDeathSafety
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_tag;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "AP_Yggdrasil"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_tag = UnitGetTag(EventUnit());
+    UnitRemove(DataTableGetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_tag))));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Init () {
+    lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety = TriggerCreate("lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Func");
+    TriggerAddEventUnitDied(lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_YggdrasilBuildingDeathSafety
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_tag;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_tag = UnitGetTag(EventUnit());
+    UnitRemove(DataTableGetUnit(true, ("AP_YggdrasilBuilding_" + IntToString(lv_tag))));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init () {
+    lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety = TriggerCreate("lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: 
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_skjqufoomtccjegl_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetFacing(EventUnit(), 250.0, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_skjqufoomtccjegl_Init () {
+    lib15EF4C78_gt_skjqufoomtccjegl = TriggerCreate("lib15EF4C78_gt_skjqufoomtccjegl_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_skjqufoomtccjegl, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: EmitTransformerLand
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_EmitTransformerLand_Func (bool testConds, bool runActions) {
@@ -9798,6 +10068,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_WarpRelocateAssimilatorFinish_Init();
     lib15EF4C78_gt_KerriganPsiStrike_Init();
     lib15EF4C78_gt_KerriganEconDrop_Init();
+    lib15EF4C78_gt_AP_Player_SentinelRecharge_Init();
     lib15EF4C78_gt_AP_Player_AvengerRecallUnselect_Init();
     lib15EF4C78_gt_AP_Player_ElderProbeWarpInHandler_Init();
     lib15EF4C78_gt_PM_SoAStatusWatch_Init();
@@ -9882,6 +10153,12 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetBroodWar_Init();
     lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetSC2_Init();
     lib15EF4C78_gt_AP_Player_Zerg_MercCompoundTabSetInfested_Init();
+    lib15EF4C78_gt_AP_Player_YggdrasilConsumeUse_Init();
+    lib15EF4C78_gt_AP_Player_YggdrasilConsumeBuild_Init();
+    lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Init();
+    lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Init();
+    lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init();
+    lib15EF4C78_gt_skjqufoomtccjegl_Init();
     lib15EF4C78_gt_EmitTransformerLand_Init();
     lib15EF4C78_gt_MakeHeroArtanis_Init();
     lib15EF4C78_gt_MakeHeroKerrigan_Init();

@@ -15,6 +15,7 @@
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
         <Sight value="7"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -8036,6 +8037,7 @@
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
         <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <RepairTime value="15"/>
         <Mover value="Creep"/>
         <Speed value="0.5625"/>
         <Acceleration value="1000"/>
@@ -8145,6 +8147,7 @@
         <Food value="-2"/>
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="50"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -8259,6 +8262,7 @@
         <Sight value="9"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="75"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <BehaviorArray Link="AP_AutomaticHarvestableVespene"/>
@@ -8385,6 +8389,7 @@
         <Sight value="9"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="75"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_ExtractorToAutomatedExtractor"/>
@@ -8453,6 +8458,7 @@
         <Sight value="9"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="75"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_ExtractorPipesToExtractor"/>
@@ -8515,6 +8521,7 @@
         <Sight value="9"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="75"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_ExtractorToAutomatedExtractorRich"/>
@@ -8574,6 +8581,7 @@
         <Food value="-1"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="50"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <AIOverideTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
@@ -8628,11 +8636,13 @@
             <LayoutButtons Face="AP_AutomatedExtractor" Type="AbilCmd" AbilCmd="AP_ZergBuild,18" Row="0" Column="1"/>
         </CardLayouts>
         <CardLayouts CardId="ZBl2">
+            <LayoutButtons Face="AP_GreaterSpire" Type="AbilCmd" AbilCmd="AP_ZergBuild,28" Row="1" Column="0"/>
             <LayoutButtons Face="AP_Spire" Type="AbilCmd" AbilCmd="AP_ZergBuild,6" Row="1" Column="0"/>
             <LayoutButtons Face="AP_UltraliskCavern" Type="AbilCmd" AbilCmd="AP_ZergBuild,7" Row="2" Column="0"/>
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
             <LayoutButtons Face="AP_NydusNetwork" Type="AbilCmd" AbilCmd="AP_ZergBuild,9" Row="1" Column="1"/>
             <LayoutButtons Face="AP_InfestationPit" Type="AbilCmd" AbilCmd="AP_ZergBuild,8" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_GreaterHydraliskDen" Type="AbilCmd" AbilCmd="AP_ZergBuild,29" Row="0" Column="0"/>
             <LayoutButtons Face="AP_HydraliskDen" Type="AbilCmd" AbilCmd="AP_ZergBuild,5" Row="0" Column="0"/>
             <LayoutButtons Face="AP_ZergMercenaryCompound" Type="AbilCmd" AbilCmd="AP_ZergBuild,21" Row="0" Column="2"/>
             <LayoutButtons Face="AP_TradeStructure" Type="AbilCmd" AbilCmd="AP_ZergBuild,Build23" Row="0" Column="4"/>
@@ -8679,6 +8689,7 @@
         <Food value="-1"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="50"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <AIOverideTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
@@ -8729,6 +8740,7 @@
         <StationaryTurningRate value="719.4726"/>
         <TurningRate value="719.4726"/>
         <Sight value="11"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_BurrowCreepTumorDown"/>
@@ -8738,10 +8750,12 @@
         <BehaviorArray Link="AP_makeCreep4x4Enhanced"/>
         <BehaviorArray Link="AP_CreepFrenzy13CreepTumor"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_CreepTumorSuperCloak"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_CreepTumorPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_K5CreepBonuses" Type="Passive" Requirements="AP_HaveK5CreepBonuses" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_CreepTumorSuperCloak" Type="Passive" Requirements="AP_CreepTumorSuperCloak" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -8788,6 +8802,7 @@
         <StationaryTurningRate value="719.4726"/>
         <TurningRate value="719.4726"/>
         <Sight value="11"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="19"/>
         <AbilArray Link="AP_CreepTumorBuild"/>
         <AbilArray Link="BuildInProgress"/>
@@ -8796,11 +8811,13 @@
         <BehaviorArray Link="AP_makeCreep4x4Enhanced"/>
         <BehaviorArray Link="AP_CreepFrenzy13CreepTumor"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_CreepTumorSuperCloak"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_CreepTumorBuild,Halt" Row="2" Column="4"/>
             <LayoutButtons Face="AP_BuildCreepTumorPropagate" Type="AbilCmd" AbilCmd="AP_CreepTumorBuild,Build1" Row="2" Column="0"/>
             <LayoutButtons Face="AP_CreepTumorPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_K5CreepBonuses" Type="Passive" Requirements="AP_HaveK5CreepBonuses" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_CreepTumorSuperCloak" Type="Passive" Requirements="AP_CreepTumorSuperCloak" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -8849,6 +8866,7 @@
         <StationaryTurningRate value="719.4726"/>
         <TurningRate value="719.4726"/>
         <Sight value="11"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="19"/>
         <BehaviorArray Link="AP_makeCreep4x4"/>
         <!--        <BehaviorArray Link="QueenofVenomCreepTumorSearch"/>-->
@@ -8856,9 +8874,11 @@
         <BehaviorArray Link="AP_CreepFrenzy13CreepTumor"/>
         <BehaviorArray Link="AP_CreepTumorExhausted"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_CreepTumorSuperCloak"/>
         <CardLayouts>
             <LayoutButtons Face="AP_CreepTumorPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_K5CreepBonuses" Type="Passive" Requirements="AP_HaveK5CreepBonuses" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_CreepTumorSuperCloak" Type="Passive" Requirements="AP_CreepTumorSuperCloak" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -8905,13 +8925,16 @@
         <StationaryTurningRate value="719.4726"/>
         <TurningRate value="719.4726"/>
         <Sight value="11"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_BurrowCreepTumorDown"/>
         <BehaviorArray Link="AP_makeCreep4x4"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_CreepTumorSuperCloak"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_CreepTumorSuperCloak" Type="Passive" Requirements="AP_CreepTumorSuperCloak" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -8976,6 +8999,7 @@
         <Height value="3.75"/>
         <VisionHeight value="4"/>
         <CostCategory value="Army"/>
+        <RepairTime value="90"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -9626,6 +9650,7 @@
         <StationaryTurningRate value="719.4726"/>
         <TurningRate value="719.4726"/>
         <Sight value="7"/>
+        <RepairTime value="20"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -9930,6 +9955,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="200"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="Rally"/>
@@ -10006,6 +10032,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="Rally"/>
         <AbilArray Link="BuildInProgress"/>
@@ -10074,6 +10101,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="Rally"/>
@@ -10197,6 +10225,7 @@
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="75"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_EchidnaCreepBuild"/>
@@ -10310,7 +10339,7 @@
             <LayoutButtons Face="Repair" Type="AbilCmd" AbilCmd="AP_MULERepair,0" Row="2" Column="2"/>
             <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="AP_MULEGather,1" Row="1" Column="1"/>
             <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="AP_SCVHarvest,1" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_SCVRepairFree" Type="Passive" Requirements="AP_HaveSCVRepairFree" Row="2" Column="4"/>   
+            <LayoutButtons Face="AP_SCVRepairFree" Type="Passive" Requirements="AP_HaveSCVRepairFree" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -10700,6 +10729,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="200"/>
         <CostResource index="Vespene" value="75"/>
+        <RepairTime value="40"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -10779,6 +10809,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="200"/>
         <CostResource index="Vespene" value="75"/>
+        <RepairTime value="40"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -10899,6 +10930,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -10982,6 +11014,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -11050,6 +11083,7 @@
         <Sight value="5"/>
         <Food value="-2"/>
         <CostCategory value="Army"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -11106,6 +11140,7 @@
         <Sight value="5"/>
         <Food value="-2"/>
         <CostCategory value="Army"/>
+        <RepairTime value="20"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -11154,6 +11189,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -11164,6 +11200,7 @@
         <AbilArray Link="attack"/>
         <BehaviorArray Link="AP_LurkerWeaponDisabled"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_LurkerRangeCreep"/>
         <WeaponArray Link="AP_Lurker" Turret="FreeRotate"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -11175,6 +11212,9 @@
             <LayoutButtons Face="AP_BurrowLurkerMP" Type="AbilCmd" AbilCmd="AP_BurrowLurkerDown,0" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SeismicSpines" Type="Passive" Requirements="AP_HaveLurkerRange" Row="1" Column="0"/>
             <LayoutButtons Face="AP_AdaptedSpines" Type="Passive" Requirements="AP_HaveLurkerNormalDamage" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_LurkerCarapace" Type="Passive" Requirements="AP_LurkerCarapace" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_LurkerRangeCreep" Type="Passive" Requirements="AP_LurkerRangeCreep" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_LurkerDetection" Type="Passive" Requirements="AP_LurkerDetection" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.75"/>
@@ -11242,6 +11282,8 @@
         <AbilArray Link="AP_BurrowLurkerDown"/>
         <AbilArray Link="stop"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_LurkerDetection"/>
+        <BehaviorArray Link="AP_LurkerRangeCreep"/>
         <WeaponArray Link="AP_Lurker" Turret="FreeRotate"/>
         <CardLayouts>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
@@ -11249,6 +11291,9 @@
             <LayoutButtons Face="AP_LurkerBurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowLurkerUp,0" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SeismicSpines" Type="Passive" Requirements="AP_HaveLurkerRange" Row="1" Column="0"/>
             <LayoutButtons Face="AP_AdaptedSpines" Type="Passive" Requirements="AP_HaveLurkerNormalDamage" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_LurkerCarapace" Type="Passive" Requirements="AP_LurkerCarapace" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_LurkerRangeCreep" Type="Passive" Requirements="AP_LurkerRangeCreep" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_LurkerDetection" Type="Passive" Requirements="AP_LurkerDetection" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0"/>
@@ -11299,6 +11344,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -11380,6 +11426,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -11416,6 +11463,7 @@
         <LifeStart value="160"/>
         <LifeMax value="160"/>
         <LifeArmor value="2"/>
+        <RepairTime value="30"/>
         <AbilArray index="4" Link="AP_BurrowHunterKillerDown"/>
         <AbilArray index="6" Link=""/>
         <AbilArray index="7" Link=""/>
@@ -11431,6 +11479,7 @@
         <LifeStart value="160"/>
         <LifeMax value="160"/>
         <LifeArmor value="2"/>
+        <RepairTime value="30"/>
         <AbilArray index="0" Link="AP_BurrowHunterKillerUp"/>
         <CardLayouts index="0">
             <LayoutButtons index="1" Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowHunterKillerUp,Execute" Row="2" Column="4"/>
@@ -11654,6 +11703,7 @@
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
         <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <RepairTime value="15"/>
         <Speed value="2.25"/>
         <SpeedMultiplierCreep value="1.3"/>
         <Acceleration value="1000"/>
@@ -11738,6 +11788,7 @@
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
         <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <RepairTime value="15"/>
         <Mover value="Fly"/>
         <Speed value="3"/>
         <Acceleration value="1000"/>
@@ -12163,6 +12214,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -12255,6 +12307,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -13111,6 +13164,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="250"/>
         <CostResource index="Vespene" value="250"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -13181,6 +13235,7 @@
         <Food value="-2"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -13698,12 +13753,13 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="AP_HardenedShieldStalwart" Type="Passive" Row="2" Column="0"/>
             <LayoutButtons Face="AP_StalwartLatticedShields" Type="Passive" Requirements="AP_HaveStalwartLatticedShields" Row="1" Column="0"/>
             <LayoutButtons Face="AP_StalwartStrutEnhancements" Type="Passive" Requirements="AP_HaveStalwartStrutEnhancements" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_StalwartArcInducers" Type="Passive" Requirements="AP_HaveStalwartArcInducers" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_StalwartStabilizedElectrodes" Type="Passive" Requirements="AP_HaveStalwartStabilizedElectrodes" Row="1" Column="3"/>
             <LayoutButtons Face="AP_StalwartHighVoltageCapacitors" Type="Passive" Requirements="AP_HaveStalwartHighVoltageCapacitors" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_StalwartStabilizedElectrodes" Type="Passive" Requirements="AP_HaveStalwartStabilizedElectrodes" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_StalwartArcInducers" Type="Passive" Requirements="AP_HaveStalwartArcInducers" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_HardenedShieldStalwart" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StalwartImprovedBarrier" Type="Passive" Requirements="AP_StalwartImprovedBarrier" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.65"/>
         <SeparationRadius value="0.55"/>
@@ -14410,7 +14466,7 @@
             <LayoutButtons Face="AP_HealingPsionicStorm" Type="Passive" Requirements="AP_HaveHighArchonAndPlasmaSurge" Row="1" Column="1"/>
             <LayoutButtons Face="AP_HighImpactPsiStorm" Type="Passive" Requirements="AP_HaveHighArchonAndHighImpactPsionicStorm" Row="1" Column="2"/>
             <LayoutButtons Face="AP_KhaydarinAmulet" Type="Passive" Requirements="AP_HaveKhaydarinAmuletArchon" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_ArchonWeaponUpgrade" Type="Passive" Requirements="AP_HaveArchonWeaponUpgrade" Row="1" Column="4"/>       
+            <LayoutButtons Face="AP_ArchonWeaponUpgrade" Type="Passive" Requirements="AP_HaveArchonWeaponUpgrade" Row="1" Column="4"/>
 
             <LayoutButtons Face="AP_Feedback" Type="AbilCmd" AbilCmd="AP_FeedbackArchon,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_HighArchonPsiStorm" Type="AbilCmd" AbilCmd="AP_HighArchonPsiStormArchon,Execute" Row="2" Column="1"/>
@@ -15470,6 +15526,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="50"/>
         <CostResource index="Vespene" value="15"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -15560,6 +15617,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="50"/>
         <CostResource index="Vespene" value="15"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -15638,6 +15696,7 @@
         <Food value="-0.5"/>
         <CostResource index="Minerals" value="50"/>
         <CostResource index="Vespene" value="25"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -15706,6 +15765,7 @@
         <Sight value="8"/>
         <Food value="-0.25"/>
         <CostCategory value="Army"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -15793,6 +15853,7 @@
         <Sight value="8"/>
         <Food value="-0.25"/>
         <CostCategory value="Army"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -15887,12 +15948,15 @@
         <AbilArray Link="AP_stopProtossPylon"/>
         <BehaviorArray Link="AP_PowerSource"/>
         <BehaviorArray Link="AP_MatrixOverload"/>
+        <BehaviorArray Link="AP_PylonImprovedPowerSource"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <TurretArray value="AP_PylonCrystalRotate"/>
         <TurretArray value="AP_PylonRingRotate"/>
         <CardLayouts>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="AP_stopProtossPylon,0" Row="0" Column="3"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="AP_attackProtossPylon,0" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_PylonImproved" Type="Passive" Requirements="AP_HavePylonImproved" Row="1" Column="0"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_MatrixOverload" Type="Passive" Requirements="AP_HaveSOAMatrixOverload" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="1"/>
@@ -15952,6 +16016,7 @@
         <AbilArray Link="que5"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -16018,6 +16083,7 @@
         <AbilArray Link="AP_CyberneticsCoreResearch"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="ProtossAirWeaponsLevel1" Type="AbilCmd" AbilCmd="AP_CyberneticsCoreResearch,0" Row="0" Column="0"/>
             <LayoutButtons Face="ProtossAirWeaponsLevel2" Type="AbilCmd" AbilCmd="AP_CyberneticsCoreResearch,1" Row="0" Column="0"/>
@@ -16095,6 +16161,7 @@
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
         <BehaviorArray Link="AP_ReapplyingDarkShrineRecallBehavior"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_DarkShrineAssignRally" Type="AbilCmd" AbilCmd="AP_DarkShrineRally,0" Row="1" Column="4"/>
@@ -16158,6 +16225,7 @@
         <BehaviorArray Link="Detector11"/>
         <BehaviorArray Link="PowerUserBaseDefenseSmall"/>
         <BehaviorArray Link="UnderConstruction"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <WeaponArray Link="AP_PhotonCannon" Turret="AP_PhotonCannon"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -16242,6 +16310,7 @@
         <AbilArray Link="AP_ForgeResearch"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -16348,28 +16417,32 @@
         <BehaviorArray Link="AP_SOARadar"/>
         <BehaviorArray Link="AP_GameTime5Seconds"/>
         <BehaviorArray Link="AP_TownHall"/>
+        <BehaviorArray Link="AP_NexusPowerSource"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <WeaponArray Turret="AP_Nexus"/>
         <EffectArray index="Create" value="AP_NexusCreateSet"/>
         <EffectArray index="Birth" value="AP_NexusBirthSet"/>
         <CardLayouts>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5Passive,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_BuildProbe" Type="AbilCmd" AbilCmd="AP_NexusTrain,1" Row="0" Column="0"/>
             <LayoutButtons Face="AP_Probe" Type="AbilCmd" AbilCmd="AP_NexusTrain,0" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_BuildProbe" Type="AbilCmd" AbilCmd="AP_NexusTrain,1" Row="0" Column="0"/>
             <LayoutButtons Face="AP_ProbeWarpin" Type="AbilCmd" AbilCmd="AP_ProbeWarpin,Train1" Row="0" Column="1"/>
             <LayoutButtons Face="AP_ReconstructElderProbe" Type="AbilCmd" AbilCmd="AP_ElderProbeReconstruction,Execute" Row="0" Column="2"/>
             <LayoutButtons Face="AP_ElderProbes" Type="AbilCmd" AbilCmd="AP_ElderProbeWarpin,Execute" Row="0" Column="2"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="AP_stopProtossBuilding,Stop" Row="0" Column="3"/>
+            <LayoutButtons Face="AttackBuildingPFort" Type="AbilCmd" AbilCmd="AP_attackProtossBuilding,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_MothershipCoreAiur" Type="AbilCmd" AbilCmd="AP_NexusTrainMothershipCore,0" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_MothershipCorePurifier" Type="AbilCmd" AbilCmd="AP_NexusTrainMothershipCore,1" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_NexusPowerField" Type="Passive" Requirements="AP_HaveNexusPowerField" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_ChronoBoostEfficiency" Type="Passive" Requirements="AP_ChronoBoostEfficiency" Row="1" Column="3"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="AP_RallyNexus,1" Row="1" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="AP_RallyNexus,0" Row="1" Column="4"/>
             <LayoutButtons Face="AP_TimeWarp" Type="AbilCmd" AbilCmd="AP_TimeWarp,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_TimeWarp" Type="AbilCmd" AbilCmd="AP_TimeWarp,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_MothershipCoreAiur" Type="AbilCmd" AbilCmd="AP_NexusTrainMothershipCore,0" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_MothershipCorePurifier" Type="AbilCmd" AbilCmd="AP_NexusTrainMothershipCore,1" Row="1" Column="1"/>
-            <LayoutButtons Face="AttackBuildingPFort" Type="AbilCmd" AbilCmd="AP_attackProtossBuilding,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="AP_stopProtossBuilding,Stop" Row="0" Column="3"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="AP_RallyNexus,1" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_SOARadarNexus" Type="Passive" Requirements="AP_HaveSOARadar" Row="2" Column="3"/>
             <LayoutButtons Face="AP_KaraxTurretRange" Type="Passive" Requirements="AP_HaveSOARadarAndKaraxTurretRange" Row="2" Column="1"/>
             <LayoutButtons Face="AP_KaraxTurretAttackSpeed" Type="Passive" Requirements="AP_HaveSOARadarAndKaraxTurretAttackSpeed" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_SOARadarNexus" Type="Passive" Requirements="AP_HaveSOARadar" Row="2" Column="3"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5Passive,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_WarpRelocateNexus" Type="AbilCmd" AbilCmd="AP_WarpRelocate,Build1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="2"/>
@@ -17333,6 +17406,7 @@
         <BehaviorArray Link="PowerUserBaseDefenseSmall"/>
         <BehaviorArray Link="UnderConstruction"/>
         <BehaviorArray Link="AP_UnpoweredTurret"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <WeaponArray Link="AP_KhaydarinBeam1" Turret="AP_KhaydarinMonolith"/>
         <WeaponArray Link="AP_KhaydarinBeam3" Turret="AP_KhaydarinMonolith"/>
         <WeaponArray Link="AP_KhaydarinBeam1Upgraded" Turret="AP_KhaydarinMonolith"/>
@@ -17396,11 +17470,13 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="350"/>
         <CostResource index="Vespene" value="350"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_SpireResearch"/>
         <AbilArray Link="que5CancelToSelection"/>
-        <AbilArray Link="AP_StrainInjectionRally"/>
+        <AbilArray Link="AP_SpireRally"/>
+        <AbilArray Link="AP_ScourgeSpawn"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
@@ -17427,6 +17503,7 @@
             <LayoutButtons Face="AP_BroodLordPassive" Type="Passive" Requirements="AP_HaveHotSMutaliskBroodLord" Row="1" Column="1"/>
             <LayoutButtons Face="AP_ViperPassive" Type="Passive" Requirements="AP_HaveHotSMutaliskViper" Row="1" Column="2"/>
             <LayoutButtons Face="AP_StrainInjectionSpire" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ScourgeSpawn" Type="AbilCmd" AbilCmd="AP_ScourgeSpawn,0" Row="2" Column="2"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -17474,6 +17551,7 @@
         <Sight value="9"/>
         <CostResource index="Minerals" value="250"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
@@ -17539,6 +17617,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="250"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
@@ -17602,6 +17681,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
@@ -17670,11 +17750,13 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
         <AbilArray Link="AP_UpgradeToLurkerDen"/>
         <AbilArray Link="AP_StrainInjectionRally"/>
+        <AbilArray Link="AP_AutoMorphHydraDen"/>
         <!--        <AbilArray Link="AP_UpgradeToImpalerDen"/>-->
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
@@ -17744,7 +17826,8 @@
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
-        <AbilArray Link="AP_StrainInjectionRally"/>
+        <AbilArray Link="AP_BanelingNestRally"/>
+        <AbilArray Link="AP_BanelingSpawn"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
@@ -17757,6 +17840,7 @@
             <LayoutButtons Face="AP_BanelingSplitterlingPassive" Type="Passive" Requirements="AP_HotSHaveSplitterling" Row="1" Column="0"/>
             <LayoutButtons Face="AP_BanelingPassive" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_StrainInjectionBanelingNest" Type="Passive" Requirements="AP_HaveHiveQueenStrainInjection" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_BanelingSpawn" Type="AbilCmd" AbilCmd="AP_BanelingSpawn,Train1" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="1.5"/>
         <SeparationRadius value="1.5"/>
@@ -17805,6 +17889,7 @@
         <Sight value="9"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="125"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
@@ -17901,6 +17986,7 @@
         <BehaviorArray Link="PowerUserQueue"/>
         <BehaviorArray Link="AP_UpgradeToWarpGateInstant"/>
         <BehaviorArray Link="RecentlyCreated"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -18047,6 +18133,7 @@
         <BehaviorArray Link="AP_HarvestableVespeneGeyserGasProtoss"/>
         <BehaviorArray Link="AP_AssimilatorMorph"/>
         <BehaviorArray Link="AP_FakePowerUser"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_AmplifiedAssimilators" Type="Passive" Requirements="AP_HaveAmplifiedAssimilators" Row="2" Column="1"/>
@@ -18120,6 +18207,7 @@
         <BehaviorArray Link="AP_AssimilatorPipesMorph"/>
         <BehaviorArray Link="AP_HarvestableVespeneGeyserGasProtoss"/>
         <BehaviorArray Link="AP_AssimilatorMorph"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_AmplifiedAssimilators" Type="Passive" Requirements="AP_HaveAmplifiedAssimilators" Row="2" Column="1"/>
@@ -18187,6 +18275,7 @@
         <BehaviorArray Link="AP_AssimilatorPipesMorph"/>
         <BehaviorArray Link="AP_HarvestableVespeneGeyserGasProtoss"/>
         <BehaviorArray Link="AP_AssimilatorMorph"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,0" Row="2" Column="4"/>
             <LayoutButtons Face="AP_AmplifiedAssimilators" Type="Passive" Requirements="AP_HaveAmplifiedAssimilators" Row="2" Column="1"/>
@@ -18254,6 +18343,7 @@
         <BehaviorArray Link="AP_AssimilatorPipesMorph"/>
         <BehaviorArray Link="AP_HarvestableVespeneGeyserGasProtoss"/>
         <BehaviorArray Link="AP_AssimilatorMorph"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_AmplifiedAssimilators" Type="Passive" Requirements="AP_HaveAmplifiedAssimilators" Row="2" Column="1"/>
@@ -18321,6 +18411,7 @@
         <BehaviorArray Link="AP_AutomatedAssimilatorMorph"/>
         <BehaviorArray Link="AP_AutomatedAssimilatorBeam"/>
         <BehaviorArray Link="AP_FakePowerUser"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SOAAutoAssimilator" Type="Passive" Requirements="AP_HaveSOAAutoAssimilator" Row="2" Column="0"/>
@@ -18392,6 +18483,7 @@
         <AbilArray Link="AP_WarpRelocateAssimilator"/>
         <BehaviorArray Link="AP_AssimilatorMorphRich"/>
         <BehaviorArray Link="AP_HarvestableRichVespeneGeyserGasProtoss"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_AmplifiedAssimilators" Type="Passive" Requirements="AP_HaveAmplifiedAssimilators" Row="2" Column="1"/>
@@ -18463,6 +18555,7 @@
         <BehaviorArray Link="AP_AutoHarvestVespeneProtossRich"/>
         <BehaviorArray Link="AP_AutomatedAssimilatorMorph"/>
         <BehaviorArray Link="AP_AutomatedAssimilatorBeam"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SOAAutoAssimilator" Type="Passive" Requirements="AP_HaveSOAAutoAssimilator" Row="2" Column="0"/>
@@ -18529,6 +18622,7 @@
         <AbilArray Link="ProgressRally"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_ProbeWarpInRally"/>
+        <BehaviorArray Link="AP_ProbePermanentCloak"/>
         <WeaponArray Link="AP_ParticleBeam"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -18538,6 +18632,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="GatherProt" Type="AbilCmd" AbilCmd="AP_ProbeHarvest,0" Row="1" Column="0"/>
             <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="AP_ProbeHarvest,1" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_ProbePermanentCloak" Type="Passive" Requirements="AP_HaveProbePermanentCloak" Row="1" Column="2"/>
             <LayoutButtons>
                 <Face value="ProtossBuild"/>
                 <Type value="Submenu"/>
@@ -18571,16 +18666,16 @@
             <LayoutButtons Face="AP_ShieldBattery" Type="AbilCmd" AbilCmd="AP_ProtossBuild,21" Row="1" Column="2"/>
         </CardLayouts>
         <CardLayouts CardId="PBl2">
-            <LayoutButtons Face="AP_Stargate" Type="AbilCmd" AbilCmd="AP_ProtossBuild,9" Row="0" Column="1"/>
             <LayoutButtons Face="AP_TemplarArchive" Type="AbilCmd" AbilCmd="AP_ProtossBuild,10" Row="0" Column="0"/>
-            <LayoutButtons Face="AP_RoboticsFacility" Type="AbilCmd" AbilCmd="AP_ProtossBuild,13" Row="0" Column="2"/>
-            <LayoutButtons Face="AP_FleetBeacon" Type="AbilCmd" AbilCmd="AP_ProtossBuild,5" Row="1" Column="1"/>
-            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_DarkShrine" Type="AbilCmd" AbilCmd="AP_ProtossBuild,11" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_RoboticsBay" Type="AbilCmd" AbilCmd="AP_ProtossBuild,12" Row="1" Column="2"/>
             <LayoutButtons Face="AP_WarpInStarWarpGate" Type="AbilCmd" AbilCmd="AP_ProtossBuild,26" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_Stargate" Type="AbilCmd" AbilCmd="AP_ProtossBuild,9" Row="0" Column="1"/>
             <LayoutButtons Face="AP_WarpInRoboticsWarpFacility" Type="AbilCmd" AbilCmd="AP_ProtossBuild,27" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_RoboticsFacility" Type="AbilCmd" AbilCmd="AP_ProtossBuild,13" Row="0" Column="2"/>
             <LayoutButtons Face="AP_TradeStructure" Type="AbilCmd" AbilCmd="AP_ProtossBuild,Build29" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_DarkShrine" Type="AbilCmd" AbilCmd="AP_ProtossBuild,11" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_FleetBeacon" Type="AbilCmd" AbilCmd="AP_ProtossBuild,5" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_RoboticsBay" Type="AbilCmd" AbilCmd="AP_ProtossBuild,12" Row="1" Column="2"/>
+            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -18705,6 +18800,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="700"/>
         <CostResource index="Vespene" value="250"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_RallyHatchery"/>
@@ -18828,6 +18924,7 @@
         <Food value="2"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="350"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_UpgradeToLair"/>
@@ -18928,6 +19025,7 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="500"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_UpgradeToHive"/>
@@ -19023,6 +19121,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -19124,6 +19223,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -19188,6 +19288,7 @@
         <Food value="-2"/>
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -19276,6 +19377,7 @@
         <Food value="-2"/>
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -19555,6 +19657,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="25"/>
+        <RepairTime value="20"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -19627,6 +19730,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="25"/>
+        <RepairTime value="20"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -20211,7 +20315,7 @@
             <LayoutButtons Face="AP_SCVCliffJump" Type="Passive" Requirements="AP_HaveSCVCliffJump" Row="2" Column="3"/>
             <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="AP_TerranBuild,30" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="CancelTerrazineHarvest,0" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_SCVRepairFree" Type="Passive" Requirements="AP_HaveSCVRepairFree" Row="2" Column="4"/>            
+            <LayoutButtons Face="AP_SCVRepairFree" Type="Passive" Requirements="AP_HaveSCVRepairFree" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="TBl1">
             <LayoutButtons Face="AP_CommandCenter" Type="AbilCmd" AbilCmd="AP_TerranBuild,0" Row="0" Column="0"/>
@@ -20296,6 +20400,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="25"/>
+        <RepairTime value="20"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -20394,6 +20499,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="25"/>
+        <RepairTime value="20"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -20469,6 +20575,7 @@
         <TurningRate value="999.8437"/>
         <Height value="0.2"/>
         <CostCategory value="Army"/>
+        <RepairTime value="15"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
@@ -20514,6 +20621,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
@@ -20590,6 +20698,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="100"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="AP_BurrowRavagerUp"/>
         <AbilArray Link="AP_DeepTunnel"/>
@@ -20640,6 +20749,7 @@
         <Sight value="5"/>
         <Food value="-2"/>
         <CostCategory value="Army"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="10"/>
         <AbilArray Link="que1"/>
         <AbilArray Link="Rally"/>
@@ -20707,6 +20817,7 @@
         <AbilArray Link="que5"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -20775,6 +20886,7 @@
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
         <BehaviorArray Link="AP_RoboticsFacilityWarpMorphInstant"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -20905,6 +21017,7 @@
         <AbilArray Link="AP_MorphBackToRoboticsFacility"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -21382,21 +21495,20 @@
         <AbilArray Link="AP_BlinkMultiple"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_StalkerPurifierReconstruction"/>
-        <WeaponArray Link="AP_ParticleDisruptors"/>
+        <WeaponArray Link="AP_StalkerPurifierWeapon"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_StalkerBlinkMultiple" Type="AbilCmd" AbilCmd="AP_BlinkMultiple,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_InstigatorModernizedServos" Type="Passive" Requirements="AP_HaveInstigatorModernizedServos" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_HighImpactParticleDisruptor" Type="Passive" Requirements="AP_HaveHighImpactParticleDisruptors" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ParticleReflection" Type="Passive" Requirements="AP_HaveVoidStalkerMultishot" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_InstigatorBlinkOverdrive" Type="Passive" Requirements="AP_HaveInstigatorBlinkOverdrive" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_StalkerPurifierBlinkAttack" Type="Passive" Requirements="AP_StalkerPurifierBlinkAttack" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_InstigatorBlinkOverdrive" Type="Passive" Requirements="AP_HaveInstigatorBlinkOverdrive" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_InstigatorModernizedServos" Type="Passive" Requirements="AP_HaveInstigatorModernizedServos" Row="1" Column="2"/>
             <LayoutButtons Face="AP_StalkerPurifierReconstruction" Type="Passive" Requirements="AP_StalkerPurifierRecentlyReconstructed" Row="2" Column="1" Behavior="AP_StalkerPurifierRecentlyReconstructed"/>
             <LayoutButtons Face="AP_StalkerPurifierReconstruction" Type="Passive" Requirements="AP_StalkerPurifierHasReconstruction" Row="2" Column="1"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0.625"/>
@@ -21583,6 +21695,7 @@
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
         <BehaviorArray Link="AP_StargateWarpMorphInstant"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
 
             <!--Top Line Units-->
@@ -21629,7 +21742,7 @@
             <!--Upgrades-->
 
             <LayoutButtons Face="AP_UpgradeToStargateWarp" Type="AbilCmd" AbilCmd="AP_UpgradeToStargateWarp,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_SOAWarpTech" Type="Passive" Requirements="AP_HaveSOAWarpTech" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_WarpHarmonizationStargate" Type="Passive" Requirements="AP_WarpHarmonizationStargate" Row="2" Column="2"/>
             <LayoutButtons Face="AP_WarpRelocate" Type="AbilCmd" AbilCmd="AP_WarpRelocate,Build10" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="Aiur">
@@ -21745,6 +21858,7 @@
         <AbilArray Link="AP_MorphBackToStargate"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
 
             <!--Top Line Units-->
@@ -21787,7 +21901,7 @@
 
             <LayoutButtons Face="AP_UpgradeToStargateWarp" Type="AbilCmd" AbilCmd="AP_UpgradeToStargateWarp,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_MorphBackToStargate" Type="AbilCmd" AbilCmd="AP_MorphBackToStargate,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_SOAWarpTech" Type="Passive" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_WarpHarmonizationStargate" Type="Passive" Row="2" Column="2"/>
             <LayoutButtons Face="AP_WarpRelocate" Type="AbilCmd" AbilCmd="AP_WarpRelocate,Build27" Row="2" Column="4"/>
 
             <!--Other-->
@@ -21979,7 +22093,8 @@
         <AbilArray Link="AP_BlinkSlayer"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_AlarakStalkerPhasingArmor"/>
-        <WeaponArray Link="AP_ParticleDisruptors"/>
+        <BehaviorArray Link="AP_StalkerTaldarimAttackUpgradeRestock"/>
+        <WeaponArray Link="AP_StalkerTaldarimAttackWeapon"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
@@ -21990,8 +22105,8 @@
             <LayoutButtons Face="AP_SlayerBlink" Type="AbilCmd" AbilCmd="AP_BlinkSlayer,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_AlarakStalkerPhasingArmor" Type="Passive" Requirements="AP_HaveAlarakStalkerPhasingArmor" Row="2" Column="1"/>
             <LayoutButtons Face="AP_CommanderPrestigeAlarakMechBuff" Type="Passive" Requirements="AP_CommanderPrestigeAlarakMech" Row="1" Column="4"/>
-            <LayoutButtons Face="AP_HighImpactParticleDisruptor" Type="Passive" Requirements="AP_HaveHighImpactParticleDisruptors" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ParticleReflection" Type="Passive" Requirements="AP_HaveVoidStalkerMultishot" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_StalkerTaldarimAttackUpgrade" Type="Passive" Requirements="AP_StalkerTaldarimAttackUpgrade" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_StalkerTaldarimPhaseAlignment" Type="Passive" Requirements="AP_StalkerTaldarimPhaseAlignment" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0.625"/>
@@ -22073,7 +22188,7 @@
         <AbilArray Link="AP_SOAMothershipBlink"/>
         <AbilArray Link="AP_SummonDeathFleet"/>
         <AbilArray Link="AP_MothershipTaldarimHangar"/>
-        <!--- Note: War Council Nerf relies on AP_AutoMorphToMothershipTaldarim to be index 8 and AP_DisplayPowerFieldMothership to be index 0 -->
+        <!-- Note: War Council Nerf relies on AP_AutoMorphToMothershipTaldarim to be index 8 and AP_DisplayPowerFieldMothership to be index 0 -->
         <AbilArray Link="AP_AutoMorphToMothershipTaldarim"/>
         <AbilArray Link="AP_HangarQueue5"/>
         <AbilArray Link="Warpable"/>
@@ -23020,6 +23135,7 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueueSmall"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="AP_ShieldBatteryRecharge" Type="AbilCmd" AbilCmd="AP_ShieldBatteryRechargeChanneled,0" Row="2" Column="0"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -23078,13 +23194,16 @@
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="250"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5CancelToSelection"/>
         <AbilArray Link="AP_UpgradeToGreaterSpireBroodlord"/>
         <AbilArray Link="AP_SpireResearch"/>
         <AbilArray Link="AP_UpgradeToGreaterSpireViper"/>
-        <AbilArray Link="AP_StrainInjectionRally"/>
+        <AbilArray Link="AP_SpireRally"/>
+        <AbilArray Link="AP_ScourgeSpawn"/>
+        <AbilArray Link="AP_AutoMorphSpire"/>
         <BehaviorArray Link="OnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingNotOnCreep"/>
         <BehaviorArray Link="AP_ZergBuildingDies6"/>
@@ -23114,6 +23233,7 @@
             <LayoutButtons Face="AP_GreaterSpireBroodlord" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireBroodlord,0" Row="2" Column="0"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireBroodlord,1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_GreaterSpireViper" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireViper,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ScourgeSpawn" Type="AbilCmd" AbilCmd="AP_ScourgeSpawn,0" Row="2" Column="2"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_UpgradeToGreaterSpireViper,1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="1"/>
@@ -23165,6 +23285,7 @@
         <Sight value="9"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
@@ -23237,6 +23358,7 @@
         <Sight value="11"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="stop"/>
@@ -23314,6 +23436,7 @@
         <Sight value="11"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="150"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="19"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
@@ -23391,6 +23514,7 @@
         <Sight value="11"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="125"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="19"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="stop"/>
@@ -23472,6 +23596,7 @@
         <Sight value="11"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="125"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="19"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
@@ -23545,6 +23670,7 @@
         <Sight value="11"/>
         <CostResource index="Minerals" value="125"/>
         <CostResource index="Vespene" value="100"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="stop"/>
@@ -23615,6 +23741,7 @@
         <Sight value="9"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="250"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="que5"/>
@@ -24123,6 +24250,7 @@
         <Sight value="5"/>
         <Food value="-2"/>
         <CostCategory value="Army"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="10"/>
         <AbilArray Link="Rally"/>
         <AbilArray Link="que1"/>
@@ -24193,13 +24321,14 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
-        <AbilArray Link="AP_Repair"/>
+        <AbilArray Link="AP_InfestedSCVRepair"/>
         <AbilArray Link="AP_SCVHarvest"/>
         <AbilArray Link="AP_SIAdvancedBuild"/>
         <AbilArray Link="GatherSpecialObject"/>
         <AbilArray Link="CancelTerrazineHarvest"/>
         <BehaviorArray Link="AP_SCVCliffJump"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_InfestedSCVRepairBio"/>
         <WeaponArray Link="AP_FusionCutter"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -24207,7 +24336,7 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="AttackWorker" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="AP_Repair" Type="AbilCmd" AbilCmd="AP_Repair,0" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_Repair" Type="AbilCmd" AbilCmd="AP_InfestedSCVRepair,0" Row="2" Column="2"/>
             <LayoutButtons Face="GatherTerr" Type="AbilCmd" AbilCmd="AP_SCVHarvest,0" Row="1" Column="0"/>
             <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="AP_SCVHarvest,1" Row="1" Column="1"/>
             <LayoutButtons Face="AP_DualFusionWelders" Type="Passive" Requirements="AP_HaveDualFusionWelders" Row="1" Column="2"/>
@@ -24217,6 +24346,7 @@
             <!--            <LayoutButtons Face="TerranBuildAdvanced" Type="Submenu" SubmenuCardId="TBl2" Row="2" Column="1"/>-->
             <LayoutButtons Face="AP_SCVCliffJump" Type="Passive" Requirements="AP_HaveSCVCliffJump" Row="2" Column="3"/>
             <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="AP_SIAdvancedBuild,30" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_InfestedSCVRepairFree" Type="Passive" Requirements="AP_InfestedSCVRepairFree" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="CancelTerrazineHarvest,0" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="TBl1">
@@ -24505,6 +24635,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="300"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -24629,6 +24760,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="300"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -24710,6 +24842,7 @@
         <Food value="-6"/>
         <CostResource index="Minerals" value="300"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -24758,6 +24891,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="300"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="18"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -24830,6 +24964,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="0"/>
+        <RepairTime value="15"/>
         <Food value="-1"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
@@ -24886,6 +25021,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="75"/>
         <CostResource index="Vespene" value="0"/>
+        <RepairTime value="15"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -25016,6 +25152,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="200"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -25093,6 +25230,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="200"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -25210,6 +25348,7 @@
         <AbilArray Link="que5"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
@@ -25671,6 +25810,8 @@
         <AbilArray Link="AP_ShadowCharge"/>
         <AbilArray Link="AP_ShadowChargeStun"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
+        <BehaviorArray Link="AP_CenturionDodgeTracker"/>
+        <BehaviorArray Link="AP_CenturionDodge"/>
         <WeaponArray Link="AP_CenturionWarpBlades"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -25682,8 +25823,8 @@
             <LayoutButtons Face="AP_VoidZealotShadowCharge" Type="AbilCmd" AbilCmd="AP_ShadowCharge,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_VoidZealotShadowChargeStun" Type="AbilCmd" AbilCmd="AP_ShadowChargeStun,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_CenturionResourceEfficiency" Type="Passive" Requirements="AP_HaveCenturionResourceEfficiencyCompleteOnly" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_LegEnhancements" Type="Passive" Requirements="AP_HaveZealotSCBWSpeedUpgrade" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ZealotShieldCapacity" Type="Passive" Requirements="AP_HaveZealotShieldCapacity" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_CenturionDodge" Type="Passive" Requirements="AP_CenturionDodge" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_CenturionCloak" Type="Passive" Requirements="AP_CenturionCloak" Row="1" Column="1"/>
         </CardLayouts>
         <SeparationRadius value="0.375"/>
         <InnerRadius value="0.375"/>
@@ -25762,6 +25903,7 @@
         <AbilArray Link="AP_MorphBackToGateway"/>
         <AbilArray Link="AP_WarpRelocate"/>
         <BehaviorArray Link="PowerUserQueue"/>
+        <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
             <LayoutButtons Face="AP_ZealotAiur" Type="AbilCmd" AbilCmd="AP_WarpGateTrainRedirect,Train1" Row="0" Column="0"/>
             <LayoutButtons Face="AP_ZealotPurifier" Type="AbilCmd" AbilCmd="AP_WarpGateTrainRedirect,Train9" Row="0" Column="0"/>
@@ -25878,6 +26020,7 @@
         <Food value="-0.5"/>
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="25"/>
+        <RepairTime value="10"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -25964,6 +26107,7 @@
         <Food value="-0.5"/>
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="25"/>
+        <RepairTime value="10"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -26089,22 +26233,15 @@
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_Charge" Type="AbilCmd" AbilCmd="AP_Charge,Execute" Row="2" Column="0"/>
-            <LayoutButtons>
-                <Face value="AP_ZealotPurifierRevive"/>
-                <Type value="Passive"/>
-                <Requirements value="AP_ZealotPurifierReviveOffCooldown"/>
-                <ShowInGlossary value="0"/>
-                <Row value="2"/>
-                <Column value="1"/>
-            </LayoutButtons>
-            <LayoutButtons Face="AP_ZealotPurifierRevive" Type="Passive" Behavior="AP_ZealotPurifierReviveSupressed" Row="2" Column="1"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_SentinelArmor" Type="Passive" Requirements="AP_SentinelArmor" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_SentinelRecharge" Type="Passive" Requirements="AP_SentinelRecharge" Row="1" Column="1"/>
             <LayoutButtons Face="AP_SentinelResourceEfficiency" Type="Passive" Requirements="AP_HaveSentinelResourceEfficiencyCompleteOnly" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_LegEnhancements" Type="Passive" Requirements="AP_HaveZealotSCBWSpeedUpgrade" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ZealotShieldCapacity" Type="Passive" Requirements="AP_HaveZealotShieldCapacity" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_Charge" Type="AbilCmd" AbilCmd="AP_Charge,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ZealotPurifierRevive" Type="Passive" Requirements="AP_ZealotPurifierReviveOffCooldown" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_ZealotPurifierRevive" Type="Passive" Behavior="AP_ZealotPurifierReviveSupressed" Row="2" Column="1"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
         </CardLayouts>
         <SeparationRadius value="0.375"/>
         <InnerRadius value="0.375"/>
@@ -26186,8 +26323,8 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
-            <LayoutButtons Face="AP_LegEnhancements" Type="Passive" Requirements="AP_HaveZealotSCBWSpeedUpgrade" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_ZealotShieldCapacity" Type="Passive" Requirements="AP_HaveZealotShieldCapacity" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_SentinelArmor" Type="Passive" Requirements="AP_SentinelArmor" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_SentinelRecharge" Type="Passive" Requirements="AP_SentinelRecharge" Row="1" Column="1"/>
         </CardLayouts>
         <SeparationRadius value="0.375"/>
         <InnerRadius value="0.375"/>
@@ -26263,6 +26400,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="250"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="40"/>
         <!--        <GlossaryStrongArray value="Battlecruiser"/>-->
         <!--        <GlossaryStrongArray value="Mutalisk"/>-->
         <!--        <GlossaryStrongArray value="Phoenix"/>-->
@@ -26329,6 +26467,7 @@
         <Food value="-2"/>
         <CostResource index="Minerals" value="250"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="40"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -26372,6 +26511,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="60"/>
         <BuildTime value="37.5"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
@@ -26431,6 +26571,7 @@
         <Food value="-2"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -26571,6 +26712,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="50"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="40"/>
         <BuildTime value="46.875"/>
         <AttackTargetPriority value="20"/>
         <KillXP value="40"/>
@@ -26649,6 +26791,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="50"/>
         <CostResource index="Vespene" value="150"/>
+        <RepairTime value="40"/>
         <AttackTargetPriority value="20"/>
         <KillXP value="40"/>
         <AbilArray Link="AP_DefilerSCBW@BurrowUp"/>
@@ -27001,6 +27144,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
@@ -27067,6 +27211,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="AP_PrimalIgniterBurrowUp"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
@@ -27244,6 +27389,8 @@
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowSIInfestedMarineDown,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SIMarineTrooperImprovedRange" Type="Passive" Requirements="AP_HaveSIMarineTrooperRange" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SIPlaguedMunitions" Type="Passive" Requirements="AP_HaveSIPlaguedMunitions" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_InfestedMarineExtended" Type="Passive" Requirements="AP_InfestedMarineExtended" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_InfestedMarineSpeed" Type="Passive" Requirements="AP_InfestedMarineSpeed" Row="2" Column="3"/>
         </CardLayouts>
         <Attributes index="Light" value="1"/>
         <Attributes index="Biological" value="1"/>
@@ -27294,6 +27441,8 @@
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowSIInfestedMarineUp,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SIMarineTrooperImprovedRange" Type="Passive" Requirements="AP_HaveSIMarineTrooperRange" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SIPlaguedMunitions" Type="Passive" Requirements="AP_HaveSIPlaguedMunitions" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_InfestedMarineExtended" Type="Passive" Requirements="AP_InfestedMarineExtended" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_InfestedMarineSpeed" Type="Passive" Requirements="AP_InfestedMarineSpeed" Row="2" Column="3"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -27357,6 +27506,8 @@
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowSIInfestedTrooperDown,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SIMarineTrooperImprovedRange" Type="Passive" Requirements="AP_HaveSIMarineTrooperRange" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SIPlaguedMunitions" Type="Passive" Requirements="AP_HaveSIPlaguedMunitions" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_InfestedMarineExtended" Type="Passive" Requirements="AP_InfestedMarineExtended" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_InfestedMarineSpeed" Type="Passive" Requirements="AP_InfestedMarineSpeed" Row="2" Column="3"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -27411,6 +27562,8 @@
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowSIInfestedTrooperUp,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AP_SIMarineTrooperImprovedRange" Type="Passive" Requirements="AP_HaveSIMarineTrooperRange" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SIPlaguedMunitions" Type="Passive" Requirements="AP_HaveSIPlaguedMunitions" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_InfestedMarineExtended" Type="Passive" Requirements="AP_InfestedMarineExtended" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_InfestedMarineSpeed" Type="Passive" Requirements="AP_InfestedMarineSpeed" Row="2" Column="3"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -27504,6 +27657,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="600"/>
         <CostResource index="Vespene" value="400"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
@@ -27578,6 +27732,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="600"/>
         <CostResource index="Vespene" value="400"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="AP_TyrannozorBurrowUp"/>
         <BehaviorArray Link="AllUnitBehaviorController"/>
@@ -27696,6 +27851,7 @@
         <EditorCategories value="ObjectType:Structure"/>
         <CostResource index="Minerals" value="150"/>
         <CostResource index="Vespene" value="50"/>
+        <RepairTime value="60"/>
         <FlagArray index="Turnable" value="0"/>
         <FlagArray index="PreventDefeat" value="1"/>
         <FlagArray index="PreventDestroy" value="1"/>
@@ -27724,6 +27880,7 @@
         <LifeStart value="120"/>
         <LifeMax value="120"/>
         <LifeArmor value="3"/>
+        <RepairTime value="20"/>
         <AbilArray index="4" Link="AP_BurrowMercZerglingDown"/>
         <AbilArray index="5" Link=""/>  <!--remove baneling morph-->
         <BehaviorArray index="0" Link=""/>  <!--remove respawn ability-->
@@ -27741,6 +27898,7 @@
         <LifeStart value="120"/>
         <LifeMax value="120"/>
         <LifeArmor value="3"/>
+        <RepairTime value="20"/>
         <AbilArray index="0" Link="AP_BurrowMercZerglingUp"/>
         <BehaviorArray index="0" Link=""/>  <!--remove respawn ability-->
         <CardLayouts index="0">
@@ -27870,6 +28028,7 @@
         <CostCategory value="Army"/>
         <CostResource index="Minerals" value="300"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="18"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -27930,6 +28089,7 @@
         <Food value="-6"/>
         <CostResource index="Minerals" value="300"/>
         <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
         <AttackTargetPriority value="10"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -31403,6 +31563,7 @@
         <Food value="30"/>
         <CostCategory value="Economy"/>
         <CostResource index="Minerals" value="250"/>
+        <RepairTime value="40"/>
         <AttackTargetPriority value="20"/>
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
@@ -31956,9 +32117,9 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="AP_ElderProbePowerSource"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="AP_ElderProbeReconstruction" Type="Passive" Row="2" Column="4"/>
             <LayoutButtons Face="AP_ElderProbePowerOn" Type="AbilCmd" AbilCmd="AP_ElderProbePowerSource,Off" Row="2" Column="2"/>
             <LayoutButtons Face="AP_ElderProbePowerOff" Type="AbilCmd" AbilCmd="AP_ElderProbePowerSource,On" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_ElderProbeReconstruction" Type="Passive" Row="2" Column="4"/>
         </CardLayouts>
         <!-- Override -->
         <WeaponArray index="0" Link="AP_ElderProbeParticleBeam"/>
@@ -32412,5 +32573,13 @@
         <FlagArray index="Invulnerable" value="1"/>
         <Mover value=""/>
     </CUnit>
+    <CUnit id="AP_StalkerPurifierAttackMissile" parent="MISSILE">
+        <Race value="Prot"/>
+    </CUnit>
+    <CUnit id="AP_StalkerTaldarimAttackMissile" parent="MISSILE">
+        <Race value="Prot"/>
+    </CUnit>
+    <CUnit id="AP_StalkerTaldarimAttackUpgradeMissile" parent="MISSILE">
+        <Race value="Prot"/>
+    </CUnit>
 </Catalog>
-

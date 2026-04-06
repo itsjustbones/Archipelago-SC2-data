@@ -8265,8 +8265,79 @@
     <CValidatorUnitCompareBehaviorCount id="AP_DistributedAttackNotMarked">
         <Behavior value="AP_DistributedAttackMarker"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AP_HealBlacklist">
+        <Type value="And"/>
+        <CombineArray value="AP_NotSummoned"/>
+        <CombineArray value="NotWarpingIn"/>
+        <CombineArray value="AP_NotTimedLifeUnitAndNotLarva"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="AP_NotSummoned">
+        <Filters value="-;Summoned"/>
+    </CValidatorUnitFilters>
+    <CValidatorPlayerRequirement id="AP_ZergBuildingSpawnSplitterlings">
+        <Find value="1"/>
+        <Value value="AP_ZergBuildingSpawnSplitterlings"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="AP_IsZergTallStructure">
+        <CombineArray value="AP_IsAPSpire"/>
+        <CombineArray value="AP_IsAPGreaterSpire"/>
+        <CombineArray value="AP_IsAPBanelingNest"/>
+        <CombineArray value="AP_IsAPSpineCrawlerRooted"/>
+    </CValidatorCombine>
     <CValidatorUnitWeaponFiring id="AP_SourceUnitNotFiringWeapon">
         <WhichUnit Value="Source"/>
         <Find value="0"/>
     </CValidatorUnitWeaponFiring>
+    <CValidatorPlayerRequirement id="AP_NotHaveLurkerRange">
+        <Value value="AP_HaveLurkerRange"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="AP_LuirkerRange9"/>
+    <CValidatorCombine id="AP_LurkerRange11">
+        <Type value="And"/>
+        <CombineArray value="AP_HaveLurkerRange"/>
+        <CombineArray value="AP_LurkerRangeCreep"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_LurkerRange9">
+        <Type value="And"/>
+        <CombineArray value="AP_NotHaveLurkerRange"/>
+        <CombineArray value="AP_LurkerRangeCreep"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_HasStalkerTaldarimAttackBuff">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="AP_PhaseBlinkDamage"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="AP_HaveStalkerTaldarimAttackUpgrade">
+        <Find value="1"/>
+        <Value value="AP_StalkerTaldarimAttackUpgrade"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_NoStalkerTaldarimAttackUpgrade">
+        <Value value="AP_StalkerTaldarimAttackUpgrade"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="AP_NoStalkerTaldarimAttackBuff">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_PhaseBlinkDamage"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AP_VoidStalkerBlinkMultiple">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_VoidStalkerBlinkMultipleCaster"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitType id="AP_CasterIsAPSiegeTank">
+        <WhichUnit Value="Caster"/>
+        <Value value="AP_SiegeTank"/>
+        <Type value="SelectAlias"/>
+    </CValidatorUnitType>
+    <CValidatorPlayerRequirement id="AP_HavePylonImproved">
+        <Find value="1"/>
+        <Value value="AP_HavePylonImproved"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitInWeaponRange id="AP_TargetInWeaponRange2"/>
+    <CValidatorPlayerRequirement id="AP_HaveNexusPowerField">
+        <Find value="1"/>
+        <Value value="AP_HaveNexusPowerField"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="AP_NoCenturionDodge">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_CenturionDodge"/>
+    </CValidatorUnitCompareBehaviorCount>
 </Catalog>

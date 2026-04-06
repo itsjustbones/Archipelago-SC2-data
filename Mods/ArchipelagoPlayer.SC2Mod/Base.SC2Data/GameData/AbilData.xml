@@ -3864,6 +3864,9 @@
         <Flags index="IgnorePlacement" value="0"/>
         <Flags index="SuppressMovement" value="1"/>
         <InfoArray Unit="AP_LurkerBurrowed" RandomDelayMax="0.25">
+            <SectionArray index="Abils">
+                <EffectArray index="Start" value="AP_LurkerCarapaceABDummy"/>
+            </SectionArray>
             <SectionArray index="Actor">
                 <DurationArray index="Duration" value="1"/>
             </SectionArray>
@@ -3885,6 +3888,9 @@
         <Flags index="IgnoreFacing" value="1"/>
         <Flags index="SuppressMovement" value="1"/>
         <InfoArray Unit="AP_Lurker" RandomDelayMax="0.5">
+            <SectionArray index="Abils">
+                <EffectArray index="Start" value="AP_LurkerCarapaceABDummy"/>
+            </SectionArray>
             <SectionArray index="Actor">
                 <DurationArray index="Duration" value="1"/>
             </SectionArray>
@@ -4891,7 +4897,7 @@
         <AbilSetId value="Blnk"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <DataCollection value="Blink"/>
-        <Effect index="0" value="AP_PhaseBlinkSet"/>
+        <Effect index="0" value="AP_PhaseBlink"/>
         <Flags index="BestUnit" value="0"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
@@ -5548,7 +5554,7 @@
         <Cost>
             <Cooldown TimeUse="10"/>
         </Cost>
-        <Effect value="AP_VoidZealotShadowChargeSearch"/>
+        <Effect value="AP_VoidZealotShadowChargeSet"/>
         <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable,Unstoppable"/>
         <AutoCastValidatorArray value="AP_TargetNotShadowStunnedAndNotShadowSlowed"/>
         <AutoCastValidatorArray value="AP_VoidZealotShadowStunRange"/>
@@ -7951,17 +7957,17 @@
             <Resource index="Minerals" value="25"/>
             <Resource index="Vespene" value="25"/>
             <Button DefaultButtonFace="AP_AiurMothershipFeedback" State="Restricted" Requirements="AP_CanInstallAiurMothershipFeedback"/>
-        </InfoArray>    
+        </InfoArray>
         <InfoArray index="Research2" Time="0" Upgrade="AP_AiurMothershipShieldRestore">
             <Resource index="Minerals" value="75"/>
             <Resource index="Vespene" value="0"/>
             <Button DefaultButtonFace="AP_AiurMothershipShieldRestore" State="Restricted" Requirements="AP_CanInstallAiurMothershipShieldRestore"/>
-        </InfoArray>     
+        </InfoArray>
         <InfoArray index="Research3" Time="0" Upgrade="AP_AiurMothershipEnergyRegenAura">
             <Resource index="Minerals" value="50"/>
             <Resource index="Vespene" value="50"/>
             <Button DefaultButtonFace="AP_AiurMothershipEnergyRegenAura" State="Restricted" Requirements="AP_CanInstallAiurMothershipEnergyRegenAura"/>
-        </InfoArray>     
+        </InfoArray>
         <InfoArray index="Research4" Time="0" Upgrade="AP_MothershipAiurHangar">
             <Resource index="Minerals" value="75"/>
             <Resource index="Vespene" value="50"/>
@@ -7979,7 +7985,7 @@
             <Resource index="Minerals" value="125"/>
             <Resource index="Vespene" value="25"/>
             <Button DefaultButtonFace="AP_PurifierMothershipShielding" State="Restricted" Requirements="AP_CanInstallPurifierMothershipShielding"/>
-        </InfoArray>        
+        </InfoArray>
         <InfoArray index="Research3" Time="0" Upgrade="AP_PurifierMothershipAttackSpeedBoost">
             <Resource index="Minerals" value="100"/>
             <Resource index="Vespene" value="100"/>
@@ -7989,7 +7995,7 @@
             <Resource index="Minerals" value="50"/>
             <Resource index="Vespene" value="50"/>
             <Button DefaultButtonFace="AP_InterceptorMothershipPurifier" State="Restricted" Requirements="AP_HaveMothershipHangarUpgrade"/>
-        </InfoArray>        
+        </InfoArray>
     </CAbilResearch>
     <CAbilResearch id="AP_MothershipTaldarimAuxiliaryOneTimeInstall">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -8002,7 +8008,7 @@
             <Resource index="Minerals" value="125"/>
             <Resource index="Vespene" value="50"/>
             <Button DefaultButtonFace="AP_TaldarimMothershipFastAttack" State="Restricted" Requirements="AP_CanInstallTaldarimMothershipFastAttack"/>
-        </InfoArray>        
+        </InfoArray>
         <InfoArray index="Research3" Time="0" Upgrade="AP_TaldarimMothershipDeathHeal">
             <Resource index="Minerals" value="175"/>
             <Resource index="Vespene" value="25"/>
@@ -8114,7 +8120,7 @@
         <PrepTime value="0.5"/>
         <CastIntroTime value="0.5"/>
         <FinishTime value="0.5"/>
-    </CAbilEffectTarget>           
+    </CAbilEffectTarget>
     <CAbilArmMagazine id="AP_MothershipTaldarimHangar">
         <AbilSetId value="MothershipHangar"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -8133,13 +8139,13 @@
         <Alert value="TrainComplete"/>
         <EffectArray index="Death" value="InterceptorFate"/>
         <MaxCount value="0"/>
-    </CAbilArmMagazine> 
+    </CAbilArmMagazine>
     <CAbilArmMagazine id="AP_MothershipDummyHangar">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <ExternalAngle value="-135"/>
         <ExternalAngle value="135"/>
         <MaxCount value="0"/>
-    </CAbilArmMagazine>    
+    </CAbilArmMagazine>
     <CAbilArmMagazine id="AP_MothershipPurifierHangar">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Launch value="ReleaseAtSource"/>
@@ -8160,7 +8166,7 @@
         <ExternalAngle value="-135"/>
         <ExternalAngle value="135"/>
         <MaxCount value="1"/>
-    </CAbilArmMagazine>   
+    </CAbilArmMagazine>
     <CAbilArmMagazine id="AP_MothershipAiurHangar">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Launch value="ReleaseAtSource"/>
@@ -8182,7 +8188,7 @@
         <ExternalAngle value="90"/>
         <ExternalAngle value="270"/>
         <MaxCount value="2"/>
-    </CAbilArmMagazine>                                             
+    </CAbilArmMagazine>
     <CAbilEffectTarget id="AP_TimeFieldAiur">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_TimeFieldAiurCreatePersistent"/>
@@ -8701,7 +8707,7 @@
         </InfoArray>
         <InfoArray index="Build9" Time="25"/>
         <InfoArray index="Build10" Unit="AP_Stargate" Time="60">
-            <Button DefaultButtonFace="AP_Stargate" State="Restricted" Requirements="AP_HaveNexusAndNotHaveSOAWarpTech"/>
+            <Button DefaultButtonFace="AP_Stargate" State="Restricted" Requirements="AP_HaveNexus"/>
         </InfoArray>
         <InfoArray index="Build11" Unit="AP_TemplarArchive" Time="50">
             <Button DefaultButtonFace="AP_TemplarArchive" State="Restricted" Requirements="AP_HaveGateway"/>
@@ -8713,7 +8719,7 @@
             <Button DefaultButtonFace="AP_RoboticsBay" State="Restricted" Requirements="AP_HaveRoboticsFa"/>
         </InfoArray>
         <InfoArray index="Build14" Unit="AP_RoboticsFacility" Time="65">
-            <Button DefaultButtonFace="AP_RoboticsFacility" State="Restricted" Requirements="AP_HaveNexusAndNotHaveSOAWarpTech"/>
+            <Button DefaultButtonFace="AP_RoboticsFacility" State="Restricted" Requirements="AP_HaveNexus"/>
         </InfoArray>
         <InfoArray index="Build15" Unit="AP_CyberneticsCore" Time="50">
             <Button DefaultButtonFace="AP_CyberneticsCore" State="Restricted" Requirements="AP_HaveGatewayOrStargate"/>
@@ -8740,7 +8746,7 @@
             <Button DefaultButtonFace="AP_WarpInWarpGate" State="Restricted" Requirements="AP_HaveNexus"/>
         </InfoArray>
         <InfoArray index="Build27" Unit="AP_StargateWarp" Time="60">
-            <Button DefaultButtonFace="AP_WarpInStarWarpGate" State="Restricted" Requirements="AP_HaveNexusAndHaveSOAWarpTech"/>
+            <Button DefaultButtonFace="AP_WarpInStarWarpGate" State="Restricted" Requirements="AP_CanBuildWarpStargate"/>
         </InfoArray>
         <InfoArray index="Build28" Unit="AP_RoboticsFacilityWarp" Time="65">
             <Button DefaultButtonFace="AP_WarpInRoboticsWarpFacility" State="Restricted" Requirements="AP_HaveNexusAndHaveSOAWarpTech"/>
@@ -10785,7 +10791,7 @@
     </CAbilStop>
     <CAbilMorph id="AP_UpgradeToStargateWarp">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:MorphsandBurrows"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_UpgradeToStargateWarp" Requirements="AP_HaveSOAWarpTech"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_UpgradeToStargateWarp" Requirements="AP_WarpHarmonizationStargate"/>
         <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
         <Flags index="BestUnit" value="1"/>
         <Flags index="Birth" value="1"/>
@@ -10833,7 +10839,7 @@
     </CAbilMorph>
     <CAbilMorph id="AP_UpgradeToStargateWarpInstant">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:MorphsandBurrows"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_UpgradeToStargateWarp" Requirements="AP_HaveSOAWarpTech"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_UpgradeToStargateWarp" Requirements="AP_WarpHarmonizationStargate"/>
         <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
         <Flags index="BestUnit" value="1"/>
         <Flags index="Birth" value="1"/>
@@ -12009,6 +12015,12 @@
         </InfoArray>
         <InfoArray index="Build23" Unit="AP_TradeStructure" Time="40">
             <Button DefaultButtonFace="AP_TradeStructure" State="Restricted" Requirements="AP_NotHaveTradeStructure"/>
+        </InfoArray>
+        <InfoArray index="Build29" Unit="AP_GreaterSpire" Time="40">
+            <Button DefaultButtonFace="AP_GreaterHydraliskDen" Requirements="AP_GreaterSpire"/>
+        </InfoArray>
+        <InfoArray index="Build30" Unit="AP_LurkerDen" Time="40">
+            <Button DefaultButtonFace="AP_GreaterHydraliskDen" Requirements="AP_GreaterHydraliskDen"/>
         </InfoArray>
     </CAbilBuild>
     <CAbilBuild id="AP_CreepTumorBuild">
@@ -16036,7 +16048,7 @@
         <InfoArray index="7">
             <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
             <Button Requirements=""/>
-        </InfoArray>        
+        </InfoArray>
         <InfoArray index="8">
             <Charge CountUse="0" TimeStart="0" TimeUse="0"/>
             <Button Requirements=""/>
@@ -16593,4 +16605,96 @@
         <AutoCastValidatorArray value="NotLarvaEgg"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_TempestDistributedAttack" Requirements="AP_HaveTempestDistributedAttack"/>
     </CAbilEffectTarget>
+    <CAbilMorph id="AP_AutoMorphHydraDen">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GreaterHydraliskDen" Requirements="AP_HydraliskDenMaturation"/>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value=""/>
+        <Flags index="Automatic" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnoreFood" value="1"/>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <InfoArray Unit="AP_LurkerDen" CollideRange="0"/>
+    </CAbilMorph>
+    <CAbilMorph id="AP_AutoMorphSpire">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GreaterSpire" Requirements="AP_SpireMaturation"/>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value=""/>
+        <Flags index="Automatic" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnoreFood" value="1"/>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <InfoArray Unit="AP_GreaterSpire" CollideRange="0"/>
+    </CAbilMorph>
+    <CAbilEffectTarget id="AP_InfestedSCVRepair">
+        <AbilSetId value="Repair"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOffOwnerLeave" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="BestUnit" value="0"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Smart" value="1"/>
+        <Flags index="PassengerAcquirePassengers" value="1"/>
+        <TargetFilters value="Visible;Self,Enemy,Missile,UnderConstruction,Dead,Hidden"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Neutral,Enemy"/>
+        <AutoCastRange value="7"/>
+        <UseMarkerArray index="Approach" value="0"/>
+        <UseMarkerArray index="Prep" value="0"/>
+        <UseMarkerArray index="Cast" value="0"/>
+        <UseMarkerArray index="Channel" value="0"/>
+        <InheritAttackPriorityArray index="Prep" value="1"/>
+        <InheritAttackPriorityArray index="Cast" value="1"/>
+        <InheritAttackPriorityArray index="Channel" value="1"/>
+        <DefaultError value="RequiresRepairTarget"/>
+        <IgnoreFilters value="Mechanical;-"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Repair">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <AutoCastValidatorArray value="AP_HealBlacklist"/>
+    </CAbilEffectTarget>
+    <CAbilTrain id="AP_ScourgeSpawn">
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <InfoArray index="Train1" Effect="AP_ScourgeSpawnAB">
+            <Cooldown Location="Player" TimeUse="30"/>
+            <Button DefaultButtonFace="AP_ScourgeSpawn" State="Restricted" Requirements="AP_ScourgeSpawn"/>
+            <Unit value="AP_Scourge"/>
+            <Unit value="AP_Scourge"/>
+            <Unit value="AP_Scourge"/>
+            <Unit value=""/>
+            <Unit value=""/>
+            <Unit value=""/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="AP_BanelingSpawn">
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <InfoArray index="Train1" Effect="AP_BanelingSpawnAB">
+            <Cooldown Location="Player" TimeUse="30"/>
+            <Button DefaultButtonFace="AP_BanelingSpawn" State="Restricted" Requirements="AP_BanelingSpawn"/>
+            <Unit value="AP_Baneling"/>
+            <Unit value="AP_Baneling"/>
+            <Unit value="AP_Baneling"/>
+            <Unit value=""/>
+            <Unit value=""/>
+            <Unit value=""/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilRally id="AP_BanelingNestRally">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
+        <CmdButtonArray index="Rally1" Requirements="AP_BanelingNestRally"/>
+        <CmdButtonArray index="Rally2" Requirements="AP_BanelingNestRally"/>
+        <CmdButtonArray index="Rally3" Requirements="AP_BanelingNestRally"/>
+    </CAbilRally>
+    <CAbilRally id="AP_SpireRally">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
+        <CmdButtonArray index="Rally1" Requirements="AP_SpireRally"/>
+        <CmdButtonArray index="Rally2" Requirements="AP_SpireRally"/>
+        <CmdButtonArray index="Rally3" Requirements="AP_SpireRally"/>
+    </CAbilRally>
 </Catalog>
