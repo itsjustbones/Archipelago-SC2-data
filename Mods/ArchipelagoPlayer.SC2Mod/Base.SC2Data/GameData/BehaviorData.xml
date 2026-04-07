@@ -1553,9 +1553,9 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Duration value="5"/>
         <BuffFlags index="RefreshStack" value="1"/>
-        <MaxStackCount value="6"/>
-        <Modification ShieldArmorBonus="-0.5">
-            <LifeArmorBonus value="-0.5"/>
+        <MaxStackCount value="3"/>
+        <Modification ShieldArmorBonus="-1">
+            <LifeArmorBonus value="-1"/>
         </Modification>
         <DisplayDuration index="Self" value="1"/>
         <DisplayDuration index="Ally" value="1"/>
@@ -7708,6 +7708,7 @@
             <ModifyFlags index="SuppressMoving" value="1"/>
             <ModifyFlags index="SuppressTurning" value="1"/>
             <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="SuppressFoodMade" value="1"/>
             <StateFlags index="SuppressFoodUsed" value="1"/>
@@ -7717,6 +7718,14 @@
             <StateFlags index="Untargetable" value="1"/>
         </Modification>
         <FinalEffect value="SuicideRemove"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DeepTunnelDisableAttack">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="2"/>
+        <Modification>
+            <StateFlags index="SuppressAttack" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_CreepFrenzy13Crawler">
         <InfoIcon value="Assets\Textures\btn-ability-kerrigan-malignantcreep.dds"/>

@@ -4805,7 +4805,7 @@
         <ValidatorArray value="NotInvulnerable"/>
         <EditorCategories value="Race:Zerg"/>
         <Behavior value="AP_RavagerDisintegratingAcid"/>
-        <Count value="6"/>
+        <Count value="3"/>
     </CEffectApplyBehavior>
     <!-- Ravager Deep Tunnel -->
     <CEffectCreateUnit id="AP_DeepTunnelCU">
@@ -4827,6 +4827,11 @@
     </CEffectSet>
     <CEffectApplyBehavior id="AP_DeepTunnelPrecursor">
         <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_DeepTunnelDisableAttack">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_DeepTunnelDisableAttack"/>
     </CEffectApplyBehavior>
     <CEffectTeleport id="AP_DeepTunnelTeleport">
         <EditorCategories value="Race:Zerg"/>
