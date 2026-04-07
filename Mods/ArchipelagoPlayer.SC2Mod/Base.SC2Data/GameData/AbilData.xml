@@ -5497,7 +5497,7 @@
         <Effect index="0" value="AP_DeepTunnelCU"/>
         <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Cooldown Location="Unit" TimeUse="30"/>
+            <Cooldown Location="Unit" TimeUse="10"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>
@@ -5525,6 +5525,9 @@
         <CursorEffect value="AP_RavagerCorrosiveBileCursorDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile"/>
     </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerCorrosiveBileBurrowed" parent="AP_RavagerCorrosiveBile">
+        <Arc value="360"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBile">
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
@@ -5536,6 +5539,9 @@
         <Range value="9"/>
         <CursorEffect value="AP_RavagerCorrosiveBileAirCursorDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBileBurrowed" parent="AP_RavagerAerialCorrosiveBile">
+        <Arc value="360"/>
     </CAbilEffectTarget>
     <CAbilMorph id="AP_MorphToRavager">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
