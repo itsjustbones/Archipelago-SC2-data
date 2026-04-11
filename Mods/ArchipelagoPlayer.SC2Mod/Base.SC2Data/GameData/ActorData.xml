@@ -7,7 +7,7 @@
         <DeathCustomPriorityList value="Nerazim"/>
         <DeathCustomPriorityList value="Aiur"/>
         <DeathCustomPriorityList value="Unity"/>
-        <DeathCustomPriorityList value="BrutaliskBone"/>
+        <DeathCustomPriorityList value="Bone"/>
     </CActorGlobalConfig>
     <const id="$AP_LurkerSpineSiteOps" value="{AP_LurkerSOpAoEVariancer SOpShadow SOpForwardCasterPoint SOp2DRotation AP_LurkerSOpShadowSpine SOpRotVariancerUp15}"/>
     <CActorUnit default="1" id="GenericUnitStandard">
@@ -11643,10 +11643,10 @@
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerBurrowed" Send="AnimBracketStop Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerCocoon" Send="Create"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerCocoon" Send="$Birth 0 0.000000"/>
-        <On Terms="Upgrade.AP_HotSRavagerBrutaliskBonePlating.Add" Send="ModelSwap AP_RavagerBrutaliskBone"/>
-        <On Terms="Upgrade.AP_HotSRavagerBrutaliskBonePlating.Add" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBrutaliskBonePortrait"/>
-        <On Terms="ActorCreation; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Send="ModelSwap AP_RavagerBrutaliskBone"/>
-        <On Terms="UnitPortrait.*.Configure; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBrutaliskBonePortrait"/>
+        <On Terms="Upgrade.AP_HotSRavagerBonePlating.Add" Send="ModelSwap AP_RavagerBone"/>
+        <On Terms="Upgrade.AP_HotSRavagerBonePlating.Add" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBonePortrait"/>
+        <On Terms="ActorCreation; ValidatePlayer AP_HaveHotSRavagerBonePlating" Send="ModelSwap AP_RavagerBone"/>
+        <On Terms="UnitPortrait.*.Configure; ValidatePlayer AP_HaveHotSRavagerBonePlating" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBonePortrait"/>
         <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
         <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="Create AP_RavagerRoachlingBileReady"/>
         <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="TimerSet 0.062500 RoachlingBileReadyRefresh"/>
@@ -11655,7 +11655,7 @@
         <On Terms="ActorCreation" Send="Create AP_RavagerRoachlingBileReady"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerBurrowed" Send="Create AP_RavagerRoachlingBileReady"/>
-        <On Terms="UnitDeathCustomize; ValidatePlayer AP_HaveHotSRavagerBrutaliskBonePlating" Send="DeathCustomize BrutaliskBone"/>
+        <On Terms="UnitDeathCustomize; ValidatePlayer AP_HaveHotSRavagerBonePlating" Send="DeathCustomize Bone"/>
         <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
         <On Terms="Abil.AP_RavagerAerialCorrosiveBile.SourceCastStart" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
         <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Spend" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
@@ -11684,7 +11684,7 @@
         <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
             <BodySquibs Name="Fire"/>
         </DeathCustoms>
-        <DeathCustoms ModelLink="AP_RavagerBrutaliskBoneDeath" SoundLink="Roach_Explode" Name="BrutaliskBone"/>
+        <DeathCustoms ModelLink="AP_RavagerBoneDeath" SoundLink="Roach_Explode" Name="Bone"/>
         <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
             <BodySquibs Name="Acid"/>
         </DeathCustoms>
@@ -11748,6 +11748,10 @@
         <ImpactMap index="None" Model="AP_RavagerWeaponImpact" Sound="Ravager_Attack_Impact"/>
     </CActorAction>
     <CActorMissile id="AP_RavagerWeaponMissile" parent="GenericAttackMissile" unitName="AP_RavagerWeaponMissile"/>
+    <CActorAction id="AP_RavagerBurrowedBombardmentAttack" parent="GenericAttack" effectImpact="AP_RavagerWeaponDamage" effectLaunch="AP_RavagerBurrowedBombardmentWeaponLM">
+        <Missile value="AP_RavagerWeaponMissile"/>
+        <ImpactMap index="None" Model="AP_RavagerWeaponImpact" Sound="Ravager_Attack_Impact"/>
+    </CActorAction>
     <CActorSplat id="AP_RavagerBurrowedSplat" parent="BurrowedSplat" unitName="AP_Ravager">
         <Scale value="1.100000"/>
     </CActorSplat>
@@ -11870,6 +11874,18 @@
         <IconArcLength value="3.250000"/>
     </CActorRange>
     <CActorRange id="AP_RavagerAerialCorrosiveBileBurrowedRange" parent="RangeAbil" abil="AP_RavagerAerialCorrosiveBileBurrowed">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
+    <CActorRange id="AP_RavagerBurrowedBombardmentRange">
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.Start; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.StartEditorGround; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.StartEditorFlyer; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.Stop" Send="Destroy"/>
+        <On Terms="AbilMorph.*.Start; MorphTo AP_RavagerBurrowed; Selected; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="AbilMorph.*.Start; MorphTo AP_Ravager" Send="Destroy"/>
+        <On Terms="Upgrade.AP_HotSRavagerBurrowedBombardment.Add; Selected; !ValidateUnit AP_NotAPRavagerBurrowed" Send="Create"/>
+        <Weapon value="AP_RavagerBurrowedBombardmentWeapon"/>
         <Icon value="Assets\Textures\RadarIcon2.dds"/>
         <IconArcLength value="3.250000"/>
     </CActorRange>

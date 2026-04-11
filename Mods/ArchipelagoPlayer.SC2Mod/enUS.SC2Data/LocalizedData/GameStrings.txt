@@ -665,6 +665,7 @@ Behavior/Name/AP_QueenSCBWEnsnare=Ensnare
 Behavior/Name/AP_QueenSpawnLarvaTimer=Spawn Larvae
 Behavior/Name/AP_QueenStukovSpawnBroodling=Broodling Infestation
 Behavior/Name/AP_RaptorDeath=Raptor Death
+Behavior/Name/AP_RavagerDisintegratingAcid=Disintegrating Acid
 Behavior/Name/AP_RavenScramblerMissile=Interference Matrix
 Behavior/Name/AP_RavenShredderMissileArmorReduction=Anti-Armor Missile Targeting
 Behavior/Name/AP_RavenShredderMissileArmorReductionUISubtruct=Armor Reduction
@@ -954,6 +955,7 @@ Behavior/Tooltip/AP_QueenClassicParasite=This unit can detect cloaked or burrowe
 Behavior/Tooltip/AP_QueenSCBWEnsnare=Unit's movement and attack speed is slowed.
 Behavior/Tooltip/AP_QueenSpawnLarvaTimer=This structure is spawning additional Larvae.
 Behavior/Tooltip/AP_QueenStukovSpawnBroodling=When this unit dies, it will spawn Broodlings.
+Behavior/Tooltip/AP_RavagerDisintegratingAcid=Armor reduced.
 Behavior/Tooltip/AP_RavenScramblerMissile=Weapons and abilities are disabled.
 Behavior/Tooltip/AP_RavenShredderMissileArmorReductionUISubtruct=This unit has reduced armor.
 Behavior/Tooltip/AP_RavenShredderMissileTint=This unit is being targeted by an Anti-Armor Missile.
@@ -1980,12 +1982,14 @@ Button/Name/AP_RapidRegeneration=Rapid Regeneration
 Button/Name/AP_RaptorCliffJumper=Cliff Jumper
 Button/Name/AP_RaptorPassive=Aggressive
 Button/Name/AP_Ravager=Morph to Ravager
+Button/Name/AP_RavagerAerialCorrosiveBile=Aerial Corrosive Bile
 Button/Name/AP_RavagerBileDamage=Potent Bile
 Button/Name/AP_RavagerBileRadius=Bloated Bile Ducts
-Button/Name/AP_RavagerBileRoachlings=Roachling Bile
-Button/Name/AP_RavagerBrutaliskBonePlating=Brutalisk Bone Plating
+Button/Name/AP_RavagerBileRoachlings=Writhing Abombination
+Button/Name/AP_RavagerBonePlating=Bone Plating
 Button/Name/AP_RavagerBurrowedBombardment=Burrowed Bombardment
 Button/Name/AP_RavagerCorrosiveBile=Corrosive Bile
+Button/Name/AP_RavagerDisintegratingAcid=Disintegrating Acid
 Button/Name/AP_RavagerPassive=Ravager
 Button/Name/AP_Raven=Build Raven
 Button/Name/AP_RavenScramblerMissile=Interference Matrix
@@ -2902,7 +2906,7 @@ Button/Tooltip/AP_DarkTemplarShadowDash=Teleport to a nearby target location.
 Button/Tooltip/AP_DarkTemplarShadowGuardTraining=Increases life by 40.
 Button/Tooltip/AP_DarkTemplarShakuras=Nerazim Faction<n/>Deadly warrior-assassin. Permanently cloaked. Can use Shadow Fury.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/AP_DarkTemplarTaldarim=Tal'darim Faction<n/>Deadly warrior-assassin. Permanently cloaked. Can use Void Stasis.<n/><n/><c val="ffff8a">Can attack ground units.</c>
-Button/Tooltip/AP_DeepTunnel=Quickly burrow to a target visible location on creep.
+Button/Tooltip/AP_DeepTunnel=Can travel quickly to any location with creep.
 Button/Tooltip/AP_DefensiveMatrix=Surrounds the Battlecruiser with a shield that can absorb <d ref="Behavior,AP_DefensiveMatrix,Modification.VitalMaxArray[1]"/> damage. Ability can only be used once every <d ref="Abil,AP_DefensiveMatrix,Cost[0].Cooldown.TimeUse"/> seconds.
 Button/Tooltip/AP_DefilerConsumption=Drains up to 75 life from a friendly Zerg unit and gives the Defiler 2 energy for each point of life drained.
 Button/Tooltip/AP_DefilerConsumptionUpgraded=Drains up to 75 life from a non-heroic biological unit and gives the Defiler 2 energy for each point of life drained.
@@ -3672,15 +3676,18 @@ Button/Tooltip/AP_RapidRegeneration=The Roach regenerates life very quickly whil
 Button/Tooltip/AP_RaptorCliffJumper=This unit can jump up and down cliffs.
 Button/Tooltip/AP_RaptorPassive=Zergling gains +2 damage.
 Button/Tooltip/AP_Ravager=Ranged artillery. Can use Corrosive Bile.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
-Button/Tooltip/AP_RavagerBileDamage=<c val="ffff8a">Ravager</c> Corrosive Bile enemy damage is increased by <d ref="Upgrade,AP_HotSRavagerPotentBile,EffectArray[0].Value"/>.
-Button/Tooltip/AP_RavagerBileRadius=<c val="ffff8a">Ravager</c> Corrosive Bile impact size is increased by <d ref="($UpgradeEffectArrayValue:AP_HotSRavagerBloatedBileDucts:Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius$/Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius-1)*100" player="0"/>%, and it no longer damages friendly units.
-Button/Tooltip/AP_RavagerBileRoachlings=<c val="ffff8a">Ravager</c> Corrosive Bile spawns 3 Roachlings at the impact point, and Ravagers spawn 4 Roachlings on death. These Roachlings last 15 seconds and are not damaged by friendly Corrosive Bile.
-Button/Tooltip/AP_RavagerBrutaliskBonePlating=<c val="ffff8a">Ravager</c> gains +<d ref="Upgrade,AP_HotSRavagerBrutaliskBonePlating,EffectArray[0].Value"/> maximum life and +<d ref="Upgrade,AP_HotSRavagerBrutaliskBonePlating,EffectArray[4].Value"/> armor.
-Button/Tooltip/AP_RavagerBurrowedBombardment=<c val="ffff8a">Ravager</c> can use its primary attack while burrowed. While burrowed, it can also cast Corrosive Bile and, with the Aerial Corrosive Bile upgrade, Aerial Corrosive Bile. This burrowed attack only targets air units and does not require the Ravager to face its target.
+Button/Tooltip/AP_RavagerAerialCorrosiveBile=Launch a missile directly at the target location, dealing <c val="ffff8a"><d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/> damage</c> to enemy air units and <c val="ffff8a"><d ref="Effect,AP_RavagerCorrosiveBileFriendlyDamage,Amount"/> damage</c> to friendly air units in the area upon impact.
+Button/Tooltip/AP_RavagerAerialCorrosiveBileUpgrade=Launch a missile directly at the target location, dealing <c val="ffff8a"><d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/></c> damage to enemy air units in the area upon impact.
+Button/Tooltip/AP_RavagerBileDamage=Increases Corrosive Bile enemy damage by <c val="ffff8a"><d ref="Upgrade,AP_HotSRavagerPotentBile,EffectArray[0].Value"/></c>.
+Button/Tooltip/AP_RavagerBileRadius=Increases Corrosive Bile <c val="ffff8a">impact size</c> by <c val="ffff8a"><d ref="($UpgradeEffectArrayValue:AP_HotSRavagerBloatedBileDucts:Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius$/Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius-1)*100" player="0"/>%</c>, and Corrosive Bile no longer damages friendly units.
+Button/Tooltip/AP_RavagerBileRoachlings=Corrosive Bile spawns <c val="ffff8a">2 Roachlings</c> at the impact point, and Ravagers spawn <c val="ffff8a">4 Roachlings</c> on death that last <c val="ffff8a">15 seconds</c>.<n/><n/>Roachlings are now immune to Corrosive Bile.
+Button/Tooltip/AP_RavagerBonePlating=Ravagers gain <c val="ffff8a">+<d ref="Upgrade,AP_HotSRavagerBonePlating,EffectArray[0].Value"/> maximum life</c> and <c val="ffff8a">+<d ref="Upgrade,AP_HotSRavagerBonePlating,EffectArray[4].Value"/> armor</c>.
+Button/Tooltip/AP_RavagerBurrowedBombardment=Ravagers can attack while <c val="ffff8a">burrowed</c>, but can only target <c val="ffff8a">air</c> units with their burrowed attack.<n/><n/>Ravagers can use Corrosive Bile while <c val="ffff8a">burrowed</c>.
 Button/Tooltip/AP_RavagerBurrowed=Ranged artillery. Can use Corrosive Bile.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_RavagerCocoon=This cocoon contains a Roach that is morphing into a Ravager.
-Button/Tooltip/AP_RavagerCorrosiveBile=Launch a missile at the target location, dealing <d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/> damage to enemy units and <d ref="Effect,AP_RavagerCorrosiveBileFriendlyDamage,Amount"/> damage to friendly units in the area upon impact.<n/><n/><c val="#ColorAttackInfo">Can destroy Protoss Force Fields.</c>
-Button/Tooltip/AP_RavagerCorrosiveBileUpgrade=Launch a missile at the target location, dealing <d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/> damage to enemy units in the area upon impact without harming friendly units.<n/><n/><c val="#ColorAttackInfo">Can destroy Protoss Force Fields.</c>
+Button/Tooltip/AP_RavagerCorrosiveBile=Launch a missile at the target location, dealing <c val="ffff8a"><d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/> damage</c> to enemy units and <c val="ffff8a"><d ref="Effect,AP_RavagerCorrosiveBileFriendlyDamage,Amount"/> damage</c> to friendly units in the area upon impact.<n/><n/><c val="#ColorAttackInfo">Can destroy Protoss Force Fields.</c>
+Button/Tooltip/AP_RavagerCorrosiveBileUpgrade=Launch a missile at the target location, dealing <c val="ffff8a"><d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/></c> damage to enemy units in the area upon impact.<n/><n/><c val="#ColorAttackInfo">Can destroy Protoss Force Fields.</c>
+Button/Tooltip/AP_RavagerDisintegratingAcid=Ravager attacks reduce their target's <c val="ffff8a">armor</c> by <c val="ffff8a"><d ref="-1*Behavior,AP_RavagerDisintegratingAcid,Modification.LifeArmorBonus"/></c> for <c val="ffff8a"><d ref="Behavior,AP_RavagerDisintegratingAcid,Duration"/> seconds</c>, stacking up to <c val="ffff8a"><d ref="Behavior,AP_RavagerDisintegratingAcid,MaxStackCount"/></c> times. Corrosive Bile applies <c val="ffff8a"><d ref="Effect,AP_RavagerDisintegratingAcidApplyMaxBehavior,Count"/></c> stacks.
 Button/Tooltip/AP_RavagerPassive=Roach Warren enables you to morph Ravagers from Roaches.
 Button/Tooltip/AP_Raven=Aerial support unit. Can use Auto-Turret, Point Defense Drone and Seeker Missile.<n/><n/><c val="FFE303">Detector</c>
 Button/Tooltip/AP_RavenScramblerMissile=Disables a target unit rendering it unable to attack or use abilities for <d ref="Behavior,AP_RavenScramblerMissile,Duration"/> seconds. Reveals Cloaked units.<n/><n/><c val="#ColorAttackInfo">Can target mechanical and psionic units.</c>
@@ -7557,9 +7564,3 @@ Weapon/Tip/AP_Talons=
 Weapon/Tip/AP_VoidRayChargeBeamBounce=Deals <d ref="Effect,AP_VoidRayChargeBeamBounce1Damage,Amount"/> damage to <d ref="Effect,AP_VoidRayChargeBeamBounce1Search,MaxCount"/> secondary target if not charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBounce2Damage,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounce2Damage,Amount + Effect,AP_VoidRayChargeBeamBounce2Damage,AttributeBonus[Armored]"/> vs Armored) damage to <d ref="Effect,AP_VoidRayChargeBeamBounce2Search,MaxCount"/> secondary targets if halfway charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBounce3Damage,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounce3Damage,Amount + Effect,AP_VoidRayChargeBeamBounce3Damage,AttributeBonus[Armored]"/> vs Armored) damage to <d ref="Effect,AP_VoidRayChargeBeamBounce3Search,MaxCount"/> secondary targets damage if fully charged.
 Weapon/Tip/AP_VoidRayChargeBeamBounceUpgraded=Deals <d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,Amount + Effect,AP_VoidRayChargeBeamBounceDamageUpgraded,AttributeBonus[Armored]"/> vs Armored) damage to to secondary targets at all charge levels. Hits 1 additional target per charge level.
 Weapon/Tip/AP_VoidRayChargeBeamRange=Deals <d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge2,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge2,Amount + Effect,AP_VoidRayChargeBeamBaseDamageCharge2,AttributeBonus[Armored]"/> vs Armored) damage if halfway charged,<n/><d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge3,Amount"/> (<d ref="Effect,AP_VoidRayChargeBeamBaseDamageCharge3,Amount + Effect,AP_VoidRayChargeBeamBaseDamageCharge3,AttributeBonus[Armored]"/> vs Armored) damage if fully charged.
-Behavior/Name/AP_RavagerDisintegratingAcid=Disintegrating Acid
-Behavior/Tooltip/AP_RavagerDisintegratingAcid=This unit's armor and shield armor are being reduced by Disintegrating Acid.
-Button/Name/AP_RavagerDisintegratingAcid=Disintegrating Acid
-Button/Tooltip/AP_RavagerDisintegratingAcid=<c val="ffff8a">Ravager</c> primary attacks reduce enemy armor and shield armor by 1 for <d ref="Behavior,AP_RavagerDisintegratingAcid,Duration"/> seconds, stacking up to 3. Corrosive Bile applies maximum stacks instantly.
-Button/Name/AP_RavagerAerialCorrosiveBile=Aerial Corrosive Bile
-Button/Tooltip/AP_RavagerAerialCorrosiveBile=Launch a corrosive bile missile directly at the target point, dealing <d ref="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount"/> damage to air units in the area upon impact.
