@@ -2516,9 +2516,13 @@ bool lib15EF4C78_gf_CU_ChampionHasShields2 (int lp_heroType) {
 }
 
 void lib15EF4C78_gf_SetHeroPanelUnit (int lp_index, unit lp_heroUnit, int lp_player) {
+    // Variable Declarations
+    fixed lv_reviveDuration;
+
     // Automatic Variable Declarations
-    unit autoA547AD8A_val;
     int auto2121B4A7_val;
+
+    // Variable Initialization
 
     // Implementation
     lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index] = lp_heroUnit;
@@ -2557,11 +2561,15 @@ void lib15EF4C78_gf_SetHeroPanelUnit (int lp_index, unit lp_heroUnit, int lp_pla
         TriggerEnable(lib15EF4C78_gt_ZS_SwarmHeroUIUnitDamaged, true);
         TriggerEnable(lib15EF4C78_gt_ZS_MouseHoverText, true);
         TriggerEnable(lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange, true);
-        autoA547AD8A_val = lp_heroUnit;
-        if (autoA547AD8A_val == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player)) {
+        if ((lp_heroUnit == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player))) {
             libNtve_gf_SetDialogItemAnimationDuration(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], lib15EF4C78_gv_zS_ReviveCooldownTimeKerrigan, PlayerGroupAll());
         }
         else {
+            if ((UnitGetType(lp_heroUnit) == "AP_ArtanisHero")) {
+                lv_reviveDuration = libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogBehavior, "AP_CocoonReviveTimer", "Duration", c_playerAny);
+                libNtve_gf_SetDialogItemAnimationDuration(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], lv_reviveDuration, PlayerGroupAll());
+            }
+
         }
         auto2121B4A7_val = lp_index;
         if (auto2121B4A7_val == 1) {
@@ -2571,7 +2579,7 @@ void lib15EF4C78_gf_SetHeroPanelUnit (int lp_index, unit lp_heroUnit, int lp_pla
             libNtve_gf_SetDialogItemHotkey(lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[2], c_hotkeyHeroSelect1, PlayerGroupAll());
         }
         else if (auto2121B4A7_val == 3) {
-            libNtve_gf_SetDialogItemHotkey(lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[2], c_hotkeyHeroSelect2, PlayerGroupAll());
+            libNtve_gf_SetDialogItemHotkey(lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[3], c_hotkeyHeroSelect2, PlayerGroupAll());
         }
         else {
         }
@@ -2704,6 +2712,8 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
 
 void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     // Variable Declarations
+    fixed lv_reviveDuration;
+    unit lv_reviveCocoon;
     bool lv_useShieldedHeroUI;
     text lv_hotkey;
     int lv_life;
@@ -2860,10 +2870,22 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
 
     }
 
+    lv_reviveCocoon = lib15EF4C78_gv_nM_HeroReviverUnit[lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis];
     if ((UnitIsAlive(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index]) == false)) {
         if ((lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index] == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player)) && (lib15EF4C78_gv_aP_Player_isKerriganRevivableForPlayer[lp_player] == true)) {
             libNtve_gf_SetDialogItemAnimationTime(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], (lib15EF4C78_gv_zS_ReviveCooldownTimeKerrigan - PlayerGetCooldown(lp_player, lib15EF4C78_gv_zSC_HeroReviveLinkKerrigan)), PlayerGroupAll());
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], PlayerGroupAll(), true);
+        }
+        else if ((UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index]) == "AP_ArtanisHero")) {
+            if ((UnitIsAlive(lv_reviveCocoon) == true) && (UnitBehaviorCount(lv_reviveCocoon, "AP_CocoonReviveTimer") > 0)) {
+                lv_reviveDuration = libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogBehavior, "AP_CocoonReviveTimer", "Duration", c_playerAny);
+                libNtve_gf_SetDialogItemAnimationDuration(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], lv_reviveDuration, PlayerGroupAll());
+                libNtve_gf_SetDialogItemAnimationTime(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], (lv_reviveDuration - UnitBehaviorDuration(lv_reviveCocoon, "AP_CocoonReviveTimer")), PlayerGroupAll());
+                DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], PlayerGroupAll(), true);
+            }
+            else {
+                DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], PlayerGroupAll(), false);
+            }
         }
         else if (true) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogCooldownImage[lp_index], PlayerGroupAll(), false);
@@ -2883,6 +2905,9 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     else {
         if ((lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index] == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player)) && (UnitIsAlive(lib15EF4C78_gv_zS_HeroReviverKerrigan[lp_player]) == true)) {
             libNtve_gf_SetDialogItemUnit(lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[lp_index], lib15EF4C78_gv_zS_HeroReviverKerrigan[lp_player], PlayerGroupAll());
+        }
+        else if ((UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index]) == "AP_ArtanisHero") && (UnitIsAlive(lib15EF4C78_gv_nM_HeroReviverUnit[lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis]) == true)) {
+            libNtve_gf_SetDialogItemUnit(lib15EF4C78_gv_zS_SwarmHeroUIDialogButton[lp_index], lib15EF4C78_gv_nM_HeroReviverUnit[lib15EF4C78_ge_NM_HeroType_NM_HeroType_Artanis], PlayerGroupAll());
         }
     }
 }
@@ -9908,7 +9933,7 @@ void lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init () {
 //--------------------------------------------------------------------------------------------------
 // Trigger: 
 //--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_skjqufoomtccjegl_Func (bool testConds, bool runActions) {
+bool lib15EF4C78_gt_kqphgsdmduggqges_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -9920,9 +9945,9 @@ bool lib15EF4C78_gt_skjqufoomtccjegl_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_skjqufoomtccjegl_Init () {
-    lib15EF4C78_gt_skjqufoomtccjegl = TriggerCreate("lib15EF4C78_gt_skjqufoomtccjegl_Func");
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_skjqufoomtccjegl, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
+void lib15EF4C78_gt_kqphgsdmduggqges_Init () {
+    lib15EF4C78_gt_kqphgsdmduggqges = TriggerCreate("lib15EF4C78_gt_kqphgsdmduggqges_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_kqphgsdmduggqges, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10158,7 +10183,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init();
-    lib15EF4C78_gt_skjqufoomtccjegl_Init();
+    lib15EF4C78_gt_kqphgsdmduggqges_Init();
     lib15EF4C78_gt_EmitTransformerLand_Init();
     lib15EF4C78_gt_MakeHeroArtanis_Init();
     lib15EF4C78_gt_MakeHeroKerrigan_Init();
