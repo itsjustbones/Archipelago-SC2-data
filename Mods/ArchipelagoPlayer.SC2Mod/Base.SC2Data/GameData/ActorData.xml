@@ -11647,8 +11647,6 @@
         <On Terms="Upgrade.AP_HotSRavagerBonePlating.Add" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBonePortrait"/>
         <On Terms="ActorCreation; ValidatePlayer AP_HaveHotSRavagerBonePlating" Send="ModelSwap AP_RavagerBone"/>
         <On Terms="UnitPortrait.*.Configure; ValidatePlayer AP_HaveHotSRavagerBonePlating" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBonePortrait"/>
-        <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
-        <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="Create AP_RavagerRoachlingBileReady"/>
         <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="TimerSet 0.062500 RoachlingBileReadyRefresh"/>
         <On Terms="TimerExpired; TimerName RoachlingBileReadyRefresh" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
         <On Terms="TimerExpired; TimerName RoachlingBileReadyRefresh" Send="Create AP_RavagerRoachlingBileReady"/>
@@ -11738,10 +11736,6 @@
     </CActorUnit>
     <CActorModel id="AP_RavagerDeathRagdoll" parent="UnitDeathRagdoll"/>
     <CActorSound id="AP_Ravager_Land" parent="SoundOneShot"/>
-    <CActorSound id="AP_RavagerBurrowedBombardmentLaunchSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_RavagerBurrowedBombardmentWeaponLM.Start" Send="Create"/>
-        <Sound value="Ravager_AttackLaunch"/>
-    </CActorSound>
     <CActorAction id="AP_RavagerAttack" parent="GenericAttack" effectImpact="AP_RavagerWeaponDamage" effectLaunch="AP_RavagerWeaponLM">
         <LaunchAssets Model="" Sound="Ravager_AttackLaunch"/>
         <Missile value="AP_RavagerWeaponMissile"/>
@@ -11749,6 +11743,7 @@
     </CActorAction>
     <CActorMissile id="AP_RavagerWeaponMissile" parent="GenericAttackMissile" unitName="AP_RavagerWeaponMissile"/>
     <CActorAction id="AP_RavagerBurrowedBombardmentAttack" parent="GenericAttack" effectImpact="AP_RavagerWeaponDamage" effectLaunch="AP_RavagerBurrowedBombardmentWeaponLM">
+        <LaunchAssets Model="" Sound="Ravager_AttackLaunch"/>
         <Missile value="AP_RavagerWeaponMissile"/>
         <ImpactMap index="None" Model="AP_RavagerWeaponImpact" Sound="Ravager_Attack_Impact"/>
     </CActorAction>
