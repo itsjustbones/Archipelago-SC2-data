@@ -1899,7 +1899,7 @@ bool gt_DEBUGVictory_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/BF0C0797"), true);
-    TriggerExecute(gt_VictorySequence, true, false);
+    UnitKill(gv_eRADICATOR);
     return true;
 }
 

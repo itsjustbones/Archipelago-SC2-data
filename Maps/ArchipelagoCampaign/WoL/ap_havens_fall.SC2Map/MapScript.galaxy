@@ -102,6 +102,7 @@ fixed gv_aberrationLife;
 fixed gv_virophageLife;
 playergroup gv_zergPlayers;
 int gv_tEMP_ColonyIndex;
+int gv_cycle;
 region[11] gv_infestationRegion;
 int[11] gv_infestationPings;
 point[11] gv_infestationVirophageSpot;
@@ -240,6 +241,7 @@ trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
 trigger gt_DEBUGVictory;
+trigger gt_DEBUGInfest;
 trigger gt_StartGame;
 trigger gt_InitialInfestation;
 trigger gt_InitWarningPings;
@@ -1910,6 +1912,53 @@ void gt_DEBUGVictory_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG - Infest
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGInfest_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+
+        if (!((gv_gameOver == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerInCinematicMode(EventPlayer()) == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (gv_cycle >= 5) {
+        gv_cycle = 0;
+    }
+    else {
+        gv_cycle = gv_cycle + 1;
+    }
+    TextExpressionSetToken("Param/Expression/A6F584CF", "A", IntToText(gv_cycle));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/A6F584CF"), true);
+    gf_InfestAColonyAndWait(gv_cycle, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGInfest_Init () {
+    gt_DEBUGInfest = TriggerCreate("gt_DEBUGInfest_Func");
+    TriggerAddEventChatMessage(gt_DEBUGInfest, gv_p01_USER, "-infest", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Start Game
 //--------------------------------------------------------------------------------------------------
 bool gt_StartGame_Func (bool testConds, bool runActions) {
@@ -1929,10 +1978,6 @@ bool gt_StartGame_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_InitialInfestation, true, false);
     TriggerExecute(gt_InfestColoniesForever, true, false);
     Wait(1.0, c_timeGame);
-    if (true) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/0534D9FE"), true);
-    }
-
     TriggerExecute(gt_ObjectiveDestroyInfestationCreateQ, true, true);
     Wait(1.0, c_timeGame);
     TriggerExecute(gt_ObjectiveKeepColonyBasesnotinfestedCreateQ, true, true);
@@ -1947,8 +1992,6 @@ bool gt_StartGame_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_VirophageTipQ, true, false);
     Wait(3.0, c_timeGame);
     CreepSetSpeed(c_creepSpeedGrowth, 100.0);
-    TriggerQueueEnter();
-    TriggerQueueExit();
     return true;
 }
 
@@ -5522,6 +5565,7 @@ void InitTriggers () {
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
     gt_DEBUGVictory_Init();
+    gt_DEBUGInfest_Init();
     gt_StartGame_Init();
     gt_InitialInfestation_Init();
     gt_InitWarningPings_Init();

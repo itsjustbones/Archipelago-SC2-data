@@ -2938,6 +2938,13 @@ bool gt_StartGameQ_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropCustom, c_playerPropOperSetTo, 20);
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropCustomCollected, c_playerPropOperSetTo, 20);
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropMinerals, c_playerPropOperSetTo, 0);
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropVespene, c_playerPropOperSetTo, 20);
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropVespeneCollected, c_playerPropOperSetTo, 20);
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropTerrazine, c_playerPropOperSetTo, 20);
+    PlayerModifyPropertyInt(gv_pLAYER_01_USER, c_playerPropTerrazineCollected, c_playerPropOperSetTo, 20);
     UIAlertPoint("Trigger", gv_pLAYER_01_USER, StringExternal("Param/Value/8B9155BC"), null, PointFromId(63));
     Wait(3.0, c_timeReal);
     TriggerExecute(gt_TransmissionP1LarvaAwakensQ, true, true);

@@ -112,6 +112,7 @@ point gv_templeDefensePoint;
 bool gv_firstTransmissionSequenceInProgress;
 bool[6] gv_templeChannelQs;
 bool[6] gv_templeGuardiansSpawned;
+bool gv_templeChanneling;
 unitgroup gv_hybridGroup;
 int gv_templeChannelUINameLabel;
 int gv_templeChannelUITime;
@@ -264,6 +265,7 @@ trigger gt_KerriganBeamRegionSounds;
 trigger gt_NarudBeamRegionSounds;
 trigger gt_HybridDies;
 trigger gt_TempleChanneling;
+trigger gt_StukovUnloadBugfix;
 trigger gt_TempleHoldoutAttacks;
 trigger gt_TempleChannelingQ;
 trigger gt_TempleDeactivatedQ;
@@ -2557,6 +2559,7 @@ bool gt_TempleChanneling_Func (bool testConds, bool runActions) {
     unit lv_dummyUnit;
     int lv_channelProgress;
     const int lv_channelTime = 60;
+    bool lv_channelSuccessful;
     int lv_location;
 
     // Automatic Variable Declarations
@@ -2570,6 +2573,7 @@ bool gt_TempleChanneling_Func (bool testConds, bool runActions) {
     const int autoDBBF0ECC_ai = 1;
 
     // Variable Initialization
+    lv_channelSuccessful = true;
 
     // Conditions
     if (testConds) {
@@ -2582,6 +2586,10 @@ bool gt_TempleChanneling_Func (bool testConds, bool runActions) {
         }
 
         if (!((UnitGroupCount(UnitGroup("Beacon_Zerg", 0, EventUnitRegion(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 1), c_unitCountAlive) > 0))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_UnitIsHidden(EventUnit()) == false))) {
             return false;
         }
     }
@@ -2635,6 +2643,7 @@ bool gt_TempleChanneling_Func (bool testConds, bool runActions) {
         UnitKill(auto9A6E41BA_var);
     }
     gf_SetNullZoneDirection(ge_PRESET_MovementDirection_Stopped);
+    gv_templeChanneling = true;
     libNtve_gf_MakeUnitUncommandable(gv_stukov, true);
     UnitIssueOrder(gv_stukov, OrderTargetingPoint(AbilityCommand("move", 0), RegionGetCenter(EventUnitRegion())), c_orderQueueReplace);
     Wait(1.0, c_timeAI);
@@ -2669,19 +2678,26 @@ bool gt_TempleChanneling_Func (bool testConds, bool runActions) {
         for ( ; ( (autoBC1B26C1_ai >= 0 && lv_channelProgress <= autoBC1B26C1_ae) || (autoBC1B26C1_ai < 0 && lv_channelProgress >= autoBC1B26C1_ae) ) ; lv_channelProgress += autoBC1B26C1_ai ) {
             gf_UpdateChannelUI(lv_channelProgress, lv_channelTime);
             Wait(1.0, c_timeAI);
-            if ((UnitIsAlive(gv_stukov) == false)) {
+            if (((UnitIsAlive(gv_stukov) == false) || (DistanceSquaredBetweenPoints(UnitGetPosition(gv_stukov), lv_beaconPoint) > 25.0))) {
                 libNtve_gf_CreateUnitsWithDefaultFacing(1, "Beacon_Zerg", c_unitCreateIgnorePlacement, 0, lv_beaconPoint);
                 libSwaC_gf_SetUnitInfoTextCampaign(UnitLastCreated(), StringExternal("Param/Value/1D5B2717"), StringExternal("Param/Value/101CEA0B"), null);
+                lv_channelSuccessful = false;
                 break;
+            }
+
+            if ((libNtve_gf_UnitIsHidden(gv_stukov) == true)) {
+                lv_channelProgress += 1;
+                continue;
             }
 
         }
     }
 
+    gv_templeChanneling = false;
     gf_ShowHideChannelUI(false);
     UnitIssueOrder(gv_stukov, Order(AbilityCommand("StukovCrystalChannel", 1)), c_orderQueueReplace);
     UnitRemove(lv_dummyUnit);
-    if ((UnitIsAlive(gv_stukov) == true)) {
+    if ((UnitIsAlive(gv_stukov) == true) && (lv_channelSuccessful == true)) {
         gv_templesDeactivated += 1;
         lib5BD4895D_gf_AP_Core_collectLocationUpdateObjective(lv_location);
         gv_templeSent[(lv_location - gv_tEMPLE_LOCATION_OFFSET)] = true;
@@ -2733,6 +2749,37 @@ void gt_TempleChanneling_Init () {
     TriggerAddEventUnitRegion(gt_TempleChanneling, UnitRefFromVariable("gv_stukov"), RegionFromId(31), true);
     TriggerAddEventUnitRegion(gt_TempleChanneling, UnitRefFromVariable("gv_stukov"), RegionFromId(32), true);
     TriggerAddEventUnitRegion(gt_TempleChanneling, UnitRefFromVariable("gv_stukov"), RegionFromId(33), true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Stukov Unload Bugfix
+//--------------------------------------------------------------------------------------------------
+bool gt_StukovUnloadBugfix_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitCargo() == gv_stukov))) {
+            return false;
+        }
+
+        if (!((gv_templeChanneling == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(gv_stukov, Order(AbilityCommand("StukovCrystalChannel", 1)), c_orderQueueReplace);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_StukovUnloadBugfix_Init () {
+    gt_StukovUnloadBugfix = TriggerCreate("gt_StukovUnloadBugfix_Func");
+    TriggerAddEventUnitCargo(gt_StukovUnloadBugfix, null, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6496,6 +6543,7 @@ void InitTriggers () {
     gt_NarudBeamRegionSounds_Init();
     gt_HybridDies_Init();
     gt_TempleChanneling_Init();
+    gt_StukovUnloadBugfix_Init();
     gt_TempleHoldoutAttacks_Init();
     gt_TempleChannelingQ_Init();
     gt_TempleDeactivatedQ_Init();
