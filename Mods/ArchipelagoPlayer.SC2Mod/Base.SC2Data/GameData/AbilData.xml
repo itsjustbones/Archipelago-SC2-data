@@ -4638,6 +4638,183 @@
         <!--        </InfoArray>-->
         <Flags index="WarpTrainersButton" value="0"/>
     </CAbilWarpTrain>
+    <CAbilSpecialize id="AP_ArtanisWeaponAspects">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoArray index="Specialize1" Time="0" Effect="AP_ArtanisAiurAspectSet">
+            <Button DefaultButtonFace="AP_ArtanisAiurAspect" Requirements="AP_HaveArtanisAiurAspectEquipped"/>
+        </InfoArray>
+        <InfoArray index="Specialize2" Time="0" Effect="AP_ArtanisNerazimAspectSet">
+            <Button DefaultButtonFace="AP_ArtanisNerazimAspect" Requirements="AP_HaveArtanisNerazimAspectEquipped"/>
+        </InfoArray>
+        <InfoArray index="Specialize3" Time="0" Effect="AP_ArtanisPurifierAspectSet">
+            <Button DefaultButtonFace="AP_ArtanisPurifierAspect" Requirements="AP_HaveArtanisPurifierAspectEquipped"/>
+        </InfoArray>
+        <InfoArray index="Specialize4" Time="0" Effect="AP_ArtanisTaldarimAspectSet">
+            <Button DefaultButtonFace="AP_ArtanisTaldarimAspect" Requirements="AP_HaveArtanisTaldarimAspectEquipped"/>
+        </InfoArray>
+        <InfoArray index="Specialize5" Time="0" Effect="AP_ArtanisNoAspectSet">
+            <Button DefaultButtonFace="AP_ArtanisNoAspect" Requirements="AP_HaveArtanisAnyAspectEquipped"/>
+        </InfoArray>
+    </CAbilSpecialize>
+    <CAbilEffectTarget id="AP_Exterminate">
+        <Effect index="0" value="AP_ExterminateSet"/>
+        <Range value="8"/>
+        <TargetFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown>
+                <Link value="AP_Exterminate"/>
+                <Location value="Unit"/>
+                <TimeUse value="12"/>
+            </Cooldown>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActiveAirAttackDisabled"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ExterminateAir">
+        <Effect index="0" value="AP_ExterminateSet"/>
+        <Range value="8"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown>
+                <Link value="AP_Exterminate"/>
+                <Location value="Unit"/>
+                <TimeUse value="12"/>
+            </Cooldown>
+        </Cost>
+        <TargetFilters value="Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_Exterminate" Requirements="AP_HaveArtanisTaldarimAspectSelectedActiveAirAttackEnabled"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ShadowSlice">
+        <AbilSetId value="AP_ShadowSlice"/>
+        <Effect index="0" value="AP_ShadowSliceInitialSet"/>
+        <Range value="7"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="8"/>
+        </Cost>
+        <TargetFilters value="Visible;Self,Player,Ally,Dead,Hidden,Invulnerable,Missile,Stasis"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Finish" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ShadowSlice" Requirements="AP_HaveArtanisNerazimAspectSelectedActive"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_SuppressionPulse">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_SuppressionPulseCreatePersistent"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuppressionPulse" Requirements="AP_HaveArtanisSuppressionPulse"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_StrengthInUnity">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_StrengthInUnity"/>
+        <Cost>
+            <Cooldown>
+                <Link value="AP_StrengthInUnity"/>
+                <Location value="Player"/>
+                <TimeStart value="300"/>
+                <TimeUse value="300"/>
+            </Cooldown>        
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_StrengthInUnity" Requirements="AP_HaveArtanisStrengthInUnity"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="AP_VoltaicShock">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_VoltaicShockSetSearch"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="7"/>
+        <CastIntroTime value="0.1"/>
+        <CursorEffect value="AP_VoltaicShockDamageSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoltaicShock" Requirements="AP_HaveArtanisVoltaicShock"/>    
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_CleansingSmite">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_CleansingSmiteSearch"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <CastIntroTime value="0.25"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_CleansingSmite" Requirements="AP_HaveArtanisPurifierAspectSelectedActive"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_ArtanisAstralWind">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="120"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisAstralWind" Requirements="AP_HaveArtanisAstralWind"/>
+    </CAbilEffectInstant>
+    <CAbilAugment id="AP_ArtanisCharge">
+        <AbilSetId value="AP_Charge"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisCharge">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AbilCmd value="attack,Execute"/>
+        <Effect value="AP_ArtanisCharge"/>
+        <Cost>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
+        <AutoCastValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
+        <AutoCastValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>
+    </CAbilAugment>
+    <CAbilEffectTarget id="AP_PhasePrism">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="AP_PhasePrismSet"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="7"/>
+        </Cost>
+        <Range value="7"/>
+        <TargetFilters value="Visible;Self,Player,Ally,Neutral,Structure,Heroic,Missile,Stasis,Dead,Invulnerable"/>
+        <CursorEffect value="AP_PhasePrismSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrism" Requirements="AP_HaveArtanisPhasePrism"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_PhasePrismSwap">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="AP_PhasePrismDelaySet"/>
+        <Cost>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_PhasePrismRecast" Requirements="AP_HavePhasePrismRecastBehavior"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="AP_ArtanisLightningDash">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_ArtanisLightningDash"/>
+        <Range value="8"/>
+        <TrackingArc value="360"/>
+        <PrepTime value="0.125"/>
+        <IgnoreFilters value="Ground;Self"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisLightningDash"  Requirements="AP_HaveArtanisLightningDash"/>
+        <Cost>
+            <Vital index="Energy" value="35"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <CursorEffect value="AP_ArtanisLightningDashSearch"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_ArtanisBladeWaltz">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <PrepTime value="0.01"/>
+        <CursorEffect value="AP_ArtanisBladeWaltzEndSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ArtanisBladeWaltz" Requirements="AP_HaveArtanisAiurAspectSelectedActive"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_CorsairMPDisruptionWeb">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_CorsairMPDisruptionWebCreatePersistentSet"/>
@@ -7749,6 +7926,19 @@
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoidRayTaldarim" Requirements="AP_HaveSummonDeathFleetInstalled"/>
     </CAbilEffectInstant>
+    <CAbilBehavior id="AP_ArtanisAirAttackSwap">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="AP_ArtanisAirAttackEnable" Requirements="AP_HaveArtanisAirAttack">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="AP_ArtanisAirAttackDisable" Requirements="AP_HaveArtanisAirAttack">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="ToggledOn" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="AP_EnableArtanisAirAttackSwap"/>
+    </CAbilBehavior>
     <CAbilBehavior id="AP_MothershipTaldarimBaseAttackSwap">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <CmdButtonArray index="On" DefaultButtonFace="AP_MothershipTaldarimBaseAttackEnable" Requirements="AP_HaveTaldarimMothershipFastAttack">
@@ -9053,6 +9243,20 @@
         <Range value="10"/>
         <ErrorAlert value="ReviveError_Terr"/>
         <Alert value="AP_NovaReviveComplete"/>
+    </CAbilRevive>
+    <CAbilRevive id="AP_ArtanisRevive" parent="ReviveSelf">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <CmdButtonArray index="Revive1" DefaultButtonFace="AP_KerriganRevive"/>
+        <CmdButtonArray index="ReviveAtTarget1" DefaultButtonFace="AP_KerriganRevivePlacement"/>
+        <Flags index="UnitOrderQueue" value="1"/>
+        <BaseInfo>
+            <Cooldown TimeUse="0.1"/>
+        </BaseInfo>
+        <Effect value="AP_KerriganReviveHeal"/>
+        <Offset value="0,0"/>
+        <Range value="10"/>
+        <ErrorAlert value="ReviveError_Prot"/>
+        <Alert value="AP_ArtanisReviveComplete"/>
     </CAbilRevive>
     <CAbilRally id="AP_RallyReviveCocoon">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>

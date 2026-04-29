@@ -858,6 +858,11 @@
         <!-- Elder Probe -->
         <EffectArray Reference="Weapon,AP_ElderProbeParticleBeam,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_ElderProbeParticleBeamDamage,Amount" Value="1"/>
+        <!-- Artanis -->
+        <EffectArray Reference="Weapon,AP_ArtanisAirAttack,Level" Value="1"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="1"/>
+        <EffectArray Reference="Weapon,AP_ArtanisTwilightBlades,Level" Value="1"/>
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="1"/>
     </CUpgrade>
     <CUpgrade default="1" id="AP_BaseProtossGroundArmors">
         <!--  Probe -->
@@ -953,6 +958,9 @@
         <!-- Supplicant -->
         <EffectArray Reference="Unit,AP_Supplicant,LifeArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_Supplicant,LifeArmor" Value="1"/>
+        <!-- Artanis -->
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeArmor" Value="1"/>
     </CUpgrade>
     <CUpgrade default="1" id="AP_BaseProtossAirWeapons">
         <!--  Void Ray -->
@@ -1374,6 +1382,9 @@
         <!-- Supplicant -->
         <EffectArray Reference="Unit,AP_Supplicant,ShieldArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_Supplicant,ShieldArmor" Value="1"/>
+        <!-- Artanis -->
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldArmor" Value="1"/>
         <!--  Nexus -->
         <EffectArray Reference="Unit,AP_Nexus,ShieldArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,AP_Nexus,ShieldArmor" Value="1"/>
@@ -7631,6 +7642,7 @@
         <EffectArray Reference="Unit,AP_Zealot,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_ZealotAiur,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_ZealotPurifier,ShieldRegenRate" Value=".05"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_ZealotShakuras,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_Stalker,ShieldRegenRate" Value=".05"/>
         <EffectArray Reference="Unit,AP_Dragoon,ShieldRegenRate" Value=".05"/>
@@ -8980,6 +8992,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_ImmortalPurifier,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Monitor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Supplicant,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel1.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel1.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundArmorsLevel2" parent="AP_BaseProtossGroundArmors">
         <Name value="Upgrade/Name/ProtossGroundArmorsLevel2"/>
@@ -9024,6 +9037,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_ImmortalPurifier,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Monitor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Supplicant,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel2.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel2.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundArmorsLevel3" parent="AP_BaseProtossGroundArmors">
         <Name value="Upgrade/Name/ProtossGroundArmorsLevel3"/>
@@ -9068,6 +9082,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_ImmortalPurifier,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Monitor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Supplicant,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundArmorsLevel4" parent="AP_BaseProtossGroundArmors">
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel4.dds"/>
@@ -9111,6 +9126,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_ImmortalPurifier,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Monitor,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Supplicant,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel4.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel4.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundArmorsLevel5" parent="AP_BaseProtossGroundArmors">
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel5.dds"/>
@@ -9154,6 +9170,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_ImmortalPurifier,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Monitor,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_Supplicant,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel5.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,LifeArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundarmorlevel5.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundWeaponsQuatro" parent="AP_BaseProtossGroundWeapons"/>
     <CUpgrade id="AP_ProtossGroundWeaponsPreplacedNoBuild" parent="AP_BaseProtossGroundWeapons">
@@ -9197,6 +9214,8 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_CenturionWarpBlades,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_SupplicantWeapon,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel1.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_ElderProbeParticleBeam,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisTwilightBlades,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel1.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel1.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundWeaponsLevel2" parent="AP_BaseProtossGroundWeapons">
         <Name value="Upgrade/Name/ProtossGroundWeaponsLevel2"/>
@@ -9236,6 +9255,8 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_CenturionWarpBlades,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_SupplicantWeapon,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel2.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_ElderProbeParticleBeam,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisTwilightBlades,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel2.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel2.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundWeaponsLevel3" parent="AP_BaseProtossGroundWeapons">
         <Name value="Upgrade/Name/ProtossGroundWeaponsLevel3"/>
@@ -9275,6 +9296,8 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_CenturionWarpBlades,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_SupplicantWeapon,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_ElderProbeParticleBeam,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisTwilightBlades,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Icon" Value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel3.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundWeaponsLevel4" parent="AP_BaseProtossGroundWeapons">
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel4.dds"/>
@@ -9313,6 +9336,8 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_CenturionWarpBlades,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_SupplicantWeapon,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel4.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_ElderProbeParticleBeam,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisTwilightBlades,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel4.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel4.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossGroundWeaponsLevel5" parent="AP_BaseProtossGroundWeapons">
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel5.dds"/>
@@ -9351,6 +9376,8 @@
         <EffectArray Operation="Set" Reference="Weapon,AP_CenturionWarpBlades,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_SupplicantWeapon,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel5.dds"/>
         <EffectArray Operation="Set" Reference="Weapon,AP_ElderProbeParticleBeam,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisTwilightBlades,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel5.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Icon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-groundweaponslevel5.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossShieldsQuatro" parent="AP_BaseProtossShields"/>
     <CUpgrade id="AP_ProtossShieldsPreplacedNoBuild" parent="AP_BaseProtossShields">
@@ -9459,6 +9486,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipPurifierPowerSource,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCoreAiur,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel1.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCorePurifier,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel1.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel1.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossShieldsLevel2" parent="AP_BaseProtossShields">
         <Name value="Upgrade/Name/ProtossShieldsLevel2"/>
@@ -9563,6 +9591,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipPurifierPowerSource,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCoreAiur,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel2.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCorePurifier,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel2.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel2.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossShieldsLevel3" parent="AP_BaseProtossShields">
         <Name value="Upgrade/Name/ProtossShieldsLevel3"/>
@@ -9667,6 +9696,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipPurifierPowerSource,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCoreAiur,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel3.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCorePurifier,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,ShieldArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-shieldslevel3.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossShieldsLevel4" parent="AP_BaseProtossShields">
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel4.dds"/>
@@ -9770,6 +9800,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipPurifierPowerSource,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCoreAiur,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel4.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCorePurifier,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel4.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel4.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ProtossShieldsLevel5" parent="AP_BaseProtossShields">
         <Icon value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel5.dds"/>
@@ -9873,6 +9904,7 @@
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipPurifierPowerSource,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCoreAiur,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel5.dds"/>
         <EffectArray Operation="Set" Reference="Actor,AP_MothershipCorePurifier,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel5.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_ArtanisHero,ShieldArmorIcon" Value="AP\Assets\Custom\Textures\btn-upgrade-protoss-shieldslevel5.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_DestroyerImprovedOverlords">
         <EffectArray Operation="Set" Reference="Abil,AP_LarvaTrain,InfoArray[Train3].Time" Value="2.500000"/>
@@ -12923,6 +12955,108 @@
     <CUpgrade id="AP_CanInstallTaldarimMothershipDeathHeal"/>
     <CUpgrade id="AP_MothershipPurifierPowerSource"/>
     <CUpgrade id="AP_MothershipAiurShieldArmorAura"/>
+    <CUpgrade id="AP_ArtanisResurgence">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisLightningDash">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisVoltaicShock">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisSuppressionPulse">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAstralWind">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisStrengthInUnity">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPhasePrism">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAiurAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisBaseAspectActive">
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="2"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="2"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="25"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="25"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisBaseAspectPassive">
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="2"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="2"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="25"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="25"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAiurAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAiurAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisNerazimAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisNerazimAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisNerazimAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPurifierAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPurifierAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisPurifierAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTaldarimAspectUnlocked">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTaldarimAspectActive" parent="AP_ArtanisBaseAspectActive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTaldarimAspectPassive" parent="AP_ArtanisBaseAspectPassive">
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisTemperedInTwilight">
+        <EffectArray Reference="Effect,AP_ArtanisBlades,Amount" Value="4"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,Amount" Value="4"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisForceOfWill">
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeMax" Value="150"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,LifeStart" Value="150"/>
+        <EffectArray Operation="Multiply" Reference="Unit,AP_ArtanisHero,LifeRegenRate" Value="2"/>
+        <EffectArray Operation="Multiply" Reference="Unit,AP_ArtanisHero,ShieldRegenRate" Value="2"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisValorOfTheFirstborn">
+        <EffectArray Reference="Effect,AP_ArtanisBlades,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Effect,AP_ArtanisAirAttackDamage,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageGround,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Effect,AP_ArtanisTaldarimAspectNearbyDamageAir,LeechFraction[Shields]" Value="0.33"/>
+        <EffectArray Reference="Weapon,AP_ArtanisTwilightBlades,RateMultiplier" Value="0.20"/>
+        <EffectArray Reference="Weapon,AP_ArtanisAirAttack,RateMultiplier" Value="0.20"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>     
+    <CUpgrade id="AP_ArtanisShieldOverload">
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
+        <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
+    <CUpgrade id="AP_ArtanisAirAttack">
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Disabled]" Value="0"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_ArtanisAirAttack,Options[Hidden]" Value="0"/>
+        <AffectedUnitArray value="AP_ArtanisHero"/>
+    </CUpgrade>
     <CUpgrade id="AP_VoidRaySpeedUpgrade">
         <ScoreAmount value="300"/>
         <ScoreResult value="BuildOrder"/>
