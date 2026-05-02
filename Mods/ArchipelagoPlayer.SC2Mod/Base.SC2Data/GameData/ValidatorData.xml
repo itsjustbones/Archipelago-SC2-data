@@ -182,7 +182,7 @@
         <CombineArray value="AP_IsDoubleBeamHealing"/>
         <CombineArray value="LifeGTZero"/>
         <CombineArray value="AP_NotMaxHP"/>
-        <CombineArray value="AP_MedicHealTargetInRange"/>
+        <CombineArray value="AP_MengskMedicHealTargetInRange"/>
         <CombineArray value="NotHidden"/>
     </CValidatorCombine>
     <CValidatorCombine id="AP_HealScanPeriodicCombine">
@@ -191,6 +191,11 @@
         <CombineArray value="AP_AtLeastOneHealBeamBusy"/>
     </CValidatorCombine>
     <CValidatorLocationCompareRange id="AP_MedicHealTargetInRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="AP_MengskMedicHealTargetInRange">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LE"/>
         <Range value="2"/>
