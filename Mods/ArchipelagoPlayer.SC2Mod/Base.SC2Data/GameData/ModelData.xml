@@ -3646,9 +3646,162 @@
             <Adaptions TriggerOnSubstring="_Specular" Slot="main"/>
         </TextureDeclares>
     </CModel>
+    <CModel id="AP_SuppressionPulse" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Arbiter_Purifier_Coop_StasisField_Shockwave\Arbiter_Purifier_Coop_StasisField_Shockwave.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisEx2Portrait3D" parent="Portrait" Race="Protoss">
+        <Model value="Assets\Portraits\Protoss\ArtanisEx2Portrait\ArtanisEx2Portrait.m3"/>
+        <Flags index="ForcePortraitModel" value="1"/>
+        <Lighting value="AP_ArtanisEx2Portrait"/>
+        <Image value="Assets\Textures\artanisportrait_static.dds"/>
+    </CModel>
+    <CModel id="AP_ArtanisEx2Portrait3DAddition" parent="FXAPortrait" Race="Protoss">
+        <Model value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1\SMX2_Artanis_T1.m3"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_RequiredAnims\SMX2_Artanis_T1_RequiredAnims.m3a"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_PortraitAnims\SMX2_Artanis_T1_PortraitAnims.m3a"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_FacialAnims\SMX2_Artanis_T1_FacialAnims.m3a"/>
+        <FacialController value="LocalizedData\Facial\SMX2_Artanis_T1.fxa"/>
+        <Flags index="ForcePortraitModel" value="1"/>
+    </CModel>
+    <CModel id="AP_ArtanisEx2Portrait" parent="Portrait" Race="Protoss">
+        <Model value="Assets\Portraits\Protoss\ArtanisEx2Portrait\ArtanisEx2Portrait.m3"/>
+        <Image value="Assets\Textures\artanisportrait_static.dds"/>
+        <Flags index="Download" value="1"/>
+    </CModel>
+    <CModel id="AP_ArtanisEx2PortraitAddition" parent="FXAPortrait" Race="Protoss">
+        <Model value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1\SMX2_Artanis_T1.m3"/>
+        <FacialController value="LocalizedData\Facial\SMX2_Artanis_T1.fxa"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_RequiredAnims\SMX2_Artanis_T1_RequiredAnims.m3a"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_PortraitAnims\SMX2_Artanis_T1_PortraitAnims.m3a"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Protoss\SMX2_Artanis_T1_FacialAnims\SMX2_Artanis_T1_FacialAnims.m3a"/>
+    </CModel>
+    <CModel id="AP_ArtanisHeroCleansingSmite" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\Dragoon_Purifier_Coop_AirBomb_Charged\Dragoon_Purifier_Coop_AirBomb_Charged.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisHeroCleansingSmiteCharge" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\Kerrigan_Celestial_Beam_Charge\Kerrigan_Celestial_Beam_Charge.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisBladeWaltzEndShockwave" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Terran\PredatorImpactShockwave\PredatorImpactShockwave.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_PhasePrismImpact" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\StasisTomb\StasisTomb.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.250000,0.250000,0.250000"/>
+        <ScaleMin value="0.250000,0.250000,0.250000"/>
+    </CModel>
+    <CModel id="AP_PhasePrismPull" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Neutral\PulloftheVoid_Coop\PulloftheVoid_Coop.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.900000,0.900000,0.900000"/>
+        <ScaleMin value="0.900000,0.900000,0.900000"/>
+    </CModel>
+    <CModel id="AP_ExterminateTarget" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Neutral\Fear_Coop\Fear_Coop.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+    <CModel id="AP_ExterminateChargeTrail" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Alarak_DeadlyCharge_Trail\Alarak_DeadlyCharge_Trail.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisAirAttackWeapon" parent="MissileFX">
+        <Model value="Assets\Effects\Protoss\Artanis_BasicAirAttack_Missile\Artanis_BasicAirAttack_Missile.m3"/>
+    </CModel>
+    <CModel id="AP_ArtanisAirAttackWeaponImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\Artanis_BasicAirAttack_Impact\Artanis_BasicAirAttack_Impact.m3"/>
+    </CModel>
+    <CModel id="AP_ArtanisHero" parent="Unit" Race="Protoss">
+        <Model value="Assets\Units\Protoss\Artanis\Artanis.m3"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.350000"/>
+        <SquibTypeDefault value="LightArmor"/>
+        <TechPurchaseCamera value="Star2CameraHigh05"/>
+        <UnitGlossaryCamera value="Star2CameraHigh05"/>
+        <PlanetPanelCamera value="Star2CameraHigh05"/>
+        <SelectionRadius value="0.65000"/>
+        <ShadowRadius value="0.65000"/>
+    </CModel>
+    <CModel id="AP_ArtanisHeroNerazim" parent="Unit" Race="Protoss">
+        <Model value="AP\Assets\Units\Protoss\Artanis\Artanis_Nerazim_New.m3"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.350000"/>
+        <SquibTypeDefault value="LightArmor"/>
+        <TechPurchaseCamera value="Star2CameraHigh05"/>
+        <UnitGlossaryCamera value="Star2CameraHigh05"/>
+        <PlanetPanelCamera value="Star2CameraHigh05"/>
+        <SelectionRadius value="0.65000"/>
+        <ShadowRadius value="0.65000"/>
+    </CModel>
+    <CModel id="AP_ArtanisHeroPurifier" parent="Unit" Race="Protoss">
+        <Model value="AP\Assets\Units\Protoss\Artanis\Artanis_Purifier_New.m3"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.350000"/>
+        <SquibTypeDefault value="LightArmor"/>
+        <TechPurchaseCamera value="Star2CameraHigh05"/>
+        <UnitGlossaryCamera value="Star2CameraHigh05"/>
+        <PlanetPanelCamera value="Star2CameraHigh05"/>
+        <SelectionRadius value="0.65000"/>
+        <ShadowRadius value="0.65000"/>
+    </CModel>
+    <CModel id="AP_ArtanisHeroTaldarim" parent="Unit" Race="Protoss">
+        <Model value="AP\Assets\Units\Protoss\Artanis\Artanis_Taldarim_New.m3"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.350000"/>
+        <SquibTypeDefault value="LightArmor"/>
+        <TechPurchaseCamera value="Star2CameraHigh05"/>
+        <UnitGlossaryCamera value="Star2CameraHigh05"/>
+        <PlanetPanelCamera value="Star2CameraHigh05"/>
+        <SelectionRadius value="0.65000"/>
+        <ShadowRadius value="0.65000"/>
+    </CModel>
+    <CModel id="AP_ArtanisReviveCocoon" parent="Unit">
+        <Model value="Assets\Doodads\ProtossWarpInPadFlat\ProtossWarpInPadFlat.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <Occlusion value="Show"/>
+        <SelectionRadius value="0.941000"/>
+        <ShadowRadius value="0.941000"/>
+        <SquibTypeDefault value="Flesh"/>
+    </CModel>
+    <CModel id="AP_ArtanisReviveCocoonArtanis">
+        <Model value="Assets\Units\Protoss\Artanis\Artanis.m3"/>
+    </CModel>
+    <CModel id="AP_ArtanisLightningDashIn" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Artanis_LightningDash\Artanis_LightningDash.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisLightningDashImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\PsiStormImpact\PsiStormImpact.m3"/>
+    </CModel>
+    <CModel id="AP_ArtanisAstralWindCastModel" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Artanis_AstralWinds\Artanis_AstralWinds.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisAstralWindImpactModel" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Artanis_AstralWinds_Impact\Artanis_AstralWinds_Impact.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisResurgenceChargeModel" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Artanis_Resurgence\Artanis_Resurgence.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <RadiusLoose value="1.000000"/>
+    </CModel>
     <CModel id="AP_ArtanisAreaStunModel" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Neutral\Stun_Void\Stun_Void.m3"/>
         <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="AP_VoltaicShockImpact" parent="ImpactFX">
+        <Model value="Assets\COOP\Stetmann\Effects\Ultralisk_Stetmann_COOP_StunAOE\Ultralisk_Stetmann_COOP_StunAOE.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_VoltaicShockBeam" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\ArchonBeam\ArchonBeam.m3"/>
+        <EditorCategories value="Race:Protoss"/>
     </CModel>
     <CModel id="AP_SuperStimpackEndImpact" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Terran\StimpackEndImpact\StimpackEndImpact.m3"/>
@@ -7131,6 +7284,25 @@
         <Model value="AP\Assets\Effects\Terran\Nova_DashAttack\Nova_DashAttack.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
+    <CModel id="AP_ArtanisVoidUlnarDeath" parent="UnitDeath" Race="Protoss">
+        <Model value="Assets\Units\Protoss\Artanis_Death\Artanis_Death.m3"/>
+        <LowQualityModel value="ProtossLargeUnitDeathLow"/>
+        <Occlusion value="Show"/>
+    </CModel>
+    <CModel id="AP_VoltaicShockStun" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\PulseImpact\PulseImpact.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.90000,0.900000,0.900000"/>
+        <ScaleMin value="0.900000,0.900000,0.900000"/>
+        <SelectionRadius value="0.333200"/>
+        <ShadowRadius value="0.333200"/>
+    </CModel>
+    <CModel id="AP_ArtanisBladeWaltzModel" parent="PersistentSpellFX">
+        <Model value="AP\Assets\Effects\Terran\nova_dashattack\nova_dashattack.m3"/>
+        <ScaleMax value="1.94000,0.80000,0.80000"/>
+        <ScaleMin value="1.94000,0.80000,0.80000"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
     <CModel id="AP_NovaWeaponBlazefireBladeShadowFury" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\ShadowFury\ShadowFury.m3"/>
         <EditorCategories value="Race:Protoss"/>
@@ -9522,6 +9694,20 @@
     </CModel>
     <CModel id="AP_PhoenixPurifierPhaseArmorGlaze">
         <Model value="Assets\Effects\Glaze\Glaze_PhaseArmor\Glaze_PhaseArmor.m3"/>
+    </CModel>
+    <CModel id="AP_ArtanisExterminateGlaze">
+        <Model value="Assets\Effects\Glaze\Glaze_Alarak_COOP_Empower\Glaze_Alarak_COOP_Empower.m3"/>
+    </CModel>
+    <CModel id="AP_StrengthInUnityGlaze">
+        <Model value="Assets\Effects\Glaze\Glaze_PhaseArmor\Glaze_PhaseArmor.m3"/>
+    </CModel>
+    <CModel id="AP_StrengthInUnityTargetGlaze">
+        <Model value="Assets\Effects\Glaze\PylonPowerOn_Glaze\PylonPowerOn_Glaze.m3"/>
+    </CModel>
+    <CModel id="AP_StrengthInUnityBubble">
+        <Model value="Assets\Effects\Protoss\Alarak_Malash_Storm\Alarak_Malash_Storm.m3"/>
+        <ScaleMax value="0.360000,0.360000,0.360000"/>
+        <ScaleMin value="0.360000,0.360000,0.360000"/>
     </CModel>
     <CModel id="AP_PhoenixPurifierPlacement" parent="Placement" Race="Protoss">
         <Model value="Assets\Units\Protoss\Phoenix_Purifier_Placement\Phoenix_Purifier_Placement.m3"/>
@@ -12499,6 +12685,10 @@
         <Model value="Assets\Effects\Glaze\Glaze_Fenix_Scout_StunMissile\Glaze_Fenix_Scout_StunMissile.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
+    <CModel id="AP_SuppressionPulseGlaze" parent="Glaze">
+        <Model value="Assets\Effects\Glaze\Glaze_Fenix_AI_Champion\Glaze_Fenix_AI_Champion.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
     <CModel id="AP_MotherShipTaldarimWarpIn">
         <Model value="Assets\Units\Protoss\MotherShip_Taldarim_WarpIn\MotherShip_Taldarim_WarpIn.m3"/>
         <ScaleMax value="0.600000,0.600000,0.600000"/>
@@ -14976,6 +15166,14 @@
         <Model value="Assets\UI\ProtossCursorEx2\ProtossCursorEx2.m3"/>
         <ScaleMax value="0.220000,0.220000,0.220000"/>
         <ScaleMin value="0.220000,0.220000,0.220000"/>
+        <SelectionRadius value="2.500000"/>
+        <ShadowRadius value="2.500000"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_BladeWaltzAOECursorSplat" parent="UI">
+        <Model value="Assets\UI\Cursors\ProtossCursor1\ProtossCursor1.m3"/>
+        <ScaleMax value="0.520000,0.520000,0.520000"/>
+        <ScaleMin value="0.520000,0.520000,0.520000"/>
         <SelectionRadius value="2.500000"/>
         <ShadowRadius value="2.500000"/>
         <EditorCategories value="Race:Protoss"/>
@@ -22206,6 +22404,33 @@
     </CModel>
     <CModel id="AP_ParasiteSporeGroundMissile">
         <Model value="Assets\Effects\Zerg\SlivanAcidPuddleMissile\SlivanAcidPuddleMissile.m3"/>
+    </CModel>
+    <CModel id="AP_ShadowSliceCastEffect" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Zeratul_ShadowBlade\Zeratul_ShadowBlade.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.750000,0.750000,0.750000"/>
+        <ScaleMin value="0.750000,0.750000,0.750000"/>
+    </CModel>
+    <CModel id="AP_ShadowSliceExplosion" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Zeratul_ShadowBlade_Impact\Zeratul_ShadowBlade_Impact.m3"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+    </CModel>
+    <CModel id="AP_RaszagalsRhythmWeaponGlowModel">
+        <Model value="Assets\COOP\Zeratul\Effects\Immortal_Zeratul_COOP_CannonMissile\Immortal_Zeratul_COOP_CannonMissile.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisRaszagalsRhythmStandModel" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Protoss_Generic_WarpOut_MP_Stand\Protoss_Generic_WarpOut_MP_Stand.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisShieldOverloadModel" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Karax_UnityBarrier_Tall\Karax_UnityBarrier_Tall.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="AP_ArtanisAiurAspectPassiveLightningBolt" parent="ImpactFX">
+        <Model value="AP\Assets\Units\Protoss\Artanis\LightningBoltNew.m3"/>
+        <EditorCategories value="Race:Protoss"/>
     </CModel>
     <CModel id="AP_StalkerTaldarimAttack" parent="MissileFX">
         <Model value="Assets\Effects\Protoss\Stalker_TalDarim_Missile\Stalker_TalDarim_Missile.m3"/>

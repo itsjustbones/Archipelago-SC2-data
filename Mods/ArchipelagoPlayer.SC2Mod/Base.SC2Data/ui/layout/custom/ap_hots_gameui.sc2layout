@@ -30,7 +30,7 @@
 
     <Frame type="Frame" name="GameUI/UIContainer/ConsoleUIContainer" file="GameUI">
         <Frame type="ObjectivePanel" name="ObjectivePanel" template="ObjectivePanel/ObjectivePanelTemplate">
-            <Anchor side="Top" relative="$parent/SecondaryHeroUnitFrame" pos="Max" offset="20"/>
+            <Anchor side="Top" relative="$parent/ThirdHeroUnitFrame" pos="Max" offset="20"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
             <Width val="650"/>
             <Height val="500"/>
@@ -68,6 +68,12 @@
         <Frame type="Frame" name="SecondaryHeroUnitFrame" template="ap_hots_gameunitframe/HeroUnitFrameTemplate">
             <Anchor side="Top" relative="$parent/HeroUnitFrame" pos="Max" offset="10"/>
             <Anchor side="Left" relative="$parent/HeroUnitFrame" pos="Min" offset="0"/>
+            <Visible val="false"/>
+        </Frame>
+
+        <Frame type="Frame" name="ThirdHeroUnitFrame" template="ap_hots_gameunitframe/HeroUnitFrameTemplate">
+            <Anchor side="Top"  relative="$parent/SecondaryHeroUnitFrame" pos="Max" offset="10"/>
+            <Anchor side="Left" relative="$parent/SecondaryHeroUnitFrame" pos="Min" offset="0"/>
             <Visible val="false"/>
         </Frame>
 

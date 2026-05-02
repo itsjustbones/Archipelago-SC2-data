@@ -2313,6 +2313,10 @@ bool gt_OrlanMineralCount_Func (bool testConds, bool runActions) {
             return false;
         }
 
+        if (!((gv_miraHanContractBought == false))) {
+            return false;
+        }
+
         if (!((UnitGetOwner(EventUnit()) == gv_p02_ORLAN_ENEMY))) {
             return false;
         }
@@ -5432,10 +5436,6 @@ bool gt_DefeatOrlanBuysContract_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((gv_miraHanContractBought == false))) {
-            return false;
-        }
-
         if (!((gv_gameOver == false))) {
             return false;
         }

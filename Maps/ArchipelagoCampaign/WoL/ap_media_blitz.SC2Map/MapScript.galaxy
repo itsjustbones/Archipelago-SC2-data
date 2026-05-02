@@ -1630,6 +1630,9 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     unitgroup autoF69A218C_g;
     int autoF69A218C_u;
     unit autoF69A218C_var;
+    unitgroup auto8CD2C7FE_g;
+    int auto8CD2C7FE_u;
+    unit auto8CD2C7FE_var;
     unitgroup auto6464AF62_g;
     int auto6464AF62_u;
     unit auto6464AF62_var;
@@ -1674,6 +1677,13 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_MakeUnitInvulnerable(autoF69A218C_var, true);
         libNtve_gf_ShowHideUnit(autoF69A218C_var, false);
         UnitSetInfoText(autoF69A218C_var, StringExternal("Param/Value/BAA72864"), StringToText(""), StringToText(""));
+    }
+    auto8CD2C7FE_g = UnitGroup(null, c_playerAny, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32))), 0);
+    auto8CD2C7FE_u = UnitGroupCount(auto8CD2C7FE_g, c_unitCountAll);
+    for (;; auto8CD2C7FE_u -= 1) {
+        auto8CD2C7FE_var = UnitGroupUnitFromEnd(auto8CD2C7FE_g, auto8CD2C7FE_u);
+        if (auto8CD2C7FE_var == null) { break; }
+        UnitSetPropertyFixed(auto8CD2C7FE_var, c_unitPropLifePercent, 100.0);
     }
     gf_CreatePassiveUnitsInBunker(4, "Marine", UnitFromId(1266));
     gf_CreatePassiveUnitsInBunker(2, "Marine", UnitFromId(1313));

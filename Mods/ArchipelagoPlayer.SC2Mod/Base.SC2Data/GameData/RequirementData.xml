@@ -1376,6 +1376,42 @@
         <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
         <NodeArray index="Show" Link="AP_CountUpgradeHotSHaveSwarmHostSplitBCompleteOnly"/>
     </CRequirement>
+    <CRequirement id="AP_HaveArtanisResurgence">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisResurgenceCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_ArtanisResurgenceOffCooldown">
+        <NodeArray index="Show" Link="AP_AndCountUpgradeArtanisResurgenceCompleteOnlyNotCountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="AP_ArtanisResurgenceCooldown">
+        <NodeArray index="Show" Link="AP_CountBehaviorArtanisResurgenceDisableCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisLightningDash">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisLightningDashCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisVoltaicShock">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisVoltaicShockCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisSuppressionPulse">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisSuppressionPulseCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAstralWind">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisAstralWindCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisStrengthInUnity">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisStrengthInUnityCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPhasePrism">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisPhasePrismCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTemperedInTwilight">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisTemperedInTwilightCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAirAttack">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisAirAttackCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HavePhasePrismRecastBehavior">
+        <NodeArray index="Show" Link="AP_CountBehaviorPhasePrismRecastCompleteOnlyAtUnit"/>
+    </CRequirement>
     <CRequirement id="AP_HaveSuperStimpackNova">
         <NodeArray index="Show" Link="AP_CountUpgradeSuperStimpackNovaCompleteOnly"/>
     </CRequirement>
@@ -2716,6 +2752,123 @@
     <CRequirement id="AP_HaveMothershipHangarAiurInstalled">
         <EditorCategories value="Race:Protoss,TechType:Ability"/>
         <NodeArray index="Show" Link="AP_CountUpgradeMothershipHangarAiurCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectUnlocked">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisAiurAspectUnlockedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectEquipped">
+        <NodeArray index="Show" Link="AP_AndArtanisAiurAspectEquippedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectActive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisAiurAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectPassive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisAiurAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectSelected">
+        <NodeArray index="Show" Link="AP_CountBehaviorArtanisAiurAspectCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectSelectedActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisAiurAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectSelectedPassive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisAiurAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAiurAspectSelectedPassiveNotActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisAiurAspectPassiveNotActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectUnlocked">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisNerazimAspectUnlockedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectEquipped">
+        <NodeArray index="Show" Link="AP_AndArtanisNerazimAspectEquippedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectActive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisNerazimAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectPassive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisNerazimAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectSelected">
+        <NodeArray index="Show" Link="AP_CountBehaviorArtanisNerazimAspectCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectSelectedActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisNerazimAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectSelectedPassive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisNerazimAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisNerazimAspectSelectedPassiveNotActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisNerazimAspectPassiveNotActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectUnlocked">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisPurifierAspectUnlockedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectEquipped">
+        <NodeArray index="Show" Link="AP_AndArtanisPurifierAspectEquippedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectActive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisPurifierAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectPassive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisPurifierAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectSelected">
+        <NodeArray index="Show" Link="AP_CountBehaviorArtanisPurifierAspectCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectSelectedActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisPurifierAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectSelectedPassive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisPurifierAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisPurifierAspectSelectedPassiveNotActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisPurifierAspectPassiveNotActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectUnlocked">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisTaldarimAspectUnlockedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectEquipped">
+        <NodeArray index="Show" Link="AP_AndArtanisTaldarimAspectEquippedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectActive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisTaldarimAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectPassive">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisTaldarimAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectSelected">
+        <NodeArray index="Show" Link="AP_CountBehaviorArtanisTaldarimAspectCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectSelectedActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisTaldarimAspectActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectSelectedActiveAirAttackEnabled">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisTaldarimAspectActiveAirAttackEnabledCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectSelectedActiveAirAttackDisabled">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisTaldarimAspectActiveAirAttackDisabledCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectSelectedPassive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisTaldarimAspectPassiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisTaldarimAspectSelectedPassiveNotActive">
+        <NodeArray index="Show" Link="AP_AndCanUseArtanisTaldarimAspectPassiveNotActiveCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAnyAspectUnlocked">
+        <NodeArray index="Show" Link="AP_OrArtanisAnyAspectUnlockedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisAnyAspectEquipped">
+        <NodeArray index="Show" Link="AP_OrArtanisAnyAspectEquippedCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisForceOfWill">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisForceOfWillCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisValorOfTheFirstborn">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisValorOfTheFirstbornCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveArtanisShieldOverload">
+        <NodeArray index="Show" Link="AP_CountUpgradeArtanisShieldOverloadCompleteOnly"/>
     </CRequirement>
     <CRequirement id="AP_HaveSOADragoonRevive">
         <EditorCategories value="Race:Protoss,TechType:Ability"/>

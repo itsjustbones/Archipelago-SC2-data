@@ -572,21 +572,21 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
     if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), "Prot", false);
     }
     else {
-        if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-            libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
-            libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-            libABFE498B_gv_aP_Triggers_DebugMode = true;
-            libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
-            libABFE498B_gf_AP_Triggers_setDifficulty("B");
-            libABFE498B_gf_AP_Triggers_setGameSpeed("5");
-            libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
-            TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
-        }
-
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(5), libABFE498B_gv_aP_Triggers_Option_overridePlayerRace, false);
         if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Terr")) {
@@ -7354,6 +7354,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_pickedUnit;
     fixed lv_fadeDuration;
+    unitgroup lv_remove;
 
     // Automatic Variable Declarations
     unitgroup autoA4FBA74B_g;
@@ -7367,6 +7368,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     unit auto829A58C7_var;
 
     // Variable Initialization
+    lv_remove = UnitGroupEmpty();
 
     // Actions
     if (!runActions) {
@@ -7387,11 +7389,12 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     CameraPan(gv_p1_USER, PointFromId(2), 0.0, -1, 10, false);
     CameraApplyInfo(gv_p1_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     VisExploreArea(gv_p1_USER, RegionEntireMap(), false, false);
-    Wait(0.5, c_timeGame);
     libNtve_gf_SetAlliance(gv_p1_USER, gv_p3_PROTOSS_ENEMY, libNtve_ge_AllianceSetting_Enemy);
     UnitRemove(gv_introVoidSeeker);
     UnitRemove(gv_introNexus);
-    autoF63C3B8C_g = UnitGroup(null, gv_p1_USER, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_remove = UnitGroup(null, gv_p1_USER, RegionFromId(3), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    UnitGroupRemoveUnitGroup(lv_remove, libABFE498B_gv_aP_Triggers_HeroUnits);
+    autoF63C3B8C_g = lv_remove;
     autoF63C3B8C_u = UnitGroupCount(autoF63C3B8C_g, c_unitCountAll);
     for (;; autoF63C3B8C_u -= 1) {
         autoF63C3B8C_var = UnitGroupUnitFromEnd(autoF63C3B8C_g, autoF63C3B8C_u);
