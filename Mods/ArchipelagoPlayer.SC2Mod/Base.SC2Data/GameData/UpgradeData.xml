@@ -13046,7 +13046,7 @@
         <EffectArray Reference="Weapon,AP_ArtanisTwilightBlades,RateMultiplier" Value="0.20"/>
         <EffectArray Reference="Weapon,AP_ArtanisAirAttack,RateMultiplier" Value="0.20"/>
         <AffectedUnitArray value="AP_ArtanisHero"/>
-    </CUpgrade>     
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisShieldOverload">
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
@@ -15158,7 +15158,11 @@
         <EffectArray Operation="Subtract" Reference="Unit,AP_TrooperMengskImproved,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,AP_TrooperMengskAA,CostResource[Vespene]" Value="20"/>
     </CUpgrade>
-    <CUpgrade id="AP_TrooperMengskImproved"/>
+    <CUpgrade id="AP_TrooperMengskImproved">
+        <EffectArray Reference="Effect,AP_TrooperMengskImprovedDamage,Amount" Value="2"/>
+        <EffectArray Reference="Unit,AP_TrooperMengskImproved,LifeMax" Value="10"/>
+        <EffectArray Reference="Unit,AP_TrooperMengskImproved,LifeStart" Value="10"/>
+    </CUpgrade>
     <CUpgrade id="AP_TrooperMengskAA"/>
     <CUpgrade id="AP_TrooperMengskFlamethrower"/>
     <CUpgrade id="AP_FastBuildTrooper">
