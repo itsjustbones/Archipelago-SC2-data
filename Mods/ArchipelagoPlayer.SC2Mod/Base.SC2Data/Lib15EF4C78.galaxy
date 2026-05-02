@@ -9931,9 +9931,9 @@ void lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: 
+// Trigger: AP_Player_GreaterSpireFixFacing
 //--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_ehugfxmyrvhkiqhy_Func (bool testConds, bool runActions) {
+bool lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -9945,9 +9945,9 @@ bool lib15EF4C78_gt_ehugfxmyrvhkiqhy_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_ehugfxmyrvhkiqhy_Init () {
-    lib15EF4C78_gt_ehugfxmyrvhkiqhy = TriggerCreate("lib15EF4C78_gt_ehugfxmyrvhkiqhy_Func");
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_ehugfxmyrvhkiqhy, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
+void lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Init () {
+    lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing = TriggerCreate("lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10183,7 +10183,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init();
-    lib15EF4C78_gt_ehugfxmyrvhkiqhy_Init();
+    lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Init();
     lib15EF4C78_gt_EmitTransformerLand_Init();
     lib15EF4C78_gt_MakeHeroArtanis_Init();
     lib15EF4C78_gt_MakeHeroKerrigan_Init();
