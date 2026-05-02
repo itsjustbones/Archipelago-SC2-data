@@ -4881,18 +4881,23 @@
     </CAbilMorph>
     <CAbilEffectTarget id="AP_QueenDeepTunnel">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_DeepTunnelCU"/>
+        <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
-            <Cooldown Location="Unit"/>
+            <Cooldown Location="Unit" TimeUse="60"/>
         </Cost>
-        <TargetFilters value="Structure;Ally,Neutral,Enemy,Dead"/>
         <Range value="500"/>
-        <CastIntroTime value="1"/>
-        <FinishTime value="1"/>
+        <Arc value="360"/>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="1"/>
+        <FinishTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="DeepTunnel" Requirements="AP_HaveQueenDeepTunnel">
-            <Flags index="ShowInGlossary" value="0"/>
+        <AINotifyEffect value="AP_DeepTunnelCU"/>
+        <ProgressButtonArray index="Cast" value="AP_QueenDeepTunnel"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_QueenDeepTunnel" Requirements="AP_HaveQueenDeepTunnel">
+            <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
     <CAbilMorph id="AP_BurrowPrimalZerglingDown">
@@ -5503,7 +5508,7 @@
         <Effect index="0" value="AP_DeepTunnelCU"/>
         <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Cooldown Location="Unit" TimeUse="10"/>
+            <Cooldown Location="Unit" TimeUse="60"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>
@@ -16355,7 +16360,7 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Cooldown Location="Unit" TimeUse="10"/>
+            <Cooldown Location="Unit" TimeUse="60"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>

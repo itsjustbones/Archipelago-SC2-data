@@ -19496,8 +19496,13 @@
         <On Terms="WeaponStart.AP_Talons.AttackStart" Send="AnimBracketStart Attack Attack"/>
         <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
-        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop; ValidateUnit IsNotBuried" Send="AnimBracketStop Burrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="AnimBracketStart DeepBurrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever 0.500000 AsTimeScale"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="Create AP_Spell_DeepTunnel_Burrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="TimerSet 1.200000 DeepBurrowTimer"/>
+        <On Terms="TimerExpired; TimerName DeepBurrowTimer" Send="Create AP_SwarmHostDeepBurrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop; ValidateUnit IsBuried" Send="AnimBracketClear DeepBurrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop" Send="AnimBracketStop DeepBurrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop" Send="Create AP_Spell_DeepTunnel_Unburrow"/>
         <On Terms="Behavior.AP_KerriganEnhanceBeam.On" Send="AnimPlay Channel Fidget PlayForever"/>
         <On Terms="Behavior.AP_KerriganEnhanceBeam.Off" Send="AnimClear Channel"/>
         <On Terms="UnitBirth.AP_Queen" Send="TerrainSquibActivateGroup RippleStandard"/>
