@@ -2714,11 +2714,11 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     // Variable Declarations
     fixed lv_reviveDuration;
     unit lv_reviveCocoon;
-    bool lv_useShieldedHeroUI;
     text lv_hotkey;
     int lv_life;
     int lv_shields;
     int lv_energy;
+    bool lv_useShieldedHeroUI;
 
     // Automatic Variable Declarations
     int autoB139472A_val;
@@ -2755,7 +2755,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_7DF39159", "B", lv_hotkey);
     libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogNameLabel[lp_index], TextExpressionAssemble("Param/Expression/lib_15EF4C78_7DF39159"), PlayerGroupAll());
     libNtve_gf_SetDialogItemImage(lib15EF4C78_gv_zS_SwarmHeroUIDialogIconImage[lp_index], lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index], PlayerGroupAll());
-    lv_useShieldedHeroUI = (UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index]) == "AP_ArtanisHero");
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropNormal) > 0.0);
     if ((lv_useShieldedHeroUI == true)) {
         DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 46);
         DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 50);
@@ -2824,7 +2824,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     }
     else {
         lv_energy = FixedToInt((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropEnergyPercent, c_unitPropCurrent) * 2.24));
-        if (((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0) && (lv_useShieldedHeroUI == true))) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index], PlayerGroupAll(), false);
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index], PlayerGroupAll(), true);
         }
@@ -8100,6 +8100,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     int lv_damageBarWidth;
     int lv_damageBarHeight;
     int lv_damageBarPriority;
+    bool lv_useShieldedHeroUI;
 
     // Automatic Variable Declarations
     unit auto6B7C2E37_val;
@@ -8131,9 +8132,10 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     else {
         return true;
     }
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropNormal) > 0.0);
     auto78DF5643_val = EventUnitProperty();
     if (auto78DF5643_val == c_unitPropEnergy) {
-        if (((UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index]) == "AP_ArtanisHero") && (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0))) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "ap_hots_gameunitframe/HeroEnergyBarDamageTemplateShieldedHero/DamageBar");
             DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lv_index], c_anchorLeft, 0, 0);
             lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lv_index], 1);
@@ -8148,7 +8150,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     }
     else if (auto78DF5643_val == c_unitPropLife) {
         DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "AP_HotS_GameUnitFrame/HeroHealthBarDamageTemplate/DamageBar");
-        if (((UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index]) == "AP_ArtanisHero") && (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0))) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lv_index], c_anchorLeft, 0, 0);
             lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lv_index], 1);
         }
@@ -8160,7 +8162,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
         lv_damageBarWidth = MaxI(1, lv_damageBarWidth);
     }
     else if (auto78DF5643_val == c_unitPropShields) {
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+        if ((lv_useShieldedHeroUI == true)) {
             return true;
         }
 
@@ -8210,6 +8212,7 @@ void lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Init () {
 bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
+    bool lv_useShieldedHeroUI;
 
     // Automatic Variable Declarations
     int auto31F78A4F_val;
@@ -8244,9 +8247,10 @@ bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
             }
         }
     }
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropNormal) > 0.0);
     auto31F78A4F_val = EventDialogControlEventType();
     if (auto31F78A4F_val == c_triggerControlEventTypeMouseEnter) {
-        if (((UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index]) == "AP_ArtanisHero") && (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0))) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lv_index], PlayerGroupAll(), true);
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lv_index], PlayerGroupAll(), true);
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lv_index], PlayerGroupAll(), false);
