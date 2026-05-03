@@ -115,7 +115,7 @@
     <CAbilTrain id="AP_EchidnaTrain">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Range value="5"/>
-        <InfoArray index="Train1" Time="6" Rotation="Source">
+        <InfoArray index="Train1" Time="8" Rotation="Source">
             <Resource index="Minerals" value="-5"/>
             <Button DefaultButtonFace="AP_BirthZergling" State="Restricted" Requirements="AP_HaveOuroborosSpawning"/>
             <Unit value="AP_Zergling"/>
@@ -128,30 +128,30 @@
             <Unit value="AP_Zergling"/>
             <Unit value="AP_Zergling"/>
         </InfoArray>
-        <InfoArray index="Train3" Time="6" Rotation="Source">
+        <InfoArray index="Train3" Time="8" Rotation="Source">
             <Resource index="Minerals" value="-5"/>
             <Button DefaultButtonFace="AP_BirthRaptor" State="Restricted" Requirements="AP_HaveOuroborosSpawningRaptor"/>
             <Unit value="AP_Zergling"/>
             <Unit value="AP_Zergling"/>
         </InfoArray>
-        <InfoArray index="Train4" Time="6" Rotation="Source">
+        <InfoArray index="Train4" Time="5" Rotation="Source">
             <Button DefaultButtonFace="AP_BirthDrone" State="Restricted"/>
             <Unit value="AP_Drone"/>
             <Unit value=""/>
         </InfoArray>
-        <InfoArray index="Train5" Time="11" Rotation="Source">
+        <InfoArray index="Train5" Time="9" Rotation="Source">
             <Resource index="Minerals" value="-8"/>
             <Resource index="Vespene" value="-3"/>
             <Button DefaultButtonFace="AP_BirthRoach" State="Restricted" Requirements="AP_HaveOuroborosWarren"/>
             <Unit value="AP_Roach"/>
         </InfoArray>
-        <InfoArray index="Train6" Time="11" Rotation="Source">
+        <InfoArray index="Train6" Time="9" Rotation="Source">
             <Resource index="Minerals" value="-8"/>
             <Resource index="Vespene" value="-3"/>
             <Button DefaultButtonFace="AP_BirthCorpser" State="Restricted" Requirements="AP_HaveOuroborosWarrenCorpser"/>
             <Unit value="AP_Roach"/>
         </InfoArray>
-        <InfoArray index="Train7" Time="11" Rotation="Source">
+        <InfoArray index="Train7" Time="9" Rotation="Source">
             <Resource index="Minerals" value="-8"/>
             <Resource index="Vespene" value="-3"/>
             <Button DefaultButtonFace="AP_BirthVile" Requirements="AP_HaveOuroborosWarrenVile"/>
@@ -175,12 +175,17 @@
             <Button DefaultButtonFace="AP_BirthHydraliskLurker" State="Restricted" Requirements="AP_HaveOuroborosDenLurker"/>
             <Unit value="AP_Hydralisk"/>
         </InfoArray>
-        <InfoArray index="Train11" Time="17" Rotation="Source">
+        <InfoArray index="Train11" Time="10" Rotation="Source">
             <Resource index="Minerals" value="-20"/>
             <Resource index="Vespene" value="-8"/>
             <Display index="Custom" value="1"/>
             <Button DefaultButtonFace="AP_BirthAberration" State="Restricted" Requirements="AP_HaveOuroborosLairAndChamber"/>
             <Unit value="AP_InfestedAbomination"/>
+        </InfoArray>
+        <InfoArray index="Train12" Time="8" Rotation="Source">
+            <Resource index="Minerals" value="-8"/>
+            <Button DefaultButtonFace="AP_BirthPygalisk" State="Restricted" Requirements="AP_HaveOuroborosSpawning"/>
+            <Unit value="AP_Pygalisk"/>
         </InfoArray>
         <ProxyOffset value="1,-25"/>
     </CAbilTrain>
@@ -5053,18 +5058,23 @@
     </CAbilMorph>
     <CAbilEffectTarget id="AP_QueenDeepTunnel">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AP_DeepTunnelCU"/>
+        <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Vital index="Energy" value="25"/>
-            <Cooldown Location="Unit"/>
+            <Cooldown Location="Unit" TimeUse="60"/>
         </Cost>
-        <TargetFilters value="Structure;Ally,Neutral,Enemy,Dead"/>
         <Range value="500"/>
-        <CastIntroTime value="1"/>
-        <FinishTime value="1"/>
+        <Arc value="360"/>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="1"/>
+        <FinishTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
         <UninterruptibleArray index="Cast" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="DeepTunnel" Requirements="AP_HaveQueenDeepTunnel">
-            <Flags index="ShowInGlossary" value="0"/>
+        <AINotifyEffect value="AP_DeepTunnelCU"/>
+        <ProgressButtonArray index="Cast" value="AP_QueenDeepTunnel"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_QueenDeepTunnel" Requirements="AP_HaveQueenDeepTunnel">
+            <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
     <CAbilMorph id="AP_BurrowPrimalZerglingDown">
@@ -5671,10 +5681,11 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_DeepTunnel">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <PrepEffect value="AP_DeepTunnelDisableAttack"/>
         <Effect index="0" value="AP_DeepTunnelCU"/>
         <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Cooldown Location="Unit" TimeUse="30"/>
+            <Cooldown Location="Unit" TimeUse="60"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>
@@ -5693,13 +5704,32 @@
     <CAbilEffectTarget id="AP_RavagerCorrosiveBile">
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <SharedFlags index="RegisterCooldownEvent" value="1"/>
         <Effect index="0" value="AP_RavagerCorrosiveBileLaunchSet"/>
         <Cost>
-            <Cooldown TimeUse="10"/>
+            <Cooldown Link="AP_RavagerCorrosiveBileShared" Location="Unit" TimeUse="10"/>
         </Cost>
         <Range value="9"/>
         <CursorEffect value="AP_RavagerCorrosiveBileCursorDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerCorrosiveBileBurrowed" parent="AP_RavagerCorrosiveBile">
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBile">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <SharedFlags index="RegisterCooldownEvent" value="1"/>
+        <Effect index="0" value="AP_RavagerCorrosiveBileDirectAirLaunchSet"/>
+        <Cost>
+            <Cooldown Link="AP_RavagerCorrosiveBileShared" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Range value="9"/>
+        <CursorEffect value="AP_RavagerCorrosiveBileAirCursorDummy"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBileBurrowed" parent="AP_RavagerAerialCorrosiveBile">
+        <Arc value="360"/>
     </CAbilEffectTarget>
     <CAbilMorph id="AP_MorphToRavager">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
@@ -11982,7 +12012,7 @@
         <InfoArray index="Build9" Unit="AP_InfestationPit" Time="40">
             <Button DefaultButtonFace="AP_InfestationPit" State="Restricted" Requirements="AP_HaveLair"/>
         </InfoArray>
-        <InfoArray index="Build10" Unit="AP_NydusNetwork" Time="50">
+        <InfoArray index="Build10" Unit="AP_NydusNetwork" Time="40">
             <Button DefaultButtonFace="AP_NydusNetwork" State="Restricted" Requirements="AP_HaveLair"/>
         </InfoArray>
         <InfoArray index="Build11" Unit="AP_BanelingNest" Time="30">
@@ -12402,11 +12432,15 @@
                 <TimeUse value="240"/>
             </Cooldown>
             <Button DefaultButtonFace="AP_MercZergling" State="Restricted" Requirements="AP_ZergMercCompoundBroodWar"/>
-            <Resource index="Minerals" value="100"/>
             <Unit value="AP_MercZergling"/>
             <Unit value="AP_MercZergling"/>
             <Unit value="AP_MercZergling"/>
             <Unit value="AP_MercZergling"/>
+            <Unit value="AP_MercZergling"/>
+            <Unit value="AP_MercZergling"/>
+            <Unit value=""/>
+            <Unit value=""/>
+            <Unit value=""/>
             <Unit value=""/>
             <Unit value=""/>
             <Unit value=""/>
@@ -16530,7 +16564,7 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Flags index="BestUnit" value="0"/>
         <Cost>
-            <Cooldown Location="Unit" TimeUse="10"/>
+            <Cooldown Location="Unit" TimeUse="60"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>

@@ -9954,7 +9954,7 @@
         <Sight value="9"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="200"/>
-        <CostResource index="Vespene" value="200"/>
+        <CostResource index="Vespene" value="150"/>
         <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="stop"/>
@@ -10030,8 +10030,8 @@
         <TurningRate value="719.4726"/>
         <Sight value="10"/>
         <CostCategory value="Technology"/>
-        <CostResource index="Minerals" value="100"/>
-        <CostResource index="Vespene" value="100"/>
+        <CostResource index="Minerals" value="50"/>
+        <CostResource index="Vespene" value="50"/>
         <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="Rally"/>
@@ -10223,8 +10223,8 @@
         <TurningRate value="719.4726"/>
         <Sight value="10"/>
         <CostCategory value="Economy"/>
-        <CostResource index="Minerals" value="150"/>
-        <CostResource index="Vespene" value="75"/>
+        <CostResource index="Minerals" value="175"/>
+        <CostResource index="Vespene" value="25"/>
         <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
@@ -10239,7 +10239,8 @@
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="AP_BuildCreepTumorPropagate" Type="AbilCmd" AbilCmd="AP_EchidnaCreepBuild,Build1" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_NydusWormSubterraneanScales" Type="Passive" Requirements="AP_HaveNydusWormSubterraneanScales" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_BirthPygalisk" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train12" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_NydusWormSubterraneanScales" Type="Passive" Requirements="AP_HaveNydusWormSubterraneanScales" Row="1" Column="1"/>
             <LayoutButtons Face="AP_BirthDrone" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train4" Row="0" Column="0"/>
             <LayoutButtons Face="AP_BirthRaptor" Type="AbilCmd" AbilCmd="AP_EchidnaTrainSwarmling,Train1" Row="0" Column="1"/>
             <LayoutButtons Face="AP_BirthRaptor" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train3" Row="0" Column="1"/>
@@ -10252,7 +10253,7 @@
             <LayoutButtons Face="AP_BirthHydraliskLurker" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train10" Row="0" Column="3"/>
             <LayoutButtons Face="AP_BirthHydralisk" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train8" Row="0" Column="3"/>
             <LayoutButtons Face="AP_BirthAberration" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train11" Row="0" Column="4"/>
-            <LayoutButtons Face="AP_EchidnaWormOuroborosStrain" Type="Passive" Requirements="AP_HaveEchidnaWormOuroborosStrain" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_EchidnaWormOuroborosStrain" Type="Passive" Requirements="AP_HaveEchidnaWormOuroborosStrain" Row="2" Column="1"/>
             <LayoutButtons Face="AP_NydusWormJormungandrStrain" Type="Passive" Requirements="AP_HaveNydusWormJormungandrStrain" Row="1" Column="2"/>
             <LayoutButtons Face="AP_EchidnaWormRally" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally1" Row="1" Column="4"/>
             <LayoutButtons Face="AP_EchidnaWormRallyWorker" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally2" Row="1" Column="3"/>
@@ -19153,7 +19154,7 @@
             <LayoutButtons Face="AP_QueenBurstHeal" Type="AbilCmd" AbilCmd="AP_QueenBurstHeal,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_QueenBurstHeal" Type="AbilCmd" AbilCmd="AP_QueenBioMechBurstHeal,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_SwarmQueenWildMutation" Type="AbilCmd" AbilCmd="AP_SwarmQueenWildMutation,Execute" Row="2" Column="2"/>
-            <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,0" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_KerriganEnhance,1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.875"/>
@@ -19231,9 +19232,11 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="AP_BurrowQueenUp"/>
         <AbilArray Link="AP_QueenBuild"/>
+        <AbilArray Link="AP_QueenDeepTunnel"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowQueenUp,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AP_QueenOrganicCarapace" Type="Passive" Requirements="AP_HaveQueenOrganicCarapace" Row="1" Column="0"/>
             <LayoutButtons Face="AP_BioMechanicalTransfusionPassive" Type="Passive" Requirements="AP_HaveAbathurBioMechanicalTransfusion" Row="1" Column="1"/>
@@ -20605,8 +20608,8 @@
         <Collide index="ForceField" value="1"/>
         <Collide index="Small" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <LifeStart value="120"/>
-        <LifeMax value="120"/>
+        <LifeStart value="145"/>
+        <LifeMax value="145"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
@@ -20629,8 +20632,10 @@
         <AbilArray Link="que1"/>
         <AbilArray Link="AP_BurrowRavagerDown"/>
         <AbilArray Link="AP_RavagerCorrosiveBile"/>
+        <AbilArray Link="AP_RavagerAerialCorrosiveBile"/>
         <AbilArray Link="AP_DeepTunnel"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_RavagerSpawnRoachlingsOnDeath"/>
         <WeaponArray Link="AP_RavagerWeapon"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -20640,18 +20645,13 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_HotSRoachDamage" Type="Passive" Requirements="AP_HaveHotSRoachDamage" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_GlialReconstitution" Type="Passive" Requirements="AP_HaveHotSRoachSpeed" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_OrganicCarapace" Type="Passive" Requirements="AP_HaveHotSRoachHealth" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBile,Execute" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_RavagerBurrowedBombardment" Type="Passive" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="1" Column="4"/>
             <LayoutButtons Face="AP_RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerCorrosiveBile,Execute" Row="2" Column="0"/>
-            <LayoutButtons>
-                <Face value="AP_DeepTunnel"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="AP_DeepTunnel,Execute"/>
-                <Requirements value="AP_HotSHaveDeepTunnel"/>
-                <Row value="2"/>
-                <Column value="1"/>
-            </LayoutButtons>
+            <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBonePlating" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_DeepTunnel" Type="AbilCmd" AbilCmd="AP_DeepTunnel,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowRavagerDown,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
@@ -20683,8 +20683,8 @@
         <PlaneArray index="Ground" value="1"/>
         <Collide index="Burrow" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <LifeStart value="120"/>
-        <LifeMax value="120"/>
+        <LifeStart value="145"/>
+        <LifeMax value="145"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
@@ -20700,17 +20700,28 @@
         <CostResource index="Vespene" value="100"/>
         <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
         <AbilArray Link="AP_BurrowRavagerUp"/>
         <AbilArray Link="AP_DeepTunnel"/>
-        <AbilArray Link="AP_RavagerCorrosiveBile"/>
+        <AbilArray Link="AP_RavagerCorrosiveBileBurrowed"/>
+        <AbilArray Link="AP_RavagerAerialCorrosiveBileBurrowed"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_RavagerSpawnRoachlingsOnDeath"/>
+        <BehaviorArray Link="AP_RavagerBurrowedBombardmentBehavior"/>
+        <WeaponArray Link="AP_RavagerBurrowedBombardmentWeapon" Turret="FreeRotate"/>
         <CardLayouts>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_HotSRoachDamage" Type="Passive" Requirements="AP_HaveHotSRoachDamage" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_GlialReconstitution" Type="Passive" Requirements="AP_HaveHotSRoachSpeed" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_OrganicCarapace" Type="Passive" Requirements="AP_HaveHotSRoachHealth" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBileBurrowed,Execute" Requirements="AP_HotSHaveRavagerBurrowedAerialCorrosiveBile" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_RavagerBurrowedBombardment" Type="Passive" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerCorrosiveBileBurrowed,Execute" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBonePlating" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_DeepTunnel" Type="AbilCmd" AbilCmd="AP_DeepTunnel,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowRavagerUp,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
@@ -20753,7 +20764,6 @@
         <AttackTargetPriority value="10"/>
         <AbilArray Link="que1"/>
         <AbilArray Link="Rally"/>
-        <AbilArray Link="AP_MorphToRavager"/>
         <CardLayouts>
             <LayoutButtons Face="CancelCocoonMorph" Type="AbilCmd" AbilCmd="AP_MorphToRavager,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="2" Column="4"/>

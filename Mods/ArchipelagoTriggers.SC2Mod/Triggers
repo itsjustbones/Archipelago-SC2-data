@@ -4364,11 +4364,11 @@
                     libABFE498B_gf_AP_Triggers_Zerg_InfestedMarineSpeed, // 1
                     libABFE498B_gf_AP_Triggers_Zerg_InfestedSCVRepairBio, // 2
                     libABFE498B_gf_AP_Triggers_Zerg_InfestedSCVRepairFree, // 3
-                    ap_triggers_PlayerConsumer_sig, // 4
-                    ap_triggers_PlayerConsumer_sig, // 5
-                    ap_triggers_PlayerConsumer_sig, // 6
-                    ap_triggers_PlayerConsumer_sig, // 7
-                    ap_triggers_PlayerConsumer_sig, // 8
+                    libABFE498B_gf_AP_Triggers_Zerg_RavagerDisintegratingAcid, // 4
+                    libABFE498B_gf_AP_Triggers_Zerg_RavagerAerialCorrosiveBile, // 5
+                    libABFE498B_gf_AP_Triggers_Zerg_RavagerBurrowedBombardment, // 6
+                    libABFE498B_gf_AP_Triggers_Zerg_RavagerBonePlating, // 7
+                    libABFE498B_gf_AP_Triggers_Zerg_RavagerWrithingAbombination, // 8
                     ap_triggers_PlayerConsumer_sig, // 9
                     ap_triggers_PlayerConsumer_sig, // 10
                     ap_triggers_PlayerConsumer_sig, // 11
@@ -54456,6 +54456,11 @@
             <Item Type="FunctionDef" Library="ABFE498B" Id="DEDC2EFB"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="D3F0F221"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="83833BCC"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="1D4A5C01"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="2A3C7E01"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="3B5F9A01"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="4C6E8B01"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="5D7F0C01"/>
         </Element>
         <Element Type="FunctionDef" Id="DEDC2EFB">
             <FlagAction/>
@@ -54562,6 +54567,191 @@
         <Element Type="Param" Id="25A6E431">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
             <Value>AP_DeepTunnel</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="1D4A5C01">
+            <Identifier>AP_Triggers_Zerg_RavagerDisintegratingAcid</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="1D4A5C02"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="1D4A5C04"/>
+        </Element>
+        <Element Type="ParamDef" Id="1D4A5C02">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="1D4A5C03"/>
+        </Element>
+        <Element Type="Param" Id="1D4A5C03">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="1D4A5C04">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="1D4A5C05"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="1D4A5C06"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="1D4A5C07"/>
+        </Element>
+        <Element Type="Param" Id="1D4A5C05">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="1D4A5C02"/>
+        </Element>
+        <Element Type="Param" Id="1D4A5C06">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="1D4A5C07">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_HotSRavagerDisintegratingAcid</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="2A3C7E01">
+            <Identifier>AP_Triggers_Zerg_RavagerAerialCorrosiveBile</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="2A3C7E02"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="2A3C7E04"/>
+        </Element>
+        <Element Type="ParamDef" Id="2A3C7E02">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="2A3C7E03"/>
+        </Element>
+        <Element Type="Param" Id="2A3C7E03">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="2A3C7E04">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="2A3C7E05"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="2A3C7E06"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="2A3C7E07"/>
+        </Element>
+        <Element Type="Param" Id="2A3C7E05">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="2A3C7E02"/>
+        </Element>
+        <Element Type="Param" Id="2A3C7E06">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="2A3C7E07">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_HotSRavagerAerialCorrosiveBile</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="3B5F9A01">
+            <Identifier>AP_Triggers_Zerg_RavagerBurrowedBombardment</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="3B5F9A02"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="3B5F9A04"/>
+        </Element>
+        <Element Type="ParamDef" Id="3B5F9A02">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="3B5F9A03"/>
+        </Element>
+        <Element Type="Param" Id="3B5F9A03">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="3B5F9A04">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="3B5F9A05"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="3B5F9A06"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="3B5F9A07"/>
+        </Element>
+        <Element Type="Param" Id="3B5F9A05">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="3B5F9A02"/>
+        </Element>
+        <Element Type="Param" Id="3B5F9A06">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="3B5F9A07">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_HotSRavagerBurrowedBombardment</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="4C6E8B01">
+            <Identifier>AP_Triggers_Zerg_RavagerBonePlating</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="4C6E8B02"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="4C6E8B04"/>
+        </Element>
+        <Element Type="ParamDef" Id="4C6E8B02">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="4C6E8B03"/>
+        </Element>
+        <Element Type="Param" Id="4C6E8B03">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="4C6E8B04">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="4C6E8B05"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="4C6E8B06"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="4C6E8B07"/>
+        </Element>
+        <Element Type="Param" Id="4C6E8B05">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="4C6E8B02"/>
+        </Element>
+        <Element Type="Param" Id="4C6E8B06">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="4C6E8B07">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_HotSRavagerBonePlating</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="5D7F0C01">
+            <Identifier>AP_Triggers_Zerg_RavagerWrithingAbombination</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="5D7F0C02"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="5D7F0C04"/>
+        </Element>
+        <Element Type="ParamDef" Id="5D7F0C02">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="5D7F0C03"/>
+        </Element>
+        <Element Type="Param" Id="5D7F0C03">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="5D7F0C04">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="5D7F0C05"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="5D7F0C06"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="5D7F0C07"/>
+        </Element>
+        <Element Type="Param" Id="5D7F0C05">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="5D7F0C02"/>
+        </Element>
+        <Element Type="Param" Id="5D7F0C06">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="5D7F0C07">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_HotSRavagerRoachlingBile</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Upgrade"/>
         </Element>

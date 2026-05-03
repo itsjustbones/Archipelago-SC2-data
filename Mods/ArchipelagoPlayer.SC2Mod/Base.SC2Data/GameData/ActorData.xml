@@ -7,6 +7,7 @@
         <DeathCustomPriorityList value="Nerazim"/>
         <DeathCustomPriorityList value="Aiur"/>
         <DeathCustomPriorityList value="Unity"/>
+        <DeathCustomPriorityList value="Bone"/>
     </CActorGlobalConfig>
     <const id="$AP_LurkerSpineSiteOps" value="{AP_LurkerSOpAoEVariancer SOpShadow SOpForwardCasterPoint SOp2DRotation AP_LurkerSOpShadowSpine SOpRotVariancerUp15}"/>
     <CActorUnit default="1" id="GenericUnitStandard">
@@ -11630,6 +11631,12 @@
         <Macros value="PhysicsDeathsVoidGround"/>
         <Macros value="TerrainSquibAnimations"/>
         <Macros value="AP_DeepTunnelMacro"/>
+        <Remove Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+        <Remove Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart; WeaponTargetElevation LE -20.000000" Send="AnimBracketStart Attack Attack,Inferior"/>
+        <Remove Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <Remove Terms="WeaponStop.AP_RavagerBurrowedBombardmentWeapon.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.AP_RavagerBurrowedBombardmentWeapon.AttackStart" Send="AnimClear Attack"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Ravager_Land"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget"/>
@@ -11638,7 +11645,27 @@
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerBurrowed" Send="AnimBracketStop Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerCocoon" Send="Create"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerCocoon" Send="$Birth 0 0.000000"/>
-        <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart" Send="$Spell"/>
+        <On Terms="Upgrade.AP_HotSRavagerBonePlating.Add" Send="ModelSwap AP_RavagerBone"/>
+        <On Terms="Upgrade.AP_HotSRavagerBonePlating.Add" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBonePortrait"/>
+        <On Terms="ActorCreation; ValidatePlayer AP_HaveHotSRavagerBonePlating" Send="ModelSwap AP_RavagerBone"/>
+        <On Terms="UnitPortrait.*.Configure; ValidatePlayer AP_HaveHotSRavagerBonePlating" Target="::PortraitGameSelf" Send="ModelSwap AP_RavagerBonePortrait"/>
+        <On Terms="Upgrade.AP_HotSRavagerRoachlingBile.Add" Send="TimerSet 0.062500 RoachlingBileReadyRefresh"/>
+        <On Terms="TimerExpired; TimerName RoachlingBileReadyRefresh" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName RoachlingBileReadyRefresh" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="ActorCreation" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo AP_Ravager; MorphFrom AP_RavagerBurrowed" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="UnitDeathCustomize; ValidatePlayer AP_HaveHotSRavagerBonePlating" Send="DeathCustomize Bone"/>
+        <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="Abil.AP_RavagerAerialCorrosiveBile.SourceCastStart" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Spend" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerAerialCorrosiveBile.Spend" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Regen" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerCorrosiveBile.Regen" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="AbilCooldown.AP_RavagerAerialCorrosiveBile.Regen" Target="AP_RavagerRoachlingBileReady" Send="Destroy"/>
+        <On Terms="AbilCooldown.AP_RavagerAerialCorrosiveBile.Regen" Send="Create AP_RavagerRoachlingBileReady"/>
+        <On Terms="Abil.AP_RavagerCorrosiveBile.SourceCastStart; ValidateUnit AP_NotAPRavagerBurrowed" Send="$Spell"/>
+        <On Terms="Abil.AP_RavagerAerialCorrosiveBile.SourceCastStart; ValidateUnit AP_NotAPRavagerBurrowed" Send="AnimPlay Attack Attack"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Birth"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
@@ -11657,6 +11684,7 @@
         <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
             <BodySquibs Name="Fire"/>
         </DeathCustoms>
+        <DeathCustoms ModelLink="AP_RavagerBoneDeath" SoundLink="Roach_Explode" Name="Bone"/>
         <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
             <BodySquibs Name="Acid"/>
         </DeathCustoms>
@@ -11716,6 +11744,11 @@
         <ImpactMap index="None" Model="AP_RavagerWeaponImpact" Sound="Ravager_Attack_Impact"/>
     </CActorAction>
     <CActorMissile id="AP_RavagerWeaponMissile" parent="GenericAttackMissile" unitName="AP_RavagerWeaponMissile"/>
+    <CActorAction id="AP_RavagerBurrowedBombardmentAttack" parent="GenericAttack" effectImpact="AP_RavagerWeaponDamage" effectLaunch="AP_RavagerBurrowedBombardmentWeaponLM">
+        <LaunchAssets Model="" Sound="Ravager_AttackLaunch"/>
+        <Missile value="AP_RavagerWeaponMissile"/>
+        <ImpactMap index="None" Model="AP_RavagerWeaponImpact" Sound="Ravager_Attack_Impact"/>
+    </CActorAction>
     <CActorSplat id="AP_RavagerBurrowedSplat" parent="BurrowedSplat" unitName="AP_Ravager">
         <Scale value="1.100000"/>
     </CActorSplat>
@@ -11772,15 +11805,48 @@
         <Missile value="AP_RavagerCorrosiveBileMissile"/>
         <ImpactPointSiteOps Ops="SOpSourcePointSationary AP_SOpRavagerCorrosiveBileOffsetUp"/>
     </CActorAction>
+    <CActorAction id="AP_RavagerAerialCorrosiveBileAttack" parent="GenericAttack" effectImpact="AP_RavagerCorrosiveBileAirSearch" effectLaunch="AP_RavagerCorrosiveBileDirectAirLaunch">
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Ravager_CorrosiveBile_AttackLaunch"/>
+        <Missile value="AP_RavagerCorrosiveBileMissile"/>
+        <ImpactPointSiteOps Ops="SOpTargetPointStationary SOpShadow AP_SOpRavagerCorrosiveBileAirImpactOffset"/>
+        <ImpactMap index="None" Model="RavagerCorrosiveBileImpact" Sound="Ravager_CorrosiveBile_Explosion"/>
+        <ImpactModel value="GenericAttackImpactModelPoint"/>
+        <ImpactSound value="GenericAttackImpactSoundPoint"/>
+        <ShieldFlashType value="Full"/>
+    </CActorAction>
     <CActorSplat id="AP_RavagerCorrosiveBileCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerCorrosiveBile"/>
+    <CActorSplat id="AP_RavagerCorrosiveBileAirCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerAerialCorrosiveBile"/>
+    <CActorSplat id="AP_RavagerCorrosiveBileBurrowedCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerCorrosiveBileBurrowed"/>
+    <CActorSplat id="AP_RavagerCorrosiveBileBurrowedAirCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerAerialCorrosiveBileBurrowed"/>
     <CActorForceSphere id="AP_RavagerCorrosiveBileImpactForce">
         <On Terms="Effect.AP_RavagerCorrosiveBileSearch.Start" Send="Create"/>
+        <On Terms="Effect.AP_RavagerCorrosiveBileAirSearch.Start" Send="Create"/>
         <HostSiteOps Ops="SOpTargetPoint SOpForwardLaunchGuide SOp2DRotation SOpRandomPointInCircleDot35"/>
         <Duration value="0.250000"/>
         <Magnitude value="30.000000,12.000000"/>
         <Radius value="2.150000,0.200000"/>
     </CActorForceSphere>
-    <CActorMissile id="AP_RavagerCorrosiveBileMissile" parent="GenericAttackMissile" unitName="AP_RavagerCorrosiveBileMissile"/>
+    <CActorMissile id="AP_RavagerCorrosiveBileMissile" parent="GenericAttackMissile" unitName="AP_RavagerCorrosiveBileMissile">
+        <On Terms="ActorCreation; ValidateEffect AP_HaveHotSRavagerRoachlingBile" Send="Create AP_RavagerRoachlingBileMissile"/>
+    </CActorMissile>
+    <CActorModel id="AP_RavagerRoachlingBileMissile" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="AnimPlay Flail Flail PlayForever"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <Host Subject="_Missile"/>
+        <HostSiteOps Ops="AP_SOpRavagerRoachlingBileMissileOffset"/>
+        <Model value="AP_Roachling"/>
+        <Scale value="0.800000"/>
+    </CActorModel>
+    <CActorModel id="AP_RavagerRoachlingBileReady" parent="ModelAddition">
+        <On Terms="ActorCreation; !ValidatePlayer AP_HaveHotSRavagerRoachlingBile" Send="Destroy"/>
+        <On Terms="ActorCreation; !ValidateUnit AP_RavagerCorrosiveBileNotOnCooldown" Send="Destroy"/>
+        <On Terms="ActorCreation; !ValidateUnit AP_NotAPRavagerBurrowed" Send="Destroy"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachWeapon AP_SOpRavagerRoachlingBileReadyOffset AP_SOpRavagerRoachlingBileReadyRotation"/>
+        <Model value="AP_Roachling"/>
+        <Scale value="0.55000"/>
+    </CActorModel>
     <CActorModel id="AP_RavagerCorrosiveBilePrecursor">
         <Flags index="SuppressSaveLoad" value="1"/>
         <On Terms="Effect.AP_RavagerCorrosiveBileCP.Start" Send="Create"/>
@@ -11796,11 +11862,49 @@
         <Icon value="Assets\Textures\RadarIcon2.dds"/>
         <IconArcLength value="3.250000"/>
     </CActorRange>
+    <CActorRange id="AP_RavagerAerialCorrosiveBileRange" parent="RangeAbil" abil="AP_RavagerAerialCorrosiveBile">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
+    <CActorRange id="AP_RavagerCorrosiveBileBurrowedRange" parent="RangeAbil" abil="AP_RavagerCorrosiveBileBurrowed">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
+    <CActorRange id="AP_RavagerAerialCorrosiveBileBurrowedRange" parent="RangeAbil" abil="AP_RavagerAerialCorrosiveBileBurrowed">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
+    <CActorRange id="AP_RavagerBurrowedBombardmentRange">
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.Start; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.StartEditorGround; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.StartEditorFlyer; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="SelectionLocalUpdate.AP_RavagerBurrowed.Stop" Send="Destroy"/>
+        <On Terms="AbilMorph.*.Start; MorphTo AP_RavagerBurrowed; Selected; ValidatePlayer AP_HaveHotSRavagerBurrowedBombardment" Send="Create"/>
+        <On Terms="AbilMorph.*.Start; MorphTo AP_Ravager" Send="Destroy"/>
+        <On Terms="Upgrade.AP_HotSRavagerBurrowedBombardment.Add; Selected; !ValidateUnit AP_NotAPRavagerBurrowed" Send="Create"/>
+        <Weapon value="AP_RavagerBurrowedBombardmentWeapon"/>
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
     <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileOffsetDown">
         <LocalOffset value="0.000000,1.000000,30.000000"/>
     </CActorSiteOpLocalOffset>
     <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileOffsetUp">
         <LocalOffset value="0.000000,-1.000000,30.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="AP_SOpRavagerRoachlingBileReadyOffset">
+        <LocalOffset value="0.000000,0.120000,0.010000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="AP_SOpRavagerRoachlingBileMissileOffset">
+        <LocalOffset value="0.000000,0.000000,-0.30000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpRotationExplicit id="AP_SOpRavagerRoachlingBileReadyRotation">
+        <Forward value="0.000000,-0.900000,-0.600000"/>
+        <Up value="0.000000,0.000000,2.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorSiteOpLocalOffset id="AP_SOpRavagerCorrosiveBileAirImpactOffset">
+        <LocalOffset value="0.000000,0.000000,4.400000"/>
     </CActorSiteOpLocalOffset>
     <!-- Swarm Host Deep Tunnel -->
     <CActorSplat id="AP_SwarmHostSplitBDeepBurrowSplatFinish" parent="BurrowedSplatBase">
@@ -19402,8 +19506,13 @@
         <On Terms="WeaponStart.AP_Talons.AttackStart" Send="AnimBracketStart Attack Attack"/>
         <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
-        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop; ValidateUnit IsNotBuried" Send="AnimBracketStop Burrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="AnimBracketStart DeepBurrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever 0.500000 AsTimeScale"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="Create AP_Spell_DeepTunnel_Burrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStart" Send="TimerSet 1.200000 DeepBurrowTimer"/>
+        <On Terms="TimerExpired; TimerName DeepBurrowTimer" Send="Create AP_SwarmHostDeepBurrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop; ValidateUnit IsBuried" Send="AnimBracketClear DeepBurrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop" Send="AnimBracketStop DeepBurrow"/>
+        <On Terms="Abil.AP_QueenDeepTunnel.SourceCastStop" Send="Create AP_Spell_DeepTunnel_Unburrow"/>
         <On Terms="Behavior.AP_KerriganEnhanceBeam.On" Send="AnimPlay Channel Fidget PlayForever"/>
         <On Terms="Behavior.AP_KerriganEnhanceBeam.Off" Send="AnimClear Channel"/>
         <On Terms="UnitBirth.AP_Queen" Send="TerrainSquibActivateGroup RippleStandard"/>
@@ -25501,6 +25610,21 @@
         <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On" Send="Create"/>
         <On Terms="Behavior.AP_PurificationNovaTargettedTarget.Off" Send="Destroy"/>
         <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On" Send="SetScale 1.166667"/>\
+        <On Terms="ActorCreation" Send="SetTintColor {255,160,160 3.000000}"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.800000"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <Model value="PurificationNovaRangeIndicator"/>
+    </CActorModel>
+    <CActorModel id="AP_PurificationNovaFriendlyRangeIndicator" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.AP_PurificationNova.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="Create"/>
+        <On Terms="Behavior.AP_PurificationNova.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="SetScale 0.40000"/>
+        <On Terms="Behavior.AP_PurificationNova.Off" Send="Destroy"/>
+        <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="Create"/>
+        <On Terms="Behavior.AP_PurificationNovaTargettedTarget.On; ValidatePlayer AP_HaveRestrainedDestruction" Send="SetScale 0.466667"/>
+        <On Terms="Behavior.AP_PurificationNovaTargettedTarget.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor {255,160,160 3.000000}"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.800000"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Model value="PurificationNovaRangeIndicator"/>
@@ -40096,6 +40220,14 @@
     <CActorTurret id="AP_StukovInfestedDiamondBackTurret">
         <On Terms="TurretEnable.AP_StukovInfestedDiamondBack" Send="Create"/>
     </CActorTurret>
+    <CActorUnit id="AP_SNARE_PLACEHOLDER" parent="GenericUnitStandard" unitName="AP_SNARE_PLACEHOLDER">
+        <Model value="Invisible"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+    </CActorUnit>
     <CActorAction id="AP_StukovInfestedDiamondBackAttack" parent="GenericAttack" effectAttack="AP_StukovInfestedDiamondBackBeam">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
     </CActorAction>

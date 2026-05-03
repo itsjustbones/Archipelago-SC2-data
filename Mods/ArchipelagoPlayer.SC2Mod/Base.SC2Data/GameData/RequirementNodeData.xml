@@ -2606,6 +2606,25 @@
     <CRequirementCountUpgrade id="AP_CountUpgradeBloatedBileDuctsCompleteOnly">
         <Count Link="AP_HotSRavagerBloatedBileDucts" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeRoachlingBileCompleteOnly">
+        <Count Link="AP_HotSRavagerRoachlingBile" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeBonePlatingCompleteOnly">
+        <Count Link="AP_HotSRavagerBonePlating" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeDisintegratingAcidCompleteOnly">
+        <Count Link="AP_HotSRavagerDisintegratingAcid" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeAerialCorrosiveBileCompleteOnly">
+        <Count Link="AP_HotSRavagerAerialCorrosiveBile" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeBurrowedBombardmentCompleteOnly">
+        <Count Link="AP_HotSRavagerBurrowedBombardment" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementAnd id="AP_AndCountUpgradeAerialCorrosiveBileCompleteOnlyCountUpgradeBurrowedBombardmentCompleteOnly">
+        <OperandArray value="AP_CountUpgradeAerialCorrosiveBileCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeBurrowedBombardmentCompleteOnly"/>
+    </CRequirementAnd>
     <CRequirementCountUpgrade id="AP_CountUpgradeUltraliskBurrowChargeUpgradeCompleteOnlyTechTreeCheat">
         <Tooltip value=""/>
         <Count Link="AP_UltraliskBurrowChargeUpgrade" State="CompleteOnly"/>

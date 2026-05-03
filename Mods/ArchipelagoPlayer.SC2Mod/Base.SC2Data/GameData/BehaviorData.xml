@@ -1525,6 +1525,39 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Duration value="30"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerRoachlingFate" parent="TimedLife">
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-explode.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerSpawnRoachlingsOnDeath">
+        <InfoFlags index="Hidden" value="1"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-unit-zerg-roachlings.dds"/>
+        <Requirements value="AP_HotSHaveRavagerRoachlingBile"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="AP_RavagerDeathSpawnRoachlings"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerBurrowedBombardmentBehavior">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HotSHaveRavagerBurrowedBombardment"/>
+        <Modification>
+            <WeaponEnableArray value="AP_RavagerBurrowedBombardmentWeapon"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerDisintegratingAcid">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-debilitatingbile.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="3"/>
+        <Modification ShieldArmorBonus="-1">
+            <LifeArmorBonus value="-1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_SpawnerActive">
         <InfoFlags index="Hidden" value="1"/>
         <BuffFlags index="RefreshStack" value="1"/>
@@ -8060,6 +8093,7 @@
             <ModifyFlags index="SuppressMoving" value="1"/>
             <ModifyFlags index="SuppressTurning" value="1"/>
             <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="SuppressFoodMade" value="1"/>
             <StateFlags index="SuppressFoodUsed" value="1"/>
