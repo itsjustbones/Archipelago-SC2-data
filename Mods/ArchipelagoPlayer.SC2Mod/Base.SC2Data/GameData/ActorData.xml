@@ -38703,8 +38703,8 @@
         <On Terms="Behavior.AP_StrengthInUnity.On" Send="Create"/>
         <On Terms="Behavior.AP_StrengthInUnity.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Send="$Birth PlayForever,ForceLooping 1.000000 1.000000 1.250000 AsDuration"/>
-        <On Terms="ActorCreation" Send="SetOpacity 0.40000"/>    
-        <On Terms="ActorCreation" Send="SetScale 1.5000"/>    
+        <On Terms="ActorCreation" Send="SetOpacity 0.40000"/>
+        <On Terms="ActorCreation" Send="SetScale 1.5000"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
         <Model value="AP_ArbiterMPCastModel"/>
         <ModelFlags index="AllowHitTest" value="0"/>
@@ -48334,4 +48334,63 @@
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Model value="BlinkStopModel"/>
     </CActorModel>
+    <CActorModel id="AP_AvengerArmor" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_DarkTemplarRecallArmorSearch.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 25,25,25"/>
+        <HostSiteOps Ops="AP_SOpCasterUnitStationary SOpMoveUpByDot5"/>
+        <Scale value="3.000000,3.000000,0.500000"/>
+    </CActorModel>
+    <CActorModel id="AP_AvengerArmorBuff" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.AP_DarkTemplarRecallArmor.On" Send="Create"/>
+        <On Terms="Behavior.AP_DarkTemplarRecallArmor.Off" Send="AnimBracketStop BSD"/>
+        <Scale value="0.050000,0.050000,0.300000"/>
+        <AutoScaleFromSelectionFactor value="2.000000"/>
+    </CActorModel>
+    <CActorRange id="AP_AvengerArmorRange" parent="RangeAbil" abil="AP_AvengerArmorDummy">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="AP_AvengerCharge" parent="ModelAddition">
+        <On Terms="Behavior.AP_AvengerCharge.On" Send="Create"/>
+        <On Terms="Behavior.AP_AvengerCharge.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="UnitBirth.AP_DarkTemplarAiur.EditorPlaced" Send="Create"/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
+        <On Terms="TimerExpired" Send="TimerSet 0.300000"/>
+        <On Terms="TimerExpired" Send="AnimSetCompletion BSD"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Scale value="1.500000,1.000000,1.500000"/>
+    </CActorModel>
+    <CActorModel id="AP_AvengerChargeAttackspeed" parent="ModelAddition">
+        <On Terms="Behavior.AP_AvengerChargeAttackspeed.On" Send="Create"/>
+        <On Terms="Behavior.AP_AvengerChargeAttackspeed.Off" Send="AnimBracketStop BSD"/>
+        <HostSiteOps Ops="SOpAttachHead"/>
+    </CActorModel>
+    <CActorSound id="AP_AvengerChargeSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.AP_AvengerChargeAttackspeed.On" Send="Create"/>
+        <Sound value="AP_Kerrigan_Mutate_On"/>
+    </CActorSound>
+    <CActorRange id="AP_BloodHunterLifeStealRange" parent="RangeAbil" abil="AP_BloodHunterLifeStealDummy">
+        <Flags index="SuppressSaveLoad" value="0"/>
+    </CActorRange>
+    <CActorModel id="AP_BloodHunterLifesteal" parent="ModelAddition">
+        <On Terms="Effect.AP_BloodHunterLifeSteal.Start" Send="Create"/>
+        <On Terms="Effect.AP_BloodHunterLifeSteal.Stop" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,50,25"/>
+        <HostSiteOps Ops="SOpAttachCenter AP_BloodHunterLifestealRotation AP_BloodHunterLifestealOffset"/>
+        <Scale value="0.600000"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="AP_BloodHunterLifestealOffset">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,0.000000,-0.500000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpRotationExplicit id="AP_BloodHunterLifestealRotation">
+        <Forward value="0.000000,-1.000000,0.000000"/>
+        <Up value="0.000000,0.000000,-1.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorSound id="AP_BloodHunterLifestealSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_BloodHunterLifeSteal.Start" Send="Create"/>
+        <On Terms="Effect.AP_BloodHunterLifeSteal.Stop" Send="Destroy"/>
+    </CActorSound>
 </Catalog>

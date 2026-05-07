@@ -14629,7 +14629,8 @@
         <AbilArray Link="Warpable"/>
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="BuildInProgress"/>
-        <AbilArray Link="AP_DarkTemplarShadowDash"/>
+        <AbilArray Link="AP_AvengerCharge"/>
+        <AbilArray Link="AP_AvengerArmorDummy"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_DetectorRadar"/>
         <BehaviorArray Link="AP_DarkTemplarRecallToDarkShrine"/>
@@ -14639,15 +14640,15 @@
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_PermanentlyCloakedAvenger" Type="Passive" Requirements="AP_HaveAvengerCloak" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ShroudOfAdun" Type="Passive" Requirements="AP_HaveShroudOfAdun" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Requirements="AP_DarkTemplarRecallCooldown" Behavior="AP_DarkTemplarRecentlyRecalled" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowDash" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowDash,0" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_AvengerArmor" Type="AbilCmd" AbilCmd="AP_AvengerArmorDummy,0" Requirements="AP_AvengerArmor" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_AvengerCharge" Type="AbilCmd" AbilCmd="AP_AvengerCharge,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Requirements="AP_DarkTemplarRecallCooldown" Behavior="AP_DarkTemplarRecentlyRecalled" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -14737,7 +14738,6 @@
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_PermanentlyCloaked" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ShroudOfAdun" Type="Passive" Requirements="AP_HaveShroudOfAdun" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="2"/>
             <LayoutButtons Face="AP_VoidDarkTemplarShadowFury" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowFury,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_DarkTemplarShadowDash" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowDash,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_DarkArchonMeld" Type="AbilCmd" AbilCmd="AP_DarkArchonMerge,0" Row="2" Column="2"/>
@@ -14817,7 +14817,7 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="AP_DarkTemplarVoidStasis"/>
-        <AbilArray Link="AP_DarkTemplarShadowDash"/>
+        <AbilArray Link="AP_BloodHunterLifeStealDummy"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_DetectorRadar"/>
         <WeaponArray Link="AP_DarkTemplarTaldarim"/>
@@ -14827,13 +14827,13 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_PermanentlyCloaked" Type="Passive" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ShroudOfAdun" Type="Passive" Requirements="AP_HaveShroudOfAdun" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_BloodHunterBrutalEfficiency" Type="Passive" Requirements="AP_HaveBloodHunterBrutalEfficiency" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_BloodHunterBrutalEfficiency" Type="Passive" Requirements="AP_HaveBloodHunterBrutalEfficiency" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_BloodHunterResourceEfficiency" Type="Passive" Requirements="AP_BloodHunterResourceEfficiency" Row="1" Column="2"/>
             <LayoutButtons Face="AP_VoidStasis" Type="AbilCmd" AbilCmd="AP_DarkTemplarVoidStasis,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowDash" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowDash,0" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_BloodHunterStasisUpgrade" Type="Passive" Requirements="AP_BloodHunterStasisUpgrade" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_BloodHunterLifeSteal" Type="AbilCmd" AbilCmd="AP_BloodHunterLifeStealDummy,0" Row="2" Column="2"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>

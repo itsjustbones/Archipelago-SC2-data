@@ -11010,7 +11010,8 @@
         <CaseDefault value="AP_DarkTemplarShadowFuryTeleport1CP"/>
     </CEffectSwitch>
     <CEffectSet id="AP_DarkTemplarTaldarimWeaponSet">
-        <EffectArray value="AP_WarpBlades"/>
+        <EffectArray value="AP_BloodHunterAttackDamage"/>
+        <EffectArray value="AP_BloodHunterLifeStealAB"/>
     </CEffectSet>
     <CEffectSet id="AP_DarkTemplarTeleportSet">
         <EditorCategories value=""/>
@@ -11020,7 +11021,6 @@
         <EffectArray value="AP_DarkTemplarRecallDestroyPrecusor"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AP_DarkTemplarVoidStasisAB">
-        <ValidatorArray index="0" value="AP_NotStasis"/>
         <EditorCategories value=""/>
         <Behavior value="AP_DarkTemplarVoidStasis"/>
     </CEffectApplyBehavior>
@@ -26937,4 +26937,108 @@
         <ValidateMin value="3"/>
         <EffectSuccess value="AP_CenturionDodgeHandled"/>
     </CEffectUserData>
+    <CEffectSet id="AP_AvengerCharge">
+        <ValidatorArray value="ChargeMinTriggerDistance"/>
+        <ValidatorArray value="AP_AvengerChargeMaxDistance"/>
+        <ValidatorArray value="AP_AvengerChargeValidTarget"/>
+        <ValidatorArray value="TargetIsEnemy"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AP_AvengerChargeAB"/>
+        <EffectArray value="AP_AvengerChargeAttackSpeedAB"/>
+        <EffectArray value="AP_AvengerChargeMarkerAB"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_AvengerChargeAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_AvengerCharge"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_AvengerChargeAttackSpeedAB">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_AvengerChargeAttackspeed"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_AvengerChargeMarkerAB">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_AvengerChargeMarker"/>
+        <Flags index="UseDuration" value="1"/>
+        <Duration value="20"/>
+    </CEffectApplyBehavior>
+    <CEffectCreateHealer id="AP_BloodHunterLifeSteal">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <Flags index="Channeled" value="0"/>
+        <Flags index="ContinueWhenFull" value="1"/>
+        <RechargeVitalRate value="10"/>
+    </CEffectCreateHealer>
+    <CEffectCreateHealer id="AP_BloodHunterLifeStealShield">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <Flags index="Channeled" value="0"/>
+        <Flags index="ContinueWhenFull" value="1"/>
+        <RechargeVital value="Shields"/>
+        <RechargeVitalRate value="10"/>
+    </CEffectCreateHealer>
+    <CEffectApplyBehavior id="AP_BloodHunterLifeStealAB">
+        <ValidatorArray index="0" value="AP_BloodHunterLifeSteal"/>
+        <ValidatorArray value="AP_BloodHunterStasisNearby"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_BloodHunterLifeSteal"/>
+    </CEffectApplyBehavior>
+    <CEffectDestroyHealer id="AP_BloodHunterLifeStealDestroy">
+        <EditorCategories value=""/>
+    </CEffectDestroyHealer>
+    <CEffectSet id="AP_BloodHunterLifeStealDestroySet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_BloodHunterLifeStealDestroy"/>
+        <EffectArray value="AP_BloodHunterLifeStealDestroyShield"/>
+    </CEffectSet>
+    <CEffectDestroyHealer id="AP_BloodHunterLifeStealDestroyShield">
+        <EditorCategories value=""/>
+    </CEffectDestroyHealer>
+    <CEffectSet id="AP_BloodHunterLifeStealSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_BloodHunterLifeSteal"/>
+        <EffectArray value="AP_BloodHunterLifeStealShield"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_DarkTemplarRecallArmorAB">
+        <EditorCategories value=""/>
+        <Behavior value="AP_DarkTemplarRecallArmor"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="AP_DarkTemplarRecallArmorSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnitOrPoint"/>
+        <ExcludeArray/>
+        <SearchFilters value="-;Self,Neutral,Enemy,Structure,Missile,Item,Dead,Hidden"/>
+        <AreaArray Radius="3" Effect="AP_DarkTemplarRecallArmorAB"/>
+        <ValidatorArray value="AP_AvengerArmor"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AP_DarkTemplarRecallDamageSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AP_DarkTemplarRecallSearch"/>
+        <EffectArray value="AP_DarkTemplarRecallArmorSearch"/>
+        <EffectArray value="AP_DarkTemplarRecallKillMarkerAB"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_DarkTemplarRecallKillMarkerAB">
+        <ValidatorArray index="0" value="TargetIsEnemy"/>
+        <ValidatorArray value="NotStructureTarget"/>
+        <EditorCategories value=""/>
+        <Behavior value="AP_DarkTemplarRecallKillMarker"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AP_BloodHunterAttackDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <AttributeBonus index="Biological" value="15"/>
+        <Amount value="30"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="AP_DarkTemplarVoidStasisDurationDummyAB">
+        <EditorCategories value=""/>
+        <Behavior value="AP_DarkTemplarVoidStasisDurationDummy"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_DarkTemplarVoidStasisAttackableAB">
+        <ValidatorArray index="0" value="AP_DarkTemplarVoidStasis"/>
+        <EditorCategories value=""/>
+        <Behavior value="AP_DarkTemplarVoidStasisAttackable"/>
+    </CEffectApplyBehavior>
 </Catalog>

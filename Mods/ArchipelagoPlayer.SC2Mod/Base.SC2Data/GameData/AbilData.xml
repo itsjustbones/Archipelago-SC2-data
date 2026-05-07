@@ -4294,10 +4294,12 @@
         <Cost>
             <Cooldown TimeUse="15"/>
         </Cost>
-        <TargetFilters value="Ground;Player,Ally,Heroic,Missile,Stasis,UnderConstruction,Hidden,Invulnerable"/>
+        <IgnoreFilters value="Ground;Player,Ally,Heroic,Missile,UnderConstruction,Hidden,Invulnerable"/>
         <Range value="6"/>
         <AutoCastRange value="6"/>
         <AutoCastValidatorArray value="AP_DarkTemplarVoidStasis"/>
+        <AutoCastValidatorArray value="AP_NotVoidStasisAttackable"/>
+        <AutoCastFilters value="Visible;Player,Ally,Stasis"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VoidStasis"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_DarkTemplarBlink">
@@ -16731,4 +16733,31 @@
         <CmdButtonArray index="Rally2" Requirements="AP_SpireRally"/>
         <CmdButtonArray index="Rally3" Requirements="AP_SpireRally"/>
     </CAbilRally>
+    <CAbilAugment id="AP_AvengerCharge">
+        <Alignment value="Negative"/>
+        <AbilSetId value="AP_Charge"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_AvengerCharge" Requirements="AP_AvengerCharge">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AbilCmd value="attack,Execute"/>
+        <Cost>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="20"/>
+        </Cost>
+        <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
+    </CAbilAugment>
+    <CAbilEffectInstant id="AP_BloodHunterLifeStealDummy">
+        <Range value="6"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_BloodHunterLifeSteal" Requirements="AP_BloodHunterLifeSteal">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_AvengerArmorDummy">
+        <Range value="3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_AvengerArmor" Requirements="AP_AvengerArmor">
+            <Flags index="IgnoreUser" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
 </Catalog>

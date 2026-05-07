@@ -806,6 +806,8 @@
         <!--  Dark Templar -->
         <EffectArray Reference="Weapon,AP_WarpBlades,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_WarpBlades,Amount" Value="5"/>
+        <EffectArray Reference="Effect,AP_BloodHunterAttackDamage,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_BloodHunterAttackDamage,AttributeBonus[Biological]" Value="2"/>
         <EffectArray Reference="Effect,AP_DarkTemplarShakurasDamage,Amount" Value="1"/>
         <EffectArray Reference="Weapon,AP_DarkTemplarShakuras,Level" Value="1"/>
         <EffectArray Reference="Weapon,AP_DarkTemplarTaldarim,Level" Value="1"/>
@@ -13374,23 +13376,13 @@
     <CUpgrade id="AP_ShroudOfAdun">
         <EffectArray Reference="Unit,AP_DarkTemplarShakuras,ShieldsMax" Value="80"/>
         <EffectArray Reference="Unit,AP_DarkTemplarShakuras,ShieldsStart" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,ShieldsMax" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,ShieldsStart" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,ShieldsMax" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,ShieldsStart" Value="80"/>
     </CUpgrade>
     <CUpgrade id="AP_DarkTemplarShadowGuardTraining">
-        <EffectArray Reference="Unit,AP_DarkTemplarShakuras,LifeMax" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarShakuras,LifeStart" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeMax" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeStart" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,LifeMax" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,LifeStart" Value="40"/>
+        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeMax" Value="80"/>
+        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeStart" Value="80"/>
     </CUpgrade>
     <CUpgrade id="AP_ResourceEfficiencyDarkTemplar">
         <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarShakuras,CostResource[Vespene]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarAiur,CostResource[Vespene]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarTaldarim,CostResource[Vespene]" Value="50"/>
     </CUpgrade>
     <CUpgrade id="AP_DarkTemplarResearchShadowDash"/>
     <CUpgrade id="AP_AvengerCloak"/>
@@ -13408,7 +13400,8 @@
         <EffectArray Operation="Set" Reference="Button,AP_VoidDarkTemplarShadowFury,Tooltip" Value="Button/Tooltip/AP_VoidDarkTemplarShadowFury"/>
     </CUpgrade>
     <CUpgrade id="AP_BloodHunterBrutalEfficiency">
-        <EffectArray Operation="Subtract" Reference="Weapon,AP_DarkTemplarTaldarim,Period" Value="1.694"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_DarkTemplarTaldarimWeaponSet,EffectArray[0]" Value="AP_WarpBlades"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_DarkTemplarTaldarim,DisplayEffect" Value="AP_WarpBlades"/>
     </CUpgrade>
     <CUpgrade id="AP_HighImpactPsionicStorm">
         <EffectArray Reference="Effect,AP_HighArchonPsiStormDamage,Amount" Value="4"/>
@@ -17333,4 +17326,23 @@
         <EffectArray Reference="Unit,AP_ShieldBattery,ShieldArmor" Value="2"/>
         <EffectArray Operation="Subtract" Reference="Unit,AP_ShieldBattery,ShieldRegenDelay" Value="10"/>
     </CUpgrade>
+    <CUpgrade id="AP_AvengerArmor"/>
+    <CUpgrade id="AP_AvengerCharge"/>
+    <CUpgrade id="AP_BloodHunterLifeSteal"/>
+    <CUpgrade id="AP_BloodHunterResourceEfficiencyToggle">
+        <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarTaldarim,CostResource[Vespene]" Value="125"/>
+        <LeaderAlias value="AP_BloodHunterResourceEfficiency"/>
+    </CUpgrade>
+    <CUpgrade id="AP_BloodHunterStasisUpgrade">
+        <EffectArray Reference="Behavior,AP_DarkTemplarVoidStasisDurationDummy,Duration" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_DarkTemplarVoidStasis,IgnoreFilters" Value="-;Player,Ally,Heroic,Missile,UnderConstruction,Hidden,Invulnerable"/>
+    </CUpgrade>
+    <CUpgrade id="AP_AvengerAcceleratedWarp">
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WarpGateTrain,InfoArray[Train16].Charge.TimeUse" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WarpGateTrainRedirect,InfoArray[Train16].Charge.TimeUse" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_GatewayTrain,InfoArray[Train16].Time" Value="35.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_GatewayTrainRedirect,InfoArray[Train16].Time" Value="35.000000"/>
+        <Icon value="AP\Assets\Textures\btn-accelerated-warp.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_BloodHunterResourceEfficiency"/>
 </Catalog>
