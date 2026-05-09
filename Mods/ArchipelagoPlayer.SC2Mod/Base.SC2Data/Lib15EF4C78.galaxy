@@ -1861,6 +1861,65 @@ text lib15EF4C78_gf_PC_PerkTargetingText (string lp_campaignPerk, int lp_stage) 
     return UserDataGetText("AP_CampaignPerk", lp_campaignPerk, "TargetInstructions", lp_stage);
 }
 
+void lib15EF4C78_gf_AP_Player_Protoss_refreshBloodHunterResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarpedDiscounted[lp_player] + lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued2[lp_player]) < 5)) {
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterResourceEfficiencyToggle", 1);
+    }
+    else {
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterResourceEfficiencyToggle", 0);
+    }
+}
+
+void lib15EF4C78_gf_AP_Player_Protoss_updateBloodHunterResourceEfficiencyCount (int lp_player, bool lp_increment) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_increment == true)) {
+        lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarped[lp_player] += 1;
+        if (((lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued2[lp_player] + lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarpedDiscounted[lp_player]) < 5)) {
+            lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarpedDiscounted[lp_player] += 1;
+        }
+
+    }
+    else {
+        lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarped[lp_player] -= 1;
+        if ((lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarpedDiscounted[lp_player] > lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarped[lp_player])) {
+            lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarpedDiscounted[lp_player] -= 1;
+            PlayerModifyPropertyInt(EventPlayer(), c_playerPropVespene, c_playerPropOperSubtract, 125);
+        }
+
+    }
+    lib15EF4C78_gf_AP_Player_Protoss_refreshBloodHunterResourceEfficiency(lp_player);
+}
+
+void lib15EF4C78_gf_AP_Player_Protoss_updateBloodHunterResourceEfficiencyCount2 (int lp_player, bool lp_increment) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_increment == true)) {
+        lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued[lp_player] += 1;
+        if (((lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued2[lp_player] + lib15EF4C78_gv_aP_Player_Protoss_BloodHunterWarpedDiscounted[lp_player]) < 5)) {
+            lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued2[lp_player] += 1;
+        }
+
+    }
+    else {
+        lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued[lp_player] -= 1;
+        lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued2[lp_player] = MinI(lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued2[lp_player], lib15EF4C78_gv_aP_Player_Protoss_BloodHunterCountQueued[lp_player]);
+    }
+    lib15EF4C78_gf_AP_Player_Protoss_refreshBloodHunterResourceEfficiency(lp_player);
+}
+
+void lib15EF4C78_gf_AP_Player_Protoss_activateBloodHunterResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    lib15EF4C78_gf_AP_Player_Protoss_refreshBloodHunterResourceEfficiency(lp_player);
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency, true);
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency, true);
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency, true);
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency, true);
+}
+
 bool lib15EF4C78_gf_AP_Player_isTownHall (unit lp_building) {
     // Automatic Variable Declarations
     // Implementation
@@ -7553,6 +7612,110 @@ void lib15EF4C78_gt_InstigatorReconstructionCooldownRecovery_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_Protoss_warpInBloodHunterResourceEfficiency
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libNtve_gf_TriggeringProgressUnitType() == "AP_DarkTemplarTaldarim"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15EF4C78_gf_AP_Player_Protoss_updateBloodHunterResourceEfficiencyCount(EventPlayer(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency_Init () {
+    lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency = TriggerCreate("lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency_Func");
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency, false);
+    TriggerAddEventUnitConstructProgress(lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency, null, c_unitProgressStageStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "AP_DarkTemplarTaldarim"))) {
+            return false;
+        }
+
+        if (!((EventUnitDamageDeathCheck(c_deathTypeCancel) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15EF4C78_gf_AP_Player_Protoss_updateBloodHunterResourceEfficiencyCount(EventPlayer(), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency_Init () {
+    lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency = TriggerCreate("lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency_Func");
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency, false);
+    TriggerAddEventUnitDied(lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_Protoss_gatewayBloodHunterResourceEfficiency
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15EF4C78_gf_AP_Player_Protoss_updateBloodHunterResourceEfficiencyCount2(EventPlayer(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency_Init () {
+    lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency = TriggerCreate("lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency_Func");
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency, false);
+    TriggerAddEventUnitOrder(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency, null, AbilityCommand("AP_GatewayTrain", 16));
+    TriggerAddEventUnitOrder(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency, null, AbilityCommand("AP_GatewayTrainRedirect", 16));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15EF4C78_gf_AP_Player_Protoss_updateBloodHunterResourceEfficiencyCount2(EventPlayer(), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency_Init () {
+    lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency = TriggerCreate("lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency_Func");
+    TriggerEnable(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency, null, AbilityCommand("AP_GatewayTrain", 16), c_unitAbilStageCancel, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency, null, AbilityCommand("AP_GatewayTrainRedirect", 16), c_unitAbilStageCancel, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: SlayerInit
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_SlayerInit_Func (bool testConds, bool runActions) {
@@ -10133,6 +10296,10 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_SupplicantWarpFinish_Init();
     lib15EF4C78_gt_SupplicantWarpCancel_Init();
     lib15EF4C78_gt_InstigatorReconstructionCooldownRecovery_Init();
+    lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterResourceEfficiency_Init();
+    lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency_Init();
+    lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency_Init();
+    lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency_Init();
     lib15EF4C78_gt_SlayerInit_Init();
     lib15EF4C78_gt_CreepTumorBuild_Init();
     lib15EF4C78_gt_AP_Player_checkPrimaryTownHallPeriodic_Init();

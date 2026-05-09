@@ -806,6 +806,8 @@
         <!--  Dark Templar -->
         <EffectArray Reference="Weapon,AP_WarpBlades,Level" Value="1"/>
         <EffectArray Reference="Effect,AP_WarpBlades,Amount" Value="5"/>
+        <EffectArray Reference="Effect,AP_BloodHunterAttackDamage,Amount" Value="3"/>
+        <EffectArray Reference="Effect,AP_BloodHunterAttackDamage,AttributeBonus[Biological]" Value="2"/>
         <EffectArray Reference="Effect,AP_DarkTemplarShakurasDamage,Amount" Value="1"/>
         <EffectArray Reference="Weapon,AP_DarkTemplarShakuras,Level" Value="1"/>
         <EffectArray Reference="Weapon,AP_DarkTemplarTaldarim,Level" Value="1"/>
@@ -5887,10 +5889,6 @@
         <EffectArray Reference="Unit,AP_RoachBurrowed,LifeMax" Value="25"/>
         <EffectArray Reference="Unit,AP_Roach,LifeStart" Value="25"/>
         <EffectArray Reference="Unit,AP_RoachBurrowed,LifeStart" Value="25"/>
-        <EffectArray Reference="Unit,AP_Ravager,LifeMax" Value="25"/>
-        <EffectArray Reference="Unit,AP_RavagerBurrowed,LifeMax" Value="25"/>
-        <EffectArray Reference="Unit,AP_Ravager,LifeStart" Value="25"/>
-        <EffectArray Reference="Unit,AP_RavagerBurrowed,LifeStart" Value="25"/>
         <EffectArray Reference="Unit,AP_MercRoach,LifeMax" Value="25"/>
         <EffectArray Reference="Unit,AP_MercRoachBurrowed,LifeMax" Value="25"/>
         <EffectArray Reference="Unit,AP_MercRoach,LifeStart" Value="25"/>
@@ -5901,7 +5899,6 @@
         <Race value="Zerg"/>
         <ScoreResult value="BuildOrder"/>
         <EffectArray Reference="Unit,AP_Roach,Speed" Value="0.750000"/>
-        <EffectArray Reference="Unit,AP_Ravager,Speed" Value="0.750000"/>
         <EffectArray Reference="Unit,AP_MercRoach,Speed" Value="0.750000"/>
         <EffectArray Reference="Unit,AP_PrimalIgniter,Speed" Value="0.550000"/>
         <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
@@ -5989,7 +5986,6 @@
         <EffectArray Reference="Effect,AP_RoachVileUMelee,AttributeBonus[Light]" Value="8"/>
         <EffectArray Reference="Effect,AP_AcidSalivaU,AttributeBonus[Light]" Value="8"/>
         <EffectArray Reference="Effect,AP_RoachUMelee,AttributeBonus[Light]" Value="8"/>
-        <EffectArray Reference="Effect,AP_RavagerWeaponDamage,AttributeBonus[Light]" Value="8"/>
         <EffectArray Reference="Effect,AP_MercRoachCorpserAcidSalivaU,AttributeBonus[Light]" Value="8"/>
         <EffectArray Reference="Effect,AP_MercRoachCorpserMelee,AttributeBonus[Light]" Value="8"/>
         <EffectArray Reference="Effect,AP_MercRoachVileAcidSalivaU,AttributeBonus[Light]" Value="8"/>
@@ -6008,7 +6004,7 @@
         <Icon value="Assets\Textures\btn-ability-zerg-deeptunnel.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_HotSRavagerPotentBile">
-        <EffectArray Reference="Effect,AP_RavagerCorrosiveBileDamage,Amount" Value="40"/>
+        <EffectArray Reference="Effect,AP_RavagerCorrosiveBileEnemyDamage,Amount" Value="40"/>
         <AffectedUnitArray value="AP_Ravager"/>
         <AffectedUnitArray value="AP_RavagerBurrowed"/>
         <EditorCategories value="Race:Zerg"/>
@@ -6017,12 +6013,67 @@
     <CUpgrade id="AP_HotSRavagerBloatedBileDucts">
         <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileCursorDummy,AreaArray[0].Radius" Value="1.5"/>
         <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileSearch,AreaArray[0].Radius" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileAirCursorDummy,AreaArray[0].Radius" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileAirSearch,AreaArray[0].Radius" Value="1.5"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileFriendlyDamage,Amount" Value="0"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileSet,EffectArray[1]" Value=""/>
+        <EffectArray Operation="Set" Reference="Button,AP_RavagerCorrosiveBile,Tooltip" Value="Button/Tooltip/AP_RavagerCorrosiveBileUpgrade"/>
+        <EffectArray Operation="Set" Reference="Button,AP_RavagerAerialCorrosiveBile,Tooltip" Value="Button/Tooltip/AP_RavagerAerialCorrosiveBileUpgrade"/>
         <EffectArray Operation="Set" Reference="Actor,AP_RavagerCorrosiveBilePrecursor,Scale" Value="2"/>
         <EffectArray Operation="Set" Reference="Actor,AP_RavagerCorrosiveBileMissile,Scale" Value="2"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_RavagerRoachlingBileMissile,Scale" Value="1.55"/>
         <AffectedUnitArray value="AP_Ravager"/>
         <AffectedUnitArray value="AP_RavagerBurrowed"/>
         <EditorCategories value="Race:Zerg"/>
         <Icon value="Assets\Textures\btn-ability-zerg-abathur-corrosivebilelarge.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HotSRavagerRoachlingBile">
+        <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileLaunchDown,ImpactEffect" Value="AP_RavagerCorrosiveBileSearchRoachlings"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_RavagerCorrosiveBileDirectAirLaunch,ImpactEffect" Value="AP_RavagerCorrosiveBileAirSearchRoachlings"/>
+        <AffectedUnitArray value="AP_Ravager"/>
+        <AffectedUnitArray value="AP_RavagerBurrowed"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-unit-zerg-roachlings.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HotSRavagerBonePlating">
+        <EffectArray Reference="Unit,AP_Ravager,LifeMax" Value="35"/>
+        <EffectArray Reference="Unit,AP_RavagerBurrowed,LifeMax" Value="35"/>
+        <EffectArray Reference="Unit,AP_Ravager,LifeStart" Value="35"/>
+        <EffectArray Reference="Unit,AP_RavagerBurrowed,LifeStart" Value="35"/>
+        <EffectArray Reference="Unit,AP_Ravager,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,AP_RavagerBurrowed,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,AP_Ravager,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,AP_RavagerBurrowed,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_Ravager,PortraitModel" Value="AP_RavagerBonePortrait"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_Ravager,UnitIcon" Value="Assets\Textures\btn-unit-collection-bone-ravager.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_Ravager,Wireframe.Image[0]" Value="Assets\Textures\wireframe-collection-bone-ravager.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,AP_Ravager,GroupIcon.Image[0]" Value="Assets\Textures\wireframe-collection-bone-ravager.dds"/>
+        <EffectArray Operation="Set" Reference="Button,AP_Ravager,Icon" Value="Assets\Textures\btn-unit-collection-bone-ravager.dds"/>
+        <EffectArray Operation="Set" Reference="Button,AP_Ravager,AlertIcon" Value="Assets\Textures\btn-unit-collection-bone-ravager.dds"/>
+        <AffectedUnitArray value="AP_Ravager"/>
+        <AffectedUnitArray value="AP_RavagerBurrowed"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-chitinousplating.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HotSRavagerDisintegratingAcid">
+        <AffectedUnitArray value="AP_Ravager"/>
+        <AffectedUnitArray value="AP_RavagerBurrowed"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-ability-zerg-debilitatingbile.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HotSRavagerAerialCorrosiveBile">
+        <AffectedUnitArray value="AP_Ravager"/>
+        <AffectedUnitArray value="AP_RavagerBurrowed"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-ability-zerg-corrosivebile.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_HotSRavagerBurrowedBombardment">
+        <AffectedUnitArray value="AP_Ravager"/>
+        <AffectedUnitArray value="AP_RavagerBurrowed"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_RavagerBurrowedBombardmentWeapon,Options[Disabled]" Value="0"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_RavagerBurrowedBombardmentWeapon,Options[Hidden]" Value="0"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Icon value="Assets\Textures\btn-unit-zerg-ravager.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_ChitinousPlating">
         <Flags index="TechTreeCheat" value="1"/>
@@ -8510,11 +8561,12 @@
         <EffectArray Operation="Set" Reference="Unit,AP_ZerglingBurrowed,Subtitle" Value="AP_Swarmling"/>
         <EffectArray Reference="Effect,AP_K5DropPodZerglings,SpawnCount" Value="4"/>
         <EffectArray Reference="Effect,AP_ZerglingRespawnTooltipDummy,SpawnCount" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Resource[Minerals]" Value="100"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[9]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Resource[Minerals]" Value="150"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[12]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[13]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[14]" Value="AP_MercZergling"/>
         <!--        Set dummy effect for merc tooltip -->
-        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <!--        <EffectArray Reference="Unit,AP_SwarmQueen,Food" Value="2"/>-->
         <!--        <EffectArray Reference="Unit,AP_SwarmQueenBurrowed,Food" Value="2"/>-->
         <!--        <EffectArray Reference="Unit,AP_SwarmQueenMorphing,Food" Value="2"/>-->
@@ -10015,7 +10067,9 @@
     </CUpgrade>
     <CUpgrade id="AP_DisruptorRestrainedDestruction">
         <Icon value="Assets\Textures\btn-upgrade-stetmann-banelingmanashieldefficiency.dds"/>
-        <EffectArray Operation="Set" Reference="Effect,AP_PurificationNovaFriendlyDamage,Amount" Value="65"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_PurificationNovaFriendlyDamage,Amount" Value="25"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_PurificationNovaSearch,AreaArray[1].Radius" Value="1"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_PurificationNovaTargettedSearchFriendly,AreaArray[0].Radius" Value="0.7"/>
         <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_Disruptor"/>
     </CUpgrade>
@@ -13046,7 +13100,7 @@
         <EffectArray Reference="Weapon,AP_ArtanisTwilightBlades,RateMultiplier" Value="0.20"/>
         <EffectArray Reference="Weapon,AP_ArtanisAirAttack,RateMultiplier" Value="0.20"/>
         <AffectedUnitArray value="AP_ArtanisHero"/>
-    </CUpgrade>     
+    </CUpgrade>
     <CUpgrade id="AP_ArtanisShieldOverload">
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsStart" Value="200"/>
         <EffectArray Reference="Unit,AP_ArtanisHero,ShieldsMax" Value="200"/>
@@ -13322,23 +13376,13 @@
     <CUpgrade id="AP_ShroudOfAdun">
         <EffectArray Reference="Unit,AP_DarkTemplarShakuras,ShieldsMax" Value="80"/>
         <EffectArray Reference="Unit,AP_DarkTemplarShakuras,ShieldsStart" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,ShieldsMax" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,ShieldsStart" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,ShieldsMax" Value="80"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,ShieldsStart" Value="80"/>
     </CUpgrade>
     <CUpgrade id="AP_DarkTemplarShadowGuardTraining">
-        <EffectArray Reference="Unit,AP_DarkTemplarShakuras,LifeMax" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarShakuras,LifeStart" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeMax" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeStart" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,LifeMax" Value="40"/>
-        <EffectArray Reference="Unit,AP_DarkTemplarTaldarim,LifeStart" Value="40"/>
+        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeMax" Value="80"/>
+        <EffectArray Reference="Unit,AP_DarkTemplarAiur,LifeStart" Value="80"/>
     </CUpgrade>
     <CUpgrade id="AP_ResourceEfficiencyDarkTemplar">
         <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarShakuras,CostResource[Vespene]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarAiur,CostResource[Vespene]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarTaldarim,CostResource[Vespene]" Value="50"/>
     </CUpgrade>
     <CUpgrade id="AP_DarkTemplarResearchShadowDash"/>
     <CUpgrade id="AP_AvengerCloak"/>
@@ -13356,7 +13400,8 @@
         <EffectArray Operation="Set" Reference="Button,AP_VoidDarkTemplarShadowFury,Tooltip" Value="Button/Tooltip/AP_VoidDarkTemplarShadowFury"/>
     </CUpgrade>
     <CUpgrade id="AP_BloodHunterBrutalEfficiency">
-        <EffectArray Operation="Subtract" Reference="Weapon,AP_DarkTemplarTaldarim,Period" Value="1.694"/>
+        <EffectArray Operation="Set" Reference="Effect,AP_DarkTemplarTaldarimWeaponSet,EffectArray[0]" Value="AP_WarpBlades"/>
+        <EffectArray Operation="Set" Reference="Weapon,AP_DarkTemplarTaldarim,DisplayEffect" Value="AP_WarpBlades"/>
     </CUpgrade>
     <CUpgrade id="AP_HighImpactPsionicStorm">
         <EffectArray Reference="Effect,AP_HighArchonPsiStormDamage,Amount" Value="4"/>
@@ -14908,10 +14953,10 @@
     </CUpgrade>
     <CUpgrade id="AP_NydusWormResourceEfficiency">
         <Flags index="UpgradeCheat" value="0"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_NydusWorm,CostResource[Minerals]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_NydusWorm,CostResource[Vespene]" Value="75"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_EchidnaWorm,CostResource[Minerals]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,AP_EchidnaWorm,CostResource[Vespene]" Value="75"/>
+        <EffectArray Operation="Subtract" Reference="Unit,AP_NydusWorm,CostResource[Minerals]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,AP_NydusWorm,CostResource[Vespene]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,AP_EchidnaWorm,CostResource[Minerals]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,AP_EchidnaWorm,CostResource[Vespene]" Value="25"/>
         <AffectedUnitArray value="AP_NydusWorm"/>
         <AffectedUnitArray value="AP_EchidnaWorm"/>
     </CUpgrade>
@@ -15158,7 +15203,11 @@
         <EffectArray Operation="Subtract" Reference="Unit,AP_TrooperMengskImproved,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,AP_TrooperMengskAA,CostResource[Vespene]" Value="20"/>
     </CUpgrade>
-    <CUpgrade id="AP_TrooperMengskImproved"/>
+    <CUpgrade id="AP_TrooperMengskImproved">
+        <EffectArray Reference="Effect,AP_TrooperMengskImprovedDamage,Amount" Value="2"/>
+        <EffectArray Reference="Unit,AP_TrooperMengskImproved,LifeMax" Value="10"/>
+        <EffectArray Reference="Unit,AP_TrooperMengskImproved,LifeStart" Value="10"/>
+    </CUpgrade>
     <CUpgrade id="AP_TrooperMengskAA"/>
     <CUpgrade id="AP_TrooperMengskFlamethrower"/>
     <CUpgrade id="AP_FastBuildTrooper">
@@ -16790,8 +16839,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[3]" Value="AP_InfestedMedic"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[2]" Value="AP_InfestedSiegeBreaker"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[2]" Value="AP_InfestedDuskWing"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[4]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[5]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]" Value="AP_MercZergling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[2]" Value="AP_HunterKiller"/>
         <!--EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train6].Unit[2]" Value="AP_MercUltralisk"/-->
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[2]" Value="AP_Hunterling"/>
@@ -16804,7 +16854,7 @@
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[0]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[1]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[2]" Value="1.000000"/>
-        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[4]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[5]" Value="0.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[6]" Value="1.000000"/>
@@ -16836,8 +16886,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[4]" Value="AP_InfestedMedic"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[3]" Value="AP_InfestedSiegeBreaker"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[3]" Value="AP_InfestedDuskWing"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[9]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[10]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[11]" Value="AP_MercZergling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[3]" Value="AP_HunterKiller"/>
         <!--EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train6].Unit[3]" Value="AP_MercUltralisk"/-->
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[3]" Value="AP_Hunterling"/>
@@ -16847,7 +16898,7 @@
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[0]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[1]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[2]" Value="1.000000"/>
-        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[4]" Value="1.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[5]" Value="0.000000"/>
         <EffectArray Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[6]" Value="1.000000"/>
@@ -16973,8 +17024,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[3]" Value="AP_InfestedMedic"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[2]" Value="AP_InfestedSiegeBreaker"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[2]" Value="AP_InfestedDuskWing"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[4]" Value="AP_MercZergling"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[5]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]" Value="AP_MercZergling"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]" Value="AP_MercZergling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[2]" Value="AP_HunterKiller"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[2]" Value="AP_Hunterling"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train8].Unit[7]" Value="AP_MercZergling"/>
@@ -16986,8 +17038,9 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train1].Unit[3]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train2].Unit[2]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train3].Unit[2]"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[4]"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[5]"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[6]"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[7]"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train4].Unit[8]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train5].Unit[2]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train7].Unit[2]"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SummonZergMercs,InfoArray[Train8].Unit[7]"/>
@@ -16997,7 +17050,7 @@
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[0]" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[1]" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[2]" Value="1.000000"/>
-        <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="2.000000"/>
+        <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[3]" Value="3.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[4]" Value="1.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[5]" Value="0.000000"/>
         <EffectArray Operation="Subtract" Reference="Effect,AP_SummonZergMercenaryDummy,PeriodicPeriodArray[6]" Value="1.000000"/>
@@ -17273,4 +17326,23 @@
         <EffectArray Reference="Unit,AP_ShieldBattery,ShieldArmor" Value="2"/>
         <EffectArray Operation="Subtract" Reference="Unit,AP_ShieldBattery,ShieldRegenDelay" Value="10"/>
     </CUpgrade>
+    <CUpgrade id="AP_AvengerArmor"/>
+    <CUpgrade id="AP_AvengerCharge"/>
+    <CUpgrade id="AP_BloodHunterLifeSteal"/>
+    <CUpgrade id="AP_BloodHunterResourceEfficiencyToggle">
+        <EffectArray Operation="Subtract" Reference="Unit,AP_DarkTemplarTaldarim,CostResource[Vespene]" Value="125"/>
+        <LeaderAlias value="AP_BloodHunterResourceEfficiency"/>
+    </CUpgrade>
+    <CUpgrade id="AP_BloodHunterStasisUpgrade">
+        <EffectArray Reference="Behavior,AP_DarkTemplarVoidStasisDurationDummy,Duration" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_DarkTemplarVoidStasis,IgnoreFilters" Value="-;Player,Ally,Heroic,Missile,UnderConstruction,Hidden,Invulnerable"/>
+    </CUpgrade>
+    <CUpgrade id="AP_AvengerAcceleratedWarp">
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WarpGateTrain,InfoArray[Train16].Charge.TimeUse" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WarpGateTrainRedirect,InfoArray[Train16].Charge.TimeUse" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_GatewayTrain,InfoArray[Train16].Time" Value="35.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_GatewayTrainRedirect,InfoArray[Train16].Time" Value="35.000000"/>
+        <Icon value="AP\Assets\Textures\btn-accelerated-warp.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_BloodHunterResourceEfficiency"/>
 </Catalog>

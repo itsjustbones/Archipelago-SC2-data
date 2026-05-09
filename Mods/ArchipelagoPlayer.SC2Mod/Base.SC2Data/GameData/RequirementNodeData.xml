@@ -2606,6 +2606,25 @@
     <CRequirementCountUpgrade id="AP_CountUpgradeBloatedBileDuctsCompleteOnly">
         <Count Link="AP_HotSRavagerBloatedBileDucts" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeRoachlingBileCompleteOnly">
+        <Count Link="AP_HotSRavagerRoachlingBile" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeBonePlatingCompleteOnly">
+        <Count Link="AP_HotSRavagerBonePlating" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeDisintegratingAcidCompleteOnly">
+        <Count Link="AP_HotSRavagerDisintegratingAcid" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeAerialCorrosiveBileCompleteOnly">
+        <Count Link="AP_HotSRavagerAerialCorrosiveBile" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_CountUpgradeBurrowedBombardmentCompleteOnly">
+        <Count Link="AP_HotSRavagerBurrowedBombardment" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementAnd id="AP_AndCountUpgradeAerialCorrosiveBileCompleteOnlyCountUpgradeBurrowedBombardmentCompleteOnly">
+        <OperandArray value="AP_CountUpgradeAerialCorrosiveBileCompleteOnly"/>
+        <OperandArray value="AP_CountUpgradeBurrowedBombardmentCompleteOnly"/>
+    </CRequirementAnd>
     <CRequirementCountUpgrade id="AP_CountUpgradeUltraliskBurrowChargeUpgradeCompleteOnlyTechTreeCheat">
         <Tooltip value=""/>
         <Count Link="AP_UltraliskBurrowChargeUpgrade" State="CompleteOnly"/>
@@ -8321,5 +8340,28 @@
     <CRequirementCountUpgrade id="AP_ProtossBuildingShields">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_ProtossBuildingShields" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_AvengerArmor">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_AvengerArmor" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeAP_AvengerChargeCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_AvengerCharge" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_BloodHunterLifeSteal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="AP_BloodHunterLifeSteal" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_BloodHunterStasisUpgrade">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="AP_BloodHunterStasisUpgrade" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_BloodHunterResourceEfficiency">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="AP_BloodHunterResourceEfficiency" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
 </Catalog>

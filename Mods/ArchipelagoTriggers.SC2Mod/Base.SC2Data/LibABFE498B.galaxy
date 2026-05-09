@@ -1148,11 +1148,11 @@ void libABFE498B_gf_AP_Triggers_unlockZergMutation6 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Zerg_InfestedMarineSpeed, // 1
         libABFE498B_gf_AP_Triggers_Zerg_InfestedSCVRepairBio, // 2
         libABFE498B_gf_AP_Triggers_Zerg_InfestedSCVRepairFree, // 3
-        ap_triggers_PlayerConsumer_sig, // 4
-        ap_triggers_PlayerConsumer_sig, // 5
-        ap_triggers_PlayerConsumer_sig, // 6
-        ap_triggers_PlayerConsumer_sig, // 7
-        ap_triggers_PlayerConsumer_sig, // 8
+        libABFE498B_gf_AP_Triggers_Zerg_RavagerDisintegratingAcid, // 4
+        libABFE498B_gf_AP_Triggers_Zerg_RavagerAerialCorrosiveBile, // 5
+        libABFE498B_gf_AP_Triggers_Zerg_RavagerBurrowedBombardment, // 6
+        libABFE498B_gf_AP_Triggers_Zerg_RavagerBonePlating, // 7
+        libABFE498B_gf_AP_Triggers_Zerg_RavagerWrithingAbombination, // 8
         ap_triggers_PlayerConsumer_sig, // 9
         ap_triggers_PlayerConsumer_sig, // 10
         ap_triggers_PlayerConsumer_sig, // 11
@@ -1828,12 +1828,12 @@ void libABFE498B_gf_AP_Triggers_unlockProtossForge5 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Protoss_unlockInstigatorBlinkAttack, // 14
         libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartImprovedBarrier, // 15
         libABFE498B_gf_AP_Triggers_Protoss_unlockProbeNerazimCoating, // 16
-        ap_triggers_PlayerConsumer_sig, // 17
-        ap_triggers_PlayerConsumer_sig, // 18
-        ap_triggers_PlayerConsumer_sig, // 19
-        ap_triggers_PlayerConsumer_sig, // 20
-        ap_triggers_PlayerConsumer_sig, // 21
-        ap_triggers_PlayerConsumer_sig, // 22
+        libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerCharge, // 17
+        libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerAcceleratedWarp, // 18
+        libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerArmor, // 19
+        libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterLifeSteal, // 20
+        libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterStasisUpgrade, // 21
+        libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterResourceEfficiency, // 22
         ap_triggers_PlayerConsumer_sig, // 23
         ap_triggers_PlayerConsumer_sig, // 24
         ap_triggers_PlayerConsumer_sig, // 25
@@ -7066,6 +7066,36 @@ void libABFE498B_gf_AP_Triggers_Zerg_RavagerDeepTunnel (int lp_player) {
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DeepTunnel", 1);
 }
 
+void libABFE498B_gf_AP_Triggers_Zerg_RavagerDisintegratingAcid (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HotSRavagerDisintegratingAcid", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Zerg_RavagerAerialCorrosiveBile (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HotSRavagerAerialCorrosiveBile", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Zerg_RavagerBurrowedBombardment (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HotSRavagerBurrowedBombardment", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Zerg_RavagerBonePlating (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HotSRavagerBonePlating", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Zerg_RavagerWrithingAbombination (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HotSRavagerRoachlingBile", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Zerg_ViperParasiticBomb (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -9457,12 +9487,6 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShroudOfAdun (int
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ShroudOfAdun", 1);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShadowGuardTraining (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowGuardTraining", 1);
-}
-
 void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyBlink (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -9493,10 +9517,53 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerKryhasCloak (int lp_player)
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AvengerCloak", 1);
 }
 
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDarkTemplarFamilyShadowGuardTraining (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DarkTemplarShadowGuardTraining", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerCharge (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AvengerCharge", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerAcceleratedWarp (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AvengerAcceleratedWarp", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAvengerArmor (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AvengerArmor", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterBrutalEfficiency (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterBrutalEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterLifeSteal (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterLifeSteal", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterStasisUpgrade (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterStasisUpgrade", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_BloodHunterResourceEfficiency", 1);
+    lib15EF4C78_gf_AP_Player_Protoss_activateBloodHunterResourceEfficiency(lp_player);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilySingularityCharge (int lp_player) {
