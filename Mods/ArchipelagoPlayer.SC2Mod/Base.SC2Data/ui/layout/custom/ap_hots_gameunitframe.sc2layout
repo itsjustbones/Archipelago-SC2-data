@@ -33,6 +33,32 @@
         </Frame>
     </Frame>
     
+    <Frame type="Frame" name="HeroEnergyBarDamageTemplateShieldedHero">
+        <Width val="222"/>
+        <Height val="9"/>
+        <Visible val="false"/>
+        
+        <Frame type="Image" name="DamageBar">
+            <Anchor relative="$parent" offset="0"/>
+            <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="105,68,118"/>
+        </Frame>
+    </Frame>
+    
+    <Frame type="Frame" name="HeroShieldBarDamageTemplate">
+        <Width val="222"/>
+        <Height val="7"/>
+        <Visible val="false"/>
+        
+        <Frame type="Image" name="DamageBar">
+            <Anchor relative="$parent" offset="0"/>
+            <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="18,120,150"/>
+        </Frame>
+    </Frame>
+    
     <Frame type="Frame" name="BossHealthBarDamageTemplate">
         <Width val="222"/>
         <Height val="22"/>
@@ -138,6 +164,38 @@
             <AcceptsMouse val="true"/>
         </Frame>
 
+        <Frame type="Image" name="ShieldedHeroHealthBarImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="42"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="103"/>
+            <Width val="222"/>
+            <Height val="22"/>
+            <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="42,213,0"/>
+            <AcceptsMouse val="true"/>
+            <Visible val="false"/>
+        </Frame>
+
+        <Frame type="Image" name="ShieldBarBackground">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="31"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="102"/>
+            <Width val="224"/>
+            <Height val="9"/>
+            <Color val="27,16,100"/>
+            <Alpha val="216"/>
+        </Frame>
+
+        <Frame type="Image" name="ShieldBarImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="32"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="103"/>
+            <Width val="222"/>
+            <Height val="7"/>
+            <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="39,217,255"/>
+            <AcceptsMouse val="true"/>
+        </Frame>
+
         <Frame type="Image" name="EnergyBarDamageImage">
             <Anchor side="Top" relative="$parent" pos="Min" offset="71"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="103"/>
@@ -160,11 +218,32 @@
             <AcceptsMouse val="true"/>
         </Frame>
 
+        <Frame type="Image" name="ShieldedHeroEnergyBarImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="71"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="103"/>
+            <Width val="222"/>
+            <Height val="9"/>
+            <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="149,95,224"/>
+            <AcceptsMouse val="true"/>
+            <Visible val="false"/>
+        </Frame>
+
         <Frame type="Image" name="BorderImage">
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="10"/>
             <Texture val="@@UI/AP_HotS_HeroUnitFrameBorder"/>
             <Visible val="true"/>
+        </Frame>
+
+        <Frame type="Image" name="BorderImageAll">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="10"/>
+            <Width val="327"/>
+            <Height val="96"/>
+            <Texture val="@@UI/AP_LotV_UnitStatus_HeroUnitFrame_All_Prot"/>
+            <Visible val="false"/>
         </Frame>
 
         <Frame type="Image" name="BorderNoEnergyImage">
@@ -204,6 +283,26 @@
             <Anchor side="Right" relative="$parent/BarBackground" pos="Mid" offset="0"/>
             <Style val="AP_HeroUnitFrameBarValue"/>
             <Text val="HealthLabel"/>
+            <Visible val="false"/>
+        </Frame>
+
+        <Frame type="Label" name="ShieldedHeroHealthLabel">
+            <Anchor side="Top" relative="$parent/ShieldedHeroHealthBarImage" pos="Mid" offset="1"/>
+            <Anchor side="Bottom" relative="$parent/ShieldedHeroHealthBarImage" pos="Mid" offset="1"/>
+            <Anchor side="Left" relative="$parent/BarBackground" pos="Mid" offset="0"/>
+            <Anchor side="Right" relative="$parent/BarBackground" pos="Mid" offset="0"/>
+            <Style val="AP_HeroUnitFrameBarValue"/>
+            <Text val="HealthLabel"/>
+            <Visible val="false"/>
+        </Frame>
+
+        <Frame type="Label" name="ShieldLabel">
+            <Anchor side="Top" relative="$parent/ShieldBarImage" pos="Mid" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/ShieldBarImage" pos="Mid" offset="0"/>
+            <Anchor side="Left" relative="$parent/ShieldBarBackground" pos="Mid" offset="0"/>
+            <Anchor side="Right" relative="$parent/ShieldBarBackground" pos="Mid" offset="0"/>
+            <Style val="AP_HeroUnitFrameBarValue"/>
+            <Text val="ShieldLabel"/>
             <Visible val="false"/>
         </Frame>
 

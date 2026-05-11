@@ -170,11 +170,11 @@
         </Frame>
         
         <Frame type="Image" name="HeroUnitBackgroundImage">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="15"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="12"/>
             <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
             <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
-            <Height val="40"/>
-            <Width val="101"/>
+            <Height val="57"/>
+            <Width val="100"/>
             <Texture val="@UI/AP_LotV_HeroUnit_UnitStatusFrame_Protoss"/>
             <RenderPriority val="500"/>
             <RenderType val="HDR"/>
@@ -187,7 +187,7 @@
         </Frame>
 
         <Frame type="UnitStatusShieldsBar" name="ShieldsBar" template="AP_LotV_UnitStatus/UnitStatusSegmentedShieldsBarTemplate">
-            <Anchor side="Top" relative="$parent/HeroUnitBackgroundImage" pos="Min" offset="10"/>
+            <Anchor side="Top" relative="$parent/HeroUnitBackgroundImage" pos="Min" offset="15"/>
             <Anchor side="Left" relative="$parent/HeroUnitBackgroundImage" pos="Min" offset="11"/>
             <Height val="9"/>
             <CollapseLayout val="true"/>
@@ -408,4 +408,5 @@
             <RenderType val="HDR"/>
         </Frame>
     </Frame>
+
 </Desc>

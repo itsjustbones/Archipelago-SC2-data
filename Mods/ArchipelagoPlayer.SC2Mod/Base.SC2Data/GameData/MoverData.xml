@@ -1741,6 +1741,17 @@
             <FlightTime value="0.5"/>
         </MotionPhases>
     </CMoverMissile>
+    <CMoverMissile id="AP_ArtanisLightningDashDashMover">
+        <MotionPhases>
+            <Driver value="Ballistic"/>
+            <Acceleration value="-1"/>
+            <Gravity value="18"/>
+            <ClearanceLookahead value="3"/>
+            <RotationActorType value="Upright"/>
+            <YawPitchRoll value="MAX"/>
+            <FlightTime value="0.20"/>
+        </MotionPhases>
+    </CMoverMissile>
     <CMoverMissile id="AP_DragoonWeapon">
         <PathMode value="Flying"/>
         <MotionPhases>
@@ -2022,18 +2033,18 @@
     <CMoverMissile id="AP_StukovInfestedDiamondBackBileStreamSprayMissile">
         <MotionPhases>
             <Driver value="Throw"/>
-            <Speed value="10"/>
-            <MaxSpeed value="10"/>
+            <Speed value="100"/>
+            <MaxSpeed value="100"/>
             <Outro value="0.1,4,0.1,0.1"/>
-            <ThrowVector value="0,-1,0.25"/>
+            <ThrowVector value="0,-1,0"/>
             <ThrowBandYaw value="-360,-360,-360,-360"/>
             <ThrowBandPitch value="-360,-360,-360,-360"/>
             <YawPitchRoll value="719.2968"/>
         </MotionPhases>
         <MotionPhases>
             <Driver value="Guidance"/>
-            <Acceleration value="20"/>
-            <MaxSpeed value="20"/>
+            <Acceleration value="100"/>
+            <MaxSpeed value="100"/>
             <ActorTracking value="Actual"/>
             <YawPitchRoll value="119.8828"/>
             <YawPitchRollAccel value="180"/>
@@ -2060,6 +2071,20 @@
         </MotionPhases>
     </CMoverMissile>
     <CMoverMissile id="AP_StukovInfestedDiamondBackEnsnareAirLaunchMover" parent="MissileDefault">
+        <MotionPhases index="0">
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="12"/>
+            <ClearanceAcceleration value="75"/>
+            <ActorTracking value="Actual"/>
+            <Outro value="-1"/>
+            <RotationLaunchActorType value="LaunchToTarget"/>
+            <YawPitchRoll value="719.2968"/>
+        </MotionPhases>
+        <RotationIgnoredByUnit value="1"/>
+        <Flags index="IgnoreMovementSuppression" value="1"/>
+    </CMoverMissile>
+    <CMoverMissile id="AP_VoltaicShockEnsnareAirLaunchMover" parent="MissileDefault">
         <MotionPhases index="0">
             <Driver value="Guidance"/>
             <Acceleration value="3200"/>
@@ -2404,6 +2429,29 @@
             <AdaptableParabolaAccels index="Land" value="0"/>
         </MotionPhases>
         <MotionPhases index="1" removed="1"/>
+    </CMoverMissile>
+    <CMoverMissile id="AP_PhasePrismUnitKnockbackMover">
+        <Flags index="IgnoreMovementSuppression" value="1"/>
+        <MotionPhases>
+            <Driver value="Ballistic"/>
+            <Acceleration value="-1"/>
+            <Gravity value="5"/>
+            <RotationActorType value="Upright"/>
+            <YawPitchRoll value="MAX"/>
+            <FlightTime value="0.5"/>
+        </MotionPhases>
+        <RotationIgnoredByUnit value="1"/>
+        <PathMode value="Flying"/>
+    </CMoverMissile>
+    <CMoverMissile id="AP_ArtanisLightningDashMissile">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="4000"/>
+            <MaxSpeed value="25"/>
+            <Timeout value="1"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+        </MotionPhases>
     </CMoverMissile>
     <CMoverMissile id="AP_LurkerWeapon">
         <MotionPhases>

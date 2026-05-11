@@ -896,6 +896,25 @@
         <Race value="Terr"/>
         <EditorCategories value="ObjectType:Other,ObjectFamily:FactionMarauder"/>
     </CUnit>
+    <CUnit id="AP_ArtanisLightningDashPrecursor">
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncursorable" value="1"/>
+        <FlagArray index="KillCredit" value="0"/>
+        <FlagArray index="NoScore" value="1"/>
+        <EditorFlags index="NoPlacement" value="1"/>
+        <EditorFlags index="BlockStructures" value="0"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <LifeStart value="1"/>
+        <LifeMax value="1"/>
+        <Radius value="0.425"/>
+        <SeparationRadius value="0.425"/>
+        <Race value="Prot"/>
+        <EditorCategories value="ObjectType:Other,ObjectFamily:Protoss"/>
+    </CUnit>
     <CUnit id="AP_D8ClusterBomb">
         <DeathRevealRadius value="3"/>
         <Race value="Terr"/>
@@ -9935,7 +9954,7 @@
         <Sight value="9"/>
         <CostCategory value="Technology"/>
         <CostResource index="Minerals" value="200"/>
-        <CostResource index="Vespene" value="200"/>
+        <CostResource index="Vespene" value="150"/>
         <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="stop"/>
@@ -10011,8 +10030,8 @@
         <TurningRate value="719.4726"/>
         <Sight value="10"/>
         <CostCategory value="Technology"/>
-        <CostResource index="Minerals" value="100"/>
-        <CostResource index="Vespene" value="100"/>
+        <CostResource index="Minerals" value="50"/>
+        <CostResource index="Vespene" value="50"/>
         <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="Rally"/>
@@ -10204,8 +10223,8 @@
         <TurningRate value="719.4726"/>
         <Sight value="10"/>
         <CostCategory value="Economy"/>
-        <CostResource index="Minerals" value="150"/>
-        <CostResource index="Vespene" value="75"/>
+        <CostResource index="Minerals" value="175"/>
+        <CostResource index="Vespene" value="25"/>
         <RepairTime value="60"/>
         <AttackTargetPriority value="11"/>
         <AbilArray Link="BuildInProgress"/>
@@ -10220,7 +10239,8 @@
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="AP_BuildCreepTumorPropagate" Type="AbilCmd" AbilCmd="AP_EchidnaCreepBuild,Build1" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_NydusWormSubterraneanScales" Type="Passive" Requirements="AP_HaveNydusWormSubterraneanScales" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_BirthPygalisk" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train12" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_NydusWormSubterraneanScales" Type="Passive" Requirements="AP_HaveNydusWormSubterraneanScales" Row="1" Column="1"/>
             <LayoutButtons Face="AP_BirthDrone" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train4" Row="0" Column="0"/>
             <LayoutButtons Face="AP_BirthRaptor" Type="AbilCmd" AbilCmd="AP_EchidnaTrainSwarmling,Train1" Row="0" Column="1"/>
             <LayoutButtons Face="AP_BirthRaptor" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train3" Row="0" Column="1"/>
@@ -10233,7 +10253,7 @@
             <LayoutButtons Face="AP_BirthHydraliskLurker" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train10" Row="0" Column="3"/>
             <LayoutButtons Face="AP_BirthHydralisk" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train8" Row="0" Column="3"/>
             <LayoutButtons Face="AP_BirthAberration" Type="AbilCmd" AbilCmd="AP_EchidnaTrain,Train11" Row="0" Column="4"/>
-            <LayoutButtons Face="AP_EchidnaWormOuroborosStrain" Type="Passive" Requirements="AP_HaveEchidnaWormOuroborosStrain" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_EchidnaWormOuroborosStrain" Type="Passive" Requirements="AP_HaveEchidnaWormOuroborosStrain" Row="2" Column="1"/>
             <LayoutButtons Face="AP_NydusWormJormungandrStrain" Type="Passive" Requirements="AP_HaveNydusWormJormungandrStrain" Row="1" Column="2"/>
             <LayoutButtons Face="AP_EchidnaWormRally" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally1" Row="1" Column="4"/>
             <LayoutButtons Face="AP_EchidnaWormRallyWorker" Type="AbilCmd" AbilCmd="AP_RallyHatchery,Rally2" Row="1" Column="3"/>
@@ -14609,7 +14629,8 @@
         <AbilArray Link="Warpable"/>
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="BuildInProgress"/>
-        <AbilArray Link="AP_DarkTemplarShadowDash"/>
+        <AbilArray Link="AP_AvengerCharge"/>
+        <AbilArray Link="AP_AvengerArmorDummy"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_DetectorRadar"/>
         <BehaviorArray Link="AP_DarkTemplarRecallToDarkShrine"/>
@@ -14619,15 +14640,15 @@
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_PermanentlyCloakedAvenger" Type="Passive" Requirements="AP_HaveAvengerCloak" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ShroudOfAdun" Type="Passive" Requirements="AP_HaveShroudOfAdun" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Requirements="AP_DarkTemplarRecallCooldown" Behavior="AP_DarkTemplarRecentlyRecalled" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowDash" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowDash,0" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_AvengerArmor" Type="AbilCmd" AbilCmd="AP_AvengerArmorDummy,0" Requirements="AP_AvengerArmor" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_AvengerCharge" Type="AbilCmd" AbilCmd="AP_AvengerCharge,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Requirements="AP_DarkTemplarRecallCooldown" Behavior="AP_DarkTemplarRecentlyRecalled" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_DarkTemplarRecall" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -14717,7 +14738,6 @@
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_PermanentlyCloaked" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="AP_ShroudOfAdun" Type="Passive" Requirements="AP_HaveShroudOfAdun" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="2"/>
             <LayoutButtons Face="AP_VoidDarkTemplarShadowFury" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowFury,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_DarkTemplarShadowDash" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowDash,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_DarkArchonMeld" Type="AbilCmd" AbilCmd="AP_DarkArchonMerge,0" Row="2" Column="2"/>
@@ -14797,7 +14817,7 @@
         <AbilArray Link="BuildInProgress"/>
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="AP_DarkTemplarVoidStasis"/>
-        <AbilArray Link="AP_DarkTemplarShadowDash"/>
+        <AbilArray Link="AP_BloodHunterLifeStealDummy"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
         <BehaviorArray Link="AP_DetectorRadar"/>
         <WeaponArray Link="AP_DarkTemplarTaldarim"/>
@@ -14807,13 +14827,13 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
             <LayoutButtons Face="AP_PermanentlyCloaked" Type="Passive" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ShroudOfAdun" Type="Passive" Requirements="AP_HaveShroudOfAdun" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowGuardTraining" Type="Passive" Requirements="AP_HaveDarkTemplarSuperiorConditioning" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_BloodHunterBrutalEfficiency" Type="Passive" Requirements="AP_HaveBloodHunterBrutalEfficiency" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_BloodHunterBrutalEfficiency" Type="Passive" Requirements="AP_HaveBloodHunterBrutalEfficiency" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_BloodHunterResourceEfficiency" Type="Passive" Requirements="AP_BloodHunterResourceEfficiency" Row="1" Column="2"/>
             <LayoutButtons Face="AP_VoidStasis" Type="AbilCmd" AbilCmd="AP_DarkTemplarVoidStasis,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_DarkTemplarShadowDash" Type="AbilCmd" AbilCmd="AP_DarkTemplarShadowDash,0" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_BloodHunterStasisUpgrade" Type="Passive" Requirements="AP_BloodHunterStasisUpgrade" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_BloodHunterLifeSteal" Type="AbilCmd" AbilCmd="AP_BloodHunterLifeStealDummy,0" Row="2" Column="2"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -14840,6 +14860,189 @@
             <Charge Link="DarkTemplar/Revive"/>
             <Cooldown Link="DarkTemplar/Revive"/>
         </ReviveInfoBase>
+    </CUnit>
+    <CUnit id="AP_ArtanisHero">
+        <DeathTime value="-1"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Prot"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="1.5"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+        <ShieldsStart value="200"/>
+        <ShieldsMax value="200"/>
+        <ShieldRegenDelay value="4"/>
+        <ShieldRegenRate value="5"/>
+        <ShieldArmor value="1"/>
+        <EnergyStart value="150"/>
+        <EnergyMax value="150"/>
+        <EnergyRegenRate value="2.5"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="2.9492"/>
+        <Acceleration value="1000"/>
+        <Deceleration value="1000"/>
+        <LateralAcceleration value="46"/>
+        <Sight value="10"/>
+        <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="100"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="Warpable"/>
+        <AbilArray Link="ProgressRally"/>
+        <AbilArray Link="AP_ArtanisWeaponAspects"/>
+        <AbilArray Link="AP_ArtanisAirAttackSwap"/>
+        <AbilArray Link="AP_ArtanisCharge"/>
+        <AbilArray Link="AP_SuppressionPulse"/>
+        <AbilArray Link="AP_ArtanisLightningDash"/>
+        <AbilArray Link="AP_ArtanisAstralWind"/>
+        <AbilArray Link="AP_ShadowSlice"/>
+        <AbilArray Link="AP_VoltaicShock"/>
+        <AbilArray Link="AP_ArtanisBladeWaltz"/>
+        <AbilArray Link="AP_PhasePrismSwap"/>
+        <AbilArray Link="AP_PhasePrism"/>
+        <AbilArray Link="AP_CleansingSmite"/>
+        <AbilArray Link="AP_Exterminate"/>
+        <AbilArray Link="AP_ExterminateAir"/>
+        <AbilArray Link="AP_StrengthInUnity"/>
+        <BehaviorArray Link="AP_ArtanisNoAspect"/>
+        <BehaviorArray Link="AP_ArtanisForceOfWill"/>
+        <BehaviorArray Link="AP_ArtanisPurifierSolarBombardmentPassive"/>
+        <BehaviorArray Link="AP_ArtanisResurgence"/>
+        <WeaponArray Link="AP_ArtanisTwilightBlades"/>
+        <WeaponArray Link="AP_ArtanisAirAttack"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisLightningDash" Type="AbilCmd" AbilCmd="AP_ArtanisLightningDash,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_PhasePrismRecast" Type="AbilCmd" AbilCmd="AP_PhasePrismSwap,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_PhasePrism" Type="AbilCmd" AbilCmd="AP_PhasePrism,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_SuppressionPulse" Type="AbilCmd" AbilCmd="AP_SuppressionPulse,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisAstralWind" Type="AbilCmd" AbilCmd="AP_ArtanisAstralWind,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_StrengthInUnity" Type="AbilCmd" AbilCmd="AP_StrengthInUnity,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisBladeWaltz" Type="AbilCmd" AbilCmd="AP_ArtanisBladeWaltz,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ShadowSlice" Type="AbilCmd" AbilCmd="AP_ShadowSlice,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_Exterminate,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_Exterminate" Type="AbilCmd" AbilCmd="AP_ExterminateAir,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_CleansingSmite" Type="AbilCmd" AbilCmd="AP_CleansingSmite,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisAiurAspectPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectSelectedPassiveNotActive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisNerazimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectSelectedPassiveNotActive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisPurifierAspectPassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectSelectedPassiveNotActive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisTaldarimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectSelectedPassiveNotActive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisWeaponAspectSwap" Type="Submenu" SubmenuCardId="WA" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_ArtanisCharge" Type="AbilCmd" AbilCmd="AP_ArtanisCharge,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_VoltaicShock" Type="AbilCmd" AbilCmd="AP_VoltaicShock,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisPassiveMenu" Type="Submenu" SubmenuCardId="RA" Row="2" Column="4"/>
+        </CardLayouts>
+        <CardLayouts CardId="RA">
+            <LayoutButtons Face="AP_ArtanisAirAttackEnable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,On" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisAirAttackDisable" Type="AbilCmd" AbilCmd="AP_ArtanisAirAttackSwap,Off" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ArtanisTemperedInTwilight" Type="Passive" Requirements="AP_HaveArtanisTemperedInTwilight" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisResurgence" Type="Passive" Requirements="AP_ArtanisResurgenceCooldown" Behavior="AP_ArtanisResurgenceDisable" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisResurgence" Type="Passive" Requirements="AP_ArtanisResurgenceOffCooldown" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisForceOfWillPassive" Type="Passive" Requirements="AP_HaveArtanisForceOfWill" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisValorOfTheFirstbornPassive" Type="Passive" Requirements="AP_HaveArtanisValorOfTheFirstborn" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisShieldOverloadPassive" Type="Passive" Requirements="AP_HaveArtanisShieldOverload" Row="1" Column="1"/>
+            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
+        </CardLayouts>
+        <CardLayouts CardId="WA">
+            <LayoutButtons Face="AP_ArtanisAiurAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,0" Row="0" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisNerazimAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,1" Row="0" Column="1"/>
+            <LayoutButtons Face="AP_ArtanisPurifierAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,2" Row="0" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisTaldarimAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,3" Row="0" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisNoAspect" Type="AbilCmd" AbilCmd="AP_ArtanisWeaponAspects,4" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisBladeWaltzPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectActive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ShadowSlicePassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectActive" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_CleansingSmitePassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectActive" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_ExterminatePassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectActive" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_ArtanisWeaponAspectDamagePassive" Type="Passive" Requirements="AP_HaveArtanisAnyAspectUnlocked" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisAiurAspectPassive" Type="Passive" Requirements="AP_HaveArtanisAiurAspectPassive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_ArtanisNerazimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisNerazimAspectPassive" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_ArtanisPurifierAspectPassive" Type="Passive" Requirements="AP_HaveArtanisPurifierAspectPassive" Row="2" Column="2"/>
+            <LayoutButtons Face="AP_ArtanisTaldarimAspectPassive" Type="Passive" Requirements="AP_HaveArtanisTaldarimAspectPassive" Row="2" Column="3"/>
+            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.425"/>
+        <SeparationRadius value="0.425"/>
+        <CargoSize value="2"/>
+        <ScoreMake value="200"/>
+        <ScoreKill value="200"/>
+        <SubgroupPriority value="98"/>
+        <MinimapRadius value="0.625"/>
+        <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+        <AIEvalFactor value="1.8"/>
+        <GlossaryCategory value="Unit/Category/ProtossStory"/>
+        <GlossaryPriority value="80"/>
+        <HotkeyCategory value="Unit/Category/ProtossStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <ReviveInfoBase>
+            <Charge Link="Artanis/Revive"/>
+            <Cooldown Link="Artanis/Revive" Location="Player" TimeUse="0.1"/>
+        </ReviveInfoBase>
+        <TauntDuration index="Cheer" value="5"/>
+        <TauntDuration index="Dance" value="5"/>
+        <AlliedPushPriority value="11"/>
+    </CUnit>
+    <CUnit id="AP_ArtanisReviveCocoon">
+        <DeathRevealRadius value="3"/>
+        <Facing value="315"/>
+        <Race value="Prot"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="NoScore" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+        <Speed value="1.875"/>
+        <StationaryTurningRate value="719.4726"/>
+        <TurningRate value="719.4726"/>
+        <Sight value="7"/>
+        <AttackTargetPriority value="10"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="30"/>
+        <AbilArray Link="que1"/>
+        <AbilArray Link="AP_RallyReviveCocoon"/>
+        <AbilArray Link="AP_ArtanisRevive"/>
+        <BehaviorArray Link="AP_CocoonReviveTimer"/>
+        <CardLayouts>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="AP_RallyReviveCocoon,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_ArtanisRespawn" Type="Passive" Row="2" Column="0"/>
+        </CardLayouts>
+        <CardLayouts>
+            <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="AP_RallyReviveCocoon,Rally2" Row="1" Column="4"/>
+        </CardLayouts>
+        <SubgroupPriority value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <AIEvalFactor value="0"/>
+    </CUnit>
+    <CUnit id="AP_ArtanisAirAttackWeapon" parent="MISSILE_INVULNERABLE">
+        <Race value="Prot"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
     </CUnit>
     <CUnit id="AP_AscendantSacrificeWeapon1" parent="MISSILE_INVULNERABLE">
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
@@ -18951,7 +19154,7 @@
             <LayoutButtons Face="AP_QueenBurstHeal" Type="AbilCmd" AbilCmd="AP_QueenBurstHeal,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_QueenBurstHeal" Type="AbilCmd" AbilCmd="AP_QueenBioMechBurstHeal,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_SwarmQueenWildMutation" Type="AbilCmd" AbilCmd="AP_SwarmQueenWildMutation,Execute" Row="2" Column="2"/>
-            <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,0" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_KerriganEnhance,1" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.875"/>
@@ -19029,9 +19232,11 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="AP_BurrowQueenUp"/>
         <AbilArray Link="AP_QueenBuild"/>
+        <AbilArray Link="AP_QueenDeepTunnel"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
         <CardLayouts>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AP_QueenDeepTunnel" Type="AbilCmd" AbilCmd="AP_QueenDeepTunnel,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowQueenUp,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AP_QueenOrganicCarapace" Type="Passive" Requirements="AP_HaveQueenOrganicCarapace" Row="1" Column="0"/>
             <LayoutButtons Face="AP_BioMechanicalTransfusionPassive" Type="Passive" Requirements="AP_HaveAbathurBioMechanicalTransfusion" Row="1" Column="1"/>
@@ -20403,8 +20608,8 @@
         <Collide index="ForceField" value="1"/>
         <Collide index="Small" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <LifeStart value="120"/>
-        <LifeMax value="120"/>
+        <LifeStart value="145"/>
+        <LifeMax value="145"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
@@ -20427,8 +20632,10 @@
         <AbilArray Link="que1"/>
         <AbilArray Link="AP_BurrowRavagerDown"/>
         <AbilArray Link="AP_RavagerCorrosiveBile"/>
+        <AbilArray Link="AP_RavagerAerialCorrosiveBile"/>
         <AbilArray Link="AP_DeepTunnel"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_RavagerSpawnRoachlingsOnDeath"/>
         <WeaponArray Link="AP_RavagerWeapon"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -20438,18 +20645,13 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_HotSRoachDamage" Type="Passive" Requirements="AP_HaveHotSRoachDamage" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_GlialReconstitution" Type="Passive" Requirements="AP_HaveHotSRoachSpeed" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_OrganicCarapace" Type="Passive" Requirements="AP_HaveHotSRoachHealth" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBile,Execute" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_RavagerBurrowedBombardment" Type="Passive" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="1" Column="4"/>
             <LayoutButtons Face="AP_RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerCorrosiveBile,Execute" Row="2" Column="0"/>
-            <LayoutButtons>
-                <Face value="AP_DeepTunnel"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="AP_DeepTunnel,Execute"/>
-                <Requirements value="AP_HotSHaveDeepTunnel"/>
-                <Row value="2"/>
-                <Column value="1"/>
-            </LayoutButtons>
+            <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBonePlating" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_DeepTunnel" Type="AbilCmd" AbilCmd="AP_DeepTunnel,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AP_BurrowRavagerDown,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
@@ -20481,8 +20683,8 @@
         <PlaneArray index="Ground" value="1"/>
         <Collide index="Burrow" value="1"/>
         <Attributes index="Biological" value="1"/>
-        <LifeStart value="120"/>
-        <LifeMax value="120"/>
+        <LifeStart value="145"/>
+        <LifeMax value="145"/>
         <LifeArmor value="1"/>
         <LifeRegenRate value="0.2734"/>
         <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
@@ -20498,17 +20700,28 @@
         <CostResource index="Vespene" value="100"/>
         <RepairTime value="30"/>
         <AttackTargetPriority value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
         <AbilArray Link="AP_BurrowRavagerUp"/>
         <AbilArray Link="AP_DeepTunnel"/>
-        <AbilArray Link="AP_RavagerCorrosiveBile"/>
+        <AbilArray Link="AP_RavagerCorrosiveBileBurrowed"/>
+        <AbilArray Link="AP_RavagerAerialCorrosiveBileBurrowed"/>
         <BehaviorArray Link="AP_CreepFrenzy13Crawler"/>
+        <BehaviorArray Link="AP_RavagerSpawnRoachlingsOnDeath"/>
+        <BehaviorArray Link="AP_RavagerBurrowedBombardmentBehavior"/>
+        <WeaponArray Link="AP_RavagerBurrowedBombardmentWeapon" Turret="FreeRotate"/>
         <CardLayouts>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_RavagerBileDamage" Type="Passive" Requirements="AP_HotSHaveRavagerPotentBile" Row="1" Column="0"/>
             <LayoutButtons Face="AP_RavagerBileRadius" Type="Passive" Requirements="AP_HotSHaveRavagerBloatedBileDucts" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_HotSRoachDamage" Type="Passive" Requirements="AP_HaveHotSRoachDamage" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_GlialReconstitution" Type="Passive" Requirements="AP_HaveHotSRoachSpeed" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_OrganicCarapace" Type="Passive" Requirements="AP_HaveHotSRoachHealth" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerDisintegratingAcid" Type="Passive" Requirements="AP_HotSHaveRavagerDisintegratingAcid" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_RavagerAerialCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerAerialCorrosiveBileBurrowed,Execute" Requirements="AP_HotSHaveRavagerBurrowedAerialCorrosiveBile" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_RavagerBurrowedBombardment" Type="Passive" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="AP_RavagerCorrosiveBileBurrowed,Execute" Requirements="AP_HotSHaveRavagerBurrowedBombardment" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_RavagerBileRoachlings" Type="Passive" Requirements="AP_HotSHaveRavagerRoachlingBile" Row="1" Column="3"/>
+            <LayoutButtons Face="AP_RavagerBonePlating" Type="Passive" Requirements="AP_HotSHaveRavagerBonePlating" Row="2" Column="3"/>
+            <LayoutButtons Face="AP_DeepTunnel" Type="AbilCmd" AbilCmd="AP_DeepTunnel,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AP_BurrowRavagerUp,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
@@ -20551,7 +20764,6 @@
         <AttackTargetPriority value="10"/>
         <AbilArray Link="que1"/>
         <AbilArray Link="Rally"/>
-        <AbilArray Link="AP_MorphToRavager"/>
         <CardLayouts>
             <LayoutButtons Face="CancelCocoonMorph" Type="AbilCmd" AbilCmd="AP_MorphToRavager,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="2" Column="4"/>
@@ -30303,6 +30515,7 @@
             <LayoutButtons Face="AP_TrooperMengskBuild" Type="Submenu" SubmenuCardId="0002" Row="2" Column="0"/>
             <LayoutButtons Face="AP_AdvancedConstruction" Type="Passive" Requirements="AP_HaveAdvancedConstruction" Row="1" Column="3"/>
             <LayoutButtons Face="AP_TrooperMengskWeaponDrop" Type="Passive" Requirements="AP_HaveTrooperMengskWeaponDrop" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_TrooperMengskImproved" Type="Passive" Requirements="AP_HaveTrooperMengskImproved" Row="2" Column="1"/>
             <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="AP_TrooperMengskBuild,30" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="0002">
@@ -30388,6 +30601,7 @@
             <LayoutButtons Face="AP_TrooperMengskBuild" Type="Submenu" SubmenuCardId="0002" Row="2" Column="0"/>
             <LayoutButtons Face="AP_AdvancedConstruction" Type="Passive" Requirements="AP_HaveAdvancedConstruction" Row="1" Column="3"/>
             <LayoutButtons Face="AP_TrooperMengskWeaponDrop" Type="Passive" Requirements="AP_HaveTrooperMengskWeaponDrop" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_TrooperMengskImproved" Type="Passive" Requirements="AP_HaveTrooperMengskImproved" Row="2" Column="1"/>
             <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="AP_TrooperMengskBuild,30" Row="2" Column="4"/>
         </CardLayouts>
         <CardLayouts CardId="0002">

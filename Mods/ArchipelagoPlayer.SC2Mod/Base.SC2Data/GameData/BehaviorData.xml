@@ -1525,6 +1525,39 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Duration value="30"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerRoachlingFate" parent="TimedLife">
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-explode.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerSpawnRoachlingsOnDeath">
+        <InfoFlags index="Hidden" value="1"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-unit-zerg-roachlings.dds"/>
+        <Requirements value="AP_HotSHaveRavagerRoachlingBile"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="AP_RavagerDeathSpawnRoachlings"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerBurrowedBombardmentBehavior">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HotSHaveRavagerBurrowedBombardment"/>
+        <Modification>
+            <WeaponEnableArray value="AP_RavagerBurrowedBombardmentWeapon"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RavagerDisintegratingAcid">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-debilitatingbile.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="3"/>
+        <Modification ShieldArmorBonus="-1">
+            <LifeArmorBonus value="-1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_SpawnerActive">
         <InfoFlags index="Hidden" value="1"/>
         <BuffFlags index="RefreshStack" value="1"/>
@@ -2124,6 +2157,371 @@
     <CBehaviorBuff id="AP_NovaPsiStrikeWalkStopStun">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="0.125"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisAspectBuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisAiurAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisNerazimAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisPurifierAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisTaldarimAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisNoAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisForceOfWill">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisForceOfWill"/>
+        <Period value="0.333333"/>
+        <PeriodicEffect value="AP_ArtanisForceOfWillMU"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_EnableArtanisAirAttackSwap">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisAirAttack"/>
+        <InitialEffect value="AP_ArtanisAirAttackDisableRB"/>
+        <FinalEffect value="AP_ArtanisAirAttackDisableAB"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DisableArtanisAirAttack">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Modification>
+            <WeaponDisableArray value="AP_ArtanisAirAttack"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_CleansingSmite">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Period value="0.1"/>
+        <InitialEffect value="AP_CleansingSmiteDOT"/>
+        <PeriodicEffect value="AP_CleansingSmiteDOT"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisPurifierSolarBombardmentPassive">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-protoss-solarbombardment.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisPurifierAspectSelectedPassive"/>
+        <DamageResponse Handled="AP_ArtanisPurifierSolarBombardmentSearch">
+            <Chance value="1"/>
+            <Cost>
+                <Cooldown TimeUse="1"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_Exterminate">
+        <Alignment value="Positive"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <DisplayDuration index="Self" value="1"/>
+        <RemoveValidatorArray value="AP_HasArtanisTaldarimAspectBehavior"/>
+        <Modification AttackSpeedMultiplier="2">
+            <DamageDealtUnscaled index="Melee" value="15"/>
+            <DamageDealtUnscaled index="Ranged" value="15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ExterminateTarget">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="2.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ExterminateCharging">
+        <Alignment value="Positive"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-exterminate.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="AP_ArtanisChargeTargetAttacked"/>
+        <Duration value="2.5"/>
+        <FinalEffect value="AP_ExterminateAB"/>
+        <Modification MoveSpeedMultiplier="6.8">
+            <AbilLinkDisableArray value="AP_ArtanisCharge"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisLightningDashStun">
+        <Duration value="1.25"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-lightningdash.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnity">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="15"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_StrengthInUnityInitialSearchSet"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-protoss-strength-in-unity.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityBuffAiur">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.5"/>
+        <Modification>
+            <VitalRegenArray index="Energy" value="4"/>
+            <RateMultiplierArray index="Charge" value="1.5"/>
+            <RateMultiplierArray index="Cooldown" value="1.5"/>
+        </Modification>
+        <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionaiur_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityArtanisAiur">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.25"/>
+        <RemoveValidatorArray value="AP_IsArtanisHero"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_StrengthInUnitySearchAiur"/>
+        <Modification>
+            <VitalRegenArray index="Energy" value="8"/>
+            <RateMultiplierArray index="Charge" value="2"/>
+            <RateMultiplierArray index="Cooldown" value="2"/>
+        </Modification>
+        <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionaiur_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityBuffNerazim">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.25"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionnerazim_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityArtanisNerazim">
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.25"/>
+        <RemoveValidatorArray value="AP_IsArtanisHero"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_StrengthInUnitySearchNerazim"/>
+        <Modification MoveSpeedMultiplier="1.5">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <InfoIcon value="AP\Assets\Textures\ui_void_armyupgrade_factionnerazim_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityBuffPurifier">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="0.5"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <ModifyFraction value="0.8"/>
+        </DamageResponse>
+        <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityArtanisPurifier">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="0.25"/>
+        <RemoveValidatorArray value="AP_IsArtanisHero"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_StrengthInUnitySearchPurifierSet"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <ModifyFraction value="0.6"/>
+        </DamageResponse>
+        <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_purifier_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityBuffTaldarim">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="0.5"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.25"/>
+            <DamageDealtFraction index="Melee" value="0.25"/>
+            <DamageDealtFraction index="Ranged" value="0.25"/>
+            <DamageDealtFraction index="Splash" value="0.25"/>
+        </Modification>
+        <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_taldarim_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_StrengthInUnityArtanisTaldarim">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Duration value="0.25"/>
+        <RemoveValidatorArray value="AP_IsArtanisHero"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_StrengthInUnitySearchTaldarim"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.5"/>
+            <DamageDealtFraction index="Melee" value="0.5"/>
+            <DamageDealtFraction index="Ranged" value="0.5"/>
+            <DamageDealtFraction index="Splash" value="0.5"/>
+        </Modification>
+        <InfoIcon value="AP\Assets\Textures\sc2_ui_ingame_storymode_panel_faction_taldarim_categoryicon.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgence">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Requirements value="AP_HaveArtanisResurgence"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Fatal value="1"/>
+            <Handled value="AP_ArtanisResurgenceSet"/>
+            <ModifyFraction value="0"/>
+        </DamageResponse>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgenceInvulnerable">
+        <Alignment value="Positive"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="3"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="0" ModifyMinimumDamage="1"/>
+        <Period value="3"/>
+        <PeriodicEffect value="AP_ArtanisResurgenceExplodeSet"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgenceStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="3"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisResurgenceDisable">
+        <Alignment value="Negative"/>
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <Cost>
+            <Cooldown TimeStart="240"/>
+        </Cost>
+        <Duration value="240"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="AP_ArtanisResurgence"/>
+        </Modification>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-resurgence.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismRecast">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism-recast.dds"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="4.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismDelay">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism-recast.dds"/>
+        <ExpireEffect value="AP_PhasePrismSearch"/>
+        <Duration value="0.0625"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzDamaged">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkSpeed">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.5625"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AP_ArtanisBladeWaltzTargetSearch"/>
+        <FinalEffect value="AP_ArtanisBladeWaltzWalkStopSet"/>
+        <Modification MoveSpeedMultiplier="7">
+            <StateFlags index="SuppressAttack" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+        </Modification>
+        <DamageResponse ModifyFraction="0" ModifyMinimumDamage="1">
+            <Chance value="1"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisBladeWaltzWalkStopStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="0.25"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ShadowSliceController">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.2"/>
+        <Period value="0.2"/>
+        <Modification>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ShadowSliceMarked">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Fatal="1" Handled="AP_ShadowSliceRefundCP">
+            <Chance value="1"/>
+        </DamageResponse>
+        <Duration value="0.0625"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SuppressionPulse">
+        <Alignment value="Negative"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-suppression-pulse.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification>
+            <DamageDealtMaximum index="Melee" value="0"/>
+            <DamageDealtMaximum index="Ranged" value="0"/>
+            <DamageDealtMaximum index="Splash" value="0"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_SuppressionPulseWaveMarker">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_VoltaicShock">
+        <Alignment value="Negative"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-voltaic-surge.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <HeightTime index="Start" value="2"/>
+            <HeightTime index="Stop" value="2"/>
+            <PlaneDelta index="Ground" value="1"/>
+            <PlaneDelta index="Air" value="-1"/>
+        </Modification>
+        <InitialEffect value="AP_SnareLaunchTargetToAPathableLocationPrecursor"/>
+        <FinalEffect value="AP_VoltaicShockReheightSourceCreatePlaceholder"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism.dds"/>
+        <Duration value="5"/>
+        <InitialEffect value="AP_PhasePrismSearch"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="Stasis" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <BehaviorLinkDisableArray value="Detector6"/>
+            <BehaviorLinkDisableArray value="Detector7"/>
+            <BehaviorLinkDisableArray value="Detector8"/>
+            <BehaviorLinkDisableArray value="Detector9"/>
+            <BehaviorLinkDisableArray value="Detector10"/>
+            <BehaviorLinkDisableArray value="Detector11"/>
+            <BehaviorLinkDisableArray value="Detector12"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_PhasePrismPullStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="AP\Assets\Textures\btn-ability-phase-prism.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="1"/>
         <Modification>
             <StateFlags index="Stun" value="1"/>
         </Modification>
@@ -3017,7 +3415,7 @@
         <DisableValidatorArray value="AP_IsNotRecentlyRecalled"/>
         <DisableValidatorArray value="AP_HasDarkShrine"/>
         <DisableValidatorArray value="AP_CanNotUseSoAHeroicShield"/>
-        <DamageResponse Fatal="1" Handled="AP_DarkTemplarRecallSearch" ModifyFraction="0">
+        <DamageResponse Fatal="1" Handled="AP_DarkTemplarRecallDamageSet" ModifyFraction="0">
             <Chance value="1"/>
         </DamageResponse>
     </CBehaviorBuff>
@@ -3088,26 +3486,23 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-voidstasis.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <DisplayDuration index="Ally" value="1"/>
-        <DisplayDuration index="Enemy" value="1"/>
         <Duration value="10"/>
+        <InitialEffect value="AP_DarkTemplarVoidStasisDurationDummyAB"/>
+        <RefreshEffect value="AP_DarkTemplarVoidStasisDurationDummyAB"/>
+        <FinalEffect value="AP_DarkTemplarVoidStasisAttackableAB"/>
         <Modification>
             <StateFlags index="Stasis" value="1"/>
-            <StateFlags index="Stun" value="1"/>
-            <StateFlags index="SuppressAttack" value="1"/>
-            <StateFlags index="SuppressCloak" value="1"/>
-            <StateFlags index="SuppressDetection" value="1"/>
-            <StateFlags index="SuppressFoodMade" value="1"/>
-            <StateFlags index="SuppressRadar" value="1"/>
-            <StateFlags index="SuppressTech" value="1"/>
-            <AbilClassDisableArray index="CAbilAttack" value="1"/>
-            <AbilClassDisableArray index="CAbilWarpTrain" value="1"/>
-            <BehaviorClassDisableArray index="CBehaviorPowerSource" value="1"/>
-            <BehaviorClassDisableArray index="CBehaviorResource" value="1"/>
-            <BehaviorLinkDisableArray value="SalvageBunker"/>
-            <BehaviorLinkDisableArray value="SalvageShared"/>
-            <BehaviorLinkDisableArray value="SensorTowerRadar"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_RaszagalsRhythm">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-veilofshadowsvorazun.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Requirements value="AP_HaveArtanisNerazimAspectSelectedPassive"/>
+        <Duration value="5"/>
+        <Modification>
+            <DamageDealtUnscaled index="Melee" value="25"/>
+            <DamageDealtUnscaled index="Ranged" value="25"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_VoidDarkTemplarShadowFuryTargeted">
@@ -4897,6 +5292,19 @@
         <Alignment value="Positive"/>
         <BuffFlags index="Channeling" value="1"/>
         <RemoveValidatorArray value="ChargeTargetAttacked"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisCharging" parent="AP_Charging">
+        <InfoIcon value="AP\Assets\Textures\btn-ability-artanis-charge.dds"/>
+        <Modification MoveSpeedMultiplier="3"/>
+        <RemoveValidatorArray index="0" value="AP_ArtanisChargeTargetAttacked"/>
+        <RemoveValidatorArray value="AP_CasterNotHasArtanisBladeWaltzWalkSpeed"/>
+        <RemoveValidatorArray value="AP_CasterNotHasArtanisLightningDash"/>
+        <Tooltip value="Behavior/Tooltip/AP_ArtanisCharging"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ArtanisAiurAspectPassiveCharged">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="4.0000"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AP_ScopophobiaTarget">
         <InfoIcon value="Assets\Textures\btn-upgrade-afaidofthedark.dds"/>
@@ -7671,6 +8079,7 @@
             <ModifyFlags index="SuppressMoving" value="1"/>
             <ModifyFlags index="SuppressTurning" value="1"/>
             <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
             <StateFlags index="SuppressFoodMade" value="1"/>
             <StateFlags index="SuppressFoodUsed" value="1"/>
@@ -11235,5 +11644,79 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-protoss-adeptshieldupgrade.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Requirements value="AP_ProtossBuildingShields"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_AvengerCharge">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-hero-propheticvision.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="AP_AvengerChargeTargetAttacked"/>
+        <BuffFlags index="Channeling" value="1"/>
+        <Duration value="3.5"/>
+        <Modification MoveSpeedMultiplier="2.2">
+            <BehaviorLinkDisableArray value="AP_AvengerChargeMarker"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_AvengerChargeAttackspeed">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-hero-propheticvision.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="CasterIsAttacking"/>
+        <BuffFlags index="Channeling" value="1"/>
+        <Duration value="6"/>
+        <Modification AttackSpeedMultiplier="1.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_AvengerChargeMarker">
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DarkTemplarRecallArmor">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-adeptshieldupgrade.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification ShieldArmorBonus="3">
+            <LifeArmorBonus value="3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DarkTemplarRecallKillMarker">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DarkTemplarVoidStasisAttackable">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-voidstasis.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_DarkTemplarVoidStasisDurationDummy">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <DisplayDuration index="Enemy" value="1"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
+            <StateFlags index="SuppressCloak" value="1"/>
+            <StateFlags index="SuppressDetection" value="1"/>
+            <StateFlags index="SuppressFoodMade" value="1"/>
+            <StateFlags index="SuppressRadar" value="1"/>
+            <StateFlags index="SuppressTech" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <AbilClassDisableArray index="CAbilWarpTrain" value="1"/>
+            <BehaviorClassDisableArray index="CBehaviorPowerSource" value="1"/>
+            <BehaviorClassDisableArray index="CBehaviorResource" value="1"/>
+            <BehaviorLinkDisableArray value="SalvageBunker"/>
+            <BehaviorLinkDisableArray value="SalvageShared"/>
+            <BehaviorLinkDisableArray value="SensorTowerRadar"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_BloodHunterLifeSteal">
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-rangeweapon.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <InitialEffect value="AP_BloodHunterLifeStealSet"/>
+        <FinalEffect value="AP_BloodHunterLifeStealDestroySet"/>
     </CBehaviorBuff>
 </Catalog>
