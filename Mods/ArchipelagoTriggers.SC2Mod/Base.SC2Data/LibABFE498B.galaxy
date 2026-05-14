@@ -4190,10 +4190,7 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockGhostCriusSuit (int lp_player) {
 void libABFE498B_gf_AP_Triggers_Terran_unlockGhostEMPRounds (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_EMP", 0), true);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_GhostMengskEMPBig", 0), true);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_GhostMengskEMPLongStun", 0), true);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_GhostMengskEMPShortStun", 0), true);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_GhostEMPRounds", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Terran_unlockGhostLockdown (int lp_player) {
@@ -6047,10 +6044,6 @@ void libABFE498B_gf_AP_Triggers_clearTerranTech (int lp_player) {
     TechTreeUpgradeAllow(lp_player, "AP_TerranShipWeaponsUltraCapacitorsLevel3", false);
     TechTreeUpgradeAllow(lp_player, "AP_TerranShipWeaponsUltraCapacitorsLevel4", false);
     TechTreeUpgradeAllow(lp_player, "AP_TerranShipWeaponsUltraCapacitorsLevel5", false);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_EMP", 0), false);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_GhostMengskEMPBig", 0), false);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_GhostMengskEMPLongStun", 0), false);
-    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_GhostMengskEMPShortStun", 0), false);
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_UpgradeToPlanetaryFortress", 0), false);
 }
 

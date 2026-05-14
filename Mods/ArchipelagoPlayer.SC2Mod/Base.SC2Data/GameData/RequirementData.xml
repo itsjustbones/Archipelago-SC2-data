@@ -445,6 +445,10 @@
         <EditorCategories value="Race:Terran,TechType:Upgrade"/>
         <NodeArray index="Show" Link="AP_CountUpgradeOcularImplantsCompleteOnly"/>
     </CRequirement>
+    <CRequirement id="AP_HaveGhostEMPRounds">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="AP_CountUpgradeGhostEMPRoundsCompleteOnly"/>
+    </CRequirement>
     <CRequirement id="AP_PermanentCloakSpectreResearched">
         <EditorCategories value="Race:Terran,TechType:Upgrade"/>
         <NodeArray index="Show" Link="AP_CountUpgradePermanentCloakSpectreCompleteOnly"/>
@@ -4490,6 +4494,12 @@
     <CRequirement id="AP_ShowMengskVeterancyGhostMengskGELevel3">
         <NodeArray index="Show" Link="AP_GTECountBehaviorMengskVeterancyGhostMengskCompleteOnlyAtUnit3"/>
     </CRequirement>
+    <CRequirement id="AP_HaveGhostMengskEMPShortStun">
+        <NodeArray index="Show" Link="AP_HaveGhostMengskEMPShortStun"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveGhostMengskEMPLongStun">
+        <NodeArray index="Show" Link="AP_HaveGhostMengskEMPLongStun"/>
+    </CRequirement>
     <CRequirement id="AP_UseMengskVeterancyGhostMengskLTLevel3">
         <NodeArray index="Use" Link="AP_LTCountBehaviorMengskVeterancyGhostMengskCompleteOnlyAtUnit3"/>
     </CRequirement>
@@ -4560,16 +4570,10 @@
     <CRequirement id="AP_HaveGoliathMengskVeterancyLevel4">
         <NodeArray index="Use" Link="AP_GTECountBehaviorMengskVeterancyGoliathMengskCompleteOnlyAtUnit4"/>
     </CRequirement>
-    <CRequirement id="AP_HaveMedicMengskDoubleBeamHealNoMech">
+    <CRequirement id="AP_HaveMedicMengskDoubleBeamHeal">
         <NodeArray index="Show" Link="AP_GTECountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
     </CRequirement>
-    <CRequirement id="AP_HaveMedicMengskDoubleBeamHealAndMech">
-        <NodeArray index="Show" Link="AP_AndCountUpgradeAdaptiveMedPacksCompleteOnlyGTECountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
-    </CRequirement>
-    <CRequirement id="AP_HaveMedicMechAndNoMengskMedicDoubleBeam">
-        <NodeArray index="Show" Link="AP_AndCountUpgradeAdaptiveMedPacksCompleteOnlyLTCountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
-    </CRequirement>
-    <CRequirement id="AP_NotHaveMedicMengskDoubleBeamHealAndNoMech">
+    <CRequirement id="AP_NotHaveMedicMengskDoubleBeamHeal">
         <NodeArray index="Show" Link="AP_LTCountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
     </CRequirement>
     <CRequirement id="AP_HaveMedicMengskVeterancyLevel2">

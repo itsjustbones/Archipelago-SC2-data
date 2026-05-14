@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Catalog>
+    <CAccumulatorArithmetic id="AP_BaseMengskVeterancyDamageMultiplier">
+        <ApplicationRule value="Multiply"/>
+        <Parameters value="0">
+            <AccumulatorArray value="AP_BaseMengskVeterancyDamageFactor"/>
+        </Parameters>
+    </CAccumulatorArithmetic>
+    <CAccumulatorVeterancyLevel id="AP_BaseMengskVeterancyDamageFactor">
+        <Amount value="0.75"/>
+        <BonusPerLevel value="0.25"/>
+        <PreviousValueFactor value="1"/>
+    </CAccumulatorVeterancyLevel>
     <CAccumulatorVeterancyLevel id="AP_250mmStrikeCannonsDamage">
         <MinAccumulation value="0"/>
         <Amount value="-5"/>

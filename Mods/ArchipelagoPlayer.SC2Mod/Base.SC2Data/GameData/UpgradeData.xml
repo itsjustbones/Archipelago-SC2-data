@@ -2541,12 +2541,6 @@
         <EffectArray Reference="Weapon,AP_BrynhildAssaultAUpgraded,Range" Value="3"/>
         <EffectArray Reference="Weapon,AP_BrynhildAssaultG,Range" Value="1"/>
         <EffectArray Reference="Weapon,AP_BrynhildAssaultGUpgraded,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_GoliathMengskA,Range" Value="3"/>
-        <EffectArray Reference="Weapon,AP_GoliathMengskADisplay,Range" Value="3"/>
-        <EffectArray Reference="Weapon,AP_GoliathMengskAUpgraded,Range" Value="3"/>
-        <EffectArray Reference="Weapon,AP_GoliathMengskG,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_GoliathMengskGDisplay,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_GoliathMengskGUpgraded,Range" Value="1"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
     </CUpgrade>
     <CUpgrade id="AP_MultilockTargetingSystems">
@@ -2568,7 +2562,6 @@
     <CUpgrade id="AP_GoliathJumpJet">
         <EffectArray Operation="Set" Reference="Unit,AP_Goliath,Mover" Value="CliffJumper"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SpartanCompany,Mover" Value="CliffJumper"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_GoliathMengsk,Mover" Value="CliffJumper"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_Goliath"/>
         <AffectedUnitArray value="AP_SpartanCompany"/>
@@ -3602,8 +3595,6 @@
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengsk,LifeRegenRate" Value="0.601500"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSieged,LifeRegenDelay" Value="3.000000"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSieged,LifeRegenRate" Value="0.601500"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeRegenDelay" Value="3.000000"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeRegenRate" Value="0.601500"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengsk,LifeRegenDelay" Value="3.000000"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengsk,LifeRegenRate" Value="0.601500"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengskAP,LifeRegenDelay" Value="3.000000"/>
@@ -3720,8 +3711,6 @@
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengsk,LifeRegenRate" Value="2"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSieged,LifeRegenDelay" Value="3.000000"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSieged,LifeRegenRate" Value="2"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeRegenDelay" Value="3.000000"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeRegenRate" Value="2"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengsk,LifeRegenDelay" Value="3.000000"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengsk,LifeRegenRate" Value="2"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengskAP,LifeRegenDelay" Value="3.000000"/>
@@ -3839,8 +3828,6 @@
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengsk,LifeRegenRate" Value="10"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSieged,LifeRegenDelay" Value="2"/>
         <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSieged,LifeRegenRate" Value="10"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeRegenDelay" Value="2"/>
-        <EffectArray Operation="Set" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeRegenRate" Value="10"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengsk,LifeRegenDelay" Value="2"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengsk,LifeRegenRate" Value="10"/>
         <EffectArray Operation="Set" Reference="Unit,AP_ThorMengskAP,LifeRegenDelay" Value="2"/>
@@ -3864,8 +3851,10 @@
         <EffectArray Reference="Unit,AP_Raven,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_Ghost,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_GhostResourceEfficiency,EnergyStart" Value="100"/>
+        <EffectArray Reference="Unit,AP_GhostMengsk,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_Medic,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_MercMedic,EnergyStart" Value="100"/>
+        <EffectArray Reference="Unit,AP_MedicMengsk,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_Thor,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_ThorAP,EnergyStart" Value="100"/>
         <EffectArray Reference="Unit,AP_ThorBuild,EnergyStart" Value="100"/>
@@ -3890,8 +3879,10 @@
         <EffectArray Reference="Unit,AP_Raven,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_Ghost,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_GhostResourceEfficiency,EnergyMax" Value="100"/>
+        <EffectArray Reference="Unit,AP_GhostMengsk,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_Medic,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_MercMedic,EnergyMax" Value="100"/>
+        <EffectArray Reference="Unit,AP_MedicMengsk,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_Thor,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_ThorAP,EnergyMax" Value="100"/>
         <EffectArray Reference="Unit,AP_ThorBuild,EnergyMax" Value="100"/>
@@ -6603,11 +6594,6 @@
         <EffectArray Operation="Divide" Reference="Abil,AP_InfestedSiegeBreakerSiege,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_InfestedSiegeBreakerSiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_InfestedSiegeBreakerSiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_SiegeModeMengsk,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_SiegeModeMengsk,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_SiegeModeMengsk,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_SiegeModeMengsk,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_SiegeModeMengsk,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_Unsiege,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_Unsiege,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_Unsiege,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
@@ -6623,11 +6609,6 @@
         <EffectArray Operation="Divide" Reference="Abil,AP_InfestedSiegeBreakerUnsiege,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_InfestedSiegeBreakerUnsiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_InfestedSiegeBreakerUnsiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_UnsiegeMengsk,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_UnsiegeMengsk,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_UnsiegeMengsk,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_UnsiegeMengsk,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_UnsiegeMengsk,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
     </CUpgrade>
     <CUpgrade id="AP_MultiTaskMAFServosHellion">
@@ -6716,48 +6697,6 @@
         <EffectArray Operation="Divide" Reference="Abil,AP_MercThorAPMode,InfoArray[0].SectionArray[Facing].DurationArray[Duration]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_MercThorAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
         <EffectArray Operation="Divide" Reference="Abil,AP_MercThorAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalMode,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalMode,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalMode,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalMode,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalModeFollowedBySiege,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalModeFollowedBySiege,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalModeFollowedBySiege,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalModeFollowedBySiege,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalModeFollowedBySiege,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskNormalModeFollowedBySiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPMode,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPMode,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPMode,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPModeFromSiegeStage2,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPModeFromSiegeStage2,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPModeFromSiegeStage2,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPModeFromSiegeStage2,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPModeFromSiegeStage2,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskAPModeFromSiegeStage2,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskSiege,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskSiege,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskSiege,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskSiege,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskSiege,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskSiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiege,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiege,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiege,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiege,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiege,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiegeAPMode,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiegeAPMode,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiegeAPMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiegeAPMode,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiegeAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="4.000000"/>
-        <EffectArray Operation="Divide" Reference="Abil,AP_ThorMengskUnsiegeAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="4.000000"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
     </CUpgrade>
     <CUpgrade id="AP_MultiTaskMAFServosViking">
@@ -8070,26 +8009,11 @@
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSieged,SightBonus[Dawn]" Value="2"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSiegedTransportable,SightBonus[Dusk]" Value="2"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSiegedTransportable,SightBonus[Dawn]" Value="2"/>
-        <EffectArray Reference="Weapon,AP_SiegeTankMengsk,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_90mmCannonsMengskLookAt,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_SiegeTankMengskSieged,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_MedivacMengskSiegeTankAirlift,Range" Value="1"/>
-        <EffectArray Reference="Weapon,AP_SiegeTankMengsk,MinScanRange" Value="1"/>
-        <EffectArray Reference="Weapon,AP_90mmCannonsMengskLookAt,MinScanRange" Value="1"/>
-        <EffectArray Reference="Weapon,AP_SiegeTankMengskSieged,MinScanRange" Value="1"/>
-        <EffectArray Reference="Weapon,AP_MedivacMengskSiegeTankAirlift,MinScanRange" Value="1"/>
         <EffectArray Reference="Actor,AP_SiegeTankSieged_BlackOpsRange1,Range" Value="1"/>
         <EffectArray Reference="Actor,AP_SiegeTankSieged_BlackOpsRange2,Range" Value="1"/>
         <EffectArray Reference="Actor,AP_SiegeTankSieged_BlackOpsRange3,Range" Value="1"/>
         <EffectArray Reference="Actor,AP_SiegeTankSieged_BlackOpsRange4,Range" Value="1"/>
         <EffectArray Reference="Actor,AP_SiegeTankSieged_BlackOpsRange5,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankSieged_MengskRange1Boosted,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankSieged_MengskRange2Boosted,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankSieged_MengskRange3Boosted,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankSieged_MengskRange4Boosted,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankSieged_MengskRange5Boosted,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankMengskSiegeModeBonusRange,Range" Value="1"/>
-        <EffectArray Reference="Actor,AP_SiegeTankMengskSiegeModeRange,Range" Value="1"/>
     </CUpgrade>
     <CUpgrade id="AP_RaynorImprovedSiegeMode">
         <Flags index="UpgradeCheat" value="0"/>
@@ -8100,8 +8024,6 @@
         <EffectArray Reference="Unit,AP_SiegeBreakerSiegedTransportable,LifeArmor" Value="3"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSieged,LifeArmor" Value="3"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSiegedTransportable,LifeArmor" Value="3"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengskSieged,LifeArmor" Value="3"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeArmor" Value="3"/>
     </CUpgrade>
     <CUpgrade id="AP_VikingMagWeapon">
         <EffectArray Reference="Effect,AP_TwinGatlingCannons,AttributeBonus[Mechanical]" Value="8"/>
@@ -8165,6 +8087,9 @@
     </CUpgrade>
     <CUpgrade id="AP_GhostSCBWLockdownResearch">
         <Icon value="AP\Assets\Textures\btn-abilty-terran-lockdown@scbw.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_GhostEMPRounds">
+        <Icon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_MedicSCBWRestorationResearch">
         <Icon value="AP\Assets\Textures\btn-ability-terran-restoration@scbw.dds"/>
@@ -8289,7 +8214,6 @@
     <CUpgrade id="AP_ScienceVesselDefensiveMatrix"/>
     <CUpgrade id="AP_FastBuildMarine">
         <EffectArray Operation="Subtract" Reference="Abil,AP_BarracksTrain,InfoArray[Train1].Time" Value="17.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AP_EliteBarracksTrain,InfoArray[Train3].Time" Value="17.000000"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
     </CUpgrade>
     <CUpgrade id="AP_FastBuildLiberator">
@@ -8304,7 +8228,6 @@
     </CUpgrade>
     <CUpgrade id="AP_FastBuildGoliath">
         <EffectArray Operation="Subtract" Reference="Abil,AP_FactoryTrain,InfoArray[Train7].Time" Value="27.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AP_EliteFactoryTrain,InfoArray[Train3].Time" Value="27.000000"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
     </CUpgrade>
     <CUpgrade id="AP_FastBuildHellion">
@@ -11659,12 +11582,6 @@
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSieged,LifeMax" Value="25"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSiegedTransportable,LifeStart" Value="25"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreakerSiegedTransportable,LifeMax" Value="25"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengsk,LifeStart" Value="25"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengsk,LifeMax" Value="25"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengskSieged,LifeStart" Value="25"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengskSieged,LifeMax" Value="25"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeStart" Value="25"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeMax" Value="25"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_SiegeTank"/>
         <AffectedUnitArray value="AP_SiegeTankSieged"/>
@@ -11675,9 +11592,6 @@
         <AffectedUnitArray value="AP_InfestedSiegeBreaker"/>
         <AffectedUnitArray value="AP_InfestedSiegeBreakerSieged"/>
         <AffectedUnitArray value="AP_InfestedSiegeBreakerSiegedTransportable"/>
-        <AffectedUnitArray value="AP_SiegeTankMengsk"/>
-        <AffectedUnitArray value="AP_SiegeTankMengskSieged"/>
-        <AffectedUnitArray value="AP_SiegeTankMengskSiegedTransportable"/>
     </CUpgrade>
     <CUpgrade id="AP_ResourceEfficiencySiegeTank">
         <EffectArray Operation="Subtract" Reference="Unit,AP_SiegeTank,CostResource[Vespene]" Value="25"/>
@@ -11717,8 +11631,6 @@
         <EffectArray Reference="Unit,AP_Goliath,LifeMax" Value="25"/>
         <EffectArray Reference="Unit,AP_SpartanCompany,LifeStart" Value="25"/>
         <EffectArray Reference="Unit,AP_SpartanCompany,LifeMax" Value="25"/>
-        <EffectArray Reference="Unit,AP_GoliathMengsk,LifeStart" Value="25"/>
-        <EffectArray Reference="Unit,AP_GoliathMengsk,LifeMax" Value="25"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_Goliath"/>
         <AffectedUnitArray value="AP_SpartanCompany"/>
@@ -13950,7 +13862,6 @@
         <EffectArray Operation="Set" Reference="Abil,AP_SiegeMode,InfoArray[0].Unit" Value="AP_SiegeTankSiegedTransportable"/>
         <EffectArray Operation="Set" Reference="Abil,AP_SiegeBreakerSiege,InfoArray[0].Unit" Value="AP_SiegeBreakerSiegedTransportable"/>
         <EffectArray Operation="Set" Reference="Abil,AP_InfestedSiegeBreakerSiege,InfoArray[0].Unit" Value="AP_InfestedSiegeBreakerSiegedTransportable"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_SiegeModeMengsk,InfoArray[0].Unit" Value="AP_SiegeTankMengskSiegedTransportable"/>
     </CUpgrade>
     <CUpgrade id="AP_MedivacSiegeTankAirlift">
         <EffectArray Operation="Subtract" Reference="Weapon,AP_MedivacSiegeTankAirlift,Options[Hidden]" Value="1"/>
@@ -13985,13 +13896,11 @@
     <CUpgrade id="AP_ThorRapidReload">
         <EffectArray Operation="Multiply" Reference="Weapon,AP_ThorsHammer,Period" Value="0.663"/>
         <EffectArray Operation="Multiply" Reference="Weapon,AP_MercThorsHammer,Period" Value="0.663"/>
-        <EffectArray Operation="Multiply" Reference="Weapon,AP_ThorsHammerMengsk,Period" Value="0.663"/>
     </CUpgrade>
     <CUpgrade id="AP_SiegeTankEnhancedCombustionEngines">
         <EffectArray Reference="Unit,AP_SiegeTank,Speed" Value="0.375"/>
         <EffectArray Reference="Unit,AP_SiegeBreaker,Speed" Value="0.375"/>
         <EffectArray Reference="Unit,AP_InfestedSiegeBreaker,Speed" Value="0.375"/>
-        <EffectArray Reference="Unit,AP_SiegeTankMengsk,Speed" Value="0.375"/>
     </CUpgrade>
     <CUpgrade id="AP_SupplyDrop"/>
     <CUpgrade id="AP_ScannerSweep"/>
@@ -14555,8 +14464,6 @@
         <EffectArray Operation="Multiply" Reference="Unit,AP_SiegeTankMengsk,LifeStart" Value="1.2001"/>
         <EffectArray Operation="Multiply" Reference="Unit,AP_SiegeTankMengskSieged,LifeMax" Value="1.2001"/>
         <EffectArray Operation="Multiply" Reference="Unit,AP_SiegeTankMengskSieged,LifeStart" Value="1.2001"/>
-        <EffectArray Operation="Multiply" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeMax" Value="1.2001"/>
-        <EffectArray Operation="Multiply" Reference="Unit,AP_SiegeTankMengskSiegedTransportable,LifeStart" Value="1.2001"/>
         <!-- Blackhammer -->
         <EffectArray Operation="Multiply" Reference="Unit,AP_ThorMengsk,LifeMax" Value="1.2001"/>
         <EffectArray Operation="Multiply" Reference="Unit,AP_ThorMengsk,LifeStart" Value="1.2001"/>
@@ -14686,10 +14593,13 @@
         <EffectArray Reference="Weapon,AP_ThorMengskSieged,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_ThorsHammerMengsk,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_LanceMissileLaunchersMengsk,RateMultiplier" Value="0.15"/>
+        <EffectArray Reference="Weapon,AP_PunisherGrenadesMengsk,RateMultiplier" Value="0.15"/>
+        <EffectArray Reference="Weapon,AP_C10CanisterRifleMengsk,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_TrooperMengsk,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_TrooperMengskImproved,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_TrooperMengskRocket,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_TrooperMengskFlamethrower,RateMultiplier" Value="0.15"/>
+        <EffectArray Reference="Weapon,AP_GaussRifleMengsk,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_GoliathMengskA,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_GoliathMengskADisplay,RateMultiplier" Value="0.15"/>
         <EffectArray Reference="Weapon,AP_GoliathMengskAUpgraded,RateMultiplier" Value="0.15"/>
@@ -15149,6 +15059,10 @@
     <CUpgrade id="AP_GhostMengskGuidedStrike">
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <Icon value="Assets\Textures\btn-upgrade-mengsk-ghostacademy-guidedtacticalstrike.dds"/>
+    </CUpgrade>
+    <CUpgrade id="AP_GhostMengskEMPRounds">
+        <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
+        <Icon value="Assets\Textures\btn-ability-mengsk-ghost-staticempblast.dds"/>
     </CUpgrade>
     <CUpgrade id="AP_HaveGhostMengsk"/>
     <CUpgrade id="AP_TrooperMengskWeaponDrop">
