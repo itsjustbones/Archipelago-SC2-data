@@ -649,7 +649,7 @@ void libABFE498B_gf_AP_Triggers_unlockTerranArmory7 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Terran_unlockSCVCauterizer, //26
         libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterTacticalJump, //27
         libABFE498B_gf_AP_Triggers_Terran_unlockBunkerEmergencyProvisions, //28
-        ap_triggers_PlayerConsumer_sig //29
+        libABFE498B_gf_AP_Triggers_Terran_unlockEmperorsShadowEMPBlast //29
     );
 }
 
@@ -4169,12 +4169,6 @@ void libABFE498B_gf_AP_Triggers_Terran_prideOfAugustgradSpellcasterSetup (int lp
 
 }
 
-void libABFE498B_gf_AP_Triggers_Terran_unlockEmperorsShadowSovereignTacticalMissiles (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_GhostMengskGuidedStrike", 1);
-}
-
 void libABFE498B_gf_AP_Triggers_Terran_unlockGhostOcularImplants (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -4702,6 +4696,18 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockDominionTrooperOptimizedLogistics (
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_FastBuildTrooper", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockEmperorsShadowSovereignTacticalMissiles (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_GhostMengskGuidedStrike", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Terran_unlockEmperorsShadowEMPBlast (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_GhostMengskEMPRounds", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Terran_unlockHiveMindEmulatorZerg (int lp_player) {

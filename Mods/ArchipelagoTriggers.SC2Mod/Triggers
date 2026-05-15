@@ -3457,7 +3457,7 @@
                     libABFE498B_gf_AP_Triggers_Terran_unlockSCVCauterizer, //26
                     libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterTacticalJump, //27
                     libABFE498B_gf_AP_Triggers_Terran_unlockBunkerEmergencyProvisions, //28
-                    ap_triggers_PlayerConsumer_sig //29
+                    libABFE498B_gf_AP_Triggers_Terran_unlockEmperorsShadowEMPBlast //29
                 );
             </ScriptCode>
         </Element>
@@ -19195,6 +19195,7 @@
             <Item Type="Category" Library="ABFE498B" Id="AC2C746D"/>
             <Item Type="Category" Library="ABFE498B" Id="3E09CD6B"/>
             <Item Type="Category" Library="ABFE498B" Id="EEE1B6E5"/>
+            <Item Type="Category" Library="ABFE498B" Id="92776182"/>
         </Element>
         <Element Type="Category" Id="5EF49186">
             <Item Type="FunctionDef" Library="ABFE498B" Id="EC36AF20"/>
@@ -27420,52 +27421,12 @@
             <ValueType Type="int"/>
         </Element>
         <Element Type="Category" Id="71F60FF1">
-            <Item Type="Category" Library="ABFE498B" Id="92776182"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="1FC30E51"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="8301DBE3"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="A973FAB0"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="685C4DD9"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="05B3F28C"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="9FBF9479"/>
-        </Element>
-        <Element Type="Category" Id="92776182">
-            <Item Type="FunctionDef" Library="ABFE498B" Id="1F0E4304"/>
-        </Element>
-        <Element Type="FunctionDef" Id="1F0E4304">
-            <FlagAction/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="26C22B9D"/>
-        </Element>
-        <Element Type="ParamDef" Id="E7E4B0EB">
-            <ParameterType>
-                <Type Value="int"/>
-            </ParameterType>
-            <Default Type="Param" Library="ABFE498B" Id="62C4D7A8"/>
-        </Element>
-        <Element Type="Param" Id="62C4D7A8">
-            <Value>0</Value>
-            <ValueType Type="int"/>
-        </Element>
-        <Element Type="FunctionCall" Id="26C22B9D">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="C670E49A"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="3A5FFC45"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="9227A9A6"/>
-        </Element>
-        <Element Type="Param" Id="C670E49A">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
-        </Element>
-        <Element Type="Param" Id="3A5FFC45">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
-            <Value>1</Value>
-            <ValueType Type="int"/>
-        </Element>
-        <Element Type="Param" Id="9227A9A6">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
-            <Value>AP_GhostMengskGuidedStrike</Value>
-            <ValueType Type="gamelink"/>
-            <ValueGameType Type="Upgrade"/>
         </Element>
         <Element Type="FunctionDef" Id="1FC30E51">
             <FlagAction/>
@@ -31044,6 +31005,83 @@
         <Element Type="Param" Id="7A698A93">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
             <Value>AP_FastBuildTrooper</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="Category" Id="92776182">
+            <Item Type="FunctionDef" Library="ABFE498B" Id="1F0E4304"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="890E3FDA"/>
+        </Element>
+        <Element Type="FunctionDef" Id="1F0E4304">
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="26C22B9D"/>
+        </Element>
+        <Element Type="ParamDef" Id="E7E4B0EB">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="62C4D7A8"/>
+        </Element>
+        <Element Type="Param" Id="62C4D7A8">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="26C22B9D">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="C670E49A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="3A5FFC45"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="9227A9A6"/>
+        </Element>
+        <Element Type="Param" Id="C670E49A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
+        </Element>
+        <Element Type="Param" Id="3A5FFC45">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="9227A9A6">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_GhostMengskGuidedStrike</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="890E3FDA">
+            <Identifier>AP_Triggers_Terran_unlockEmperorsShadowEMPBlast</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="354765F9"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="8C869A50"/>
+        </Element>
+        <Element Type="ParamDef" Id="354765F9">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="D2F30651"/>
+        </Element>
+        <Element Type="Param" Id="D2F30651">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8C869A50">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="641DC5A2"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="0251E64A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="183AA954"/>
+        </Element>
+        <Element Type="Param" Id="641DC5A2">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="354765F9"/>
+        </Element>
+        <Element Type="Param" Id="0251E64A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="183AA954">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_GhostMengskEMPRounds</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Upgrade"/>
         </Element>
