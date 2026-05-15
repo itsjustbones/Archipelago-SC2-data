@@ -29740,6 +29740,7 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="AP_UnsiegeMengsk"/>
+        <AbilArray Link="AP_SiegeTankMengskSiegedTransportableMorph"/>
         <BehaviorArray Link="AP_MengskVeteranTrigger"/>
         <BehaviorArray Link="AP_MengskVeterancySiegeTankMengsk"/>
         <BehaviorArray Link="AP_SiegeTankMengskRangeBonus"/>
@@ -29787,6 +29788,11 @@
         <HotkeyAlias value="AP_SiegeTankMengsk"/>
         <SelectAlias value="AP_SiegeTankMengsk"/>
         <SubgroupAlias value="AP_SiegeTankMengsk"/>
+    </CUnit>
+    <CUnit id="AP_SiegeTankMengskSiegedTransportable" parent="AP_SiegeTankMengskSieged">
+        <AbilArray index="3" Link=""/>
+        <BehaviorArray Link="AP_SiegeTankTransportHookIndicator"/>
+        <CargoSize value="8"/>
     </CUnit>
     <CUnit id="AP_ThorMengsk">
         <DeathRevealRadius value="3"/>
@@ -30356,7 +30362,7 @@
             <LayoutButtons Face="AP_GhostMengskEMPLongStun" Type="AbilCmd" AbilCmd="AP_GhostMengskEMPLongStun,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_GhostMengskEMP" Type="AbilCmd" AbilCmd="AP_GhostMengskEMPShortStun,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_WeaponsFree" Type="AbilCmd" AbilCmd="AP_GhostWeaponsFree,Execute" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_GhostMengskGuidedStrike" Type="Passive" Requirements="AP_HaveGhostMengskGuidedStrike" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_GhostMengskGuidedStrike" Type="Passive" Requirements="AP_HaveGhostMengskGuidedStrike" Row="1" Column="1"/>
             <LayoutButtons Face="AP_GhostMengskSuperCloak" Type="AbilCmd" AbilCmd="AP_GhostMengskSuperCloak,Execute" Row="2" Column="2"/>
         </CardLayouts>
         <InnerRadius value="0.5"/>

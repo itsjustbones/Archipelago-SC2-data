@@ -13040,6 +13040,12 @@
         <Flags index="IgnoreUnitCost" value="1"/>
         <InfoArray Unit="AP_InfestedSiegeBreakerSiegedTransportable"/>
     </CAbilMorph>
+    <CAbilMorph id="AP_SiegeTankMengskSiegedTransportableMorph">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SiegeTankSieged" Requirements="AP_HaveSiegeTankTransportHook"/>
+        <Flags index="Automatic" value="1"/>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <InfoArray Unit="AP_SiegeTankMengskSiegedTransportable"/>
+    </CAbilMorph>
     <CAbilMorph id="AP_ReaperResourceEfficiencyMorph">
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_Reaper" Requirements="AP_HaveResourceEfficiencyReaper"/>
         <Flags index="Automatic" value="1"/>
@@ -14402,7 +14408,6 @@
             <SectionArray index="Stats">
                 <DurationArray index="Delay" value="0.5"/>
                 <DurationArray index="Duration" value="3.5417"/>
-                <EffectArray index="Finish" value="AP_SiegeTankSiegeModeProgressiveRangeInceaseAB"/>
             </SectionArray>
         </InfoArray>
     </CAbilMorph>
