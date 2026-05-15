@@ -299,6 +299,13 @@
         <SearchFilters value="Ground;Self,Player,Ally,Massive,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AreaArray Radius="1" Effect="AP_BansheeMengskSlow"/>
     </CEffectEnumArea>
+    <CEffectEnumArea id="AP_MarauderMengskSlowAOE">
+        <ValidatorArray value="AP_PunisherGrenadesResearched"/>
+        <EditorCategories value="Race:Terran"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Massive,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1" Effect="AP_MarauderMengskShrapnelSlowAB"/>
+    </CEffectEnumArea>
     <CEffectLaunchMissile id="AP_PunisherGrenadesLM">
         <EditorCategories value="Race:Terran"/>
         <ImpactEffect value="AP_PunisherGrenadesSet"/>
@@ -22980,6 +22987,13 @@
         <EffectArray value="AP_PunisherGrenadesMengskU"/>
         <EffectArray value="AP_MarauderMengskShrapnelSet"/>
     </CEffectSet>
+    <CEffectApplyBehavior id="AP_PunisherGrenadesMengskSlow">
+        <ValidatorArray index="0" value="AP_PunisherGrenadesResearched"/>
+        <ValidatorArray value="NotStructure"/>
+        <ValidatorArray value="NotFrenzied"/>
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="AP_MarauderMengskShrapnelSlow"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="AP_PunisherGrenadesMengskU" parent="DU_WEAP">
         <EditorCategories value="Race:Terran"/>
         <AttributeFactor index="Armored" value="1"/>

@@ -1127,7 +1127,7 @@
         <On Terms="UnitDeath" Target="::actor.AP_InfestedSiegeBreakerSieged" Send="Signal Dead"/>
         <On Terms="UnitDeath" Target="::actor.AP_SiegeTankMengskSieged" Send="Signal Dead"/>
         <On Terms="Signal.*.AP_SiegeTankMengskSiegedTransit" Send="RefSetFromMsg ::actor.AP_SiegeTankMengskSieged ::Sender"/>
-        <On Terms="AbilTransport.AP_MedivacTransport.PassengerKilled; AbilTransport AP_SiegeTankMengskSiegedTransportable" Target="::actor.AP_SiegeTankMengskSieged" Send="Signal Dead"/>
+        <On Terms="AbilTransport.AP_MedivacTransport.PassengerKilled; AbilTransport AP_SiegeTankMengskSiegedTransportable" Target="::actor.AP_SiegeBreakerSieged" Send="Signal Dead"/>
         <On Terms="UnitDeath" Target="::actor.AP_SiegeTankMengskSieged" Send="Signal Dead"/>
         <On Terms="Signal.*.AP_BlackOpsTank" Target="AP_SiegeTankLoadTransit" Send="Signal AP_BlackOpsTank"/>
         <On Terms="Signal.*.AP_BlackOpsTank" Target="AP_SiegeBreakerLoadTransit" Send="Signal AP_BlackOpsTank"/>
@@ -41709,6 +41709,52 @@
     <CActorSiteOpLocalOffset id="AP_SiegeTankMengskSiegedCargoSOpOffset">
         <LocalOffset value="0.000000,0.000000,-1.500000"/>
     </CActorSiteOpLocalOffset>
+    <CActorAction id="AP_MedivacMengskSiegeTankAirliftImprovedAoEAttackDirected" parent="GenericAttack" effectAttack="AP_MedivacMengskSiegeTankAirliftDirected">
+        <LaunchAssets Model="AP_SiegeTankMengskSiegedAttackDirectedLaunch" Sound="SiegeTank_SiegedAttackLaunch"/>
+        <LaunchModel value="AP_MedivacMengskSiegeTankAirliftAttackLaunchModel"/>
+        <Beam value="AP_MedivacMengskSiegeTankAirliftAttackDirectedBeam"/>
+        <Missile value="AP_MedivacMengskSiegeTankAirliftAttackDirectedMissile"/>
+        <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOpForwardLaunchGuide"/>
+        <ImpactMap index="None" Model="AP_SiegeTankMengskSiegedAttackDirectedImpact" Sound="SiegeTank_SiegedAttackImpact" ModelReaction="MedivacMengskSiegeTankAirliftAttackDirectedImpactReaction"/>
+        <ImpactMap index="Shield" Sound="AP_MedivacMengskSiegeTankAirliftAttackDirectedImpactShield" ModelReaction="AP_MedivacMengskSiegeTankAirliftAttackDirectedImpactReactionShield"/>
+        <ImpactPhysics Name="Explosion" MatchKeys="Basic" Physics="SiegeTankSiegedForce"/>
+        <DamageMap index="None" Model="AP_SiegeTankMengskSiegedAttackDirectedDamage" Sound="AP_MedivacMengskSiegeTankAirliftAttackDirectedDamage" ModelReaction="AP_MedivacMengskSiegeTankAirliftAttackDirectedDamageReaction"/>
+        <DamageMap index="Shield" Sound="AP_MedivacMengskSiegeTankAirliftAttackDirectedDamageShield" ModelReaction="AP_MedivacMengskSiegeTankAirliftAttackDirectedDamageReactionShield"/>
+        <DamageModel value="AP_MedivacMengskSiegeTankAirliftAttackDamageModel"/>
+        <ShieldFlashType value="Header"/>
+    </CActorAction>
+    <CActorSite id="AP_MedivacMengskSiegeTankAirliftAttackSite">
+        <Host Subject="AP_SiegeTankMengskSiegedTransit"/>
+    </CActorSite>
+    <CActorModel id="AP_MedivacMengskSiegeTankAirliftAttackLaunchModel" parent="GenericAttackModel">
+        <Host Subject="AP_SiegeTankMengskSiegedTransit"/>
+    </CActorModel>
+    <CActorAction id="AP_MedivacMengskSiegeTankAirliftImprovedAoESiegedAttack" parent="GenericAttack" effectAttack="AP_MedivacMengskSiegeTankAirliftImprovedAoEBlast">
+        <LaunchAssets Model="AP_SiegeTankMengskSiegedAttackLaunch" Sound="SiegeTank_SiegedAttackLaunch"/>
+        <LaunchModel value="AP_MedivacMengskSiegeTankAirliftAttackLaunchModel"/>
+        <Beam value="AP_MedivacMengskSiegeTankAirliftSiegedAttackBeam"/>
+        <Missile value="AP_MedivacMengskSiegeTankAirliftSiegedAttackMissile"/>
+        <ImpactMap index="None" Model="AP_SiegeTankMengskSiegedAttackAirImprovedAoEImpact" Sound="SiegeTank_SiegedAttackImpact" ModelReaction="AP_MedivacMengskSiegeTankAirliftSiegedAttackImpactReaction"/>
+        <ImpactMap index="Shield" Sound="AP_MedivacMengskSiegeTankAirliftSiegedAttackImpactShield" ModelReaction="AP_MedivacMengskSiegeTankAirliftSiegedAttackImpactReactionShield"/>
+        <ImpactPhysics Name="Explosion" MatchKeys="Basic" Physics="SiegeTankSiegedForce"/>
+        <DamageSiteOps Ops="SOpAttachHarness"/>
+        <DamageMap index="None" Model="AP_SiegeTankMengskSiegedAttackDamage" Sound="AP_MedivacMengskSiegeTankAirliftSiegedAttackDamage" ModelReaction="AP_MedivacMengskSiegeTankAirliftSiegedAttackDamageReaction"/>
+        <DamageMap index="Shield" Sound="AP_MedivacMengskSiegeTankAirliftSiegedAttackDamageShield" ModelReaction="AP_MedivacMengskSiegeTankAirliftSiegedAttackDamageReactionShield"/>
+        <DamageModel value="AP_MedivacMengskSiegeTankAirliftAttackDamageModel"/>
+        <ShieldFlashType value="Full"/>
+        <ImpactSiteOps Ops="SOpAttachCenterStationary" HoldPosition="1" HoldRotation="1"/>
+    </CActorAction>
+    <CActorAction id="AP_MedivacMengskSiegeTankAirliftSiegedAttack" parent="GenericAttack" effectAttack="AP_MedivacMengskSiegeTankAirliftBlast">
+        <LaunchAssets Model="AP_SiegeTankMengskSiegedAttackLaunch" Sound="SiegeTank_SiegedAttackLaunch"/>
+        <ImpactMap index="None" Model="AP_SiegeTankMengskSiegedAttackAirImpact" Sound="SiegeTank_SiegedAttackImpact"/>
+        <ImpactPhysics Name="Explosion" MatchKeys="Basic" Physics="SiegeTankSiegedForce"/>
+        <DamageSiteOps Ops="SOpAttachHarness"/>
+        <DamageMap index="None" Model="AP_SiegeTankMengskSiegedAttackDamage"/>
+        <DamageModel value="AP_MedivacMengskSiegeTankAirliftAttackDamageModel"/>
+        <ShieldFlashType value="Full"/>
+        <LaunchModel value="AP_MedivacMengskSiegeTankAirliftAttackLaunchModel"/>
+        <ImpactSiteOps Ops="SOpAttachCenterStationary" HoldPosition="1" HoldRotation="1"/>
+    </CActorAction>
     <CActorModel id="AP_FactoryMengskBuild" parent="TerranBuildingBuild"/>
     <CActorUnit id="AP_FactoryMengsk" parent="TerranBuildingFlyerEx" unitName="AP_FactoryMengsk">
         <On Terms="UnitDeathCustomize.AP_FactoryMengskFlying" Send="DeathCustomize Flying"/>
