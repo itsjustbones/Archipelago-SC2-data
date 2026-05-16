@@ -29681,7 +29681,8 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_SiegeModeMengsk" Type="AbilCmd" AbilCmd="AP_SiegeModeMengsk,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SiegeTankMengskVeterancy" Type="Passive" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_SiegeTankMengskStun" Type="Passive" Requirements="AP_HaveMengskVeterancySiegeTankMengskGELevel2TankMode" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_SiegeTankMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_SiegeTankMengskStun" Type="Passive" Requirements="AP_HaveMengskVeterancySiegeTankMengskGELevel2TankMode" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="0.875"/>
         <SeparationRadius value="1"/>
@@ -29757,7 +29758,8 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_UnsiegeMengsk" Type="AbilCmd" AbilCmd="AP_UnsiegeMengsk,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_SiegeTankMengskVeterancy" Type="Passive" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_SiegeTankMengskStun" Type="Passive" Requirements="AP_HaveMengskVeterancySiegeTankMengskGELevel2" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_SiegeTankMengskSiegedCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_SiegeTankMengskStun" Type="Passive" Requirements="AP_HaveMengskVeterancySiegeTankMengskGELevel2" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="0.875"/>
         <SeparationRadius value="1"/>
@@ -29814,9 +29816,6 @@
         <LifeMax value="600"/>
         <LifeArmor value="3"/>
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
-        <EnergyStart value="50"/>
-        <EnergyMax value="200"/>
-        <EnergyRegenRate value="1.125"/>
         <Speed value="1.875"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
@@ -29858,6 +29857,7 @@
             <LayoutButtons Face="AP_ThorMengskSiege" Type="AbilCmd" AbilCmd="AP_ThorMengskSiegeTargeted,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AP_ThorMengskAPMode,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="AP_ThorMengskVeterancy" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ThorMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -29906,9 +29906,6 @@
         <LifeMax value="600"/>
         <LifeArmor value="3"/>
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
-        <EnergyStart value="50"/>
-        <EnergyMax value="200"/>
-        <EnergyRegenRate value="1.125"/>
         <Speed value="1.875"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
@@ -30028,9 +30025,6 @@
         <LifeMax value="600"/>
         <LifeArmor value="3"/>
         <LifeArmorName value="Unit/LifeArmorName/TerranVehiclePlating"/>
-        <EnergyStart value="50"/>
-        <EnergyMax value="200"/>
-        <EnergyRegenRate value="1.125"/>
         <Acceleration value="1000"/>
         <LateralAcceleration value="46.0625"/>
         <TurningRate value="360"/>
@@ -30063,6 +30057,7 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_ExplosiveMode" Type="AbilCmd" AbilCmd="AP_ThorMengskUnsiege,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_ThorMengskVeterancy" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ThorMengskSiegedCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="1"/>
         <SeparationRadius value="1"/>
@@ -30221,15 +30216,16 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="AP_MarauderMengskAttackSpeedBoost" Type="AbilCmd" AbilCmd="AP_MarauderMengskAttackSpeedBoost,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_MarauderMengskVeterancy" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_MarauderMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
             <LayoutButtons>
                 <Face value="AP_MarauderMengskShield"/>
                 <Type value="Passive"/>
                 <Behavior value="AP_MarauderMengskAbsorbReapplicator"/>
                 <Requirements value="AP_HaveMarauderMengskAbsorbReapplicator"/>
                 <Row value="1"/>
-                <Column value="1"/>
+                <Column value="2"/>
             </LayoutButtons>
-            <LayoutButtons Face="AP_MarauderMengskShield" Type="Passive" Requirements="AP_HaveMengskVeterancyMarauderMengskGELevel2" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_MarauderMengskShield" Type="Passive" Requirements="AP_HaveMengskVeterancyMarauderMengskGELevel2" Row="1" Column="2"/>
         </CardLayouts>
         <Radius value="0.5625"/>
         <InnerRadius value="0.375"/>
@@ -30352,7 +30348,7 @@
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="AP_GhostHoldFire" Type="AbilCmd" AbilCmd="AP_GhostHoldFire,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_GhostHoldFire" Type="AbilCmd" AbilCmd="AP_GhostHoldFire,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AP_GhostMengskVeterancy" Type="Passive" Row="1" Column="0"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="GhostMengskNuke,255" Row="2" Column="4"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
@@ -30361,8 +30357,9 @@
             <LayoutButtons Face="AP_NukeCalldownMengsk" Type="AbilCmd" AbilCmd="AP_GhostMengskNuke,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="AP_GhostMengskEMPLongStun" Type="AbilCmd" AbilCmd="AP_GhostMengskEMPLongStun,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_GhostMengskEMP" Type="AbilCmd" AbilCmd="AP_GhostMengskEMPShortStun,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_WeaponsFree" Type="AbilCmd" AbilCmd="AP_GhostWeaponsFree,Execute" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_GhostMengskGuidedStrike" Type="Passive" Requirements="AP_HaveGhostMengskGuidedStrike" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_WeaponsFree" Type="AbilCmd" AbilCmd="AP_GhostWeaponsFree,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AP_GhostMengskGuidedStrike" Type="Passive" Requirements="AP_HaveGhostMengskGuidedStrike" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_GhostMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
             <LayoutButtons Face="AP_GhostMengskSuperCloak" Type="AbilCmd" AbilCmd="AP_GhostMengskSuperCloak,Execute" Row="2" Column="2"/>
         </CardLayouts>
         <InnerRadius value="0.5"/>
@@ -30847,8 +30844,9 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_SpiderMine" Type="AbilCmd" AbilCmd="AP_MarineMengskSpiderMines,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_LeadFarmer" Type="Passive" Requirements="AP_HaveMarineMengskVeterancyLevel4" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_LeadFarmer" Type="Passive" Requirements="AP_HaveMarineMengskVeterancyLevel4" Row="1" Column="2"/>
             <LayoutButtons Face="AP_MarineMengskVeterancy" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_MarineMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
@@ -30943,9 +30941,10 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_GoliathMengskJump" Type="AbilCmd" AbilCmd="AP_GoliathMengskJump,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_GoliathMengskMultilock" Type="Passive" Requirements="AP_HaveGoliathMengskVeterancyLevel3" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_NovaUnitLockdown" Type="Passive" Requirements="AP_HaveGoliathMengskVeterancyLevel4" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_GoliathMengskMultilock" Type="Passive" Requirements="AP_HaveGoliathMengskVeterancyLevel3" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_NovaUnitLockdown" Type="Passive" Requirements="AP_HaveGoliathMengskVeterancyLevel4" Row="1" Column="3"/>
             <LayoutButtons Face="AP_GoliathMengskVeterancy" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_GoliathMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="0.6875"/>
         <InnerRadius value="0.5"/>
@@ -31032,6 +31031,7 @@
             <LayoutButtons Face="AP_IrradiateMedicMengsk" Type="AbilCmd" AbilCmd="AP_IrradiateMedicMengsk,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_ScienceVesselSCBWDefensiveMatrix" Type="AbilCmd" AbilCmd="AP_MedicMengskDefensiveMatrix,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="AP_MedicMengskVeterancy" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_MedicMengskCombatDiagnosis" Type="Passive" Row="1" Column="1"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
