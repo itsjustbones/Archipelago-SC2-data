@@ -4940,6 +4940,15 @@
     <CValidatorCombine id="AP_WildMutationOverlord">
         <CombineArray value="IsOverlord"/>
     </CValidatorCombine>
+    <CValidatorCombine id="AP_WildMutationOwnedBiological">
+        <Type value="And"/>
+        <CombineArray value="AP_OwnedBySelf"/>
+        <CombineArray value="AP_IsBiological"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_WildMutationTarget">
+        <CombineArray value="RequiresZerg"/>
+        <CombineArray value="AP_WildMutationOwnedBiological"/>
+    </CValidatorCombine>
     <CValidatorPlayerRequirement id="AP_HaveK5GasBonuses">
         <Value value="AP_HaveK5GasBonuses"/>
         <Find value="1"/>

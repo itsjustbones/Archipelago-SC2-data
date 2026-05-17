@@ -17252,11 +17252,16 @@
     <CEffectApplyBehavior id="AP_WildMutation">
         <EditorCategories value="Race:Zerg"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_WildMutationKerrigan">
+        <ValidatorArray value="AP_WildMutationTarget"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="AP_WildMutation"/>
+    </CEffectApplyBehavior>
     <CEffectEnumArea id="AP_WildMutationSearch">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
-        <SearchFilters value="Biological;Enemy,Structure,Heroic,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.75" Effect="AP_WildMutation"/>
+        <SearchFilters value="-;Enemy,Structure,Heroic,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.75" Effect="AP_WildMutationKerrigan"/>
     </CEffectEnumArea>
     <CEffectSet id="AP_WildMutationSet">
         <EditorCategories value="Race:Zerg"/>
