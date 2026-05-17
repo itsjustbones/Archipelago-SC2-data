@@ -161,6 +161,12 @@ bool gv_midMusicCompleted;
 sound gv_victoryStinger;
 sound gv_victoryNarudDeath;
 unit gv_victoryStukov;
+int gv_apHeroChoiceScreen;
+int[4] gv_apHeroChoicePanel;
+int[4] gv_apHeroChoiceButton;
+int[4] gv_apHeroChoiceBit;
+int gv_apHeroChoiceCount;
+int gv_apRemovedHeroBit;
 
 void InitGlobals () {
     int init_i;
@@ -200,6 +206,12 @@ void InitGlobals () {
     gv_cinematicHiddenUnits = UnitGroupEmpty();
     gv_cinematicTempUnits = UnitGroupEmpty();
     gv_startingBase = UnitGroupEmpty();
+    gv_apHeroChoiceScreen = c_invalidDialogId;
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        gv_apHeroChoicePanel[init_i] = c_invalidDialogId;
+        gv_apHeroChoiceButton[init_i] = c_invalidDialogControlId;
+        gv_apHeroChoiceBit[init_i] = 0;
+    }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -216,6 +228,17 @@ void gf_SpawnHybridforTemple (point lp_spawnPoint, point lp_templePoint);
 void gf_CreatePingforHybrid (unit lp_hybrid);
 void gf_CreatePingforTemple (region lp_templeRegion);
 void gf_KillTemple (point lp_templePoint);
+int gf_AP_HeroChoiceGetPresence ();
+void gf_AP_HeroChoiceSetPresence (int lp_presence);
+bool gf_AP_HeroChoiceHasBit (int lp_presence, int lp_bit);
+text gf_AP_HeroChoiceName (int lp_heroBit);
+void gf_AP_HeroChoiceRemoveHero (int lp_heroBit);
+void gf_AP_HeroChoiceHideExistingHeroes ();
+void gf_AP_HeroChoiceClose ();
+void gf_AP_HeroChoiceCreatePanel (int lp_slot, int lp_heroBit, fixed lp_offset);
+bool gf_AP_HeroChoiceOffer ();
+bool gt_APHeroChoiceClicked_Func (bool testConds, bool runActions);
+void gt_APHeroChoiceClicked_Init ();
 
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
@@ -327,6 +350,7 @@ trigger gt_IntroCinematicEnd;
 trigger gt_IntroCleanup;
 trigger gt_IntroAttacks;
 trigger gt_IntroMusic;
+trigger gt_APHeroChoiceClicked;
 trigger gt_MidQ;
 trigger gt_MidSetup;
 trigger gt_MidCinematic;
@@ -347,6 +371,220 @@ trigger gt_VictoryKillNarud;
 //--------------------------------------------------------------------------------------------------
 // Global Functions
 //--------------------------------------------------------------------------------------------------
+int gf_AP_HeroChoiceGetPresence () {
+    // Automatic Variable Declarations
+    // Implementation
+    return libABFE498B_gv_aP_Triggers_Option_HeroPresence;
+}
+
+void gf_AP_HeroChoiceSetPresence (int lp_presence) {
+    // Automatic Variable Declarations
+    // Implementation
+    libABFE498B_gv_aP_Triggers_Option_HeroPresence = lp_presence;
+}
+
+bool gf_AP_HeroChoiceHasBit (int lp_presence, int lp_bit) {
+    // Automatic Variable Declarations
+    int lv_shifted;
+
+    // Implementation
+    lv_shifted = (lp_presence / lp_bit);
+    return ((lv_shifted - ((lv_shifted / 2) * 2)) == 1);
+}
+
+text gf_AP_HeroChoiceName (int lp_heroBit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_heroBit == 1)) {
+        return StringToText("Kerrigan");
+    }
+    else if ((lp_heroBit == 2)) {
+        return StringToText("Nova");
+    }
+    else if ((lp_heroBit == 4)) {
+        return StringToText("Artanis");
+    }
+    return StringToText("Unknown Hero");
+}
+
+void gf_AP_HeroChoiceRemoveHero (int lp_heroBit) {
+    // Automatic Variable Declarations
+    int lv_presence;
+
+    // Implementation
+    if ((lp_heroBit == 0)) {
+        return ;
+    }
+
+    gv_apRemovedHeroBit = lp_heroBit;
+    lv_presence = gf_AP_HeroChoiceGetPresence();
+    if ((gf_AP_HeroChoiceHasBit(lv_presence, lp_heroBit) == false)) {
+        return ;
+    }
+
+    gf_AP_HeroChoiceSetPresence((lv_presence - lp_heroBit));
+}
+
+void gf_AP_HeroChoiceHideExistingHeroes () {
+    // Variable Declarations
+    int lv_index;
+    unit lv_hero;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_index = 1;
+    for ( ; lv_index <= 3; lv_index += 1 ) {
+        lv_hero = libABFE498B_gv_aP_Triggers_HeroUnit[lv_index];
+        if ((UnitIsValid(lv_hero) == true)) {
+            libABFE498B_gf_AP_Triggers_HeroHide(lv_hero);
+        }
+    }
+    if ((UnitIsValid(gv_kerrigan) == true)) {
+        libABFE498B_gf_AP_Triggers_HeroHide(gv_kerrigan);
+    }
+}
+
+void gf_AP_HeroChoiceClose () {
+    // Variable Declarations
+    int lv_i;
+
+    // Variable Initialization
+
+    // Implementation
+    if ((gv_apHeroChoiceScreen != c_invalidDialogId)) {
+        DialogDestroy(gv_apHeroChoiceScreen);
+    }
+    gv_apHeroChoiceScreen = c_invalidDialogId;
+    lv_i = 1;
+    for ( ; lv_i <= 3; lv_i += 1 ) {
+        if ((gv_apHeroChoicePanel[lv_i] != c_invalidDialogId)) {
+            DialogDestroy(gv_apHeroChoicePanel[lv_i]);
+        }
+        gv_apHeroChoicePanel[lv_i] = c_invalidDialogId;
+        gv_apHeroChoiceButton[lv_i] = c_invalidDialogControlId;
+        gv_apHeroChoiceBit[lv_i] = 0;
+    }
+    gv_apHeroChoiceCount = 0;
+    GameSetGlobalTimeScale(1.0);
+    AITimePause(false);
+}
+
+void gf_AP_HeroChoiceCreatePanel (int lp_slot, int lp_heroBit, fixed lp_offset) {
+    // Automatic Variable Declarations
+    // Implementation
+    gv_apHeroChoiceBit[lp_slot] = lp_heroBit;
+    DialogCreate(260, 170, c_anchorCenter, FixedToInt(lp_offset), 0, true);
+    DialogSetRenderPriority(DialogLastCreated(), 105);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    gv_apHeroChoicePanel[lp_slot] = DialogLastCreated();
+    libNtve_gf_CreateDialogItemImage(gv_apHeroChoicePanel[lp_slot], 260, 170, c_anchorCenter, 0, 0, StringToText(""), "Assets\\Textures\\hud_btn_bg_ability_blank.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
+    libNtve_gf_CreateDialogItemLabel(gv_apHeroChoicePanel[lp_slot], 220, 45, c_anchorTop, 0, 24, gf_AP_HeroChoiceName(lp_heroBit), ColorWithAlpha(0,0,0,0), true, 1.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ABChoiceRewardsTitle", PlayerGroupAll());
+    libNtve_gf_CreateDialogItemButton(gv_apHeroChoicePanel[lp_slot], 210, 55, c_anchorBottom, 0, 24, StringToText(""), (StringToText("Remove ") + gf_AP_HeroChoiceName(lp_heroBit)), "");
+    gv_apHeroChoiceButton[lp_slot] = DialogControlLastCreated();
+}
+
+bool gf_AP_HeroChoiceOffer () {
+    // Variable Declarations
+    int lv_presence;
+    int lv_slot;
+
+    // Variable Initialization
+    lv_presence = gf_AP_HeroChoiceGetPresence();
+
+    // Implementation
+    if ((lv_presence == 0)) {
+        return false;
+    }
+
+    gv_apHeroChoiceCount = 0;
+    if ((gf_AP_HeroChoiceHasBit(lv_presence, 1) == true)) {
+        gv_apHeroChoiceCount += 1;
+        gv_apHeroChoiceBit[gv_apHeroChoiceCount] = 1;
+    }
+    if ((gf_AP_HeroChoiceHasBit(lv_presence, 2) == true)) {
+        gv_apHeroChoiceCount += 1;
+        gv_apHeroChoiceBit[gv_apHeroChoiceCount] = 2;
+    }
+    if ((gf_AP_HeroChoiceHasBit(lv_presence, 4) == true)) {
+        gv_apHeroChoiceCount += 1;
+        gv_apHeroChoiceBit[gv_apHeroChoiceCount] = 4;
+    }
+
+    if ((gv_apHeroChoiceCount == 0)) {
+        return false;
+    }
+    if ((gv_apHeroChoiceCount == 1)) {
+        gf_AP_HeroChoiceRemoveHero(gv_apHeroChoiceBit[1]);
+        gf_AP_HeroChoiceHideExistingHeroes();
+        return false;
+    }
+
+    DialogCreate(1800, 1100, c_anchorCenter, 0, 0, true);
+    DialogSetRenderPriority(DialogLastCreated(), 100);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    DialogSetFullscreen(DialogLastCreated(), true);
+    DialogSetTitle(DialogLastCreated(), StringToText("Choose a hero to remove from this mission"));
+    gv_apHeroChoiceScreen = DialogLastCreated();
+    GameSetGlobalTimeScale(0.02);
+    AITimePause(true);
+
+    lv_slot = 1;
+    for ( ; lv_slot <= gv_apHeroChoiceCount; lv_slot += 1 ) {
+        if ((gv_apHeroChoiceCount == 2)) {
+            gf_AP_HeroChoiceCreatePanel(lv_slot, gv_apHeroChoiceBit[lv_slot], ((lv_slot * 340.0) - 510.0));
+        }
+        else {
+            gf_AP_HeroChoiceCreatePanel(lv_slot, gv_apHeroChoiceBit[lv_slot], ((lv_slot * 260.0) - 520.0));
+        }
+    }
+    return true;
+}
+
+bool gt_APHeroChoiceClicked_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int autoClicked_val;
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControlEventType() == c_triggerControlEventTypeClick))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoClicked_val = EventDialogControl();
+    if ((autoClicked_val == gv_apHeroChoiceButton[1])) {
+        gf_AP_HeroChoiceRemoveHero(gv_apHeroChoiceBit[1]);
+        gf_AP_HeroChoiceHideExistingHeroes();
+        gf_AP_HeroChoiceClose();
+        TriggerExecute(gt_MidQ, true, false);
+    }
+    else if ((autoClicked_val == gv_apHeroChoiceButton[2])) {
+        gf_AP_HeroChoiceRemoveHero(gv_apHeroChoiceBit[2]);
+        gf_AP_HeroChoiceHideExistingHeroes();
+        gf_AP_HeroChoiceClose();
+        TriggerExecute(gt_MidQ, true, false);
+    }
+    else if ((autoClicked_val == gv_apHeroChoiceButton[3])) {
+        gf_AP_HeroChoiceRemoveHero(gv_apHeroChoiceBit[3]);
+        gf_AP_HeroChoiceHideExistingHeroes();
+        gf_AP_HeroChoiceClose();
+        TriggerExecute(gt_MidQ, true, false);
+    }
+    return true;
+}
+
+void gt_APHeroChoiceClicked_Init () {
+    gt_APHeroChoiceClicked = TriggerCreate("gt_APHeroChoiceClicked_Func");
+    TriggerAddEventDialogControl(gt_APHeroChoiceClicked, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
 void gf_StartKerriganReviveCooldown2 () {
     // Variable Declarations
     unit lv_reviveSpot;
@@ -904,6 +1142,17 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
+        libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
+        TriggerExecute(libABFE498B_gv_aP_Triggers_onDifficultyBrutal, true, false);
+    }
+
     if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Neut")) {
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), "Zerg", false);
     }
@@ -942,6 +1191,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
             libNtve_gf_PauseUnit(auto2241A4A2_var, true);
         }
     }
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(248), UnitGroupEmpty());
     return true;
 }
 
@@ -1899,7 +2149,9 @@ bool gt_IntroComplete_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerExecute(gt_ObjectiveDestroyProtossComplete, true, true);
     libSwaC_gf_CreateMissionAutosavePoint(StringExternal("Param/Value/9F036873"));
-    TriggerExecute(gt_MidQ, true, false);
+    if ((gf_AP_HeroChoiceOffer() == false)) {
+        TriggerExecute(gt_MidQ, true, false);
+    }
     return true;
 }
 
@@ -6178,6 +6430,7 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
         UnitSetPropertyFixed(auto3C6CB8F5_var, c_unitPropEnergyPercent, 100.0);
     }
     libABFE498B_gf_AP_Triggers_resetBase(gv_pLAYER_01_USER);
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(176), UnitGroupEmpty());
     gv_aPIntro = false;
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     VisExploreArea(gv_pLAYER_01_USER, RegionEntireMap(), false, false);
@@ -6605,6 +6858,7 @@ void InitTriggers () {
     gt_IntroCleanup_Init();
     gt_IntroAttacks_Init();
     gt_IntroMusic_Init();
+    gt_APHeroChoiceClicked_Init();
     gt_MidQ_Init();
     gt_MidSetup_Init();
     gt_MidCinematic_Init();
