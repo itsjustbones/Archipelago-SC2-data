@@ -19,6 +19,8 @@ void libABFE498B_InitLibraries () {
 bool libABFE498B_InitVariables_completed = false;
 
 void libABFE498B_InitVariables () {
+    int init_i;
+
     if (libABFE498B_InitVariables_completed) {
         return;
     }
@@ -32,6 +34,13 @@ void libABFE498B_InitVariables () {
     libABFE498B_gv_aP_Triggers_Option_enableNova = true;
     libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Neut";
     libABFE498B_gv_aP_Triggers_HeroUnits = UnitGroupEmpty();
+    libABFE498B_gv_apHeroChoiceScreen = c_invalidDialogId;
+    for (init_i = 0; init_i <= 4; init_i += 1) {
+        libABFE498B_gv_apHeroChoicePanel[init_i] = c_invalidDialogId;
+    }
+    for (init_i = 0; init_i <= 4; init_i += 1) {
+        libABFE498B_gv_apHeroChoiceButton[init_i] = c_invalidDialogControlId;
+    }
     libABFE498B_gv_aP_Triggers_warpInSuperWarpGates = UnitGroupEmpty();
     libABFE498B_gv_aP_Triggers_lastWarpedUnits = UnitGroupEmpty();
 }
@@ -11444,6 +11453,218 @@ void libABFE498B_gf_AP_Triggers_HeroHide (unit lp_hero) {
     lib15EF4C78_gf_SetHeroPanelUnit(1, null, UnitGetOwner(lp_hero));
 }
 
+bool libABFE498B_gf_AP_HeroChoiceHasBit (int lp_presence, int lp_bit) {
+    // Variable Declarations
+    int lv_shifted;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    lv_shifted = (lp_presence / lp_bit);
+    return ((lv_shifted - ((lv_shifted / 2) * 2)) == 1);
+}
+
+text libABFE498B_gf_AP_HeroChoiceName (int lp_heroBit) {
+    // Automatic Variable Declarations
+    int autoF3638605_val;
+
+    // Implementation
+    autoF3638605_val = lp_heroBit;
+    if (autoF3638605_val == 1) {
+        return StringExternal("Param/Value/lib_ABFE498B_A69D1136");
+    }
+    else if (autoF3638605_val == 2) {
+        return StringExternal("Param/Value/lib_ABFE498B_5E9C505E");
+    }
+    else if (autoF3638605_val == 4) {
+        return StringExternal("Param/Value/lib_ABFE498B_3A49BF21");
+    }
+    else {
+        return StringExternal("Param/Value/lib_ABFE498B_D89459E1");
+    }
+}
+
+void libABFE498B_gf_AP_HeroChoiceRemoveHero (int lp_heroBit) {
+    // Variable Declarations
+    int lv_presence;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((lp_heroBit == 0)) {
+        return ;
+    }
+
+    libABFE498B_gv_apRemovedHeroBit = lp_heroBit;
+    lv_presence = libABFE498B_gv_aP_Triggers_Option_HeroPresence;
+    if ((libABFE498B_gf_AP_HeroChoiceHasBit(lv_presence, lp_heroBit) == false)) {
+        return ;
+    }
+
+    libABFE498B_gv_aP_Triggers_Option_HeroPresence = (lv_presence - lp_heroBit);
+}
+
+void libABFE498B_gf_AP_HeroChoiceHideExistingHeroes () {
+    // Variable Declarations
+    int lv_index;
+    unit lv_hero;
+
+    // Automatic Variable Declarations
+    const int auto3F8DB376_ae = 3;
+    const int auto3F8DB376_ai = 1;
+
+    // Variable Initialization
+    lv_index = 1;
+
+    // Implementation
+    lv_index = 1;
+    for ( ; ( (auto3F8DB376_ai >= 0 && lv_index <= auto3F8DB376_ae) || (auto3F8DB376_ai < 0 && lv_index >= auto3F8DB376_ae) ) ; lv_index += auto3F8DB376_ai ) {
+        lv_hero = libABFE498B_gv_aP_Triggers_HeroUnit[lv_index];
+        if ((UnitIsValid(lv_hero) == true)) {
+            libABFE498B_gf_AP_Triggers_HeroHide(lv_hero);
+        }
+
+    }
+}
+
+void libABFE498B_gf_AP_HeroChoiceClose () {
+    // Variable Declarations
+    int lv_index;
+
+    // Automatic Variable Declarations
+    const int auto98FB06CB_ae = 3;
+    const int auto98FB06CB_ai = 1;
+
+    // Variable Initialization
+    lv_index = 1;
+
+    // Implementation
+    if ((libABFE498B_gv_apHeroChoiceScreen != c_invalidDialogId)) {
+        DialogDestroy(libABFE498B_gv_apHeroChoiceScreen);
+    }
+
+    libABFE498B_gv_apHeroChoiceScreen = c_invalidDialogId;
+    lv_index = 1;
+    lv_index = 1;
+    for ( ; ( (auto98FB06CB_ai >= 0 && lv_index <= auto98FB06CB_ae) || (auto98FB06CB_ai < 0 && lv_index >= auto98FB06CB_ae) ) ; lv_index += auto98FB06CB_ai ) {
+        if ((libABFE498B_gv_apHeroChoicePanel[lv_index] != c_invalidDialogId)) {
+            DialogDestroy(libABFE498B_gv_apHeroChoicePanel[lv_index]);
+        }
+
+        libABFE498B_gv_apHeroChoicePanel[lv_index] = c_invalidDialogId;
+        libABFE498B_gv_apHeroChoiceButton[lv_index] = c_invalidDialogControlId;
+        libABFE498B_gv_apHeroChoiceBit[lv_index] = 0;
+    }
+    libABFE498B_gv_apHeroChoiceCount = 0;
+    GameSetGlobalTimeScale(1.0);
+    AITimePause(false);
+}
+
+void libABFE498B_gf_AP_HeroChoiceCreatePanel (int lp_slot, int lp_heroBit, int lp_offset) {
+    // Variable Declarations
+    int lv_index;
+    int lv_heroChoiceName;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_index = 1;
+    lv_heroChoiceName = 1;
+
+    // Implementation
+    libABFE498B_gv_apHeroChoiceBit[lp_slot] = lp_heroBit;
+    DialogCreate(280, 300, c_anchorCenter, lp_offset, -40, true);
+    DialogSetRenderPriority(DialogLastCreated(), 105);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    libABFE498B_gv_apHeroChoicePanel[lp_slot] = DialogLastCreated();
+    libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 280, 300, c_anchorCenter, 0, 0, StringToText(""), "Assets\\Textures\\hud_btn_bg_ability_blank.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
+    libNtve_gf_CreateDialogItemLabel(libABFE498B_gv_apHeroChoicePanel[lp_slot], 250, 45, c_anchorTop, 0, 24, libABFE498B_gf_AP_HeroChoiceName(lp_heroBit), ColorWithAlpha(0,0,0,0), true, 1.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ABChoiceRewardsTitle", PlayerGroupAll());
+    if ((lp_heroBit == 1)) {
+        libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 96, 96, c_anchorCenter, 0, -5, StringToText(""), "Assets\\Textures\\btn-hero-kerriganqueenofblades.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
+    }
+    else {
+        if ((lp_heroBit == 2)) {
+            libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 96, 96, c_anchorCenter, 0, -5, StringToText(""), "Assets\\Textures\\novaex3_ingame_heroportrait.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
+        }
+        else {
+            if ((lp_heroBit == 4)) {
+                libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 96, 96, c_anchorCenter, 0, -5, StringToText(""), "Assets\\Textures\\btn-hero-artanis.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
+            }
+
+        }
+    }
+    libNtve_gf_CreateDialogItemButton(libABFE498B_gv_apHeroChoicePanel[lp_slot], 210, 55, c_anchorBottom, 0, 24, StringToText(""), (StringToText("Remove ") + libABFE498B_gf_AP_HeroChoiceName(lp_heroBit)), "");
+    libABFE498B_gv_apHeroChoiceButton[lp_slot] = DialogControlLastCreated();
+}
+
+bool libABFE498B_gf_AP_HeroChoiceOffer (trigger lp_continueTrigger) {
+    // Variable Declarations
+    int lv_presence;
+    int lv_slot;
+
+    // Automatic Variable Declarations
+    int autoA389DEB5_ae;
+    const int autoA389DEB5_ai = 1;
+
+    // Variable Initialization
+    lv_presence = libABFE498B_gv_aP_Triggers_Option_HeroPresence;
+
+    // Implementation
+    if ((lv_presence == 0)) {
+        return false;
+    }
+
+    libABFE498B_gv_apHeroChoiceCount = 0;
+    if ((libABFE498B_gf_AP_HeroChoiceHasBit(lv_presence, 1) == true)) {
+        libABFE498B_gv_apHeroChoiceCount += 1;
+        libABFE498B_gv_apHeroChoiceBit[libABFE498B_gv_apHeroChoiceCount] = 1;
+    }
+
+    if ((libABFE498B_gf_AP_HeroChoiceHasBit(lv_presence, 2) == true)) {
+        libABFE498B_gv_apHeroChoiceCount += 1;
+        libABFE498B_gv_apHeroChoiceBit[libABFE498B_gv_apHeroChoiceCount] = 2;
+    }
+
+    if ((libABFE498B_gf_AP_HeroChoiceHasBit(lv_presence, 4) == true)) {
+        libABFE498B_gv_apHeroChoiceCount += 1;
+        libABFE498B_gv_apHeroChoiceBit[libABFE498B_gv_apHeroChoiceCount] = 4;
+    }
+
+    if ((libABFE498B_gv_apHeroChoiceCount == 0)) {
+        return false;
+    }
+
+    if ((libABFE498B_gv_apHeroChoiceCount == 1)) {
+        libABFE498B_gf_AP_HeroChoiceRemoveHero(libABFE498B_gv_apHeroChoiceBit[1]);
+        libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
+        return false;
+    }
+
+    libABFE498B_gv_apHeroChoiceContinueTrigger = lp_continueTrigger;
+    DialogCreate(1800, 1100, c_anchorCenter, 0, 0, true);
+    DialogSetRenderPriority(DialogLastCreated(), 100);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    DialogSetFullscreen(DialogLastCreated(), true);
+    DialogSetTitle(DialogLastCreated(), StringToText("Choose a hero to remove from this mission"));
+    libABFE498B_gv_apHeroChoiceScreen = DialogLastCreated();
+    GameSetGlobalTimeScale(0.02);
+    AITimePause(true);
+    lv_slot = 1;
+    autoA389DEB5_ae = libABFE498B_gv_apHeroChoiceCount;
+    lv_slot = 1;
+    for ( ; ( (autoA389DEB5_ai >= 0 && lv_slot <= autoA389DEB5_ae) || (autoA389DEB5_ai < 0 && lv_slot >= autoA389DEB5_ae) ) ; lv_slot += autoA389DEB5_ai ) {
+        if ((libABFE498B_gv_apHeroChoiceCount == 2)) {
+            libABFE498B_gf_AP_HeroChoiceCreatePanel(lv_slot, libABFE498B_gv_apHeroChoiceBit[lv_slot], ((lv_slot * 360) - 540));
+        }
+        else {
+            libABFE498B_gf_AP_HeroChoiceCreatePanel(lv_slot, libABFE498B_gv_apHeroChoiceBit[lv_slot], ((lv_slot * 320) - 640));
+        }
+    }
+    return true;
+}
+
 void libABFE498B_gf_AP_Triggers_Debug_Tech (int lp_player, int lp_level) {
     // Automatic Variable Declarations
     // Implementation
@@ -12126,6 +12347,63 @@ bool libABFE498B_gt_UpgradeProtossStructures_Func (bool testConds, bool runActio
 void libABFE498B_gt_UpgradeProtossStructures_Init () {
     libABFE498B_gt_UpgradeProtossStructures = TriggerCreate("libABFE498B_gt_UpgradeProtossStructures_Func");
     TriggerAddEventGeneric(libABFE498B_gt_UpgradeProtossStructures, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_HeroChoiceClicked
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_HeroChoiceClicked_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_autoClicked;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_autoClicked = c_invalidDialogControlId;
+
+    // Conditions
+    if (testConds) {
+        if (!(((EventDialogControl() == libABFE498B_gv_apHeroChoiceButton[1]) || (EventDialogControl() == libABFE498B_gv_apHeroChoiceButton[2]) || (EventDialogControl() == libABFE498B_gv_apHeroChoiceButton[3])))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_autoClicked = EventDialogControl();
+    if ((lv_autoClicked == libABFE498B_gv_apHeroChoiceButton[1])) {
+        libABFE498B_gf_AP_HeroChoiceRemoveHero(libABFE498B_gv_apHeroChoiceBit[1]);
+        libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
+        libABFE498B_gf_AP_HeroChoiceClose();
+        TriggerExecute(libABFE498B_gv_apHeroChoiceContinueTrigger, true, false);
+    }
+    else {
+        if ((lv_autoClicked == libABFE498B_gv_apHeroChoiceButton[2])) {
+            libABFE498B_gf_AP_HeroChoiceRemoveHero(libABFE498B_gv_apHeroChoiceBit[2]);
+            libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
+            libABFE498B_gf_AP_HeroChoiceClose();
+            TriggerExecute(libABFE498B_gv_apHeroChoiceContinueTrigger, true, false);
+        }
+        else {
+            if ((lv_autoClicked == libABFE498B_gv_apHeroChoiceButton[3])) {
+                libABFE498B_gf_AP_HeroChoiceRemoveHero(libABFE498B_gv_apHeroChoiceBit[3]);
+                libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
+                libABFE498B_gf_AP_HeroChoiceClose();
+                TriggerExecute(libABFE498B_gv_apHeroChoiceContinueTrigger, true, false);
+            }
+
+        }
+    }
+    return true;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_HeroChoiceClicked_Init () {
+    libABFE498B_gt_AP_HeroChoiceClicked = TriggerCreate("libABFE498B_gt_AP_HeroChoiceClicked_Func");
+    TriggerAddEventDialogControl(libABFE498B_gt_AP_HeroChoiceClicked, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12891,6 +13169,7 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_bankStartLoop_Init();
     libABFE498B_gt_AP_Triggers_techTreeInit_Init();
     libABFE498B_gt_UpgradeProtossStructures_Init();
+    libABFE498B_gt_AP_HeroChoiceClicked_Init();
     libABFE498B_gt_AP_Triggers_Debug_activateDebugMode_Init();
     libABFE498B_gt_AP_Triggers_Debug_takeControl_Init();
     libABFE498B_gt_AP_Triggers_Debug_clearQueue_Init();

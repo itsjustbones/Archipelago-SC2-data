@@ -70,4 +70,12 @@
         <StatusBarFlags index="Life" value="1"/>
         <MinimapIcon value="Assets\Textures\ui_minimap_icon_protossresearch.dds"/>
     </CActorUnit>
+    <!--  Override  -->
+    <CActorMissile id="AP_ArtanisHero">
+        <On Terms="ActorCreation" Send="RefSet ::global.Kerrigan ::Self"/>
+    </CActorMissile>
+    <!--  Override  -->
+    <CActorMissile id="AP_NovaHero">
+        <On Terms="ActorCreation" Send="RefSet ::global.Kerrigan ::Self"/>
+    </CActorMissile>
 </Catalog>
