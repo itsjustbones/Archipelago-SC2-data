@@ -908,7 +908,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 6;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -6170,7 +6170,12 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
         if ((UnitGetType(gv_kerrigan) == "AP_ArtanisHero")) {
             libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_kerrigan), c_animNameDefault, "Attack Superior", c_animFlagPlayForever, c_animTimeDefault);
         }
+        else {
+            if ((UnitGetType(gv_kerrigan) == "AP_NovaHero")) {
+                libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_kerrigan), c_animNameDefault, "Spell F A", c_animFlagPlayForever, c_animTimeDefault);
+            }
 
+        }
     }
     if ((UnitIsAlive(gv_stukov) == false)) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "StukovReviveCocoon", 0, 1, PointFromId(1203));
