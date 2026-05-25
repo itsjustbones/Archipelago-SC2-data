@@ -11303,7 +11303,7 @@ void libABFE498B_gf_AP_Triggers_HeroInitFacingAngle (int lp_player, point lp_loc
         UnitCreate(1, lv_unittype[lv_index], 0, lp_player, lv_spawnPoint, lp_facing);
         libABFE498B_gv_aP_Triggers_HeroUnit[lv_index] = UnitLastCreated();
         UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, UnitLastCreated());
-        if ((lv_index <= 2)) {
+        if ((lv_index <= 3)) {
             lib15EF4C78_gf_SetHeroPanelUnit(lv_index, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index], lp_player);
         }
 
@@ -11427,7 +11427,7 @@ void libABFE498B_gf_AP_Triggers_HeroReplace (int lp_player, unit lp_hero, unitgr
         UnitCreate(1, lv_unittype[lv_index], 0, lp_player, lv_spawnPoint, lv_facing);
         libABFE498B_gv_aP_Triggers_HeroUnit[lv_index] = UnitLastCreated();
         UnitGroupAdd(libABFE498B_gv_aP_Triggers_HeroUnits, UnitLastCreated());
-        if ((lv_index <= 2)) {
+        if ((lv_index <= 3)) {
             lib15EF4C78_gf_SetHeroPanelUnit(lv_index, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index], lp_player);
         }
 

@@ -187,6 +187,8 @@ int gf_IzshaReinforcementLine ();
 void gf_TurnDehakaOnOff (bool lp_onoffoption);
 void gf_PowerLinkSwitching (bool lp_activate);
 void gf_StartKerriganReviveCooldown3 (point lp_revivePoint);
+void gf_DehakaHeroPanelSet ();
+void gf_DehakaHeroPanelReset ();
 unit gf_nextPowerLink ();
 fixed gf_FieldExpandRatetoPoint (fixed lp_p_radius, fixed lp_p_timeToArrive, point lp_p_arrivalPoint);
 fixed gf_FieldExpandRatetoRegion (fixed lp_p_radius1, fixed lp_p_radius2, fixed lp_p_timeToArrive);
@@ -756,6 +758,35 @@ void gf_StartKerriganReviveCooldown3 (point lp_revivePoint) {
 
 }
 
+void gf_DehakaHeroPanelSet () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 7)) {
+    }
+    else {
+        if (((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 3) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 5) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 6))) {
+            lib15EF4C78_gf_SetHeroPanelUnit(3, libABFE498B_gv_aP_Triggers_HeroUnit[2], lib15EF4C78_gf_AP_GetPlayerId());
+            lib15EF4C78_gf_SetHeroPanelUnit(2, gv_dEHAKA, lib15EF4C78_gf_AP_GetPlayerId());
+            lib15EF4C78_gv_zS_SwarmHeroUIIcon[2] = "Assets\\Textures\\btn-hero-dehaka.dds";
+        }
+        else {
+            libSwaC_gf_SetHeroPanelUnit(2, gv_dEHAKA);
+        }
+    }
+}
+
+void gf_DehakaHeroPanelReset () {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 3) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 5) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 6))) {
+        lib15EF4C78_gf_SetHeroPanelUnit(2, libABFE498B_gv_aP_Triggers_HeroUnit[2], lib15EF4C78_gf_AP_GetPlayerId());
+        lib15EF4C78_gf_SetHeroPanelUnit(3, null, lib15EF4C78_gf_AP_GetPlayerId());
+    }
+    else {
+        libSwaC_gf_SetHeroPanelUnit(2, null);
+    }
+}
+
 unit gf_nextPowerLink () {
     // Automatic Variable Declarations
     // Implementation
@@ -1177,7 +1208,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 3;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -1222,14 +1253,9 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
             libNtve_gf_PauseUnit(autoEFD7CD28_var, true);
         }
     }
-    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
-        libABFE498B_gf_AP_Triggers_HeroHide(null);
-    }
-    else {
-        libABFE498B_gf_AP_Triggers_HeroReplace(lib5BD4895D_gf_AP_Core_getUser(), gv_kERRIGAN, UnitGroupFromId(5));
-        gv_kERRIGAN = libABFE498B_gv_aP_Triggers_HeroUnit[1];
-    }
     lib15EF4C78_gf_SetHeroPanelUnit(1, null, lib5BD4895D_gf_AP_Core_getUser());
+    lib15EF4C78_gf_SetHeroPanelUnit(2, null, lib5BD4895D_gf_AP_Core_getUser());
+    lib15EF4C78_gf_SetHeroPanelUnit(3, null, lib5BD4895D_gf_AP_Core_getUser());
     return true;
 }
 
@@ -4633,7 +4659,7 @@ bool gt_DehakaReturnsforFinalPush_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     Wait(30.0, c_timeGame);
     gf_TurnDehakaOnOff(true);
-    libSwaC_gf_SetHeroPanelUnit(2, gv_dEHAKA);
+    gf_DehakaHeroPanelSet();
     libNtve_gf_SendActorMessageToUnit(gv_dEHAKA, "Signal RemoveGlow");
     UnitStatusBarClearOverride(gv_dEHAKA);
     UnitSetPosition(gv_dEHAKA, PointFromId(1045), false);
@@ -6848,7 +6874,7 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
     }
     UnitSetPosition(gv_dEHAKA, PointFromId(2), false);
     UnitSetPropertyFixed(gv_dEHAKA, c_unitPropLifePercent, 100.0);
-    libSwaC_gf_SetHeroPanelUnit(2, null);
+    gf_DehakaHeroPanelReset();
     UnitPauseAll(false);
     GameTimeOfDayPause(false);
     libNtve_gf_PauseUnit(gv_kERRIGAN, false);
@@ -6903,6 +6929,13 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
     }
 
     libABFE498B_gf_AP_Triggers_resetBase(gv_pLAYER_01_USER);
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
+        libABFE498B_gf_AP_Triggers_HeroHide(null);
+    }
+    else {
+        libABFE498B_gf_AP_Triggers_HeroReplace(lib5BD4895D_gf_AP_Core_getUser(), gv_kERRIGAN, UnitGroupFromId(5));
+        gv_kERRIGAN = libABFE498B_gv_aP_Triggers_HeroUnit[1];
+    }
     if ((gv_cinematicCompleted == true)) {
         lv_fadeDuration = 1.5;
     }
@@ -7243,7 +7276,7 @@ bool gt_MidCineDehakaPlatform02Cleanup_Func (bool testConds, bool runActions) {
     UnitSetPropertyFixed(gv_dEHAKA, c_unitPropLifePercent, 100.0);
     UnitGroupSelect(UnitGroupSelected(gv_pLAYER_01_USER), gv_pLAYER_01_USER, false);
     UnitSelect(gv_dEHAKA, gv_pLAYER_01_USER, true);
-    libSwaC_gf_SetHeroPanelUnit(2, gv_dEHAKA);
+    gf_DehakaHeroPanelSet();
     libSwaC_gf_ResetHeroAbilityCooldowns(libSwaC_ge_HeroUnit_Kerrigan);
     UnitSetPropertyFixed(gv_kERRIGAN, c_unitPropLifePercent, 100.0);
     UnitSetPropertyFixed(gv_kERRIGAN, c_unitPropEnergyPercent, 100.0);
@@ -7531,7 +7564,7 @@ bool gt_MidCineDehakaPlatform03Cleanup_Func (bool testConds, bool runActions) {
     UnitSetPropertyFixed(gv_dEHAKA, c_unitPropLifePercent, 100.0);
     UnitGroupSelect(UnitGroupSelected(gv_pLAYER_01_USER), gv_pLAYER_01_USER, false);
     UnitSelect(gv_dEHAKA, gv_pLAYER_01_USER, true);
-    libSwaC_gf_SetHeroPanelUnit(2, gv_dEHAKA);
+    gf_DehakaHeroPanelReset();
     libSwaC_gf_ResetHeroAbilityCooldowns(libSwaC_ge_HeroUnit_Kerrigan);
     UnitSetPropertyFixed(gv_kERRIGAN, c_unitPropLifePercent, 100.0);
     UnitSetPropertyFixed(gv_kERRIGAN, c_unitPropEnergyPercent, 100.0);
@@ -7921,7 +7954,7 @@ bool gt_TransitiontoNoFieldActiveCleanup_Func (bool testConds, bool runActions) 
     UnitGroupSelect(UnitGroupSelected(gv_pLAYER_01_USER), gv_pLAYER_01_USER, false);
     libNtve_gf_ChangeUnitDamage(gv_dEHAKA, libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_Full);
     gf_TurnDehakaOnOff(false);
-    libSwaC_gf_SetHeroPanelUnit(2, null);
+    gf_DehakaHeroPanelReset();
     libNtve_gf_RestoreUnitSelection(gv_pLAYER_01_USER);
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     CameraPan(gv_pLAYER_01_USER, PlayerStartLocation(gv_pLAYER_01_USER), 0.0, -1, 10.0, false);

@@ -1598,6 +1598,7 @@ bool gt_StartStage01Q_Func (bool testConds, bool runActions) {
     UnitSetState(gv_introCaveRocks, c_unitStateTooltipable, false);
     UnitSetPropertyFixed(UnitFromId(621), c_unitPropLifePercent, 60.0);
     UnitSetPropertyFixed(UnitFromId(621), c_unitPropLifeRegen, 0.0);
+    TriggerEnable(gt_RevealPlayerBaseLocation, true);
     if ((libLotv_gf_DifficultyValueInt2(0, 0, 1, 1) == 1)) {
         TriggerEnable(gt_AchievementLairHunting, true);
     }
@@ -1690,6 +1691,7 @@ bool gt_RevealPlayerBaseLocation_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_RevealPlayerBaseLocation_Init () {
     gt_RevealPlayerBaseLocation = TriggerCreate("gt_RevealPlayerBaseLocation_Func");
+    TriggerEnable(gt_RevealPlayerBaseLocation, false);
     TriggerAddEventUnitRegion(gt_RevealPlayerBaseLocation, null, RegionFromId(34), true);
 }
 

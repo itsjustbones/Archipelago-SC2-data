@@ -1696,7 +1696,7 @@ bool gt_SouthSectorEastNullCircuit_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_SouthSectorEastNullCircuit_Init () {
     gt_SouthSectorEastNullCircuit = TriggerCreate("gt_SouthSectorEastNullCircuit_Func");
-    TriggerAddEventUnitAbility(gt_SouthSectorEastNullCircuit, UnitRefFromVariable("gv_nullCircuits[2]"), AbilityCommand("PowerConductorLockMorph", 0), c_abilMorphStageUnitStart, false);
+    TriggerAddEventUnitAbility(gt_SouthSectorEastNullCircuit, UnitRefFromVariable("gv_nullCircuits[1]"), AbilityCommand("PowerConductorLockMorph", 0), c_abilMorphStageUnitStart, false);
 }
 
 //--------------------------------------------------------------------------------------------------
