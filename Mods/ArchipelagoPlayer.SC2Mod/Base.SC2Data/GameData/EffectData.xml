@@ -4698,6 +4698,10 @@
         <EditorCategories value="Race:Protoss"/>
         <BehaviorLink value="AP_ArtanisNoAspect"/>
     </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="AP_ArtanisAspectAutoEquipRB">
+        <EditorCategories value="Race:Protoss"/>
+        <BehaviorLink value="AP_ArtanisAspectAutoEquip"/>
+    </CEffectRemoveBehavior>
     <CEffectSet id="AP_ArtanisAspectClearAll">
         <EditorCategories value="Race:Protoss"/>
         <EffectArray value="AP_ArtanisAiurAspectRB"/>
@@ -4705,6 +4709,7 @@
         <EffectArray value="AP_ArtanisPurifierAspectRB"/>
         <EffectArray value="AP_ArtanisTaldarimAspectRB"/>
         <EffectArray value="AP_ArtanisNoAspectRB"/>
+        <EffectArray value="AP_ArtanisAspectAutoEquipRB"/>
         <EffectArray value="AP_RaszagalsRhythmRB"/>
     </CEffectSet>
     <CEffectSet id="AP_ArtanisAiurAspectSet">
@@ -4732,6 +4737,13 @@
         <EffectArray value="AP_ArtanisAspectClearAll"/>
         <EffectArray value="AP_ArtanisNoAspect"/>
     </CEffectSet>
+    <CEffectSwitch id="AP_ArtanisAspectAutoEquipCheck">
+        <EditorCategories value="Race:Protoss"/>
+        <CaseArray Validator="AP_HasArtanisAiurAspectUnlocked" Effect="AP_ArtanisAiurAspectSet"/>
+        <CaseArray Validator="AP_HasArtanisNerazimAspectUnlocked" Effect="AP_ArtanisNerazimAspectSet"/>
+        <CaseArray Validator="AP_HasArtanisPurifierAspectUnlocked" Effect="AP_ArtanisPurifierAspectSet"/>
+        <CaseArray Validator="AP_HasArtanisTaldarimAspectUnlocked" Effect="AP_ArtanisTaldarimAspectSet"/>
+    </CEffectSwitch>
     <CEffectIssueOrder id="AP_ExterminateAttackOrder">
         <EditorCategories value="Race:Protoss"/>
         <WhichUnit Value="Caster"/>
@@ -5357,7 +5369,7 @@
     </CEffectRemoveBehavior>
     <CEffectEnumArea id="AP_PhasePrismSearch">
         <EditorCategories value="Race:Protoss"/>
-        <SearchFilters value="-;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Heroic,Structure"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Heroic,Structure"/>
         <AreaArray Radius="5" Effect="AP_PhasePrismUnitPullBy2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="0"/>
@@ -17238,14 +17250,19 @@
         <Behavior value="AP_BanelingTimedLifeHiddenBuff"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_WildMutation">
-        <ValidatorArray value="RequiresZerg"/>
+        <ValidatorArray value="AP_SwarmQueenWildMutationTarget"/>
         <EditorCategories value="Race:Zerg"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_WildMutationKerrigan">
+        <ValidatorArray value="AP_WildMutationTarget"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="AP_WildMutation"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="AP_WildMutationSearch">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
-        <SearchFilters value="Biological;Enemy,Structure,Heroic,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.75" Effect="AP_WildMutation"/>
+        <SearchFilters value="-;Enemy,Structure,Heroic,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.75" Effect="AP_WildMutationKerrigan"/>
     </CEffectEnumArea>
     <CEffectSet id="AP_WildMutationSet">
         <EditorCategories value="Race:Zerg"/>

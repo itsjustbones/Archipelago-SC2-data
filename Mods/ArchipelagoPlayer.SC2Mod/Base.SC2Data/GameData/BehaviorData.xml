@@ -2171,6 +2171,10 @@
     <CBehaviorBuff id="AP_ArtanisPurifierAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisTaldarimAspect" parent="AP_ArtanisAspectBuff"/>
     <CBehaviorBuff id="AP_ArtanisNoAspect" parent="AP_ArtanisAspectBuff"/>
+    <CBehaviorBuff id="AP_ArtanisAspectAutoEquip" parent="AP_ArtanisAspectBuff">
+        <Period value="0.25"/>
+        <PeriodicEffect value="AP_ArtanisAspectAutoEquipCheck"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_ArtanisForceOfWill">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>

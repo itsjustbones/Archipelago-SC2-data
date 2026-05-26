@@ -4474,6 +4474,22 @@
         <Find value="1"/>
         <Value value="AP_HaveArtanisTemperedInTwilight"/>
     </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HasArtanisAiurAspectUnlocked">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisAiurAspectUnlocked"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HasArtanisNerazimAspectUnlocked">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisNerazimAspectUnlocked"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HasArtanisPurifierAspectUnlocked">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisPurifierAspectUnlocked"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_HasArtanisTaldarimAspectUnlocked">
+        <Find value="1"/>
+        <Value value="AP_HaveArtanisTaldarimAspectUnlocked"/>
+    </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="AP_HasArtanisTaldarimAspectSelectedPassive">
         <Find value="1"/>
         <Value value="AP_HaveArtanisTaldarimAspectSelectedPassive"/>
@@ -4923,6 +4939,24 @@
     </CValidatorPlayerCompareFoodAvailable>
     <CValidatorCombine id="AP_WildMutationOverlord">
         <CombineArray value="IsOverlord"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_WildMutationOwnedBiological">
+        <Type value="And"/>
+        <CombineArray value="AP_OwnedBySelf"/>
+        <CombineArray value="AP_IsBiological"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_WildMutationTarget">
+        <CombineArray value="RequiresZerg"/>
+        <CombineArray value="AP_WildMutationOwnedBiological"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="AP_SwarmQueenWildMutationFriendly">
+        <Filters value="-;Self,Neutral,Enemy"/>
+    </CValidatorUnitFilters>
+    <CValidatorCombine id="AP_SwarmQueenWildMutationTarget">
+        <Type value="And"/>
+        <CombineArray value="IsZerg"/>
+        <CombineArray value="AP_SwarmQueenWildMutationFriendly"/>
+        <CombineArray value="AP_IsBiological"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="AP_HaveK5GasBonuses">
         <Value value="AP_HaveK5GasBonuses"/>
