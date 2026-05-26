@@ -14703,6 +14703,9 @@
         <On Terms="Behavior.AP_ImmortalBarrierBase.On" Send="AnimBracketStart Cover Cover,Start Cover Cover,End"/>
         <On Terms="Behavior.AP_ImmortalBarrierBase.Off" Send="Create AP_Immortal_Void_BarrierOffSound"/>
         <On Terms="Behavior.AP_ImmortalBarrierBase.Off" Send="AnimBracketStop Cover"/>
+        <On Terms="Abil.AP_ImmortalAirAttack.SourceCastStart" Send="AnimPlay Morph Attack,Superior PlayForever -1.000000 -1.000000 0.150000 AsTimeScale"/>
+        <On Terms="Abil.AP_ImmortalAirAttack.SourceCastStart" Send="Create AP_ImmortalAirAttackSound"/>
+        <On Terms="Behavior.AP_ImmortalAirAttack.Off" Send="AnimClear Morph 0.300000"/>
         <Model value="Immortal"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
         <BuildModel value="ImmortalWarpIn"/>
@@ -15090,6 +15093,11 @@
         <On Terms="Effect.AP_ImmortalShakurasShadowCannonLM.Start; !ValidateEffect TargetIsAir" Send="AnimPlay Spell Attack"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Attack"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create AP_Immortal_Land"/>
+        <On Terms="Abil.AP_AnnihilatorAirAttack.SourceCastStart" Send="AnimPlay Morph Attack,Superior PlayForever -1.000000 -1.000000 0.150000 AsTimeScale"/>
+        <On Terms="Abil.AP_AnnihilatorAirAttack.SourceCastStart" Send="Create AP_ImmortalAirAttackSound"/>
+        <On Terms="Behavior.AP_AnnihilatorAirAttack.Off" Send="AnimClear Morph 0.300000"/>
+        <On Terms="WeaponStart.AP_AnnihilatorParticleDisruptorsAir.AttackStart" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStop.AP_AnnihilatorParticleDisruptorsAir.AttackStop" Send="AnimBracketStop Attack"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
         <BuildModel value="AP_ImmortalShakurasWarpIn"/>
         <DeathArray index="Normal" ModelLink="AP_ImmortalShakurasDeath" SoundLink=""/>
@@ -15205,6 +15213,9 @@
         <!--        <On Terms="Effect.AP_ImmortalTaldarimWeaponLM.Start; UnitWalking" Send="AnimBracketStart ::Baseline Walk,Start Walk Walk,End"/>-->
         <On Terms="Effect.AP_ImmortalTaldarimWeaponCP.Stop" Send="AnimClear Attack"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Attack"/>
+        <On Terms="Effect.AP_VanguardFlareLM.Start" Send="AnimPlay Spell Attack,Superior NonLooping"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
+        <On Terms="Effect.AP_VanguardFlareSecondaryLM.Start" Send="AnimPlay Spell Attack,Superior NonLooping"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
         <BuildModel value="AP_ImmortalTaldarimWarpIn"/>
         <DeathArray index="Normal" ModelLink="AP_ImmortalTaldarimDeath" SoundLink=""/>
@@ -24179,7 +24190,7 @@
         <Macros value="QueueAnim"/>
         <Macros value="BuildingFlattenTerrainMacro"/>
         <Macros value="ProtossBuildingPowerUp"/>
-        <On Terms="ActorCreation" Send="AnimPlay Morph Work,Start 0 0.000000"/>
+        <On Terms="ActorCreation" Send="AnimGroupApply Work"/>
         <On Terms="AnimDone; AnimName Morph" Send="AnimGroupApply Work"/>
         <On Terms="BehaviorLevel.PowerUserQueue.Stop; Level 0" Send="AnimGroupApply Work"/>
         <On Terms="BehaviorLevel.PowerUserQueue.Start; Level 0" Send="AnimGroupRemove Work"/>
@@ -48393,4 +48404,166 @@
         <On Terms="Effect.AP_BloodHunterLifeSteal.Start" Send="Create"/>
         <On Terms="Effect.AP_BloodHunterLifeSteal.Stop" Send="Destroy"/>
     </CActorSound>
+    <CActorAction id="AP_AnnihilatorAttackAir" parent="GenericAttack" effectAttack="AP_AnnihilatorParticleDisruptorsAir">
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Sound="AP_Annihilator_AttackLaunch"/>
+        <ImpactMap index="None" Model="AP_AnnihilatorAttackImpact" Sound="AP_Annihilator_AttackImpact"/>
+        <ImpactPhysics Name="PhaseDisrupterImpact" MatchKeys="Basic" Physics="ImmortalAttackDeathForce"/>
+    </CActorAction>
+    <CActorSound id="AP_ImmortalAirAttackSound" parent="SoundOneShot">
+        <Sound value="250mmStrikeCannonsMorph"/>
+    </CActorSound>
+    <CActorAction id="AP_ImmortalAttackAir" parent="GenericAttack" effectAttack="AP_ImmortalPhaseDisruptorsAir">
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Sound="Immortal_AttackLaunch"/>
+        <ImpactMap index="None" Model="ImmortalAttackImpact" Sound="Immortal_AttackImpact"/>
+        <ImpactPhysics Name="PhaseDisrupterImpact" MatchKeys="Basic" Physics="ImmortalAttackDeathForce"/>
+    </CActorAction>
+    <CActorAction id="AP_ImmortalOverloadDamage" parent="GenericAttack" effectAttack="AP_ImmortalOverloadDamage">
+        <LaunchAttachQuery Methods="AMFilterHead"/>
+        <ImpactMap index="None" Model="" Sound="AP_HighTemplar_PsionicOrbBeamImpact"/>
+    </CActorAction>
+    <CActorBeamSimple id="AP_ImmortalOverloadDamageBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <On Terms="ActorCreation" Send="SetScale 0.001000 0.400000"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.300000"/>
+        <On Terms="TimerExpired" Send="AnimBracketStop BSD"/>
+        <Scale value="0.600000"/>
+    </CActorBeamSimple>
+    <CActorModel id="AP_ImmortalRegen" parent="ModelAddition">
+        <On Terms="Behavior.AP_ImmortalRegen.On" Send="Create"/>
+        <On Terms="Behavior.AP_ImmortalRegen.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="UnitBirth.AP_ImmortalAiur.EditorPlaced" Send="Create"/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
+        <On Terms="TimerExpired" Send="SetTintColor 255,255,128"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <Scale value="2.500000,2.500000,1.500000"/>
+    </CActorModel>
+    <CActorModel id="AP_ImmortalShakurasShadowCannonTargetSlow" parent="ModelAddition">
+        <On Terms="Behavior.AP_ImmortalShakurasShadowCannonSlow.On" Send="Create"/>
+        <On Terms="Behavior.AP_ImmortalShakurasShadowCannonSlow.Off" Send="AnimBracketStop BSD"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+        <AutoScaleFromSelectionFactor value="1.300000"/>
+    </CActorModel>
+    <CActorModel id="AP_ImmortalWarpRelocate" parent="ModelAdditionNoAnims">
+        <Inherits index="LocalTintColor" value="1"/>
+        <Inherits index="Opacity" value="0"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocate.On" Send="Create"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocateTarget.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Target="_Selectable" Send="SetOpacity 0.000000 0.500000 AP_ImmortalWarpRelocate"/>
+        <On Terms="ActorDestruction" Target="_Selectable" Send="ClearOpacity 0.000000 AP_ImmortalWarpRelocate"/>
+        <On Terms="AnimBracketState.*.AfterClosing" Send="SetVisibility"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 3.000000 AsDuration"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary"/>
+        <Model value="AP_ImmortalWarpRelocateWarpOut"/>
+        <Scale value="1.500000,1.500000,0.500000"/>
+    </CActorModel>
+    <CActorModel id="AP_ImmortalWarpRelocateAttachment" parent="ModelAdditionNoAnims">
+        <Inherits index="Opacity" value="0"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocate.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimPlay Lifetime Birth PlayForever"/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
+        <On Terms="TimerExpired" Send="TimerSet 1.000000"/>
+        <On Terms="TimerExpired" Send="AnimSetCompletion Lifetime 40.000000"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocate.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary"/>
+        <Model value="ImmortalWarpIn"/>
+    </CActorModel>
+    <CActorModel id="AP_ImmortalWarpRelocatePrecursor" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.AP_ImmortalWarpRelocatePrecursor.On" Send="Create"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocatePrecursor.Off" Send="AnimBracketStop BSD"/>
+        <Model value="ImmortalPlacement"/>
+    </CActorModel>
+    <CActorRange id="AP_ImmortalWarpRelocateRange" parent="RangeAbil" abil="AP_ImmortalWarpRelocate">
+    </CActorRange>
+    <CActorModel id="AP_ImmortalWarpRelocateTarget" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.AP_ImmortalWarpRelocateTarget.On" Send="Create"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocateTarget.Off" Send="AnimBracketStop BSD"/>
+        <Model value="ImmortalWarpIn"/>
+    </CActorModel>
+    <CActorSound id="AP_ImmortalWarpRelocateWarpInSound" parent="SoundOneShot">
+        <On Terms="Behavior.AP_ImmortalWarpRelocateTarget.Off" Send="Create"/>
+        <Sound value="WarpGate_TrainFinish"/>
+    </CActorSound>
+    <CActorSound id="AP_ImmortalWarpRelocateWarpInSoundLoop" parent="SoundContinuous">
+        <On Terms="Behavior.AP_ImmortalWarpRelocate.On" Send="Create"/>
+        <On Terms="Behavior.AP_ImmortalWarpRelocateTarget.Off" Send="Destroy"/>
+        <Sound value="WarpGate_TrainLoop"/>
+    </CActorSound>
+    <CActorSound id="AP_ImmortalWarpRelocateWarpOutSound" parent="SoundOneShot">
+        <On Terms="Behavior.AP_ImmortalWarpRelocate.On" Send="Create"/>
+        <Sound value="WarpGate_TrainStart"/>
+    </CActorSound>
+    <CActorAction id="AP_VanguardFlare" parent="GenericAttack" effectLaunch="AP_VanguardFlareLM" effectImpact="AP_VanguardFlareImpact">
+        <LaunchSiteOps Ops="SOpAttachHarness SOpMoveByDot5"/>
+        <LaunchAssets Model="AP_ImmortalTaldarimWeaponAttackLaunchModel" Scale="1.000000,2.000000,1.000000" Sound="AP_Loki_CannonLaunch"/>
+    </CActorAction>
+    <CActorModel id="AP_VanguardFlareImpact" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AP_VanguardFlareCP.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor {255,64,64 2.000000}"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.400000"/>
+        <On Terms="TimerExpired" Send="AnimSetTimeScaleGlobal 0.001000 BSD"/>
+        <HostSiteOps Ops="SOpMoveUpBy6"/>
+        <Scale value="2.500000,2.500000,1.000000"/>
+    </CActorModel>
+    <CActorSound id="AP_VanguardFlareImpactSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_VanguardFlareCP.Start" Send="Create"/>
+        <Sound value="AP_Nova_Gunblade_Gun_Impact"/>
+    </CActorSound>
+    <CActorModel id="AP_VanguardFlareLight" parent="ModelAnimationStyleContinuous">
+        <On Terms="Effect.AP_VanguardFlareCP.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetScale 4.000000,4.000000,0.200000 20.000000"/>
+        <On Terms="Effect.AP_VanguardFlareCP.Stop" Send="SetScale 4.000000,4.000000,0.010000 1.000000"/>
+        <On Terms="Effect.AP_VanguardFlareCP.Stop" Send="TimerSet 1.000000"/>
+        <On Terms="TimerExpired" Send="Destroy"/>
+        <Model value="LightOmniRedLarge"/>
+        <Scale value="4.000000,4.000000,0.500000"/>
+    </CActorModel>
+    <CActorMissile id="AP_VanguardFlareMissile" parent="GenericAttackMissile" unitName="AP_VanguardFlareMissile">
+        <Model value="AP_ImmortalTaldarimWeaponMissile"/>
+        <Scale value="3.000000"/>
+    </CActorMissile>
+    <CActorRange id="AP_VanguardFlareRange" parent="RangeAbil" abil="AP_VanguardFlare">
+    </CActorRange>
+    <CActorSplat id="AP_VanguardFlareSplat" parent="ProtossCursorSplat" abil="AP_VanguardFlare">
+        <Model value="AP_VoidProtossAOECursorSplat"/>
+    </CActorSplat>
+    <CActorRange id="AP_VanguardFlareTargetRange">
+        <On Terms="Effect.AP_VanguardFlareCP.Start" Send="Create"/>
+        <On Terms="Effect.AP_VanguardFlareCP.Stop" Send="Destroy"/>
+        <Host Subject=""/>
+        <Range value="10.000000"/>
+    </CActorRange>
+    <CActorSound id="AP_VanguardFlareLoop" parent="SoundContinuous">
+        <Host Subject="::Creator"/>
+    </CActorSound>
+    <CActorAction id="AP_VanguardFlareSecondary" parent="GenericAttack" effectImpact="AP_VanguardFlareSecondaryImpact" effectLaunch="AP_VanguardFlareSecondaryLM">
+        <LaunchSiteOps Ops="SOpAttachHarness SOpMoveByDot5"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon01"/>
+        <LaunchAssets Model="AP_ImmortalTaldarimWeaponAttackLaunchModel" Scale="1.000000,2.000000,1.000000" Sound="AP_Loki_CannonLaunch"/>
+    </CActorAction>
+    <CActorModel id="AP_VanguardFlareSecondaryImpact" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="SetOpacity 0.500000"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.100000 15.000000"/>
+        <Host Subject="AP_VanguardFlareSecondaryMover"/>
+        <Scale value="2.000000,2.000000,1.000000"/>
+    </CActorModel>
+    <CActorMissile id="AP_VanguardFlareSecondaryMissile" parent="GenericAttackMissile" unitName="AP_VanguardFlareSecondaryMissile">
+        <Model value="AP_ImmortalTaldarimWeaponMissile"/>
+        <Scale value="3.000000"/>
+    </CActorMissile>
+    <CActorSiteMover id="AP_VanguardFlareSecondaryMover">
+        <EditorCategories value=""/>
+        <On Terms="Effect.AP_VanguardFlareSecondaryImpact.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create AP_VanguardFlareSecondaryImpact"/>
+        <On Terms="ActorCreation" Send="MoverSetDestinationH -5.000000"/>
+        <On Terms="ActorCreation" Send="MoverMove"/>
+        <On Terms="Effect.AP_VanguardFlareCP.Stop" Send="Destroy"/>
+        <On Terms="ActorDestruction" Target="AP_VanguardFlareSecondaryImpact" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="Create AP_VanguardFlareLoop"/>
+        <On Terms="ActorDestruction" Target="AP_VanguardFlareLoop" Send="Destroy"/>
+        <SiteFlags index="RequiresManualKill" value="1"/>
+        <Acceleration value="500.000000"/>
+        <Speed value="0.250000"/>
+        <SpeedMax value="0.250000"/>
+    </CActorSiteMover>
 </Catalog>

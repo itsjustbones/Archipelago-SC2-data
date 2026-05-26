@@ -7716,6 +7716,74 @@ void lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_ImmortalWarpRelocate
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+    fixed lv_life;
+    fixed lv_lifeStart;
+    fixed lv_lifeRate;
+    fixed lv_shields;
+    fixed lv_shieldsStart;
+    fixed lv_shieldsRate;
+
+    // Automatic Variable Declarations
+    const int autoC4E07D1C_n = 80;
+    int autoC4E07D1C_i;
+
+    // Variable Initialization
+    lv_caster = EventUnit();
+    lv_shields = UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent);
+    lv_shieldsStart = (UnitGetPropertyFixed(lv_caster, c_unitPropShieldsMax, c_unitPropCurrent) * 0.1);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_life = UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent);
+    lv_lifeStart = ((UnitGetPropertyFixed(lv_caster, c_unitPropLifeMax, c_unitPropCurrent)*0.1)+1);
+    lv_lifeRate = ((lv_life-lv_lifeStart)/80.0);
+    lv_lifeRate = MaxF(lv_lifeRate, 0.0);
+    lv_shields = UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent);
+    lv_shieldsStart = ((UnitGetPropertyFixed(lv_caster, c_unitPropShieldsMax, c_unitPropCurrent)*0.1)+1);
+    lv_shieldsRate = ((lv_shields-lv_shieldsStart)/80.0);
+    lv_shieldsRate = MaxF(lv_shieldsRate, 0.0);
+    if ((lv_lifeRate > 0.0)) {
+        UnitSetPropertyFixed(lv_caster, c_unitPropLife, lv_lifeStart);
+    }
+
+    if ((lv_shieldsRate > 0.0)) {
+        UnitSetPropertyFixed(lv_caster, c_unitPropShields, lv_shieldsStart);
+    }
+
+    if (((lv_lifeRate > 0.0) || (lv_shieldsRate > 0.0))) {
+        for (autoC4E07D1C_i = 1; autoC4E07D1C_i <= autoC4E07D1C_n; autoC4E07D1C_i += 1) {
+            Wait(0.0625, c_timeGame);
+            UnitSetPropertyFixed(lv_caster, c_unitPropLife, (UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent) + lv_lifeRate));
+            UnitSetPropertyFixed(lv_caster, c_unitPropShields, (UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent) + lv_shieldsRate));
+        }
+        if ((PowI((lv_life-UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent)), 2.0) <= 4)) {
+            UnitSetPropertyFixed(lv_caster, c_unitPropLife, lv_life);
+        }
+
+        if ((PowI((lv_shields-UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent)), 2.0) <= 4)) {
+            UnitSetPropertyFixed(lv_caster, c_unitPropShields, lv_shields);
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Init () {
+    lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate = TriggerCreate("lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Func");
+    TriggerAddEventUnitBehaviorChange(lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate, null, "AP_ImmortalWarpRelocateTarget", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: SlayerInit
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_SlayerInit_Func (bool testConds, bool runActions) {
@@ -10300,6 +10368,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency_Init();
     lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency_Init();
     lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency_Init();
+    lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Init();
     lib15EF4C78_gt_SlayerInit_Init();
     lib15EF4C78_gt_CreepTumorBuild_Init();
     lib15EF4C78_gt_AP_Player_checkPrimaryTownHallPeriodic_Init();

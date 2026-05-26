@@ -8485,4 +8485,33 @@
     <CValidatorUnitCompareBehaviorCount id="AP_NotVoidStasisAttackable">
         <Behavior value="AP_DarkTemplarVoidStasisAttackable"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareDamageDealtTime id="AP_CasterNotDealingDamage10s">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="10"/>
+    </CValidatorUnitCompareDamageDealtTime>
+    <CValidatorCombine id="AP_CasterNotFighting4s">
+        <Type value="And"/>
+        <CombineArray value="AP_CasterNotDealingDamage4s"/>
+        <CombineArray value="AP_CasterNotInCombat4s"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareDamageDealtTime id="AP_CasterNotDealingDamage4s">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="4"/>
+    </CValidatorUnitCompareDamageDealtTime>
+    <CValidatorCombine id="AP_CasterNotFighting10s">
+        <Type value="And"/>
+        <CombineArray value="AP_CasterNotDealingDamage10s"/>
+        <CombineArray value="AP_CasterNotInCombat10s"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareDamageTakenTime id="AP_CasterNotInCombat4s">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Value value="4"/>
+    </CValidatorUnitCompareDamageTakenTime>
+    <CValidatorLocationPlacement id="AP_ImmortalPlacement">
+        <Range value="0"/>
+        <Unit value="AP_ImmortalAiur"/>
+    </CValidatorLocationPlacement>
 </Catalog>

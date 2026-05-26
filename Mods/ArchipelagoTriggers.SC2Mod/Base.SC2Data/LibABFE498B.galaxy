@@ -1834,6 +1834,46 @@ void libABFE498B_gf_AP_Triggers_unlockProtossForge5 (int lp_player, int lp_bitAr
         libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterLifeSteal, // 20
         libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterStasisUpgrade, // 21
         libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterResourceEfficiency, // 22
+        libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalBarrierThorns, // 23
+        libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalWarpRelocate, // 24
+        libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalStarter, // 25
+        libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalRegen, // 26
+        libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorCloak, // 27
+        libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorResourceEfficiency, // 28
+        libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorAirAttack // 29
+    );
+}
+
+void libABFE498B_gf_AP_Triggers_unlockProtossForge6 (int lp_player, int lp_bitArrayValue) {
+    // Automatic Variable Declarations
+    // Implementation
+    // Yeah, this must be done in Galaxy
+    ap_triggers_processBitsInBitArray(
+        lp_player,
+        lp_bitArrayValue,
+        libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardAcceleratedWarp, // 0
+        libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardArmor, // 1
+        libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardFlare, // 2
+        libABFE498B_gf_AP_Triggers_Protoss_unlockDragoonResourceEfficiency, // 3
+        ap_triggers_PlayerConsumer_sig, // 4
+        ap_triggers_PlayerConsumer_sig, // 5
+        ap_triggers_PlayerConsumer_sig, // 6
+        ap_triggers_PlayerConsumer_sig, // 7
+        ap_triggers_PlayerConsumer_sig, // 8
+        ap_triggers_PlayerConsumer_sig, // 9
+        ap_triggers_PlayerConsumer_sig, // 10
+        ap_triggers_PlayerConsumer_sig, // 11
+        ap_triggers_PlayerConsumer_sig, // 12
+        ap_triggers_PlayerConsumer_sig, // 13
+        ap_triggers_PlayerConsumer_sig, // 14
+        ap_triggers_PlayerConsumer_sig, // 15
+        ap_triggers_PlayerConsumer_sig, // 16
+        ap_triggers_PlayerConsumer_sig, // 17
+        ap_triggers_PlayerConsumer_sig, // 18
+        ap_triggers_PlayerConsumer_sig, // 19
+        ap_triggers_PlayerConsumer_sig, // 20
+        ap_triggers_PlayerConsumer_sig, // 21
+        ap_triggers_PlayerConsumer_sig, // 22
         ap_triggers_PlayerConsumer_sig, // 23
         ap_triggers_PlayerConsumer_sig, // 24
         ap_triggers_PlayerConsumer_sig, // 25
@@ -2278,6 +2318,7 @@ void libABFE498B_gf_AP_Triggers_giveProtossTech (string lp_inputString) {
     string lv_forge3Value;
     string lv_forge4Value;
     string lv_forge5Value;
+    string lv_forge6Value;
     string lv_warCouncilValue;
     string lv_warCouncil2Value;
     string lv_shieldRegenValue;
@@ -2299,6 +2340,7 @@ void libABFE498B_gf_AP_Triggers_giveProtossTech (string lp_inputString) {
     lv_forge3Value = "";
     lv_forge4Value = "";
     lv_forge5Value = "";
+    lv_forge6Value = "";
     lv_warCouncilValue = "";
     lv_warCouncil2Value = "";
     lv_shieldRegenValue = "";
@@ -2321,6 +2363,7 @@ void libABFE498B_gf_AP_Triggers_giveProtossTech (string lp_inputString) {
     lv_warCouncil2Value = StringWord(lp_inputString, 14);
     lv_shieldRegenValue = StringWord(lp_inputString, 15);
     lv_artanisValue = StringWord(lp_inputString, 16);
+    lv_forge6Value = StringWord(lp_inputString, 17);
     autoB3BB2256_g = lib5BD4895D_gv_aP_Core_affectedPlayers;
     lv_currentPlayer = -1;
     while (true) {
@@ -2342,6 +2385,7 @@ void libABFE498B_gf_AP_Triggers_giveProtossTech (string lp_inputString) {
         libABFE498B_gf_AP_Triggers_unlockProtossWarCouncil2(lv_currentPlayer, StringToInt(lv_warCouncil2Value));
         libABFE498B_gf_AP_Triggers_giveShieldRegeneration(lv_currentPlayer, StringToInt(lv_shieldRegenValue));
         libABFE498B_gf_AP_Triggers_unlockProtossArtanisAbilities(lv_currentPlayer, StringToInt(lv_artanisValue));
+        libABFE498B_gf_AP_Triggers_unlockProtossForge6(lv_currentPlayer, StringToInt(lv_forge6Value));
     }
 }
 
@@ -9216,6 +9260,12 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockDragoonPhalanxSuit (int lp_player)
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DragoonPhalanxSuit", 1);
 }
 
+void libABFE498B_gf_AP_Triggers_Protoss_unlockDragoonResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_DragoonResourceEfficiency", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Protoss_unlockAdeptShockwave (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -9566,22 +9616,10 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockBloodHunterResourceEfficiency (int
     lib15EF4C78_gf_AP_Player_Protoss_activateBloodHunterResourceEfficiency(lp_player);
 }
 
-void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilySingularityCharge (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalIncreasedRange", 1);
-}
-
 void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyAdvancedTargetingMechanics (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalAirAttack", 1);
-}
-
-void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyDisruptorDispersion (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidImmortalWeaponSplash", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalImprovedBarrier (int lp_player) {
@@ -9590,10 +9628,64 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalImprovedBarrier (int lp_pl
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalImprovedBarrier", 1);
 }
 
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalBarrierThorns (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalBarrierThorns", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalWarpRelocate (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalWarpRelocate", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalStarter (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalStarter", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalRegen (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalRegen", 1);
+}
+
 void libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorTwilightChassis (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnnihilatorTwilightChassis", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorCloak (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnnihilatorCloak", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorResourceEfficiency (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnnihilatorResourceEfficiency", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockAnnihilatorAirAttack (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_AnnihilatorAirAttack", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilySingularityCharge (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalIncreasedRange", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalFamilyDisruptorDispersion (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VoidImmortalWeaponSplash", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardAgonyLaunchers (int lp_player) {
@@ -9618,6 +9710,24 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardFusionMortars (int lp_play
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardFusionMortars", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardAcceleratedWarp (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardAcceleratedWarp", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardArmor (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardArmor", 1);
+}
+
+void libABFE498B_gf_AP_Triggers_Protoss_unlockVanguardFlare (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_VanguardFlare", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockStalwartImprovedBarrier (int lp_player) {
@@ -12129,6 +12239,62 @@ void libABFE498B_gt_UpgradeProtossStructures_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_ImmortalStarter
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_ImmortalStarter_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+    int lv_player;
+    point lv_point;
+    unit lv_u;
+    unitgroup lv_group;
+
+    // Automatic Variable Declarations
+    fixed auto56CEAD7E_at;
+    unitgroup autoF86078AC_g;
+    int autoF86078AC_u;
+
+    // Variable Initialization
+    lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_player = UnitGetOwner(lv_caster);
+    lv_point = UnitTypePlacementFromUnit("AP_ImmortalAiur", 1, lv_caster, 5.0);
+    lv_group = UnitGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerModifyPropertyInt(0, c_playerPropSuppliesMade, c_playerPropOperSetTo, 1000);
+    libABFE498B_gv_aP_Triggers_lastWarpedUnit = null;
+    libABFE498B_gv_aP_Triggers_lastWarpedUnits = UnitGroupEmpty();
+    libABFE498B_gf_AP_Triggers_warpInUnit("AP_ImmortalAiur", 0, lv_point, true);
+    auto56CEAD7E_at = 0;
+    while (!((UnitGetType(libABFE498B_gf_AP_Triggers_getLastWarpedUnit()) == "AP_ImmortalAiur")) && auto56CEAD7E_at <= 10.0) {
+        Wait(0.0625, c_timeGame);
+        auto56CEAD7E_at = auto56CEAD7E_at + 0.0625;
+    }
+    lv_group = UnitGroupFilter("AP_ImmortalAiur", 0, libABFE498B_gf_AP_Triggers_getLastWarpedUnits(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoF86078AC_g = lv_group;
+    autoF86078AC_u = UnitGroupCount(autoF86078AC_g, c_unitCountAll);
+    for (;; autoF86078AC_u -= 1) {
+        lv_u = UnitGroupUnitFromEnd(autoF86078AC_g, autoF86078AC_u);
+        if (lv_u == null) { break; }
+        UnitCreate(1, "AP_PowerRadius1", c_unitCreateIgnorePlacement, lv_player, UnitGetPosition(lv_u), 270.0);
+        UnitBehaviorAdd(UnitLastCreated(), "AP_TimedLife6s", UnitLastCreated(), 1);
+        UnitBehaviorAdd(lv_u, "PermanentSuppressFoodUsed", lv_u, 1);
+        UnitSetOwner(lv_u, lv_player, true);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_ImmortalStarter_Init () {
+    libABFE498B_gt_AP_Triggers_ImmortalStarter = TriggerCreate("libABFE498B_gt_AP_Triggers_ImmortalStarter_Func");
+    TriggerAddEventPlayerEffectUsed(libABFE498B_gt_AP_Triggers_ImmortalStarter, c_playerAny, "AP_ImmortalStarterDummy");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: AP_Triggers_Debug_activateDebugMode
 //--------------------------------------------------------------------------------------------------
 bool libABFE498B_gt_AP_Triggers_Debug_activateDebugMode_Func (bool testConds, bool runActions) {
@@ -12891,6 +13057,7 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_bankStartLoop_Init();
     libABFE498B_gt_AP_Triggers_techTreeInit_Init();
     libABFE498B_gt_UpgradeProtossStructures_Init();
+    libABFE498B_gt_AP_Triggers_ImmortalStarter_Init();
     libABFE498B_gt_AP_Triggers_Debug_activateDebugMode_Init();
     libABFE498B_gt_AP_Triggers_Debug_takeControl_Init();
     libABFE498B_gt_AP_Triggers_Debug_clearQueue_Init();

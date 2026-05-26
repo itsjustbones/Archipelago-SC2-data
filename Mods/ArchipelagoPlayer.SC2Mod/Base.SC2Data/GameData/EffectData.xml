@@ -9580,7 +9580,7 @@
         <EditorCategories value="Race:Protoss"/>
         <LaunchLocation Value="CasterUnit"/>
         <ImpactLocation Effect="AP_ImmortalShakurasShadowCannonTargetingCP"/>
-        <ImpactEffect value="AP_ImmortalShakurasShadowCannonDamage"/>
+        <ImpactEffect value="AP_ImmortalShakurasShadowCannonTargetSet"/>
         <AmmoUnit value="AP_ImmortalShakurasShadowCannonMissile"/>
     </CEffectLaunchMissile>
     <CEffectRemoveBehavior id="AP_ImmortalShakurasShadowCannonRB">
@@ -9606,6 +9606,19 @@
         <ImpactUnit Value="Caster"/>
         <ModifyTurret Action="ClearTarget" Turret="AP_Immortal"/>
     </CEffectModifyUnit>
+    <CEffectEnumArea id="AP_ImmortalShakurasShadowCannonTargetSearch">
+        <IncludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.5" Effect="AP_ImmortalShakurasShadowCannonTargetAB"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AP_ImmortalShakurasShadowCannonTargetSet">
+        <EffectArray value="AP_ImmortalShakurasShadowCannonDamage"/>
+        <EffectArray value="AP_ImmortalShakurasShadowCannonTargetSearch"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ImmortalShakurasShadowCannonTargetAB">
+        <ValidatorArray index="0" value="AP_HaveVoidImmortalWeaponSplash"/>
+        <Behavior value="AP_ImmortalShakurasShadowCannonSlow"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="AP_ImmortalSplashDamage">
         <EditorCategories value="Race:Protoss"/>
         <Marker Link="Effect/PhaseDisruptors"/>
@@ -27058,4 +27071,171 @@
         <EditorCategories value=""/>
         <Behavior value="AP_DarkTemplarVoidStasisAttackable"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="AP_AnnihilatorParticleDisruptorsAir">
+        <EditorCategories value="Race:Protoss"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
+        <Amount value="20"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_ImmortalAirAttack">
+        <EffectArray value="AP_ImmortalAirAttackAB"/>
+    </CEffectSet>
+    <CEffectSet id="AP_AnnihilatorAirAttack">
+        <EffectArray value="AP_AnnihilatorAirAttackAB"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ImmortalAirAttackAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ImmortalAirAttack"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_AnnihilatorAirAttackAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_AnnihilatorAirAttack"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AP_ImmortalOverloadDamage">
+        <Amount value="8"/>
+        <Death value="Fire"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_ImmortalOverloadSet">
+        <ValidatorArray value="TargetIsEnemy"/>
+        <EffectArray value="AP_ImmortalOverloadDamage"/>
+    </CEffectSet>
+    <CEffectSet id="AP_ImmortalStarterDummy"/>
+    <CEffectSet id="AP_ImmortalWarpRelocate">
+        <ValidatorArray value="AP_ImmortalPlacement"/>
+        <EffectArray value="AP_ImmortalWarpRelocatePrecursorCU"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_ImmortalWarpRelocateTargetAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ImmortalWarpRelocateTarget"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_ImmortalWarpRelocatePrecursorAB">
+        <Behavior value="AP_ImmortalWarpRelocatePrecursor"/>
+    </CEffectApplyBehavior>
+    <CEffectCreateUnit id="AP_ImmortalWarpRelocatePrecursorCU">
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnEffect value="AP_ImmortalWarpRelocateCP"/>
+        <SpawnUnit value="AP_ImmortalAiur"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="AP_ImmortalWarpRelocateCasterAB">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AP_ImmortalWarpRelocate"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AP_ImmortalWarpRelocateRemovePrecursor">
+        <Flags index="Kill" value="1"/>
+        <Death value="Remove"/>
+        <ImpactLocation Effect="AP_ImmortalWarpRelocateCP" Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="AP_ImmortalWarpRelocateCP">
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="3"/>
+        <PeriodicEffectArray value="AP_ImmortalWarpRelocateTurretResetOffset"/>
+        <PeriodicEffectArray value="AP_ImmortalWarpRelocatePrecursorAB"/>
+        <PeriodicEffectArray value="AP_ImmortalWarpRelocateCasterAB"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.3"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="AP_ImmortalWarpRelocateTargetSet">
+        <EffectArray value="AP_ImmortalWarpRelocateRemovePrecursor"/>
+        <EffectArray value="AP_ImmortalWarpRelocateTeleport"/>
+        <EffectArray value="AP_ImmortalWarpRelocateTargetAB"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectTeleport id="AP_ImmortalWarpRelocateTeleport">
+        <WhichUnit Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <TargetLocation Effect="AP_ImmortalWarpRelocatePrecursorCU" Value="TargetPoint"/>
+        <TeleportFlags index="TestFog" value="0"/>
+        <TeleportEffect value="AP_ImmortalWarpRelocateTurretResetOffset"/>
+    </CEffectTeleport>
+    <CEffectModifyUnit id="AP_ImmortalWarpRelocateTurretReset">
+        <ImpactUnit Value="Caster"/>
+        <ModifyTurret Turret="AP_Immortal">
+            <Target Value="TargetPoint"/>
+            <Flags index="Tracking" value="1"/>
+        </ModifyTurret>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="AP_ImmortalWarpRelocateTurretClear">
+        <ImpactUnit Value="Caster"/>
+        <ModifyTurret Action="ClearTarget" Turret="AP_Immortal">
+            <Target Value="TargetUnit"/>
+        </ModifyTurret>
+    </CEffectModifyUnit>
+    <CEffectCreatePersistent id="AP_ImmortalWarpRelocateTurretResetOffset">
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="AP_ImmortalWarpRelocateTurretReset"/>
+        <PeriodicOffsetArray value="0,-10,0"/>
+        <PeriodicPeriodArray value="0"/>
+        <WhichLocation Value="CasterPoint"/>
+        <OffsetVectorStartLocation Value="Unknown"/>
+        <OffsetVectorEndLocation Value="Unknown"/>
+        <OffsetFacingFallback Value="Unknown"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="AP_ImmortalPhaseDisruptorsAir">
+        <EditorCategories value="Race:Protoss"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
+        <Amount value="20"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectDamage>
+    <CEffectSet id="AP_VanguardFlare">
+        <EffectArray value="AP_VanguardFlareInitialCP"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="AP_VanguardFlareCP">
+        <ExpireDelay value="20"/>
+        <RevealRadius value="10"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="Detect" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="AP_VanguardFlareImpact">
+    </CEffectSet>
+    <CEffectCreatePersistent id="AP_VanguardFlareInitialCP">
+        <PeriodCount value="4"/>
+        <PeriodicEffectArray value="AP_VanguardFlareTurret"/>
+        <PeriodicEffectArray value="AP_VanguardFlareLM"/>
+        <PeriodicEffectArray value="AP_VanguardFlareSecondaryLM"/>
+        <PeriodicEffectArray value="AP_VanguardFlareCP"/>
+        <PeriodicOffsetArray value="0,0,0"/>
+        <PeriodicOffsetArray value="0,0,7"/>
+        <PeriodicOffsetArray value="0,0,10"/>
+        <PeriodicOffsetArray value="0,0,0"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.3"/>
+        <PeriodicPeriodArray value="0.5"/>
+        <PeriodicPeriodArray value="1.5"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="AP_VanguardFlareLM">
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="AP_VanguardFlareImpact"/>
+        <AmmoUnit value="AP_VanguardFlareMissile"/>
+        <Movers Link="AP_VanguardFlare"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="AP_VanguardFlareSearch">
+        <SearchFilters value="-;Player,Ally,Neutral,Enemy"/>
+        <AreaArray Radius="10"/>
+    </CEffectEnumArea>
+    <CEffectModifyUnit id="AP_VanguardFlareTurret">
+        <ImpactUnit Value="Caster"/>
+        <ModifyTurret Turret="AP_Immortal">
+            <Target Value="TargetPoint"/>
+            <Flags index="Tracking" value="1"/>
+            <Flags index="ClearTargetOnAimComplete" value="1"/>
+        </ModifyTurret>
+    </CEffectModifyUnit>
+    <CEffectSet id="AP_VanguardFlareSecondaryImpact"/>
+    <CEffectLaunchMissile id="AP_VanguardFlareSecondaryLM">
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="AP_VanguardFlareSecondaryImpact"/>
+        <AmmoUnit value="AP_VanguardFlareSecondaryMissile"/>
+        <Movers Link="AP_VanguardFlare"/>
+    </CEffectLaunchMissile>
 </Catalog>

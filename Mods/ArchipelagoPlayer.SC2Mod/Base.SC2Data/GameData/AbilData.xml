@@ -16762,4 +16762,72 @@
             <Flags index="IgnoreUser" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_ImmortalAirAttack">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <ProgressButtonArray index="Cast" value="AP_ImmortalAdvancedTargetingMechanics"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImmortalAdvancedTargetingMechanics" Requirements="AP_HaveImmortalAirAttack"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_AnnihilatorAirAttack">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <ProgressButtonArray index="Cast" value="AP_ImmortalAdvancedTargetingMechanics"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_AnnihilatorAirAttack" Requirements="AP_AnnihilatorAirAttack"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_ImmortalStarter">
+        <Effect index="0" value="AP_ImmortalStarterDummy"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Location value="Player"/>
+            </Charge>
+            <Cooldown Location="Unit" TimeStart="2" TimeUse="30000"/>
+        </Cost>
+        <AutoCastRange value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImmortalStarter" Requirements="AP_ImmortalStarter"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="AP_ImmortalWarpRelocate">
+        <Cost>
+            <Resource index="Minerals" value="20"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="15"/>
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImmortalWarpRelocate" Requirements="AP_ImmortalWarpRelocate"/>
+        <PlaceUnit value="AP_ImmortalAiur"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_VanguardFlare">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="25"/>
+        <Arc value="360"/>
+        <CastOutroTime index="0" value="0.9"/>
+        <FinishTime value="0.4"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <CursorEffect value="AP_VanguardFlareSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VanguardFlare" Requirements="AP_VanguardFlare"/>
+    </CAbilEffectTarget>
 </Catalog>
