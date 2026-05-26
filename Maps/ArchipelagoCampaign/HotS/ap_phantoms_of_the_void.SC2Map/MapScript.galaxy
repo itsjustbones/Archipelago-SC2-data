@@ -207,6 +207,8 @@ void InitGlobals () {
 //--------------------------------------------------------------------------------------------------
 void gf_StartKerriganReviveCooldown2 ();
 void gf_TeachCorrosiveBlast (unit lp_hybrid);
+void gf_StukovHeroPanelSet ();
+void gf_StukovHeroPanelReplacementSet ();
 void gf_SetNullZoneDirection (int lp_direction);
 fixed gf_NullZonePercentage ();
 void gf_CreateChannelUI ();
@@ -283,7 +285,7 @@ trigger gt_Crystal3DefenseQ;
 trigger gt_AllCrystalsDestroyedQ;
 trigger gt_DefeatBaseDead;
 trigger gt_DefeatDuelLose;
-trigger gt_DefeatKerriganDies;
+trigger gt_DefeatHeroDies;
 trigger gt_VictoryDuelWin;
 trigger gt_VictorySequence;
 trigger gt_Victory;
@@ -406,6 +408,51 @@ bool auto_gf_TeachCorrosiveBlast_TriggerFunc (bool testConds, bool runActions) {
     UISetButtonHighlighted(PlayerGroupAll(), AbilityCommand("DevastatingShot", 0), false);
     libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
     return true;
+}
+
+void gf_StukovHeroPanelSet () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 7)) {
+    }
+    else {
+        if (((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 3) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 5) || (libABFE498B_gv_aP_Triggers_Option_HeroPresence == 6))) {
+            lib15EF4C78_gf_SetHeroPanelUnit(3, libABFE498B_gv_aP_Triggers_HeroUnit[2], lib15EF4C78_gf_AP_GetPlayerId());
+            lib15EF4C78_gf_SetHeroPanelUnit(2, gv_stukov, lib15EF4C78_gf_AP_GetPlayerId());
+            lib15EF4C78_gv_zS_SwarmHeroUIIcon[2] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+        }
+        else {
+            libSwaC_gf_SetHeroPanelUnit(2, gv_stukov);
+        }
+    }
+}
+
+void gf_StukovHeroPanelReplacementSet () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libABFE498B_gv_apRemovedHeroPanelSlot == 1)) {
+        lib15EF4C78_gf_SetHeroPanelUnit(3, libABFE498B_gv_aP_Triggers_HeroUnit[2], lib15EF4C78_gf_AP_GetPlayerId());
+        lib15EF4C78_gf_SetHeroPanelUnit(2, libABFE498B_gv_aP_Triggers_HeroUnit[1], lib15EF4C78_gf_AP_GetPlayerId());
+        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_stukov, lib15EF4C78_gf_AP_GetPlayerId());
+        lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+    }
+    else {
+        if ((libABFE498B_gv_apRemovedHeroPanelSlot == 2)) {
+            lib15EF4C78_gf_SetHeroPanelUnit(3, libABFE498B_gv_aP_Triggers_HeroUnit[2], lib15EF4C78_gf_AP_GetPlayerId());
+            lib15EF4C78_gf_SetHeroPanelUnit(2, gv_stukov, lib15EF4C78_gf_AP_GetPlayerId());
+            lib15EF4C78_gv_zS_SwarmHeroUIIcon[2] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+            lib15EF4C78_gf_SetHeroPanelUnit(1, libABFE498B_gv_aP_Triggers_HeroUnit[1], lib15EF4C78_gf_AP_GetPlayerId());
+        }
+        else {
+            if ((libABFE498B_gv_apRemovedHeroPanelSlot == 3)) {
+                lib15EF4C78_gf_SetHeroPanelUnit(3, gv_stukov, lib15EF4C78_gf_AP_GetPlayerId());
+                lib15EF4C78_gv_zS_SwarmHeroUIIcon[3] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+            }
+            else {
+                libSwaC_gf_SetHeroPanelUnit(1, gv_stukov);
+            }
+        }
+    }
 }
 
 trigger auto_gf_SetNullZoneDirection_Trigger = null;
@@ -908,7 +955,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 6;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -955,6 +1002,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     }
     libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(1194), UnitGroupEmpty());
     gv_kerrigan = libABFE498B_gv_aP_Triggers_HeroUnit[1];
+    libSwaC_gf_RegisterCampaignKerrigan(gv_kerrigan);
     return true;
 }
 
@@ -3874,12 +3922,16 @@ void gt_DefeatDuelLose_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Defeat Kerrigan Dies
+// Trigger: Defeat Hero Dies
 //--------------------------------------------------------------------------------------------------
-bool gt_DefeatKerriganDies_Func (bool testConds, bool runActions) {
+bool gt_DefeatHeroDies_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!(((UnitGetType(EventUnit()) == "AP_K5Kerrigan") || (UnitGetType(EventUnit()) == "AP_K5KerriganBurrowed") || (UnitGetType(EventUnit()) == "AP_NovaHero") || (UnitGetType(EventUnit()) == "AP_ArtanisHero") || (EventUnit() == gv_kerrigan)))) {
+            return false;
+        }
+
         if (!((gv_gameOver == false))) {
             return false;
         }
@@ -3902,9 +3954,9 @@ bool gt_DefeatKerriganDies_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_DefeatKerriganDies_Init () {
-    gt_DefeatKerriganDies = TriggerCreate("gt_DefeatKerriganDies_Func");
-    TriggerAddEventUnitDied(gt_DefeatKerriganDies, UnitRefFromVariable("gv_kerrigan"));
+void gt_DefeatHeroDies_Init () {
+    gt_DefeatHeroDies = TriggerCreate("gt_DefeatHeroDies_Func");
+    TriggerAddEventUnitDied(gt_DefeatHeroDies, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6147,9 +6199,6 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
         TriggerEnable(gt_KerriganBeamRegionSounds, true);
     }
 
-    lib15EF4C78_gf_SetHeroPanelUnit(1, null, gv_pLAYER_01_USER);
-    libSwaC_gf_SetHeroPanelUnit(1, gv_stukov);
-    libSwaC_gf_SetHeroPanelUnit(2, null);
     GameTimeOfDayPause(false);
     PlayerSetState(gv_pLAYER_01_USER, c_playerStateXPGain, true);
     libSwaC_gf_EnableDisableZerglingRespawn(true);
@@ -6200,6 +6249,10 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
     }
     libABFE498B_gf_AP_Triggers_resetBase(gv_pLAYER_01_USER);
     libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(176), UnitGroupEmpty());
+    lib15EF4C78_gf_SetHeroPanelUnit(1, null, gv_pLAYER_01_USER);
+    gf_StukovHeroPanelReplacementSet();
+    libSwaC_gf_SetHeroPanelUnit(2, null);
+    TriggerEnable(gt_DefeatHeroDies, false);
     gv_aPIntro = false;
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     VisExploreArea(gv_pLAYER_01_USER, RegionEntireMap(), false, false);
@@ -6583,7 +6636,7 @@ void InitTriggers () {
     gt_AllCrystalsDestroyedQ_Init();
     gt_DefeatBaseDead_Init();
     gt_DefeatDuelLose_Init();
-    gt_DefeatKerriganDies_Init();
+    gt_DefeatHeroDies_Init();
     gt_VictoryDuelWin_Init();
     gt_VictorySequence_Init();
     gt_Victory_Init();

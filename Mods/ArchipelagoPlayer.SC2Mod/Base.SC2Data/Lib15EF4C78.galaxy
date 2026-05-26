@@ -2911,6 +2911,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
     }
     if ((lib15EF4C78_gv_zS_SwarmHeroUIShowLevel[lp_index] == true)) {
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogLevelBox[lp_index], PlayerGroupAll(), true);
         if ((lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index] == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player))) {
             libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogLevelLabel[lp_index], IntToText(lib15EF4C78_gv_zS_KerriganLevel[lp_player]), PlayerGroupAll());
         }
@@ -3035,6 +3036,40 @@ void lib15EF4C78_gf_SetHeroReviverCocoon (int lp_heroType, unit lp_cocoon, int l
     }
     else {
     }
+}
+
+int lib15EF4C78_gf_AP_Player_HeroChoiceFindPanelSlot (int lp_heroBit) {
+    // Variable Declarations
+    int lv_index;
+    string lv_unitType;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((lp_heroBit == 1)) {
+        lv_unitType = "AP_K5Kerrigan";
+    }
+    else {
+        if ((lp_heroBit == 2)) {
+            lv_unitType = "AP_NovaHero";
+        }
+        else {
+            if ((lp_heroBit == 4)) {
+                lv_unitType = "AP_ArtanisHero";
+            }
+
+        }
+    }
+    lv_index = 1;
+    do {
+        if (((lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index] != null) && (UnitGetType(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index]) == lv_unitType))) {
+            return lv_index;
+        }
+
+        lv_index = (lv_index + 1);
+    }while ((lv_index <= 3));
+    return lv_index;
 }
 
 bool lib15EF4C78_gf_AP_Player_isKerriganRevivable (int lp_player) {
