@@ -48566,4 +48566,16 @@
         <Speed value="0.250000"/>
         <SpeedMax value="0.250000"/>
     </CActorSiteMover>
+    <CActorModel id="AP_Healpack" parent="ModelAnimationStyleOneShot">
+        <Inherits index="CloakEffect" value="1"/>
+        <On Terms="Effect.AP_HealpackSmall.Start" Send="Create"/>
+        <On Terms="Effect.AP_HealpackLarge.Start" Send="Create"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+    </CActorModel>
+    <CActorSound id="AP_HealpackSound" parent="SoundOneShot">
+        <Sound value="AP_SuperStimpackOn"/>
+        <On Terms="Effect.AP_HealpackSmall.Start" Send="Create"/>
+        <On Terms="Effect.AP_HealpackLarge.Start" Send="Create"/>
+    </CActorSound>
 </Catalog>

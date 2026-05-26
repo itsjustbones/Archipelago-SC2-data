@@ -1,4 +1,5 @@
-﻿AP_Raptor=Raptor Strain
+﻿AP/Error/AP_CasterLifeNotFull=Caster at full Life
+AP_Raptor=Raptor Strain
 AP_RaptorSwarmling=Raptor + Swarmling
 AP_Swarmling=Swarmling Strain
 Abil/Alert/AP_AscendantSacrificeInstant=No Supplicant nearby
@@ -582,6 +583,8 @@ Behavior/Name/AP_HHWraithFury6=Trigger Override
 Behavior/Name/AP_HHWraithFury7=Trigger Override
 Behavior/Name/AP_HHWraithFury8=Trigger Override
 Behavior/Name/AP_HHWraithFury9=Trigger Override
+Behavior/Name/AP_HealpackLarge=Med Pack
+Behavior/Name/AP_HealpackSmall=Med Pack
 Behavior/Name/AP_HellbatLeapStun=Stunned
 Behavior/Name/AP_HighArchonPsiStorm=Psi Storm
 Behavior/Name/AP_HiveQueenTransfusion=Transfusion
@@ -914,6 +917,8 @@ Behavior/Tooltip/AP_HHWraithFury6=Attack Speed increased by 60%
 Behavior/Tooltip/AP_HHWraithFury7=Attack Speed increased by 70%
 Behavior/Tooltip/AP_HHWraithFury8=Attack Speed increased by 80%
 Behavior/Tooltip/AP_HHWraithFury9=Attack Speed increased by 90%
+Behavior/Tooltip/AP_HealpackLarge=This unit is being healed
+Behavior/Tooltip/AP_HealpackSmall=This unit is being healed
 Behavior/Tooltip/AP_HellbatLeapStun=This unit cannot move or attack.
 Behavior/Tooltip/AP_HighArchonPsiStorm=Target is under the effects of Psionic Storm and will take massive damage while in this area of effect.
 Behavior/Tooltip/AP_HiveQueenTransfusion=This unit is regenerating health.
@@ -1570,6 +1575,8 @@ Button/Name/AP_HaveGraviticBoosters=Gravitic Boosters
 Button/Name/AP_HaveNovaGadgetDefensiveDroneSummon=[PH] Place Defensive Drone
 Button/Name/AP_HavocEnduringSight=Enduring Sight
 Button/Name/AP_Heal=Heal
+Button/Name/AP_HealpackLarge=Med Pack
+Button/Name/AP_HealpackSmall=Med Pack
 Button/Name/AP_HealingAdaptation=Healing Adaptation
 Button/Name/AP_HealingDrone=Bio-Mechanical Repair Drone
 Button/Name/AP_HealingPsionicStorm=Plasma Surge
@@ -3220,6 +3227,8 @@ Button/Tooltip/AP_HealMengskHealL2=<c val="f078ff">Heals <d ref="Effect,AP_Medic
 Button/Tooltip/AP_HealMengskHealL3=<c val="f078ff">Heals <d ref="Effect,AP_MedicMengskHealL3,RechargeVitalRate" precision="2"/> life per <d ref="Effect,AP_MedicMengskHealL3,RechargeVitalRate * Effect,AP_MedicMengskHealL3,DrainVitalCostFactor"  precision="2"/> energy.</c>
 Button/Tooltip/AP_HealMengskHealL4=<c val="f078ff">Heals <d ref="Effect,AP_MedicMengskHealModifyTargetLife,VitalArray[Life].Change / Effect,AP_MedicMengskHealTargetPersistent,PeriodicPeriodArray[0]" precision="2"/> life per <d ref="-Effect,AP_MedicMengskHealModifyCasterEnergy,VitalArray[Energy].Change / Effect,AP_MedicMengskHealTargetPersistent,PeriodicPeriodArray[0]" precision="2"/> energy.</c>
 Button/Tooltip/AP_HealMengskPlusMech=Heals a friendly biological or mechanical target.<n/><n/>
+Button/Tooltip/AP_HealpackLarge=Heals the unit for <d ref="Behavior,AP_HealpackLarge,Duration * Behavior,AP_HealpackLarge,Modification.VitalRegenArray[Life]"/> life over <d ref="Behavior,AP_HealpackLarge,Duration"/> seconds.
+Button/Tooltip/AP_HealpackSmall=Heals the unit for <d ref="Behavior,AP_HealpackSmall,Duration * Behavior,AP_HealpackSmall,Modification.VitalRegenArray[Life]"/> life over <d ref="Behavior,AP_HealpackSmall,Duration"/> seconds.
 Button/Tooltip/AP_HealingAdaptation=Tyrannozors regenerate life quickly when out of combat.
 Button/Tooltip/AP_HealingDrone=Heals nearby biological and mechanical units.<n/>Times out after <d ref="Behavior,AP_HealingDroneTimedLife,Duration"/> seconds.
 Button/Tooltip/AP_HealingPsionicStorm=Psionic Storm can be cast from +<d ref="Upgrade,AP_HighTemplarPlasmaSurge,EffectArray[3].Value"/> range, affects a larger area, and restores <d ref="((Effect,AP_HighArchonPsiStormPersistent,PeriodCount+1)*(Effect,AP_HighArchonPsiStormHeal,RechargeVitalRate))/2"/> shields to friendly units in the target area.<c/>

@@ -596,27 +596,27 @@
         </Cost>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackMarine" parent="AP_SuperStimpackSmallBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_HaveSuperStimpackMarine">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_MarineStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackReaper" parent="AP_SuperStimpackSmallBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_HaveSuperStimpackReaper">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_ReaperStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackMarauder" parent="AP_SuperStimpackLargeBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HaveSuperStimpackMarauder">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_MarauderStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackFirebat" parent="AP_SuperStimpackLargeBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HaveSuperStimpackFirebat">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_FirebatStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackHellbat" parent="AP_SuperStimpackLargeBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HaveSuperStimpackHellbat">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HellionStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
@@ -16830,4 +16830,44 @@
         <CursorEffect value="AP_VanguardFlareSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_VanguardFlare" Requirements="AP_VanguardFlare"/>
     </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_HealpackBase">
+        <AbilSetId value="Stimpack"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <InfoTooltipPriority value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="PassengerAcquirePassengers" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="18"/>
+        </Cost>
+        <AutoCastRange value="5"/>
+        <AINotifyEffect value="Stimpack"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackMarine" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackSmall"/>
+        <AutoCastValidatorArray value="AP_HealpackSmallAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackSmall" Requirements="AP_MarineHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackMarauder" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackLarge"/>
+        <AutoCastValidatorArray value="AP_HealpackLargeAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackLarge" Requirements="AP_MarauderHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackFirebat" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackLarge"/>
+        <AutoCastValidatorArray value="AP_HealpackLargeAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackLarge" Requirements="AP_FirebatHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackReaper" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackSmall"/>
+        <AutoCastValidatorArray value="AP_HealpackSmallAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackSmall" Requirements="AP_ReaperHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackHellion" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackLarge"/>
+        <AutoCastValidatorArray value="AP_HealpackLargeAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackLarge" Requirements="AP_HellionHealNoStim"/>
+    </CAbilEffectInstant>
 </Catalog>

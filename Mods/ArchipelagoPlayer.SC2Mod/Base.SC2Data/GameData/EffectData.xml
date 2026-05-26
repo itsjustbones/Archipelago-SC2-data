@@ -27238,4 +27238,22 @@
         <AmmoUnit value="AP_VanguardFlareSecondaryMissile"/>
         <Movers Link="AP_VanguardFlare"/>
     </CEffectLaunchMissile>
+    <CEffectSet id="AP_HealpackSmall">
+        <ValidatorArray value="AP_CasterLifeNotFull"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AP_HealpackSmallAB"/>
+    </CEffectSet>
+    <CEffectSet id="AP_HealpackLarge">
+        <ValidatorArray value="AP_CasterLifeNotFull"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AP_HealpackLargeAB"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AP_HealpackSmallAB">
+        <EditorCategories value=""/>
+        <Behavior value="AP_HealpackSmall"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AP_HealpackLargeAB">
+        <EditorCategories value=""/>
+        <Behavior value="AP_HealpackLarge"/>
+    </CEffectApplyBehavior>
 </Catalog>

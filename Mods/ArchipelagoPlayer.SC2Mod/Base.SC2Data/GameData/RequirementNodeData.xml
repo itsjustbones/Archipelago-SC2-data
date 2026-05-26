@@ -8396,4 +8396,99 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="AP_VanguardFlare" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_MarineStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_MarineStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_MarineHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackMarine" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotMarineStim">
+        <OperandArray index="0" value="AP_MarineStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_MarineStimAndHeal">
+        <OperandArray value="AP_MarineHeal"/>
+        <OperandArray value="AP_MarineStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_MarineHealNoStim">
+        <OperandArray value="AP_MarineHeal"/>
+        <OperandArray value="AP_NotMarineStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_MarauderStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_MarauderStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_MarauderHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackMarauder" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotMarauderStim">
+        <OperandArray index="0" value="AP_MarauderStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_MarauderStimAndHeal">
+        <OperandArray value="AP_MarauderHeal"/>
+        <OperandArray value="AP_MarauderStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_MarauderHealNoStim">
+        <OperandArray value="AP_MarauderHeal"/>
+        <OperandArray value="AP_NotMarauderStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_FirebatStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_FirebatStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_FirebatHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackFirebat" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotFirebatStim">
+        <OperandArray index="0" value="AP_FirebatStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_FirebatStimAndHeal">
+        <OperandArray value="AP_FirebatHeal"/>
+        <OperandArray value="AP_FirebatStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_FirebatHealNoStim">
+        <OperandArray value="AP_FirebatHeal"/>
+        <OperandArray value="AP_NotFirebatStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_ReaperStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ReaperStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_ReaperHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackReaper" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotReaperStim">
+        <OperandArray index="0" value="AP_ReaperStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_ReaperStimAndHeal">
+        <OperandArray value="AP_ReaperHeal"/>
+        <OperandArray value="AP_ReaperStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_ReaperHealNoStim">
+        <OperandArray value="AP_ReaperHeal"/>
+        <OperandArray value="AP_NotReaperStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_HellionStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_HellbatStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_HellionHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackHellbat" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotHellionStim">
+        <OperandArray index="0" value="AP_HellionStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_HellionStimAndHeal">
+        <OperandArray value="AP_HellionHeal"/>
+        <OperandArray value="AP_HellionStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_HellionHealNoStim">
+        <OperandArray value="AP_HellionHeal"/>
+        <OperandArray value="AP_NotHellionStim"/>
+    </CRequirementAnd>
 </Catalog>

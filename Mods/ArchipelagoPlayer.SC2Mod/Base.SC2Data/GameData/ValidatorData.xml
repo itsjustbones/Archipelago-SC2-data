@@ -8514,4 +8514,55 @@
         <Range value="0"/>
         <Unit value="AP_ImmortalAiur"/>
     </CValidatorLocationPlacement>
+    <CValidatorUnitCompareVital id="AP_CasterLife30Missing">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Type value="Delta"/>
+        <Value value="30"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="AP_CasterLife60Missing">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Type value="Delta"/>
+        <Value value="60"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorCombine id="AP_HealpackSmallAutocast">
+        <CombineArray value="AP_HealpackSmallLifeThreshold"/>
+        <CombineArray value="AP_HealpackLifeNotFullAndOutOfCombat"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_HealpackLargeAutocast">
+        <CombineArray value="AP_HealpackLargeLifeThreshold"/>
+        <CombineArray value="AP_HealpackLifeNotFullAndOutOfCombat"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_HealpackLifeNotFullAndOutOfCombat">
+        <Type value="And"/>
+        <CombineArray value="AP_CasterLifeNotFull"/>
+        <CombineArray value="AP_CasterNotInCombat5s"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_HealpackSmallLifeThreshold">
+        <CombineArray value="AP_CasterLifeLT60Percent"/>
+        <CombineArray value="AP_CasterLife30Missing"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_HealpackLargeLifeThreshold">
+        <CombineArray value="AP_CasterLifeLT60Percent"/>
+        <CombineArray value="AP_CasterLife60Missing"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareVital id="AP_CasterLifeLT60Percent">
+        <WhichUnit Value="Caster"/>
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="0.6"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="AP_CasterLifeNotFull">
+        <ResultFailed value="Error,AP/Error/AP_CasterLifeNotFull"/>
+        <WhichUnit Value="Caster"/>
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="1"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareDamageTakenTime id="AP_CasterNotInCombat5s">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="5"/>
+    </CValidatorUnitCompareDamageTakenTime>
 </Catalog>
