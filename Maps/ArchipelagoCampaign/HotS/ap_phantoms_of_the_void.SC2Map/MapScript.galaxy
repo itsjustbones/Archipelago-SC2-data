@@ -92,6 +92,8 @@ int[9] gv_nullZoneArrowPings;
 bool gv_nullZoneMovingForward;
 int gv_nullZoneBarPanel;
 int gv_nullZoneBarLeft;
+int gv_nullZoneBarMaxWidth;
+int gv_nullZoneBarHeight;
 int gv_nullZoneBarPortraitKerrigan;
 int gv_nullZoneBarPortraitNarud;
 int gv_nullZoneTugOfWar;
@@ -180,6 +182,8 @@ void InitGlobals () {
     }
     gv_nullZoneBarPanel = c_invalidDialogControlId;
     gv_nullZoneBarLeft = c_invalidDialogControlId;
+    gv_nullZoneBarMaxWidth = 582;
+    gv_nullZoneBarHeight = 44;
     gv_nullZoneBarPortraitKerrigan = c_invalidDialogControlId;
     gv_nullZoneBarPortraitNarud = c_invalidDialogControlId;
     gv_nullZoneTugOfWar = c_invalidDialogControlId;
@@ -940,6 +944,7 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
     PlayerGroupAdd(lv_playerGroup, gv_pLAYER_02_DOMINION22222);
     lib5BD4895D_gf_AP_Core_MapConfig_setAffectedPlayers(lv_playerGroup);
     lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 350);
     return true;
 }
 
@@ -968,6 +973,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 
     if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Neut";
+        libABFE498B_gv_aP_Triggers_Option_SoAPresence = 3;
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
         libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
@@ -1693,7 +1699,7 @@ bool gt_StartGameTugofWarQ_Func (bool testConds, bool runActions) {
     lib5BD4895D_gf_AP_Core_updateObjectiveDescription(gv_objectiveDestroyDominionBase2);
     TriggerExecute(gt_NullZone10Q, true, false);
     TriggerExecute(gt_CorrosiveBlastQ, true, false);
-    TriggerExecute(gt_CreateTugWarBar, true, false);
+    TriggerExecute(gt_CreateTugWarBar, false, false);
     Wait(3.0, c_timeReal);
     TriggerQueueEnter();
     TriggerExecute(gt_ObjectiveDeactivateTemplesCreate, true, true);
@@ -2344,11 +2350,23 @@ bool gt_CreateTugWarBar_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/TugOfWarFrame");
-    gv_nullZoneBarPanel = DialogControlLastCreated();
+    if ((libABFE498B_gf_AP_Triggers_checkSoA(gv_pLAYER_01_USER, 0, false) == true)) {
+        DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/TugOfWarFrameSmall");
+        gv_nullZoneBarPanel = DialogControlLastCreated();
+        gv_nullZoneBarMaxWidth = 439;
+        gv_nullZoneBarHeight = 37;
+    }
+    else {
+        DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/TugOfWarFrame");
+        gv_nullZoneBarPanel = DialogControlLastCreated();
+        gv_nullZoneBarMaxWidth = 582;
+        gv_nullZoneBarHeight = 44;
+    }
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeFlash, "TugOfWarEffects");
     gv_nullZoneTugOfWar = DialogControlLastCreated();
-    DialogControlSetVisible(gv_nullZoneTugOfWar, PlayerGroupAll(), true);
+    DialogControlSetVisible(gv_nullZoneTugOfWar, PlayerGroupAll(), false);
+    DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeImage, "LeftBarImage");
+    gv_nullZoneBarLeft = DialogControlLastCreated();
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeImage, "LeftIconImage");
     gv_nullZoneBarPortraitKerrigan = DialogControlLastCreated();
     libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\btn-hero-kerriganqueenofblades.dds", PlayerGroupAll());
@@ -2360,7 +2378,7 @@ bool gt_CreateTugWarBar_Func (bool testConds, bool runActions) {
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeLabel, "RightNameLabel");
     libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UnitTypeGetName(UnitGetType(gv_kerrigan2)), PlayerGroupAll());
     DialogControlSetVisible(gv_nullZoneBarPanel, PlayerGroupAll(), true);
-    TriggerExecute(gt_UpdateTugWarBar, true, false);
+    TriggerExecute(gt_UpdateTugWarBar, false, false);
     return true;
 }
 
@@ -2378,6 +2396,7 @@ bool gt_UpdateTugWarBar_Func (bool testConds, bool runActions) {
     fixed lv_distanceK;
     fixed lv_distanceN;
     fixed lv_tugofWarBarPercent;
+    int lv_leftBarWidth;
 
     // Automatic Variable Declarations
     // Variable Initialization
@@ -2406,6 +2425,8 @@ bool gt_UpdateTugWarBar_Func (bool testConds, bool runActions) {
             }
         }
         DialogControlInvokeAsString(gv_nullZoneTugOfWar, PlayerGroupAll(), "SetMarker", FixedToString(lv_tugofWarBarPercent, c_fixedPrecisionAny), null, null, null);
+        lv_leftBarWidth = MaxI(1, MinI(gv_nullZoneBarMaxWidth, FixedToInt(IntToFixed(gv_nullZoneBarMaxWidth) * lv_tugofWarBarPercent)));
+        DialogControlSetSize(gv_nullZoneBarLeft, PlayerGroupAll(), lv_leftBarWidth, gv_nullZoneBarHeight);
         Wait(0.125, c_timeAI);
     }
     return true;
