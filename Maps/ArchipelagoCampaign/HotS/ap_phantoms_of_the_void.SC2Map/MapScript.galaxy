@@ -92,11 +92,11 @@ int[9] gv_nullZoneArrowPings;
 bool gv_nullZoneMovingForward;
 int gv_nullZoneBarPanel;
 int gv_nullZoneBarLeft;
-int gv_nullZoneBarMaxWidth;
-int gv_nullZoneBarHeight;
 int gv_nullZoneBarPortraitKerrigan;
 int gv_nullZoneBarPortraitNarud;
 int gv_nullZoneTugOfWar;
+int gv_nullZoneBarMaxWidth;
+int gv_nullZoneBarHeight;
 actor gv_kerriganSoundRegionActor;
 region gv_kerriganSoundRegion;
 actor gv_narudSoundRegionActor;
@@ -182,11 +182,11 @@ void InitGlobals () {
     }
     gv_nullZoneBarPanel = c_invalidDialogControlId;
     gv_nullZoneBarLeft = c_invalidDialogControlId;
-    gv_nullZoneBarMaxWidth = 582;
-    gv_nullZoneBarHeight = 44;
     gv_nullZoneBarPortraitKerrigan = c_invalidDialogControlId;
     gv_nullZoneBarPortraitNarud = c_invalidDialogControlId;
     gv_nullZoneTugOfWar = c_invalidDialogControlId;
+    gv_nullZoneBarMaxWidth = 582;
+    gv_nullZoneBarHeight = 44;
     gv_templeSuperWarpGate = UnitFromId(1092);
     for (init_i = 0; init_i <= 5; init_i += 1) {
         gv_templePings[init_i] = c_invalidPingId;
@@ -2425,7 +2425,7 @@ bool gt_UpdateTugWarBar_Func (bool testConds, bool runActions) {
             }
         }
         DialogControlInvokeAsString(gv_nullZoneTugOfWar, PlayerGroupAll(), "SetMarker", FixedToString(lv_tugofWarBarPercent, c_fixedPrecisionAny), null, null, null);
-        lv_leftBarWidth = MaxI(1, MinI(gv_nullZoneBarMaxWidth, FixedToInt(IntToFixed(gv_nullZoneBarMaxWidth) * lv_tugofWarBarPercent)));
+        lv_leftBarWidth = MaxI(1, MinI(gv_nullZoneBarMaxWidth, FixedToInt(((gv_nullZoneBarMaxWidth) * lv_tugofWarBarPercent))));
         DialogControlSetSize(gv_nullZoneBarLeft, PlayerGroupAll(), lv_leftBarWidth, gv_nullZoneBarHeight);
         Wait(0.125, c_timeAI);
     }
