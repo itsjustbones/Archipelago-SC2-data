@@ -97,6 +97,7 @@ int gv_nullZoneBarPortraitNarud;
 int gv_nullZoneTugOfWar;
 int gv_nullZoneBarMaxWidth;
 int gv_nullZoneBarHeight;
+int gv_nullZoneBarMiddlePulse;
 actor gv_kerriganSoundRegionActor;
 region gv_kerriganSoundRegion;
 actor gv_narudSoundRegionActor;
@@ -187,6 +188,7 @@ void InitGlobals () {
     gv_nullZoneTugOfWar = c_invalidDialogControlId;
     gv_nullZoneBarMaxWidth = 582;
     gv_nullZoneBarHeight = 44;
+    gv_nullZoneBarMiddlePulse = c_invalidDialogControlId;
     gv_templeSuperWarpGate = UnitFromId(1092);
     for (init_i = 0; init_i <= 5; init_i += 1) {
         gv_templePings[init_i] = c_invalidPingId;
@@ -973,10 +975,10 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 
     if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Neut";
-        libABFE498B_gv_aP_Triggers_Option_SoAPresence = 3;
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gv_aP_Triggers_Option_SoAPresence = 0;
+        libABFE498B_gv_aP_Triggers_skipCutscenes = false;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 2;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 0;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -1021,10 +1023,6 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
             libNtve_gf_PauseUnit(auto2241A4A2_var, true);
         }
     }
-    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(1194), UnitGroupEmpty());
-    gf_StukovHeroPanelSet();
-    gv_kerrigan = libABFE498B_gv_aP_Triggers_HeroUnit[1];
-    libSwaC_gf_RegisterCampaignKerrigan(gv_kerrigan);
     return true;
 }
 
@@ -1340,6 +1338,10 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    libNtve_gf_CreateUnitsAtPoint2(1, "K5Kerrigan", 0, gv_pLAYER_01_USER, PointFromId(248));
+    gv_kerrigan = UnitLastCreated();
+    libABFE498B_gv_aP_Triggers_HeroUnit[1] = UnitLastCreated();
+    libSwaC_gf_RegisterCampaignKerrigan(UnitLastCreated());
     libSwaC_gf_CreateHero2(PointFromId(165), gv_pLAYER_01_USER, libSwaC_ge_HeroUnit_Stukov, 0.0, 0, libSwaC_ge_KerriganCreatePurpose_GamePlay);
     gv_stukov = UnitLastCreated();
     libSCDH_gf_CreateHeroPing(gv_stukov, libSCDH_ge_HeroPingType_Ally);
@@ -2365,11 +2367,28 @@ bool gt_CreateTugWarBar_Func (bool testConds, bool runActions) {
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeFlash, "TugOfWarEffects");
     gv_nullZoneTugOfWar = DialogControlLastCreated();
     DialogControlSetVisible(gv_nullZoneTugOfWar, PlayerGroupAll(), false);
+    DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeImage, "MiddlePulseImage");
+    gv_nullZoneBarMiddlePulse = DialogControlLastCreated();
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeImage, "LeftBarImage");
     gv_nullZoneBarLeft = DialogControlLastCreated();
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeImage, "LeftIconImage");
     gv_nullZoneBarPortraitKerrigan = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\btn-hero-kerriganqueenofblades.dds", PlayerGroupAll());
+    if ((libABFE498B_gv_apRemovedHeroBit == 1)) {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\btn-hero-kerriganqueenofblades.dds", PlayerGroupAll());
+    }
+    else {
+        if ((libABFE498B_gv_apRemovedHeroBit == 2)) {
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\novaex3_ingame_heroportrait.dds", PlayerGroupAll());
+        }
+        else {
+            if ((libABFE498B_gv_apRemovedHeroBit == 4)) {
+                libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\btn-hero-artanis.dds", PlayerGroupAll());
+            }
+            else {
+                libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\btn-hero-kerriganqueenofblades.dds", PlayerGroupAll());
+            }
+        }
+    }
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeLabel, "LeftNameLabel");
     libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UnitTypeGetName(UnitGetType(gv_kerrigan)), PlayerGroupAll());
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeImage, "RightIconImage");
@@ -2378,6 +2397,7 @@ bool gt_CreateTugWarBar_Func (bool testConds, bool runActions) {
     DialogControlHookup(gv_nullZoneBarPanel, c_triggerControlTypeLabel, "RightNameLabel");
     libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UnitTypeGetName(UnitGetType(gv_kerrigan2)), PlayerGroupAll());
     DialogControlSetVisible(gv_nullZoneBarPanel, PlayerGroupAll(), true);
+    DialogControlSendAnimationEvent(gv_nullZoneBarMiddlePulse, PlayerGroupAll(), "PulsePlay");
     TriggerExecute(gt_UpdateTugWarBar, false, false);
     return true;
 }
@@ -5692,6 +5712,10 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
         UnitSetPropertyFixed(auto05F1752F_var, c_unitPropEnergyPercent, 100.0);
         UnitSelect(auto05F1752F_var, gv_pLAYER_01_USER, true);
     }
+    libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(1194), UnitGroupEmpty());
+    gf_StukovHeroPanelSet();
+    gv_kerrigan = libABFE498B_gv_aP_Triggers_HeroUnit[1];
     libABFE498B_gf_AP_Triggers_startNoBuild(gv_pLAYER_01_USER);
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     VisExploreArea(gv_pLAYER_01_USER, RegionEntireMap(), false, false);
@@ -5993,6 +6017,13 @@ bool gt_MidCinematic_Func (bool testConds, bool runActions) {
     }
 
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoFromId(1202), 0.0, -1, 10.0, true);
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
+        libNtve_gf_CreateUnitsAtPoint2(1, "K5Kerrigan", 0, gv_pLAYER_01_USER, PointFromId(250));
+        gv_kerrigan = UnitLastCreated();
+        libABFE498B_gv_aP_Triggers_HeroUnit[1] = UnitLastCreated();
+        libSwaC_gf_RegisterCampaignKerrigan(UnitLastCreated());
+    }
+
     libNtve_gf_ShowHideUnit(UnitFromId(239), false);
     libNtve_gf_ShowHideUnit(UnitFromId(916), false);
     TriggerExecute(gt_MidMusic, true, false);
@@ -6095,6 +6126,7 @@ bool gt_MidCinematicEnd_Func (bool testConds, bool runActions) {
         lv_fadeDuration = 0.5;
     }
     CinematicFade(false, lv_fadeDuration, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
+    libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
     return true;
 }
 
@@ -6157,7 +6189,9 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
             if ((libABFE498B_gv_apRemovedHeroBit == 4)) {
                 libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_ArtanisHero", 0, 1, PointFromId(250));
             }
-
+            else {
+                libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_K5Kerrigan", 0, 1, PointFromId(250));
+            }
         }
     }
     gv_kerrigan = UnitLastCreated();
@@ -6260,7 +6294,9 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
             if ((UnitGetType(gv_kerrigan) == "AP_NovaHero")) {
                 libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_kerrigan), c_animNameDefault, "Spell F A", c_animFlagPlayForever, c_animTimeDefault);
             }
-
+            else {
+                libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_kerrigan), c_animNameDefault, "Spell E", c_animFlagPlayForever, c_animTimeDefault);
+            }
         }
     }
     if ((UnitIsAlive(gv_stukov) == false)) {
