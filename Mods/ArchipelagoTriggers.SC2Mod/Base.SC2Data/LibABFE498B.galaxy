@@ -11370,12 +11370,12 @@ void libABFE498B_gf_AP_HeroChoiceCreatePanel (int lp_slot, int lp_heroBit, int l
 
     // Implementation
     libABFE498B_gv_apHeroChoiceBit[lp_slot] = lp_heroBit;
-    DialogCreate(280, 300, c_anchorCenter, lp_offset, -40, true);
+    DialogCreate(308, 330, c_anchorCenter, lp_offset, -40, true);
     DialogSetRenderPriority(DialogLastCreated(), 105);
     DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
     libABFE498B_gv_apHeroChoicePanel[lp_slot] = DialogLastCreated();
-    libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 280, 300, c_anchorCenter, 0, 0, StringToText(""), "Assets\\Textures\\hud_btn_bg_ability_blank.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
-    libNtve_gf_CreateDialogItemLabel(libABFE498B_gv_apHeroChoicePanel[lp_slot], 250, 45, c_anchorTop, 0, 24, libABFE498B_gf_AP_HeroChoiceName(lp_heroBit), ColorWithAlpha(0,0,0,0), true, 1.0);
+    libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 308, 330, c_anchorCenter, 0, 0, StringToText(""), "Assets\\Textures\\hud_btn_bg_ability_blank.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
+    libNtve_gf_CreateDialogItemLabel(libABFE498B_gv_apHeroChoicePanel[lp_slot], 270, 50, c_anchorTop, 0, 24, libABFE498B_gf_AP_HeroChoiceName(lp_heroBit), ColorWithAlpha(0,0,0,0), true, 1.0);
     libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ABChoiceRewardsTitle", PlayerGroupAll());
     if ((lp_heroBit == 1)) {
         libNtve_gf_CreateDialogItemImage(libABFE498B_gv_apHeroChoicePanel[lp_slot], 96, 96, c_anchorCenter, 0, -5, StringToText(""), "Assets\\Textures\\btn-hero-kerriganqueenofblades.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
@@ -11391,7 +11391,7 @@ void libABFE498B_gf_AP_HeroChoiceCreatePanel (int lp_slot, int lp_heroBit, int l
 
         }
     }
-    libNtve_gf_CreateDialogItemButton(libABFE498B_gv_apHeroChoicePanel[lp_slot], 210, 55, c_anchorBottom, 0, 24, StringToText(""), (StringToText("Remove ") + libABFE498B_gf_AP_HeroChoiceName(lp_heroBit)), "");
+    libNtve_gf_CreateDialogItemButton(libABFE498B_gv_apHeroChoicePanel[lp_slot], 240, 60, c_anchorBottom, 0, 24, StringToText(""), (StringToText("Remove ") + libABFE498B_gf_AP_HeroChoiceName(lp_heroBit)), "");
     libABFE498B_gv_apHeroChoiceButton[lp_slot] = DialogControlLastCreated();
 }
 
@@ -11413,6 +11413,7 @@ bool libABFE498B_gf_AP_HeroChoiceOffer (trigger lp_continueTrigger) {
     }
 
     libABFE498B_gv_apHeroChoiceCount = 0;
+    TransmissionWait(TransmissionLastSent(), 0.1875);
     if ((libABFE498B_gf_AP_HeroChoiceHasBit(lv_presence, 1) == true)) {
         libABFE498B_gv_apHeroChoiceCount += 1;
         libABFE498B_gv_apHeroChoiceBit[libABFE498B_gv_apHeroChoiceCount] = 1;
@@ -11452,10 +11453,10 @@ bool libABFE498B_gf_AP_HeroChoiceOffer (trigger lp_continueTrigger) {
     lv_slot = 1;
     for ( ; ( (autoA389DEB5_ai >= 0 && lv_slot <= autoA389DEB5_ae) || (autoA389DEB5_ai < 0 && lv_slot >= autoA389DEB5_ae) ) ; lv_slot += autoA389DEB5_ai ) {
         if ((libABFE498B_gv_apHeroChoiceCount == 2)) {
-            libABFE498B_gf_AP_HeroChoiceCreatePanel(lv_slot, libABFE498B_gv_apHeroChoiceBit[lv_slot], ((lv_slot * 360) - 540));
+            libABFE498B_gf_AP_HeroChoiceCreatePanel(lv_slot, libABFE498B_gv_apHeroChoiceBit[lv_slot], ((lv_slot * 360) - 580));
         }
         else {
-            libABFE498B_gf_AP_HeroChoiceCreatePanel(lv_slot, libABFE498B_gv_apHeroChoiceBit[lv_slot], ((lv_slot * 320) - 640));
+            libABFE498B_gf_AP_HeroChoiceCreatePanel(lv_slot, libABFE498B_gv_apHeroChoiceBit[lv_slot], ((lv_slot * 320) - 700));
         }
     }
     return true;

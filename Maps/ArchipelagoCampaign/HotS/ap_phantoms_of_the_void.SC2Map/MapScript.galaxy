@@ -975,10 +975,10 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 
     if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Neut";
-        libABFE498B_gv_aP_Triggers_Option_SoAPresence = 0;
+        libABFE498B_gv_aP_Triggers_Option_SoAPresence = 3;
         libABFE498B_gv_aP_Triggers_skipCutscenes = false;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 0;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 5;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -4555,7 +4555,7 @@ bool gt_ObjectiveKerriganMustSurviveCreate_Func (bool testConds, bool runActions
             return false;
         }
 
-        if (!((libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0))) {
+        if (!((libABFE498B_gv_aP_Triggers_Option_HeroPresence > 0))) {
             return false;
         }
     }
@@ -4593,7 +4593,7 @@ bool gt_ObjectiveKerriganMustSurviveComplete_Func (bool testConds, bool runActio
             return false;
         }
 
-        if (!((libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0))) {
+        if (!((libABFE498B_gv_aP_Triggers_Option_HeroPresence > 0))) {
             return false;
         }
     }
@@ -4626,7 +4626,7 @@ bool gt_ObjectiveKerriganMustSurviveFailed_Func (bool testConds, bool runActions
             return false;
         }
 
-        if (!((libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0))) {
+        if (!((libABFE498B_gv_aP_Triggers_Option_HeroPresence > 0))) {
             return false;
         }
     }
@@ -5703,6 +5703,10 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     libSwaC_gf_EnableDisableZerglingRespawn(true);
     UnitSetState(gv_kerrigan, c_unitStateFidget, true);
     UnitSetState(gv_stukov, c_unitStateFidget, true);
+    libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(1194), UnitGroupEmpty());
+    gf_StukovHeroPanelSet();
+    gv_kerrigan = libABFE498B_gv_aP_Triggers_HeroUnit[1];
     auto05F1752F_g = UnitGroup(null, gv_pLAYER_01_USER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto05F1752F_u = UnitGroupCount(auto05F1752F_g, c_unitCountAll);
     for (;; auto05F1752F_u -= 1) {
@@ -5712,10 +5716,6 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
         UnitSetPropertyFixed(auto05F1752F_var, c_unitPropEnergyPercent, 100.0);
         UnitSelect(auto05F1752F_var, gv_pLAYER_01_USER, true);
     }
-    libABFE498B_gf_AP_HeroChoiceHideExistingHeroes();
-    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, PointFromId(1194), UnitGroupEmpty());
-    gf_StukovHeroPanelSet();
-    gv_kerrigan = libABFE498B_gv_aP_Triggers_HeroUnit[1];
     libABFE498B_gf_AP_Triggers_startNoBuild(gv_pLAYER_01_USER);
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     VisExploreArea(gv_pLAYER_01_USER, RegionEntireMap(), false, false);
@@ -6017,13 +6017,10 @@ bool gt_MidCinematic_Func (bool testConds, bool runActions) {
     }
 
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoFromId(1202), 0.0, -1, 10.0, true);
-    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence == 0)) {
-        libNtve_gf_CreateUnitsAtPoint2(1, "K5Kerrigan", 0, gv_pLAYER_01_USER, PointFromId(250));
-        gv_kerrigan = UnitLastCreated();
-        libABFE498B_gv_aP_Triggers_HeroUnit[1] = UnitLastCreated();
-        libSwaC_gf_RegisterCampaignKerrigan(UnitLastCreated());
-    }
-
+    libNtve_gf_CreateUnitsAtPoint2(1, "K5Kerrigan", 0, gv_pLAYER_01_USER, PointFromId(250));
+    gv_kerrigan = UnitLastCreated();
+    libABFE498B_gv_aP_Triggers_HeroUnit[1] = UnitLastCreated();
+    libSwaC_gf_RegisterCampaignKerrigan(UnitLastCreated());
     libNtve_gf_ShowHideUnit(UnitFromId(239), false);
     libNtve_gf_ShowHideUnit(UnitFromId(916), false);
     TriggerExecute(gt_MidMusic, true, false);
@@ -6119,6 +6116,7 @@ bool gt_MidCinematicEnd_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    libABFE498B_gf_AP_Triggers_HeroHide(gv_kerrigan);
     if ((gv_cinematicCompleted == true)) {
         lv_fadeDuration = 2.0;
     }

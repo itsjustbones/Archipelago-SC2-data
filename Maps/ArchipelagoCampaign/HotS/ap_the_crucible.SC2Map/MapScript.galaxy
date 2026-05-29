@@ -159,11 +159,10 @@ void InitGlobals () {
 //--------------------------------------------------------------------------------------------------
 // Global Function Declarations
 //--------------------------------------------------------------------------------------------------
-void gf_HideKerrigan ();
 int gf_GetSwarmHostCount ();
 int gf_NumberofRootedSwarmHostsinRegion (region lp_region);
 void gf_ChrysalisHeroPanelReplacementSet ();
-void gf_ChrysalisHeroPanelReplacementPortrait ();
+void gf_ChrysalisHeroPanelReplacementPortrait (int lp_index);
 void gf_CreateCarrionLocust (region lp_region);
 void gf_OrderPrimaltoAttackCritter (unit lp_primal, unit lp_critter);
 void gf_TurnSporeRayintoSporeRayPatroller (unit lp_sporeRay);
@@ -300,17 +299,6 @@ trigger gt_VictoryQ;
 //--------------------------------------------------------------------------------------------------
 // Global Functions
 //--------------------------------------------------------------------------------------------------
-void gf_HideKerrigan () {
-    // Automatic Variable Declarations
-    // Implementation
-    if (((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut") && (libABFE498B_gv_aP_Triggers_Option_KerriganPresence != 4)))) {
-        libNtve_gf_PauseUnit(gv_kerrigan, true);
-        libNtve_gf_ShowHideUnit(gv_kerrigan, false);
-        UnitBehaviorAdd(gv_kerrigan, "AP_ImmortalShakurasAntiAirMissileDisableAttack", gv_kerrigan, 1);
-    }
-
-}
-
 int gf_GetSwarmHostCount () {
     // Variable Declarations
     int lv_swarmHostCount;
@@ -364,7 +352,7 @@ void gf_ChrysalisHeroPanelReplacementSet () {
 
         }
         lib15EF4C78_gf_SetHeroPanelUnit(1, gv_chrysalis, lib15EF4C78_gf_AP_GetPlayerId());
-        lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+        gf_ChrysalisHeroPanelReplacementPortrait(1);
     }
     else {
         if ((libABFE498B_gv_apRemovedHeroPanelSlot == 2)) {
@@ -375,34 +363,36 @@ void gf_ChrysalisHeroPanelReplacementSet () {
                 lib15EF4C78_gf_SetHeroPanelUnit(3, null, lib15EF4C78_gf_AP_GetPlayerId());
             }
             lib15EF4C78_gf_SetHeroPanelUnit(2, gv_chrysalis, lib15EF4C78_gf_AP_GetPlayerId());
-            lib15EF4C78_gv_zS_SwarmHeroUIIcon[2] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+            gf_ChrysalisHeroPanelReplacementPortrait(2);
             lib15EF4C78_gf_SetHeroPanelUnit(1, libABFE498B_gv_aP_Triggers_HeroUnit[1], lib15EF4C78_gf_AP_GetPlayerId());
         }
         else {
             if ((libABFE498B_gv_apRemovedHeroPanelSlot == 3)) {
                 lib15EF4C78_gf_SetHeroPanelUnit(1, libABFE498B_gv_aP_Triggers_HeroUnit[1], lib15EF4C78_gf_AP_GetPlayerId());
                 lib15EF4C78_gf_SetHeroPanelUnit(3, gv_chrysalis, lib15EF4C78_gf_AP_GetPlayerId());
-                lib15EF4C78_gv_zS_SwarmHeroUIIcon[3] = "Assets\\Textures\\btn-hero-infestedstukov.dds";
+                gf_ChrysalisHeroPanelReplacementPortrait(3);
             }
             else {
                 lib15EF4C78_gf_SetHeroPanelUnit(1, gv_chrysalis, lib15EF4C78_gf_AP_GetPlayerId());
+                gf_ChrysalisHeroPanelReplacementPortrait(1);
             }
         }
     }
 }
 
-void gf_ChrysalisHeroPanelReplacementPortrait () {
+void gf_ChrysalisHeroPanelReplacementPortrait (int lp_index) {
     // Automatic Variable Declarations
     // Implementation
     if ((libABFE498B_gv_apRemovedHeroBit == 1)) {
-        lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\chrysalisportrait_static.dds";
+        lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index] = "Assets\\Textures\\chrysalisportrait_static.dds";
     }
     else {
         if ((libABFE498B_gv_apRemovedHeroBit == 2)) {
+            lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index] = "Assets\\Textures\\btn-upgrade-nova-holographicdecoy.dds";
         }
         else {
             if ((libABFE498B_gv_apRemovedHeroBit == 4)) {
-                lib15EF4C78_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\btn-ability-protoss-recallondeath.dds";
+                lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index] = "Assets\\Textures\\btn-ability-protoss-recallondeath.dds";
             }
 
         }
@@ -1001,7 +991,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libABFE498B_gv_aP_Triggers_Option_SoAPresence = 0;
         libABFE498B_gv_aP_Triggers_skipCutscenes = false;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 1;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -1587,7 +1577,7 @@ bool gt_StartGameIntroSectionQ_Func (bool testConds, bool runActions) {
     UIAlertPoint("Trigger", gv_pLAYER_01_USER, StringExternal("Param/Value/1593CAF3"), null, UnitGetPosition(gv_kerrigan));
     Wait(2.0, c_timeReal);
     TriggerQueueEnter();
-    if ((libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0)) {
+    if ((libABFE498B_gv_aP_Triggers_Option_HeroPresence > 0)) {
         TriggerExecute(gt_ObjectiveKerriganMustSurviveCreate, true, true);
     }
 
@@ -1619,8 +1609,11 @@ bool gt_SwarmHostQ_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UnitClearSelection(gv_pLAYER_01_USER);
-    UnitGroupSelect(gv_swarmHostGroup, gv_pLAYER_01_USER, true);
+    if ((libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Prot")) {
+        UnitClearSelection(gv_pLAYER_01_USER);
+        UnitGroupSelect(gv_swarmHostGroup, gv_pLAYER_01_USER, true);
+    }
+
     TriggerExecute(gt_SwarmHostRootIndicator, true, false);
     TriggerQueueEnter();
     libSwaC_gf_SetAllSoundChannelVolumesCampaign(libSwaC_ge_VolumeChannelModeCampaign_Speech);
@@ -1804,10 +1797,6 @@ bool gt_KerriganIsCloseQ_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((UnitIsAlive(gv_kerrigan) == true))) {
-            return false;
-        }
-
         if (!((UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER))) {
             return false;
         }
@@ -1888,11 +1877,7 @@ bool gt_KerriganReachesPool_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((UnitIsAlive(gv_kerrigan) == true))) {
-            return false;
-        }
-
-        if (!(((((libABFE498B_gv_aP_Triggers_Option_KerriganPresence == 0) || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace != "Neut")) && (UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER)) || ((libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0) && (EventUnit() == gv_kerrigan))))) {
+        if (!((UnitGetOwner(EventUnit()) == gv_pLAYER_01_USER))) {
             return false;
         }
     }
@@ -1919,6 +1904,7 @@ bool gt_KerriganReachesPool_Func (bool testConds, bool runActions) {
         }
     }
 
+    TransmissionWait(TransmissionLastSent(), 0.0);
     if ((libABFE498B_gf_AP_HeroChoiceOffer(gt_MidQ) == false)) {
         TriggerExecute(gt_MidQ, true, false);
     }
@@ -2134,7 +2120,12 @@ void gt_APEvents_Init () {
 // Trigger: Initial Attack Q
 //--------------------------------------------------------------------------------------------------
 bool gt_InitialAttackQ_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    actor lv_sadness;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+
     // Conditions
     if (testConds) {
         if (!((gv_gameOver == false))) {
@@ -2975,9 +2966,19 @@ bool gt_ChrysalisOpensAnims_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_chrysalis), "MorphStart", "Stand Morph Start", c_animFlagNonLooping, c_animTimeDefault);
-    Wait(1.25, c_timeReal);
-    libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_chrysalis), "Morph", "Stand Morph", c_animFlagPlayForever, c_animTimeDefault);
+    if ((libABFE498B_gv_apRemovedHeroBit == 4)) {
+        libNtve_gf_AttachActorToUnit(gv_chrysalis, "AP_ArtanisChrysalisEnergyDrainImpactActor", "Ref_Origin");
+    }
+    else {
+        if ((libABFE498B_gv_apRemovedHeroBit == 2)) {
+            libNtve_gf_AttachActorToUnit(gv_chrysalis, "AP_NovaChrysalisEnergyDrainImpactActor", "Ref_Origin");
+        }
+        else {
+            libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_chrysalis), "MorphStart", "Stand Morph Start", c_animFlagNonLooping, c_animTimeDefault);
+            Wait(1.25, c_timeReal);
+            libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(gv_chrysalis), "Morph", "Stand Morph", c_animFlagPlayForever, c_animTimeDefault);
+        }
+    }
     return true;
 }
 
@@ -5780,6 +5781,7 @@ void gt_IntroCinematicEnd_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     // Variable Declarations
+    int lv_index;
     unitgroup lv_startingSelection;
     fixed lv_fadeDuration;
 
@@ -5800,6 +5802,8 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     int auto1037F09A_i;
     int autoC107E14D_n;
     int autoC107E14D_i;
+    const int auto65A5D13B_ae = 3;
+    const int auto65A5D13B_ai = 1;
 
     // Variable Initialization
     lv_startingSelection = UnitGroupEmpty();
@@ -5813,6 +5817,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     TriggerStop(gt_IntroSwampPlants);
     TriggerStop(gt_IntroArtosilope);
     TriggerStop(gt_IntroKerriganDropPod);
+    libABFE498B_gf_AP_Triggers_HeroHide(gv_kerrigan);
     if ((gv_cinematicCompleted == false) && (gv_introMusicCompleted == false)) {
         SoundtrackStop(PlayerGroupAll(), c_soundtrackCategoryMusic, true);
     }
@@ -5907,8 +5912,10 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     }
     else {
         TriggerEnable(gt_DefeatHeroKilled, true);
-        UnitGroupAdd(lv_startingSelection, gv_kerrigan);
-        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_kerrigan, gv_pLAYER_01_USER);
+        lv_index = 1;
+        for ( ; ( (auto65A5D13B_ai >= 0 && lv_index <= auto65A5D13B_ae) || (auto65A5D13B_ai < 0 && lv_index >= auto65A5D13B_ae) ) ; lv_index += auto65A5D13B_ai ) {
+            UnitGroupAdd(lv_startingSelection, libABFE498B_gv_aP_Triggers_HeroUnit[lv_index]);
+        }
     }
     UnitGroupSelect(lv_startingSelection, gv_pLAYER_01_USER, true);
     TriggerExecute(gt_StartAIIntro, true, false);
@@ -6072,20 +6079,15 @@ bool gt_IntroKerriganDropPod_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_CreateUnitsAtPoint2(1, "AP_K5Kerrigan", 0, 1, PointFromId(114));
+    libSwaC_gf_CreateDropPod(libSwaC_ge_DropPodRace_Zerg, PointFromId(114), libNtve_gf_ConvertUnitToUnitGroup(gv_kerrigan), false, gv_pLAYER_01_USER);
+    Wait(2.8, c_timeGame);
+    libNtve_gf_CreateUnitsAtPoint2(1, "K5Kerrigan", 0, 1, PointFromId(114));
     gv_kerrigan = UnitLastCreated();
-    libABFE498B_gv_aP_Triggers_HeroUnit[1] = UnitLastCreated();
     libSwaC_gf_RegisterCampaignKerrigan(gv_kerrigan);
     UnitBehaviorAdd(gv_kerrigan, "KerriganWalk", gv_kerrigan, 1);
     UnitSetState(gv_kerrigan, c_unitStateFidget, false);
-    if ((libABFE498B_gv_aP_Triggers_Option_KerriganPresence > 0)) {
-        lib15EF4C78_gf_SetHeroPanelUnit(1, gv_kerrigan, gv_pLAYER_01_USER);
-        libSwaC_gf_CreateDropPod(libSwaC_ge_DropPodRace_Zerg, PointFromId(114), libNtve_gf_ConvertUnitToUnitGroup(gv_kerrigan), false, gv_pLAYER_01_USER);
-        Wait(2.8, c_timeGame);
-        SoundPlay(SoundLink("Zerus02_OpenCS_ZergDropPod_Impact", -1), PlayerGroupAll(), 100.0, 0.0);
-        gv_introImpactSound1 = SoundLastPlayed();
-    }
-
+    SoundPlay(SoundLink("Zerus02_OpenCS_ZergDropPod_Impact", -1), PlayerGroupAll(), 100.0, 0.0);
+    gv_introImpactSound1 = SoundLastPlayed();
     Wait(1.2, c_timeGame);
     UnitIssueOrder(gv_kerrigan, OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(24)), c_orderQueueReplace);
     Wait(7.0, c_timeGame);
@@ -6534,11 +6536,14 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
         }
         else {
             if ((libABFE498B_gv_apRemovedHeroBit == 2)) {
+                libNtve_gf_ReplaceUnit(gv_chrysalis, "AP_NovaChrysalis", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
+                UnitSetFacing(libNtve_gf_LastReplacedUnit(), -90.0, 0.0);
+                gv_chrysalis = libNtve_gf_LastReplacedUnit();
             }
             else {
                 if ((libABFE498B_gv_apRemovedHeroBit == 4)) {
                     libNtve_gf_ReplaceUnit(gv_chrysalis, "AP_ArtanisChrysalis", libNtve_ge_ReplaceUnitOptions_OldUnitsRelative);
-                    UnitSetFacing(libNtve_gf_LastReplacedUnit(), 30.0, 0.0);
+                    UnitSetFacing(libNtve_gf_LastReplacedUnit(), -90.0, 0.0);
                     gv_chrysalis = libNtve_gf_LastReplacedUnit();
                 }
 
@@ -6559,7 +6564,6 @@ bool gt_MidCleanup_Func (bool testConds, bool runActions) {
     libABFE498B_gf_AP_Triggers_resetBase(gv_pLAYER_01_USER);
     libABFE498B_gf_AP_Triggers_HeroInit(1, PointFromId(2432), UnitGroupEmpty());
     gf_ChrysalisHeroPanelReplacementSet();
-    gf_ChrysalisHeroPanelReplacementPortrait();
     libSwaC_gv_zS_SwarmHeroUIShowLevel[1] = false;
     libSwaC_gv_zS_SwarmHeroUIIcon[1] = "Assets\\Textures\\chrysalisportrait_static.dds";
     libSwaC_gf_ZS_UpdateHeroPanel(1);
