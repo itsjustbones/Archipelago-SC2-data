@@ -946,7 +946,6 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
     PlayerGroupAdd(lv_playerGroup, gv_pLAYER_02_DOMINION22222);
     lib5BD4895D_gf_AP_Core_MapConfig_setAffectedPlayers(lv_playerGroup);
     lib5BD4895D_gf_AP_Core_initObjectivePanel();
-    lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 350);
     return true;
 }
 
@@ -978,7 +977,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libABFE498B_gv_aP_Triggers_Option_SoAPresence = 3;
         libABFE498B_gv_aP_Triggers_skipCutscenes = false;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 5;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 3);
@@ -1023,6 +1022,10 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
             libNtve_gf_PauseUnit(auto2241A4A2_var, true);
         }
     }
+    if (((libABFE498B_gv_aP_Triggers_Option_SoAPresence == 3) || ((libABFE498B_gv_aP_Triggers_Option_SoAPresence == 2) || (libABFE498B_gv_aP_Triggers_Option_overridePlayerRace == "Prot")))) {
+        lib5BD4895D_gf_AP_Core_initChatbox(c_anchorTopRight, 500, 350, 0, 200);
+    }
+
     return true;
 }
 
