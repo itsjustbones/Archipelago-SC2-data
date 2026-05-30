@@ -2125,6 +2125,14 @@
         <PeriodicEffect value="AP_PlasmaPuddleSearchSmall"/>
         <FinalEffect value="Suicide"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AP_NovaPlasmaPuddle">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="AP_PlasmaPuddleSearch"/>
+        <FinalEffect value="Suicide"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AP_NovaPlasmaPuddleLarge">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -11403,6 +11411,7 @@
             <HeightTime index="Stop" value="1"/>
             <AbilClassDisableArray index="CAbilAttack" value="1"/>
             <AbilLinkDisableArray value="AP_OracleWeapon"/>
+            <AbilLinkDisableArray value="AP_OracleGround"/>
         </Modification>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
@@ -11729,5 +11738,115 @@
         <Duration value="2"/>
         <InitialEffect value="AP_BloodHunterLifeStealSet"/>
         <FinalEffect value="AP_BloodHunterLifeStealDestroySet"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_AnnihilatorCloak">
+        <InfoIcon value="AP\Assets\Textures\btn-Annihilator-Cloak.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_AnnihilatorCloak"/>
+        <DisableValidatorArray value="AP_CasterNotFighting4s"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <Alignment value="Positive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ImmortalAirAttack">
+        <InfoIcon value="AP\Assets\Textures\btn-advanced-targeting.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <Duration value="20"/>
+        <Modification>
+            <WeaponArray Link="AP_PhaseDisruptorsAir" Turret="AP_Immortal"/>
+            <WeaponDisableArray value="AP_PhaseDisruptors"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_AnnihilatorAirAttack">
+        <InfoIcon value="AP\Assets\Textures\btn-advanced-targeting.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <Duration value="20"/>
+        <Modification>
+            <WeaponArray Link="AP_AnnihilatorParticleDisruptorsAir" Turret="AP_Immortal"/>
+            <WeaponDisableArray value="AP_AnnihilatorParticleDisruptors"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ImmortalRegen">
+        <InfoIcon value="Assets\Textures\btn-progression-protoss-fenix-13-offlinesuitregen.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AP_ImmortalRegen"/>
+        <DisableValidatorArray value="AP_CasterNotFighting10s"/>
+        <DisableValidatorArray value="CasterLifeNotFull"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ImmortalShakurasShadowCannonSlow">
+        <Alignment value="Negative"/>
+        <InfoIcon value="AP\Assets\Textures\btn-disruptor-dispersion.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ImmortalWarpRelocate">
+        <Duration value="3"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="SuppressFidgeting" value="1"/>
+            <StateFlags index="SuppressLifeRegen" value="1"/>
+            <StateFlags index="SuppressShieldsRegen" value="1"/>
+        </Modification>
+        <FinalEffect value="AP_ImmortalWarpRelocateTargetSet"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ImmortalWarpRelocateTarget">
+        <InfoIcon value="Assets\Textures\btn-building-protoss-pylon.dds"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <BuffFlags index="Countdown" value="0"/>
+        <Duration value="5"/>
+        <FinalEffect value="AP_ImmortalWarpRelocateTurretClear"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="SuppressLifeRegen" value="1"/>
+            <StateFlags index="SuppressShieldsRegen" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_ImmortalWarpRelocatePrecursor">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="5"/>
+        <FinalEffect value="AP_SuicideRemove"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
+            <StateFlags index="SuppressFoodMade" value="1"/>
+            <StateFlags index="SuppressFoodUsed" value="1"/>
+            <StateFlags index="NoDraw" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+            <StateFlags index="Unselectable" value="1"/>
+            <StateFlags index="Untargetable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_HealpackSmall">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-tychus-tankhealth.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2.01"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AP_HealpackLarge">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-tychus-tankhealth.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2.01"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="30"/>
+        </Modification>
     </CBehaviorBuff>
 </Catalog>
