@@ -1862,7 +1862,7 @@
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="6"/>
         <Period value="1.45"/>
-        <Effect value="AP_AnnihilatorSplashSet"/>
+        <Effect value="AP_AnnihilatorParticleDisruptors"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="AP_ImmortalMelee">
         <EditorCategories value="Race:Protoss"/>
@@ -1913,7 +1913,7 @@
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="6"/>
         <Period value="1.45"/>
-        <Effect value="AP_ImmortalSplashSet"/>
+        <Effect value="AP_PhaseDisruptors"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="AP_StalwartLightningWeapon">
         <EditorCategories value="Race:Protoss"/>
@@ -1921,6 +1921,7 @@
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <MinScanRange value="4"/>
         <Range value="2"/>
+        <Backswing value="0"/>
         <Period value="0.5"/>
         <Effect value="AP_StalwartLightningWeapon"/>
         <DisplayEffect value="AP_StalwartLightningWeaponDamage"/>
@@ -4415,5 +4416,21 @@
         <Range value="6"/>
         <Period value="1.44"/>
         <Effect value="AP_StalkerTaldarimAttackSet"/>
+    </CWeaponLegacy>
+    <CWeaponLegacy id="AP_AnnihilatorParticleDisruptorsAir">
+        <EditorCategories value="Race:Protoss"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
+        <TargetFilters value="Air,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="6"/>
+        <Period value="1.45"/>
+    </CWeaponLegacy>
+    <CWeaponLegacy id="AP_PhaseDisruptorsAir">
+        <EditorCategories value="Race:Protoss"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
+        <DisplayEffect value="AP_ImmortalPhaseDisruptorsAir"/>
+        <TargetFilters value="Air,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="6"/>
+        <Period value="1.45"/>
+        <Effect value="AP_ImmortalPhaseDisruptorsAir"/>
     </CWeaponLegacy>
 </Catalog>

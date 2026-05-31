@@ -596,27 +596,27 @@
         </Cost>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackMarine" parent="AP_SuperStimpackSmallBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_HaveSuperStimpackMarine">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_MarineStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackReaper" parent="AP_SuperStimpackSmallBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_HaveSuperStimpackReaper">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackSmall" Requirements="AP_ReaperStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackMarauder" parent="AP_SuperStimpackLargeBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HaveSuperStimpackMarauder">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_MarauderStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackFirebat" parent="AP_SuperStimpackLargeBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HaveSuperStimpackFirebat">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_FirebatStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="AP_SuperStimpackHellbat" parent="AP_SuperStimpackLargeBase">
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HaveSuperStimpackHellbat">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_SuperStimpackLarge" Requirements="AP_HellionStimAndHeal">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
@@ -11977,7 +11977,7 @@
             <Button DefaultButtonFace="AP_TradeStructure" State="Restricted" Requirements="AP_NotHaveTradeStructure"/>
         </InfoArray>
         <InfoArray index="Build29" Unit="AP_GreaterSpire" Time="40">
-            <Button DefaultButtonFace="AP_GreaterHydraliskDen" Requirements="AP_GreaterSpire"/>
+            <Button DefaultButtonFace="AP_GreaterSpire" Requirements="AP_GreaterSpire"/>
         </InfoArray>
         <InfoArray index="Build30" Unit="AP_LurkerDen" Time="40">
             <Button DefaultButtonFace="AP_GreaterHydraliskDen" Requirements="AP_GreaterHydraliskDen"/>
@@ -12136,7 +12136,7 @@
             <Vital index="Energy" value="50"/>
             <Cooldown Link="WildMutationAP_WildMutation" Location="Unit" TimeUse="25"/>
         </Cost>
-        <TargetFilters value="Biological;Self,Enemy,Structure,Heroic,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <TargetFilters value="-;Self,Enemy,Structure,Heroic,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="9"/>
         <CursorEffect value="AP_WildMutationSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_WildMutation" Requirements="AP_HaveK5WildMutation"/>
@@ -16229,19 +16229,19 @@
         <InfoArray index="9" Time="5" Unit="Archon">
             <Button DefaultButtonFace="Archon"/>
         </InfoArray>
-        <InfoArray index="10" Time="5" Unit="Zeratul">
+        <InfoArray index="10" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInZeratul"/>
         </InfoArray>
-        <InfoArray index="11" Time="5" Unit="Urun">
+        <InfoArray index="11" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInUrun"/>
         </InfoArray>
-        <InfoArray index="12" Time="5" Unit="Mohandar">
+        <InfoArray index="12" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInMohandar"/>
         </InfoArray>
-        <InfoArray index="13" Time="5" Unit="Selendis">
+        <InfoArray index="13" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInSelendis"/>
         </InfoArray>
-        <InfoArray index="14" Time="5" Unit="Scout">
+        <InfoArray index="14" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInScout"/>
         </InfoArray>
         <InfoArray index="15" Time="5" Unit="Colossus">
@@ -16253,7 +16253,7 @@
         <InfoArray index="17" Time="5" Unit="Probe">
             <Button DefaultButtonFace="Probe"/>
         </InfoArray>
-        <InfoArray index="18" Time="5" Unit="Dragoon">
+        <InfoArray index="18" Time="5" Unit="">
             <Button DefaultButtonFace="Dragoon"/>
         </InfoArray>
         <InfoArray index="19" Time="5" Unit="Probe">
@@ -16264,61 +16264,61 @@
         <SharedFlags index="SkipPreload" value="1"/>
     </CAbilWarpTrain>
     <CAbilWarpTrain id="AP_SuperWarpGateTrainVanillaVoid">
-        <InfoArray index="0" Time="5" Unit="Tempest">
+        <InfoArray index="0" Time="5" Unit="">
             <Button DefaultButtonFace="Tempest"/>
         </InfoArray>
-        <InfoArray index="1" Time="5" Unit="Oracle">
+        <InfoArray index="1" Time="5" Unit="">
             <Button DefaultButtonFace="Oracle"/>
         </InfoArray>
-        <InfoArray index="2" Time="5" Unit="MothershipCore">
+        <InfoArray index="2" Time="5" Unit="">
             <Button DefaultButtonFace="MothershipCore"/>
         </InfoArray>
-        <InfoArray index="3" Time="5" Unit="Dragoon">
+        <InfoArray index="3" Time="5" Unit="">
             <Button DefaultButtonFace="Dragoon"/>
         </InfoArray>
-        <InfoArray index="4" Time="5" Unit="Observer">
+        <InfoArray index="4" Time="5" Unit="">
             <Button DefaultButtonFace="Observer"/>
         </InfoArray>
-        <InfoArray index="5" Time="5" Unit="FenixChampion">
+        <InfoArray index="5" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInFenixChampion"/>
         </InfoArray>
-        <InfoArray index="6" Time="5" Unit="VorazunChampion">
+        <InfoArray index="6" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInDarkTemplarChampion"/>
         </InfoArray>
-        <InfoArray index="7" Time="5" Unit="AlarakChampion">
+        <InfoArray index="7" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInDarkArchonChampion"/>
         </InfoArray>
-        <InfoArray index="8" Time="5" Unit="KaraxChampion">
+        <InfoArray index="8" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInVulcanChampion"/>
         </InfoArray>
-        <InfoArray index="9" Time="5" Unit="ArtanisVoid">
+        <InfoArray index="9" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInArtanisChampion"/>
         </InfoArray>
-        <InfoArray index="10" Time="5" Unit="ZealotPurifier">
+        <InfoArray index="10" Time="5" Unit="">
             <Button DefaultButtonFace="ZealotPurifier"/>
         </InfoArray>
-        <InfoArray index="11" Time="5" Unit="Adept">
+        <InfoArray index="11" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInAdept"/>
         </InfoArray>
-        <InfoArray index="12" Time="5" Unit="SentryPurifier">
+        <InfoArray index="12" Time="5" Unit="">
             <Button DefaultButtonFace="WarpinEnergizer"/>
         </InfoArray>
-        <InfoArray index="13" Time="5" Unit="PhoenixPurifier">
+        <InfoArray index="13" Time="5" Unit="">
             <Button DefaultButtonFace="VoidPhoenixPurifier"/>
         </InfoArray>
-        <InfoArray index="14" Time="5" Unit="ColossusPurifier">
+        <InfoArray index="14" Time="5" Unit="">
             <Button DefaultButtonFace="Colossus"/>
         </InfoArray>
-        <InfoArray index="15" Time="5" Unit="Tempest">
+        <InfoArray index="15" Time="5" Unit="">
             <Button DefaultButtonFace="Tempest"/>
         </InfoArray>
-        <InfoArray index="16" Time="5" Unit="StalkerPurifier">
+        <InfoArray index="16" Time="5" Unit="">
             <Button DefaultButtonFace="StalkerPurifier"/>
         </InfoArray>
-        <InfoArray index="17" Time="5" Unit="SOAMothershipv4">
+        <InfoArray index="17" Time="5" Unit="">
             <Button DefaultButtonFace="MothershipTaldarim"/>
         </InfoArray>
-        <InfoArray index="18" Time="5" Unit="Reaver">
+        <InfoArray index="18" Time="5" Unit="">
             <Button DefaultButtonFace="WarpInReaver"/>
         </InfoArray>
         <Flags index="IgnoreUnitCost" value="1"/>
@@ -16574,7 +16574,7 @@
     <CAbilTrain id="AP_ScourgeSpawn">
         <Flags index="IgnoreUnitCost" value="1"/>
         <InfoArray index="Train1" Effect="AP_ScourgeSpawnAB">
-            <Cooldown Location="Player" TimeUse="30"/>
+            <Cooldown Location="Player" TimeStart="30" TimeUse="30"/>
             <Button DefaultButtonFace="AP_ScourgeSpawn" State="Restricted" Requirements="AP_ScourgeSpawn"/>
             <Unit value="AP_Scourge"/>
             <Unit value="AP_Scourge"/>
@@ -16589,7 +16589,7 @@
     <CAbilTrain id="AP_BanelingSpawn">
         <Flags index="IgnoreUnitCost" value="1"/>
         <InfoArray index="Train1" Effect="AP_BanelingSpawnAB">
-            <Cooldown Location="Player" TimeUse="30"/>
+            <Cooldown Location="Player" TimeStart="30" TimeUse="30"/>
             <Button DefaultButtonFace="AP_BanelingSpawn" State="Restricted" Requirements="AP_BanelingSpawn"/>
             <Unit value="AP_Baneling"/>
             <Unit value="AP_Baneling"/>
@@ -16639,5 +16639,113 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_AvengerArmor" Requirements="AP_AvengerArmor">
             <Flags index="IgnoreUser" value="1"/>
         </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_ImmortalAirAttack">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <ProgressButtonArray index="Cast" value="AP_ImmortalAdvancedTargetingMechanics"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImmortalAdvancedTargetingMechanics" Requirements="AP_HaveImmortalAirAttack"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_AnnihilatorAirAttack">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <CastIntroTime value="2"/>
+        <CastOutroTime value="0.5"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <ProgressButtonArray index="Cast" value="AP_ImmortalAdvancedTargetingMechanics"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_AnnihilatorAirAttack" Requirements="AP_AnnihilatorAirAttack"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_ImmortalStarter">
+        <Effect index="0" value="AP_ImmortalStarterDummy"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Location value="Player"/>
+            </Charge>
+            <Cooldown Location="Unit" TimeStart="2" TimeUse="30000"/>
+        </Cost>
+        <AutoCastRange value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImmortalStarter" Requirements="AP_ImmortalStarter"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="AP_ImmortalWarpRelocate">
+        <Cost>
+            <Resource index="Minerals" value="20"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="15"/>
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_ImmortalWarpRelocate" Requirements="AP_ImmortalWarpRelocate"/>
+        <PlaceUnit value="AP_ImmortalAiur"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_VanguardFlare">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="25"/>
+        <Arc value="360"/>
+        <CastOutroTime index="0" value="0.9"/>
+        <FinishTime value="0.4"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <CursorEffect value="AP_VanguardFlareSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_VanguardFlare" Requirements="AP_VanguardFlare"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="AP_HealpackBase">
+        <AbilSetId value="Stimpack"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <InfoTooltipPriority value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="PassengerAcquirePassengers" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="18"/>
+        </Cost>
+        <AutoCastRange value="5"/>
+        <AINotifyEffect value="Stimpack"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackMarine" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackSmall"/>
+        <AutoCastValidatorArray value="AP_HealpackSmallAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackSmall" Requirements="AP_MarineHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackMarauder" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackLarge"/>
+        <AutoCastValidatorArray value="AP_HealpackLargeAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackLarge" Requirements="AP_MarauderHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackFirebat" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackLarge"/>
+        <AutoCastValidatorArray value="AP_HealpackLargeAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackLarge" Requirements="AP_FirebatHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackReaper" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackSmall"/>
+        <AutoCastValidatorArray value="AP_HealpackSmallAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackSmall" Requirements="AP_ReaperHealNoStim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AP_HealpackHellion" parent="AP_HealpackBase">
+        <Effect index="0" value="AP_HealpackLarge"/>
+        <AutoCastValidatorArray value="AP_HealpackLargeAutocast"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_HealpackLarge" Requirements="AP_HellionHealNoStim"/>
     </CAbilEffectInstant>
 </Catalog>

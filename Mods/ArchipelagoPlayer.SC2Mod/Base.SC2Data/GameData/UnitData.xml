@@ -232,6 +232,7 @@
         <AbilArray Link="move"/>
         <AbilArray Link="AP_Stimpack"/>
         <AbilArray Link="AP_SuperStimpackMarine"/>
+        <AbilArray Link="AP_HealpackMarine"/>
         <AbilArray Link="AP_MagrailMunitionsMarine"/>
         <AbilArray Link="Warpable"/>
         <WeaponArray Link="AP_GaussRifle"/>
@@ -242,6 +243,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="AP_Stim" Type="AbilCmd" AbilCmd="AP_Stimpack,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_HealpackSmall" Type="AbilCmd" AbilCmd="AP_HealpackMarine,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SuperStimpackSmall" Type="AbilCmd" AbilCmd="AP_SuperStimpackMarine,0" Row="2" Column="0"/>
             <LayoutButtons>
                 <Face value="AP_CombatShield"/>
@@ -446,6 +448,7 @@
         <AbilArray Link="move"/>
         <AbilArray Link="AP_StimpackFirebat"/>
         <AbilArray Link="AP_SuperStimpackFirebat"/>
+        <AbilArray Link="AP_HealpackFirebat"/>
         <AbilArray Link="AP_FirebatOptimizedLogisticsMorph"/>
         <BehaviorArray Link="AP_MorphFirebatOptimizedLogistics"/>
         <WeaponArray Link="AP_Firebat"/>
@@ -495,8 +498,9 @@
                 <Row value="1"/>
                 <Column value="4"/>
             </LayoutButtons>
-            <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackFirebat,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SuperStimpackLarge" Type="AbilCmd" AbilCmd="AP_SuperStimpackFirebat,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackFirebat,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_HealpackLarge" Type="AbilCmd" AbilCmd="AP_HealpackFirebat,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <InnerRadius value="0.4375"/>
         <CargoSize value="2"/>
@@ -564,6 +568,7 @@
         <AbilArray Link="move"/>
         <AbilArray Link="AP_StimpackMarauder"/>
         <AbilArray Link="AP_SuperStimpackMarauder"/>
+        <AbilArray Link="AP_HealpackMarauder"/>
         <AbilArray Link="AP_MagrailMunitionsMarauder"/>
         <AbilArray Link="Warpable"/>
         <WeaponArray Link="AP_PunisherGrenades"/>
@@ -591,9 +596,10 @@
             </LayoutButtons>
             <LayoutButtons Face="AP_LaserTargetingSystem" Type="Passive" Requirements="AP_HaveLaserTargetingSystemMarauder" Row="1" Column="2"/>
             <LayoutButtons Face="AP_JuggernautPlatingMarauder" Type="Passive" Requirements="AP_UseJuggernautPlatingMarauder" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackMarauder,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SuperStimpackLarge" Type="AbilCmd" AbilCmd="AP_SuperStimpackMarauder,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_MagrailMunitions" Type="AbilCmd" AbilCmd="AP_MagrailMunitionsMarauder,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackMarauder,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_HealpackLarge" Type="AbilCmd" AbilCmd="AP_HealpackMarauder,Execute" Row="2" Column="0"/>
+        <LayoutButtons Face="AP_MagrailMunitions" Type="AbilCmd" AbilCmd="AP_MagrailMunitionsMarauder,Execute" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.5625"/>
         <InnerRadius value="0.375"/>
@@ -708,6 +714,7 @@
         <AbilArray Link="AP_D8Charge"/>
         <AbilArray Link="AP_StimpackReaper"/>
         <AbilArray Link="AP_SuperStimpackReaper"/>
+        <AbilArray Link="AP_HealpackReaper"/>
         <AbilArray Link="AP_ReaperSpiderMines"/>
         <AbilArray Link="AP_ReaperFlyMorph"/>
         <AbilArray Link="AP_HHReaperFly"/>
@@ -732,8 +739,9 @@
                 <Column value="1"/>
             </LayoutButtons>
             <LayoutButtons Face="AP_LaserTargetingSystem" Type="Passive" Requirements="AP_HaveLaserTargetingSystemReaper" Row="1" Column="2"/>
-            <LayoutButtons Face="AP_Stim" Type="AbilCmd" AbilCmd="AP_StimpackReaper,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SuperStimpackSmall" Type="AbilCmd" AbilCmd="AP_SuperStimpackReaper,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_Stim" Type="AbilCmd" AbilCmd="AP_StimpackReaper,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_HealpackSmall" Type="AbilCmd" AbilCmd="AP_HealpackReaper,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_D8Charge" Type="AbilCmd" AbilCmd="AP_D8Charge,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="AP_CloakOnReaper" Type="Passive" Requirements="AP_CloakingTechnologyReaper" Row="1" Column="3"/>
             <LayoutButtons Face="AP_SpiderMine" Type="AbilCmd" AbilCmd="AP_ReaperSpiderMines,Execute" Row="2" Column="2"/>
@@ -995,6 +1003,7 @@
         <AbilArray Link="move"/>
         <AbilArray Link="AP_MorphToHellionTank"/>
         <AbilArray Link="AP_StimpackHellbat"/>
+        <AbilArray Link="AP_HealpackHellion"/>
         <AbilArray Link="AP_SuperStimpackHellbat"/>
         <BehaviorArray Link="AP_ScavengingSystemsMechDeath"/>
         <WeaponArray Link="AP_InfernalFlameThrower" Turret="AP_Hellion"/>
@@ -1023,6 +1032,7 @@
             <LayoutButtons Face="AP_NovaMultiTaskMAFServosHellion" Type="Passive" Requirements="AP_HaveMultiTaskMAFServosHellion" Row="1" Column="2"/>
             <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackHellbat,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SuperStimpackLarge" Type="AbilCmd" AbilCmd="AP_SuperStimpackHellbat,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_HealpackLarge" Type="AbilCmd" AbilCmd="AP_HealpackHellion,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_MorphToHellionTank" Type="AbilCmd" AbilCmd="AP_MorphToHellionTank,0" Row="2" Column="1"/>
             <LayoutButtons Face="AP_HellbatCharge" Type="Passive" Requirements="AP_HaveHoverHellbat" Row="1" Column="3"/>
             <LayoutButtons Face="AP_HellArmor" Type="Passive" Requirements="AP_HaveHellbatHellArmor" Row="1" Column="4"/>
@@ -11585,6 +11595,7 @@
         <AbilArray Link="AP_MorphToHellion"/>
         <AbilArray Link="AP_HellbatCharge"/>
         <AbilArray Link="AP_StimpackHellbat"/>
+        <AbilArray Link="AP_HealpackHellion"/>
         <AbilArray Link="AP_SuperStimpackHellbat"/>
         <WeaponArray Link="AP_HellionTank"/>
         <CardLayouts>
@@ -11612,8 +11623,9 @@
             <LayoutButtons Face="AP_NovaMultiTaskMAFServos" Type="Passive" Requirements="AP_HaveMultiTaskMAFServosHellion" Row="1" Column="2"/>
             <LayoutButtons Face="AP_MorphToHellion" Type="AbilCmd" AbilCmd="AP_MorphToHellion,0" Row="2" Column="2"/>
             <LayoutButtons Face="AP_HellbatCharge" Type="AbilCmd" AbilCmd="AP_HellbatCharge,0" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackHellbat,0" Row="2" Column="0"/>
             <LayoutButtons Face="AP_SuperStimpackLarge" Type="AbilCmd" AbilCmd="AP_SuperStimpackHellbat,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_StimLarge" Type="AbilCmd" AbilCmd="AP_StimpackHellbat,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_HealpackLarge" Type="AbilCmd" AbilCmd="AP_HealpackHellion,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="AP_HellArmor" Type="Passive" Requirements="AP_HaveHellbatHellArmor" Row="1" Column="4"/>
         </CardLayouts>
         <Radius value="0.625"/>
@@ -12114,7 +12126,7 @@
         <StationaryTurningRate value="0"/>
         <TurningRate value="0"/>
         <Height value="-0.2"/>
-        <BehaviorArray Link="NovaPlasmaPuddle"/>
+        <BehaviorArray Link="AP_NovaPlasmaPuddle"/>
         <MinimapRadius value="0"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <Fidget DelayMax="0" DelayMin="0"/>
@@ -13840,19 +13852,26 @@
         <AbilArray Link="Warpable"/>
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="AP_ImmortalOverload"/>
+        <AbilArray Link="AP_ImmortalWarpRelocate"/>
+        <AbilArray Link="AP_ImmortalAirAttack"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
+        <BehaviorArray Link="AP_ImmortalRegen"/>
         <WeaponArray Link="AP_PhaseDisruptors" Turret="AP_Immortal"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+
+            <LayoutButtons Face="AP_HaveBarrier" Requirements="AP_HaveImmortalImprovedBarrier" Type="Passive" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_ImmortalBarrierThorns" Type="Passive" Requirements="AP_ImmortalBarrierThorns" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_ImmortalRegen" Type="Passive" Requirements="AP_ImmortalRegen" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_ImmortalStarter" Type="Passive" Requirements="AP_ImmortalStarter" Row="1" Column="3"/>
+
             <LayoutButtons Face="AP_ImmortalOverload" Type="AbilCmd" AbilCmd="AP_ImmortalOverload,0" Row="2" Column="0"/>
-            <LayoutButtons Face="AP_HaveBarrier" Requirements="AP_HaveImmortalImprovedBarrier" Type="Passive" Row="2" Column="1"/>
-            <LayoutButtons Face="AP_ImmortalSingularityCharge" Type="Passive" Requirements="AP_HaveImmortalIncreasedRange" Row="1" Column="0"/>
-            <LayoutButtons Face="AP_ImmortalAdvancedTargetingMechanics" Type="Passive" Requirements="AP_HaveImmortalAirAttack" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DisruptorDispersion" Type="Passive" Requirements="AP_HaveVoidImmortalWeaponSplash" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_ImmortalWarpRelocate" Type="AbilCmd" AbilCmd="AP_ImmortalWarpRelocate,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="AP_ImmortalAdvancedTargetingMechanics" AbilCmd="AP_ImmortalAirAttack,0" Type="AbilCmd" Row="2" Column="2"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.625"/>
@@ -13929,19 +13948,24 @@
         <AbilArray Link="Warpable"/>
         <AbilArray Link="ProgressRally"/>
         <AbilArray Link="AP_ImmortalShakurasShadowCannon"/>
+        <AbilArray Link="AP_AnnihilatorAirAttack"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
+        <BehaviorArray Link="AP_AnnihilatorCloak"/>
         <WeaponArray Link="AP_AnnihilatorParticleDisruptors" Turret="AP_Immortal"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="AP_AnnihilatorTwilightChassis" Type="Passive" Requirements="AP_HaveAnnihilatorTwilightChassis" Row="1" Column="3"/>
-            <LayoutButtons Face="AP_ImmortalAdvancedTargetingMechanics" Type="Passive" Requirements="AP_HaveImmortalAirAttack" Row="1" Column="1"/>
-            <LayoutButtons Face="AP_DisruptorDispersion" Type="Passive" Requirements="AP_HaveVoidImmortalWeaponSplash" Row="1" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+
             <LayoutButtons Face="AP_ImmortalSingularityCharge" Type="Passive" Requirements="AP_HaveImmortalIncreasedRange" Row="1" Column="0"/>
+            <LayoutButtons Face="AP_DisruptorDispersion" Type="Passive" Requirements="AP_HaveVoidImmortalWeaponSplash" Row="1" Column="1"/>
+            <LayoutButtons Face="AP_AnnihilatorCloak" Type="Passive" Requirements="AP_AnnihilatorCloak" Row="1" Column="2"/>
+            <LayoutButtons Face="AP_AnnihilatorTwilightChassis" Type="Passive" Requirements="AP_HaveAnnihilatorTwilightChassis" Row="1" Column="3"/>
+
             <LayoutButtons Face="AP_ImmortalShakurasShadowCannon" Type="AbilCmd" AbilCmd="AP_ImmortalShakurasShadowCannon,0" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_AnnihilatorAirAttack" Type="AbilCmd" AbilCmd="AP_AnnihilatorAirAttack,0" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.625"/>
@@ -14026,21 +14050,25 @@
         <AbilArray Link="move"/>
         <AbilArray Link="Warpable"/>
         <AbilArray Link="ProgressRally"/>
+        <AbilArray Link="AP_VanguardFlare"/>
         <BehaviorArray Link="AP_SOAHeroicShieldProcBuff"/>
-        <WeaponArray Link="AP_ImmortalTaldarim" Turret="Immortal"/>
+        <WeaponArray Link="AP_ImmortalTaldarim" Turret="AP_Immortal"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="AP_ImmortalTaldarimScatterCannon" Type="Passive" Row="2" Column="0"/>
-            <!--            <LayoutButtons Face="AP_VanguardStriderStabilization" Type="Passive" Requirements="AP_HaveAlarakVanguardMovingShot" Row="1" Column="0"/>-->
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+
             <LayoutButtons Face="AP_VanguardSolariteEnhancedScatterCannon" Type="Passive" Requirements="AP_HaveAlarakVanguardLongshot" Row="1" Column="0"/>
             <LayoutButtons Face="AP_VanguardMatterDispersion" Type="Passive" Requirements="AP_HaveAlarakVanguardIncreaseSplashArea" Row="1" Column="1"/>
             <LayoutButtons Face="AP_VanguardRapidfireCannon" Type="Passive" Requirements="AP_HaveVanguardRapidfireCannon" Row="1" Column="2"/>
             <LayoutButtons Face="AP_VanguardFusionMortars" Type="Passive" Requirements="AP_HaveVanguardFusionMortars" Row="1" Column="3"/>
-        </CardLayouts>
+            <LayoutButtons Face="AP_VanguardArmor" Type="Passive" Requirements="AP_VanguardArmor" Row="1" Column="4"/>
+
+            <LayoutButtons Face="AP_ImmortalTaldarimScatterCannon" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="AP_VanguardFlare" Type="AbilCmd" AbilCmd="AP_VanguardFlare,Execute" Row="2" Column="1"/>
+         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.625"/>
         <InnerRadius value="0.5"/>
@@ -14920,6 +14948,7 @@
         <AbilArray Link="AP_ExterminateAir"/>
         <AbilArray Link="AP_StrengthInUnity"/>
         <BehaviorArray Link="AP_ArtanisNoAspect"/>
+        <BehaviorArray Link="AP_ArtanisAspectAutoEquip"/>
         <BehaviorArray Link="AP_ArtanisForceOfWill"/>
         <BehaviorArray Link="AP_ArtanisPurifierSolarBombardmentPassive"/>
         <BehaviorArray Link="AP_ArtanisResurgence"/>
@@ -20894,6 +20923,7 @@
         <AbilArray Link="AP_UpgradeToRoboticsFacilityWarp"/>
         <AbilArray Link="AP_UpgradeToRoboticsFacilityWarpInstant"/>
         <AbilArray Link="AP_WarpRelocate"/>
+        <AbilArray Link="AP_ImmortalStarter"/>
         <BehaviorArray Link="PowerUserQueue"/>
         <BehaviorArray Link="AP_RoboticsFacilityWarpMorphInstant"/>
         <BehaviorArray Link="AP_ProtossBuildingShields"/>
@@ -21026,6 +21056,7 @@
         <AbilArray Link="AP_RoboticsFacilityWarpTrainRedirect"/>
         <AbilArray Link="AP_MorphBackToRoboticsFacility"/>
         <AbilArray Link="AP_WarpRelocate"/>
+        <AbilArray Link="AP_ImmortalStarter"/>
         <BehaviorArray Link="PowerUserQueue"/>
         <BehaviorArray Link="AP_ProtossBuildingShields"/>
         <CardLayouts>
@@ -32693,6 +32724,12 @@
         <Race value="Prot"/>
     </CUnit>
     <CUnit id="AP_StalkerTaldarimAttackUpgradeMissile" parent="MISSILE">
+        <Race value="Prot"/>
+    </CUnit>
+    <CUnit id="AP_VanguardFlareMissile" parent="MISSILE_INVULNERABLE">
+        <Race value="Prot"/>
+    </CUnit>
+    <CUnit id="AP_VanguardFlareSecondaryMissile" parent="MISSILE_INVULNERABLE">
         <Race value="Prot"/>
     </CUnit>
 </Catalog>

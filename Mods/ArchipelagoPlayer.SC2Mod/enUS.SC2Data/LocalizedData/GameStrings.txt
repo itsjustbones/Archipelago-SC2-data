@@ -1,4 +1,5 @@
-﻿AP_Raptor=Raptor Strain
+﻿AP/Error/AP_CasterLifeNotFull=Caster at full Life
+AP_Raptor=Raptor Strain
 AP_RaptorSwarmling=Raptor + Swarmling
 AP_Swarmling=Swarmling Strain
 Abil/Alert/AP_AscendantSacrificeInstant=No Supplicant nearby
@@ -506,6 +507,8 @@ Behavior/Name/AP_AiurMothershipEnergyRegenAuraBuffAiur=Glory in Unity
 Behavior/Name/AP_AlarakLightningStrikes=Lightning Strikes
 Behavior/Name/AP_AlarakStalkerPhasingArmorBuff=Phase Armor
 Behavior/Name/AP_AmorphousArmorcloud=Microbial Shroud
+Behavior/Name/AP_AnnihilatorAirAttack=Advanced Targeting
+Behavior/Name/AP_AnnihilatorCloak=Shadow Path
 Behavior/Name/AP_ArbiterMPCloakFieldEffect=Cloaking Field
 Behavior/Name/AP_ArbiterMPStasisField=Stasis Field
 Behavior/Name/AP_ArtanisCharging=Charging
@@ -580,6 +583,8 @@ Behavior/Name/AP_HHWraithFury6=Trigger Override
 Behavior/Name/AP_HHWraithFury7=Trigger Override
 Behavior/Name/AP_HHWraithFury8=Trigger Override
 Behavior/Name/AP_HHWraithFury9=Trigger Override
+Behavior/Name/AP_HealpackLarge=Med Pack
+Behavior/Name/AP_HealpackSmall=Med Pack
 Behavior/Name/AP_HellbatLeapStun=Stunned
 Behavior/Name/AP_HighArchonPsiStorm=Psi Storm
 Behavior/Name/AP_HiveQueenTransfusion=Transfusion
@@ -587,7 +592,11 @@ Behavior/Name/AP_HotSBioStasis=Bio-Stasis
 Behavior/Name/AP_HotSRaptorCharging=Leaping
 Behavior/Name/AP_HotSRoachShieldIndicator=Adaptive Plating
 Behavior/Name/AP_HydraliskFrenzy=Frenzy
+Behavior/Name/AP_ImmortalAirAttack=Advanced Targeting
 Behavior/Name/AP_ImmortalOverload=Barrier
+Behavior/Name/AP_ImmortalRegen=Nano Reassembly
+Behavior/Name/AP_ImmortalShakurasShadowCannonSlow=Disruptor Dispersion
+Behavior/Name/AP_ImmortalWarpRelocateTarget=Warping In
 Behavior/Name/AP_InfBullfrogImpactMutagen=Something In The Air...
 Behavior/Name/AP_InfBullfrogImpactStun=We got 100 tons of Zerg incoming!!
 Behavior/Name/AP_InfestedSCVRepairBio=Cauterizer
@@ -845,6 +854,8 @@ Behavior/Tooltip/AP_AiurMothershipEnergyRegenAuraBuff=This unit has <d ref="Beha
 Behavior/Tooltip/AP_AiurMothershipEnergyRegenAuraBuffAiur=This unit has <d ref="Behavior,AP_AiurMothershipEnergyRegenAuraBuffAiur,Modification.VitalRegenArray[Energy]" precision="1"/> increased energy regeneration.
 Behavior/Tooltip/AP_AlarakLightningStrikes=Alarak's next Deadly Charge also deals <d ref="Effect,AlarakLightningStrikesDamage,Amount"/> damage to <d ref="Effect,AlarakLightningStrikesSearch,AreaArray[0].MaxCount"/> enemy units near the primary target.
 Behavior/Tooltip/AP_AmorphousArmorcloud=Incoming damage from air units reduced by <d ref="Behavior,AP_AmorphousArmorcloud,DamageResponse.ModifyFraction*100" precision="1"/>%.
+Behavior/Tooltip/AP_AnnihilatorAirAttack=Can attack air units.
+Behavior/Tooltip/AP_AnnihilatorCloak=This unit is cloaked and has increased movement speed.
 Behavior/Tooltip/AP_ArbiterMPCloakFieldEffect=This unit is cloaked unless revealed by <c val="FFE303">Detectors</c> or effects.
 Behavior/Tooltip/AP_ArtanisCharging=Artanis is charging, allowing him to quickly close the distance with his target.
 Behavior/Tooltip/AP_ArtanisLightningDashStun=This unit is stunned.
@@ -906,6 +917,8 @@ Behavior/Tooltip/AP_HHWraithFury6=Attack Speed increased by 60%
 Behavior/Tooltip/AP_HHWraithFury7=Attack Speed increased by 70%
 Behavior/Tooltip/AP_HHWraithFury8=Attack Speed increased by 80%
 Behavior/Tooltip/AP_HHWraithFury9=Attack Speed increased by 90%
+Behavior/Tooltip/AP_HealpackLarge=This unit is being healed
+Behavior/Tooltip/AP_HealpackSmall=This unit is being healed
 Behavior/Tooltip/AP_HellbatLeapStun=This unit cannot move or attack.
 Behavior/Tooltip/AP_HighArchonPsiStorm=Target is under the effects of Psionic Storm and will take massive damage while in this area of effect.
 Behavior/Tooltip/AP_HiveQueenTransfusion=This unit is regenerating health.
@@ -913,7 +926,11 @@ Behavior/Tooltip/AP_HotSBioStasis=Target is stunned.
 Behavior/Tooltip/AP_HotSRaptorCharging=This Raptor is leaping, allowing it to quickly close the distance with its target.
 Behavior/Tooltip/AP_HotSRoachShieldIndicator=Roach gains +<d ref="Behavior,AP_RoachShield,Modification[0].LifeArmorBonus"/> armor when life is under 50%.
 Behavior/Tooltip/AP_HydraliskFrenzy=Attack speed increased.
+Behavior/Tooltip/AP_ImmortalAirAttack=Can attack air units.
 Behavior/Tooltip/AP_ImmortalOverload=This unit is absorbing damage dealt to it.
+Behavior/Tooltip/AP_ImmortalRegen=Regenerating life.
+Behavior/Tooltip/AP_ImmortalShakurasShadowCannonSlow=This unit is slowed.
+Behavior/Tooltip/AP_ImmortalWarpRelocateTarget=Unit is being materialized.
 Behavior/Tooltip/AP_InfBullfrogImpactMutagen=This unit has temporary bonus health and attack speed.
 Behavior/Tooltip/AP_InfBullfrogImpactStun=This unit has been stunned, likely because it got bodyslammed by a Zerg monster wearing a Terran Dropship like a dang fashion statement.
 Behavior/Tooltip/AP_InfestedSCVRepairBio=Can repair non-mechanical units.
@@ -1184,6 +1201,8 @@ Button/Name/AP_AmplifiedAssimilators=Amplified Assimilators
 Button/Name/AP_AnabolicSynthesis=Anabolic Synthesis
 Button/Name/AP_AncillaryCarapaceHydralisk=Ancillary Carapace
 Button/Name/AP_AnionPulseCrystals=Anion Pulse-Crystals
+Button/Name/AP_AnnihilatorAirAttack=Advanced Targeting
+Button/Name/AP_AnnihilatorCloak=Shadow Path
 Button/Name/AP_AnnihilatorTwilightChassis=Twilight Chassis
 Button/Name/AP_Apocalypse=Apocalypse
 Button/Name/AP_ApolloCloakOnNova=Cloak
@@ -1561,6 +1580,8 @@ Button/Name/AP_Heal=Heal
 Button/Name/AP_HealingAdaptation=Healing Adaptation
 Button/Name/AP_HealingDrone=Bio-Mechanical Repair Drone
 Button/Name/AP_HealingPsionicStorm=Plasma Surge
+Button/Name/AP_HealpackLarge=Med Pack
+Button/Name/AP_HealpackSmall=Med Pack
 Button/Name/AP_HellArmor=Infernal Plating
 Button/Name/AP_HellbatCharge=Jump Jet Assault
 Button/Name/AP_Hellion=Build Hellion
@@ -1639,14 +1660,18 @@ Button/Name/AP_Immortal=Warp In Immortal
 Button/Name/AP_ImmortalAdvancedTargetingMechanics=Advanced Targeting
 Button/Name/AP_ImmortalAiur=Warp in Immortal
 Button/Name/AP_ImmortalBarrierBase=Barrier
+Button/Name/AP_ImmortalBarrierThorns=Countermeasures
 Button/Name/AP_ImmortalHallucination=Summon Immortal Hallucination
 Button/Name/AP_ImmortalOverload=Barrier
 Button/Name/AP_ImmortalPurifier=Warp in Stalwart
+Button/Name/AP_ImmortalRegen=Nano Reassembly
 Button/Name/AP_ImmortalShakuras=Warp in Annihilator
 Button/Name/AP_ImmortalShakurasShadowCannon=Shadow Cannon
 Button/Name/AP_ImmortalSingularityCharge=Singularity Charge
+Button/Name/AP_ImmortalStarter=Eternal Duty
 Button/Name/AP_ImmortalTaldarim=Warp in Vanguard
 Button/Name/AP_ImmortalTaldarimScatterCannon=Scatter Cannon
+Button/Name/AP_ImmortalWarpRelocate=Warp Relocate
 Button/Name/AP_ImmortalityProtocol=Immortality Protocol
 Button/Name/AP_Impaler=Morph to Impaler
 Button/Name/AP_ImpalerDamage=Sunken Spines
@@ -2492,6 +2517,8 @@ Button/Name/AP_ValkyrieATSRockets=Flechette Missiles
 Button/Name/AP_ValkyrieAntiGravityDrive=Launching Vector Compensator
 Button/Name/AP_ValkyrieEnhancedClusterLaunchers=Enhanced Cluster Launchers
 Button/Name/AP_ValkyrieSCBW=Build Valkyrie
+Button/Name/AP_VanguardArmor=Bloodshard Coating
+Button/Name/AP_VanguardFlare=Flare
 Button/Name/AP_VanguardFusionMortars=Fusion Mortars
 Button/Name/AP_VanguardMatterDispersion=Matter Dispersion
 Button/Name/AP_VanguardRapidfireCannon=Rapid-Fire Cannon
@@ -2728,6 +2755,8 @@ Button/Tooltip/AP_AmplifiedAssimilators=Vespene gas is harvested 25% faster.
 Button/Tooltip/AP_AnabolicSynthesis=Increases Ultralisk movement speed.
 Button/Tooltip/AP_AncillaryCarapaceHydralisk=Hydralisk gains +20 maximum life.
 Button/Tooltip/AP_AnionPulseCrystals=Improves Ion Cannon weapon attack range by 2.
+Button/Tooltip/AP_AnnihilatorAirAttack=Swaps the Annihilator weapons to anti-air mode for <d ref="Behavior,AP_AnnihilatorAirAttack,Duration"/> seconds. The anti-air weapon cannot hit ground units and does not deal bonus damage to armored units.
+Button/Tooltip/AP_AnnihilatorCloak=Annihilators are cloaked and move 25% faster while not in combat.
 Button/Tooltip/AP_AnnihilatorTwilightChassis=The Annihilator gains +<d ref="$UpgradeEffectArrayValue:AP_AnnihilatorTwilightChassis:Unit,AP_ImmortalShakuras,LifeMax$"/> Maximum Life.<n/><n/><c val="FFE303">War Council Upgrade.</c>
 Button/Tooltip/AP_Apocalypse=Deals <d ref="Effect,AP_ApocalypseDamage,Amount"/> damage to enemy units and <d ref="(Effect,AP_ApocalypseDamage,Amount) + (Effect,AP_ApocalypseDamage,AttributeBonus[Structure])"/> damage to enemy structures in a large area.
 Button/Tooltip/AP_ApolloCloakOnNova=Cloaks Nova for <d ref="Behavior,AP_NovaApolloCloak,Duration"/> seconds, preventing enemy units from seeing or attacking her. A cloaked unit will only be revealed by detectors or effects.
@@ -3065,7 +3094,7 @@ Button/Tooltip/AP_DisablingCloud=Creates a cloud that slows movement speed and p
 Button/Tooltip/AP_DisplacementField=A detected Wraith evades 20% of incoming attacks while cloaked.
 Button/Tooltip/AP_Disruptor=Robotic disruption unit. Can use Purification Nova to deal heavy area damage.
 Button/Tooltip/AP_DisruptorBlink=Teleports the Disruptor to a nearby target location. This Blink will not teleport alongside Blinks of other unit types.</n></n><c val="ffff8a">Passive (Mobility Protocols):</c> The Disruptor can now move during Purification Nova.
-Button/Tooltip/AP_DisruptorDispersion=Immortals and Annihilators deal <d ref="Effect,AP_ImmortalSplashDamage,Amount"/> (<d ref="(Effect,AP_ImmortalSplashDamage,Amount + Effect,AP_ImmortalSplashDamage,AttributeBonus[Armored])"/> to armored) splash damage.
+Button/Tooltip/AP_DisruptorDispersion=Annihilator Shadow Cannon applies a <d ref="(1 - Behavior,AP_ImmortalShakurasShadowCannonSlow,Modification.MoveSpeedMultiplier) * 100"/>% slow for <d ref="Behavior,AP_ImmortalShakurasShadowCannonSlow,Duration,"/> seconds in a small area around the target.
 Button/Tooltip/AP_DisruptorHallucination=These hallucinated copies function like the original unit, but they cannot use active abilities, deal damage, warp in structures, or gather resources, and they die more easily. Hallucinations last <d time="60"/> before they disappear.
 Button/Tooltip/AP_DisruptorPhased=Robotic disruption unit. Can use Purification Nova to deal heavy area damage.
 Button/Tooltip/AP_DistortionBlasters=Increases Banshee damage by 25% while cloaked.
@@ -3212,6 +3241,8 @@ Button/Tooltip/AP_HealMengskPlusMech=Heals a friendly biological or mechanical t
 Button/Tooltip/AP_HealingAdaptation=Tyrannozors regenerate life quickly when out of combat.
 Button/Tooltip/AP_HealingDrone=Heals nearby biological and mechanical units.<n/>Times out after <d ref="Behavior,AP_HealingDroneTimedLife,Duration"/> seconds.
 Button/Tooltip/AP_HealingPsionicStorm=Psionic Storm can be cast from +<d ref="Upgrade,AP_HighTemplarPlasmaSurge,EffectArray[3].Value"/> range, affects a larger area, and restores <d ref="((Effect,AP_HighArchonPsiStormPersistent,PeriodCount+1)*(Effect,AP_HighArchonPsiStormHeal,RechargeVitalRate))/2"/> shields to friendly units in the target area.<c/>
+Button/Tooltip/AP_HealpackLarge=Heals the unit for <d ref="Behavior,AP_HealpackLarge,Duration * Behavior,AP_HealpackLarge,Modification.VitalRegenArray[Life]"/> life over <d ref="Behavior,AP_HealpackLarge,Duration"/> seconds.
+Button/Tooltip/AP_HealpackSmall=Heals the unit for <d ref="Behavior,AP_HealpackSmall,Duration * Behavior,AP_HealpackSmall,Modification.VitalRegenArray[Life]"/> life over <d ref="Behavior,AP_HealpackSmall,Duration"/> seconds.
 Button/Tooltip/AP_HellArmor=Increases Hellion and Hellbat armor by 2.
 Button/Tooltip/AP_HellbatCharge=Increases movement speed in Hellion mode. <n/>In Hellbat mode, launches the Hellbat toward nearby enemy ground units. Briefly stuns enemy units on impact.
 Button/Tooltip/AP_Hellion=Fast scout. Has a flame attack that damages all enemy units in its line of fire.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -3301,18 +3332,22 @@ Button/Tooltip/AP_Hyperfluxor=Increases Diamondback attack speed by 20%.
 Button/Tooltip/AP_Hyperjump=After <d time="6"/>, warps to the target location. Battlecruiser is invulnerable while warping.<n/><n/><c val="#ColorAttackInfo">Does not require vision.</c>
 Button/Tooltip/AP_HyperjumpHercules=Warps to the target location. Hercules is invulnerable while warping.
 Button/Tooltip/AP_Immortal=Assault strider. Can use Barrier to absorb damage.<n/><n/><c val="ffff8a">Can attack ground units.</c>
-Button/Tooltip/AP_ImmortalAdvancedTargetingMechanics=Immortals and Annihilators can attack air units.
+Button/Tooltip/AP_ImmortalAdvancedTargetingMechanics=Swaps the Immortal weapons to anti-air mode for <d ref="Behavior,AP_ImmortalAirAttack,Duration"/> seconds. The anti-air weapon cannot hit ground units and does not deal bonus damage to armored units.
 Button/Tooltip/AP_ImmortalAiur=Aiur Faction<n/>Assault strider. Can use Barrier to absorb damage.<n/><n/><c val="FFFF8A">Can attack ground units.</c>
 Button/Tooltip/AP_ImmortalBarrier=Assault strider. Can use Barrier to absorb damage.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/AP_ImmortalBarrierBase=Absorbs up to <d ref="Behavior,AP_ImmortalBarrierBase,DamageResponse.ModifyLimit"/> damage. Lasts for <d ref="Behavior,AP_ImmortalBarrierBase,Duration"/> seconds.
+Button/Tooltip/AP_ImmortalBarrierThorns=While Barrier is active, deal <d ref="Effect,AP_ImmortalOverloadDamage,Amount"/> damage to enemies attacking the Immortal.
 Button/Tooltip/AP_ImmortalHallucination=These hallucinated copies function like the original unit, but they cannot use active abilities, deal damage, warp in structures, or gather resources, and they die more easily. Hallucinations last <d time="60"/> before they disappear.
 Button/Tooltip/AP_ImmortalOverload=Absorbs up to <d ref="Behavior,AP_ImmortalOverload,DamageResponse.ModifyLimit"/> damage. Lasts for <d ref="Behavior,AP_ImmortalOverload,Duration"/> seconds.
 Button/Tooltip/AP_ImmortalPurifier=Purifier Faction<n/>Assault strider. Has shields that deflect high-damage attacks.<n/><n/><c val="FFFF8A">Can attack ground units.</c>
+Button/Tooltip/AP_ImmortalRegen=Immortals regenerate <d ref="Behavior,AP_ImmortalRegen,Modification.VitalRegenArray[Life]"/> life per second while out of combat.
 Button/Tooltip/AP_ImmortalShakuras=Nerazim Faction<n/>Assault Strider. Can use Shadow Cannon to damage air and ground units.<n/><n/><c val="FFFF8A">Can attack ground units.</c>
 Button/Tooltip/AP_ImmortalShakurasShadowCannon=Deal <d ref="Effect,AP_ImmortalShakurasShadowCannonDamage,Amount*Effect,AP_ImmortalShakurasShadowCannonCP,PeriodCount"/> damage to target unit or structure. <n/><n/><c val="#ColorAttackInfo">Can target ground and air units.</c>
-Button/Tooltip/AP_ImmortalSingularityCharge=Increases Immortal and Annihilator attack range by 2.
+Button/Tooltip/AP_ImmortalSingularityCharge=Increases Annihilator attack range by 2.
+Button/Tooltip/AP_ImmortalStarter=Up to twice per mission, upon building a Robotics Facility, immediately warp in a free Immortal.
 Button/Tooltip/AP_ImmortalTaldarim=Tal'darim Faction<n/>Assault Strider. Attacks deal damage in an area around target enemy unit.<n/><n/><c val="ffff8a">Can attack ground units.</c>
 Button/Tooltip/AP_ImmortalTaldarimScatterCannon=Attacks deal damage to target enemy ground unit and other enemy ground units near it.<n/><n/><c val="ffff8a">Damages enemy ground units only.</c>
+Button/Tooltip/AP_ImmortalWarpRelocate=Allows the Immortal to warp to a nearby location with Pylon power over 8 seconds.
 Button/Tooltip/AP_ImmortalityProtocol=Allows a destroyed Thor to be rebuilt in the field.
 Button/Tooltip/AP_ImmortalityProtocolUpgraded=Allows a destroyed Thor to be rebuilt in the field free of charge.
 Button/Tooltip/AP_Impaler=Long-range anti-armor ambusher. Must burrow to attack.<n/><n/><c val="ffff8a">Can attack ground units.</c>
@@ -3618,7 +3653,7 @@ Button/Tooltip/AP_NovaArmorMoebiusSuit=Psionic amplification suit. Increases bot
 Button/Tooltip/AP_NovaArmorStealthSuit=Allows Nova to remain permanently cloaked.
 Button/Tooltip/AP_NovaDefensiveDrone=Uses a laser to shoot down enemy missiles.  <n/>Cannot target special attacks. <n/>Times out after <d ref="Behavior,AP_PointDefenseDroneTimedLife,Duration"/> seconds.<n/><n/><c val="f078ff">Each shot consumes 10 energy.</c>
 Button/Tooltip/AP_NovaDomination=Takes control of target enemy unit. Only one enemy unit can be controlled at a time. Effect lasts until cancelled. Cooldown timer begins after effect is cancelled.
-Button/Tooltip/AP_NovaGadgetFlashBangGrenades=Stuns and disables the <c val="FFE303">Detection</c> of enemy ground and air units in the target area for <d ref="Behavior,AP_FlashBangGrenade,Duration"/> seconds.</n></n><c val ="#ColorAttackInfo">Massive units and friendly units are immune.</c>
+Button/Tooltip/AP_NovaGadgetFlashBangGrenades=Stuns and disables the <c val="FFE303">Detection</c> of enemy ground and air units in the target area and increase their damage taken by <d ref="Behavior,AP_FlashBangGrenade,Modification.DamageTakenFraction * 100"/>% for <d ref="Behavior,AP_FlashBangGrenade,Duration"/> seconds.</n></n><c val ="#ColorAttackInfo">Massive units and friendly units are immune.</c>
 Button/Tooltip/AP_NovaGadgetHolographicDecoy=Deploys a holographic duplicate of Nova that can be controlled. The hologram deals 25% of Nova's damage and takes 25% less damage.
 Button/Tooltip/AP_NovaGadgetPulseGrenades=Deals up to <d ref="Effect,AP_NovaGadgetPulseGrenadesDamage,Amount"/> damage to enemy ground and air units in the target area.</n></n><c val="ffff8a">Does not damage friendly units.</c>
 Button/Tooltip/AP_NovaHelmetGhostVisor=Reveals the locations of enemy units within a radius of <d ref="Behavior,AP_NovaHelmetGhostVisorDetector,Modification.Radar"/> from Nova's position. Can detect cloaked and burrowed units.
@@ -4105,7 +4140,7 @@ Button/Tooltip/AP_StrainInjectionRoachWarren=When a Hive Queen uses Strain Injec
 Button/Tooltip/AP_StrainInjectionSpawningPool=When a Hive Queen uses Strain Injection on this building, it will spawn <d ref="Behavior,AP_StrainInjectionSpawningPool,Duration / Behavior,AP_StrainInjectionSpawningPool,Period + 1"/> timed-life Broodlings over <d ref="Behavior,AP_StrainInjectionSpawningPool,Duration"/> seconds.
 Button/Tooltip/AP_StrainInjectionSpire=When a Hive Queen uses Strain Injection on this building, it will spawn <d ref="Behavior,AP_StrainInjectionSpire,Duration / Behavior,AP_StrainInjectionSpire,Period"/> timed-life Flying Locusts over <d ref="Behavior,AP_StrainInjectionSpire,Duration"/> seconds.
 Button/Tooltip/AP_StrainInjectionUltraliskCavern=When a Hive Queen uses Strain Injection on this building, it will spawn <d ref="Behavior,AP_StrainInjectionUltraliskCavern,Duration / Behavior,AP_StrainInjectionUltraliskCavern,Period"/> timed-life Pygalisks over <d ref="Behavior,AP_StrainInjectionUltraliskCavern,Duration"/> seconds.
-Button/Tooltip/AP_StrengthInUnity=Rallies other Protoss units around Artanis for <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnity,Duration"/> seconds</c>, granting bonuses to himself and units around him based on each <c val="#ColorTooltipNumber">Protoss Faction</c> in his radius.<n/><n/><c val="#AP_ColorAiur">Aiur</c>: Gain <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.VitalRegenArray[Energy]" precision="1"/> energy regen</c>, and cooldowns recharge <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.RateMultiplierArray[Cooldown] * 100 - 100"/>% faster</c>.<n/><c val="#AP_ColorNerazim">Nerazim</c>: Become <c val="#ColorTooltipNumber">Cloaked</c> and gain <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffNerazim,Modification.MoveSpeedMultiplier * 100 - 100"/>% movement speed</c>.<n/><c val="#AP_ColorPurifier">Purifier</c>: Gain <c val="#ColorTooltipNumber"><d ref="(1 - Behavior,AP_StrengthInUnityBuffPurifier,DamageResponse.ModifyFraction) * 100"/>% damage reduction</c>.<n/><c val="#AP_ColorTaldarim">Taldarim</c>: Deal <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffTaldarim,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage</c>.<n/><n/>Artanis counts as the faction of his weapon aspect, and gains <c val="#ColorTooltipNumber">double</c> the bonuses.
+Button/Tooltip/AP_StrengthInUnity=Rally nearby units around Artanis based on each <c val="#ColorTooltipNumber">Protoss Faction</c> in his radius for <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnity,Duration"/> seconds</c>.<n/><n/><c val="#AP_ColorAiur">Aiur</c>: Gain <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.VitalRegenArray[Energy]" precision="1"/> energy regen</c>, and cooldowns recharge <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffAiur,Modification.RateMultiplierArray[Cooldown] * 100 - 100"/>% faster</c>.<n/><c val="#AP_ColorNerazim">Nerazim</c>: Become <c val="#ColorTooltipNumber">Cloaked</c> and gain <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffNerazim,Modification.MoveSpeedMultiplier * 100 - 100"/>% movement speed</c>.<n/><c val="#AP_ColorPurifier">Purifier</c>: Gain <c val="#ColorTooltipNumber"><d ref="(1 - Behavior,AP_StrengthInUnityBuffPurifier,DamageResponse.ModifyFraction) * 100"/>% damage reduction</c>.<n/><c val="#AP_ColorTaldarim">Taldarim</c>: Deal <c val="#ColorTooltipNumber"><d ref="Behavior,AP_StrengthInUnityBuffTaldarim,Modification.DamageDealtFraction[Spell] * 100"/>% increased damage</c>.<n/><n/>Artanis counts as the faction of his weapon aspect, and gains <c val="#ColorTooltipNumber">double</c> the bonuses.
 Button/Tooltip/AP_StukovInfestedBanshee=Tactical-strike aircraft. Can cloak and can be upgraded to burrow.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_StukovInfestedBansheeBurrowRegeneration=Infested Banshees regenerate 20 life and energy per second while burrowed.
 Button/Tooltip/AP_StukovInfestedBansheeBurrowed=Tactical-strike aircraft. Can cloak and can be upgraded to burrow.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
@@ -4299,6 +4334,8 @@ Button/Tooltip/AP_ValkyrieEnhancedClusterLaunchers=Valkyrie fires 2 additional r
 Button/Tooltip/AP_ValkyrieSCBW=Advanced anti-aircraft fighter. Able to use cluster missiles that deal area damage to air targets.<n/><n/><c val="#ColorAttackInfo">Can attack air units.</c>
 Button/Tooltip/AP_ValkyrieShapedHull=Increases Valkyrie life by 50.
 Button/Tooltip/AP_ValkyrieSpeedBoost=Increases the Valkyrie's movement speed by 70% for <d time="8"/>.
+Button/Tooltip/AP_VanguardArmor=Increases the Vanguards life by 25 and armor by 1.
+Button/Tooltip/AP_VanguardFlare=The Vanguard fires a flare at the target area, granting vision and detection for <d ref="Effect,AP_VanguardFlareCP,ExpireDelay"/> seconds.
 Button/Tooltip/AP_VanguardFusionMortars=<c val="ffff8a">Vanguards</c> deal +<d ref="Upgrade,AP_VanguardFusionMortars,EffectArray[0].Value"/> damage to armored targets per attack.<n/><n/><c val="FFE303">War Council Upgrade.</c>
 Button/Tooltip/AP_VanguardMatterDispersion=Increases the area of the <c val="ffff8a">Vanguard's</c> splash damage by <d ref="($UpgradeEffectArrayValue:AP_AlarakVanguardIncreaseSplashArea:Effect,AP_ImmortalTaldarimWeaponSearch,AreaArray[0].Radius$/Effect,AP_ImmortalTaldarimWeaponSearch,AreaArray[0].Radius-1)*100" player="0"/>%
 Button/Tooltip/AP_VanguardRapidfireCannon=<c val="ffff8a">Vanguards</c> fire <d ref="100 * (Weapon,AP_ImmortalTaldarim,Period / (Weapon,AP_ImmortalTaldarim,Period - $UpgradeEffectArrayValue:AP_VanguardRapidfireCannon:Weapon,AP_ImmortalTaldarim,Period$) - 1)" player="0"/>% faster.<n/><n/><c val="FFE303">War Council Upgrade.</c>
@@ -4408,7 +4445,7 @@ Button/Tooltip/AP_WidowMineBurrow=Burrows the Widow Mine and readies its weapon.
 Button/Tooltip/AP_WidowMineConcealment=This unit is no longer revealed while reloading.
 Button/Tooltip/AP_WidowMineDemolitionArmaments=Allows Widow Mines to attack buildings.
 Button/Tooltip/AP_WidowMineUnburrow=Unburrows the Widow Mine and deactivates its weapon, allowing it to move.
-Button/Tooltip/AP_WildMutation=Friendly zerg units in the target area gain +<d ref="Behavior,AP_WildMutation,Modification.VitalMaxArray[1]"/> maximum life and <d ref="(Behavior,AP_WildMutation,Modification.AttackSpeedMultiplier - 1) * 100"/>% increased attack speed for <d ref="Behavior,AP_WildMutation,Duration"/> seconds.<n/><n/><c val="ffff8a">Does not affect heroic units.</c>
+Button/Tooltip/AP_WildMutation=Friendly zerg units and your biological units in the target area gain +<d ref="Behavior,AP_WildMutation,Modification.VitalMaxArray[1]"/> maximum life and <d ref="(Behavior,AP_WildMutation,Modification.AttackSpeedMultiplier - 1) * 100"/>% increased attack speed for <d ref="Behavior,AP_WildMutation,Duration"/> seconds.<n/><n/><c val="ffff8a">Does not affect heroic units.</c>
 Button/Tooltip/AP_WormholeTransit=Teleports the Mothership to target location anywhere on the map.<n/></n><c val="FF4040">This ability shares a cooldown with Blink.</c>
 Button/Tooltip/AP_WormholeTransitInstall=Teleports the Mothership to target location anywhere on the map.<n/></n><c val="FF4040">This ability shares a cooldown with Blink.</c>
 Button/Tooltip/AP_Wraith=Highly mobile flying unit. Excellent at surgical strikes.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
@@ -6192,6 +6229,7 @@ Param/Value/lib_15EF4C78_E11D6511=<k val="HeroSelect0"/>
 Param/Value/lib_15EF4C78_E2AE9BC3=<c val="FF9800">Kerrigan has been revived at your Hatchery.</c>
 Param/Value/lib_15EF4C78_E51A21D1=<c val="9BFFBE">Artanis has been warped off the battlefield to avoid lethal damage. You must construct a Nexus for hjm to rejoin the fight.</c>
 Param/Value/lib_15EF4C78_EAFF7887=<c val="FF9800">Dehaka has been revived at your Hatchery.</c>
+Param/Value/lib_15EF4C78_F7380CB8=DEBUG: Skip Fast Delivery handling, merc type was already fast delivered once
 RequirementNode/Tooltip/AP_BileLauncherBesideSpawningPool=Built beside Spawning Pool
 RequirementNode/Tooltip/AP_CompareNodeLTTyrannozorMergeSupply=Have enough supply
 RequirementNode/Tooltip/AP_CountBehaviorAP_ScoutTaldarimVulcanBlasterCompleteOnlyAtUnit3032945838=Cannot cancel during chargeup.
@@ -7437,6 +7475,7 @@ Weapon/Name/AP_Adept=Purifier Glaive Cannon
 Weapon/Name/AP_AiurMothershipWeapon=Photon Beam
 Weapon/Name/AP_AllPurposeLaserBattery=ATX Laser Battery
 Weapon/Name/AP_AnnihilatorParticleDisruptors=Particle Disruptors
+Weapon/Name/AP_AnnihilatorParticleDisruptorsAir=Particle Disruptors
 Weapon/Name/AP_ArbiterMPWeapon=Warpspace Cannon
 Weapon/Name/AP_ArcliteShockCannon=Arclite Shock Cannon
 Weapon/Name/AP_ArtanisAirAttack=Psionic Assault
@@ -7589,6 +7628,7 @@ Weapon/Name/AP_ParticleBeam=Particle Beam
 Weapon/Name/AP_ParticleDisruptors=Particle Disruptors
 Weapon/Name/AP_PerditionTurretFlamethrower=Perdition Turret Flamethrower
 Weapon/Name/AP_PhaseDisruptors=Phase Disruptors
+Weapon/Name/AP_PhaseDisruptorsAir=Phase Disruptors
 Weapon/Name/AP_PhaseDisruptorsStrafe=Phase Disruptors
 Weapon/Name/AP_PhotonCannon=Photon Cannon
 Weapon/Name/AP_Predator=Titanium Claws

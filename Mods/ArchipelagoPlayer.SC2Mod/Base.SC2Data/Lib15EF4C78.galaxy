@@ -269,6 +269,9 @@ void lib15EF4C78_InitVariables () {
     for (init_i = 0; init_i <= lib15EF4C78_gv_aP_Player_MERC_COOLDOWN_LINK_SIZE; init_i += 1) {
         lib15EF4C78_gv_aP_Player_MercCooldownLinks[init_i] = "";
     }
+    for (init_i = 0; init_i <= lib15EF4C78_gv_aP_Player_MERC_COOLDOWN_LINK_SIZE; init_i += 1) {
+        lib15EF4C78_gv_aP_Player_MercInstantUseIndex[init_i] = -1;
+    }
 }
 
 // Custom Script
@@ -2773,11 +2776,11 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     // Variable Declarations
     fixed lv_reviveDuration;
     unit lv_reviveCocoon;
-    bool lv_useShieldedHeroUI;
     text lv_hotkey;
     int lv_life;
     int lv_shields;
     int lv_energy;
+    bool lv_useShieldedHeroUI;
 
     // Automatic Variable Declarations
     int autoB139472A_val;
@@ -2814,7 +2817,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     TextExpressionSetToken("Param/Expression/lib_15EF4C78_7DF39159", "B", lv_hotkey);
     libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogNameLabel[lp_index], TextExpressionAssemble("Param/Expression/lib_15EF4C78_7DF39159"), PlayerGroupAll());
     libNtve_gf_SetDialogItemImage(lib15EF4C78_gv_zS_SwarmHeroUIDialogIconImage[lp_index], lib15EF4C78_gv_zS_SwarmHeroUIIcon[lp_index], PlayerGroupAll());
-    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0);
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropNormal) > 0.0);
     if ((lv_useShieldedHeroUI == true)) {
         DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 46);
         DialogControlSetPosition(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), c_anchorTopLeft, 103, 50);
@@ -2850,7 +2853,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarImage[lp_index], PlayerGroupAll(), false);
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lp_index], PlayerGroupAll(), false);
     }
-    if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0)) {
+    if (((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0) && (lv_useShieldedHeroUI == true))) {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], PlayerGroupAll(), true);
         TextExpressionSetToken("Param/Expression/lib_15EF4C78_1119D651", "CurrentLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShields, c_unitPropCurrent), 0));
         TextExpressionSetToken("Param/Expression/lib_15EF4C78_1119D651", "MaxLife", FixedToText(UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent), 0));
@@ -2883,7 +2886,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
     }
     else {
         lv_energy = FixedToInt((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropEnergyPercent, c_unitPropCurrent) * 2.24));
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0)) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImage[lp_index], PlayerGroupAll(), false);
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index], PlayerGroupAll(), true);
         }
@@ -7716,6 +7719,74 @@ void lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: AP_Player_ImmortalWarpRelocate
+//--------------------------------------------------------------------------------------------------
+bool lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+    fixed lv_life;
+    fixed lv_lifeStart;
+    fixed lv_lifeRate;
+    fixed lv_shields;
+    fixed lv_shieldsStart;
+    fixed lv_shieldsRate;
+
+    // Automatic Variable Declarations
+    const int autoC4E07D1C_n = 80;
+    int autoC4E07D1C_i;
+
+    // Variable Initialization
+    lv_caster = EventUnit();
+    lv_shields = UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent);
+    lv_shieldsStart = (UnitGetPropertyFixed(lv_caster, c_unitPropShieldsMax, c_unitPropCurrent) * 0.1);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_life = UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent);
+    lv_lifeStart = ((UnitGetPropertyFixed(lv_caster, c_unitPropLifeMax, c_unitPropCurrent)*0.1)+1);
+    lv_lifeRate = ((lv_life-lv_lifeStart)/80.0);
+    lv_lifeRate = MaxF(lv_lifeRate, 0.0);
+    lv_shields = UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent);
+    lv_shieldsStart = ((UnitGetPropertyFixed(lv_caster, c_unitPropShieldsMax, c_unitPropCurrent)*0.1)+1);
+    lv_shieldsRate = ((lv_shields-lv_shieldsStart)/80.0);
+    lv_shieldsRate = MaxF(lv_shieldsRate, 0.0);
+    if ((lv_lifeRate > 0.0)) {
+        UnitSetPropertyFixed(lv_caster, c_unitPropLife, lv_lifeStart);
+    }
+
+    if ((lv_shieldsRate > 0.0)) {
+        UnitSetPropertyFixed(lv_caster, c_unitPropShields, lv_shieldsStart);
+    }
+
+    if (((lv_lifeRate > 0.0) || (lv_shieldsRate > 0.0))) {
+        for (autoC4E07D1C_i = 1; autoC4E07D1C_i <= autoC4E07D1C_n; autoC4E07D1C_i += 1) {
+            Wait(0.0625, c_timeGame);
+            UnitSetPropertyFixed(lv_caster, c_unitPropLife, (UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent) + lv_lifeRate));
+            UnitSetPropertyFixed(lv_caster, c_unitPropShields, (UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent) + lv_shieldsRate));
+        }
+        if ((PowI((lv_life-UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent)), 2.0) <= 4)) {
+            UnitSetPropertyFixed(lv_caster, c_unitPropLife, lv_life);
+        }
+
+        if ((PowI((lv_shields-UnitGetPropertyFixed(lv_caster, c_unitPropShields, c_unitPropCurrent)), 2.0) <= 4)) {
+            UnitSetPropertyFixed(lv_caster, c_unitPropShields, lv_shields);
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Init () {
+    lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate = TriggerCreate("lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Func");
+    TriggerAddEventUnitBehaviorChange(lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate, null, "AP_ImmortalWarpRelocateTarget", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: SlayerInit
 //--------------------------------------------------------------------------------------------------
 bool lib15EF4C78_gt_SlayerInit_Func (bool testConds, bool runActions) {
@@ -8263,6 +8334,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     int lv_damageBarWidth;
     int lv_damageBarHeight;
     int lv_damageBarPriority;
+    bool lv_useShieldedHeroUI;
 
     // Automatic Variable Declarations
     unit auto6B7C2E37_val;
@@ -8294,9 +8366,10 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     else {
         return true;
     }
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropNormal) > 0.0);
     auto78DF5643_val = EventUnitProperty();
     if (auto78DF5643_val == c_unitPropEnergy) {
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "ap_hots_gameunitframe/HeroEnergyBarDamageTemplateShieldedHero/DamageBar");
             DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lv_index], c_anchorLeft, 0, 0);
             lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lv_index], 1);
@@ -8311,7 +8384,7 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
     }
     else if (auto78DF5643_val == c_unitPropLife) {
         DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "AP_HotS_GameUnitFrame/HeroHealthBarDamageTemplate/DamageBar");
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lv_index], c_anchorLeft, 0, 0);
             lv_damageBarHeight = DialogControlGetHeight(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthBarImage[lv_index], 1);
         }
@@ -8323,13 +8396,13 @@ bool lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Func (bool testConds, bool run
         lv_damageBarWidth = MaxI(1, lv_damageBarWidth);
     }
     else if (auto78DF5643_val == c_unitPropShields) {
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+        if ((lv_useShieldedHeroUI == true)) {
             return true;
         }
 
         DialogControlCreateInPanelFromTemplate(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lv_index], c_triggerControlTypeImage, "ap_hots_gameunitframe/HeroShieldBarDamageTemplate/DamageBar");
         DialogControlSetPositionRelative(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lv_index], c_anchorLeft, 0, 0);
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0)) {
+        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
             lv_damageBarWidth = FixedToInt((((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShields, c_unitPropCurrent) - EventUnitPropertyChangeFixed()) / UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent)) * 222.0));
             lv_damageBarWidth = MaxI(1, lv_damageBarWidth);
         }
@@ -8373,6 +8446,7 @@ void lib15EF4C78_gt_ZS_SwarmHeroUIUnitVitalChange_Init () {
 bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_index;
+    bool lv_useShieldedHeroUI;
 
     // Automatic Variable Declarations
     int auto31F78A4F_val;
@@ -8407,9 +8481,10 @@ bool lib15EF4C78_gt_ZS_MouseHoverText_Func (bool testConds, bool runActions) {
             }
         }
     }
+    lv_useShieldedHeroUI = (UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropNormal) > 0.0);
     auto31F78A4F_val = EventDialogControlEventType();
     if (auto31F78A4F_val == c_triggerControlEventTypeMouseEnter) {
-        if ((UnitGetPropertyFixed(lib15EF4C78_gv_zS_SwarmHeroUIUnit[lv_index], c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+        if ((lv_useShieldedHeroUI == true)) {
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lv_index], PlayerGroupAll(), true);
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lv_index], PlayerGroupAll(), true);
             DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lv_index], PlayerGroupAll(), false);
@@ -9672,10 +9747,13 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
     int lv_index;
     int lv_player;
     int lv_instantUsesLeft;
+    int lv_i;
 
     // Automatic Variable Declarations
     const int auto40390B55_ae = lib15EF4C78_gv_aP_Player_MERC_COOLDOWN_LINK_SIZE;
     const int auto40390B55_ai = 1;
+    const int autoA671E54B_ae = lib15EF4C78_gv_aP_Player_MercInstantUsesLevel2;
+    const int autoA671E54B_ai = 1;
 
     // Variable Initialization
 
@@ -9690,11 +9768,20 @@ bool lib15EF4C78_gt_AP_Player_MercCompoundOnMercUse_Func (bool testConds, bool r
         lv_index = 0;
         for ( ; ( (auto40390B55_ai >= 0 && lv_index <= auto40390B55_ae) || (auto40390B55_ai < 0 && lv_index >= auto40390B55_ae) ) ; lv_index += auto40390B55_ai ) {
             if ((EventUnitAbility() == lib15EF4C78_gv_aP_Player_MercAbilityCommands[lv_index]) && ((lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_INFANTRY) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_VEHICLE) || (lib15EF4C78_gv_aP_Player_MercType[lv_index] == lib15EF4C78_ge_AP_Player_MercenaryType_STARSHIP))) {
+                lv_i = 0;
+                for ( ; ( (autoA671E54B_ai >= 0 && lv_i <= autoA671E54B_ae) || (autoA671E54B_ai < 0 && lv_i >= autoA671E54B_ae) ) ; lv_i += autoA671E54B_ai ) {
+                    if ((lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lv_i] == lv_index)) {
+                        TriggerDebugOutput(1, StringExternal("Param/Value/lib_15EF4C78_F7380CB8"), false);
+                        lib15EF4C78_gf_AP_Player_MercCompoundUpdateAvailableCount(lv_player);
+                        return true;
+                    }
+
+                }
                 lv_instantUsesLeft -= 1;
                 libNtve_gf_SetUpgradeLevelForPlayer(lv_player, "AP_FastDeliveryCharges", lv_instantUsesLeft);
                 lib15EF4C78_gv_aP_Player_MercInstantUseIndex[lib15EF4C78_gv_aP_Player_MercInstantUsesUsed] = lv_index;
                 lib15EF4C78_gv_aP_Player_MercInstantUsesUsed += 1;
-                if ((lv_instantUsesLeft == 0)) {
+                if ((lv_instantUsesLeft <= 0)) {
                     lib15EF4C78_gf_AP_Player_ResetMercenaryCooldownsTerranRespectStart(lv_player);
                 }
                 else {
@@ -10094,9 +10181,9 @@ void lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: AP_Player_SpireMaturationBugfix
+// Trigger: AP_Player_GreaterSpireFixFacing
 //--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_AP_Player_SpireMaturationBugfix_Func (bool testConds, bool runActions) {
+bool lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -10108,9 +10195,9 @@ bool lib15EF4C78_gt_AP_Player_SpireMaturationBugfix_Func (bool testConds, bool r
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_AP_Player_SpireMaturationBugfix_Init () {
-    lib15EF4C78_gt_AP_Player_SpireMaturationBugfix = TriggerCreate("lib15EF4C78_gt_AP_Player_SpireMaturationBugfix_Func");
-    TriggerAddEventUnitAbility(lib15EF4C78_gt_AP_Player_SpireMaturationBugfix, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
+void lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Init () {
+    lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing = TriggerCreate("lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Func");
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing, null, AbilityCommand("AP_AutoMorphSpire", 0), c_abilMorphStageFacingEnd, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10137,69 +10224,6 @@ void lib15EF4C78_gt_EmitTransformerLand_Init () {
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_BrynhildAssaultMode", 0), c_unitAbilStageComplete, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_ReaperLandMorph", 255), c_unitAbilStageComplete, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_MercReaperLandMorph", 255), c_unitAbilStageComplete, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: MakeHeroArtanis
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_MakeHeroArtanis_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_ArtanisHero", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
-    lib15EF4C78_gf_SetHeroPanelUnit(3, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_MakeHeroArtanis_Init () {
-    lib15EF4C78_gt_MakeHeroArtanis = TriggerCreate("lib15EF4C78_gt_MakeHeroArtanis_Func");
-    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroArtanis, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Artanis", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: MakeHeroKerrigan
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_MakeHeroKerrigan_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_K5Kerrigan", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
-    lib15EF4C78_gf_SetHeroPanelUnit(2, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_MakeHeroKerrigan_Init () {
-    lib15EF4C78_gt_MakeHeroKerrigan = TriggerCreate("lib15EF4C78_gt_MakeHeroKerrigan_Func");
-    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroKerrigan, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Kerrigan", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: MakeHeroNova
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_MakeHeroNova_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_NovaHero", 0, 1, UnitGetPosition(lib15EF4C78_gf_AP_Player_getPrimaryTownHall(lib15EF4C78_gf_AP_GetPlayerId())));
-    lib15EF4C78_gf_SetHeroPanelUnit(1, UnitLastCreated(), lib15EF4C78_gf_AP_GetPlayerId());
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_MakeHeroNova_Init () {
-    lib15EF4C78_gt_MakeHeroNova = TriggerCreate("lib15EF4C78_gt_MakeHeroNova_Func");
-    TriggerAddEventChatMessage(lib15EF4C78_gt_MakeHeroNova, lib15EF4C78_gf_AP_GetPlayerId(), "makehero Nova", false);
 }
 
 void lib15EF4C78_InitTriggers () {
@@ -10296,6 +10320,7 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_Protoss_warpInBloodHunterCancelResourceEfficiency_Init();
     lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterResourceEfficiency_Init();
     lib15EF4C78_gt_AP_Player_Protoss_gatewayBloodHunterCancelResourceEfficiency_Init();
+    lib15EF4C78_gt_AP_Player_ImmortalWarpRelocate_Init();
     lib15EF4C78_gt_SlayerInit_Init();
     lib15EF4C78_gt_CreepTumorBuild_Init();
     lib15EF4C78_gt_AP_Player_checkPrimaryTownHallPeriodic_Init();
@@ -10350,11 +10375,8 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_AP_Player_YggdrasilConsumeComplete_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilDeathSafety_Init();
     lib15EF4C78_gt_AP_Player_YggdrasilBuildingDeathSafety_Init();
-    lib15EF4C78_gt_AP_Player_SpireMaturationBugfix_Init();
+    lib15EF4C78_gt_AP_Player_GreaterSpireFixFacing_Init();
     lib15EF4C78_gt_EmitTransformerLand_Init();
-    lib15EF4C78_gt_MakeHeroArtanis_Init();
-    lib15EF4C78_gt_MakeHeroKerrigan_Init();
-    lib15EF4C78_gt_MakeHeroNova_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

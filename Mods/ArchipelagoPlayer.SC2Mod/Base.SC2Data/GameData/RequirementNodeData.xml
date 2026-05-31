@@ -3347,27 +3347,36 @@
     <CRequirementCountUpgrade id="AP_CountUpgradeLaserTargetingSystemLiberatorCompleteOnly">
         <Count Link="AP_LaserTargetingSystemLiberator" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
-    <CRequirementAnd id="AP_GhostSCBWLockdown@Show">
-        <OperandArray value="AP_GhostSCBWLockdownResearch@Count"/>
+    <CRequirementAnd id="AP_GhostSCBWLockdown">
+        <OperandArray value="AP_GhostSCBWLockdownResearch"/>
     </CRequirementAnd>
-    <CRequirementCountUpgrade id="AP_GhostSCBWLockdownResearch@Count">
+    <CRequirementCountUpgrade id="AP_GhostSCBWLockdownResearch">
         <Count Link="AP_GhostSCBWLockdownResearch" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeGhostEMPRoundsCompleteOnly">
         <Count Link="AP_GhostEMPRounds" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
-    <CRequirementAnd id="AP_MedicSCBWRestoration@Show">
-        <OperandArray value="AP_MedicSCBWRestorationResearch@Count"/>
+    <CRequirementAnd id="AP_MedicSCBWRestoration">
+        <OperandArray value="AP_MedicSCBWRestorationResearch"/>
     </CRequirementAnd>
-    <CRequirementCountUpgrade id="AP_MedicSCBWRestorationResearch@Count">
+    <CRequirementCountUpgrade id="AP_MedicSCBWRestorationResearch">
         <Count Link="AP_MedicSCBWRestorationResearch" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
-    <CRequirementAnd id="AP_MedicSCBWOpticFlare@Show">
-        <OperandArray value="AP_MedicSCBWOpticFlareResearch@Count"/>
+    <CRequirementAnd id="AP_MedicSCBWOpticFlare">
+        <OperandArray value="AP_MedicSCBWOpticFlareResearch"/>
     </CRequirementAnd>
-    <CRequirementCountUpgrade id="AP_MedicSCBWOpticFlareResearch@Count">
+    <CRequirementCountUpgrade id="AP_MedicSCBWOpticFlareResearch">
         <Count Link="AP_MedicSCBWOpticFlareResearch" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementAnd id="AP_ScienceVesselSCBWEMPShockwave">
+        <OperandArray value="AP_ScienceVesselSCBWEMPShockwaveResearch"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_ScienceVesselSCBWEMPShockwaveResearch">
+        <Count Link="AP_ScienceVesselSCBWEMPShockwaveResearch" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementAnd id="AP_ScienceVesselSCBWDefensiveMatrix">
+        <OperandArray value="AP_CountUpgradeScienceVesselDefensiveMatrixCompleteOnly"/>
+    </CRequirementAnd>
     <CRequirementCountUpgrade id="AP_CountUpgradeValkyrieEnhancedClusterLaunchersCompleteOnly">
         <Count Link="AP_ValkyrieEnhancedClusterLaunchers" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
@@ -3402,15 +3411,6 @@
     <CRequirementCountUpgrade id="AP_CountUpgradeSpectreImpalerRoundsCompleteOnly">
         <Count Link="AP_SpectreImpalerRounds" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
-    <CRequirementAnd id="AP_ScienceVesselSCBWEMPShockwave@Show">
-        <OperandArray value="AP_ScienceVesselSCBWEMPShockwaveResearch@Count"/>
-    </CRequirementAnd>
-    <CRequirementCountUpgrade id="AP_ScienceVesselSCBWEMPShockwaveResearch@Count">
-        <Count Link="AP_ScienceVesselSCBWEMPShockwaveResearch" State="CompleteOnly"/>
-    </CRequirementCountUpgrade>
-    <CRequirementAnd id="AP_ScienceVesselSCBWDefensiveMatrix@Show">
-        <OperandArray value="AP_CountUpgradeScienceVesselDefensiveMatrixCompleteOnly"/>
-    </CRequirementAnd>
     <CRequirementCountUpgrade id="AP_CountUpgradeScienceVesselDefensiveMatrixCompleteOnly">
         <Count Link="AP_ScienceVesselDefensiveMatrix" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
@@ -5130,10 +5130,6 @@
         <Count Link="AP_MothershipAiurShieldArmorAura" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountUpgrade id="AP_CountUpgradeCanInstallWormholeModuleCompleteOnly">
-        <Count Link="AP_CanInstallWormholeModule" State="CompleteOnly"/>
-        <Flags index="TechTreeCheat" value="0"/>
-    </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="AP_CountUpgradeArtanisTemperedInTwilightCompleteOnly">
         <Count Link="AP_ArtanisTemperedInTwilight" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
@@ -5179,7 +5175,8 @@
     <CRequirementAnd id="AP_AndArtanisAiurAspectEquippedCompleteOnly">
         <OperandArray value="AP_CountUpgradeArtanisAiurAspectUnlockedCompleteOnly"/>
         <OperandArray value="AP_NotCountBehaviorArtanisAiurAspectCompleteOnlyAtUnit"/>
-    </CRequirementAnd>    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisNerazimAspectUnlockedCompleteOnly">
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_CountUpgradeArtanisNerazimAspectUnlockedCompleteOnly">
         <Count Link="AP_ArtanisNerazimAspectUnlocked" State="CompleteOnly"/>
         <Flags index="TechTreeCheat" value="0"/>
     </CRequirementCountUpgrade>
@@ -8362,4 +8359,131 @@
         <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="AP_BloodHunterResourceEfficiency" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_ImmortalBarrierThorns">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ImmortalBarrierThorns" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_ImmortalStarter">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ImmortalStarter" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_AnnihilatorAirAttack">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_AnnihilatorAirAttack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeAP_AnnihilatorCloakCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_AnnihilatorCloak" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_VanguardArmor">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_VanguardArmor" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_ImmortalWarpRelocate">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ImmortalWarpRelocate" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_ImmortalRegen">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ImmortalRegen" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_VanguardFlare">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_VanguardFlare" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_MarineStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_MarineStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_MarineHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackMarine" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotMarineStim">
+        <OperandArray index="0" value="AP_MarineStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_MarineStimAndHeal">
+        <OperandArray value="AP_MarineHeal"/>
+        <OperandArray value="AP_MarineStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_MarineHealNoStim">
+        <OperandArray value="AP_MarineHeal"/>
+        <OperandArray value="AP_NotMarineStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_MarauderStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_MarauderStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_MarauderHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackMarauder" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotMarauderStim">
+        <OperandArray index="0" value="AP_MarauderStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_MarauderStimAndHeal">
+        <OperandArray value="AP_MarauderHeal"/>
+        <OperandArray value="AP_MarauderStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_MarauderHealNoStim">
+        <OperandArray value="AP_MarauderHeal"/>
+        <OperandArray value="AP_NotMarauderStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_FirebatStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_FirebatStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_FirebatHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackFirebat" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotFirebatStim">
+        <OperandArray index="0" value="AP_FirebatStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_FirebatStimAndHeal">
+        <OperandArray value="AP_FirebatHeal"/>
+        <OperandArray value="AP_FirebatStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_FirebatHealNoStim">
+        <OperandArray value="AP_FirebatHeal"/>
+        <OperandArray value="AP_NotFirebatStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_ReaperStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_ReaperStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_ReaperHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackReaper" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotReaperStim">
+        <OperandArray index="0" value="AP_ReaperStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_ReaperStimAndHeal">
+        <OperandArray value="AP_ReaperHeal"/>
+        <OperandArray value="AP_ReaperStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_ReaperHealNoStim">
+        <OperandArray value="AP_ReaperHeal"/>
+        <OperandArray value="AP_NotReaperStim"/>
+    </CRequirementAnd>
+    <CRequirementCountUpgrade id="AP_HellionStim">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_HellbatStimpack" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="AP_HellionHeal">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AP_SuperStimpackHellbat" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementNot id="AP_NotHellionStim">
+        <OperandArray index="0" value="AP_HellionStim"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AP_HellionStimAndHeal">
+        <OperandArray value="AP_HellionHeal"/>
+        <OperandArray value="AP_HellionStim"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AP_HellionHealNoStim">
+        <OperandArray value="AP_HellionHeal"/>
+        <OperandArray value="AP_NotHellionStim"/>
+    </CRequirementAnd>
 </Catalog>
