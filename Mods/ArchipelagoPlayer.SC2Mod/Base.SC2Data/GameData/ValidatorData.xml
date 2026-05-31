@@ -6874,6 +6874,29 @@
         <WhichUnit Value="Source"/>
         <Value value="AP_PhoenixTaldarim"/>
     </CValidatorUnitType>
+    <CValidatorUnitType id="AP_ISAPPrimalZergling">
+        <Value value="AP_PrimalZergling"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_ISAPPrimalRoach">
+        <Value value="AP_PrimalRoach"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_ISAPPrimalHydralisk">
+        <Value value="AP_PrimalHydralisk"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_ISAPPrimalIgniter">
+        <Value value="AP_PrimalIgniter"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="AP_ISAPTyrannozor">
+        <Value value="AP_Tyrannozor"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="AP_IsAPPrimalZerg">
+        <Type value="Or"/>
+        <CombineArray value="AP_ISAPPrimalZergling"/>
+        <CombineArray value="AP_ISAPPrimalRoach"/>
+        <CombineArray value="AP_ISAPPrimalHydralisk"/>
+        <CombineArray value="AP_ISAPPrimalIgniter"/>
+        <CombineArray value="AP_ISAPTyrannozor"/>
+    </CValidatorCombine>
     <CValidatorPlayerRequirement id="AP_HaveTyrannozorTyrantsProtection">
         <Find value="1"/>
         <Value value="AP_HaveTyrannozorTyrantsProtection"/>
