@@ -15799,6 +15799,10 @@
         </ImpactPhysics>
         <ShieldFlashType value="Header"/>
     </CActorAction>
+    <CActorAction id="AP_DarkTemplarTaldarimAttack" parent="GenericAttack" effectAttack="AP_BloodHunterAttackDamage">
+        <ImpactMap index="None" Model="None" Sound="DarkTemplar_AttackImpact"/>
+        <ShieldFlashType value="Header"/>
+    </CActorAction>
     <CActorModel id="AP_DarkTemplarShadowFuryImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.AP_DarkTemplarShadowFuryDamage.Start; At Caster" Send="Create"/>
