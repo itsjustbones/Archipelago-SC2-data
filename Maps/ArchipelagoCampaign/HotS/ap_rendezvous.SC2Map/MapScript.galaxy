@@ -1191,24 +1191,25 @@ unit gf_AITargetNextHut (int lp_attackVector) {
 // Trigger: Arch Init
 //--------------------------------------------------------------------------------------------------
 bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    region lv_region;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = gv_pLAYER_04_DOMINION_RIGHT;
+    lv_region = RegionFromId(9);
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    AP_GhostSpawn_playerOverride = lv_player;
+    AP_GhostSpawn_regionOverride = lv_region;
     TriggerExecute(libA472B13C_gt_AP_HotS_Constructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);
-    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Prot";
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gf_AP_Triggers_setDifficulty("B");
-        libABFE498B_gf_AP_Triggers_setGameSpeed("5");
-        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_pLAYER_01_USER, 1);
-    }
-
     libSwaC_gf_DisplayArmyButton(false);
     libABFE498B_gf_AP_Triggers_MapConfig_setKerriganOptions(false, true);
     lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM_SWITCHABLE_TO_PRIMAL_ZERG);

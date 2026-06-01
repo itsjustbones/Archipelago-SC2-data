@@ -130,7 +130,9 @@
     </Element>
     <Element Type="Trigger" Id="D1E91772">
         <Variable Type="Variable" Id="E2E306EF"/>
+        <Variable Type="Variable" Id="90666EC8"/>
         <Event Type="FunctionCall" Id="9367F10C"/>
+        <Action Type="FunctionCall" Id="0E5DCA98"/>
         <Action Type="FunctionCall" Id="3A5418EB"/>
         <Action Type="FunctionCall" Id="C80B936A"/>
         <Action Type="FunctionCall" Id="BD176055"/>
@@ -154,8 +156,24 @@
     <Element Type="FunctionCall" Id="1AC6A076">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000056"/>
     </Element>
+    <Element Type="Variable" Id="90666EC8">
+        <VariableType>
+            <Type Value="int"/>
+        </VariableType>
+        <Value Type="Param" Id="AD8430BE"/>
+    </Element>
+    <Element Type="Param" Id="AD8430BE">
+        <Variable Type="Variable" Id="25276719"/>
+    </Element>
     <Element Type="FunctionCall" Id="9367F10C">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="0E5DCA98">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_playerOverride = lv_player;
+            AP_GhostSpawn_waveTargetOverride = true;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="3A5418EB">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>
@@ -49130,7 +49148,7 @@
     </Element>
     <Element Type="Comment" Id="8EB64E1D">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="311AF781">
@@ -55794,7 +55812,7 @@
     </Element>
     <Element Type="Comment" Id="78A2A52E">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="7B8F63B7">
@@ -56018,7 +56036,7 @@
     </Element>
     <Element Type="Comment" Id="D12F15E6">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="7965A82D">
@@ -56559,7 +56577,7 @@
     </Element>
     <Element Type="Comment" Id="4B52AE61">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="E0E88337">
@@ -60244,7 +60262,7 @@
     </Element>
     <Element Type="Comment" Id="9070BC47">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="CCBCF283">
@@ -61979,7 +61997,7 @@
     </Element>
     <Element Type="Comment" Id="C20AF85F">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="7D008D54">
@@ -62968,7 +62986,7 @@
     </Element>
     <Element Type="Comment" Id="55791CA3">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="57A42EEC">
@@ -63203,7 +63221,7 @@
     </Element>
     <Element Type="Comment" Id="FA6FE29B">
         <Comment>
-             
+
         </Comment>
         <SubFunctionType Type="SubFuncType" Library="Ntve" Id="A1B37466"/>
     </Element>
@@ -63743,7 +63761,7 @@
     </Element>
     <Element Type="Comment" Id="54B66DF9">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="40336E87">
@@ -63857,7 +63875,7 @@
     </Element>
     <Element Type="Comment" Id="B3504550">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="5A91D048">
@@ -64133,7 +64151,7 @@
     </Element>
     <Element Type="Comment" Id="F1ACBAAE">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="DA22A162">
@@ -89763,7 +89781,7 @@
     </Element>
     <Element Type="Comment" Id="79857ACA">
         <Comment>
-            Reigel saying DOM is underneath in the buildings, and 
+            Reigel saying DOM is underneath in the buildings, and
             Nova will have to infiltrate.
         </Comment>
     </Element>
@@ -90600,7 +90618,7 @@
     </Element>
     <Element Type="Comment" Id="9856E77F">
         <Comment>
-            Nova explaining she&apos;ll set up base up top, and use the 
+            Nova explaining she&apos;ll set up base up top, and use the
             empty buildings to garrison  units and create a perimeter.
         </Comment>
     </Element>
@@ -108950,7 +108968,7 @@
     </Element>
     <Element Type="Comment" Id="7627ED98">
         <Comment>
-            Nova taps into the comms hub 
+            Nova taps into the comms hub
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="0EC64051">

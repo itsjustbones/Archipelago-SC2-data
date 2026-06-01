@@ -1242,6 +1242,7 @@
     <Element Type="Trigger" Id="1D415940">
         <Variable Type="Variable" Id="2F827A41"/>
         <Event Type="FunctionCall" Id="C750EB7D"/>
+        <Action Type="FunctionCall" Id="AFE9759B"/>
         <Action Type="FunctionCall" Id="91EFBD77"/>
         <Action Type="FunctionCall" Id="9754153A"/>
         <Action Type="FunctionCall" Id="B1508960"/>
@@ -1256,11 +1257,17 @@
         <Value Type="Param" Id="EF3EB3B1"/>
     </Element>
     <Element Type="Param" Id="EF3EB3B1">
-        <Value>0</Value>
-        <ValueType Type="int"/>
+        <Variable Type="Variable" Id="EEFA565A"/>
     </Element>
     <Element Type="FunctionCall" Id="C750EB7D">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="AFE9759B">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_playerOverride = lv_p;
+            AP_GhostSpawn_waveTargetOverride = true;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="91EFBD77">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>

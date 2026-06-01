@@ -89,7 +89,12 @@
         <Item Type="Trigger" Id="7908AEF8"/>
     </Element>
     <Element Type="Trigger" Id="E046FE4C">
+        <Variable Type="Variable" Id="BA2FBD95"/>
+        <Variable Type="Variable" Id="2A90491D"/>
+        <Variable Type="Variable" Id="43C0DA34"/>
+        <Variable Type="Variable" Id="0A7D0192"/>
         <Event Type="FunctionCall" Id="599F78B1"/>
+        <Action Type="FunctionCall" Id="77A4DC95"/>
         <Action Type="FunctionCall" Id="D32199E1"/>
         <Action Type="FunctionCall" Id="87D5FFFF"/>
         <Action Type="FunctionCall" Id="2C2ED61F"/>
@@ -98,8 +103,66 @@
         <Action Type="FunctionCall" Id="7F9F3247"/>
         <Action Type="FunctionCall" Id="EFEB0937"/>
     </Element>
+    <Element Type="Variable" Id="BA2FBD95">
+        <VariableType>
+            <Type Value="int"/>
+        </VariableType>
+        <Value Type="Param" Id="4AD72562"/>
+    </Element>
+    <Element Type="Param" Id="4AD72562">
+        <Variable Type="Variable" Id="F68B9D6B"/>
+    </Element>
+    <Element Type="Variable" Id="2A90491D">
+        <VariableType>
+            <Type Value="point"/>
+        </VariableType>
+        <Value Type="Param" Id="2F59521E"/>
+    </Element>
+    <Element Type="Param" Id="2F59521E">
+        <ValueType Type="point"/>
+        <ValueId Id="1703750062"/>
+    </Element>
+    <Element Type="Variable" Id="43C0DA34">
+        <VariableType>
+            <Type Value="point"/>
+        </VariableType>
+        <Value Type="Param" Id="101F82DA"/>
+    </Element>
+    <Element Type="Param" Id="101F82DA">
+        <ValueType Type="point"/>
+        <ValueId Id="2001"/>
+    </Element>
+    <Element Type="Variable" Id="0A7D0192">
+        <VariableType>
+            <Type Value="string"/>
+        </VariableType>
+        <Value Type="Param" Id="70E6B764"/>
+    </Element>
+    <Element Type="Param" Id="70E6B764">
+        <FunctionCall Type="FunctionCall" Id="8EF2500F"/>
+    </Element>
+    <Element Type="FunctionCall" Id="8EF2500F">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="E4B86923"/>
+        <Parameter Type="Param" Id="BCA24683"/>
+    </Element>
+    <Element Type="Param" Id="BCA24683">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="711D5A26"/>
+        <Value>Medivac</Value>
+        <ValueType Type="gamelink"/>
+        <ValueGameType Type="Unit"/>
+    </Element>
     <Element Type="FunctionCall" Id="599F78B1">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="77A4DC95">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_playerOverride = lv_player;
+            AP_GhostSpawn_waveTargetOverride = true; 
+            AP_GhostSpawn_waypointOverride = lv_waypoint; 
+            AP_GhostSpawn_attackTargetOverride = lv_target;
+            AP_GhostSpawn_transportOverride = lv_transport;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="D32199E1">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>

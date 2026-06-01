@@ -573,12 +573,22 @@ void gf_DecrementProtossUnitCounter () {
 // Trigger: Arch Init
 //--------------------------------------------------------------------------------------------------
 bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    region lv_region;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = 4;
+    lv_region = RegionFromId(35);
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    AP_GhostSpawn_playerOverride = lv_player;
+    AP_GhostSpawn_regionOverride = lv_region;
     TriggerExecute(libD62A7F54_gt_AP_Player_NCOConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);
@@ -627,7 +637,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Zerg";
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 7;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 1;
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gf_AP_Triggers_setGameSpeed("5");
         libABFE498B_gf_AP_Triggers_Debug_Tech(lib5BD4895D_gf_AP_Core_getUser(), 2);
