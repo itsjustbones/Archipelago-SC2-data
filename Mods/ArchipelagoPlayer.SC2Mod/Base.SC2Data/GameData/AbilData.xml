@@ -4647,6 +4647,7 @@
     </CAbilWarpTrain>
     <CAbilSpecialize id="AP_ArtanisWeaponAspects">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="Transient" value="1"/>
         <InfoArray index="Specialize1" Time="0" Effect="AP_ArtanisAiurAspectSet">
             <Button DefaultButtonFace="AP_ArtanisAiurAspect" Requirements="AP_HaveArtanisAiurAspectEquipped"/>
         </InfoArray>
@@ -6373,26 +6374,25 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_NovaWeaponCanisterRifleSwap">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponCanisterRifleSwap" Requirements="AP_NovaWeaponCanSwapToCanisterRifle"/>
-        <Effect index="0" value="AP_NovaWeaponCanisterRifleABSet"/>
-    </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_NovaWeaponHellfireShotgunSwap">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponHellfireShotgunSwap" Requirements="AP_NovaWeaponCanSwapToHellfireShotgun"/>
-        <Effect index="0" value="AP_NovaWeaponHellfireShotgunABSet"/>
-    </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_NovaWeaponPlasmaRifleSwap">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponPlasmaRifleSwap" Requirements="AP_NovaWeaponCanSwapToPlasmaRifle"/>
-        <Effect index="0" value="AP_NovaWeaponPlasmaRifleABSet"/>
-    </CAbilEffectInstant>
-    <CAbilEffectInstant id="AP_NovaWeaponBlazefireBladeSwap">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponBlazefireBladeSwap" Requirements="AP_NovaWeaponCanSwapToBlazefireBlade"/>
-        <Effect index="0" value="AP_NovaWeaponBlazefireBladeABSet"/>
-    </CAbilEffectInstant>
+    <CAbilSpecialize id="AP_NovaWeaponSwaps">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Flags index="Transient" value="1"/>
+        <InfoArray index="Specialize1" Time="0" Effect="AP_NovaWeaponCanisterRifleABSet">
+            <Button DefaultButtonFace="AP_NovaWeaponCanisterRifleSwap" Requirements="AP_NovaWeaponCanSwapToCanisterRifle"/>
+        </InfoArray>
+        <InfoArray index="Specialize2" Time="0" Effect="AP_NovaWeaponHellfireShotgunABSet">
+            <Button DefaultButtonFace="AP_NovaWeaponHellfireShotgunSwap" Requirements="AP_NovaWeaponCanSwapToHellfireShotgun"/>
+        </InfoArray>
+        <InfoArray index="Specialize3" Time="0" Effect="AP_NovaWeaponPlasmaRifleABSet">
+            <Button DefaultButtonFace="AP_NovaWeaponPlasmaRifleSwap" Requirements="AP_NovaWeaponCanSwapToPlasmaRifle"/>
+        </InfoArray>
+        <InfoArray index="Specialize4" Time="0" Effect="AP_NovaWeaponPsiBladeABSet">
+            <Button DefaultButtonFace="AP_NovaWeaponPsiBladeSwap" Requirements="AP_NovaWeaponCanSwapToPsiBlade"/>
+        </InfoArray>
+        <InfoArray index="Specialize5" Time="0" Effect="AP_NovaWeaponBlazefireBladeABSet">
+            <Button DefaultButtonFace="AP_NovaWeaponBlazefireBladeSwap" Requirements="AP_NovaWeaponCanSwapToBlazefireBlade"/>
+        </InfoArray>
+    </CAbilSpecialize>
     <!--    <CAbilEffectInstant id="AP_NovaWeaponInvictusLongshotSwap">-->
     <!--        <EditorCategories value="AbilityorEffectType:Units"/>-->
     <!--        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponInvictusLongshotSwap" Requirements="AP_HaveNovaWeaponInvictusLongshotAndNovaEquipmentSwapVisible"/>-->
@@ -6403,11 +6403,6 @@
     <!--        <Effect index="0" value="AP_NovaWeaponPsiRifleABSet"/>-->
     <!--        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponPsiRifleSwap" Requirements="AP_HaveNovaWeaponPsiRifleAndNovaEquipmentSwapVisible"/>-->
     <!--    </CAbilEffectInstant>-->
-    <CAbilEffectInstant id="AP_NovaWeaponPsiBladeSwap">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_NovaWeaponPsiBladeABSet"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_NovaWeaponPsiBladeSwap" Requirements="AP_NovaWeaponCanSwapToPsiBlade"/>
-    </CAbilEffectInstant>
     <CAbilEffectTarget id="AP_FungalGrowth">
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
