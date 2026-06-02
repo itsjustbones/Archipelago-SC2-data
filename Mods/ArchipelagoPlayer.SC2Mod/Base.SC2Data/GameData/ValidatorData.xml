@@ -182,7 +182,7 @@
         <CombineArray value="AP_IsDoubleBeamHealing"/>
         <CombineArray value="LifeGTZero"/>
         <CombineArray value="AP_NotMaxHP"/>
-        <CombineArray value="AP_MedicHealTargetInRange"/>
+        <CombineArray value="AP_MengskMedicHealTargetInRange"/>
         <CombineArray value="NotHidden"/>
     </CValidatorCombine>
     <CValidatorCombine id="AP_HealScanPeriodicCombine">
@@ -191,6 +191,11 @@
         <CombineArray value="AP_AtLeastOneHealBeamBusy"/>
     </CValidatorCombine>
     <CValidatorLocationCompareRange id="AP_MedicHealTargetInRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="AP_MengskMedicHealTargetInRange">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LE"/>
         <Range value="2"/>
@@ -1219,13 +1224,9 @@
     <CValidatorUnitOrderQueue id="AP_MengskMedicDoubleBeamHeal">
         <AbilLink value="AP_MengskMedicDoubleBeamHeal"/>
     </CValidatorUnitOrderQueue>
-    <CValidatorUnitOrderQueue id="AP_MengskMedicDoubleBeamHealPlusMech">
-        <AbilLink value="AP_MengskMedicDoubleBeamHealPlusMech"/>
-    </CValidatorUnitOrderQueue>
     <CValidatorCombine id="AP_IsDoubleBeamHealing">
         <CombineArray value="AP_MedivacIsHealing"/>
         <CombineArray value="AP_MengskMedicDoubleBeamHeal"/>
-        <CombineArray value="AP_MengskMedicDoubleBeamHealPlusMech"/>
     </CValidatorCombine>
     <CValidatorCombine id="AP_MedivacUpgrade">
         <CombineArray value="AP_RapidDeploymentPurchased"/>
@@ -7544,15 +7545,6 @@
         <ResultFailed value="CantFindEnoughTargets"/>
         <WhichLocation Value="TargetUnitOrPoint"/>
         <AreaArray Compare="GE" Radius="2" Validator="AP_IsMechanicalOrHas50EnergyOrHas50Shields"/>
-        <Compare value="GE"/>
-        <Count value="3"/>
-        <SearchFlags index="ExtendByUnitRadius" value="1"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral,Structure,Missile,Destructible,Dead,Hidden"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorLocationEnumArea id="AP_GhostMengskEMPBigMinimum3EnemyTargets">
-        <ResultFailed value="CantFindEnoughTargets"/>
-        <WhichLocation Value="TargetUnitOrPoint"/>
-        <AreaArray Compare="GE" Radius="3" Validator="AP_IsMechanicalOrHas50EnergyOrHas50Shields"/>
         <Compare value="GE"/>
         <Count value="3"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>

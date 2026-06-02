@@ -3464,7 +3464,7 @@
                     libABFE498B_gf_AP_Triggers_Terran_unlockSCVCauterizer, //26
                     libABFE498B_gf_AP_Triggers_Terran_unlockCommandCenterTacticalJump, //27
                     libABFE498B_gf_AP_Triggers_Terran_unlockBunkerEmergencyProvisions, //28
-                    ap_triggers_PlayerConsumer_sig //29 reserved for EMP Rounds
+                    libABFE498B_gf_AP_Triggers_Terran_unlockEmperorsShadowEMPBlast //29
                 );
             </ScriptCode>
         </Element>
@@ -19672,6 +19672,7 @@
             <Item Type="Category" Library="ABFE498B" Id="AC2C746D"/>
             <Item Type="Category" Library="ABFE498B" Id="3E09CD6B"/>
             <Item Type="Category" Library="ABFE498B" Id="EEE1B6E5"/>
+            <Item Type="Category" Library="ABFE498B" Id="92776182"/>
         </Element>
         <Element Type="Category" Id="5EF49186">
             <Item Type="FunctionDef" Library="ABFE498B" Id="EC36AF20"/>
@@ -27652,52 +27653,12 @@
             <ValueType Type="int"/>
         </Element>
         <Element Type="Category" Id="71F60FF1">
-            <Item Type="Category" Library="ABFE498B" Id="92776182"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="1FC30E51"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="8301DBE3"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="A973FAB0"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="685C4DD9"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="05B3F28C"/>
             <Item Type="FunctionDef" Library="ABFE498B" Id="9FBF9479"/>
-        </Element>
-        <Element Type="Category" Id="92776182">
-            <Item Type="FunctionDef" Library="ABFE498B" Id="1F0E4304"/>
-        </Element>
-        <Element Type="FunctionDef" Id="1F0E4304">
-            <FlagAction/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="26C22B9D"/>
-        </Element>
-        <Element Type="ParamDef" Id="E7E4B0EB">
-            <ParameterType>
-                <Type Value="int"/>
-            </ParameterType>
-            <Default Type="Param" Library="ABFE498B" Id="62C4D7A8"/>
-        </Element>
-        <Element Type="Param" Id="62C4D7A8">
-            <Value>0</Value>
-            <ValueType Type="int"/>
-        </Element>
-        <Element Type="FunctionCall" Id="26C22B9D">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="C670E49A"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="3A5FFC45"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="9227A9A6"/>
-        </Element>
-        <Element Type="Param" Id="C670E49A">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
-        </Element>
-        <Element Type="Param" Id="3A5FFC45">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
-            <Value>1</Value>
-            <ValueType Type="int"/>
-        </Element>
-        <Element Type="Param" Id="9227A9A6">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
-            <Value>AP_GhostMengskGuidedStrike</Value>
-            <ValueType Type="gamelink"/>
-            <ValueGameType Type="Upgrade"/>
         </Element>
         <Element Type="FunctionDef" Id="1FC30E51">
             <FlagAction/>
@@ -27774,10 +27735,7 @@
         <Element Type="FunctionDef" Id="A973FAB0">
             <FlagAction/>
             <Parameter Type="ParamDef" Library="ABFE498B" Id="32D69123"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="EF54ACFE"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="C864E76D"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="F90A351C"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="B891B0E2"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="4A9919BD"/>
         </Element>
         <Element Type="ParamDef" Id="32D69123">
             <ParameterType>
@@ -27789,81 +27747,26 @@
             <Value>0</Value>
             <ValueType Type="int"/>
         </Element>
-        <Element Type="FunctionCall" Id="EF54ACFE">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="61F085D8"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="AACC0535"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="7EBD8ABF"/>
+        <Element Type="FunctionCall" Id="4A9919BD">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="F881CDB5"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="A14C8017"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="1195372B"/>
         </Element>
-        <Element Type="Param" Id="61F085D8">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
+        <Element Type="Param" Id="F881CDB5">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
             <Parameter Type="ParamDef" Library="ABFE498B" Id="32D69123"/>
         </Element>
-        <Element Type="Param" Id="AACC0535">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
+        <Element Type="Param" Id="A14C8017">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
         </Element>
-        <Element Type="Param" Id="7EBD8ABF">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_EMP</Value>
-            <ValueType Type="abilcmd"/>
-        </Element>
-        <Element Type="FunctionCall" Id="C864E76D">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="35372DB9"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="93BBA4CC"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="CDE9532F"/>
-        </Element>
-        <Element Type="Param" Id="35372DB9">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="32D69123"/>
-        </Element>
-        <Element Type="Param" Id="93BBA4CC">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
-        </Element>
-        <Element Type="Param" Id="CDE9532F">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_GhostMengskEMPBig</Value>
-            <ValueType Type="abilcmd"/>
-        </Element>
-        <Element Type="FunctionCall" Id="F90A351C">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="5917B93F"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="83D1BE47"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="52A777D0"/>
-        </Element>
-        <Element Type="Param" Id="5917B93F">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="32D69123"/>
-        </Element>
-        <Element Type="Param" Id="83D1BE47">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
-        </Element>
-        <Element Type="Param" Id="52A777D0">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_GhostMengskEMPLongStun</Value>
-            <ValueType Type="abilcmd"/>
-        </Element>
-        <Element Type="FunctionCall" Id="B891B0E2">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="B775DCE6"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="01CD2DDB"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="9AE5A9E9"/>
-        </Element>
-        <Element Type="Param" Id="B775DCE6">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="32D69123"/>
-        </Element>
-        <Element Type="Param" Id="01CD2DDB">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
-        </Element>
-        <Element Type="Param" Id="9AE5A9E9">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_GhostMengskEMPShortStun</Value>
-            <ValueType Type="abilcmd"/>
+        <Element Type="Param" Id="1195372B">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_GhostEMPRounds</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
         </Element>
         <Element Type="FunctionDef" Id="685C4DD9">
             <FlagAction/>
@@ -31334,6 +31237,83 @@
         <Element Type="Param" Id="7A698A93">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
             <Value>AP_FastBuildTrooper</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="Category" Id="92776182">
+            <Item Type="FunctionDef" Library="ABFE498B" Id="1F0E4304"/>
+            <Item Type="FunctionDef" Library="ABFE498B" Id="890E3FDA"/>
+        </Element>
+        <Element Type="FunctionDef" Id="1F0E4304">
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="26C22B9D"/>
+        </Element>
+        <Element Type="ParamDef" Id="E7E4B0EB">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="62C4D7A8"/>
+        </Element>
+        <Element Type="Param" Id="62C4D7A8">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="26C22B9D">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="C670E49A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="3A5FFC45"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="9227A9A6"/>
+        </Element>
+        <Element Type="Param" Id="C670E49A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="E7E4B0EB"/>
+        </Element>
+        <Element Type="Param" Id="3A5FFC45">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="9227A9A6">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_GhostMengskGuidedStrike</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionDef" Id="890E3FDA">
+            <Identifier>AP_Triggers_Terran_unlockEmperorsShadowEMPBlast</Identifier>
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="354765F9"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="8C869A50"/>
+        </Element>
+        <Element Type="ParamDef" Id="354765F9">
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="ABFE498B" Id="D2F30651"/>
+        </Element>
+        <Element Type="Param" Id="D2F30651">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8C869A50">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="641DC5A2"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="0251E64A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="183AA954"/>
+        </Element>
+        <Element Type="Param" Id="641DC5A2">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C7188352"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="354765F9"/>
+        </Element>
+        <Element Type="Param" Id="0251E64A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3BFEECBB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="183AA954">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7E5035EE"/>
+            <Value>AP_GhostMengskEMPRounds</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Upgrade"/>
         </Element>
@@ -43837,10 +43817,6 @@
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="EEBF004C"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="9737C765"/>
             <FunctionCall Type="Comment" Library="ABFE498B" Id="14B3A980"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="54D82692"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="080A575C"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="07E7330C"/>
-            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="0309EC0A"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="3ECB97B0"/>
         </Element>
         <Element Type="ParamDef" Id="FFC5A20B">
@@ -46984,82 +46960,6 @@
             <Comment>
                 Disable abilities by default
             </Comment>
-        </Element>
-        <Element Type="FunctionCall" Id="54D82692">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="178CE63B"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="D6BEF234"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="A8F686A3"/>
-        </Element>
-        <Element Type="Param" Id="178CE63B">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="FFC5A20B"/>
-        </Element>
-        <Element Type="Param" Id="D6BEF234">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000107"/>
-        </Element>
-        <Element Type="Param" Id="A8F686A3">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_EMP</Value>
-            <ValueType Type="abilcmd"/>
-        </Element>
-        <Element Type="FunctionCall" Id="080A575C">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="A13311D9"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="3AC3DAC4"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="625E629E"/>
-        </Element>
-        <Element Type="Param" Id="A13311D9">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="FFC5A20B"/>
-        </Element>
-        <Element Type="Param" Id="3AC3DAC4">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000107"/>
-        </Element>
-        <Element Type="Param" Id="625E629E">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_GhostMengskEMPBig</Value>
-            <ValueType Type="abilcmd"/>
-        </Element>
-        <Element Type="FunctionCall" Id="07E7330C">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="C5CD8514"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="BFF34696"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="A409CFB2"/>
-        </Element>
-        <Element Type="Param" Id="C5CD8514">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="FFC5A20B"/>
-        </Element>
-        <Element Type="Param" Id="BFF34696">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000107"/>
-        </Element>
-        <Element Type="Param" Id="A409CFB2">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_GhostMengskEMPLongStun</Value>
-            <ValueType Type="abilcmd"/>
-        </Element>
-        <Element Type="FunctionCall" Id="0309EC0A">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="BC3417C9"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="0B4E2A62"/>
-            <Parameter Type="Param" Library="ABFE498B" Id="042AA7F8"/>
-        </Element>
-        <Element Type="Param" Id="BC3417C9">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
-            <Parameter Type="ParamDef" Library="ABFE498B" Id="FFC5A20B"/>
-        </Element>
-        <Element Type="Param" Id="0B4E2A62">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="00000107"/>
-        </Element>
-        <Element Type="Param" Id="042AA7F8">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
-            <Value>AP_GhostMengskEMPShortStun</Value>
-            <ValueType Type="abilcmd"/>
         </Element>
         <Element Type="FunctionCall" Id="3ECB97B0">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
