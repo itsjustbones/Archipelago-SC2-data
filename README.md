@@ -38,9 +38,34 @@ cp -r ./Mods/* "$SC2_MODS_DIR"
 - This mod contains original Blizzard® assets for mod compatibility reasons.
     These are part of the base game. 
     They're licensed by their terms.
-- This mod contains some assets and code from SCEvoComplete mod. See their license. See https://github.com/TeamKoprulu/SCEvoComplete
-- This mod contains some assets created by Enoki and Subsourian. See their licenses.
-- This mod contains some assets created by DaveSpectre. See their license.
+- This mod contains some assets and code from SCEvoComplete mod. See their license. See 
+    - Dropship SCBW model
+    - Valkyrie SCBW model
+    - Overlord SCBW (Yggdrasil) model
+- This mod contains some assets created by Enoki, including but not limited to:
+    - Royal Guard Banshee (Night Hawk) model
+    - Royal Guard Marine (Son of Korhal) model
+    - Royal Guard Goliath (Bulwark Company) model
+    - Royal Guard Medic (Field Respone Theta) model
+    - Royal Guard Wraith (Winged Nightmare) model
+    - Nerazim High Templar (Signifier) model
+    - Various ability/upgrade icons
+    See their license.
+- This mod contains some assets created by Subsourian, including but not limited to:
+    - Various ability/upgrade icons
+    See their license.
+- This mod contains some assets created by DaveSpectre, including but not limited to:
+    - Purifier Mothership assets
+    - Various ability/upgrade icons
+    - Infested Diamondback portrait
+    - Infested Liberator portrait
+    - Infested Medic portrait/model
+    - Infested SCV portrait
+    - Brood Queen portrait
+    See their license.
+- This mod contains some assets created by Redfrog, including but not limited to:
+    - UI elements for multi-hero missions
+    See their license.
 - This mod contains some assets created by AlleyV. See their license.
 - This mod contains some assets created by SoulFilcher. See their license. 
 - This mod contains some assets created by Solstice245. See their license.
