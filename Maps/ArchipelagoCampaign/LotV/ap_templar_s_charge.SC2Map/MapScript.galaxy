@@ -816,12 +816,19 @@ bool auto_gf_IntroWaitForNexus_TriggerFunc (bool testConds, bool runActions) {
 // Trigger: Arch Init
 //--------------------------------------------------------------------------------------------------
 bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_transport;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_transport = "Medivac";
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    AP_GhostSpawn_transportOverride = lv_transport;
     TriggerExecute(lib30B9E51A_gt_ArchipelagoPlayerLotvHandlersConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);

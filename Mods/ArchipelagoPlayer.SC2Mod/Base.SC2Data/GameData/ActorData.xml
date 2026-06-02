@@ -20673,6 +20673,12 @@
         <Wireframe>
             <Image value="Assets\Textures\wireframe-zerg-kerriganghost.dds"/>
         </Wireframe>
+        <MinimapIcon value="Assets\Textures\ui_minimap_icon_kerriganascendant.dds"/>
+        <MinimapIconScale value="0.700000"/>
+        <MinimapRenderPriority value="Hero"/>
+        <MinimapTooltip value="Unit/Name/AP_K5Kerrigan"/>
+        <MinimapUseSelfColor value="0"/>
+        <MinimapUseSelectionColor value="0"/>
         <UnitBorderNormalColor value="150,150,150"/>
         <UnitBorderSubgroupColor value="255,255,255"/>
         <WireframeShieldColor value="255,0,128,0"/>
@@ -31943,7 +31949,7 @@
         <GroupSoundArray index="Attack" value="TechLabGroupAttack"/>
         <GroupSoundArray index="Board" value="TechLabGroupBoard"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
-        <HighlightTooltip value="Unit/Name/TechReactor"/>
+        <HighlightTooltip value="Unit/Name/AP_TechReactor"/>
         <AddonIndicator value="Actor/AddonIndicator/AP_TechReactor"/>
         <Aliases value="_UnitLarge"/>
     </CActorUnit>
@@ -31997,7 +32003,7 @@
         <GroupSoundArray index="Attack" value="TechLabGroupAttack"/>
         <GroupSoundArray index="Board" value="TechLabGroupBoard"/>
         <HeroIcon value="AP\Assets\Textures\BTN-Building-Terran-TechReactor.dds"/>
-        <HighlightTooltip value="Unit/Name/TechReactor"/>
+        <HighlightTooltip value="Unit/Name/AP_TechReactor"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
         <SoundArray index="Birth" value="TechLab_Birth"/>
         <SoundArray index="Ready" value="TechLab_Ready"/>
@@ -32069,7 +32075,7 @@
         <GroupSoundArray index="Attack" value="TechLabGroupAttack"/>
         <GroupSoundArray index="Board" value="TechLabGroupBoard"/>
         <HeroIcon value="AP\Assets\Textures\BTN-Building-Terran-TechReactor.dds"/>
-        <HighlightTooltip value="Unit/Name/TechReactor"/>
+        <HighlightTooltip value="Unit/Name/AP_TechReactor"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
         <SoundArray index="Birth" value="TechLab_Birth"/>
         <SoundArray index="Ready" value="TechLab_Ready"/>
@@ -38816,6 +38822,12 @@
             <Image value="Assets\Textures\wireframe-protoss-artanis-shield02.dds"/>
             <Image value="Assets\Textures\wireframe-protoss-artanis-shield03.dds"/>
         </WireframeShield>
+        <MinimapIcon value="AP\Assets\Textures\ArtanisMinimap.dds"/>
+        <MinimapIconScale value="0.700000"/>
+        <MinimapRenderPriority value="Hero"/>
+        <MinimapTooltip value="Unit/Name/AP_ArtanisHero"/>
+        <MinimapUseSelfColor value="0"/>
+        <MinimapUseSelectionColor value="0"/>
         <StatusBarOn index="Custom" value="1"/>
     </CActorMissile>
     <CActorUnit id="AP_ArtanisReviveCocoon" parent="GenericUnitMorph" unitName="AP_ArtanisReviveCocoon">
@@ -48552,4 +48564,51 @@
         <On Terms="Effect.AP_HealpackSmall.Start" Send="Create"/>
         <On Terms="Effect.AP_HealpackLarge.Start" Send="Create"/>
     </CActorSound>
+    <CActorUnit id="AP_GhostTrapSpawner" parent="TerranBuildingEx" unitName="AP_GhostTrapSpawner">
+        <Aliases value="_UnitHuge"/>
+        <Macros value="QueueAnim"/>
+        <On Terms="Behavior.AP_NovaNukeArming.On" Send="StatusIncrement Queuing"/>
+        <On Terms="Behavior.AP_NovaNukeArming.Off" Send="StatusDecrement Queuing"/>
+        <On Terms="Behavior.AP_MengskNukeArming.On" Send="StatusIncrement Queuing"/>
+        <On Terms="Behavior.AP_MengskNukeArming.Off" Send="StatusDecrement Queuing"/>
+        <DeathArray index="Normal" ModelLink="GhostAcademyDeath"/>
+        <DeathArray index="UnderConstruction" ModelLink="TerranBuildingDeath" SoundLink="GhostAcademy_Explode"/>
+        <PlacementModel value="GhostAcademyPlacement"/>
+        <PortraitModel value="GhostAcademyPortrait"/>
+        <Scale value="0.800000"/>
+        <BarOffset value="125"/>
+        <BarWidth value="155"/>
+        <GroupIcon>
+            <Image value="AP\Assets\Textures\wireframe-terran-nukesilo.dds"/>
+        </GroupIcon>
+        <HeroIcon value="AP\Assets\Textures\btn-building-terran-nukesilo.dds"/>
+        <NameOffset value="100"/>
+        <SoundArray index="Ready" value="GhostAcademy_Ready"/>
+        <SoundArray index="What" value="GhostAcademy_What"/>
+        <UnitFlags index="ShowBlobShadow" value="0"/>
+        <UnitFlags index="StandAnimBirthVariation" value="0"/>
+        <UnitIcon value="AP\Assets\Textures\btn-building-terran-nukesilo.dds"/>
+        <Wireframe>
+            <Image value="AP\Assets\Textures\wireframe-terran-nukesilo.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorSplat id="AP_GhostTrapSpawnerSplat" parent="GenericUnitSplat" unitName="AP_GhostTrapSpawner">
+        <Model value="GhostAcademySplat"/>
+        <Scale value="0.700000"/>
+    </CActorSplat>
+    <CActorModel id="AP_GhostTrapSpawnerAttachment" parent="ModelAddition">
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <On Terms="UnitBirth.AP_GhostTrapSpawner" Send="Create"/>
+        <On Terms="UnitDeath.AP_GhostTrapSpawner" Send="AnimBracketStop BSD"/>
+        <On Terms="Signal.*.Start" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
+        <On Terms="Signal.*.Start" Send="AnimSetCompletion Work 35.000000"/>
+        <On Terms="Signal.*.Stop" Send="AnimBracketStop Work"/>
+        <HostSiteOps Ops="SOpAttachOrigin AP_GhostTrapSpawnerOffset"/>
+        <Scale value="0.700000"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="AP_GhostTrapSpawnerOffset">
+        <EditorCategories value=""/>
+        <LocalOffset value="-0.040000,0.250000,-0.150000"/>
+    </CActorSiteOpLocalOffset>
 </Catalog>

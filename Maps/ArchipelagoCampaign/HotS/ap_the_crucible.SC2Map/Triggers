@@ -21,7 +21,11 @@
         <Item Type="Trigger" Id="D2131FF4"/>
     </Element>
     <Element Type="Trigger" Id="F43AB7FE">
+        <Variable Type="Variable" Id="503835C3"/>
+        <Variable Type="Variable" Id="A2567162"/>
+        <Variable Type="Variable" Id="445A8078"/>
         <Event Type="FunctionCall" Id="E5BB2992"/>
+        <Action Type="FunctionCall" Id="8BAD8110"/>
         <Action Type="FunctionCall" Id="4EF80E3F"/>
         <Action Type="FunctionCall" Id="455A909B"/>
         <Action Type="FunctionCall" Id="16B75CC2"/>
@@ -33,8 +37,53 @@
         <Action Type="FunctionCall" Id="70B854AB"/>
         <Action Type="FunctionCall" Id="9A0E4D96"/>
     </Element>
+    <Element Type="Variable" Id="503835C3">
+        <VariableType>
+            <Type Value="int"/>
+        </VariableType>
+        <Value Type="Param" Id="FD1EE5F3"/>
+    </Element>
+    <Element Type="Param" Id="FD1EE5F3">
+        <Variable Type="Variable" Id="2F3AC961"/>
+    </Element>
+    <Element Type="Variable" Id="A2567162">
+        <VariableType>
+            <Type Value="region"/>
+        </VariableType>
+        <Value Type="Param" Id="42A68894"/>
+    </Element>
+    <Element Type="Param" Id="42A68894">
+        <ValueType Type="region"/>
+        <ValueId Id="21"/>
+    </Element>
+    <Element Type="Variable" Id="445A8078">
+        <VariableType>
+            <Type Value="point"/>
+        </VariableType>
+        <Value Type="Param" Id="F2563ABC"/>
+    </Element>
+    <Element Type="Param" Id="F2563ABC">
+        <FunctionCall Type="FunctionCall" Id="67234F19"/>
+    </Element>
+    <Element Type="FunctionCall" Id="67234F19">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000039"/>
+        <Parameter Type="Param" Id="12A624BC"/>
+    </Element>
+    <Element Type="Param" Id="12A624BC">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000070"/>
+        <ValueType Type="region"/>
+        <ValueId Id="27"/>
+    </Element>
     <Element Type="FunctionCall" Id="E5BB2992">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="8BAD8110">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_playerOverride = lv_player;
+            AP_GhostSpawn_regionOverride = lv_region;
+            AP_GhostSpawn_gatherPointOverride = lv_gather;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="4EF80E3F">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000111"/>
@@ -50001,7 +50050,7 @@
     </Element>
     <Element Type="Comment" Id="16DB5C38">
         <Comment>
-             
+
         </Comment>
     </Element>
     <Element Type="FunctionCall" Id="A335238B">

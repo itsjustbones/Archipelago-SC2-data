@@ -89,7 +89,9 @@
         <Item Type="Trigger" Id="D2818BCB"/>
     </Element>
     <Element Type="Trigger" Id="41079B6E">
+        <Variable Type="Variable" Id="6C94DC0A"/>
         <Event Type="FunctionCall" Id="7600269E"/>
+        <Action Type="FunctionCall" Id="F08D78A7"/>
         <Action Type="FunctionCall" Id="9C91C2BB"/>
         <Action Type="FunctionCall" Id="2151DC14"/>
         <Action Type="FunctionCall" Id="6CAE47D5"/>
@@ -100,8 +102,24 @@
         <Action Type="FunctionCall" Id="9F64C891"/>
         <Action Type="FunctionCall" Id="59D5AE74"/>
     </Element>
+    <Element Type="Variable" Id="6C94DC0A">
+        <VariableType>
+            <Type Value="string"/>
+        </VariableType>
+        <Value Type="Param" Id="5F5BFBFA"/>
+    </Element>
+    <Element Type="Param" Id="5F5BFBFA">
+        <Value>Medivac</Value>
+        <ValueType Type="string"/>
+    </Element>
     <Element Type="FunctionCall" Id="7600269E">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="F08D78A7">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_transportOverride = lv_transport;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="9C91C2BB">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>

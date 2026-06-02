@@ -1,9 +1,9 @@
 //==================================================================================================
-// 
+//
 // Generated Map Script
-// 
+//
 // Name:   The Crucible
-// 
+//
 //==================================================================================================
 include "TriggerLibs/NativeLib"
 include "TriggerLibs/LibertyLib"
@@ -947,13 +947,27 @@ void gf_OrderSwarmHoststoUproot (unitgroup lp_swarmHostUnitGroup) {
 // Trigger: Arch Init
 //--------------------------------------------------------------------------------------------------
 bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    region lv_region;
+    point lv_gather;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = gv_pLAYER_03_YAGDRA;
+    lv_region = RegionFromId(21);
+    lv_gather = RegionGetCenter(RegionFromId(27));
+
     // Actions
     if (!runActions) {
         return true;
     }
 
     TriggerEnable(gt_DefeatHeroKilled, false);
+    AP_GhostSpawn_playerOverride = lv_player;
+    AP_GhostSpawn_regionOverride = lv_region;
+    AP_GhostSpawn_gatherPointOverride = lv_gather;
+    TriggerEnable(gt_DefeatKerriganKilled, false);
     TriggerExecute(libA472B13C_gt_AP_HotS_Constructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);

@@ -40,4 +40,34 @@
         <Abil value="AP_SupplyDepotLower"/>
         <Validator value="TacticalSupplyDepotDown"/>
     </CTacticalOrder>
+    <CTacticalSet id="AP_Ghost">
+        <Array value="AP_GhostDeCloaked"/>
+        <Array value="AP_GhostLockdown"/>
+        <Array value="AP_GhostLockdownPanic"/>
+        <Array value="AP_GhostSnipe"/>
+        <Array value="AP_GhostEMP"/>
+    </CTacticalSet>
+    <CTacticalOrder id="AP_GhostEMP">
+        <Abil value="AP_EMP"/>
+        <TargetFind value="EMP"/>
+    </CTacticalOrder>
+    <CTacticalOrder id="AP_GhostLockdown">
+        <Abil value="AP_GhostSCBWLockdown"/>
+        <TargetFind value="AP_GhostLockdown"/>
+    </CTacticalOrder>
+    <CTacticalOrder id="AP_GhostLockdownPanic">
+        <Abil value="AP_GhostSCBWLockdown"/>
+        <TargetFind value="AP_GhostLockdownPanic"/>
+        <Validator value="AP_GhostLockdownPanic"/>
+    </CTacticalOrder>
+    <CTacticalOrder id="AP_GhostSnipe"/>
+    <CTacticalOrder id="AP_GhostCloaked">
+        <Abil value="AP_GhostCloak"/>
+        <AbilCmdIndex value="1"/>
+        <Validator value="AP_TacticalGhostCloakOff"/>
+    </CTacticalOrder>
+    <CTacticalOrder id="AP_GhostDeCloaked">
+        <Abil value="AP_GhostCloak"/>
+        <Validator value="AP_TacticalGhostCloakOn"/>
+    </CTacticalOrder>
 </Catalog>

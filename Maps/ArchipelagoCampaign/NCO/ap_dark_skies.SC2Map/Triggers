@@ -74,7 +74,10 @@
         <Item Type="Trigger" Id="00904861"/>
     </Element>
     <Element Type="Trigger" Id="24F6B325">
+        <Variable Type="Variable" Id="85E637B3"/>
+        <Variable Type="Variable" Id="A3DFCF33"/>
         <Event Type="FunctionCall" Id="6410D8CA"/>
+        <Action Type="FunctionCall" Id="6CC86F8B"/>
         <Action Type="FunctionCall" Id="E1D4DA40"/>
         <Action Type="FunctionCall" Id="63820EB0"/>
         <Action Type="FunctionCall" Id="A0B78984"/>
@@ -84,8 +87,35 @@
         <Action Type="FunctionCall" Id="9C4C029A"/>
         <Action Type="FunctionCall" Id="24584236"/>
     </Element>
+    <Element Type="Variable" Id="85E637B3">
+        <VariableType>
+            <Type Value="int"/>
+        </VariableType>
+        <Value Type="Param" Id="4FEE0446"/>
+    </Element>
+    <Element Type="Param" Id="4FEE0446">
+        <Value>4</Value>
+        <ValueType Type="int"/>
+    </Element>
+    <Element Type="Variable" Id="A3DFCF33">
+        <VariableType>
+            <Type Value="region"/>
+        </VariableType>
+        <Value Type="Param" Id="406080ED"/>
+    </Element>
+    <Element Type="Param" Id="406080ED">
+        <ValueType Type="region"/>
+        <ValueId Id="35"/>
+    </Element>
     <Element Type="FunctionCall" Id="6410D8CA">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="6CC86F8B">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_playerOverride = lv_player;
+            AP_GhostSpawn_regionOverride = lv_region;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="E1D4DA40">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>
@@ -319,7 +349,7 @@
     </Element>
     <Element Type="Param" Id="D682CF68">
         <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
-        <Value>7</Value>
+        <Value>1</Value>
         <ValueType Type="int"/>
     </Element>
     <Element Type="FunctionCall" Id="B9D4B137">
