@@ -677,12 +677,29 @@ void gf_RevealPath (int lp_startingWaypoint, int lp_endingWaypoint) {
 // Trigger: Arch Init
 //--------------------------------------------------------------------------------------------------
 bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    point lv_waypoint;
+    point lv_target;
+    string lv_transport;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = gv_pLAYER_04_MOEBIUS_S03;
+    lv_waypoint = PointFromId(1703750062);
+    lv_target = PointFromId(2001);
+    lv_transport = ("Medivac");
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    AP_GhostSpawn_playerOverride = lv_player;
+    AP_GhostSpawn_waveTargetOverride = true; 
+    AP_GhostSpawn_waypointOverride = lv_waypoint; 
+    AP_GhostSpawn_attackTargetOverride = lv_target;
+    AP_GhostSpawn_transportOverride = lv_transport;
     TriggerExecute(lib2F7F8645_gt_AP_Player_LotVPrologueConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);

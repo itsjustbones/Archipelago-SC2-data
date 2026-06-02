@@ -1,11 +1,60 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CActorUnit id="AP_ArtanisChrysalis" parent="GenericUnitStandard" unitName="AP_ArtanisChrysalis">
+        <UnitFlags index="SuppressDefaultStatusBar" value="1"/>
+        <CustomUnitStatusFrame value="HotS_UnitStatus/HeroUnitStatusFrameTemplateWideNonSegmented"/>
+        <PortraitModel value="AP_ArtanisChrysalisPortrait"/>
+        <BarOffset value="90"/>
+        <DeathArray index="Normal" ModelLink="AP_ArtanisChrysalisDeath" SoundLink="Immortal_Explode"/>
+        <DeathActorModel value="AP_ArtanisChrysalisDeathActor"/>
+        <DeathActorModelLow value="AP_ArtanisChrysalisDeathActor"/>
+        <LifeArmorIcon value="Assets\Textures\btn-armor-protoss-buildingplating.dds"/>
+        <UnitIcon value="Assets\Textures\wireframe-general-preserverprison.dds"/>
+        <HeroIcon value="Assets\Textures\wireframe-general-preserverprison.dds"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-general-preserverprison.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-general-preserverprison.dds"/>
+        </Wireframe>
+        <UnitKillRank Text="UnitKillRank/Artanis"/>
+    </CActorUnit>
+    <CActorModel id="AP_ArtanisChrysalisDeathActor" parent="UnitDeathModel">
+        <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
+    </CActorModel>
+    <CActorUnit id="AP_NovaChrysalis" parent="GenericUnitStandard" unitName="AP_NovaChrysalis">
+        <UnitFlags index="SuppressDefaultStatusBar" value="1"/>
+        <CustomUnitStatusFrame value="HotS_UnitStatus/HeroUnitStatusFrameTemplateWideNonSegmented"/>
+        <PortraitModel value="AP_NovaChrysalisPortrait"/>
+        <BarOffset value="90"/>
+        <DeathArray index="Normal" ModelLink="TerranBuildingDeath" SoundLink="Terran_ExplosionMedium"/>
+        <DeathActorModel value="AP_NovaChrysalisDeathActor"/>
+        <DeathActorModelLow value="AP_NovaChrysalisDeathActor"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
+        <UnitIcon value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+        <HeroIcon value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Assets\Textures\WireFrame-Terran-NovaStasisCell.dds"/>
+        </Wireframe>
+        <UnitKillRank Text="UnitKillRank/AP_Nova"/>
+    </CActorUnit>
+    <CActorModel id="AP_NovaChrysalisDeathActor" parent="UnitDeathModel">
+        <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisChrysalisEnergyDrainImpactActor" parent="ModelAddition">
+        <Model value="AP_ArtanisChrysalisEnergyDrainImpactModel"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="AP_NovaChrysalisEnergyDrainImpactActor" parent="ModelAddition">
+        <Model value="AP_NovaChrysalisEnergyDrainImpactModel"/>
+    </CActorModel>
     <CActorDoodad id="ZerusSwampPlants">
         <On index="2" removed="1"/>
-        <On index="3" removed="1"/>
     </CActorDoodad>
     <CActorDoodad id="ZerusSwampPlantsLarge">
         <On index="2" removed="1"/>
-        <On index="3" removed="1"/>
     </CActorDoodad>
 </Catalog>

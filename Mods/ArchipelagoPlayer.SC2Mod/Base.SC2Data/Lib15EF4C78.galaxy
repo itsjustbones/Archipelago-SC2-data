@@ -2914,6 +2914,7 @@ void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {
         DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroEnergyBarImage[lp_index], PlayerGroupAll(), false);
     }
     if ((lib15EF4C78_gv_zS_SwarmHeroUIShowLevel[lp_index] == true)) {
+        DialogControlSetVisible(lib15EF4C78_gv_zS_SwarmHeroUIDialogLevelBox[lp_index], PlayerGroupAll(), true);
         if ((lib15EF4C78_gv_zS_SwarmHeroUIUnit[lp_index] == lib15EF4C78_gf_AP_Player_getKerriganUnit(lp_player))) {
             libNtve_gf_SetDialogItemText(lib15EF4C78_gv_zS_SwarmHeroUIDialogLevelLabel[lp_index], IntToText(lib15EF4C78_gv_zS_KerriganLevel[lp_player]), PlayerGroupAll());
         }

@@ -1698,16 +1698,35 @@
     <CValidatorUnitFilters id="AP_YamatoTargetFilters">
         <Filters value="-;Self,Stasis,Dead,Hidden,Invulnerable"/>
     </CValidatorUnitFilters>
-    <CValidatorCombine id="AP_TacticalGhostCloakOff" parent="TacticalCloakSharedOff" unitLink="AP_Ghost"/>
+    <CValidatorCombine id="AP_TacticalGhostCloakOff">
+        <CombineArray value="AP_TacticalGhostCloakThreatSearchEmpty"/>
+    </CValidatorCombine>
     <CValidatorCombine id="AP_TacticalGhostCloakOn">
         <Type value="And"/>
         <CombineArray value="AP_TacticalGhostSharedOn"/>
         <CombineArray value="TacticalCloakNotDetected"/>
     </CValidatorCombine>
-    <CValidatorLocationEnumArea id="AP_TacticalGhostCloakThreatSearch" parent="TacticalCloakThreatSearch" unitLink="AP_Ghost"/>
-    <CValidatorLocationEnumArea id="AP_TacticalGhostCloakThreatSearchEmpty" parent="TacticalCloakThreatSearchEmpty" unitLink="AP_Ghost"/>
-    <CValidatorCombine id="AP_TacticalGhostSharedOn" parent="TacticalCloakSharedOn" unitLink="AP_Ghost"/>
-    <CValidatorUnitCompareAttackPriority id="AP_UnitThreatensGhost" parent="UnitThreatens" unitLink="AP_Ghost"/>
+     <CValidatorLocationEnumArea id="AP_TacticalGhostCloakThreatSearch">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="12" Validator="AP_UnitThreatensGhost"/>
+        <Compare value="GE"/>
+        <Count value="1"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Worker,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="AP_TacticalGhostCloakThreatSearchEmpty">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="12" Validator="AP_UnitThreatensGhost"/>
+        <Compare value="Eq"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Worker,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorCombine id="AP_TacticalGhostSharedOn">
+        <CombineArray value="AP_TacticalGhostCloakThreatSearch"/>
+        <CombineArray value="CasterInCombat"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareAttackPriority id="AP_UnitThreatensGhost">
+        <Compare value="GE"/>
+        <Flags index="IsThreat" value="1"/>
+    </CValidatorUnitCompareAttackPriority>
     <CValidatorCombine id="AP_SpectreLockdown">
         <ResultFailed value="CantLockdown"/>
         <Type value="And"/>
@@ -8557,4 +8576,34 @@
         <Compare value="GE"/>
         <Value value="5"/>
     </CValidatorUnitCompareDamageTakenTime>
+    <CValidatorCombine id="AP_CasterNotFighting">
+        <Type value="And"/>
+        <CombineArray value="CasterRecentlyDealtDamage"/>
+        <CombineArray value="CasterInCombat"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="AP_IsDetector">
+        <Filters value="Detector;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareVital id="AP_CasterLifeLowerThanHalf">
+        <ResultFailed value="TooMuchLife"/>
+        <WhichUnit Value="Caster"/>
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="0.5"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorCombine id="AP_GhostLockdownPanic">
+        <CombineArray value="AP_CasterLifeLowerThanHalf"/>
+        <CombineArray value="CasterInCombat"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_GhostLockdownPanicTarget">
+        <Type value="And"/>
+        <CombineArray value="AP_NotWorker"/>
+        <CombineArray value="TargetLifeGE60"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="AP_GhostLockdownPriorityTarget">
+        <CombineArray value="AP_IsDetector"/>
+        <CombineArray value="AP_IsMassive"/>
+        <CombineArray value="IsSiegeTank"/>
+    </CValidatorCombine>
 </Catalog>

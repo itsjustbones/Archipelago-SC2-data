@@ -1640,6 +1640,20 @@
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="AP_NukePersistent">
         <EditorCategories value="Race:Terran"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="AP_NukePersistent2"/>
+        <PeriodicEffectArray value="AP_NukeAINotify"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="15"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="AP_NukeAINotify">
+        <EditorCategories value="Race:Terran"/>
+        <ExpireDelay value="5"/>
+        <AINotifyEffect value="NukeDamage"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="AP_NukePersistent2">
+        <EditorCategories value="Race:Terran"/>
         <Alert value="CalldownLaunchObserver"/>
         <Flags index="Channeled" value="1"/>
         <InitialDelay value="8.75"/>
@@ -1647,7 +1661,6 @@
         <FinalEffect value="AP_NukeSuicide"/>
         <PeriodCount value="50"/>
         <PeriodicPeriodArray value="0.2"/>
-        <AINotifyEffect value="NukeDamage"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="AP_NukeSuicide">
         <EditorCategories value="Race:Terran"/>

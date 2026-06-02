@@ -543,6 +543,7 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
     lib5BD4895D_gf_AP_Core_MapConfig_setChatboxPosition(c_anchorTopRight, 500, 350, 0, 130);
     libABFE498B_gf_AP_Triggers_MapConfig_setDifficultySetup(gt_onDifficultyCasual, gt_onDifficultyNormal, gt_onDifficultyHard, gt_onDifficultyBrutal);
     lib5BD4895D_gf_AP_Core_initObjectivePanel();
+    libABFE498B_gf_AP_Triggers_startNoBuild(gv_p01_USER);
     return true;
 }
 
@@ -1281,7 +1282,6 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     CinematicFade(true, 1.5, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
     PlayerPauseAllCooldowns(gv_p01_USER, true);
     PlayerPauseAllCharges(gv_p01_USER, true);
-    libABFE498B_gf_AP_Triggers_startNoBuild(gv_p01_USER);
     UIAlertPoint("Trigger", gv_p01_USER, StringExternal("Param/Value/9E4D978B"), null, PointFromId(966));
     gv_currentStage = 1;
     TriggerExecute(gt_StartGameWarehouse, true, false);

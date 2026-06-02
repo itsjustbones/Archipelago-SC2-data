@@ -981,15 +981,6 @@ bool gt_ArchInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
-        GameSetSpeedValue(c_gameSpeedFaster);
-        libABFE498B_gf_AP_Triggers_setDifficulty("B");
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Prot";
-        libABFE498B_gv_aP_Triggers_DebugMode = true;
-        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_pLAYER_01_USER, 5);
-    }
-
     TriggerExecute(lib30B9E51A_gt_ArchipelagoPlayerLotvHandlersConstructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);
@@ -1014,6 +1005,9 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_unit;
     unitgroup lv_remove;
+    int lv_player;
+    region lv_region;
+    point lv_point;
 
     // Automatic Variable Declarations
     string auto99F1E925_val;
@@ -1032,10 +1026,22 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((lib5BD4895D_gv_aP_Core_testMode == true)) {
+        GameSetSpeedValue(c_gameSpeedFaster);
+        libABFE498B_gf_AP_Triggers_setDifficulty("B");
+        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Prot";
+        libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        libABFE498B_gf_AP_Triggers_Debug_Tech(gv_pLAYER_01_USER, 5);
+    }
+
     auto99F1E925_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
     if (auto99F1E925_val == "Zerg") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         lv_remove = UnitGroupFromId(9);
+        lv_region = RegionFromId(54);
+        lv_player = gv_pLAYER_02_DOMINION5;
+        lv_point = PointFromId(351);
         PlayerSetRace(gv_pLAYER_01_USER, "Zerg");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_KERRIGAN_SWARM);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
@@ -1045,6 +1051,9 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     else if (auto99F1E925_val == "Prot") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
         lv_remove = UnitGroupFromId(10);
+        lv_region = RegionFromId(53);
+        lv_player = gv_pLAYER_02_DOMINION3;
+        lv_point = PointFromId(350);
         PlayerSetRace(gv_pLAYER_01_USER, "Prot");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
@@ -1053,9 +1062,15 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     }
     else {
         lv_remove = UnitGroupFromId(8);
+        lv_region = RegionFromId(52);
+        lv_player = gv_pLAYER_02_DOMINION4;
+        lv_point = PointFromId(1103);
         lib15EF4C78_gf_RemoveUnusedStartingUnits(UnitGroupFromId(7), "Terr", false);
         TriggerEnable(gt_ObjectiveTerranSurvivalCreate, false);
     }
+    AP_GhostSpawn_playerOverride = lv_player;
+    AP_GhostSpawn_regionOverride = lv_region;
+    AP_GhostSpawn_gatherPointOverride = lv_point;
     if ((libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies == true)) {
         UnitGroupRemove(lv_remove, gv_aRTANIS);
         UnitGroupRemove(lv_remove, gv_zAGARA);
@@ -1082,7 +1097,6 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_FactionSwapInit_Init () {
     gt_FactionSwapInit = TriggerCreate("gt_FactionSwapInit_Func");
-    TriggerAddEventGeneric(gt_FactionSwapInit, lib5BD4895D_gv_aP_Core_LOAD_FINISHED_EVENT);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1464,6 +1478,7 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     TriggerExecute(gt_Init04MusicSound, true, false);
     TriggerExecute(gt_Init05Environment, true, false);
     TriggerExecute(gt_Init06Difficulties, true, false);
+    TriggerExecute(gt_FactionSwapInit, true, true);
     TriggerExecute(gt_IntroQ, true, true);
     TriggerExecute(gt_StartGameStage01Q, true, false);
     return true;

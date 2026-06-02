@@ -129,7 +129,9 @@
         <Item Type="Trigger" Id="50E94642"/>
     </Element>
     <Element Type="Trigger" Id="50E94642">
+        <Variable Type="Variable" Id="14F35185"/>
         <Event Type="FunctionCall" Id="629C40F6"/>
+        <Action Type="FunctionCall" Id="0ACDBFF7"/>
         <Action Type="FunctionCall" Id="78D904B7"/>
         <Action Type="FunctionCall" Id="5A11447F"/>
         <Action Type="FunctionCall" Id="129BB51A"/>
@@ -138,8 +140,31 @@
         <Action Type="FunctionCall" Id="B7050854"/>
         <Action Type="FunctionCall" Id="4370A3A9"/>
     </Element>
+    <Element Type="Variable" Id="14F35185">
+        <VariableType>
+            <Type Value="region"/>
+        </VariableType>
+        <Value Type="Param" Id="159113A7"/>
+    </Element>
+    <Element Type="Param" Id="159113A7">
+        <ValueType Type="region"/>
+        <ValueId Id="25"/>
+    </Element>
     <Element Type="FunctionCall" Id="629C40F6">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="0ACDBFF7">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            // Overrides
+            AP_GhostSpawn_regionOverride = lv_r;
+            // set to true for a player that normally doesn&apos;t send attack waves against the player
+            // may interfere with future attack waves
+            AP_GhostSpawn_waveTargetOverride = true; 
+            // set to true on map init to stop the spawn until you set it to false again
+            // most no-build sections should be handled automatically, use this otherwise
+            AP_GhostSpawn_waitForSpawnOverride = true; 
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="78D904B7">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>
@@ -74225,6 +74250,7 @@
         <Action Type="FunctionCall" Id="E6EC1BC0"/>
         <Action Type="Comment" Id="103D5157"/>
         <Action Type="FunctionCall" Id="8E23D090"/>
+        <Action Type="FunctionCall" Id="89E0886D"/>
         <Action Type="Comment" Id="61B7F2E5"/>
         <Action Type="FunctionCall" Id="4DC1E237"/>
         <Action Type="FunctionCall" Id="C9A612A7"/>
@@ -75560,6 +75586,14 @@
         <ParameterDef Type="ParamDef" Library="Ntve" Id="00000182"/>
         <ValueType Type="trigger"/>
         <ValueElement Type="Trigger" Id="D87F84C4"/>
+    </Element>
+    <Element Type="FunctionCall" Id="89E0886D">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            // set to true on map init to stop the spawn until you set it to false again
+            // most no-build sections should be handled automatically, use this otherwise
+            AP_GhostSpawn_waitForSpawnOverride = false; 
+        </ScriptCode>
     </Element>
     <Element Type="Comment" Id="61B7F2E5">
         <Comment>

@@ -129,6 +129,7 @@
     </Element>
     <Element Type="Trigger" Id="13F04451">
         <Event Type="FunctionCall" Id="01AF8409"/>
+        <Action Type="FunctionCall" Id="8E7151D0"/>
         <Action Type="FunctionCall" Id="81390E62"/>
         <Action Type="FunctionCall" Id="3B60BD3A"/>
         <Action Type="FunctionCall" Id="B5EFF69B"/>
@@ -140,6 +141,12 @@
     </Element>
     <Element Type="FunctionCall" Id="01AF8409">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="8E7151D0">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_waveTargetOverride = true;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="81390E62">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>

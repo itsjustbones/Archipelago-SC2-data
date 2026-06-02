@@ -1,9 +1,9 @@
 //==================================================================================================
-// 
+//
 // Generated Map Script
-// 
+//
 // Name:   Amon's Fall
-// 
+//
 //==================================================================================================
 include "TriggerLibs/NativeLib"
 include "TriggerLibs/VoidLib"
@@ -2120,6 +2120,8 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_unit;
     unitgroup lv_remove;
+    region lv_spawn;
+    int lv_player;
 
     // Automatic Variable Declarations
     string auto973AFC8F_val;
@@ -2130,6 +2132,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_remove = UnitGroupEmpty();
+    lv_player = gv_pLAYER_04_AMON;
 
     // Actions
     if (!runActions) {
@@ -2148,6 +2151,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     auto973AFC8F_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
     if (auto973AFC8F_val == "Terr") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        lv_spawn = RegionFromId(124);
         PlayerSetRace(gv_pLAYER_01_USER, "Terr");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
@@ -2157,6 +2161,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     }
     else if (auto973AFC8F_val == "Prot") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
+        lv_spawn = RegionFromId(125);
         PlayerSetRace(gv_pLAYER_01_USER, "Prot");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
@@ -2165,10 +2170,13 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03PowerTeleport", 0), true);
     }
     else {
+        lv_spawn = RegionFromId(125);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("KerriganEpilogue03CreepTeleport", 0), true);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03StructureTeleport", 0), false);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03PowerTeleport", 0), false);
     }
+    AP_GhostSpawn_playerOverride = lv_player;
+    AP_GhostSpawn_regionOverride = lv_spawn;
     if ((libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies == true)) {
         lv_remove = UnitGroup(null, gv_pLAYER_06_KERRIGAN_AI, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
         gf_RemoveUnusedStartingUnitsSkipWorkersTownhalls(UnitGroupFromId(2), "Zerg", false);
@@ -2491,6 +2499,7 @@ bool gt_Init02Players_Func (bool testConds, bool runActions) {
     libNtve_gf_SetAlliance(gv_pLAYER_01_USER, gv_pLAYER_02_RAYNOR, libNtve_ge_AllianceSetting_AllyWithSharedVision);
     libNtve_gf_SetAlliance(gv_pLAYER_01_USER, gv_pLAYER_03_ARTANIS, libNtve_ge_AllianceSetting_AllyWithSharedVision);
     libNtve_gf_SetAlliance(gv_pLAYER_01_USER, gv_pLAYER_05_AMON_NEUTRAL, libNtve_ge_AllianceSetting_Neutral);
+    libNtve_gf_SetAlliance(gv_pLAYER_01_USER, gv_pLAYER_04_AMON, libNtve_ge_AllianceSetting_Enemy);
     libNtve_gf_SetAlliance(gv_pLAYER_01_USER, gv_pLAYER_06_KERRIGAN_AI, libNtve_ge_AllianceSetting_AllyWithSharedVision);
     libNtve_gf_SetAlliance(gv_pLAYER_02_RAYNOR, gv_pLAYER_03_ARTANIS, libNtve_ge_AllianceSetting_AllyWithSharedVision);
     libNtve_gf_SetAlliance(gv_pLAYER_02_RAYNOR, gv_pLAYER_05_AMON_NEUTRAL, libNtve_ge_AllianceSetting_Neutral);

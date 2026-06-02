@@ -16,4 +16,24 @@
         <AreaArray/>
         <Abil value="AP_D8Charge"/>
     </CTargetFindEnumArea>
+    <CTargetFindEnumArea id="AP_GhostLockdown">
+        <TargetFilters value="Mechanical,Visible;Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Stunned"/>
+        <TargetValidator value="AP_GhostLockdownPriorityTarget"/>
+        <ImpactLocation Value="CasterPoint"/>
+        <SearchFilters value="Mechanical,Visible;Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Stunned"/>
+        <AreaArray Radius="8"/>
+        <TargetSorts>
+            <SortArray value="TSLifeLargestFirst"/>
+        </TargetSorts>
+    </CTargetFindEnumArea>
+    <CTargetFindEnumArea id="AP_GhostLockdownPanic">
+        <TargetFilters value="Mechanical,Visible;Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Stunned"/>
+        <TargetValidator value="AP_GhostLockdownPanicTarget"/>
+        <ImpactLocation Value="CasterPoint"/>
+        <SearchFilters value="Mechanical,Visible;Player,Ally,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Stunned"/>
+        <AreaArray Radius="8"/>
+        <TargetSorts>
+            <SortArray value="TSLifeLargestFirst"/>
+        </TargetSorts>
+    </CTargetFindEnumArea>
 </Catalog>
