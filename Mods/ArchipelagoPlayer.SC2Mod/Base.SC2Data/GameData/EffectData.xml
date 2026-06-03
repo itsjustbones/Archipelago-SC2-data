@@ -17824,6 +17824,7 @@
         <RechargeVitalRate value="5"/>
         <ValidatorArray value="AP_TargetNotUntargetable"/>
         <ValidatorArray value="AP_NotStasis"/>
+        <PeriodicValidator value="NotWarpingIn"/>
         <FinalEffect value="AP_SOARepairBeamRB"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="AP_SOARepairBeamHealStructure">
@@ -26727,7 +26728,7 @@
         <Behavior value="AP_DistributedAttackMarker"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AP_BanelingSpawnAB">
-        <Behavior value="AP_BanelingSpawnTimedLife"/>
+        <Behavior value="AP_BanelingSpawn"/>
     </CEffectApplyBehavior>
     <CEffectCreateHealer id="AP_InfestedSCVRepair">
         <ValidatorArray value="NotWarpingIn"/>
@@ -26745,7 +26746,7 @@
         <TimeFactor value="1"/>
     </CEffectCreateHealer>
     <CEffectApplyBehavior id="AP_ScourgeSpawnAB">
-        <Behavior value="AP_ScourgeSpawnTimedLife"/>
+        <Behavior value="AP_ScourgeSpawn"/>
     </CEffectApplyBehavior>
     <CEffectSet id="AP_LurkerCarapace">
         <EditorCategories value=""/>
@@ -27279,4 +27280,9 @@
         <EditorCategories value=""/>
         <Behavior value="AP_HealpackLarge"/>
     </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="AP_OracleWeaponRB">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AP_OracleWeapon"/>
+    </CEffectRemoveBehavior>
 </Catalog>

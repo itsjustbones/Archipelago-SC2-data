@@ -14103,6 +14103,8 @@
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="691B9D3B"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="762DFC88"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="3583FD08"/>
+            <FunctionCall Type="Comment" Library="ABFE498B" Id="C7CF14E9"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="CA5F9C38"/>
         </Element>
         <Element Type="ParamDef" Id="77749810">
             <ParameterType>
@@ -14193,6 +14195,33 @@
             <Value>AP_Hellion</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Unit"/>
+        </Element>
+        <Element Type="Comment" Id="C7CF14E9">
+            <Comment>
+                for hellbat -&gt; hellion transformation
+            </Comment>
+        </Element>
+        <Element Type="FunctionCall" Id="CA5F9C38">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000158"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="F2018998"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="49751FEA"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="5109ECBD"/>
+        </Element>
+        <Element Type="Param" Id="F2018998">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000255"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="49751FEA">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000257"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="5109ECBD">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000256"/>
+            <Value>AP_Hellion</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Upgrade"/>
         </Element>
         <Element Type="FunctionDef" Id="908F9993">
             <FlagAction/>
@@ -21604,6 +21633,11 @@
         <Element Type="FunctionDef" Id="8C0E7C5A">
             <FlagAction/>
             <Parameter Type="ParamDef" Library="ABFE498B" Id="F1749F0B"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="5D5CD312"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="2690FE5C"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="34A81733"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="9D5A1ADD"/>
+            <FunctionCall Type="Comment" Library="ABFE498B" Id="44364B7D"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="6EEDE3BC"/>
         </Element>
         <Element Type="ParamDef" Id="F1749F0B">
@@ -21615,6 +21649,91 @@
         <Element Type="Param" Id="E07E582C">
             <Value>0</Value>
             <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="5D5CD312">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="C9B7D22A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="5C85677C"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="006E4CE0"/>
+        </Element>
+        <Element Type="Param" Id="C9B7D22A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="F1749F0B"/>
+        </Element>
+        <Element Type="Param" Id="5C85677C">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
+        </Element>
+        <Element Type="Param" Id="006E4CE0">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
+            <Value>AP_FactoryAddOns</Value>
+            <ValueType Type="abilcmd"/>
+            <ValueId Id="3"/>
+        </Element>
+        <Element Type="FunctionCall" Id="2690FE5C">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="D7959BD9"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="E2B6DB60"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="E731C111"/>
+        </Element>
+        <Element Type="Param" Id="D7959BD9">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="F1749F0B"/>
+        </Element>
+        <Element Type="Param" Id="E2B6DB60">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
+        </Element>
+        <Element Type="Param" Id="E731C111">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
+            <Value>AP_TerranBuild</Value>
+            <ValueType Type="abilcmd"/>
+            <ValueId Id="10"/>
+        </Element>
+        <Element Type="FunctionCall" Id="34A81733">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7C3248"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="06A6FCA2"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="05816AF1"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="D2A3A959"/>
+        </Element>
+        <Element Type="Param" Id="06A6FCA2">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="BFF56EB0"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="F1749F0B"/>
+        </Element>
+        <Element Type="Param" Id="05816AF1">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="09B7BAEA"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
+        </Element>
+        <Element Type="Param" Id="D2A3A959">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="9B01128C"/>
+            <Value>AP_FactoryAddOns</Value>
+            <ValueType Type="abilcmd"/>
+            <ValueId Id="1"/>
+        </Element>
+        <Element Type="FunctionCall" Id="9D5A1ADD">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="51A273F5"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="2BFC27A4"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="94530454"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="6172DFA6"/>
+        </Element>
+        <Element Type="Param" Id="2BFC27A4">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B15D29C1"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="F1749F0B"/>
+        </Element>
+        <Element Type="Param" Id="94530454">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C26556EA"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000106"/>
+        </Element>
+        <Element Type="Param" Id="6172DFA6">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="BC66D9AD"/>
+            <Value>AP_HellionTank</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Unit"/>
+        </Element>
+        <Element Type="Comment" Id="44364B7D">
+            <Comment>
+                for hellion -&gt; hellbat transformation
+            </Comment>
         </Element>
         <Element Type="FunctionCall" Id="6EEDE3BC">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="9F8EF8FB"/>
@@ -43663,6 +43782,7 @@
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="3993BF61"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="1BDE8D8F"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="D4E3A7BD"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="E27FBFC1"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="A56602CF"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="62AB9ACF"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="D8710020"/>
@@ -43971,6 +44091,26 @@
         <Element Type="Param" Id="AF225A74">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="BC66D9AD"/>
             <Value>AP_Hellion</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Unit"/>
+        </Element>
+        <Element Type="FunctionCall" Id="E27FBFC1">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="51A273F5"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="3426BB57"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="F4E8489C"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="98761B93"/>
+        </Element>
+        <Element Type="Param" Id="3426BB57">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B15D29C1"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="FFC5A20B"/>
+        </Element>
+        <Element Type="Param" Id="F4E8489C">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="C26556EA"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000107"/>
+        </Element>
+        <Element Type="Param" Id="98761B93">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="BC66D9AD"/>
+            <Value>AP_HellionTank</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Unit"/>
         </Element>
@@ -53691,6 +53831,7 @@
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="396B1293"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="DB83417E"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="9B3E89F6"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="F5ED128C"/>
         </Element>
         <Element Type="ParamDef" Id="04C2259D">
             <ParameterType>
@@ -53761,6 +53902,14 @@
             <Value>AP_ZergBuild</Value>
             <ValueType Type="abilcmd"/>
             <ValueId Id="6"/>
+        </Element>
+        <Element Type="FunctionCall" Id="F5ED128C">
+            <FunctionDef Type="FunctionDef" Library="ABFE498B" Id="23DDCF69"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="C813A7E1"/>
+        </Element>
+        <Element Type="Param" Id="C813A7E1">
+            <ParameterDef Type="ParamDef" Library="ABFE498B" Id="DF88F744"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="04C2259D"/>
         </Element>
         <Element Type="Category" Id="BA29A57D">
             <Item Type="FunctionDef" Library="ABFE498B" Id="60A14146"/>
@@ -78232,6 +78381,7 @@
             <FlagAction/>
             <Parameter Type="ParamDef" Library="ABFE498B" Id="955A3FE0"/>
             <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="3AC7D380"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="E74AFAF0"/>
         </Element>
         <Element Type="ParamDef" Id="955A3FE0">
             <ParameterType>
@@ -78263,6 +78413,14 @@
             <Value>AP_ImmortalStarter</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Upgrade"/>
+        </Element>
+        <Element Type="FunctionCall" Id="E74AFAF0">
+            <FunctionDef Type="FunctionDef" Library="ABFE498B" Id="1A8E04A6"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="DBB46EC9"/>
+        </Element>
+        <Element Type="Param" Id="DBB46EC9">
+            <ParameterDef Type="ParamDef" Library="ABFE498B" Id="5B83A40B"/>
+            <Parameter Type="ParamDef" Library="ABFE498B" Id="955A3FE0"/>
         </Element>
         <Element Type="FunctionDef" Id="977C706F">
             <FlagAction/>
@@ -100052,6 +100210,7 @@
             <Item Type="Category" Library="ABFE498B" Id="27FD0FD1"/>
             <Item Type="Category" Library="ABFE498B" Id="51A981E7"/>
             <Item Type="Category" Library="ABFE498B" Id="C9D3C970"/>
+            <Item Type="Category" Library="ABFE498B" Id="833961F3"/>
         </Element>
         <Element Type="Category" Id="BBA86FE4">
             <Item Type="Trigger" Library="ABFE498B" Id="0ACA403F"/>
@@ -113474,6 +113633,63 @@
         <Element Type="Param" Id="1B3F439D">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
             <Preset Type="PresetValue" Library="Ntve" Id="6BE2215C"/>
+        </Element>
+        <Element Type="Category" Id="833961F3">
+            <Item Type="Trigger" Library="ABFE498B" Id="94C2286F"/>
+        </Element>
+        <Element Type="Trigger" Id="94C2286F">
+            <Event Type="FunctionCall" Library="ABFE498B" Id="A1CDC2E7"/>
+            <Condition Type="FunctionCall" Library="ABFE498B" Id="06CFF854"/>
+            <Action Type="Comment" Library="ABFE498B" Id="91ABB9CF"/>
+            <Action Type="FunctionCall" Library="ABFE498B" Id="A2E541EF"/>
+        </Element>
+        <Element Type="FunctionCall" Id="A1CDC2E7">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="FF16983A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="735BE74E"/>
+        </Element>
+        <Element Type="Param" Id="735BE74E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="DFB06A26"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
+        <Element Type="FunctionCall" Id="06CFF854">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="BA1986EE"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="947E278A"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="7EB44328"/>
+        </Element>
+        <Element Type="Param" Id="BA1986EE">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="AF025794"/>
+        </Element>
+        <Element Type="FunctionCall" Id="AF025794">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="7CFC4EDA"/>
+        </Element>
+        <Element Type="Param" Id="947E278A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
+        </Element>
+        <Element Type="Param" Id="7EB44328">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="A0979198"/>
+        </Element>
+        <Element Type="FunctionCall" Id="A0979198">
+            <FunctionDef Type="FunctionDef" Library="5BD4895D" Id="030061A4"/>
+        </Element>
+        <Element Type="Comment" Id="91ABB9CF">
+            <Comment>
+                Reapply default behaviors to every unit we rescue.
+            </Comment>
+        </Element>
+        <Element Type="FunctionCall" Id="A2E541EF">
+            <FunctionDef Type="FunctionDef" Library="15EF4C78" Id="B5A72AB1"/>
+            <Parameter Type="Param" Library="ABFE498B" Id="DA73D837"/>
+        </Element>
+        <Element Type="Param" Id="DA73D837">
+            <ParameterDef Type="ParamDef" Library="15EF4C78" Id="FD281233"/>
+            <FunctionCall Type="FunctionCall" Library="ABFE498B" Id="3547002F"/>
+        </Element>
+        <Element Type="FunctionCall" Id="3547002F">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
         </Element>
     </Library>
 </TriggerData>

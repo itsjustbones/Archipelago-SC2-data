@@ -2497,6 +2497,7 @@
     <CUpgrade id="AP_HellbatAspect">
         <AffectedUnitArray value="AP_Hellion"/>
         <AffectedUnitArray value="AP_HellionTank"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_FactoryTrain,InfoArray[5].Flags[AutoCast]" Value="1"/>
     </CUpgrade>
     <CUpgrade id="AP_HoverHellbat">
         <AffectedUnitArray value="AP_Hellion"/>
@@ -7021,7 +7022,8 @@
         <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch"/>
         <EffectArray Operation="Set" Reference="Abil,AP_LarvaTrainSwarm,InfoArray[Train30].Unit[2]" Value="AP_Scourge"/>
         <EffectArray Operation="Set" Reference="Abil,AP_LarvaTrainSwarm,InfoArray[Train30].Time" Value="3"/>
-        <EffectArray Operation="Set" Reference="Abil,AP_ScourgeSpawn,InfoArray[Train1].Unit[3]" Value="AP_Scourge"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_ScourgeSpawn,InfoArray[Train1].Unit[1]" Value="AP_Scourge"/>
+        <EffectArray Operation="Set" Reference="Button,AP_ScourgeSpawn,Tooltip" Value="Button/Tooltip/AP_ScourgeSpawnUpgrade"/>
     </CUpgrade>
     <CUpgrade id="AP_HotSScourgeCost">
         <Flags index="UpgradeCheat" value="0"/>
@@ -8236,6 +8238,7 @@
     </CUpgrade>
     <CUpgrade id="AP_FastBuildHellion">
         <EffectArray Operation="Subtract" Reference="Abil,AP_FactoryTrain,InfoArray[Train6].Time" Value="20.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_FactoryTrain,InfoArray[Train14].Time" Value="20.000000"/>
     </CUpgrade>
     <CUpgrade id="AP_InternalizedTechModuleMarauder">
         <Flags index="UpgradeCheat" value="0"/>
@@ -10198,14 +10201,14 @@
     </CUpgrade>
     <CUpgrade id="AP_KerriganPostZerus">
         <Flags index="UpgradeCheat" value="0"/>
-        <!--        <EffectArray Reference="Unit,AP_K5Kerrigan,EnergyMax" Value="-100"/>-->
-        <!--        <EffectArray Reference="Unit,AP_K5Kerrigan,EnergyStart" Value="-100"/>-->
+        <EffectArray Reference="Unit,AP_K5Kerrigan,EnergyMax" Value="-100"/>
+        <EffectArray Reference="Unit,AP_K5Kerrigan,EnergyStart" Value="-100"/>
         <EffectArray Reference="Unit,AP_K5Kerrigan,EnergyRegenRate" Value="8.500000"/>
-        <!--        <EffectArray Reference="Unit,AP_K5KerriganPsiStrike,EnergyMax" Value="-100"/>-->
-        <!--        <EffectArray Reference="Unit,AP_K5KerriganPsiStrike,EnergyStart" Value="-100"/>-->
+        <EffectArray Reference="Unit,AP_K5KerriganPsiStrike,EnergyMax" Value="-100"/>
+        <EffectArray Reference="Unit,AP_K5KerriganPsiStrike,EnergyStart" Value="-100"/>
         <EffectArray Reference="Unit,AP_K5KerriganPsiStrike,EnergyRegenRate" Value="8.500000"/>
-        <!--        <EffectArray Reference="Unit,AP_K5KerriganBurrowed,EnergyMax" Value="-100"/>-->
-        <!--        <EffectArray Reference="Unit,AP_K5KerriganBurrowed,EnergyStart" Value="-100"/>-->
+        <EffectArray Reference="Unit,AP_K5KerriganBurrowed,EnergyMax" Value="-100"/>
+        <EffectArray Reference="Unit,AP_K5KerriganBurrowed,EnergyStart" Value="-100"/>
         <EffectArray Reference="Unit,AP_K5KerriganBurrowed,EnergyRegenRate" Value="8.500000"/>
         <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_K5Kerrigan"/>
@@ -17276,5 +17279,8 @@
         <EffectArray Reference="Unit,AP_Ghost,ShieldsMax" Value="10"/>
         <EffectArray Reference="Unit,AP_Ghost,ShieldRegenRate" Value="2.000000"/>
         <EffectArray Reference="Unit,AP_Ghost,ShieldRegenDelay" Value="10.000000"/>
+    </CUpgrade>
+    <CUpgrade id="AP_Hellion">
+        <EffectArray Operation="Set" Reference="Abil,AP_FactoryTrain,InfoArray[13].Flags[AutoCast]" Value="1"/>
     </CUpgrade>
 </Catalog>

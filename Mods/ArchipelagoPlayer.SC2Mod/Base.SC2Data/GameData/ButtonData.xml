@@ -1136,6 +1136,8 @@
         <Icon value="Assets\Textures\btn-unit-terran-hellion.dds"/>
         <AlertIcon value="Assets\Textures\btn-unit-terran-hellion.dds"/>
         <EditorCategories value="Race:Terran"/>
+        <TooltipFlags index="ShowAutocast" value="0"/>
+        <TooltipAppender Validator="AP_Hellbat" Text="Button/Tooltip/AP_HellionAppend"/>
     </CButton>
     <CButton id="AP_SiegeTank">
         <Icon value="Assets\Textures\btn-unit-terran-siegetank.dds"/>
@@ -8629,5 +8631,18 @@
         <EditorCategories value="Race:Terran"/>
         <HotkeyAlias value="Stim"/>
         <Universal value="1"/>
+    </CButton>
+    <CButton id="AP_OracleGroundWeapon">
+        <Icon value="Assets\Textures\BTN-Ability-Protoss-OraclePulsarCannonOn.dds"/>
+        <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-OraclePulsarCannonOn.dds"/>
+        <HotkeyAlias value="AP_OracleSustainablePulsarBeam"/>
+    </CButton>
+    <CButton id="AP_Hellbat">
+        <Icon value="Assets\Textures\btn-unit-terran-hellionbattlemode.dds"/>
+        <AlertIcon value="Assets\Textures\btn-unit-terran-hellionbattlemode.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="AP_Hellion"/>
+        <TooltipFlags index="ShowAutocast" value="0"/>
+        <TooltipAppender Validator="AP_Hellion" Text="Button/Tooltip/AP_HellbatAppend"/>
     </CButton>
 </Catalog>

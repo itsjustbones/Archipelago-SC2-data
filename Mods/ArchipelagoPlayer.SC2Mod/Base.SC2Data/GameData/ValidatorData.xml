@@ -6489,6 +6489,7 @@
         <Type value="And"/>
         <CombineArray value="AP_VanillaNotWarpingIn"/>
         <CombineArray value="AP_NotSupplicantWarpingIn"/>
+        <CombineArray value="AP_NotImmortalWarpingIn"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="AP_HaveAlarakHavocAbilityRange">
         <Find value="1"/>
@@ -8606,4 +8607,15 @@
         <CombineArray value="AP_IsMassive"/>
         <CombineArray value="IsSiegeTank"/>
     </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AP_NotImmortalWarpingIn">
+        <Behavior value="AP_ImmortalWarpRelocateTarget"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="AP_Hellion">
+        <Find value="1"/>
+        <Value value="AP_Hellion"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AP_Hellbat">
+        <Find value="1"/>
+        <Value value="AP_HaveHellbatAspect"/>
+    </CValidatorPlayerRequirement>
 </Catalog>

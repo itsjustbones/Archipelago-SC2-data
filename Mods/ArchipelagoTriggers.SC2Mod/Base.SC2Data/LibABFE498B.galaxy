@@ -2735,6 +2735,7 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockHellion (int lp_player) {
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_TerranBuild", 10), true);
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_FactoryAddOns", 1), true);
     TechTreeUnitAllow(lp_player, "AP_Hellion", true);
+    TechTreeUpgradeAddLevel(1, "AP_Hellion", 1);
 }
 
 void libABFE498B_gf_AP_Triggers_Terran_unlockVulture (int lp_player) {
@@ -3544,6 +3545,10 @@ void libABFE498B_gf_AP_Triggers_Terran_unlockHellionThermiteFilaments (int lp_pl
 void libABFE498B_gf_AP_Triggers_Terran_unlockHellionHellbatAspect (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
+    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_FactoryAddOns", 3), true);
+    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_TerranBuild", 10), true);
+    TechTreeAbilityAllow(lp_player, AbilityCommand("AP_FactoryAddOns", 1), true);
+    TechTreeUnitAllow(lp_player, "AP_HellionTank", true);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_HellbatAspect", 1);
 }
 
@@ -6024,6 +6029,7 @@ void libABFE498B_gf_AP_Triggers_clearTerranTech (int lp_player) {
     TechTreeUnitAllow(lp_player, "AP_Marauder", false);
     TechTreeUnitAllow(lp_player, "AP_Reaper", false);
     TechTreeUnitAllow(lp_player, "AP_Hellion", false);
+    TechTreeUnitAllow(lp_player, "AP_HellionTank", false);
     TechTreeUnitAllow(lp_player, "AP_Vulture", false);
     TechTreeUnitAllow(lp_player, "AP_Goliath", false);
     TechTreeUnitAllow(lp_player, "AP_Diamondback", false);
@@ -7035,6 +7041,7 @@ void libABFE498B_gf_AP_Triggers_Zerg_ScourgeSpawn (int lp_player) {
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ScourgeSpawn", 1);
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_ScourgeSpawn", 0), true);
     TechTreeAbilityAllow(lp_player, AbilityCommand("AP_ZergBuild", 6), true);
+    libABFE498B_gf_AP_Triggers_Zerg_unlockLair(lp_player);
 }
 
 void libABFE498B_gf_AP_Triggers_Zerg_DevourerCorrosiveSpray (int lp_player) {
@@ -9721,6 +9728,7 @@ void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalStarter (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AP_ImmortalStarter", 1);
+    libABFE498B_gf_AP_Triggers_Protoss_unlockRoboticsFacility(lp_player);
 }
 
 void libABFE498B_gf_AP_Triggers_Protoss_unlockImmortalRegen (int lp_player) {
@@ -13823,6 +13831,33 @@ void libABFE498B_gt_AP_Triggers_ObjectGroupFix_Init () {
     TriggerAddEventTimeElapsed(libABFE498B_gt_AP_Triggers_ObjectGroupFix, 0.0, c_timeGame);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: AP_Triggers_RescueUnitsFix
+//--------------------------------------------------------------------------------------------------
+bool libABFE498B_gt_AP_Triggers_RescueUnitsFix_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitOwnerNew() == lib5BD4895D_gf_AP_Core_getUser()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15EF4C78_gf_AP_Player_ReapplyDefaultBehaviorsToUnit(EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libABFE498B_gt_AP_Triggers_RescueUnitsFix_Init () {
+    libABFE498B_gt_AP_Triggers_RescueUnitsFix = TriggerCreate("libABFE498B_gt_AP_Triggers_RescueUnitsFix_Func");
+    TriggerAddEventUnitChangeOwner(libABFE498B_gt_AP_Triggers_RescueUnitsFix, null);
+}
+
 void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_PatchesInit_Init();
     libABFE498B_gt_AP_Triggers_bankInit_Init();
@@ -13860,6 +13895,7 @@ void libABFE498B_InitTriggers () {
     libABFE498B_gt_AP_Triggers_setLastWarpedUnit_Init();
     libABFE498B_gt_AP_Triggers_warpGateSafety_Init();
     libABFE498B_gt_AP_Triggers_ObjectGroupFix_Init();
+    libABFE498B_gt_AP_Triggers_RescueUnitsFix_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
