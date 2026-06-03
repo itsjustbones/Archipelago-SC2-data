@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
+    <!-- Tug of War UI lives in ap_phantoms_of_the_void.SC2Map.
     <Frame type="FlashFrame" name="TugOfWarEffectsTemplate">
         <Height val="150"/>
         <Width val="815"/>
         <UseAlternateTime val="true"/>
         <AcceptsMouse val="true"/>
-    </Frame>
-    
+    </Frame> -->
+
     <Frame type="Frame" name="HeroHealthBarDamageTemplate">
         <Width val="222"/>
         <Height val="22"/>
         <Visible val="false"/>
-        
+
         <Frame type="Image" name="DamageBar">
             <Anchor relative="$parent" offset="0"/>
             <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
@@ -19,12 +20,12 @@
             <LayerColor val="19,82,4"/>
         </Frame>
     </Frame>
-    
+
     <Frame type="Frame" name="HeroEnergyBarDamageTemplate">
         <Width val="222"/>
         <Height val="9"/>
         <Visible val="false"/>
-        
+
         <Frame type="Image" name="DamageBar">
             <Anchor relative="$parent" offset="0"/>
             <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
@@ -32,12 +33,12 @@
             <LayerColor val="5,58,119"/>
         </Frame>
     </Frame>
-    
+
     <Frame type="Frame" name="HeroEnergyBarDamageTemplateShieldedHero">
         <Width val="222"/>
         <Height val="9"/>
         <Visible val="false"/>
-        
+
         <Frame type="Image" name="DamageBar">
             <Anchor relative="$parent" offset="0"/>
             <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
@@ -45,12 +46,12 @@
             <LayerColor val="105,68,118"/>
         </Frame>
     </Frame>
-    
+
     <Frame type="Frame" name="HeroShieldBarDamageTemplate">
         <Width val="222"/>
         <Height val="7"/>
         <Visible val="false"/>
-        
+
         <Frame type="Image" name="DamageBar">
             <Anchor relative="$parent" offset="0"/>
             <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
@@ -58,12 +59,12 @@
             <LayerColor val="18,120,150"/>
         </Frame>
     </Frame>
-    
+
     <Frame type="Frame" name="BossHealthBarDamageTemplate">
         <Width val="222"/>
         <Height val="22"/>
         <Visible val="false"/>
-        
+
         <Frame type="Image" name="DamageBar">
             <Anchor relative="$parent" offset="0"/>
             <Texture val="@UI/AP_HotS_HeroUnitFrameBar"/>
@@ -482,7 +483,7 @@
         </Frame>
     </Frame>
 
-    <Frame type="Frame" name="TugOfWarFrameTemplate">
+    <!-- <Frame type="Frame" name="TugOfWarFrameTemplate">
         <Width val="760"/>
         <Height val="120"/>
         <Frame type="Image" name="LeftIconImage">
@@ -529,29 +530,183 @@
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$parent/LeftBarImage" pos="Max" offset="-95"/>
             <Texture val="@UI/HotS_TugOfWarUnitFrameMiddle"/>
-            <Alpha val="0"/>
+            <Alpha val="255"/>
         </Frame>
 
-<!--        <Frame type="FlashFrame" name="TugOfWarEffects" template="ap_hots_gameunitframe/TugOfWarEffectsTemplate">-->
-<!--            <Anchor side="Top" relative="$parent" pos="Min" offset="-23"/>-->
-<!--            <Anchor side="Left" relative="$parent" pos="Min" offset="-6"/>-->
-<!--            <File val="UI/Flash/GameUI/UI_HotS_TugOfWar.swf"/>-->
-<!--        </Frame>-->
+        <Frame type="Image" name="MiddlePulseImage">
+            <Anchor side="Top" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Anchor side="Left" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Anchor side="Right" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Width val="170"/>
+            <Height val="96"/>
+            <Texture val="@UI/HotS_TugOfWarUnitFrameMiddle"/>
+            <BlendMode val="Add"/>
+            <Alpha val="50"/>
+
+            <Animation name="Pulse">
+                <Event event="PulsePlay" action="Reset"/>
+                <Event event="PulsePlay" action="Play"/>
+
+                <Controller type="Dimension" dimension="Width" relative="False" percentage="False" end="Loop">
+                    <Key type="Curve" time="0.0" value="154" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="1.95" value="154" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="2.70" value="184" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="3.75" value="154" in="Slow" out="Slow"/>
+                </Controller>
+
+                <Controller type="Dimension" dimension="Height" relative="False" percentage="False" end="Loop">
+                    <Key type="Curve" time="0.0" value="86" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="1.95" value="86" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="2.70" value="104" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="3.75" value="86" in="Slow" out="Slow"/>
+                </Controller>
+
+                <Controller type="Fade" end="Loop">
+                    <Key type="Curve" time="0.0" value="8" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="1.95" value="8" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="2.70" value="88" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="3.75" value="8" in="Slow" out="Slow"/>
+                </Controller>
+            </Animation>
+        </Frame>
+
+        <Frame type="FlashFrame" name="TugOfWarEffects" template="ap_hots_gameunitframe/TugOfWarEffectsTemplate">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="-23"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="-6"/>
+            <File val="UI/Flash/GameUI/UI_HotS_TugOfWar.swf"/>
+        </Frame>
 
         <Frame type="Label" name="LeftNameLabel">
             <Anchor side="Top" relative="$parent" pos="Min" offset="8"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="115"/>
-            <Style val="@@TugOfWarUnitFrameUnitName"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="104"/>
+            <Style val="AP_TugOfWarUnitFrameName"/>
             <Text val="LeftNameLabel"/>
         </Frame>
 
         <Frame type="Label" name="RightNameLabel">
             <Anchor side="Top" relative="$parent" pos="Min" offset="8"/>
-            <Anchor side="Right" relative="$parent" pos="Max" offset="-100"/>
-            <Style val="@@TugOfWarUnitFrameUnitNameRight"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-101"/>
+            <Style val="AP_TugOfWarUnitFrameNameRight"/>
             <Text val="RightNameLabel"/>
         </Frame>
     </Frame>
+
+    <Frame type="Frame" name="TugOfWarFrameTemplateSmall">
+        <Width val="529"/>
+        <Height val="90"/>
+
+        <Frame type="Image" name="LeftBarImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="21"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="45"/>
+            <Width val="500"/>
+            <Height val="37"/>
+            <Texture val="@UI/HotS_TugOfWarUnitBarFill"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="142,2,250"/>
+        </Frame>
+
+        <Frame type="Image" name="RightBarImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="21"/>
+            <Anchor side="Left" relative="$parent/LeftBarImage" pos="Max" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-45"/>
+            <Height val="37"/>
+            <Texture val="@UI/HotS_TugOfWarUnitBarFill"/>
+            <TextureType val="NineSlice"/>
+            <LayerColor val="19,222,0"/>
+        </Frame>
+
+        <Frame type="Image" name="LeftIconImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="7"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
+            <Width val="56"/>
+            <Height val="56"/>
+        </Frame>
+
+        <Frame type="Image" name="RightIconImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="7"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-5"/>
+            <Width val="56"/>
+            <Height val="56"/>
+        </Frame>
+
+        <Frame type="Image" name="BorderImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Width val="529"/>
+            <Height val="65"/>
+            <Texture val="@UI/HotS_TugOfWarUnitFrameBorder"/>
+        </Frame>
+
+        <Frame type="Image" name="MiddleImage">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="-5"/>
+            <Anchor side="Left" relative="$parent/LeftBarImage" pos="Max" offset="-48"/>
+            <Width val="90"/>
+            <Height val="90"/>
+            <Texture val="@UI/HotS_TugOfWarUnitFrameMiddle"/>
+            <Alpha val="255"/>
+        </Frame>
+
+        <Frame type="Image" name="MiddlePulseImage">
+            <Anchor side="Top" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Anchor side="Left" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Anchor side="Right" relative="$parent/MiddleImage" pos="Mid" offset="0"/>
+            <Width val="90"/>
+            <Height val="90"/>
+            <Texture val="@UI/HotS_TugOfWarUnitFrameMiddle"/>
+            <BlendMode val="Add"/>
+            <Alpha val="70"/>
+
+            <Animation name="Pulse">
+                <Event event="PulsePlay" action="Reset"/>
+                <Event event="PulsePlay" action="Play"/>
+
+                <Controller type="Dimension" dimension="Width" relative="False" percentage="False" end="Loop">
+                    <Key type="Curve" time="0.0" value="80" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="1.95" value="80" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="2.70" value="96" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="3.75" value="80" in="Slow" out="Slow"/>
+                </Controller>
+
+                <Controller type="Dimension" dimension="Height" relative="False" percentage="False" end="Loop">
+                    <Key type="Curve" time="0.0" value="80" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="1.95" value="80" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="2.70" value="96" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="3.75" value="80" in="Slow" out="Slow"/>
+                </Controller>
+
+                <Controller type="Fade" end="Loop">
+                    <Key type="Curve" time="0.0" value="8" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="1.95" value="8" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="2.70" value="109" in="Slow" out="Slow"/>
+                    <Key type="Curve" time="3.75" value="8" in="Slow" out="Slow"/>
+                </Controller>
+            </Animation>
+        </Frame>
+
+        <Frame type="FlashFrame" name="TugOfWarEffects" template="ap_hots_gameunitframe/TugOfWarEffectsTemplate">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="-12"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="-3"/>
+            <Width val="408"/>
+            <Height val="75"/>
+            <File val="UI/Flash/GameUI/UI_HotS_TugOfWar.swf"/>
+        </Frame>
+
+        <Frame type="Label" name="LeftNameLabel">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="69"/>
+            <Style val="AP_TugOfWarUnitFrameName"/>
+            <Text val="LeftNameLabel"/>
+        </Frame>
+
+        <Frame type="Label" name="RightNameLabel">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-67"/>
+            <Style val="AP_TugOfWarUnitFrameNameRight"/>
+            <Text val="RightNameLabel"/>
+        </Frame>
+    </Frame> -->
 
     <Frame type="Frame" name="LabGreenButtonTemplate">
         <Frame type="Label" name="SelectionLabel">

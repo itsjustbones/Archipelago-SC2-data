@@ -1,0 +1,196 @@
+// A library for detecting bases on the map
+include "AP_Triggers_BaseDetection.h"
+
+// Constants
+static const int MAX_PLAYERS = 20;
+static const int MAX_BASES_PER_PLAYER = 100;
+static const int SIZE_MIN = 5;
+static const int SIZE_STEP = 2;
+static const int STEP_MAX = 20;
+
+// Globals
+struct AP_Base {
+    unitgroup buildings;
+    point pos;
+    fixed radius;
+    region area;
+    region innerArea;
+};
+
+static AP_Base[MAX_PLAYERS][MAX_BASES_PER_PLAYER] playerBases;
+static int[MAX_PLAYERS] baseCount;
+static unitfilter baseFilter = UnitFilter(
+        (1 << c_targetFilterGround) | (1 << c_targetFilterStructure) |
+        (1 << c_targetFilterPreventDefeat), 0,
+        (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) |
+        (1 << (c_targetFilterHidden - 32)));
+
+static void log(string s) {
+    TriggerDebugOutput(1, StringToText("Base Detection: " + s), true);
+}
+
+int AP_Base_getCount(int player) {
+    return baseCount[player];
+}
+point AP_Base_getLocation(int player, int baseIndex) {
+    return playerBases[player][baseIndex].pos;
+}
+region AP_Base_getArea(int player, int baseIndex) {
+    return playerBases[player][baseIndex].area;
+}
+region AP_Base_getInnerArea(int player, int baseIndex) {
+    return playerBases[player][baseIndex].innerArea;
+}
+bool AP_Base_detect(int player) {
+    int step;
+    int emptyStep;
+    int i;
+    int r;
+    int[MAX_BASES_PER_PLAYER] radius;
+    int count = 0;
+    unit u;
+    unitgroup spherePrev;
+    unitgroup sphereNext;
+    unitgroup[MAX_BASES_PER_PLAYER] bases;
+    unitgroup buildings = UnitGroup(null, player, RegionPlayableMap(), baseFilter, 0);
+    point p;
+    region circle;
+    structref <AP_Base> base;
+    if (UnitGroupCount(buildings, c_unitCountAlive) <= 0) {
+        return false;
+    }
+    while (UnitGroupCount(buildings, c_unitCountAlive) > 0
+        && count < MAX_BASES_PER_PLAYER) {
+        u = UnitGroupUnit(buildings, 1);
+        step = 0;
+        emptyStep = 3;
+        r = SIZE_MIN;
+        p = UnitGetPosition(u);
+        circle = RegionCircle(p, r);
+        sphereNext = UnitGroup(null, player, circle, baseFilter, 0);
+        UnitGroupRemoveUnitGroup(buildings, sphereNext);
+        if (UnitGroupCount(sphereNext, c_unitCountAlive) <= 0) {
+            continue;
+        }
+        count += 1;
+        bases[count] = UnitGroupCopy(sphereNext);
+        radius[count] = r;
+        while (step < STEP_MAX) {
+            step += 1;
+            p = UnitGroupCenterOfGroup(sphereNext);
+            r = SIZE_MIN + step * SIZE_STEP;
+            circle = RegionCircle(p, r);
+            spherePrev = sphereNext;
+            sphereNext = UnitGroup(null, player, circle, baseFilter, 0);
+            UnitGroupRemoveUnitGroup(buildings, sphereNext);
+            if (UnitGroupCount(sphereNext, c_unitCountAlive) > UnitGroupCount(spherePrev, c_unitCountAlive)){
+                emptyStep = 3;
+                UnitGroupAddUnitGroup(bases[count], sphereNext);
+                radius[count] = r;
+            }
+            else {
+                emptyStep -= 1;
+                if (emptyStep <= 0) {break;}
+            }
+        }
+    }
+    baseCount[player] = count;
+    for (i = 1; i <= count; i += 1) {
+        base = playerBases[player][i];
+        base.buildings = bases[i];
+        base.pos = UnitGroupCenterOfGroup(base.buildings);
+        base.radius = radius [i];
+        base.area = RegionCircle(base.pos, base.radius);
+        base.innerArea = RegionCircle(base.pos, 0.5 * base.radius);
+    }
+    return true;
+}
+bool AP_Base_show(int player) {
+    int i; int j;
+    int count = baseCount[player];
+    unitgroup g;
+    structref <AP_Base> base;
+    log("Displaying " + IntToString(count) + " Bases for player: " + IntToString(player));
+    for (i = 1; i <= count; i += 1) {
+        base = playerBases[player][i];
+        log("Displaying base: " + IntToString(i));
+        MinimapPing(PlayerGroupAll(), base.pos, 5, Color(255, 255, 255));
+        VisRevealArea(1, base.area, 5, false);
+        g = base.buildings;
+        for (j = 1; j <= UnitGroupCount(g, c_unitCountAlive); j += 1) {
+            libNtve_gf_SendActorMessageToUnit(UnitGroupUnit(g, j), "HaloStart");
+        }
+        Wait(5, c_timeGame);
+        for (j = 1; j <= UnitGroupCount(g, c_unitCountAlive); j += 1) {
+            libNtve_gf_SendActorMessageToUnit(UnitGroupUnit(g, j), "HaloStop");
+        }
+        Wait(1, c_timeGame);
+    }
+    return true;
+}
+
+int AP_Base_getBiggestBaseIndex(int player) {
+    int i;
+    int count = baseCount[player];
+    int current = 0;
+    int next = 0;
+    int result;
+    unitgroup g;
+    structref <AP_Base> base;
+    if (count <= 0){
+        return -1;
+    }
+    for (i = 1; i <= count; i += 1) {
+        base = playerBases[player][i];
+        g = base.buildings;
+        next = UnitGroupCount(g, c_unitCountAlive);
+        if (next > current) {
+            current = next;
+            result = i;
+        }
+    }
+    return result;
+}
+
+int AP_Base_getBiggestPlayer() {
+    int i;
+    int p;
+    int user = lib5BD4895D_gf_AP_Core_getUser();
+    int index;
+    int bestPlayer;
+    int current;
+    int best = 0;
+    playergroup pg = PlayerGroupActive();
+    structref <AP_Base> base;
+    for (i = 1; i <= PlayerGroupCount(pg); i += 1){
+        p = PlayerGroupPlayer(pg, i);
+        if (!libNtve_gf_PlayerIsEnemy(p, user, libNtve_ge_PlayerRelation_EnemyMutual)) {
+            continue;
+        }
+        AP_Base_detect(p);
+        index = AP_Base_getBiggestBaseIndex(p);
+        if (index <= 0 ){
+            continue;
+        }
+        base = playerBases[p][index];
+        current = UnitGroupCount(base.buildings, c_unitCountAlive);
+        if (current > best) {
+            best = current;
+            bestPlayer = p;
+        }
+    }
+    if (best == 0) {
+        return -1;
+    }
+    return bestPlayer;
+}
+
+void AP_Base_init() {
+    int player; int i;
+    for (player = 1; player < MAX_PLAYERS; player += 1) {
+        baseCount[player] = 0;
+        // for (i = 1; i < MAX_BASES_PER_PLAYER; i += 1) {
+        //     baseBuildings[player][i] = UnitGroupEmpty();
+        // }
+    }
+}

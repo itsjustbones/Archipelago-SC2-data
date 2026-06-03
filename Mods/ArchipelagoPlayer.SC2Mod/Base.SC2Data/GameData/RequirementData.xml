@@ -439,6 +439,10 @@
         <EditorCategories value="Race:Terran,TechType:Upgrade"/>
         <NodeArray index="Show" Link="AP_CountUpgradeOcularImplantsCompleteOnly"/>
     </CRequirement>
+    <CRequirement id="AP_HaveGhostEMPRounds">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="AP_CountUpgradeGhostEMPRoundsCompleteOnly"/>
+    </CRequirement>
     <CRequirement id="AP_PermanentCloakSpectreResearched">
         <EditorCategories value="Race:Terran,TechType:Upgrade"/>
         <NodeArray index="Show" Link="AP_CountUpgradePermanentCloakSpectreCompleteOnly"/>
@@ -4490,6 +4494,12 @@
     <CRequirement id="AP_ShowMengskVeterancyGhostMengskGELevel3">
         <NodeArray index="Show" Link="AP_GTECountBehaviorMengskVeterancyGhostMengskCompleteOnlyAtUnit3"/>
     </CRequirement>
+    <CRequirement id="AP_HaveGhostMengskEMPShortStun">
+        <NodeArray index="Show" Link="AP_HaveGhostMengskEMPShortStun"/>
+    </CRequirement>
+    <CRequirement id="AP_HaveGhostMengskEMPLongStun">
+        <NodeArray index="Show" Link="AP_HaveGhostMengskEMPLongStun"/>
+    </CRequirement>
     <CRequirement id="AP_UseMengskVeterancyGhostMengskLTLevel3">
         <NodeArray index="Use" Link="AP_LTCountBehaviorMengskVeterancyGhostMengskCompleteOnlyAtUnit3"/>
     </CRequirement>
@@ -4560,17 +4570,11 @@
     <CRequirement id="AP_HaveGoliathMengskVeterancyLevel4">
         <NodeArray index="Use" Link="AP_GTECountBehaviorMengskVeterancyGoliathMengskCompleteOnlyAtUnit4"/>
     </CRequirement>
-    <CRequirement id="AP_HaveMedicMengskDoubleBeamHealNoMech">
-        <NodeArray index="Show" Link="AP_AndNotCountUpgradeAdaptiveMedPacksCompleteOnlyGTECountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
+    <CRequirement id="AP_HaveMedicMengskDoubleBeamHeal">
+        <NodeArray index="Show" Link="AP_GTECountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
     </CRequirement>
-    <CRequirement id="AP_HaveMedicMengskDoubleBeamHealAndMech">
-        <NodeArray index="Show" Link="AP_AndCountUpgradeAdaptiveMedPacksCompleteOnlyGTECountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
-    </CRequirement>
-    <CRequirement id="AP_HaveMedicMechAndNoMengskMedicDoubleBeam">
-        <NodeArray index="Show" Link="AP_AndCountUpgradeAdaptiveMedPacksCompleteOnlyLTCountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
-    </CRequirement>
-    <CRequirement id="AP_NotHaveMedicMengskDoubleBeamHealAndNoMech">
-        <NodeArray index="Show" Link="AP_AndNotCountUpgradeAdaptiveMedPacksCompleteOnlyLTCountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
+    <CRequirement id="AP_NotHaveMedicMengskDoubleBeamHeal">
+        <NodeArray index="Show" Link="AP_LTCountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit4"/>
     </CRequirement>
     <CRequirement id="AP_HaveMedicMengskVeterancyLevel2">
         <NodeArray index="Use" Link="AP_GTECountBehaviorMengskVeterancyMedicMengskCompleteOnlyAtUnit2"/>
@@ -5100,6 +5104,7 @@
         <NodeArray index="Show" Link="AP_ImpalerTentacleExtensions"/>
     </CRequirement>
     <CRequirement id="AP_BanelingSpawn">
+        <NodeArray index="Use" Link="AP_BanelingSpawnCount"/>
         <NodeArray index="Show" Link="AP_BanelingSpawn"/>
     </CRequirement>
     <CRequirement id="AP_GreaterHydraliskDen">
@@ -5135,7 +5140,8 @@
         <NodeArray index="Show" Link="AP_LurkerRangeCreep"/>
     </CRequirement>
     <CRequirement id="AP_ScourgeSpawn">
-        <NodeArray index="Use" Link="AP_ScourgeSpawn"/>
+        <NodeArray index="Use" Link="AP_ScourgeSpawnCount"/>
+        <NodeArray index="Show" Link="AP_ScourgeSpawn"/>
     </CRequirement>
     <CRequirement id="AP_LurkerCarapace">
         <NodeArray index="Show" Link="AP_LurkerCarapace"/>
@@ -5276,5 +5282,8 @@
     </CRequirement>
     <CRequirement id="AP_HellionHealNoStim">
         <NodeArray index="Show" Link="AP_HellionHealNoStim"/>
+    </CRequirement>
+    <CRequirement id="AP_Hellion">
+        <NodeArray index="Use" Link="AP_Hellion"/>
     </CRequirement>
 </Catalog>

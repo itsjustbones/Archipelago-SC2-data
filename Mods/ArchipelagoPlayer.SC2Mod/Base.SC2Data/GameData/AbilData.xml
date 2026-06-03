@@ -1454,7 +1454,7 @@
         <FinishTime value="2.5"/>
         <CursorEffect value="AP_EMPSearch"/>
         <AINotifyEffect value="EMPLaunchMissile"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="EMP" State="Restricted">
+        <CmdButtonArray index="Execute" DefaultButtonFace="EMP" State="Restricted" Requirements="AP_HaveGhostEMPRounds">
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
@@ -1714,78 +1714,6 @@
         <InfoArray Unit="AP_MercThorWreckage">
             <SectionArray index="Stats">
                 <EffectArray index="Finish" value="PostMorphHeal"/>
-            </SectionArray>
-        </InfoArray>
-    </CAbilMorph>
-    <CAbilMorph id="AP_ThorMengskReborn">
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="Thor"/>
-        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
-        <Flags index="BestUnit" value="1"/>
-        <Flags index="DisableAbils" value="1"/>
-        <Flags index="FastBuild" value="1"/>
-        <Flags index="IgnoreFacing" value="1"/>
-        <Flags index="ShowProgress" value="1"/>
-        <Flags index="SuppressMovement" value="1"/>
-        <RefundFraction>
-            <Resource index="Minerals" value="0"/>
-            <Resource index="Vespene" value="0"/>
-            <Resource index="Terrazine" value="0"/>
-            <Resource index="Custom" value="0"/>
-        </RefundFraction>
-        <InfoArray Score="1" Unit="AP_ThorMengsk">
-            <SectionArray index="Abils">
-                <DurationArray index="Delay" value="12"/>
-            </SectionArray>
-            <SectionArray index="Actor">
-                <DurationArray index="Delay" value="9"/>
-                <DurationArray index="Duration" value="3"/>
-            </SectionArray>
-            <SectionArray index="Collide">
-                <DurationArray index="Delay" value="12"/>
-            </SectionArray>
-            <SectionArray index="Stats">
-                <DurationArray index="Delay" value="12"/>
-            </SectionArray>
-        </InfoArray>
-        <Alert value="RebornComplete"/>
-    </CAbilMorph>
-    <CAbilMorph id="AP_ThorMengskRebornFree" parent="AP_ThorMengskReborn">
-        <Flags index="AutoCast" value="1"/>
-        <Flags index="AutoCastOn" value="1"/>
-        <Flags index="IgnoreUnitCost" value="1"/>
-        <CmdButtonArray index="Execute" Requirements="AP_HaveThorImmortalityFree"/>
-        <AutoCastRange value="13"/>
-        <AutoCastCountMin value="1"/>
-    </CAbilMorph>
-    <CAbilMorph id="AP_ThorMengskWreckage">
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="Thor"/>
-        <Flags index="IgnoreFacing" value="1"/>
-        <Flags index="IgnoreUnitCost" value="1"/>
-        <Flags index="SuppressMovement" value="1"/>
-        <InfoArray Unit="AP_ThorMengskWreckage">
-            <SectionArray index="Actor">
-                <DurationArray index="Duration" value="0.75"/>
-            </SectionArray>
-            <SectionArray index="Stats">
-                <EffectArray index="Finish" value="AP_ThorMengskAPWreckageMorphingRBSet"/>
-            </SectionArray>
-        </InfoArray>
-    </CAbilMorph>
-    <CAbilMorph id="AP_ThorMengskAPWreckage">
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="Thor"/>
-        <Flags index="IgnoreFacing" value="1"/>
-        <Flags index="IgnoreUnitCost" value="1"/>
-        <Flags index="SuppressMovement" value="1"/>
-        <InfoArray Unit="AP_ThorMengsk">
-            <SectionArray index="Actor">
-                <DurationArray index="Duration" value="0.75"/>
-            </SectionArray>
-            <SectionArray index="Stats">
-                <DurationArray index="Duration" value="0.75"/>
-                <EffectArray index="Finish" value="AP_ThorMengskAPWreckageMorphingABSet"/>
             </SectionArray>
         </InfoArray>
     </CAbilMorph>
@@ -4352,18 +4280,18 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_GoliathMengskBlink">
+    <CAbilEffectTarget id="AP_GoliathMengskJump">
         <AbilSetId value="Blnk"/>
-        <Effect index="0" value="AP_Blink"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Flags index="BestUnit" value="0"/>
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
             <Cooldown Link="AP_BlinkBlink" TimeUse="8"/>
         </Cost>
-        <Range value="500"/>
+        <Range value="9"/>
         <Arc value="360"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GoliathMengskBlink" State="Restricted" Requirements="AP_HaveGoliathMengskVeterancyLevel2">
+        <PrepTime value="0.1875"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GoliathMengskJump" State="Restricted" Requirements="AP_HaveGoliathMengskVeterancyLevel2">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
@@ -5373,6 +5301,10 @@
             <Button DefaultButtonFace="AP_WarHound" State="Restricted" Requirements="HaveAttachedTechLab"/>
             <Unit value="AP_WarHound"/>
         </InfoArray>
+        <InfoArray index="Train14" Time="30">
+            <Button DefaultButtonFace="AP_Hellbat" State="Restricted"/>
+            <Unit value="AP_HellionTank"/>
+        </InfoArray>
     </CAbilTrain>
     <CAbilMorphPlacement id="AP_StarportLand" parent="TerranBuildingLand" unit="AP_Starport">
         <Name value="Abil/Name/AP_StarportLand"/>
@@ -5898,7 +5830,7 @@
     <CAbilMorph id="AP_MorphToHellion">
         <AbilSetId value="HellionMode"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:MorphsandBurrows"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_MorphToHellion" Requirements="AP_HaveHellbatAspect">
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_MorphToHellion" Requirements="AP_Hellion">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
         <Flags index="IgnoreFacing" value="1"/>
@@ -14475,7 +14407,6 @@
             <SectionArray index="Stats">
                 <DurationArray index="Delay" value="0.5"/>
                 <DurationArray index="Duration" value="3.5417"/>
-                <EffectArray index="Finish" value="AP_SiegeTankSiegeModeProgressiveRangeInceaseAB"/>
             </SectionArray>
         </InfoArray>
     </CAbilMorph>
@@ -14594,29 +14525,6 @@
             <Unit value="AP_MedicMengsk"/>
         </InfoArray>
     </CAbilTrain>
-    <CAbilEffectTarget id="AP_GhostMengskEMPBig">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_GhostMengskEMPBigLM"/>
-        <Flags index="AutoCast" value="1"/>
-        <Flags index="AutoCastOn" value="1"/>
-        <Cost>
-            <Vital index="Energy" value="75"/>
-            <Cooldown TimeUse="8"/>
-        </Cost>
-        <TargetFilters value="Visible;Player,Ally,Neutral,Missile,Destructible,Stasis,Hidden,Invulnerable"/>
-        <Range value="10"/>
-        <AutoCastRange value="9"/>
-        <AutoCastValidatorArray value="AP_GhostMengskEMPBigMinimum3EnemyTargets"/>
-        <PrepTime value="0.01"/>
-        <FinishTime value="0.0625"/>
-        <UninterruptibleArray index="Prep" value="1"/>
-        <UninterruptibleArray index="Finish" value="1"/>
-        <CursorEffect value="AP_GhostMengskEMPBigSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GhostMengskEMP"/>
-        <CmdButtonArray index="Cancel" Requirements="AP_ShowMengskVeterancyGhostMengskGELevel3"/>
-        <AutoCastFilters value="Visible;Player,Ally,Neutral,Missile,Destructible,Stasis,Hidden,Invulnerable"/>
-    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_GhostMengskEMPShortStun">
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -14637,7 +14545,7 @@
         <UninterruptibleArray index="Prep" value="1"/>
         <UninterruptibleArray index="Finish" value="1"/>
         <CursorEffect value="AP_GhostMengskEMPSmallSearch"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GhostMengskEMP" Requirements="AP_UseMengskVeterancyGhostMengskLTLevel3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GhostMengskEMP" Requirements="AP_HaveGhostMengskEMPShortStun"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_GhostMengskEMPLongStun">
         <Alignment value="Negative"/>
@@ -14665,7 +14573,7 @@
         <UninterruptibleArray index="Finish" value="1"/>
         <CursorEffect value="AP_GhostMengskEMPSmallSearch"/>
         <AINotifyEffect value="AP_GhostMengskEMPShortStun"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GhostMengskEMPLongStun" Requirements="AP_ShowMengskVeterancyGhostMengskGELevel3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_GhostMengskEMPLongStun" Requirements="AP_HaveGhostMengskEMPLongStun"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_GhostMengskIrradiateSmallDamage">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -14736,22 +14644,6 @@
         <AINotifyEffect value="AP_GhostMengskNukeCalldown"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_NukeCalldownMengsk" Requirements="AP_HaveNukeMengsk"/>
         <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_SnipeMengsk">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <Effect index="0" value="AP_SnipeMengskDamage"/>
-        <Cost>
-            <Vital index="Energy" value="25"/>
-        </Cost>
-        <TargetFilters value="Biological,Visible;Self,Player,Structure,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
-        <Range value="10"/>
-        <CastIntroTime value="0.5"/>
-        <Marker>
-            <MatchFlags index="Link" value="0"/>
-            <MatchFlags index="CasterUnit" value="1"/>
-        </Marker>
-        <CmdButtonArray index="Execute" DefaultButtonFace="Snipe"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_PenetratingShot">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -15095,19 +14987,11 @@
     </CAbilBuild>
     <CAbilEffectTarget id="AP_MengskMedicHeal" parent="AP_heal">
         <Effect index="0" value="AP_MedicMengskHealSwitch"/>
-        <CmdButtonArray index="Execute" Requirements="AP_NotHaveMedicMengskDoubleBeamHealAndNoMech"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_MengskMedicHealPlusMech" parent="AP_MengskMedicHeal">
-        <TargetFilters index="0" value="Visible;Self,Enemy,Structure,Missile,UnderConstruction,Dead,Hidden"/>
-        <CmdButtonArray index="Execute" Requirements="AP_HaveMedicMechAndNoMengskMedicDoubleBeam"/>
+        <CmdButtonArray index="Execute" Requirements="AP_NotHaveMedicMengskDoubleBeamHeal"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_MengskMedicDoubleBeamHeal" parent="AP_heal">
         <Effect index="0" value="AP_MedicMengskHealInitialSwitch"/>
-        <CmdButtonArray index="Execute" Requirements="AP_HaveMedicMengskDoubleBeamHealNoMech"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="AP_MengskMedicDoubleBeamHealPlusMech" parent="AP_MengskMedicDoubleBeamHeal">
-        <TargetFilters index="0" value="Visible;Self,Enemy,Structure,Missile,UnderConstruction,Dead,Hidden"/>
-        <CmdButtonArray index="Execute" Requirements="AP_HaveMedicMengskDoubleBeamHealAndMech"/>
+        <CmdButtonArray index="Execute" Requirements="AP_HaveMedicMengskDoubleBeamHeal"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_WraithMengskResonatingFeedbackInterference">
         <Alignment value="Negative"/>
@@ -16473,6 +16357,7 @@
         <Flags index="IgnorePlacement" value="0"/>
         <InfoArray Unit="AP_OracleGround" RandomDelayMax="0.5">
             <SectionArray index="Abils">
+                <EffectArray index="Start" value="AP_OracleWeaponRB"/>
                 <DurationArray index="Delay" value="0.5"/>
             </SectionArray>
             <SectionArray index="Actor">
@@ -16689,11 +16574,11 @@
     <CAbilTrain id="AP_ScourgeSpawn">
         <Flags index="IgnoreUnitCost" value="1"/>
         <InfoArray index="Train1" Effect="AP_ScourgeSpawnAB">
-            <Cooldown Location="Player" TimeStart="30" TimeUse="30"/>
+            <Cooldown Location="Player" TimeStart="30" TimeUse="10"/>
             <Button DefaultButtonFace="AP_ScourgeSpawn" State="Restricted" Requirements="AP_ScourgeSpawn"/>
             <Unit value="AP_Scourge"/>
-            <Unit value="AP_Scourge"/>
-            <Unit value="AP_Scourge"/>
+            <Unit value=""/>
+            <Unit value=""/>
             <Unit value=""/>
             <Unit value=""/>
             <Unit value=""/>
@@ -16704,11 +16589,11 @@
     <CAbilTrain id="AP_BanelingSpawn">
         <Flags index="IgnoreUnitCost" value="1"/>
         <InfoArray index="Train1" Effect="AP_BanelingSpawnAB">
-            <Cooldown Location="Player" TimeStart="30" TimeUse="30"/>
+            <Cooldown Location="Player" TimeStart="30" TimeUse="10"/>
             <Button DefaultButtonFace="AP_BanelingSpawn" State="Restricted" Requirements="AP_BanelingSpawn"/>
             <Unit value="AP_Baneling"/>
-            <Unit value="AP_Baneling"/>
-            <Unit value="AP_Baneling"/>
+            <Unit value=""/>
+            <Unit value=""/>
             <Unit value=""/>
             <Unit value=""/>
             <Unit value=""/>

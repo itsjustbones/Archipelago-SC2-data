@@ -155,7 +155,9 @@
         <Item Type="Trigger" Id="EB6233B9"/>
     </Element>
     <Element Type="Trigger" Id="81884D83">
+        <Variable Type="Variable" Id="8B3B3A02"/>
         <Event Type="FunctionCall" Id="FC3CE16D"/>
+        <Action Type="FunctionCall" Id="52F6E015"/>
         <Action Type="FunctionCall" Id="A3F571CF"/>
         <Action Type="FunctionCall" Id="8D8990CC"/>
         <Action Type="FunctionCall" Id="987F3AD4"/>
@@ -165,8 +167,23 @@
         <Action Type="FunctionCall" Id="137C591A"/>
         <Action Type="FunctionCall" Id="6A51FDC9"/>
     </Element>
+    <Element Type="Variable" Id="8B3B3A02">
+        <VariableType>
+            <Type Value="int"/>
+        </VariableType>
+        <Value Type="Param" Id="9C601F52"/>
+    </Element>
+    <Element Type="Param" Id="9C601F52">
+        <Variable Type="Variable" Id="73642C11"/>
+    </Element>
     <Element Type="FunctionCall" Id="FC3CE16D">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="52F6E015">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            AP_GhostSpawn_playerOverride = lv_player;
+        </ScriptCode>
     </Element>
     <Element Type="FunctionCall" Id="A3F571CF">
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000116"/>

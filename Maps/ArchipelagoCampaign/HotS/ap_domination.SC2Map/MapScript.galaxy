@@ -843,12 +843,19 @@ bool auto_gf_VictoryDropNukeAtPoint_TriggerFunc (bool testConds, bool runActions
 // Trigger: Arch Init
 //--------------------------------------------------------------------------------------------------
 bool gt_ArchInit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
     // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = gv_pLAYER_02_ZERG;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    AP_GhostSpawn_playerOverride = lv_player;
     TriggerExecute(libA472B13C_gt_AP_HotS_Constructor, true, false);
     TriggerExecute(gt_Init02Players, true, false);
     TriggerExecute(gt_Init03Units, true, false);
