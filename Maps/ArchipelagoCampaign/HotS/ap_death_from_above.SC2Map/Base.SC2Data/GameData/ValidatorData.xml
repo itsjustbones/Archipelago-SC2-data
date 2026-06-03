@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-    <CValidatorUnitType id="NotPrimalZerglingBurrowed">
-        <Value value="PrimalZerglingBurrowed"/>
-        <Find value="0"/>
-        <Type value="SelectAlias"/>
-    </CValidatorUnitType>
+    <CValidatorUnitType id="NotPrimalZerglingBurrowed"/>
+    <CValidatorCombine id="AP_NotAPPrimalZerg">
+        <CombineArray value="AP_IsAPPrimalZerg"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PsiDecimatorDamageFilters">
+        <CombineArray value="AP_NotAPPrimalZerg"/>
+    </CValidatorCombine>
 </Catalog>

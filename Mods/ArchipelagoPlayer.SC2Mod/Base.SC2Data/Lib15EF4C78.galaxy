@@ -2691,7 +2691,7 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
     libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), true, PlayerGroupAll());
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "BorderImageAll");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageAll[lp_index] = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), true, PlayerGroupAll());
+    libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), false, PlayerGroupAll());
     DialogControlHookup(lib15EF4C78_gv_zS_SwarmHeroUIPanel[lp_index], c_triggerControlTypeImage, "BorderNoEnergyImage");
     lib15EF4C78_gv_zS_SwarmHeroUIDialogBorderImageNoEnergy[lp_index] = DialogControlLastCreated();
     libNtve_gf_SetDialogItemAcceptMouse(DialogControlLastCreated(), true, PlayerGroupAll());
@@ -2770,6 +2770,10 @@ void lib15EF4C78_gf_ZS_CreateHeroPanel (int lp_index) {
     libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthBarBackground[lp_index], 510, PlayerGroupAll());
     libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarImage[lp_index], 511, PlayerGroupAll());
     libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldBarBackground[lp_index], 510, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogHealthLabel[lp_index], 520, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldedHeroHealthLabel[lp_index], 520, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogShieldLabel[lp_index], 520, PlayerGroupAll());
+    libNtve_gf_SetDialogItemRenderPriority(lib15EF4C78_gv_zS_SwarmHeroUIDialogEnergyLabel[lp_index], 520, PlayerGroupAll());
 }
 
 void lib15EF4C78_gf_ZS_UpdateHeroPanel (int lp_player, int lp_index) {

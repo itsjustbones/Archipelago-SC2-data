@@ -12018,6 +12018,53 @@
     <CActorSound id="AP_HeroNovaMP3_DominationVisorRangedVO" parent="SoundOneShot">
         <Host Subject="_Unit"/>
     </CActorSound>
+    <CActorSound id="AP_NovaWeaponCanisterRifleSwapSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_NovaWeaponCanisterRifleABSet.Start; At Caster" Send="Create"/>
+        <Sound value="UI_NovaEquipment_SniperRifle"/>
+    </CActorSound>
+    <CActorSound id="AP_NovaWeaponHellfireShotgunSwapSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_NovaWeaponHellfireShotgunABSet.Start; At Caster" Send="Create"/>
+        <Sound value="UI_NovaEquipment_Shotgun"/>
+    </CActorSound>
+    <CActorSound id="AP_NovaWeaponPsiBladeSwapSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_NovaWeaponPsiBladeABSet.Start; At Caster" Send="Create"/>
+        <Sound value="UI_NovaEquipment_Sword"/>
+    </CActorSound>
+    <CActorSound id="AP_NovaWeaponBlazefireBladeSwapSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_NovaWeaponBlazefireBladeABSet.Start; At Caster" Send="Create"/>
+        <Sound value="UI_NovaEquipment_BlazeFireBlade"/>
+    </CActorSound>
+    <CActorSound id="AP_NovaWeaponPlasmaRifleSwapSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_NovaWeaponPlasmaRifleABSet.Start; At Caster" Send="Create"/>
+        <Sound value="UI_NovaEquipment_PlasmaRifle"/>
+    </CActorSound>
+    <CActorModel id="AP_GeneralNovaPickup" parent="ModelAnimationStyleOneShotNoOrphan">
+        <On Terms="Effect.AP_NovaWeaponCanisterRifleABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponHellfireShotgunABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponPsiBladeABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponBlazefireBladeABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponPlasmaRifleABSet.Start; At Caster" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisAiurAspectPickup" parent="ModelAnimationStyleOneShotNoOrphan">
+        <On Terms="Effect.AP_ArtanisAiurAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 64,128,255"/>
+        <Model value="AP_GeneralNovaPickup"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisNerazimAspectPickup" parent="ModelAnimationStyleOneShotNoOrphan">
+        <On Terms="Effect.AP_ArtanisNerazimAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 64,255,96"/>
+        <Model value="AP_GeneralNovaPickup"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisPurifierAspectPickup" parent="ModelAnimationStyleOneShotNoOrphan">
+        <On Terms="Effect.AP_ArtanisPurifierAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,144,32"/>
+        <Model value="AP_GeneralNovaPickup"/>
+    </CActorModel>
+    <CActorModel id="AP_ArtanisTaldarimAspectPickup" parent="ModelAnimationStyleOneShotNoOrphan">
+        <On Terms="Effect.AP_ArtanisTaldarimAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,48,48"/>
+        <Model value="AP_GeneralNovaPickup"/>
+    </CActorModel>
     <CActorMissile id="AP_NovaHero" parent="GenericUnitBase" unitName="AP_NovaHero">
         <Aliases value="_UnitSmall"/>
         <Macros value="TerrainSquibAnimations"/>
@@ -15616,6 +15663,10 @@
             <AttackAnimProps value="03"/>
             <Physics value="DarkTemplarAttackDeathForceOverhead"/>
         </ImpactPhysics>
+        <ShieldFlashType value="Header"/>
+    </CActorAction>
+    <CActorAction id="AP_DarkTemplarTaldarimAttack" parent="GenericAttack" effectAttack="AP_BloodHunterAttackDamage">
+        <ImpactMap index="None" Model="None" Sound="DarkTemplar_AttackImpact"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
     <CActorModel id="AP_DarkTemplarShadowFuryImpact" parent="ModelAnimationStyleOneShot">
@@ -38424,7 +38475,12 @@
         <Model value="AP_VoidZealotWhirlwindSearchModel"/>
     </CActorModel>
     <CActorSound id="UI_MP_ZealotPsiBladeOn" parent="SoundOneShot">
+        <On Terms="Effect.AP_ArtanisAiurAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisNerazimAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisPurifierAspectSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisTaldarimAspectSet.Start; At Caster" Send="Create"/>
         <Host Subject="_Selectable"/>
+        <Sound value="UI_MP_ZealotPsiBladeOn"/>
     </CActorSound>
     <CActorModel id="AP_ArtanisBladeWaltzEndShockwaveModel" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="Create"/>
