@@ -1,9 +1,9 @@
 //==================================================================================================
-//
+// 
 // Generated Map Script
-//
+// 
 // Name:   Amon's Fall
-//
+// 
 //==================================================================================================
 include "TriggerLibs/NativeLib"
 include "TriggerLibs/VoidLib"
@@ -160,6 +160,7 @@ const int ge_PRESET_ShadowUnit_ShadowOverseer = 12;
 //--------------------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------------------
+bool gv_removeKerrigod;
 unit gv_amon;
 unit gv_kerrigan;
 unit gv_kerriganReviverUnit;
@@ -297,6 +298,7 @@ void InitGlobals () {
 //--------------------------------------------------------------------------------------------------
 void gf_SetHeroPanelUnit (int lp_index, unit lp_heroUnit);
 void gf_RemoveUnusedStartingUnitsSkipWorkersTownhalls (unitgroup lp_startingUnits, string lp_desiredFaction, bool lp_hiveUpgrade);
+void gf_FixHeroPanels ();
 fixed gf_NormalizeVoidCrystalAngle (int lp_index, fixed lp_angle);
 fixed gf_VoidCrystalRadiusatAngle (fixed lp_currentAngle, int lp_index);
 fixed gf_VoidCrystalHeightatAngle (fixed lp_currentAngle, int lp_index);
@@ -339,7 +341,8 @@ trigger gt_Init05Environment;
 trigger gt_Init06Difficulties;
 trigger gt_Init07Help;
 trigger gt_DEBUGEatBase;
-trigger gt_DEBUGReviveKerrigan;
+trigger gt_DEBUGDeleteKerrigod;
+trigger gt_DEBUGReviveKerrigod;
 trigger gt_DEBUGVictory;
 trigger gt_StartGameQ;
 trigger gt_VoidCrystalInit;
@@ -678,6 +681,25 @@ void gf_RemoveUnusedStartingUnitsSkipWorkersTownhalls (unitgroup lp_startingUnit
             UnitRemove(auto580ADCB1_var);
         }
 
+    }
+}
+
+void gf_FixHeroPanels () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((gv_removeKerrigod == true)) {
+        gf_SetHeroPanelUnit(1, null);
+        gf_SetHeroPanelUnit(2, null);
+        lib15EF4C78_gf_SetHeroPanelUnit(1, UnitGroupUnit(libABFE498B_gv_aP_Triggers_HeroUnits, 1), gv_pLAYER_01_USER);
+        lib15EF4C78_gf_SetHeroPanelUnit(2, UnitGroupUnit(libABFE498B_gv_aP_Triggers_HeroUnits, 2), gv_pLAYER_01_USER);
+        lib15EF4C78_gf_SetHeroPanelUnit(3, UnitGroupUnit(libABFE498B_gv_aP_Triggers_HeroUnits, 3), gv_pLAYER_01_USER);
+    }
+    else {
+        gf_SetHeroPanelUnit(1, gv_kerrigan);
+        gf_SetHeroPanelUnit(2, null);
+        lib15EF4C78_gf_SetHeroPanelUnit(1, null, gv_pLAYER_01_USER);
+        lib15EF4C78_gf_SetHeroPanelUnit(2, UnitGroupUnit(libABFE498B_gv_aP_Triggers_HeroUnits, 1), gv_pLAYER_01_USER);
+        lib15EF4C78_gf_SetHeroPanelUnit(3, UnitGroupUnit(libABFE498B_gv_aP_Triggers_HeroUnits, 2), gv_pLAYER_01_USER);
     }
 }
 
@@ -2120,12 +2142,17 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_unit;
     unitgroup lv_remove;
-    region lv_spawn;
     int lv_player;
+    point lv_point;
+    region lv_spawn;
 
     // Automatic Variable Declarations
     string auto973AFC8F_val;
     string auto905F1AAB_val;
+    unitgroup auto06877BF1_g;
+    int auto06877BF1_u;
+    unit auto06877BF1_var;
+    string auto4F8341D1_val;
     unitgroup autoC79A9B0C_g;
     int autoC79A9B0C_u;
     unit autoC79A9B0C_var;
@@ -2133,6 +2160,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_remove = UnitGroupEmpty();
     lv_player = gv_pLAYER_04_AMON;
+    lv_spawn = RegionFromId(125);
 
     // Actions
     if (!runActions) {
@@ -2143,46 +2171,66 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         GameSetSpeedValue(c_gameSpeedFaster);
         libABFE498B_gf_AP_Triggers_setDifficulty("B");
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        libABFE498B_gv_aP_Triggers_Option_overridePlayerRace = "Terr";
         libABFE498B_gv_aP_Triggers_DebugMode = true;
+        libABFE498B_gv_aP_Triggers_Option_HeroPresence = 1;
         libABFE498B_gf_AP_Triggers_Debug_Tech(gv_pLAYER_01_USER, 5);
     }
 
     auto973AFC8F_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
     if (auto973AFC8F_val == "Terr") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lv_spawn = RegionFromId(124);
         PlayerSetRace(gv_pLAYER_01_USER, "Terr");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_RAYNORS_RAIDERS);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("KerriganEpilogue03CreepTeleport", 0), false);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03StructureTeleport", 0), true);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03PowerTeleport", 0), false);
+        lv_point = PointFromId(1294554515);
+        lv_spawn = RegionFromId(124);
     }
     else if (auto973AFC8F_val == "Prot") {
         libABFE498B_gv_aP_Triggers_skipCutscenes = true;
-        lv_spawn = RegionFromId(125);
         PlayerSetRace(gv_pLAYER_01_USER, "Prot");
         lib5BD4895D_gf_AP_Core_MapConfig_setPlayerFaction(gv_pLAYER_01_USER, lib5BD4895D_gv_aP_Core_Faction_DAELAAM);
         lib5BD4895D_gf_AP_Core_Util_FixPlayerMaxSupplyAfterRaceSwap(gv_pLAYER_01_USER);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("KerriganEpilogue03CreepTeleport", 0), false);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03StructureTeleport", 0), false);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03PowerTeleport", 0), true);
+        lv_point = PointFromId(970191686);
     }
     else {
-        lv_spawn = RegionFromId(125);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("KerriganEpilogue03CreepTeleport", 0), true);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03StructureTeleport", 0), false);
         TechTreeAbilityAllow(gv_pLAYER_01_USER, AbilityCommand("AP_KerriganEpilogue03PowerTeleport", 0), false);
+        lv_point = PointFromId(9);
     }
     AP_GhostSpawn_playerOverride = lv_player;
     AP_GhostSpawn_regionOverride = lv_spawn;
+    libABFE498B_gf_AP_Triggers_HeroInit(gv_pLAYER_01_USER, lv_point, UnitGroupEmpty());
     if ((libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies == true)) {
         lv_remove = UnitGroup(null, gv_pLAYER_06_KERRIGAN_AI, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
         gf_RemoveUnusedStartingUnitsSkipWorkersTownhalls(UnitGroupFromId(2), "Zerg", false);
         TriggerEnable(gt_KerriganWaves, false);
         TriggerEnable(gt_RaynorWaves, false);
         TriggerEnable(gt_ArtanisWaves, false);
+        auto06877BF1_g = libABFE498B_gv_aP_Triggers_HeroUnits;
+        auto06877BF1_u = UnitGroupCount(auto06877BF1_g, c_unitCountAll);
+        for (;; auto06877BF1_u -= 1) {
+            auto06877BF1_var = UnitGroupUnitFromEnd(auto06877BF1_g, auto06877BF1_u);
+            if (auto06877BF1_var == null) { break; }
+            auto4F8341D1_val = UnitGetType(auto06877BF1_var);
+            if (auto4F8341D1_val == "AP_K5Kerrigan") {
+                UnitSetPosition(auto06877BF1_var, PointFromId(9), false);
+            }
+            else if (auto4F8341D1_val == "AP_NovaHero") {
+                UnitSetPosition(auto06877BF1_var, PointFromId(1294554515), false);
+            }
+            else if (auto4F8341D1_val == "AP_ArtanisHero") {
+                UnitSetPosition(auto06877BF1_var, PointFromId(970191686), false);
+            }
+            else {
+            }
+        }
     }
     else {
         auto905F1AAB_val = libABFE498B_gv_aP_Triggers_Option_overridePlayerRace;
@@ -2209,6 +2257,7 @@ bool gt_FactionSwapInit_Func (bool testConds, bool runActions) {
         if (autoC79A9B0C_var == null) { break; }
         UnitRemove(autoC79A9B0C_var);
     }
+    gf_FixHeroPanels();
     return true;
 }
 
@@ -2749,9 +2798,53 @@ void gt_DEBUGEatBase_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: DEBUG: Revive Kerrigan
+// Trigger: DEBUG: Delete Kerrigod
 //--------------------------------------------------------------------------------------------------
-bool gt_DEBUGReviveKerrigan_Func (bool testConds, bool runActions) {
+bool gt_DEBUGDeleteKerrigod_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libVCMI_gf_PlayerInCinematicModeCampaign() == false))) {
+            return false;
+        }
+
+        if (!((libVCMI_gf_GameIsOver() == false))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+
+        if (!((libABFE498B_gv_aP_Triggers_DebugMode == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, StringExternal("Param/Value/75B4C101"), true);
+    gv_removeKerrigod = true;
+    libABFE498B_gf_AP_Triggers_HeroHide(gv_kerrigan);
+    gf_FixHeroPanels();
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerEnable(gt_DEBUGReviveKerrigod, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DEBUGDeleteKerrigod_Init () {
+    gt_DEBUGDeleteKerrigod = TriggerCreate("gt_DEBUGDeleteKerrigod_Func");
+    TriggerAddEventChatMessage(gt_DEBUGDeleteKerrigod, c_playerAny, "-nokerrigod", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DEBUG: Revive Kerrigod
+//--------------------------------------------------------------------------------------------------
+bool gt_DEBUGReviveKerrigod_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
@@ -2800,10 +2893,10 @@ bool gt_DEBUGReviveKerrigan_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void gt_DEBUGReviveKerrigan_Init () {
-    gt_DEBUGReviveKerrigan = TriggerCreate("gt_DEBUGReviveKerrigan_Func");
-    TriggerAddEventChatMessage(gt_DEBUGReviveKerrigan, c_playerAny, "-revive", true);
-    TriggerAddEventChatMessage(gt_DEBUGReviveKerrigan, c_playerAny, "-r", true);
+void gt_DEBUGReviveKerrigod_Init () {
+    gt_DEBUGReviveKerrigod = TriggerCreate("gt_DEBUGReviveKerrigod_Func");
+    TriggerAddEventChatMessage(gt_DEBUGReviveKerrigod, c_playerAny, "-revive", true);
+    TriggerAddEventChatMessage(gt_DEBUGReviveKerrigod, c_playerAny, "-r", true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2914,7 +3007,10 @@ bool gt_StartGameQ_Func (bool testConds, bool runActions) {
     }
 
     Wait(3.0, c_timeReal);
-    lib15EF4C78_gf_AP_Player_UtilTownHallAutoRally(gv_pLAYER_01_USER);
+    if ((libABFE498B_gv_aP_Triggers_Option_takeOverAIAllies == true)) {
+        libABFE498B_gf_AP_Triggers_resetBase(gv_pLAYER_01_USER);
+    }
+
     TriggerExecute(gt_APTips, true, true);
     TriggerQueueEnter();
     TriggerExecute(gt_ObjectiveDestroyCrystalsCreate, true, true);
@@ -7752,6 +7848,12 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
     CameraApplyInfo(gv_pLAYER_01_USER, CameraInfoDefault(), 0.0, -1, 10, false);
     VisExploreArea(gv_pLAYER_01_USER, RegionEntireMap(), true, false);
     VisRevealArea(1, RegionEntireMap(), 1.0, false);
+    if ((gv_removeKerrigod == true)) {
+        libABFE498B_gf_AP_Triggers_HeroHide(gv_kerrigan);
+        gf_SetHeroPanelUnit(1, null);
+    }
+
+    gf_FixHeroPanels();
     TriggerExecute(gt_StartAI, true, false);
     Wait(0.5, c_timeGame);
     if ((gv_cinematicCompleted == true)) {
@@ -8948,7 +9050,8 @@ void InitTriggers () {
     gt_Init06Difficulties_Init();
     gt_Init07Help_Init();
     gt_DEBUGEatBase_Init();
-    gt_DEBUGReviveKerrigan_Init();
+    gt_DEBUGDeleteKerrigod_Init();
+    gt_DEBUGReviveKerrigod_Init();
     gt_DEBUGVictory_Init();
     gt_StartGameQ_Init();
     gt_VoidCrystalInit_Init();
