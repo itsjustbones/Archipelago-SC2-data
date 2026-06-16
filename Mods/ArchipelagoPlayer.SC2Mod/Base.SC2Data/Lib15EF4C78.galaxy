@@ -4661,7 +4661,7 @@ bool lib15EF4C78_gt_AP_Stukov_InfestedSiegeTankDeath_Func (bool testConds, bool 
     auto3194256A_ae = lv_stackCount;
     lv_stackCount = 1;
     for ( ; ( (auto3194256A_ai >= 0 && lv_stackCount <= auto3194256A_ae) || (auto3194256A_ai < 0 && lv_stackCount >= auto3194256A_ae) ) ; lv_stackCount += auto3194256A_ai ) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_SIVolatileInfested", 0, 1, UnitGetPosition(EventUnit()));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_SIVolatileInfested", 0, UnitGetOwner(EventUnit()), UnitGetPosition(EventUnit()));
         UnitSetState(UnitLastCreated(), c_unitStateUsingSupply, false);
         UnitBehaviorAddPlayer(UnitLastCreated(), "AP_SIBarracksTrainTimedLife", lv_player, 1);
         UnitGroupAdd(lib15EF4C78_gv_stukov_HordeGroup, UnitLastCreated());
@@ -7180,69 +7180,6 @@ bool lib15EF4C78_gt_PM_SoASuperShieldsActivated_Func (bool testConds, bool runAc
 void lib15EF4C78_gt_PM_SoASuperShieldsActivated_Init () {
     lib15EF4C78_gt_PM_SoASuperShieldsActivated = TriggerCreate("lib15EF4C78_gt_PM_SoASuperShieldsActivated_Func");
     TriggerAddEventPlayerEffectUsed(lib15EF4C78_gt_PM_SoASuperShieldsActivated, c_playerAny, "AP_SOASuperShieldDummy");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: SoAWarpInReinforcementsRandomize
-//--------------------------------------------------------------------------------------------------
-bool lib15EF4C78_gt_SoAWarpInReinforcementsRandomize_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_unit;
-    string lv_unitType;
-    int lv_random;
-    int lv_player;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lv_unit = EventUnit();
-    lv_unitType = UnitGetType(lv_unit);
-    lv_random = RandomInt(0, 99);
-    lv_player = UnitGetOwner(lv_unit);
-    if ((lv_unitType == "AP_ZealotReinforcementDummy")) {
-        if ((lv_random < 25)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_ZealotAiur", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 50)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_ZealotShakuras", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 75)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_ZealotPurifier", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 100)) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "AP_Supplicant", 0, lv_player, UnitGetPosition(lv_unit));
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_Supplicant", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-    }
-    else if ((lv_unitType == "AP_StalkerReinforcementDummy")) {
-        if ((lv_random < 20)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_StalkerShakuras", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 40)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_StalkerPurifier", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 60)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_Slayer", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 80)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_Dragoon", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-        else if ((lv_random < 100)) {
-            libNtve_gf_ReplaceUnit(lv_unit, "AP_Adept", libNtve_ge_ReplaceUnitOptions_NewUnitsDefault);
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib15EF4C78_gt_SoAWarpInReinforcementsRandomize_Init () {
-    lib15EF4C78_gt_SoAWarpInReinforcementsRandomize = TriggerCreate("lib15EF4C78_gt_SoAWarpInReinforcementsRandomize_Func");
-    TriggerAddEventUnitBehaviorChange(lib15EF4C78_gt_SoAWarpInReinforcementsRandomize, null, "AP_SOAWarpInReinforcements", c_unitBehaviorChangeDestroy);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10281,6 +10218,7 @@ void lib15EF4C78_gt_EmitTransformerLand_Init () {
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_BrynhildAssaultMode", 0), c_unitAbilStageComplete, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_ReaperLandMorph", 255), c_unitAbilStageComplete, false);
     TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_MercReaperLandMorph", 255), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(lib15EF4C78_gt_EmitTransformerLand, null, AbilityCommand("AP_OracleGround", 255), c_unitAbilStageComplete, false);
 }
 
 void lib15EF4C78_InitTriggers () {
@@ -10361,7 +10299,6 @@ void lib15EF4C78_InitTriggers () {
     lib15EF4C78_gt_PM_SoATargetingPurifierBeamOff_Init();
     lib15EF4C78_gt_PM_SoAStrafeActivated_Init();
     lib15EF4C78_gt_PM_SoASuperShieldsActivated_Init();
-    lib15EF4C78_gt_SoAWarpInReinforcementsRandomize_Init();
     lib15EF4C78_gt_PU_GPInit_Init();
     lib15EF4C78_gt_PU_GPVitalChanges_Init();
     lib15EF4C78_gt_PU_GPBirthFinished_Init();
