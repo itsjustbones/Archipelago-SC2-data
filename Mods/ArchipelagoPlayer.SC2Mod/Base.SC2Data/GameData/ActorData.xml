@@ -1421,7 +1421,7 @@
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Marine_Land"/>
         <Model value="Marine"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
-        <DeathArray index="Normal" ModelLink="MarineDeath" SoundLink="Marine_DeathFXBloodSpray"/>
+        <DeathArray index="Normal" ModelLink="MarineDeath" SoundLink="Marine_DeathFXBloodSpray" VoiceLink="Marine_Death"/>
         <DeathArray index="Blast" ModelLink="MarineDeathBlast"/>
         <DeathArray index="Disintegrate" ModelLink="MarineDeathAcid" SoundLink="Uni_DeathFXAcid"/>
         <DeathArray index="Eat" AnimProps="Stand" ModelLink="MarineDeathEat" SoundLink="Marine_DeathFXEat"/>
@@ -1490,6 +1490,7 @@
         <Macros value="UnloadDropAnim"/>
         <DeathActorModel value="AP_GoliathDeath"/>
         <PortraitModel value="AP_GoliathPortrait"/>
+        <DeathArray index="Normal" ModelLink="AP_GoliathDeath" SoundLink="Goliath_Explode"/>
         <StandAnimTurnTime value="4"/>
         <WalkAnimMoveSpeed value="3.6093"/>
         <BarOffset value="75"/>
@@ -2718,6 +2719,7 @@
     </CActorModel>
     <CActorSound id="AP_Medic_Death" parent="SoundOneShot">
         <On Terms="UnitDeath.AP_Medic; PassChance 25.000000" Send="Create"/>
+        <Sound value="Medic_Death"/>
     </CActorSound>
     <CActorRange id="AP_MedicSCBWRestoration@Range" parent="RangeAbil" abil="AP_MedicSCBWOpticFlare">
         <On index="1" Terms="Abil.AP_MedicSCBWRestoration.TargetOn" Send="Create"/>
@@ -15572,6 +15574,10 @@
             <Image value="Assets\Textures\wireframe-protoss-darktemplar-aiur-shield03.dds"/>
         </WireframeShield>
     </CActorUnit>
+    <CActorSound id="AP_DarkTemplarAiur_Death" parent="SoundOneShot">
+        <On Terms="UnitDeath.AP_DarkTemplarAiur; PassChance 25.000000" Send="Create"/>
+        <Sound value="AP_Avenger_Death"/>
+    </CActorSound>
     <CActorModel id="AP_DarkTemplarShadowHunterJumpLaunch" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <Model value="AP_ZeratulBlinkOut"/>
@@ -15810,6 +15816,8 @@
     </CActorModelMaterial>
     <CActorSound id="AP_DarkTemplar_Death" parent="SoundOneShot">
         <On Terms="UnitDeath.AP_DarkTemplar; PassChance 25.000000" Send="Create"/>
+        <On Terms="UnitDeath.AP_DarkTemplarShakuras; PassChance 25.000000" Send="Create"/>
+        <On Terms="UnitDeath.AP_DarkTemplarTaldarim; PassChance 25.000000" Send="Create"/>
         <Sound value="DarkTemplar_Death"/>
     </CActorSound>
     <CActorSound id="AP_awrpSound" parent="SoundOneShot">
@@ -16237,7 +16245,8 @@
     </CActorModel>
     <CActorSound id="AP_HighTemplar_Death" parent="SoundOneShot">
         <On Terms="UnitDeathCustomize.AP_HighTemplar; ValidateUnit IsNotHallucination; PassChance 25.000000" Send="Create"/>
-        <On Terms="UnitDeathCustomize.AP_HighTemplarAir; ValidateUnit IsNotHallucination; PassChance 25.000000" Send="Create"/>
+        <On Terms="UnitDeathCustomize.AP_HighArchonTemplar; ValidateUnit IsNotHallucination; PassChance 25.000000" Send="Create"/>
+        <On Terms="UnitDeathCustomize.AP_HighTemplarShakuras; ValidateUnit IsNotHallucination; PassChance 25.000000" Send="Create"/>
         <Sound value="HighTemplar_Death"/>
     </CActorSound>
     <CActorSound id="AP_HighTemplarShakuras_Death" parent="SoundOneShot">
