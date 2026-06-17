@@ -12021,23 +12021,23 @@
         <Host Subject="_Unit"/>
     </CActorSound>
     <CActorSound id="AP_NovaWeaponCanisterRifleSwapSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_NovaWeaponCanisterRifleABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponCanisterRifleABSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
         <Sound value="UI_NovaEquipment_SniperRifle"/>
     </CActorSound>
     <CActorSound id="AP_NovaWeaponHellfireShotgunSwapSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_NovaWeaponHellfireShotgunABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponHellfireShotgunABSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
         <Sound value="UI_NovaEquipment_Shotgun"/>
     </CActorSound>
     <CActorSound id="AP_NovaWeaponPsiBladeSwapSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_NovaWeaponPsiBladeABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponPsiBladeABSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
         <Sound value="UI_NovaEquipment_Sword"/>
     </CActorSound>
     <CActorSound id="AP_NovaWeaponBlazefireBladeSwapSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_NovaWeaponBlazefireBladeABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponBlazefireBladeABSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
         <Sound value="UI_NovaEquipment_BlazeFireBlade"/>
     </CActorSound>
     <CActorSound id="AP_NovaWeaponPlasmaRifleSwapSound" parent="SoundOneShot">
-        <On Terms="Effect.AP_NovaWeaponPlasmaRifleABSet.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AP_NovaWeaponPlasmaRifleABSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
         <Sound value="UI_NovaEquipment_PlasmaRifle"/>
     </CActorSound>
     <CActorModel id="AP_GeneralNovaPickup" parent="ModelAnimationStyleOneShotNoOrphan">
@@ -38479,17 +38479,17 @@
     <CActorModel id="AP_ArtanisBladeWaltzEndSearchModel" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.AP_ArtanisBladeWaltzEndSearch.Start" Send="Create"/>
         <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="Create UI_MP_ZealotPsiBladeOn"/>
+        <On Terms="ActorCreation" Send="Create AP_ArtanisWeaponSwapSound"/>
         <On Terms="ActorCreation" Send="SetScale 1.5"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
         <Model value="AP_VoidZealotWhirlwindSearchModel"/>
     </CActorModel>
-    <CActorSound id="UI_MP_ZealotPsiBladeOn" parent="SoundOneShot">
-        <On Terms="Effect.AP_ArtanisAiurAspectSet.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.AP_ArtanisNerazimAspectSet.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.AP_ArtanisPurifierAspectSet.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.AP_ArtanisTaldarimAspectSet.Start; At Caster" Send="Create"/>
+    <CActorSound id="AP_ArtanisWeaponSwapSound" parent="SoundOneShot">
+        <On Terms="Effect.AP_ArtanisAiurAspectSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisNerazimAspectSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisPurifierAspectSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
+        <On Terms="Effect.AP_ArtanisTaldarimAspectSet.Start; At Caster; ValidateUnit AP_NotSuppressingSwapSound" Send="Create"/>
         <Host Subject="_Selectable"/>
         <Sound value="UI_MP_ZealotPsiBladeOn"/>
     </CActorSound>
