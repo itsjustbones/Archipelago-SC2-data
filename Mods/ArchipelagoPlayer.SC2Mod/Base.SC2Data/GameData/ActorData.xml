@@ -29397,7 +29397,7 @@
         <On Terms="UnitBirth.AP_PygaliskBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
         <On Terms="AbilMorph.*.Cancel; MorphFrom AP_Pygalisk; MorphTo AP_PygaliskBurrowed" Send="AnimClear Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Pygalisk; MorphFrom AP_PygaliskBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo AP_Pyaglisk; MorphFrom AP_PygaliskBurrowed" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo AP_Pygalisk; MorphFrom AP_PygaliskBurrowed" Send="AnimClear Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo AP_Pygalisk; MorphFrom AP_PygaliskBurrowed" Send="TerrainSquibActivateGroup RippleStandard"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
         <On Terms="WeaponStart.AP_Pygalisk.AttackStart" Send="AnimBracketStart Attack Attack"/>
@@ -29421,8 +29421,8 @@
         <Wireframe>
             <Image value="Assets\Textures\wireframe-collection-primal-ultralisk.dds"/>
         </Wireframe>
-        <SoundArray index="Birth" value="UltraliskBirth"/>
-        <SoundArray index="Help" value="Ultralisk_Help"/>
+        <SoundArray index="Birth" value="AP_Pygalisk_Birth"/>
+        <SoundArray index="Help" value="AP_Pygalisk_Help"/>
         <SoundArray index="Ready" value="AP_Pygalisk_Ready"/>
         <SoundArray index="What" value="AP_Pygalisk_What"/>
         <SoundArray index="Yes" value="AP_Pygalisk_Yes"/>
