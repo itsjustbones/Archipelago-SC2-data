@@ -11637,8 +11637,6 @@
     </CActorAction>
     <CActorSplat id="AP_RavagerCorrosiveBileCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerCorrosiveBile"/>
     <CActorSplat id="AP_RavagerCorrosiveBileAirCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerAerialCorrosiveBile"/>
-    <CActorSplat id="AP_RavagerCorrosiveBileBurrowedCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerCorrosiveBileBurrowed"/>
-    <CActorSplat id="AP_RavagerCorrosiveBileBurrowedAirCursorSplat" parent="ZergCursorSplat" abil="AP_RavagerAerialCorrosiveBileBurrowed"/>
     <CActorForceSphere id="AP_RavagerCorrosiveBileImpactForce">
         <On Terms="Effect.AP_RavagerCorrosiveBileSearch.Start" Send="Create"/>
         <On Terms="Effect.AP_RavagerCorrosiveBileAirSearch.Start" Send="Create"/>
@@ -11683,14 +11681,6 @@
         <IconArcLength value="3.250000"/>
     </CActorRange>
     <CActorRange id="AP_RavagerAerialCorrosiveBileRange" parent="RangeAbil" abil="AP_RavagerAerialCorrosiveBile">
-        <Icon value="Assets\Textures\RadarIcon2.dds"/>
-        <IconArcLength value="3.250000"/>
-    </CActorRange>
-    <CActorRange id="AP_RavagerCorrosiveBileBurrowedRange" parent="RangeAbil" abil="AP_RavagerCorrosiveBileBurrowed">
-        <Icon value="Assets\Textures\RadarIcon2.dds"/>
-        <IconArcLength value="3.250000"/>
-    </CActorRange>
-    <CActorRange id="AP_RavagerAerialCorrosiveBileBurrowedRange" parent="RangeAbil" abil="AP_RavagerAerialCorrosiveBileBurrowed">
         <Icon value="Assets\Textures\RadarIcon2.dds"/>
         <IconArcLength value="3.250000"/>
     </CActorRange>
@@ -29421,8 +29411,6 @@
         <Wireframe>
             <Image value="Assets\Textures\wireframe-collection-primal-ultralisk.dds"/>
         </Wireframe>
-        <SoundArray index="Birth" value="AP_Pygalisk_Birth"/>
-        <SoundArray index="Help" value="AP_Pygalisk_Help"/>
         <SoundArray index="Ready" value="AP_Pygalisk_Ready"/>
         <SoundArray index="What" value="AP_Pygalisk_What"/>
         <SoundArray index="Yes" value="AP_Pygalisk_Yes"/>

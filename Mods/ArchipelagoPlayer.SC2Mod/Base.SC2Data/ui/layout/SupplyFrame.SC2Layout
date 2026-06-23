@@ -42,7 +42,7 @@
                 <Frame type="Label" name="Label">
                     <Anchor relative="$parent"/>
                     <Alpha val="0"/>
-                </Frame> 
+                </Frame>
             </Frame>
 
             <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame1">
@@ -61,20 +61,20 @@
                     <Anchor relative="$parent"/>
                     <Visible val="False"/>
                 </Frame>
- 
+
                 <StateGroup name="PlayerFoodCeiling">
                     <DefaultState val="Under"/>
 
                     <State name="Over">
                         <When type="Property" frame="$parent/SupplyCeiling" operator="GreaterThan" Result="1.0"/>
-                        <Action type="SetProperty" frame="FoodMade" Text="{$parent/$parent/PlayerFoodCeiling/@Text}"/> 
+                        <Action type="SetProperty" frame="FoodMade" Text="{$parent/$parent/PlayerFoodCeiling/@Text}"/>
                     </State>
 
                     <State name="Under">
                         <When type="Property" frame="$parent/SupplyCeiling" operator="LessThanOrEqual" Result="1.0"/>
                         <Action type="SetProperty" frame="FoodMade" Text="{$parent/Label/@Text}"/>
                     </State>
-                </StateGroup> 
+                </StateGroup>
             </Frame>
 
             <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame2">
@@ -87,7 +87,7 @@
                 <Frame type="Label" name="Label">
                     <Anchor relative="$parent"/>
                     <Alpha val="0"/>
-                </Frame> 
+                </Frame>
             </Frame>
 
             <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame3">
@@ -100,7 +100,7 @@
                 <Frame type="Label" name="Label">
                     <Anchor relative="$parent"/>
                     <Alpha val="0"/>
-                </Frame> 
+                </Frame>
             </Frame>
 
             <Frame type="DataRefFrame" name="PlayerRace">
@@ -131,7 +131,7 @@
             <Frame type="MathFrame" name="Supply">
                 <Anchor relative="$parent"/>
                 <A val="{$parent/ScoreValueFrame0/Label/@Text}"/>
-                <B val="{$parent/ScoreValueFrame1/Label/@Text}"/>
+                <B val="{$parent/ScoreValueFrame1/FoodMade/@Text}"/>
                 <Operator val="Divide"/>
             </Frame>
 
@@ -142,7 +142,7 @@
                 <Operator val="Divide"/>
             </Frame>
         </Frame>
-       
+
         <StateGroup name="SupplyColor">
             <DefaultState val="BelowCap"/>
 
@@ -212,81 +212,81 @@
     </Frame>
 
     <Frame type="ResourcePanel" name="GameUI/UIContainer/FullscreenUpperContainer/ResourcePanel" file="GameUI">
- 
+
         <Frame type="ResourceFrame" name="ResourceFrame">
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel">
                 <Alpha val="0"/>
                 <AcceptsMouse val="False"/>
                 <Width val="150"/>
             </Frame>
-       
+
             <Frame type="CountdownLabel" name="SupplyLabel0" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="1"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel1" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="2"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel2" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="3"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel3" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="4"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel4" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="5"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel5" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="6"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel6" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="7"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel7" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="8"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel8" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="9"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel9" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="10"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel10" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="11"/>
                 </Frame>
             </Frame>
- 
+
             <Frame type="CountdownLabel" name="SupplyLabel11" template="SupplyFrame/SupplyLabelPrecisionTemplate">
                 <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
                     <PlayerId val="12"/>
