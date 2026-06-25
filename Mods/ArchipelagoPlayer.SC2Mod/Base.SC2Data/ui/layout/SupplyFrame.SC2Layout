@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Constant name="SupplyPrecision" val="1"/>
+
+    <Frame type="CountdownLabel" name="SupplyLabelPrecisionTemplate">
+        <Anchor relative="$parent/SupplyLabel"/>
+        <Style val="ResourcePanel"/>
+        <AcceptsMouse val="True"/>
+        <TooltipAnchorPosition val="BottomLeft"/>
+        <Tooltip val="{TFTooltip/@Text}"/>
+        <Visible val="{PlayerScoreValueFrame/@User}"/>
+
+        <Frame type="TextFormatFrame" name="TFF">
+            <Anchor relative="$parent"/>
+            <FormatText val="%0%/%1%"/>
+            <Replacement index="0" val="{$parent/PlayerScoreValueFrame/ScoreValueFrame0/Label/@Text}"/>
+            <Replacement index="1" val="{$parent/PlayerScoreValueFrame/ScoreValueFrame1/FoodMade/@Text}"/>
+        </Frame>
+
+        <Frame type="TextFormatFrame" name="TFTooltip">
+            <Anchor relative="$parent"/>
+            <FormatText val="%0% %1%%2% %3%"/>
+            <Replacement index="0" val=""/>
+            <Replacement index="1" val="{$parent/PlayerScoreValueFrame/ScoreValueFrame2/Label/@Text}"/>
+            <Replacement index="2" val=""/>
+            <Replacement index="3" val="{$parent/PlayerScoreValueFrame/ScoreValueFrame3/Label/@Text}"/>
+        </Frame>
+
+        <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+            <Anchor relative="$parent"/>
+            <VisibleToOwner val="True"/>
+            <VisibleToAlly val="False"/>
+            <VisibleToEnemy val="False"/>
+
+            <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+                <Anchor relative="$parent"/>
+                <ScoreValueLink val="FoodUsed"/>
+                <AddCommas val="False"/>
+                <MaxFractionDigits val="#SupplyPrecision"/>
+                <HideZero val="False"/>
+
+                <Frame type="Label" name="Label">
+                    <Anchor relative="$parent"/>
+                    <Alpha val="0"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame1">
+                <Anchor relative="$parent"/>
+                <ScoreValueLink val="FoodMade"/>
+                <AddCommas val="False"/>
+                <MaxFractionDigits val="#SupplyPrecision"/>
+                <HideZero val="False"/>
+
+                <Frame type="Label" name="Label">
+                    <Anchor relative="$parent"/>
+                    <Alpha val="0"/>
+                </Frame>
+
+                <Frame type="Label" name="FoodMade">
+                    <Anchor relative="$parent"/>
+                    <Visible val="False"/>
+                </Frame>
+
+                <StateGroup name="PlayerFoodCeiling">
+                    <DefaultState val="Under"/>
+
+                    <State name="Over">
+                        <When type="Property" frame="$parent/SupplyCeiling" operator="GreaterThan" Result="1.0"/>
+                        <Action type="SetProperty" frame="FoodMade" Text="{$parent/$parent/PlayerFoodCeiling/@Text}"/>
+                    </State>
+
+                    <State name="Under">
+                        <When type="Property" frame="$parent/SupplyCeiling" operator="LessThanOrEqual" Result="1.0"/>
+                        <Action type="SetProperty" frame="FoodMade" Text="{$parent/Label/@Text}"/>
+                    </State>
+                </StateGroup>
+            </Frame>
+
+            <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame2">
+                <Anchor relative="$parent"/>
+                <ScoreValueLink val="FoodUsedArmy"/>
+                <AddCommas val="False"/>
+                <MaxFractionDigits val="#SupplyPrecision"/>
+                <HideZero val="False"/>
+
+                <Frame type="Label" name="Label">
+                    <Anchor relative="$parent"/>
+                    <Alpha val="0"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame3">
+                <Anchor relative="$parent"/>
+                <ScoreValueLink val="FoodUsedEconomy"/>
+                <AddCommas val="False"/>
+                <MaxFractionDigits val="#SupplyPrecision"/>
+                <HideZero val="False"/>
+
+                <Frame type="Label" name="Label">
+                    <Anchor relative="$parent"/>
+                    <Alpha val="0"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="DataRefFrame" name="PlayerRace">
+                <PlayerId val="{$parent/@PlayerId}"/>
+                <Argument name="GameValue" val="PlayerRace"/>
+            </Frame>
+
+            <Frame type="DataRefFrame" name="PlayerFoodCeilingTerr">
+                <PlayerId val="{$parent/@PlayerId}"/>
+                <Argument name="Ref" val="Race,Terr,FoodCeiling"/>
+            </Frame>
+
+            <Frame type="DataRefFrame" name="PlayerFoodCeilingZerg">
+                <PlayerId val="{$parent/@PlayerId}"/>
+                <Argument name="Ref" val="Race,Zerg,FoodCeiling"/>
+            </Frame>
+
+            <Frame type="DataRefFrame" name="PlayerFoodCeilingProt">
+                <PlayerId val="{$parent/@PlayerId}"/>
+                <Argument name="Ref" val="Race,Prot,FoodCeiling"/>
+            </Frame>
+
+            <Frame type="Label" name="PlayerFoodCeiling">
+                <Anchor relative="$parent"/>
+                <Visible val="False"/>
+            </Frame>
+
+            <Frame type="MathFrame" name="Supply">
+                <Anchor relative="$parent"/>
+                <A val="{$parent/ScoreValueFrame0/Label/@Text}"/>
+                <B val="{$parent/ScoreValueFrame1/FoodMade/@Text}"/>
+                <Operator val="Divide"/>
+            </Frame>
+
+            <Frame type="MathFrame" name="SupplyCeiling">
+                <Anchor relative="$parent"/>
+                <A val="{$parent/ScoreValueFrame1/Label/@Text}"/>
+                <B val="{$parent/PlayerFoodCeilingTerr/@RealValue}"/>
+                <Operator val="Divide"/>
+            </Frame>
+        </Frame>
+
+        <StateGroup name="SupplyColor">
+            <DefaultState val="BelowCap"/>
+
+            <State name="AboveCap">
+                <When type="Property" frame="PlayerScoreValueFrame/Supply" operator="GreaterThan" Result="1.0"/>
+                <Action type="SetProperty" Color="#FF0000"/>
+            </State>
+
+            <State name="BelowCapNoSupply">
+                <When type="Property" frame="PlayerScoreValueFrame/Supply" operator="LessThanOrEqual" Result="1.0"/>
+                <When type="StateGroup" SupplyDisplay="UnitsNoSupply"/>
+                <Action type="SetProperty" Color="#FF0000"/>
+            </State>
+
+            <State name="BelowCap">
+                <When type="Property" frame="PlayerScoreValueFrame/Supply" operator="LessThanOrEqual" Result="1.0"/>
+                <Action type="SetProperty" Color="#FFFFFF"/>
+            </State>
+        </StateGroup>
+
+        <StateGroup name="SupplyDisplay">
+            <DefaultState val="NoSupply"/>
+
+            <State name="Normal">
+                <When type="Property" frame="PlayerScoreValueFrame/ScoreValueFrame1/Label" operator="GreaterThan" Text="0"/>
+                <Action type="SetProperty" Text="{TFF/@Text}"/>
+            </State>
+
+            <State name="UnitsNoSupply">
+                <When type="Property" frame="PlayerScoreValueFrame/ScoreValueFrame0/Label" operator="GreaterThan" Text="0"/>
+                <When type="Property" frame="PlayerScoreValueFrame/ScoreValueFrame1/Label" Text="0"/>
+                <Action type="SetProperty" Text="{PlayerScoreValueFrame/ScoreValueFrame0/Label/@Text}"/>
+            </State>
+
+            <State name="NoSupply">
+                <When type="Property" frame="PlayerScoreValueFrame/ScoreValueFrame0/Label" Text="0"/>
+                <When type="Property" frame="PlayerScoreValueFrame/ScoreValueFrame1/Label" Text="0"/>
+                <Action type="SetProperty" Text="0"/>
+            </State>
+        </StateGroup>
+
+        <StateGroup name="SupplyTooltip">
+            <State name="Terran">
+                <When type="Property" frame="PlayerScoreValueFrame/PlayerRace" StringValue="Terran"/>
+                <Action type="SetProperty" frame="TFTooltip" Replacement="&lt;img path=&quot;@UI/ResourceFrameArmyIcon_Terr&quot; color=&quot;255,255,255,255&quot; width=&quot;32&quot; height=&quot;32&quot; alignment=&quot;AbsoluteMiddle&quot;/&gt;" index="0"/>
+                <Action type="SetProperty" frame="TFTooltip" Replacement="&lt;n/&gt;&lt;img path=&quot;@UI/ResourceFrameWorkerIcon_Terr&quot; color=&quot;255,255,255,255&quot; width=&quot;32&quot; height=&quot;32&quot; alignment=&quot;AbsoluteMiddle&quot;/&gt;" index="2"/>
+                <Action type="SetProperty" frame="PlayerScoreValueFrame/SupplyCeiling" B="{$parent/PlayerFoodCeilingTerr/@RealValue}"/>
+                <Action type="SetProperty" frame="PlayerScoreValueFrame/PlayerFoodCeiling" Text="{$parent/PlayerFoodCeilingTerr/@RealValue}"/>
+            </State>
+
+            <State name="Zerg">
+                <When type="Property" frame="PlayerScoreValueFrame/PlayerRace" StringValue="Zerg"/>
+                <Action type="SetProperty" frame="TFTooltip" Replacement="&lt;img path=&quot;@UI/ResourceFrameArmyIcon_Zerg&quot; color=&quot;255,255,255,255&quot; width=&quot;32&quot; height=&quot;32&quot; alignment=&quot;AbsoluteMiddle&quot;/&gt;" index="0"/>
+                <Action type="SetProperty" frame="TFTooltip" Replacement="&lt;n/&gt;&lt;img path=&quot;@UI/ResourceFrameWorkerIcon_Zerg&quot; color=&quot;255,255,255,255&quot; width=&quot;32&quot; height=&quot;32&quot; alignment=&quot;AbsoluteMiddle&quot;/&gt;" index="2"/>
+                <Action type="SetProperty" frame="PlayerScoreValueFrame/SupplyCeiling" B="{$parent/PlayerFoodCeilingZerg/@RealValue}"/>
+                <Action type="SetProperty" frame="PlayerScoreValueFrame/PlayerFoodCeiling" Text="{$parent/PlayerFoodCeilingZerg/@RealValue}"/>
+            </State>
+
+            <State name="Protoss">
+                <When type="Property" frame="PlayerScoreValueFrame/PlayerRace" StringValue="Protoss"/>
+                <Action type="SetProperty" frame="TFTooltip" Replacement="&lt;img path=&quot;@UI/ResourceFrameArmyIcon_Prot&quot; color=&quot;255,255,255,255&quot; width=&quot;32&quot; height=&quot;32&quot; alignment=&quot;AbsoluteMiddle&quot;/&gt;" index="0"/>
+                <Action type="SetProperty" frame="TFTooltip" Replacement="&lt;n/&gt;&lt;img path=&quot;@UI/ResourceFrameWorkerIcon_Prot&quot; color=&quot;255,255,255,255&quot; width=&quot;32&quot; height=&quot;32&quot; alignment=&quot;AbsoluteMiddle&quot;/&gt;" index="2"/>
+                <Action type="SetProperty" frame="PlayerScoreValueFrame/SupplyCeiling" B="{$parent/PlayerFoodCeilingProt/@RealValue}"/>
+                <Action type="SetProperty" frame="PlayerScoreValueFrame/PlayerFoodCeiling" Text="{$parent/PlayerFoodCeilingProt/@RealValue}"/>
+            </State>
+        </StateGroup>
+    </Frame>
+
+    <Frame type="ResourcePanel" name="GameUI/UIContainer/FullscreenUpperContainer/ResourcePanel" file="GameUI">
+
+        <Frame type="ResourceFrame" name="ResourceFrame">
+
+            <Frame type="CountdownLabel" name="SupplyLabel">
+                <Alpha val="0"/>
+                <AcceptsMouse val="False"/>
+                <Width val="150"/>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel0" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="1"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel1" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="2"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel2" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="3"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel3" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="4"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel4" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="5"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel5" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="6"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel6" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="7"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel7" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="8"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel8" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="9"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel9" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="10"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel10" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="11"/>
+                </Frame>
+            </Frame>
+
+            <Frame type="CountdownLabel" name="SupplyLabel11" template="SupplyFrame/SupplyLabelPrecisionTemplate">
+                <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueFrame">
+                    <PlayerId val="12"/>
+                </Frame>
+            </Frame>
+        </Frame>
+    </Frame>
+</Desc>

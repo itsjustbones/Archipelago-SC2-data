@@ -3565,31 +3565,6 @@
         <AutoCastRange value="2"/>
         <AutoCastCountMin value="1"/>
     </CAbilMorph>
-    <CAbilMorph id="AP_BurrowRavagerDown">
-        <AbilSetId value="BrwD"/>
-        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
-            <Flags index="ToSelection" value="1"/>
-        </CmdButtonArray>
-        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
-        <ActorKey value="BurrowDown"/>
-        <Flags index="Interruptible" value="1"/>
-        <Flags index="IgnoreFacing" value="1"/>
-        <Flags index="IgnoreFood" value="1"/>
-        <Flags index="IgnorePlacement" value="0"/>
-        <Flags index="IgnoreUnitCost" value="1"/>
-        <InfoArray Unit="AP_RavagerBurrowed" RandomDelayMax="0.1">
-            <SectionArray index="Actor">
-                <DurationArray index="Duration" value="0.5556"/>
-            </SectionArray>
-            <SectionArray index="Collide">
-                <DurationArray index="Delay" value="0.5556"/>
-            </SectionArray>
-            <SectionArray index="Stats">
-                <DurationArray index="Delay" value="0.5556"/>
-            </SectionArray>
-        </InfoArray>
-    </CAbilMorph>
     <CAbilMorph id="AP_BurrowRavagerUp">
         <AbilSetId value="BrwU"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
@@ -3614,6 +3589,31 @@
         <AutoCastValidatorArray value="TargetNotChangeling"/>
         <AutoCastRange value="2"/>
         <AutoCastCountMin value="1"/>
+    </CAbilMorph>
+    <CAbilMorph id="AP_BurrowRavagerDown">
+        <AbilSetId value="BrwD"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="Interruptible" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnoreFood" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <InfoArray Unit="AP_RavagerBurrowed" RandomDelayMax="0.1">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="0.5556"/>
+            </SectionArray>
+        </InfoArray>
     </CAbilMorph>
     <CAbilMorph id="AP_BurrowInfestedAbominationDown">
         <AbilSetId value="BrwD"/>
@@ -5638,6 +5638,7 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_RavagerCorrosiveBile">
         <Alignment value="Negative"/>
+        <AbilSetId value="CorrosiveBile"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <SharedFlags index="RegisterCooldownEvent" value="1"/>
         <Effect index="0" value="AP_RavagerCorrosiveBileLaunchSet"/>
@@ -5646,13 +5647,19 @@
         </Cost>
         <Range value="9"/>
         <CursorEffect value="AP_RavagerCorrosiveBileCursorDummy"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_RavagerCorrosiveBileBurrowed" parent="AP_RavagerCorrosiveBile">
         <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile" Requirements="AP_HotSHaveRavagerBurrowedBombardment">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBile">
         <Alignment value="Negative"/>
+        <AbilSetId value="AerialCorrosiveBile"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <SharedFlags index="RegisterCooldownEvent" value="1"/>
         <Effect index="0" value="AP_RavagerCorrosiveBileDirectAirLaunchSet"/>
@@ -5661,10 +5668,15 @@
         </Cost>
         <Range value="9"/>
         <CursorEffect value="AP_RavagerCorrosiveBileAirCursorDummy"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBileBurrowed" parent="AP_RavagerAerialCorrosiveBile">
         <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile" Requirements="AP_HotSHaveRavagerBurrowedAerialCorrosiveBile">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
     </CAbilEffectTarget>
     <CAbilMorph id="AP_MorphToRavager">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
@@ -15289,7 +15301,7 @@
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Effect index="0" value="AP_KerriganVoidCoopCrushingGripWaveDelayCP"/>
         <Cost>
-            <Cooldown Location="Unit" TimeStart="600" TimeUse="180"/>
+            <Cooldown Location="Unit" TimeStart="600" TimeUse="300"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_KerriganVoidCoopCrushingGripWave" State="Restricted" Requirements="AP_HaveKerriganImmobilizationWave"/>
         <UninterruptibleArray index="Cast" value="1"/>

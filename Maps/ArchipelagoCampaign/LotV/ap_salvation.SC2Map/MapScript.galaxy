@@ -3405,6 +3405,7 @@ bool gt_AlliedMindControlCancelSuicide_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_AlliedMindControlCancelSuicide_Init () {
     gt_AlliedMindControlCancelSuicide = TriggerCreate("gt_AlliedMindControlCancelSuicide_Func");
+    TriggerEnable(gt_AlliedMindControlCancelSuicide, false);
     TriggerAddEventUnitChangeOwner(gt_AlliedMindControlCancelSuicide, null);
 }
 
@@ -7154,6 +7155,7 @@ bool gt_IntroCleanup_Func (bool testConds, bool runActions) {
         libNtve_gf_SwooshCamera(gv_pLAYER_01_USER, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), CameraInfoGetTarget(CameraInfoFromId(1733)), lv_fadeDuration);
         CinematicFade(true, lv_fadeDuration, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
     }
+    TriggerExecute(gt_AlliedMindControlCancelSuicide, true, false);
     return true;
 }
 
