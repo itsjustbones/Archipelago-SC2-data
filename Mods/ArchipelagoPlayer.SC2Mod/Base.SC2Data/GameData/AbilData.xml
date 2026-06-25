@@ -5651,6 +5651,12 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerCorrosiveBileBurrowed" parent="AP_RavagerCorrosiveBile">
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerCorrosiveBile" Requirements="AP_HotSHaveRavagerBurrowedBombardment">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBile">
         <Alignment value="Negative"/>
         <AbilSetId value="AerialCorrosiveBile"/>
@@ -5663,6 +5669,12 @@
         <Range value="9"/>
         <CursorEffect value="AP_RavagerCorrosiveBileAirCursorDummy"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile" Requirements="AP_HotSHaveRavagerAerialCorrosiveBile">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AP_RavagerAerialCorrosiveBileBurrowed" parent="AP_RavagerAerialCorrosiveBile">
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AP_RavagerAerialCorrosiveBile" Requirements="AP_HotSHaveRavagerBurrowedAerialCorrosiveBile">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
