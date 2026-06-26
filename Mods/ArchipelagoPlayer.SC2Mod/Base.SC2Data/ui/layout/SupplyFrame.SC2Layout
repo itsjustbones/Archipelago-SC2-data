@@ -14,7 +14,7 @@
             <Anchor relative="$parent"/>
             <FormatText val="%0%/%1%"/>
             <Replacement index="0" val="{$parent/PlayerScoreValueFrame/ScoreValueFrame0/Label/@Text}"/>
-            <Replacement index="1" val="{$parent/PlayerScoreValueFrame/ScoreValueFrame1/FoodMade/@Text}"/>
+            <Replacement index="1" val="{$parent/PlayerScoreValueFrame/PlayerFoodCap/@RealValue}"/>
         </Frame>
 
         <Frame type="TextFormatFrame" name="TFTooltip">
@@ -108,6 +108,11 @@
                 <Argument name="GameValue" val="PlayerRace"/>
             </Frame>
 
+            <Frame type="DataRefFrame" name="PlayerFoodCap">
+                <PlayerId val="{$parent/@PlayerId}"/>
+                <Argument name="GameValue" val="PlayerFoodCap"/>
+            </Frame>
+
             <Frame type="DataRefFrame" name="PlayerFoodCeilingTerr">
                 <PlayerId val="{$parent/@PlayerId}"/>
                 <Argument name="Ref" val="Race,Terr,FoodCeiling"/>
@@ -131,7 +136,7 @@
             <Frame type="MathFrame" name="Supply">
                 <Anchor relative="$parent"/>
                 <A val="{$parent/ScoreValueFrame0/Label/@Text}"/>
-                <B val="{$parent/ScoreValueFrame1/FoodMade/@Text}"/>
+                <B val="{$parent/PlayerFoodCap/@RealValue}"/>
                 <Operator val="Divide"/>
             </Frame>
 
