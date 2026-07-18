@@ -1790,6 +1790,7 @@ Button/Name/AP_LurkerRangeCreep=Pressurized Release
 Button/Name/AP_MaelstromRounds=Maelstrom Rounds
 Button/Name/AP_MagFieldLaunchers=Mag-Field Launchers
 Button/Name/AP_MagrailMunitions=Magrail Munitions
+Button/Name/AP_MagrailMunitionsMarauder=Magrail Munitions
 Button/Name/AP_MagrailMunitionsViking=Anti-Mechanical Munition
 Button/Name/AP_Marauder=Train Marauder
 Button/Name/AP_MarauderMengsk=Train Aegis Guard
@@ -3265,7 +3266,7 @@ Button/Tooltip/AP_HealMengskHealL4=<c val="f078ff">Heals <d ref="Effect,AP_Medic
 Button/Tooltip/AP_HealMengskPlusMech=Heals a friendly biological or mechanical target.<n/><n/>
 Button/Tooltip/AP_HealingAdaptation=Tyrannozors regenerate life quickly when out of combat.
 Button/Tooltip/AP_HealingDrone=Heals nearby biological and mechanical units.<n/>Times out after <d ref="Behavior,AP_HealingDroneTimedLife,Duration"/> seconds.
-Button/Tooltip/AP_HealingPsionicStorm=Psionic Storm can be cast from +<d ref="Upgrade,AP_HighTemplarPlasmaSurge,EffectArray[3].Value"/> range, affects a larger area, and restores <d ref="((Effect,AP_HighArchonPsiStormPersistent,PeriodCount+1)*(Effect,AP_HighArchonPsiStormHeal,RechargeVitalRate))/2"/> shields to friendly units in the target area.<c/>
+Button/Tooltip/AP_HealingPsionicStorm=Psionic Storm can be cast from +<d ref="Upgrade,AP_HighTemplarPlasmaSurge,EffectArray[3].Value"/> range, affects a larger area, and restores <d ref="((Effect,AP_HighArchonPsiStormPersistent,PeriodCount+1)*(Effect,AP_HighArchonPsiStormHeal,RechargeVitalRate))/2"/> shields to friendly units in the target area.<n/>Also allows overlapping Psionic Storms to stack.
 Button/Tooltip/AP_HealpackLarge=Heals the unit for <d ref="Behavior,AP_HealpackLarge,Duration * Behavior,AP_HealpackLarge,Modification.VitalRegenArray[Life]"/> life over <d ref="Behavior,AP_HealpackLarge,Duration"/> seconds.
 Button/Tooltip/AP_HealpackSmall=Heals the unit for <d ref="Behavior,AP_HealpackSmall,Duration * Behavior,AP_HealpackSmall,Modification.VitalRegenArray[Life]"/> life over <d ref="Behavior,AP_HealpackSmall,Duration"/> seconds.
 Button/Tooltip/AP_HellArmor=Increases Hellion and Hellbat armor by 2.
@@ -3523,12 +3524,7 @@ Button/Tooltip/AP_MULE=Prototype harvesting unit. Gathers minerals more quickly 
 Button/Tooltip/AP_MaelstromRounds=Shock Cannon deals +40 damage to primary target. Splash damage remains the same.
 Button/Tooltip/AP_MagFieldLaunchers=Increases <c val="ffff8a">Cyclone's</c> attack range by +<d ref="$UpgradeEffectArrayValue:AP_MagFieldLaunchers:Weapon,AP_TyphoonMissilePod,Range$"/>.
 Button/Tooltip/AP_MagrailMunitions=Deals <d ref="Effect,AP_MagrailMunitionsDamage,Amount"/> damage to target enemy unit.
-Button/Tooltip/AP_MagrailMunitionsMengsk=Deals
-Button/Tooltip/AP_MagrailMunitionsMengskDamageL1= <d ref="Effect,AP_MagrailMunitionsDamage,Amount"/>
-Button/Tooltip/AP_MagrailMunitionsMengskDamageL2= <d ref="Effect,AP_MagrailMunitionsDamage,Amount + Accumulator,AP_MagrailMunitionsDamage,BonusPerLevel"/>
-Button/Tooltip/AP_MagrailMunitionsMengskDamageL3= <d ref="Effect,AP_MagrailMunitionsDamage,Amount + (2 * Accumulator,AP_MagrailMunitionsDamage,BonusPerLevel)"/>
-Button/Tooltip/AP_MagrailMunitionsMengskDamageL4= <d ref="Effect,AP_MagrailMunitionsDamage,Amount + (3 * Accumulator,AP_MagrailMunitionsDamage,BonusPerLevel)"/>
-Button/Tooltip/AP_MagrailMunitionsMengskPart2= damage to target enemy unit.
+Button/Tooltip/AP_MagrailMunitionsMarauder=Deals <d ref="Effect,AP_MagrailMunitionsDamageMarauder,Amount"/> damage to target enemy unit.
 Button/Tooltip/AP_MagrailMunitionsViking=Increases Viking's damage to mechanical units while in Assault mode.
 Button/Tooltip/AP_Marauder=Heavy assault infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_MarauderMengsk=Royal Guard heavy assault infantry.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
