@@ -536,7 +536,6 @@ Behavior/Name/AP_Charging=Charging
 Behavior/Name/AP_CleansingSmite=Burning
 Behavior/Name/AP_Contaminated=Contaminated
 Behavior/Name/AP_Corruption=Corruption
-Behavior/Name/AP_CorruptorAcidSplash=Acid Splash
 Behavior/Name/AP_CorsairMPDisruptionWeb=Disruption Web
 Behavior/Name/AP_CreepFrenzy13Crawler=Malignant Creep
 Behavior/Name/AP_DarkArchonConfusion=Confusion
@@ -810,6 +809,7 @@ Behavior/Name/AP_WarhoundBrawler=Brawler Configuration
 Behavior/Name/AP_WarhoundJumpSlow=Slowed
 Behavior/Name/AP_WarpRelocateDestination=Warp Relocate - Destination
 Behavior/Name/AP_WarpRelocating=Warp Relocating
+Behavior/Name/AP_WidowMineLingeringCloak=Lingering Cloak
 Behavior/Name/AP_WildMutation=Wild Mutation
 Behavior/Name/AP_WraithCloak=Cloak
 Behavior/Name/AP_WraithMengskResonatingFeedbackInterference=Stunned
@@ -882,7 +882,6 @@ Behavior/Tooltip/AP_Charging=This Zealot is charging, allowing it to quickly clo
 Behavior/Tooltip/AP_CleansingSmite=This unit is taking damage over time and restoring Artanis' shields.
 Behavior/Tooltip/AP_Contaminated=This structure is unable to train new units or research upgrades.
 Behavior/Tooltip/AP_Corruption=This unit takes 20% extra damage.
-Behavior/Tooltip/AP_CorruptorAcidSplash=This unit is coated in acid. It takes reduced damage.
 Behavior/Tooltip/AP_CorsairMPDisruptionWeb=This unit cannot attack.
 Behavior/Tooltip/AP_CreepFrenzy13Crawler=This unit is currently on Malignant Creep. It has +<d ref="(Behavior,AP_CreepFrenzy13Crawler,Modification.AttackSpeedMultiplier-1)*100" precision="1"/>% attack speed and regenerates +<d ref="Behavior,AP_CreepFrenzy13Crawler,Modification.VitalRegenArray[Life]" precision="1"/> life per second.
 Behavior/Tooltip/AP_DarkArchonConfusion=This unit may attack its allies.
@@ -1103,6 +1102,7 @@ Behavior/Tooltip/AP_WarhoundBrawler=This unit is in Brawler configuration
 Behavior/Tooltip/AP_WarhoundJumpSlow=This unit's movespeed and attackspeed is slowed
 Behavior/Tooltip/AP_WarpRelocateDestination=A Protoss structure is relocating to this location.
 Behavior/Tooltip/AP_WarpRelocating=This structure is moving to a new location.
+Behavior/Tooltip/AP_WidowMineLingeringCloak=This unit is cloaked for <d ref="Behavior,AP_WidowMineLingeringCloak,Duration"/> seconds after unburrowing.
 Behavior/Tooltip/AP_WildMutation=This unit gains +<d ref="Behavior,AP_WildMutation,Modification.VitalMaxArray[1]"/> maximum life and <d ref="(Behavior,AP_WildMutation,Modification.AttackSpeedMultiplier - 1) * 100"/>% increased attack speed.
 Behavior/Tooltip/AP_WraithCloak=This unit is cloaked and will only be revealed by detector units or effects.
 Behavior/Tooltip/AP_WraithMengskResonatingFeedbackInterference=Target is currently stunned and unable to use any abilities.
@@ -1409,7 +1409,7 @@ Button/Name/AP_CorpserPassive=Infest Roachlings
 Button/Name/AP_CorrosiveAcidDevourer=Acid Spores
 Button/Name/AP_Corruption=Corruption
 Button/Name/AP_Corruptor=Morph to Corruptor
-Button/Name/AP_CorruptorAcidSplash=Acid Splash
+Button/Name/AP_CorruptorSporefall=Sporefall
 Button/Name/AP_CorruptorConstructRegeneration=Construct Regeneration
 Button/Name/AP_CorruptorIncubateScourge=Incubate Scourge
 Button/Name/AP_CorruptorMonstrousResilience=Monstrous Resilience
@@ -2630,8 +2630,8 @@ Button/Name/AP_WidowMine=Build Widow Mine
 Button/Name/AP_WidowMineAttack=Attack
 Button/Name/AP_WidowMineBioSplash=Sentinel Missiles
 Button/Name/AP_WidowMineBurrow=Activate Mine
-Button/Name/AP_WidowMineConcealment=Concealment
 Button/Name/AP_WidowMineDemolitionArmaments=Demolition Payload
+Button/Name/AP_WidowMineLingeringConcealment=Lingering Concealment
 Button/Name/AP_WidowMineUnburrow=Deactivate Mine
 Button/Name/AP_WildMutation=Wild Mutation
 Button/Name/AP_WormholeTransit=Wormhole Transit
@@ -2674,7 +2674,7 @@ Button/Name/AP_ZealotPurifier=Warp in Sentinel
 Button/Name/AP_ZealotPurifierRevive=Reconstruction
 Button/Name/AP_ZealotShakuras=Warp in Centurion
 Button/Name/AP_ZealotShieldCapacity=Shield Capacity
-Button/Name/AP_ZergBroodlingPacking=Broodling Spore Saturation
+Button/Name/AP_ZergBroodlingPacking=Broodling Packing
 Button/Name/AP_ZergBuild=Basic Mutation
 Button/Name/AP_ZergBuildAdvanced=Advanced Mutation
 Button/Name/AP_ZergCreepStomach=Creep Stomach
@@ -3046,11 +3046,11 @@ Button/Tooltip/AP_CorpserPassive=Enemies damaged by the Roach become infested an
 Button/Tooltip/AP_CorrosiveAcidDevourer=Attacks cause the target and nearby enemies to leave an Acid Spores effect.<n/>Affected targets attack slower and take 1 additional damage with each attack received.<n/><n/>Stacks up to 9 times. Lasts <d ref="Behavior,AP_DevourerSCBWWeapon,Duration"/> seconds.
 Button/Tooltip/AP_Corruption=Covers the target enemy unit in Zerg slime, increasing the damage taken by 20% for <d time="30"/>.
 Button/Tooltip/AP_Corruptor=Anti-air flyer, specializing in anti-massive. Can morph into advanced fliers.<n/><n/><c val="ffff8a">Can attack air units.</c>
-Button/Tooltip/AP_CorruptorAcidSplash=Attacking an air unit will release a splash of acid, raining down on enemy ground units, causing up to <d ref="Effect,AP_ParasiteSporeGroundDamage,Amount"/> damage in an area.
 Button/Tooltip/AP_CorruptorConstructRegeneration=Increases Corruptor health regeneration by 3 per second.
 Button/Tooltip/AP_CorruptorIncubateScourge=Corruptors spawn 2 Scourge when killed (3 with Swarm Scourge).
 Button/Tooltip/AP_CorruptorMonstrousResilience=Increases Corruptor life by 100.
 Button/Tooltip/AP_CorruptorPassive=This building enables you to morph Corruptors.
+Button/Tooltip/AP_CorruptorSporefall=Attacking an air unit will release a descending cloud of spores on enemy ground units, causing up to <d ref="Effect,AP_ParasiteSporeGroundDamage,Amount"/> damage in an area.
 Button/Tooltip/AP_CorsairArgusJewel=Corsair can store 2 charges of Disruption Web.
 Button/Tooltip/AP_CorsairMP=Nerazim Faction<n/>Air superiority starfighter. Can use Disruption Web.<n/><n/><c val="ffff8a">Can attack air units.</c>
 Button/Tooltip/AP_CorsairMPDisruptionWeb=Creates a web of energy on the ground that prevents enemy structures and ground units from attacking for <d time="10"/>.
@@ -3127,7 +3127,7 @@ Button/Tooltip/AP_DistortionBlasters=Increases Banshee damage by 25% while cloak
 Button/Tooltip/AP_Dragoon=Aiur Faction<n/>Ranged assault strider. Has enhanced life and attack damage.<n/><n/><c val="ffff8a">Can attack ground and air units.</c>
 Button/Tooltip/AP_DragoonEnhancedStriderServos=Increases Dragoon movement speed.
 Button/Tooltip/AP_DragoonPhalanxSuit=Dragoons gain increased movement speed, +<d ref="Upgrade,AP_DragoonPhalanxSuit,EffectArray[0].Value"/> range, and can bunch closer with other units.<n/><n/><c val="FFE303">War Council Upgrade.</c>
-Button/Tooltip/AP_DrillClaws=This unit burrows faster.
+Button/Tooltip/AP_DrillClaws=This unit burrows and unburrows faster.
 Button/Tooltip/AP_Drone=Basic worker unit. Can harvest minerals and vespene gas. Can mutate into structures.<n/><n/><c val="#ColorAttackInfo">Can attack ground units.</c>
 Button/Tooltip/AP_DualFusionRepair=Restores life to mechanical units and structures at twice the speed of traditional repair.
 Button/Tooltip/AP_DualFusionWelders=SCVs repair twice as fast.
@@ -3243,7 +3243,7 @@ Button/Tooltip/AP_HHReaperFly=Allows the Reaper to fly for <d ref="Behavior,AP_H
 Button/Tooltip/AP_HHVikingPiercingAttacks=Attacks in Assault Mode pierce, dealing damage to enemy units behind the target.
 Button/Tooltip/AP_HHVikingPiercingAttacksGoliath=Ground attacks pierce, dealing damage to enemy units behind the target.
 Button/Tooltip/AP_HHVikingRockets=Launches <d ref="Effect,AP_HHVikingRocketsBurstPersistent,PeriodCount" player="current"/> rockets at the target unit. Each rocket deals <d ref="Effect,AP_HHVikingRocketsDamage,Amount"/> (<d ref="Effect,AP_HHVikingRocketsDamage,Amount+Effect,AP_HHVikingRocketsDamage,AttributeBonus[Armored]"/> vs armored) damage.
-Button/Tooltip/AP_HHWidowMineDeathBlossom=Reduce Sentinel Missile Cooldown by <d time="20"/>. When killed the Widow Mine will launch 5 Sentinel Missiles at random nearby targets that deal <d ref="Effect,AP_HHWidowMineBlossomExplodeSplash,Amount"/> (+<d ref="Effect,AP_HHWidowMineBlossomExplodeSplash,ShieldBonus"/> vs. shields) area damage.
+Button/Tooltip/AP_HHWidowMineDeathBlossom=Reduce Sentinel Missile Cooldown by <c val="#ColorTooltipNumber"><d ref="$UpgradeEffectArrayValue:AP_HHWidowMineDeathBlossom:Abil,AP_WidowMineAttack,Cost[0].Cooldown.TimeUse$"/></c> seconds. When killed the Widow Mine will launch <c val="#ColorTooltipNumber">5</c> Sentinel Missiles at random nearby targets that deal <c val="#ColorTooltipNumber"><d ref="Effect,AP_HHWidowMineBlossomExplodeSplash,Amount"/></c> (+<c val="#ColorTooltipNumber"><d ref="Effect,AP_HHWidowMineBlossomExplodeSplash,ShieldBonus"/></c> vs. shields) area damage.
 Button/Tooltip/AP_HHWidowMineRangeAttack=Sentinel missile range is increased by 50%.
 Button/Tooltip/AP_HHWraithFury=<c val="FFFF8A">Wraith</c> attack speed increases by 10% with each attack, up to a maximum of 100%.<n/><n/><c val="#ColorAttackInfo">Passive ability.</c>
 Button/Tooltip/AP_Hallucination=Creates hallucinations that cannot use active abilities, cannot deal damage, and die more easily. Hallucinations last <d ref="Behavior,AP_HallucinationTimedLife,Duration"/> seconds. Enemy detectors reveal hallucinations.
@@ -4224,7 +4224,7 @@ Button/Tooltip/AP_SurveillanceModeOverseerOn=Activate stationary detection mode.
 Button/Tooltip/AP_SurveillanceModeRavenOff=Deactivate stationary detection mode. Allows moving and attacking, but removes the sight range and detection range bonuses.
 Button/Tooltip/AP_SurveillanceModeRavenOn=Activate stationary detection mode. Adds +<d ref="Behavior,AP_SurveillanceMode,Modification.SightBonus"/> sight range and +<d ref="Behavior,AP_SurveillanceMode,Modification.SightBonus"/> detection range, but renders the unit unable to move and attack.
 Button/Tooltip/AP_SurveillanceModeScienceVesselOff=Deactivate stationary detection mode. Allows moving and attacking, but removes the sight range and detection range bonuses.
-Button/Tooltip/AP_SurveillanceModeScienceVesselOn=Activate stationary detection mode. Adds +<d ref="Behavior,AP_SurveillanceMode,Modification.SightBonus"/> sight range and +<d ref="Behavior,AP_SurveillanceMode,Modification.SightBonus"/> detection range, but renders the unit unable to move amd attack.
+Button/Tooltip/AP_SurveillanceModeScienceVesselOn=Activate stationary detection mode. Adds +<d ref="Behavior,AP_SurveillanceMode,Modification.SightBonus"/> sight range and +<d ref="Behavior,AP_SurveillanceMode,Modification.SightBonus"/> detection range, but renders the unit unable to move and attack.
 Button/Tooltip/AP_SwarmHost=Siege unit that attacks while rooted or burrowed by spawning Locusts. Locusts last <d ref="Behavior,AP_LocustTimedLife,Duration"/> seconds.<n/><n/><c val="#ColorAttackInfo">Locusts can attack ground units.</c>
 Button/Tooltip/AP_SwarmHostCarrionPassive=Carrion Strain<n/><n/>Infestation Pit enables you to morph Swarm Hosts.
 Button/Tooltip/AP_SwarmHostCreeperPassive=Creeper Strain<n/><n/>Infestation Pit enables you to morph Swarm Hosts.
@@ -4483,8 +4483,8 @@ Button/Tooltip/AP_WidowMine=Robotic mine. Launches missiles at nearby enemy unit
 Button/Tooltip/AP_WidowMineAttack=Attacks any nearby enemy unit.
 Button/Tooltip/AP_WidowMineBioSplash=Attacks air and ground units in proximity dealing <d ref="Effect,AP_WidowMineExplodeDirect,Amount"/> (+<d ref="Effect,AP_WidowMineExplodeDirect,ShieldBonus"/> vs. shields) damage to their primary target and <d ref="Effect,AP_WidowMineExplodeSplash,Amount"/> (+<d ref="Effect,AP_WidowMineExplodeSplash,ShieldBonus"/> vs. shields) splash damage to units nearby. This unit is revealed while reloading.<n/><n/><c val="#ColorAttackInfo">Cooldown: <d ref="Abil,AP_WidowMineAttack,Cost[0].Cooldown[0].TimeUse[0]"/> seconds.</c>
 Button/Tooltip/AP_WidowMineBurrow=Burrows the Widow Mine and readies its weapon. Cannot move while activated.
-Button/Tooltip/AP_WidowMineConcealment=This unit is no longer revealed while reloading.
 Button/Tooltip/AP_WidowMineDemolitionArmaments=Allows Widow Mines to attack buildings.
+Button/Tooltip/AP_WidowMineLingeringConcealment=Widow Mines remain cloaked for <c val="#ColorTooltipNumber"><d ref="Behavior,AP_WidowMineLingeringCloak,Duration"/></c> seconds after unburrowing.
 Button/Tooltip/AP_WidowMineUnburrow=Unburrows the Widow Mine and deactivates its weapon, allowing it to move.
 Button/Tooltip/AP_WildMutation=Friendly zerg units and your biological units in the target area gain +<d ref="Behavior,AP_WildMutation,Modification.VitalMaxArray[1]"/> maximum life and <d ref="(Behavior,AP_WildMutation,Modification.AttackSpeedMultiplier - 1) * 100"/>% increased attack speed for <d ref="Behavior,AP_WildMutation,Duration"/> seconds.<n/><n/><c val="ffff8a">Does not affect heroic units.</c>
 Button/Tooltip/AP_WormholeTransit=Teleports the Mothership to target location anywhere on the map.<n/></n><c val="FF4040">This ability shares a cooldown with Blink.</c>
@@ -7177,7 +7177,6 @@ Upgrade/Name/AP_Hyperfluxor=Hyperfluxor
 Upgrade/Name/AP_ImmortalBarrier=Immortal Barrier
 Upgrade/Name/AP_ImmortalRevive=Immortal Revive
 Upgrade/Name/AP_ImpalingStrike=Impaling Strike
-Upgrade/Name/AP_ImprovedConcealment=Concealment
 Upgrade/Name/AP_JackhammerConcussionGrenades=Concussive Shells
 Upgrade/Name/AP_JuggernautPlating=Juggernaut Plating
 Upgrade/Name/AP_K5Apocalypse=K5 Apocalypse
@@ -7463,6 +7462,7 @@ Upgrade/Name/AP_VoidRayBeamCanCharge=Void Ray - Beam Can Charge
 Upgrade/Name/AP_VoidStalkerBlinkShieldRestore=Void Stalker Blink Shield Restore
 Upgrade/Name/AP_VoidStoryUnitGlobalUpgrade=Void Story Unit Global Upgrade
 Upgrade/Name/AP_VultureAutoRepair=Auto-Repair
+Upgrade/Name/AP_WidowMineLingeringConcealment=Lingering Concealment
 Upgrade/Name/AP_WraithCloak=Wraith Cloak
 Upgrade/Name/AP_YamatoCannon=Yamato Cannon
 Upgrade/Name/AP_ZergBurrowMove=Zerg Burrow Move

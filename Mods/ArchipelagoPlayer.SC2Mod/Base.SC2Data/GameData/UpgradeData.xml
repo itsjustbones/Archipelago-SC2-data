@@ -3149,14 +3149,20 @@
         <Race value="Terr"/>
         <ScoreAmount value="300"/>
         <ScoreResult value="BuildOrder"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineBurrow,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineBurrow,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineBurrow,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="1.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineBurrow,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="1.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineBurrow,InfoArray[0].SectionArray[Stats].DurationArray[Collide]" Value="0.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineUnburrow,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="0.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineUnburrow,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="0.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineUnburrow,InfoArray[0].SectionArray[Stats].DurationArray[Collide]" Value="0.500000"/>
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <AffectedUnitArray value="AP_WidowMine"/>
         <AffectedUnitArray value="AP_WidowMineBurrowed"/>
     </CUpgrade>
-    <CUpgrade id="AP_ImprovedConcealment">
+    <CUpgrade id="AP_WidowMineLingeringConcealment">
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_WidowMineUnburrow,InfoArray[0].SectionArray[Abils].EffectArray[Start]" Value="AP_WidowMineLingeringCloakSet"/>
+        <EffectArray Operation="Set" Reference="Abil,AP_WidowMineUnburrow,InfoArray[0].SectionArray[Abils].EffectArray[Finish]" Value="AP_WidowMineLingeringCloakSet"/>
     </CUpgrade>
     <CUpgrade id="AP_ArmorPiercingRockets">
         <Flags index="TechTreeCheat" value="1"/>
@@ -8056,8 +8062,8 @@
     </CUpgrade>
     <CUpgrade id="AP_NotPossibleWidowMineBurrowed"/>
     <CUpgrade id="AP_HHWidowMineDeathBlossom">
-        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineAttack,Cost[0].Cooldown.TimeUse" Value="20.000000"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,AP_WidowMineAnimationController,Duration" Value="20.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,AP_WidowMineAttack,Cost[0].Cooldown.TimeUse" Value="17.000000"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,AP_WidowMineAnimationController,Duration" Value="17.000000"/>
         <AffectedUnitArray value="AP_WidowMine"/>
         <AffectedUnitArray value="AP_WidowMineBurrowed"/>
         <Icon value="Assets\Textures\btn-ability-hornerhan-widowmine-deathblossom.dds"/>
@@ -17007,7 +17013,7 @@
         <EffectArray Operation="Set" Reference="Abil,AP_CarrierPurifierHangar,InfoArray[Ammo1].Button.Requirements" Value="AP_ArmCarrierPurifierBomberUpgraded"/>
         <EditorCategories value="UpgradeType:Talents"/>
     </CUpgrade>
-    <CUpgrade id="AP_CorruptorAcidSplash">
+    <CUpgrade id="AP_CorruptorSporefall">
         <EffectArray Operation="Set" Reference="Effect,AP_ParasiteSpore_LaunchMissile,ImpactEffect" Value="AP_ParasiteSporeGroundPersistent"/>
     </CUpgrade>
     <CUpgrade id="AP_BunkerIgnoreSupply">
